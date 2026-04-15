@@ -13,6 +13,10 @@
   ],
   "routes": [
     {
+      "pattern": "pendelgeist.com",
+      "custom_domain": true
+    },
+    {
       "pattern": "www.pendelgeist.com",
       "custom_domain": true
     }
