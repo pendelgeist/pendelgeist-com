@@ -10,5 +10,11 @@
   },
   "compatibility_flags": [
     "nodejs_compat"
+  ],
+  "routes": [
+    {
+      "pattern": "www.pendelgeist.com",
+      "custom_domain": true
+    }
   ]
 }
