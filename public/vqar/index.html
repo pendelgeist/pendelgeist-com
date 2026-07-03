@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/vqar/styles.css">
+  <title>Dylan's Very Quick Anime Reviews</title>
+</head>
+<body>
+  <nav>
+    <a href="/">Home</a>
+  </nav>
+  <div class="container">
+    <header>
+        <h1>Dylan's Very Quick Anime Reviews <a href="#" class="info-link" id="infoToggle">*</a></h1>
+        <div class="subtitle">Current Season: <span id="currentSeasonName">Loading...</span></div>
+    </header>
+
+    <div class="filters">
+        <div class="filter-group">
+            <label for="searchInput">Search Reviews</label>
+            <input type="text" id="searchInput" placeholder="Search titles or reviews...">
+        </div>
+        <div class="filter-group">
+            <label for="seasonFilter">Season</label>
+            <select id="seasonFilter">
+                <option value="all">All Seasons</option>
+            </select>
+        </div>
+        <div class="filter-group">
+            <label for="sortBy">Sort By</label>
+            <select id="sortBy">
+                <option value="recent">Most Recent</option>
+                <option value="rating-high">Highest Rating</option>
+                <option value="rating-low">Lowest Rating</option>
+                <option value="title">Title (A-Z)</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="guidelines" id="guidelines">
+        <h3>Watch Duration</h3>
+        <p>Watch 5 to 10 minutes of each show</p>
+
+        <h3>Show Selection</h3>
+        <p>Try to get all the new shows, generally skip continuing/returning seasons</p>
+
+        <h3>Opening Credits</h3>
+        <p>"OP" = opening segment/credits</p>
+
+        <h3>Suggested Ratings</h3>
+        <p>Nice Ep Broh &bull; Finish Ep &bull; Meh &bull; Streaming Garbage &bull; Please No More Like This Ever &bull; I'd rather watch
+            El-Hazard 2</p>
+        <p style="font-style: italic;">* Custom ratings may also appear</p>
+    </div>
+
+    <div class="section">
+        <h2>Reviewed</h2>
+        <div id="reviewedShows"><div class="loading">LOADING DATA...</div></div>
+    </div>
+
+    <div class="section-grid">
+        <details class="section">
+            <summary><h2>To Be Reviewed</h2></summary>
+            <ul id="pendingShows" class="show-list">
+                <li class="loading">LOADING DATA...</li>
+            </ul>
+        </details>
+
+        <details class="section">
+            <summary><h2>Not Reviewing</h2></summary>
+            <ul id="skippedShows" class="show-list">
+                <li class="loading">LOADING DATA...</li>
+            </ul>
+        </details>
+    </div>
+  </div>
+
+  <script type="module" src="/vqar/app.js"></script>
+</body>
+</html>
