@@ -24,7 +24,7 @@
  * @typedef {Object} SeasonMeta
  * @property {string|number} id
  * @property {string} name
- * @property {string} file - filename within the gist, or an absolute URL
+ * @property {string} file - absolute raw URL to this season's own gist file
  */
 
 /**
@@ -33,10 +33,9 @@
  * @property {SeasonMeta[]} seasons
  */
 
-// The gist holds one manifest file plus one data file per season, so adding a
-// new season - or editing an old one - never touches the others.
-const GIST_RAW_BASE = 'https://gist.githubusercontent.com/pendelgeist/8185a42df4e11290513cf6326bd3fc60/raw/';
-const MANIFEST_FILE = 'vqar-manifest.json';
+// Each season lives in its own gist, so adding a new season - or editing an
+// old one - never touches the others. The manifest just lists where to find each.
+const MANIFEST_URL = 'https://gist.githubusercontent.com/pendelgeist/0b278faa556b5176f6e90324d5f5173b/raw/vqar-manifest.json';
 
 // Bump this if SeasonData's shape ever changes, to invalidate everything cached under the old shape.
 const CACHE_PREFIX = 'vqar:v1:season:';
@@ -122,11 +121,6 @@ function writeCache(key, value) {
   }
 }
 
-/** @param {string} file */
-function resolveUrl(file) {
-  return /^https?:\/\//.test(file) ? file : `${GIST_RAW_BASE}${file}`;
-}
-
 /**
  * Loads a season's data, preferring the local cache. The current season is
  * always re-fetched, since it's the one still being actively edited.
@@ -143,7 +137,7 @@ async function getSeasonData(meta) {
     if (cached) return cached;
   }
 
-  const response = await fetch(`${resolveUrl(meta.file)}?t=${Date.now()}`, { cache: 'no-cache' });
+  const response = await fetch(`${meta.file}?t=${Date.now()}`, { cache: 'no-cache' });
   if (!response.ok) {
     throw new Error(`HTTP ${response.status} loading season "${meta.name}"`);
   }
@@ -210,7 +204,7 @@ async function loadForCurrentFilter() {
 
 async function loadData() {
   try {
-    const response = await fetch(`${GIST_RAW_BASE}${MANIFEST_FILE}?t=${Date.now()}`, { cache: 'no-cache' });
+    const response = await fetch(`${MANIFEST_URL}?t=${Date.now()}`, { cache: 'no-cache' });
     if (!response.ok) {
       showError(`HTTP ${response.status}`);
       return;

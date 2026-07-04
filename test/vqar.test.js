@@ -2,12 +2,14 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { loadApp, createFetchStub, createLocalStorageStub, waitFor } from './helpers.js';
 
+// Each season's "file" is an absolute URL to its own gist, mirroring how the
+// real manifest points at three separate gists rather than one shared one.
 const manifest = {
   currentSeason: 'summer-2026',
   seasons: [
-    { id: 'summer-2026', name: 'Summer 2026', file: 'vqar-season-summer-2026.json' },
-    { id: 'spring-2026', name: 'Spring 2026', file: 'vqar-season-spring-2026.json' },
-    { id: 'winter-2026', name: 'Winter 2026', file: 'vqar-season-winter-2026.json' },
+    { id: 'summer-2026', name: 'Summer 2026', file: 'https://gist.githubusercontent.com/pendelgeist/aaa/raw/vqar-season-summer-2026.json' },
+    { id: 'spring-2026', name: 'Spring 2026', file: 'https://gist.githubusercontent.com/pendelgeist/bbb/raw/vqar-season-spring-2026.json' },
+    { id: 'winter-2026', name: 'Winter 2026', file: 'https://gist.githubusercontent.com/pendelgeist/ccc/raw/vqar-season-winter-2026.json' },
   ],
 };
 
