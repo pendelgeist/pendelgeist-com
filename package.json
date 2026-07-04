@@ -3,7 +3,8 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "test": "node --test test/*.test.js"
+    "test": "node --test test/*.test.js",
+    "validate-gists": "node scripts/validate-gists.js"
   },
   "devDependencies": {
     "jsdom": "^25.0.1"

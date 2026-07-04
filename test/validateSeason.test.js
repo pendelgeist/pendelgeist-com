@@ -1,0 +1,96 @@
+import { test } from 'node:test';
+import assert from 'node:assert/strict';
+import { validateSeason } from '../scripts/validateSeason.js';
+
+function cleanSeason() {
+  return {
+    id: 'spring-2026',
+    name: 'Spring 2026',
+    reviewed: [
+      { titleEN: 'Cool Show', ratingText: 'Finish Ep', dateReviewed: '2026-04-01' },
+    ],
+    pending: ['Pending Show'],
+    skipped: ['Skipped Show'],
+  };
+}
+
+test('a clean season has no issues', () => {
+  assert.deepEqual(validateSeason(cleanSeason()), []);
+});
+
+test('flags a show that is reviewed but still listed in pending', () => {
+  const season = cleanSeason();
+  season.pending.push('Cool Show');
+
+  const issues = validateSeason(season);
+  assert.ok(issues.some(i => i.includes('"Cool Show"') && i.includes('pending')));
+});
+
+test('flags a show that is reviewed but also listed in skipped', () => {
+  const season = cleanSeason();
+  season.skipped.push('Cool Show');
+
+  const issues = validateSeason(season);
+  assert.ok(issues.some(i => i.includes('"Cool Show"') && i.includes('skipped')));
+});
+
+test('flags a show listed in both pending and skipped', () => {
+  const season = cleanSeason();
+  season.pending.push('Contested Show');
+  season.skipped.push('Contested Show');
+
+  const issues = validateSeason(season);
+  assert.ok(issues.some(i => i.includes('"Contested Show"') && i.includes('both pending and skipped')));
+});
+
+test('flags duplicate entries within the same list', () => {
+  const season = cleanSeason();
+  season.pending.push('Pending Show');
+
+  const issues = validateSeason(season);
+  assert.ok(issues.some(i => i.includes('"Pending Show"') && i.includes('more than once in pending')));
+});
+
+test('flags a reviewed entry missing required fields', () => {
+  const season = cleanSeason();
+  season.reviewed.push({ titleEN: 'Half-filled-out Show' });
+
+  const issues = validateSeason(season);
+  assert.ok(issues.some(i => i.includes('"Half-filled-out Show"') && i.includes('ratingText')));
+  assert.ok(issues.some(i => i.includes('"Half-filled-out Show"') && i.includes('dateReviewed')));
+});
+
+test('flags an unparseable dateReviewed', () => {
+  const season = cleanSeason();
+  season.reviewed.push({ titleEN: 'Bad Date Show', ratingText: 'Meh', dateReviewed: 'not-a-date' });
+
+  const issues = validateSeason(season);
+  assert.ok(issues.some(i => i.includes('"Bad Date Show"') && i.includes('dateReviewed')));
+});
+
+test('flags a malformed fullReview/op/ed (not an object)', () => {
+  const season = cleanSeason();
+  season.reviewed.push({
+    titleEN: 'Malformed Addenda Show',
+    ratingText: 'Meh',
+    dateReviewed: '2026-04-02',
+    op: 'should be an object, not a string',
+  });
+
+  const issues = validateSeason(season);
+  assert.ok(issues.some(i => i.includes('"Malformed Addenda Show"') && i.includes('op')));
+});
+
+test('a well-formed fullReview/op/ed does not trigger a false positive', () => {
+  const season = cleanSeason();
+  season.reviewed.push({
+    titleEN: 'Fully Reviewed Show',
+    ratingText: 'Finish Ep',
+    dateReviewed: '2026-04-02',
+    fullReview: { ratingText: 'Nice Ep Broh', review: 'great', dateReviewed: '2026-06-01' },
+    op: { ratingText: 'Bop of the Year' },
+    ed: { ratingText: 'Catchy AF' },
+  });
+
+  assert.deepEqual(validateSeason(season), []);
+});
