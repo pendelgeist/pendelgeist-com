@@ -68,6 +68,8 @@ const seasonDataById = new Map();
 let currentSeasonId = '';
 /** Guards against a slower, stale fetch clobbering a newer selection. */
 let loadToken = 0;
+/** @type {SeasonMeta[]} seasons that failed to load for the current filter, if any */
+let loadErrors = [];
 
 dom.infoToggle?.addEventListener('click', (e) => {
   e.preventDefault();
@@ -153,19 +155,23 @@ async function getSeasonData(meta) {
  * Ensures every season in `metas` is present in `seasonDataById`, fetching
  * (cache-first) whichever ones are missing, in parallel.
  * @param {SeasonMeta[]} metas
+ * @returns {Promise<SeasonMeta[]>} the metas that failed to load, if any
  */
 async function ensureSeasonsLoaded(metas) {
   const missing = metas.filter(m => !seasonDataById.has(String(m.id)));
-  if (missing.length === 0) return;
+  if (missing.length === 0) return [];
 
   const results = await Promise.allSettled(missing.map(m => getSeasonData(m)));
+  const failed = [];
   results.forEach((result, i) => {
     if (result.status === 'fulfilled') {
       seasonDataById.set(String(missing[i].id), result.value);
     } else {
       console.error(`Error loading season "${missing[i].name}":`, result.reason);
+      failed.push(missing[i]);
     }
   });
+  return failed;
 }
 
 function buildReviewsForLoadedSeasons(seasonIds) {
@@ -193,10 +199,11 @@ async function loadForCurrentFilter() {
 
   showLoading('LOADING SEASON...');
   dom.seasonFilter.disabled = true;
-  await ensureSeasonsLoaded(metasNeeded);
+  const failed = await ensureSeasonsLoaded(metasNeeded);
   if (token !== loadToken) return; // a newer selection superseded this load
 
   dom.seasonFilter.disabled = false;
+  loadErrors = failed;
   renderReviews();
   renderList(dom.pendingShows, 'pending');
   renderList(dom.skippedShows, 'skipped');
@@ -302,14 +309,25 @@ function renderReviews() {
 
   filtered.sort(SORTERS[sortBy] ?? (() => 0));
 
+  const nodes = [];
+  if (loadErrors.length > 0) {
+    const warning = document.createElement('div');
+    warning.className = 'loading';
+    warning.style.color = 'red';
+    warning.textContent = `ERROR: failed to load ${loadErrors.map(m => m.name).join(', ')}`;
+    nodes.push(warning);
+  }
+
   if (filtered.length === 0) {
     const div = document.createElement('div');
     div.className = 'loading';
     div.textContent = 'NO REVIEWS FOUND';
-    dom.reviewedShows.replaceChildren(div);
+    nodes.push(div);
   } else {
-    dom.reviewedShows.replaceChildren(...filtered.map(createReviewArticle));
+    nodes.push(...filtered.map(createReviewArticle));
   }
+
+  dom.reviewedShows.replaceChildren(...nodes);
 }
 
 /**

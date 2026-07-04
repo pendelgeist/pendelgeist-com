@@ -158,3 +158,12 @@ test('a manifest load failure shows an error instead of crashing', async () => {
 
   assert.match(document.getElementById('reviewedShows').textContent, /ERROR/);
 });
+
+test('a season data load failure (e.g. a stale/wrong URL in the manifest) is shown on the page', async () => {
+  const { 'vqar-season-summer-2026.json': _omitted, ...seasonsMinusSummer } = seasons;
+  const fetch = createFetchStub({ 'vqar-manifest.json': manifest, ...seasonsMinusSummer });
+  const { document } = await loadApp({ fetch });
+
+  await waitFor(() => /ERROR/.test(document.getElementById('reviewedShows').textContent));
+  assert.match(document.getElementById('reviewedShows').textContent, /Summer 2026/);
+});
