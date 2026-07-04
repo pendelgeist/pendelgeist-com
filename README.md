@@ -7,6 +7,23 @@ Personal site, served as static assets from a Cloudflare Worker (see `wrangler.j
 - `public/index.html` — homepage, links out to the other sites.
 - `public/vqar/` — Very Quick Anime Reviews, a small vanilla-JS app.
 - `public/styles.css` — shared site styles. `public/vqar/styles.css` layers VQAR-only styles on top.
+- `public/theme.js` — the theme picker (see below), loaded by every page.
+
+## Theme
+
+Every page loads `theme.js`, which adds an Auto/Light/Dark `<select>` into the `<nav>`
+and persists the choice to `localStorage` (`pendelgeist:theme`). Picking a theme sets
+`data-theme="light"|"dark"` on `<html>`; "Auto" removes it and falls back to the
+OS/browser preference. An inline script in each page's `<head>` applies a saved theme
+before first paint to avoid a flash of the wrong theme.
+
+The actual colors live in `styles.css` as `--color-*` custom properties defined with
+`light-dark(lightValue, darkValue)`, which resolve off the *used value* of `color-scheme`
+— so picking a theme just narrows `color-scheme` to `light` or `dark`
+(`:root[data-theme="dark"] { color-scheme: dark; }`) rather than redefining every
+variable. A future non-light/dark theme would instead override the `--color-*`
+variables directly for its own `[data-theme="..."]` selector, and get added to the
+`THEMES` list in `theme.js`.
 
 ## VQAR data
 
