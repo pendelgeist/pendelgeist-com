@@ -3,6 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>
+    // Applied before first paint to avoid a flash of the wrong theme; must
+    // match the storage key/values theme.js uses.
+    try {
+      var savedTheme = localStorage.getItem('pendelgeist:theme');
+      if (savedTheme === 'light' || savedTheme === 'dark') {
+        document.documentElement.setAttribute('data-theme', savedTheme);
+      }
+    } catch (e) {}
+  </script>
   <link href="https://fonts.googleapis.com" rel="preconnect">
   <link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
   <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@500&display=swap" rel="stylesheet">
@@ -13,6 +23,7 @@
   <nav>
     <a href="/">Home</a>
   </nav>
+  <script type="module" src="/theme.js"></script>
   <div class="container">
     <header>
       <h1>Pendelgeist</h1>
