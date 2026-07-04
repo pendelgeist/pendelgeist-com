@@ -33,6 +33,16 @@ in `localStorage` after their first load, so switching between them is free afte
 first visit — clear site data to force a re-fetch. If a season's URL is wrong or its gist
 is unreachable, the page shows an error naming that season instead of failing silently.
 
+### Review shape
+
+Each entry in a season's `reviewed` array is a single-episode review plus three optional
+follow-up notes, each shaped like `{ ratingNumber, ratingText, review, dateReviewed }`:
+
+- `fullReview` — a full-series re-review once a "Finish Ep"-rated show actually gets finished.
+- `op` / `ed` — opening/ending callouts, handy for finding the year's best OP/ED later.
+
+All three are optional and independent — add whichever applies whenever you get to it.
+
 ## Development
 
 ```
