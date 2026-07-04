@@ -37,6 +37,7 @@
 }
 
 input, select {
+  height: 2.75rem;
   padding: 0.5rem;
   font: inherit;
   border: 2px solid var(--color-input-border);

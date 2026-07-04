@@ -51,6 +51,12 @@ function selectSeason(document, value) {
   select.dispatchEvent(new document.defaultView.Event('change'));
 }
 
+function search(document, value) {
+  const input = document.getElementById('searchInput');
+  input.value = value;
+  input.dispatchEvent(new document.defaultView.Event('input'));
+}
+
 test('initial load fetches only the manifest and the current season', async () => {
   const fetch = createFetchStub(routes());
   const { document } = await loadApp({ fetch });
@@ -107,9 +113,10 @@ test('re-selecting an already-loaded season does not re-fetch', async () => {
   assert.deepEqual(fetch.calls, []);
 });
 
-test('"All Seasons" loads whatever is missing and sorts by most recent', async () => {
+test('"All Seasons" loads whatever is missing, sorts by most recent, and caches what it loaded', async () => {
   const fetch = createFetchStub(routes());
-  const { document } = await loadApp({ fetch });
+  const localStorage = createLocalStorageStub();
+  const { document } = await loadApp({ fetch, localStorage });
 
   fetch.calls.length = 0;
   selectSeason(document, 'all');
@@ -117,20 +124,32 @@ test('"All Seasons" loads whatever is missing and sorts by most recent', async (
 
   assert.deepEqual(fetch.calls, ['vqar-season-spring-2026.json', 'vqar-season-winter-2026.json']);
   assert.deepEqual(titles(document), ['Summer Show', 'Spring Show', 'Winter Show']);
+  assert.ok(localStorage.getItem('vqar:v1:season:spring-2026') !== null);
+  assert.ok(localStorage.getItem('vqar:v1:season:winter-2026') !== null);
 });
 
-test('search filters the currently loaded reviews', async () => {
+test('search filters within "All Seasons" once all seasons are loaded', async () => {
   const fetch = createFetchStub(routes());
   const { document } = await loadApp({ fetch });
 
   selectSeason(document, 'all');
   await waitFor(() => titles(document).length === 3);
 
-  const searchInput = document.getElementById('searchInput');
-  searchInput.value = 'winter';
-  searchInput.dispatchEvent(new document.defaultView.Event('input'));
+  search(document, 'winter');
 
   assert.deepEqual(titles(document), ['Winter Show']);
+});
+
+test('search only looks within the season the dropdown is scoped to, not other unloaded seasons', async () => {
+  const fetch = createFetchStub(routes());
+  const { document } = await loadApp({ fetch });
+
+  // Still on the current season (summer-2026); a search matching only another
+  // season's content shouldn't reach into seasons the dropdown doesn't cover.
+  search(document, 'winter');
+
+  assert.deepEqual(titles(document), []);
+  assert.match(document.getElementById('reviewedShows').textContent, /NO REVIEWS FOUND/);
 });
 
 test('a season cached from a previous page load is not re-fetched, but the current season always is', async () => {
