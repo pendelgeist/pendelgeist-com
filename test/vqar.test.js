@@ -186,3 +186,57 @@ test('a season data load failure (e.g. a stale/wrong URL in the manifest) is sho
   await waitFor(() => /ERROR/.test(document.getElementById('reviewedShows').textContent));
   assert.match(document.getElementById('reviewedShows').textContent, /Summer 2026/);
 });
+
+test('a full-series re-review and OP/ED notes render as addenda below the main review', async () => {
+  const fetch = createFetchStub({
+    'vqar-manifest.json': manifest,
+    'vqar-season-summer-2026.json': {
+      id: 'summer-2026',
+      name: 'Summer 2026',
+      reviewed: [{
+        titleEN: 'Summer Show',
+        ratingNumber: 4,
+        ratingText: 'Finish Ep',
+        review: 'great start',
+        dateReviewed: '2026-07-01',
+        fullReview: { ratingNumber: 5, ratingText: 'Nice Ep Broh', review: 'stuck the landing', dateReviewed: '2026-09-20' },
+        op: { ratingText: 'Bop of the year', review: 'incredible guitar riff', dateReviewed: '2026-07-05' },
+        ed: { ratingText: 'Catchy AF', review: 'still stuck in my head', dateReviewed: '2026-07-06' },
+      }],
+      pending: [],
+      skipped: [],
+    },
+  });
+  const { document } = await loadApp({ fetch });
+
+  const labels = [...document.querySelectorAll('.entry-addendum-label')].map((el) => el.textContent);
+  assert.deepEqual(labels, ['Full Series', 'OP', 'ED']);
+  assert.match(document.getElementById('reviewedShows').textContent, /stuck the landing/);
+  assert.match(document.getElementById('reviewedShows').textContent, /incredible guitar riff/);
+  assert.match(document.getElementById('reviewedShows').textContent, /still stuck in my head/);
+});
+
+test('search matches text inside a full-series re-review or OP/ED note, not just the main review', async () => {
+  const fetch = createFetchStub({
+    'vqar-manifest.json': manifest,
+    'vqar-season-summer-2026.json': {
+      id: 'summer-2026',
+      name: 'Summer 2026',
+      reviewed: [{
+        titleEN: 'Summer Show',
+        ratingNumber: 4,
+        ratingText: 'Finish Ep',
+        review: 'great start',
+        dateReviewed: '2026-07-01',
+        ed: { ratingText: 'Catchy AF', review: 'best ending song of the year', dateReviewed: '2026-07-06' },
+      }],
+      pending: [],
+      skipped: [],
+    },
+  });
+  const { document } = await loadApp({ fetch });
+
+  search(document, 'best ending song');
+
+  assert.deepEqual(titles(document), ['Summer Show']);
+});
