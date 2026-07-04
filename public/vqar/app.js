@@ -12,7 +12,7 @@
  */
 
 /**
- * @typedef {Object} Season
+ * @typedef {Object} SeasonData
  * @property {string|number} id
  * @property {string} name
  * @property {Review[]} reviewed
@@ -21,12 +21,24 @@
  */
 
 /**
- * @typedef {Object} VQARData
- * @property {string|number} currentSeason
- * @property {Season[]} seasons
+ * @typedef {Object} SeasonMeta
+ * @property {string|number} id
+ * @property {string} name
+ * @property {string} file - absolute raw URL to this season's own gist file
  */
 
-const GIST_URL = 'https://gist.githubusercontent.com/pendelgeist/8185a42df4e11290513cf6326bd3fc60/raw/vqar-data.json';
+/**
+ * @typedef {Object} Manifest
+ * @property {string|number} currentSeason
+ * @property {SeasonMeta[]} seasons
+ */
+
+// Each season lives in its own gist, so adding a new season - or editing an
+// old one - never touches the others. The manifest just lists where to find each.
+const MANIFEST_URL = 'https://gist.githubusercontent.com/pendelgeist/0b278faa556b5176f6e90324d5f5173b/raw/vqar-manifest.json';
+
+// Bump this if SeasonData's shape ever changes, to invalidate everything cached under the old shape.
+const CACHE_PREFIX = 'vqar:v1:season:';
 
 /** @type {Record<string, (a: Review, b: Review) => number>} */
 const SORTERS = {
@@ -48,10 +60,16 @@ const dom = {
   skippedShows: document.getElementById('skippedShows'),
 };
 
-/** @type {Review[]} */
-let allReviews = [];
-/** @type {VQARData|null} */
-let currentData = null;
+/** @type {Manifest|null} */
+let manifest = null;
+/** @type {Map<string, SeasonData>} */
+const seasonDataById = new Map();
+/** @type {string} */
+let currentSeasonId = '';
+/** Guards against a slower, stale fetch clobbering a newer selection. */
+let loadToken = 0;
+/** @type {SeasonMeta[]} seasons that failed to load for the current filter, if any */
+let loadErrors = [];
 
 dom.infoToggle?.addEventListener('click', (e) => {
   e.preventDefault();
@@ -74,26 +92,141 @@ function showError(message) {
   }
 }
 
+function showLoading(message) {
+  if (dom.reviewedShows) {
+    const div = document.createElement('div');
+    div.className = 'loading';
+    div.textContent = message;
+    dom.reviewedShows.replaceChildren(div);
+  }
+}
+
+/** @param {string} key */
+function readCache(key) {
+  try {
+    const raw = localStorage.getItem(key);
+    return raw ? JSON.parse(raw) : null;
+  } catch {
+    return null;
+  }
+}
+
+/**
+ * @param {string} key
+ * @param {unknown} value
+ */
+function writeCache(key, value) {
+  try {
+    localStorage.setItem(key, JSON.stringify(value));
+  } catch {
+    // Best-effort only (private browsing / quota); a cache miss just means we re-fetch.
+  }
+}
+
+/**
+ * Loads a season's data, preferring the local cache. The current season is
+ * always re-fetched, since it's the one still being actively edited.
+ * @param {SeasonMeta} meta
+ * @returns {Promise<SeasonData>}
+ */
+async function getSeasonData(meta) {
+  const id = String(meta.id);
+  const cacheKey = CACHE_PREFIX + id;
+  const isCurrent = id === currentSeasonId;
+
+  if (!isCurrent) {
+    const cached = readCache(cacheKey);
+    if (cached) return cached;
+  }
+
+  const response = await fetch(`${meta.file}?t=${Date.now()}`, { cache: 'no-cache' });
+  if (!response.ok) {
+    throw new Error(`HTTP ${response.status} loading season "${meta.name}"`);
+  }
+  const data = /** @type {SeasonData} */ (await response.json());
+
+  if (!isCurrent) {
+    writeCache(cacheKey, data);
+  }
+  return data;
+}
+
+/**
+ * Ensures every season in `metas` is present in `seasonDataById`, fetching
+ * (cache-first) whichever ones are missing, in parallel.
+ * @param {SeasonMeta[]} metas
+ * @returns {Promise<SeasonMeta[]>} the metas that failed to load, if any
+ */
+async function ensureSeasonsLoaded(metas) {
+  const missing = metas.filter(m => !seasonDataById.has(String(m.id)));
+  if (missing.length === 0) return [];
+
+  const results = await Promise.allSettled(missing.map(m => getSeasonData(m)));
+  const failed = [];
+  results.forEach((result, i) => {
+    if (result.status === 'fulfilled') {
+      seasonDataById.set(String(missing[i].id), result.value);
+    } else {
+      console.error(`Error loading season "${missing[i].name}":`, result.reason);
+      failed.push(missing[i]);
+    }
+  });
+  return failed;
+}
+
+function buildReviewsForLoadedSeasons(seasonIds) {
+  return seasonIds.flatMap(id => {
+    const season = seasonDataById.get(id);
+    if (!season) return [];
+    return (season.reviewed ?? []).map(r => ({
+      ...r,
+      season: id,
+      seasonName: season.name,
+      _timestamp: Date.parse(r.dateReviewed) || 0,
+    }));
+  });
+}
+
+/** Loads whatever the current season filter needs, then renders. */
+async function loadForCurrentFilter() {
+  if (!manifest || !dom.seasonFilter) return;
+
+  const token = ++loadToken;
+  const filterValue = dom.seasonFilter.value;
+  const metasNeeded = filterValue === 'all'
+    ? manifest.seasons
+    : manifest.seasons.filter(s => String(s.id) === filterValue);
+
+  showLoading('LOADING SEASON...');
+  dom.seasonFilter.disabled = true;
+  const failed = await ensureSeasonsLoaded(metasNeeded);
+  if (token !== loadToken) return; // a newer selection superseded this load
+
+  dom.seasonFilter.disabled = false;
+  loadErrors = failed;
+  renderReviews();
+  renderList(dom.pendingShows, 'pending');
+  renderList(dom.skippedShows, 'skipped');
+}
+
 async function loadData() {
   try {
-    const response = await fetch(`${GIST_URL}?t=${Date.now()}`, { cache: 'no-cache' });
+    const response = await fetch(`${MANIFEST_URL}?t=${Date.now()}`, { cache: 'no-cache' });
     if (!response.ok) {
       showError(`HTTP ${response.status}`);
       return;
     }
 
-    const data = /** @type {VQARData} */ (await response.json());
-    if (!Array.isArray(data?.seasons)) {
-      showError('Invalid data format');
+    manifest = /** @type {Manifest} */ (await response.json());
+    if (!Array.isArray(manifest?.seasons)) {
+      showError('Invalid manifest format');
       return;
     }
 
-    currentData = data;
-
-    const currentId = String(data.currentSeason);
-    const currentSeason = data.seasons.find(s => String(s.id) === currentId);
+    currentSeasonId = String(manifest.currentSeason);
+    const currentMeta = manifest.seasons.find(s => String(s.id) === currentSeasonId);
     if (dom.currentSeasonName) {
-      dom.currentSeasonName.textContent = currentSeason?.name ?? '';
+      dom.currentSeasonName.textContent = currentMeta?.name ?? '';
     }
 
     if (dom.seasonFilter) {
@@ -102,29 +235,18 @@ async function loadData() {
       allOption.textContent = 'All Seasons';
 
       const fragment = document.createDocumentFragment();
-      for (const season of data.seasons) {
+      for (const season of manifest.seasons) {
         const option = document.createElement('option');
         option.value = String(season.id);
         option.textContent = season.name;
-        option.selected = String(season.id) === currentId;
+        option.selected = String(season.id) === currentSeasonId;
         fragment.appendChild(option);
       }
 
       dom.seasonFilter.replaceChildren(allOption, fragment);
     }
 
-    allReviews = data.seasons.flatMap(s =>
-      (s.reviewed ?? []).map(r => ({
-        ...r,
-        season: String(s.id),
-        seasonName: s.name,
-        _timestamp: Date.parse(r.dateReviewed) || 0,
-      }))
-    );
-
-    renderReviews();
-    renderList(dom.pendingShows, 'pending');
-    renderList(dom.skippedShows, 'skipped');
+    await loadForCurrentFilter();
   } catch (error) {
     console.error('Error loading data:', error);
     showError(error instanceof Error ? error.message : 'Unknown error');
@@ -173,25 +295,39 @@ function renderReviews() {
   const season = dom.seasonFilter.value;
   const sortBy = dom.sortBy.value;
 
-  const filtered = allReviews.filter(r => {
+  const seasonIds = season === 'all' ? [...seasonDataById.keys()] : [season];
+  const reviews = buildReviewsForLoadedSeasons(seasonIds);
+
+  const filtered = reviews.filter(r => {
     const matchesSearch = !searchTerm ||
       (r.titleEN ?? '').toLowerCase().includes(searchTerm) ||
       (r.titleJP ?? '').toLowerCase().includes(searchTerm) ||
       (r.review ?? '').toLowerCase().includes(searchTerm) ||
       (r.ratingText ?? '').toLowerCase().includes(searchTerm);
-    return matchesSearch && (season === 'all' || r.season === season);
+    return matchesSearch;
   });
 
   filtered.sort(SORTERS[sortBy] ?? (() => 0));
+
+  const nodes = [];
+  if (loadErrors.length > 0) {
+    const warning = document.createElement('div');
+    warning.className = 'loading';
+    warning.style.color = 'red';
+    warning.textContent = `ERROR: failed to load ${loadErrors.map(m => m.name).join(', ')}`;
+    nodes.push(warning);
+  }
 
   if (filtered.length === 0) {
     const div = document.createElement('div');
     div.className = 'loading';
     div.textContent = 'NO REVIEWS FOUND';
-    dom.reviewedShows.replaceChildren(div);
+    nodes.push(div);
   } else {
-    dom.reviewedShows.replaceChildren(...filtered.map(createReviewArticle));
+    nodes.push(...filtered.map(createReviewArticle));
   }
+
+  dom.reviewedShows.replaceChildren(...nodes);
 }
 
 /**
@@ -201,8 +337,7 @@ function renderReviews() {
 function renderList(container, key) {
   if (!container) return;
 
-  const currentId = String(currentData?.currentSeason ?? '');
-  const season = currentData?.seasons?.find(s => String(s.id) === currentId);
+  const season = seasonDataById.get(currentSeasonId);
   if (!season || !Array.isArray(season[key])) {
     const li = document.createElement('li');
     li.textContent = 'None';
@@ -218,7 +353,7 @@ function renderList(container, key) {
 }
 
 dom.searchInput?.addEventListener('input', renderReviews);
-dom.seasonFilter?.addEventListener('change', renderReviews);
+dom.seasonFilter?.addEventListener('change', loadForCurrentFilter);
 dom.sortBy?.addEventListener('change', renderReviews);
 
 await loadData();
