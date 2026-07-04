@@ -291,21 +291,20 @@ function createReviewArticle(r) {
 function renderReviews() {
   if (!dom.searchInput || !dom.seasonFilter || !dom.sortBy || !dom.reviewedShows) return;
 
-  const searchTerm = dom.searchInput.value.toLowerCase();
+  const searchTerm = dom.searchInput.value.trim().toLowerCase();
   const season = dom.seasonFilter.value;
   const sortBy = dom.sortBy.value;
 
   const seasonIds = season === 'all' ? [...seasonDataById.keys()] : [season];
   const reviews = buildReviewsForLoadedSeasons(seasonIds);
 
-  const filtered = reviews.filter(r => {
-    const matchesSearch = !searchTerm ||
-      (r.titleEN ?? '').toLowerCase().includes(searchTerm) ||
-      (r.titleJP ?? '').toLowerCase().includes(searchTerm) ||
-      (r.review ?? '').toLowerCase().includes(searchTerm) ||
-      (r.ratingText ?? '').toLowerCase().includes(searchTerm);
-    return matchesSearch;
-  });
+  const filtered = reviews.filter(r =>
+    !searchTerm ||
+    (r.titleEN ?? '').toLowerCase().includes(searchTerm) ||
+    (r.titleJP ?? '').toLowerCase().includes(searchTerm) ||
+    (r.review ?? '').toLowerCase().includes(searchTerm) ||
+    (r.ratingText ?? '').toLowerCase().includes(searchTerm)
+  );
 
   filtered.sort(SORTERS[sortBy] ?? (() => 0));
 
