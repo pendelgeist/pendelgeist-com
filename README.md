@@ -60,6 +60,19 @@ follow-up notes, each shaped like `{ ratingNumber, ratingText, review, dateRevie
 
 All three are optional and independent — add whichever applies whenever you get to it.
 
+### Validating gist data
+
+`scripts/validate-gists.js` is a standalone check — it's not part of the website, just
+something to run occasionally to make sure the underlying data is internally consistent.
+It flags a show that's marked reviewed but still left in pending/skipped, a show listed in
+both pending and skipped, duplicate entries within the same list, and reviews missing
+required fields or with an unparseable date.
+
+```
+npm run validate-gists                  # fetches the live manifest and checks every season
+npm run validate-gists -- ./draft.json  # or check one or more local files/URLs directly
+```
+
 ## Development
 
 ```
