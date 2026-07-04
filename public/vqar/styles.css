@@ -157,6 +157,26 @@ article:hover {
   color: var(--color-muted);
 }
 
+/* Follow-up notes: full-series re-reviews, OP/ED callouts */
+
+.entry-addendum {
+  margin-top: 0.75rem;
+  padding-top: 0.75rem;
+  border-top: 1px dashed var(--color-article-border);
+}
+
+.entry-addendum .entry-meta {
+  margin-top: 0;
+}
+
+.entry-addendum-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1rem;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+
 /* Responsive */
 
 @media (max-width: 768px) {

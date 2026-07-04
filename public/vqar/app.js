@@ -1,4 +1,14 @@
 /**
+ * A follow-up note attached to a Review: a full-series re-review once a
+ * "Finish Ep"-rated show is actually finished, or an OP/ED callout.
+ * @typedef {Object} SubReview
+ * @property {number} [ratingNumber]
+ * @property {string} [ratingText]
+ * @property {string} [review]
+ * @property {string} [dateReviewed]
+ */
+
+/**
  * @typedef {Object} Review
  * @property {string} titleEN
  * @property {string} titleJP
@@ -6,6 +16,9 @@
  * @property {string} ratingText
  * @property {string} review
  * @property {string} dateReviewed
+ * @property {SubReview} [fullReview] - optional full-series re-review
+ * @property {SubReview} [op] - optional opening notes/rating
+ * @property {SubReview} [ed] - optional ending notes/rating
  * @property {string} season
  * @property {string} seasonName
  * @property {number} _timestamp
@@ -253,6 +266,50 @@ async function loadData() {
   }
 }
 
+/**
+ * Renders a follow-up note (full-series re-review, or an OP/ED callout) as a
+ * small addendum block appended below the main review.
+ * @param {string} label
+ * @param {SubReview} sub
+ */
+function createSubReviewBlock(label, sub) {
+  const block = document.createElement('div');
+  block.className = 'entry-addendum';
+
+  const header = document.createElement('div');
+  header.className = 'entry-meta';
+
+  const labelEl = document.createElement('span');
+  labelEl.className = 'entry-addendum-label';
+  labelEl.textContent = label;
+  header.appendChild(labelEl);
+
+  if (sub.ratingText) {
+    const rating = document.createElement('span');
+    rating.className = 'entry-rating';
+    rating.textContent = sub.ratingText;
+    header.appendChild(rating);
+  }
+
+  if (sub.dateReviewed) {
+    const published = document.createElement('span');
+    published.className = 'entry-published';
+    published.textContent = `Reviewed: ${sub.dateReviewed}`;
+    header.appendChild(published);
+  }
+
+  block.appendChild(header);
+
+  if (sub.review) {
+    const desc = document.createElement('div');
+    desc.className = 'entry-description';
+    desc.textContent = sub.review;
+    block.appendChild(desc);
+  }
+
+  return block;
+}
+
 /** @param {Review} r */
 function createReviewArticle(r) {
   const article = document.createElement('article');
@@ -284,8 +341,29 @@ function createReviewArticle(r) {
 
   meta.append(rating, published);
   body.append(title, titleJp, desc, meta);
+
+  if (r.fullReview) {
+    body.appendChild(createSubReviewBlock('Full Series', r.fullReview));
+  }
+  if (r.op) {
+    body.appendChild(createSubReviewBlock('OP', r.op));
+  }
+  if (r.ed) {
+    body.appendChild(createSubReviewBlock('ED', r.ed));
+  }
+
   article.appendChild(body);
   return article;
+}
+
+/** Every text/rating field on a review worth matching a search term against. */
+function searchableFields(r) {
+  return [
+    r.titleEN, r.titleJP, r.review, r.ratingText,
+    r.fullReview?.review, r.fullReview?.ratingText,
+    r.op?.review, r.op?.ratingText,
+    r.ed?.review, r.ed?.ratingText,
+  ];
 }
 
 function renderReviews() {
@@ -299,11 +377,7 @@ function renderReviews() {
   const reviews = buildReviewsForLoadedSeasons(seasonIds);
 
   const filtered = reviews.filter(r =>
-    !searchTerm ||
-    (r.titleEN ?? '').toLowerCase().includes(searchTerm) ||
-    (r.titleJP ?? '').toLowerCase().includes(searchTerm) ||
-    (r.review ?? '').toLowerCase().includes(searchTerm) ||
-    (r.ratingText ?? '').toLowerCase().includes(searchTerm)
+    !searchTerm || searchableFields(r).some(field => (field ?? '').toLowerCase().includes(searchTerm))
   );
 
   filtered.sort(SORTERS[sortBy] ?? (() => 0));
