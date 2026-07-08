@@ -45,6 +45,10 @@ since seasons are separate gists rather than multiple files in one. Adding a new
 means creating a new gist and adding an entry to the manifest; editing an old season's
 gist never touches the others.
 
+Each season's own gist has `id`, `name`, `reviewed`, `pending`, and `skipped`. It may also
+carry a `number` (e.g. a MAL season id like `2603`) — that's optional, informational
+metadata for your own reference and isn't read by the app or the manifest.
+
 The manifest and the *current* season are always fetched fresh. Past seasons are cached
 in `localStorage` after their first load, so switching between them is free after the
 first visit — clear site data to force a re-fetch. If a season's URL is wrong or its gist
