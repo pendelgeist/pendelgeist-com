@@ -1,13 +1,17 @@
 # pendelgeist-com
 
 Personal site, served as static assets from a Cloudflare Worker (see `wrangler.jsonc`).
+The Worker (`src/worker.js`) also backs a small GraphQL API over the same anime data.
 
 ## Structure
 
 - `public/index.html` — homepage, links out to the other sites.
 - `public/vqar/` — Very Quick Anime Reviews, a small vanilla-JS app.
-- `public/styles.css` — shared site styles. `public/vqar/styles.css` layers VQAR-only styles on top.
+- `public/graphql/` — a GraphQL query explorer for the API described below.
+- `public/styles.css` — shared site styles. `public/vqar/styles.css` and `public/graphql/styles.css`
+  layer page-specific styles on top.
 - `public/theme.js` — the theme picker (see below), loaded by every page.
+- `src/worker.js` / `src/schema.js` — the Worker's fetch handler and GraphQL schema/resolvers.
 
 ## Theme
 
@@ -77,13 +81,51 @@ npm run validate-gists                  # fetches the live manifest and checks e
 npm run validate-gists -- ./draft.json  # or check one or more local files/URLs directly
 ```
 
+## GraphQL API
+
+`GET /graphql` serves a small vanilla-JS query explorer (`public/graphql/`); `POST /graphql`
+runs a query against a schema (`src/schema.js`) built with `graphql-js` and executed in the
+Worker. Both routes are handled by `src/worker.js`, which otherwise just forwards every
+other request to the static assets — the VQAR page itself is untouched and still fetches
+the gists directly, client-side.
+
+The API fetches the same manifest + per-season gists documented above, reshaping each
+review to add its `season`/`seasonName`, the way `public/vqar/app.js` does on the client.
+Nothing is cached; every query re-fetches from the gists.
+
+```
+type Query {
+  seasons: [SeasonSummary!]!    # every season in the manifest (id + name only)
+  currentSeason: Season         # the manifest's current season, with full review data
+  season(id: ID!): Season       # a specific season's full data, by id
+}
+```
+
+Example request:
+
+```
+curl -X POST https://pendelgeist.com/graphql \
+  -H 'content-type: application/json' \
+  -d '{"query":"{ currentSeason { name reviewed { titleEN ratingText } } }"}'
+```
+
+CORS is open on `/graphql`, so it's queryable from other origins too. Because the Worker
+now has a `main` script (`src/worker.js`) instead of serving assets only, `/graphql` is
+listed under `assets.run_worker_first` in `wrangler.jsonc` — otherwise Cloudflare would
+serve the static explorer page for every method, including `POST`, without ever running
+the Worker.
+
 ## Development
 
 ```
 npm install
 npm test
+npm run dev     # wrangler dev, for exercising the Worker (including /graphql) locally
+npm run deploy  # wrangler deploy
 ```
 
 Tests (`test/`) run against the real `app.js` and `index.html` with a mocked
-`fetch`/`localStorage` via jsdom — see `test/helpers.js`. CI runs them on every PR
+`fetch`/`localStorage` via jsdom — see `test/helpers.js`. The GraphQL schema/resolvers
+(`test/graphql.test.js`) and the Worker's routing (`test/worker.test.js`) are tested the
+same way, with `fetch` mocked instead of hitting the real gists. CI runs them on every PR
 (`.github/workflows/test.yml`).
