@@ -207,14 +207,15 @@
   background: linear-gradient(180deg, #1a0b2e 0%, #2d1b4e 60%, #4a1942 100%);
 }
 
-/* The sun: a soft glow near the top, faded out by its own radial gradient -
- * no masking needed since it never reaches the grid below. */
+/* The sun: a dim, hazy glow near the top (not a blown-out spotlight), faded
+ * out by its own radial gradient - no masking needed since it never reaches
+ * the grid below. */
 :root[data-theme="vaporwave"] body::before {
   content: '';
   position: fixed;
   inset: 0;
   pointer-events: none;
-  background: radial-gradient(ellipse 55% 35% at 50% 24%, rgba(255, 214, 224, 0.9), rgba(255, 113, 206, 0.5) 45%, rgba(255, 113, 206, 0) 72%);
+  background: radial-gradient(ellipse 60% 38% at 50% 26%, rgba(255, 176, 150, 0.4), rgba(210, 100, 140, 0.3) 45%, rgba(210, 100, 140, 0) 75%);
 }
 
 /* The wave: a neon grid "floor" plus scanlines, masked in from about a third
