@@ -1,15 +1,25 @@
 /* VQAR-specific styles; shared site styles live in /styles.css */
 
 .info-link {
-  color: rgba(255, 0, 0, 0.4);
-  font-size: 40px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.6rem;
+  height: 1.6rem;
+  margin-left: 0.5rem;
+  vertical-align: middle;
+  border: 2px solid var(--color-accent);
+  border-radius: 50%;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--color-accent);
   text-decoration: none;
   cursor: pointer;
   user-select: none;
 }
 
 .info-link:hover {
-  opacity: 0.5;
+  opacity: 0.7;
 }
 
 /* Filters */
@@ -83,14 +93,44 @@ input:focus, select:focus {
   margin: 0.25rem 0;
 }
 
-/* Collapsible sections (To Be Reviewed / Not Reviewing) */
+/* Collapsible sections (To Be Reviewed / Not Reviewing): a rounded badge
+ * instead of a plain heading, so they read as smaller/secondary next to the
+ * REVIEWED section instead of matching its size and all-caps weight. */
 
 .section summary {
   cursor: pointer;
+  list-style: none;
+}
+
+.section summary::-webkit-details-marker {
+  display: none;
 }
 
 .section summary h2 {
-  display: inline;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin: 0;
+  padding: 0.4rem 0.9rem;
+  /* A border (not just the chrome fill) so the badge stays visible even in
+   * themes where --color-chrome and --color-bg are the same color (e.g. the
+   * default Dark theme, or a Random roll where they land close together). */
+  border: 1px solid var(--color-section-border);
+  border-radius: 999px;
+  font-size: 0.8rem;
+  letter-spacing: 0.1rem;
+  background-color: var(--color-chrome);
+  color: var(--color-nav-link);
+}
+
+.section summary h2::before {
+  content: '\25B8';
+  font-size: 0.7rem;
+  transition: transform 0.15s ease;
+}
+
+.section[open] summary h2::before {
+  transform: rotate(90deg);
 }
 
 /* Review entries */

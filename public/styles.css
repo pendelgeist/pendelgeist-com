@@ -207,8 +207,48 @@
   background: linear-gradient(180deg, #1a0b2e 0%, #2d1b4e 60%, #4a1942 100%);
 }
 
+/* The sun: a soft glow near the top, faded out by its own radial gradient -
+ * no masking needed since it never reaches the grid below. */
+:root[data-theme="vaporwave"] body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(ellipse 55% 35% at 50% 24%, rgba(255, 214, 224, 0.9), rgba(255, 113, 206, 0.5) 45%, rgba(255, 113, 206, 0) 72%);
+}
+
+/* The wave: a neon grid "floor" plus scanlines, masked in from about a third
+ * of the way down so the grid reads as a horizon under the sun rather than
+ * covering the whole page. */
+:root[data-theme="vaporwave"] body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background:
+    repeating-linear-gradient(0deg, rgba(1, 205, 254, 0.4) 0 2px, transparent 2px 56px),
+    repeating-linear-gradient(90deg, rgba(1, 205, 254, 0.4) 0 2px, transparent 2px 72px),
+    repeating-linear-gradient(to bottom, rgba(0, 0, 0, 0.15) 0 1px, transparent 1px 3px);
+  mask-image: linear-gradient(to bottom, transparent 0%, transparent 30%, black 55%, black 100%);
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, transparent 30%, black 55%, black 100%);
+}
+
 :root[data-theme="vaporwave"] nav {
   background: linear-gradient(90deg, #130821, #2d1b4e, #130821);
+  border-bottom: 2px solid #01cdfe;
+  box-shadow: var(--shadow-card), 0 2px 12px rgba(1, 205, 254, 0.6);
+}
+
+:root[data-theme="vaporwave"] .section,
+:root[data-theme="vaporwave"] article,
+:root[data-theme="vaporwave"] .guidelines {
+  border: 1px solid rgba(1, 205, 254, 0.5);
+  box-shadow: var(--shadow-card), 0 0 16px rgba(255, 113, 206, 0.35), 0 0 24px rgba(1, 205, 254, 0.25);
+}
+
+:root[data-theme="vaporwave"] .section {
+  border-radius: 6px;
+  padding: 0.75rem;
 }
 
 :root[data-theme="ffvii"] {
