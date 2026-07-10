@@ -40,6 +40,208 @@
   color-scheme: dark;
 }
 
+/*
+ * Fixed novelty themes: same idea, just overriding every --color-* directly
+ * instead of relying on light-dark(). "Random (Light)"/"Random (Dark)" work
+ * the same way, except theme.js computes and inline-sets these variables
+ * itself (see public/theme-palette.js) - only their color-scheme lives here.
+ */
+:root[data-theme="rainbow"] {
+  color-scheme: light;
+  --color-bg: #fdfdff;
+  --color-text: #1a1a1a;
+  --color-accent: #7a2ea1;
+  --color-surface: #fff;
+  --color-chrome: #1a1a2e;
+  --color-muted: #555;
+  --color-nav-link: #fff;
+  --color-input-border: #7a2ea1;
+  --color-input-focus: #7a2ea1;
+  --color-title: #1a1a1a;
+  --color-guideline-border: #ddd;
+  --color-article-border: #ddd;
+  --color-section-border: #7a2ea1;
+  --shadow-heading: 0 0 20px transparent;
+  --shadow-focus: 0 0 10px rgba(122, 46, 161, 0.4);
+}
+
+/* Rainbow goes all-in: a slowly spinning wash behind everything, gradient
+ * text on every heading, an animated gradient "frame" around every card and
+ * under the nav bar, and confetti-colored list bullets. Body text and inputs
+ * stay on solid --color-surface/--color-bg so none of this touches
+ * readability - it's all decoration layered around the actual content. */
+:root[data-theme="rainbow"] body {
+  position: relative;
+}
+
+:root[data-theme="rainbow"] body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background: conic-gradient(from 0deg, red, orange, yellow, green, blue, indigo, violet, red);
+  opacity: 0.18;
+  filter: blur(80px);
+  animation: rainbow-spin 12s linear infinite;
+}
+
+:root[data-theme="rainbow"] h1,
+:root[data-theme="rainbow"] .section h2,
+:root[data-theme="rainbow"] .subtitle,
+:root[data-theme="rainbow"] .entry-title,
+:root[data-theme="rainbow"] .entry-title-jp {
+  background: linear-gradient(90deg, #ff0000, #ff9900, #ffee00, #33ff00, #00d9ff, #6600ff, #ff00cc, #ff0000);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: rainbow-shift 6s linear infinite;
+}
+
+:root[data-theme="rainbow"] nav {
+  border-bottom: 4px solid transparent;
+  background-image:
+    linear-gradient(var(--color-chrome), var(--color-chrome)),
+    linear-gradient(90deg, red, orange, yellow, green, blue, indigo, violet, red);
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  background-size: 100% 100%, 300% 100%;
+  animation: rainbow-border-shift 6s linear infinite;
+}
+
+:root[data-theme="rainbow"] .section,
+:root[data-theme="rainbow"] article,
+:root[data-theme="rainbow"] .guidelines,
+:root[data-theme="rainbow"] .container input,
+:root[data-theme="rainbow"] .container select,
+:root[data-theme="rainbow"] .container button {
+  border: 3px solid transparent;
+  background-image:
+    linear-gradient(var(--color-surface), var(--color-surface)),
+    linear-gradient(90deg, red, orange, yellow, green, blue, indigo, violet, red);
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  background-size: 100% 100%, 300% 100%;
+  animation: rainbow-border-shift 6s linear infinite;
+}
+
+:root[data-theme="rainbow"] .section {
+  border-radius: 6px;
+  padding: 0.75rem;
+}
+
+/* #runQuery normally sits on --color-chrome and uses --color-nav-link for
+ * readable text; the gradient fill above swaps its background to
+ * --color-surface, so its text needs to be pinned to --color-text instead.
+ * Needs the extra [data-theme] specificity to beat the plain #runQuery rule. */
+:root[data-theme="rainbow"] #runQuery {
+  color: var(--color-text);
+}
+
+:root[data-theme="rainbow"] .show-list li:nth-child(7n + 1)::before {
+  color: #ff0000;
+}
+
+:root[data-theme="rainbow"] .show-list li:nth-child(7n + 2)::before {
+  color: #ff9900;
+}
+
+:root[data-theme="rainbow"] .show-list li:nth-child(7n + 3)::before {
+  color: #cca300;
+}
+
+:root[data-theme="rainbow"] .show-list li:nth-child(7n + 4)::before {
+  color: #33aa00;
+}
+
+:root[data-theme="rainbow"] .show-list li:nth-child(7n + 5)::before {
+  color: #00a3c4;
+}
+
+:root[data-theme="rainbow"] .show-list li:nth-child(7n + 6)::before {
+  color: #6600ff;
+}
+
+:root[data-theme="rainbow"] .show-list li:nth-child(7n + 7)::before {
+  color: #d6009e;
+}
+
+@keyframes rainbow-shift {
+  to {
+    background-position: 200% center;
+  }
+}
+
+@keyframes rainbow-border-shift {
+  to {
+    background-position: 0 0, -300% 0;
+  }
+}
+
+@keyframes rainbow-spin {
+  to {
+    transform: rotate(1turn);
+  }
+}
+
+:root[data-theme="vaporwave"] {
+  color-scheme: dark;
+  --color-bg: #1a0b2e;
+  --color-text: #f2e9ff;
+  --color-accent: #ff71ce;
+  --color-surface: #2d1b4e;
+  --color-chrome: #130821;
+  --color-muted: #b39ddb;
+  --color-nav-link: #01cdfe;
+  --color-input-border: #01cdfe;
+  --color-input-focus: #ff71ce;
+  --color-title: #ff71ce;
+  --color-guideline-border: rgba(1, 205, 254, 0.4);
+  --color-article-border: transparent;
+  --color-section-border: #01cdfe;
+  --shadow-heading: 0 0 20px rgba(255, 113, 206, 0.6);
+  --shadow-focus: 0 0 10px rgba(1, 205, 254, 0.6);
+}
+
+:root[data-theme="vaporwave"] body {
+  background: linear-gradient(180deg, #1a0b2e 0%, #2d1b4e 60%, #4a1942 100%);
+}
+
+:root[data-theme="vaporwave"] nav {
+  background: linear-gradient(90deg, #130821, #2d1b4e, #130821);
+}
+
+:root[data-theme="ffvii"] {
+  color-scheme: dark;
+  --color-bg: #0a1030;
+  --color-text: #fff;
+  --color-accent: #6ecfff;
+  --color-surface: #14206b;
+  --color-chrome: #0a1030;
+  --color-muted: #9fb4e0;
+  --color-nav-link: #fff;
+  --color-input-border: #6ecfff;
+  --color-input-focus: #a8e6ff;
+  --color-title: #fff;
+  --color-guideline-border: rgba(110, 207, 255, 0.5);
+  --color-article-border: rgba(110, 207, 255, 0.35);
+  --color-section-border: #6ecfff;
+  --shadow-heading: 0 0 12px rgba(110, 207, 255, 0.6);
+  --shadow-focus: 0 0 10px rgba(110, 207, 255, 0.6);
+}
+
+:root[data-theme="ffvii"] body {
+  background: radial-gradient(ellipse at top, #14206b 0%, #0a1030 70%);
+}
+
+:root[data-theme="random-light"] {
+  color-scheme: light;
+}
+
+:root[data-theme="random-dark"] {
+  color-scheme: dark;
+}
+
 /* Base */
 
 body {
@@ -90,6 +292,26 @@ nav > a {
 
 .theme-picker option {
   color: initial;
+}
+
+.theme-controls {
+  display: flex;
+  align-items: center;
+}
+
+.theme-reroll {
+  margin-inline-end: 0.75rem;
+  padding: 0.3rem 0.5rem;
+  font-size: 1rem;
+  line-height: 1;
+  cursor: pointer;
+  border: 1px solid var(--color-nav-link);
+  background-color: transparent;
+  color: var(--color-nav-link);
+}
+
+.theme-reroll:hover {
+  opacity: 0.8;
 }
 
 /* Layout */
