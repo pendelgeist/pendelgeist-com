@@ -275,6 +275,42 @@
   background: radial-gradient(ellipse at top, #14206b 0%, #0a1030 70%);
 }
 
+/* FFXIV: the game's own UI is near-black panels with gilded gold trim and a
+ * crystal-blue glow for focus/interaction - the "Eorzea" look shared across
+ * its menus, loading screens, and promotional art. */
+:root[data-theme="ffxiv"] {
+  color-scheme: dark;
+  --color-bg: #0b0d12;
+  --color-text: #f0e6d2;
+  --color-accent: #d4af37;
+  --color-surface: #161a24;
+  --color-chrome: #05070a;
+  --color-muted: #9a8f78;
+  --color-nav-link: #f0e6d2;
+  --color-input-border: #d4af37;
+  --color-input-focus: #4fc3d9;
+  --color-title: #d4af37;
+  --color-guideline-border: rgba(212, 175, 55, 0.4);
+  --color-article-border: rgba(212, 175, 55, 0.25);
+  --color-section-border: #d4af37;
+  --shadow-heading: 0 0 12px rgba(212, 175, 55, 0.55);
+  --shadow-focus: 0 0 10px rgba(79, 195, 217, 0.6);
+}
+
+:root[data-theme="ffxiv"] body {
+  background: radial-gradient(ellipse at top, #1a2036 0%, #0b0d12 70%);
+}
+
+:root[data-theme="ffxiv"] nav {
+  border-bottom: 1px solid var(--color-accent);
+}
+
+:root[data-theme="ffxiv"] .section,
+:root[data-theme="ffxiv"] article,
+:root[data-theme="ffxiv"] .guidelines {
+  border: 1px solid rgba(212, 175, 55, 0.35);
+}
+
 :root[data-theme="random-light"] {
   color-scheme: light;
 }
