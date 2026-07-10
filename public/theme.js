@@ -13,6 +13,7 @@ const THEMES = [
   { id: 'rainbow', label: 'Rainbow' },
   { id: 'vaporwave', label: 'Vaporwave' },
   { id: 'ffvii', label: 'FFVII Menu' },
+  { id: 'ffxiv', label: 'FFXIV Eorzea' },
   { id: 'random-light', label: 'Random (Light)' },
   { id: 'random-dark', label: 'Random (Dark)' },
 ];
