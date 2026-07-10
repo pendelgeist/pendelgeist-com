@@ -283,8 +283,8 @@
   --color-bg: #0b0d12;
   --color-text: #f0e6d2;
   --color-accent: #d4af37;
-  --color-surface: #161a24;
-  --color-chrome: #05070a;
+  --color-surface: rgba(22, 26, 36, 0.62);
+  --color-chrome: rgba(5, 7, 10, 0.72);
   --color-muted: #9a8f78;
   --color-nav-link: #f0e6d2;
   --color-input-border: #d4af37;
@@ -295,10 +295,34 @@
   --color-section-border: #d4af37;
   --shadow-heading: 0 0 12px rgba(212, 175, 55, 0.55);
   --shadow-focus: 0 0 10px rgba(79, 195, 217, 0.6);
+  /* A stylized gauntlet-pointer cursor, echoing the game's own UI cursor.
+   * Left off text inputs on purpose - a hand cursor over a text caret reads
+   * wrong, so this only gets applied to actionable (link/button/select)
+   * elements below. */
+  --cursor-hand:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath d='M9 2.5a1.5 1.5 0 0 1 3 0V11h1V5a1.5 1.5 0 0 1 3 0v8c2 .3 3 1.7 3 3.5v1.5a4 4 0 0 1-4 4h-4a5 5 0 0 1-4.3-2.4l-2.8-4.6a1.4 1.4 0 0 1 2.3-1.6L8 15V4.5A1.5 1.5 0 0 1 9 2.5' fill='white' stroke='black' stroke-width='1'/%3E%3C/svg%3E")
+    8 3,
+    pointer;
 }
 
+/* Frosted-glass panels: translucent + blurred, like the game's own
+ * semi-transparent config windows, with the radial glow behind body showing
+ * through. --color-surface already carries the alpha; blur is added here
+ * since backdrop-filter isn't itself a color and can't live in a variable
+ * swapped by theme.js. */
 :root[data-theme="ffxiv"] body {
   background: radial-gradient(ellipse at top, #1a2036 0%, #0b0d12 70%);
+}
+
+:root[data-theme="ffxiv"] nav,
+:root[data-theme="ffxiv"] .section,
+:root[data-theme="ffxiv"] article,
+:root[data-theme="ffxiv"] .guidelines,
+:root[data-theme="ffxiv"] .container input,
+:root[data-theme="ffxiv"] .container select,
+:root[data-theme="ffxiv"] .container button {
+  backdrop-filter: blur(12px) saturate(1.4);
+  -webkit-backdrop-filter: blur(12px) saturate(1.4);
 }
 
 :root[data-theme="ffxiv"] nav {
@@ -309,6 +333,62 @@
 :root[data-theme="ffxiv"] article,
 :root[data-theme="ffxiv"] .guidelines {
   border: 1px solid rgba(212, 175, 55, 0.35);
+}
+
+:root[data-theme="ffxiv"] .section {
+  border-radius: 4px;
+  padding: 0.75rem;
+  background: var(--color-surface);
+}
+
+/* Tab-bar chrome: the nav's Home link and theme controls read as adjacent
+ * gilded tabs, echoing the game's own tabbed config windows - a gold
+ * underline slides in on hover/focus instead of a whole tab being "active",
+ * since this nav doesn't actually switch between tab panels. */
+:root[data-theme="ffxiv"] nav > a {
+  position: relative;
+  transition: background-color 0.15s ease;
+}
+
+:root[data-theme="ffxiv"] nav > a::after {
+  content: '';
+  position: absolute;
+  left: 0.75rem;
+  right: 0.75rem;
+  bottom: 0;
+  height: 2px;
+  background: var(--color-accent);
+  transform: scaleX(0);
+  transition: transform 0.15s ease;
+}
+
+:root[data-theme="ffxiv"] nav > a:hover,
+:root[data-theme="ffxiv"] nav > a:focus-visible {
+  background: rgba(212, 175, 55, 0.18);
+}
+
+:root[data-theme="ffxiv"] nav > a:hover::after,
+:root[data-theme="ffxiv"] nav > a:focus-visible::after {
+  transform: scaleX(1);
+}
+
+:root[data-theme="ffxiv"] .theme-picker,
+:root[data-theme="ffxiv"] .theme-reroll {
+  border-radius: 3px 3px 0 0;
+  transition: box-shadow 0.15s ease;
+}
+
+:root[data-theme="ffxiv"] .theme-picker:hover,
+:root[data-theme="ffxiv"] .theme-picker:focus-visible,
+:root[data-theme="ffxiv"] .theme-reroll:hover,
+:root[data-theme="ffxiv"] .theme-reroll:focus-visible {
+  box-shadow: inset 0 -2px 0 var(--color-accent);
+}
+
+:root[data-theme="ffxiv"] a,
+:root[data-theme="ffxiv"] button,
+:root[data-theme="ffxiv"] select {
+  cursor: var(--cursor-hand);
 }
 
 :root[data-theme="random-light"] {
