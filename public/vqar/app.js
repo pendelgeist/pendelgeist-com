@@ -1,3 +1,5 @@
+import { MANIFEST_URL } from '../manifest-url.js';
+
 /**
  * A follow-up note attached to a Review: a full-series re-review once a
  * "Finish Ep"-rated show is actually finished, or an OP/ED callout.
@@ -45,10 +47,6 @@
  * @property {string|number} currentSeason
  * @property {SeasonMeta[]} seasons
  */
-
-// Each season lives in its own gist, so adding a new season - or editing an
-// old one - never touches the others. The manifest just lists where to find each.
-const MANIFEST_URL = 'https://gist.githubusercontent.com/pendelgeist/0b278faa556b5176f6e90324d5f5173b/raw/vqar-manifest.json';
 
 // Bump this if SeasonData's shape ever changes, to invalidate everything cached under the old shape.
 const CACHE_PREFIX = 'vqar:v1:season:';

@@ -10,8 +10,7 @@
  */
 import { readFile } from 'node:fs/promises';
 import { validateSeason } from './validateSeason.js';
-
-const MANIFEST_URL = 'https://gist.githubusercontent.com/pendelgeist/0b278faa556b5176f6e90324d5f5173b/raw/vqar-manifest.json';
+import { MANIFEST_URL } from '../public/manifest-url.js';
 
 /** @param {string} source - a file path or an http(s) URL */
 async function loadJson(source) {

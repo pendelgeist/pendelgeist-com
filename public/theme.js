@@ -23,6 +23,10 @@ function paletteKeyFor(themeId) {
   return `${PALETTE_KEY_PREFIX}${themeId}`;
 }
 
+function modeFor(themeId) {
+  return themeId === 'random-dark' ? 'dark' : 'light';
+}
+
 function readSavedPalette(themeId) {
   try {
     const raw = localStorage.getItem(paletteKeyFor(themeId));
@@ -66,7 +70,7 @@ function applyTheme(themeId) {
   document.documentElement.setAttribute('data-theme', themeId);
 
   if (RANDOM_THEMES.has(themeId)) {
-    const palette = readSavedPalette(themeId) ?? rollPalette(themeId === 'random-dark' ? 'dark' : 'light');
+    const palette = readSavedPalette(themeId) ?? rollPalette(modeFor(themeId));
     savePalette(themeId, palette);
     applyPalette(palette);
   }
@@ -74,7 +78,7 @@ function applyTheme(themeId) {
 
 /** Rolls a fresh palette for the given random theme, applying and saving it over whatever was there before. */
 function rerollTheme(themeId) {
-  const palette = rollPalette(themeId === 'random-dark' ? 'dark' : 'light');
+  const palette = rollPalette(modeFor(themeId));
   savePalette(themeId, palette);
   applyPalette(palette);
 }

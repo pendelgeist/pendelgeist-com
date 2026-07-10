@@ -30,6 +30,10 @@
   gap: 1rem;
   margin-bottom: 0.5rem;
   padding: 0.5rem 1rem;
+  /* A border, not just the chrome fill, since --color-chrome equals
+   * --color-bg in some themes (Dark, FFVII) - this bar would otherwise
+   * vanish into the page background in those cases. */
+  border: 1px solid var(--color-input-border);
   background-color: var(--color-chrome);
 }
 

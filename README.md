@@ -12,6 +12,8 @@ The Worker (`src/worker.js`) also backs a small GraphQL API over the same anime 
   layer page-specific styles on top.
 - `public/theme.js` / `public/theme-palette.js` — the theme picker (see below) and the
   color-math behind the two random themes, loaded by every page.
+- `public/manifest-url.js` — the manifest gist URL, the one thing `public/vqar/app.js`,
+  `src/schema.js`, and `scripts/validate-gists.js` all need to agree on.
 - `src/worker.js` / `src/schema.js` — the Worker's fetch handler and GraphQL schema/resolvers.
 
 ## Theme
@@ -27,10 +29,13 @@ define them with `light-dark(lightValue, darkValue)`, which resolves off the *us
 of `color-scheme` — so picking Light or Dark just narrows `color-scheme` to one value
 (`:root[data-theme="dark"] { color-scheme: dark; }`) rather than redefining every variable.
 Rainbow, Vaporwave, and FFVII Menu are fixed novelty themes that instead override every
-`--color-*` directly for their own `[data-theme="..."]` selector (plus a couple of small
-flourishes: an animated gradient on headings for Rainbow, a gradient body background for
-Vaporwave/FFVII Menu). A new theme along these lines just needs a CSS block like those and
-an entry in the `THEMES` list in `theme.js`.
+`--color-*` directly for their own `[data-theme="..."]` selector, plus theme-specific
+flourishes layered on top: Rainbow adds an animated background wash, a gradient "frame"
+around every card and the nav bar, gradient text on every heading, and confetti-colored
+list bullets; Vaporwave adds a hazy sunset glow and a neon grid floor (both fixed
+background layers behind the page content) plus glowing card/nav borders; FFVII Menu keeps
+it to a radial background glow. A new theme along these lines just needs a CSS block like
+those and an entry in the `THEMES` list in `theme.js`.
 
 ### Random (Light) / Random (Dark)
 
