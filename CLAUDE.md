@@ -1,0 +1,76 @@
+# CLAUDE.md
+
+This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+
+## Commands
+
+```
+npm install
+npm test                                   # runs test/*.test.js via node --test
+node --test test/theme.test.js             # run a single test file
+npm run dev                                # wrangler dev - exercises the Worker (incl. /graphql) locally
+npm run deploy                             # wrangler deploy
+npm run validate-gists                     # checks the live manifest + every season gist for consistency
+npm run validate-gists -- ./draft.json     # or check a local file/URL directly
+```
+
+There is no build/lint step. `public/` is served as-is (no bundler, no framework, no
+transpilation) — only `src/worker.js` gets bundled, and only by Wrangler at deploy/dev time.
+
+## Architecture
+
+Static site (`public/`) served from a Cloudflare Worker, plus a small GraphQL API
+(`src/`) backed by the same data. Two independent things share one Worker:
+
+- **Static assets** (`public/`): everything is plain HTML/CSS/vanilla-JS ES modules,
+  no build step. Each page (`index.html`, `vqar/index.html`, `graphql/index.html`) loads
+  shared `/styles.css` + `/theme.js`, then its own page-specific styles/script.
+- **The Worker** (`src/worker.js`): only actually runs for non-GET/HEAD requests to
+  `/graphql` — see `assets.run_worker_first` in `wrangler.jsonc`. Everything else,
+  including `GET /graphql` (which serves `public/graphql/index.html`, the query
+  explorer), is served directly as a static asset without invoking the Worker at all.
+  Cloudflare Workers disallow async I/O at module top-level scope, so the GraphQL
+  schema is built lazily on first request (`getSchema()` in `worker.js`), not at import
+  time.
+
+### VQAR data flow
+
+Review data lives in GitHub Gists, not this repo: a manifest gist lists each season and
+a URL to that season's own gist (documented in the README under "VQAR data"). Three
+independent consumers all read the *same* manifest URL, exported once from
+`public/manifest-url.js` so it can't drift:
+- `public/vqar/app.js` — the display page, fetches client-side, is otherwise
+  independent of everything below.
+- `src/schema.js` — the GraphQL resolvers, fetch the same gists server-side (through
+  `src/cache.js`'s edge-cached `cachedFetch`, ~10 min TTL) and reshape them to add
+  `season`/`seasonName` per review, mirroring what `app.js` does on the client.
+- `scripts/validate-gists.js` — a standalone consistency checker, not part of the
+  deployed site.
+
+### Theme system
+
+`public/theme.js` builds the theme `<select>` (+ a 🎲 reroll button, shown only for the
+two Random themes) into every page's `<nav>`, and persists the choice to `localStorage`.
+Colors are `--color-*` custom properties in `public/styles.css`:
+- Auto/Light/Dark share one set of values via `light-dark()`; picking one just narrows
+  `color-scheme`.
+- Rainbow/Vaporwave/FFVII Menu are fixed themes that override every `--color-*` for
+  their own `[data-theme="..."]` selector, plus bespoke CSS flourishes. Adding a new one
+  this way = a CSS block + an entry in the `THEMES` array in `theme.js`.
+- Random (Light)/Random (Dark) have no fixed values — `public/theme-palette.js` rolls a
+  random hue and *solves for* a lightness that clears WCAG AA contrast (4.5:1) against
+  whatever it renders on, rather than picking blind. `PALETTE_PROPERTIES` in that file is
+  the authoritative list of every custom property a rolled palette can set; `theme.js`
+  clears exactly those when switching away from a random theme.
+
+Each page's `<head>` has an inline pre-paint `<script>` (duplicated per page on purpose)
+that re-applies the saved theme/palette before first render, avoiding a flash of the
+wrong theme. Keep it in sync across `index.html`, `vqar/index.html`, and `graphql/index.html`
+if it ever changes.
+
+### Testing conventions
+
+Tests run against the real browser-facing files (`public/vqar/app.js`, `*.html`) via
+`node --test` + jsdom, with `fetch`/`localStorage` mocked (see `test/helpers.js`,
+`createFetchStub`/`createLocalStorageStub`). No separate test build — same ES modules
+that ship to the browser are imported directly into the test process.

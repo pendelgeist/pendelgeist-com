@@ -5,10 +5,7 @@
  */
 
 import { cachedFetch } from './cache.js';
-
-// Kept in sync by hand with the constant of the same name in
-// public/vqar/app.js - both point at the same manifest gist.
-const MANIFEST_URL = 'https://gist.githubusercontent.com/pendelgeist/0b278faa556b5176f6e90324d5f5173b/raw/vqar-manifest.json';
+import { MANIFEST_URL } from '../public/manifest-url.js';
 
 export const typeDefs = `#graphql
 """A follow-up note attached to a review: a full-series re-review once a
