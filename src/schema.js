@@ -4,6 +4,8 @@
  * public/vqar/app.js, but fetches and reshapes them server-side instead.
  */
 
+import { cachedFetch } from './cache.js';
+
 // Kept in sync by hand with the constant of the same name in
 // public/vqar/app.js - both point at the same manifest gist.
 const MANIFEST_URL = 'https://gist.githubusercontent.com/pendelgeist/0b278faa556b5176f6e90324d5f5173b/raw/vqar-manifest.json';
@@ -63,7 +65,7 @@ type Query {
 `;
 
 async function fetchManifest() {
-  const response = await fetch(`${MANIFEST_URL}?t=${Date.now()}`, { cache: 'no-cache' });
+  const response = await cachedFetch(MANIFEST_URL);
   if (!response.ok) {
     throw new Error(`HTTP ${response.status} loading manifest`);
   }
@@ -72,7 +74,7 @@ async function fetchManifest() {
 
 /** @param {{ id: string|number, name: string, file: string }} meta */
 async function fetchSeason(meta) {
-  const response = await fetch(`${meta.file}?t=${Date.now()}`, { cache: 'no-cache' });
+  const response = await cachedFetch(meta.file);
   if (!response.ok) {
     throw new Error(`HTTP ${response.status} loading season "${meta.name}"`);
   }

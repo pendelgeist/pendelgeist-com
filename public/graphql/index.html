@@ -39,16 +39,22 @@
           <select id="examplePicker">
             <option value="current">Current season</option>
             <option value="seasons">All seasons (summary)</option>
-            <option value="bySeason">A specific season</option>
+            <option value="bySeason">A specific season, with reviews</option>
+            <option value="exploreFields">Explore a type's fields (introspection)</option>
           </select>
         </div>
       </div>
       <textarea id="queryInput" rows="10" spellcheck="false"></textarea>
       <button id="runQuery" type="button">Run Query</button>
       <pre id="result"></pre>
+      <p>
+        Not sure what fields are available? Run "Explore a type's fields" above (swap
+        <code>name: "Season"</code> for <code>"Review"</code>, <code>"SubReview"</code>,
+        or <code>"Query"</code> itself), or see the full reference below.
+      </p>
     </div>
 
-    <details class="section" id="schemaDocs">
+    <details class="section" id="schemaDocs" open>
       <summary><h2>Schema Reference</h2></summary>
       <p>
         POST a <code>{ "query": "..." }</code> JSON body to <code>/graphql</code> (standard
@@ -64,21 +70,35 @@
 
       <h3>Season</h3>
       <ul class="show-list">
-        <li><code>id: ID!</code>, <code>name: String!</code>, <code>number: Int</code></li>
-        <li><code>reviewed: [Review!]!</code>, <code>pending: [String!]!</code>, <code>skipped: [String!]!</code></li>
+        <li><code>id: ID!</code></li>
+        <li><code>name: String!</code></li>
+        <li><code>number: Int</code> &mdash; optional MAL season id</li>
+        <li><code>reviewed: [Review!]!</code></li>
+        <li><code>pending: [String!]!</code></li>
+        <li><code>skipped: [String!]!</code></li>
       </ul>
 
       <h3>Review</h3>
       <ul class="show-list">
-        <li><code>titleEN: String!</code>, <code>titleJP: String</code></li>
-        <li><code>ratingNumber: Float</code>, <code>ratingText: String</code>, <code>review: String</code>, <code>dateReviewed: String</code></li>
-        <li><code>fullReview</code> / <code>op</code> / <code>ed: SubReview</code> &mdash; optional follow-up notes</li>
-        <li><code>season: ID!</code>, <code>seasonName: String!</code></li>
+        <li><code>titleEN: String!</code></li>
+        <li><code>titleJP: String</code></li>
+        <li><code>ratingNumber: Float</code></li>
+        <li><code>ratingText: String</code></li>
+        <li><code>review: String</code></li>
+        <li><code>dateReviewed: String</code></li>
+        <li><code>fullReview: SubReview</code> &mdash; full-series re-review, once a "Finish Ep"-rated show is actually finished</li>
+        <li><code>op: SubReview</code> &mdash; opening callout</li>
+        <li><code>ed: SubReview</code> &mdash; ending callout</li>
+        <li><code>season: ID!</code> &mdash; id of the season this review belongs to</li>
+        <li><code>seasonName: String!</code> &mdash; display name of that season</li>
       </ul>
 
       <h3>SubReview</h3>
       <ul class="show-list">
-        <li><code>ratingNumber: Float</code>, <code>ratingText: String</code>, <code>review: String</code>, <code>dateReviewed: String</code></li>
+        <li><code>ratingNumber: Float</code></li>
+        <li><code>ratingText: String</code></li>
+        <li><code>review: String</code></li>
+        <li><code>dateReviewed: String</code></li>
       </ul>
     </details>
   </div>

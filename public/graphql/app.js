@@ -20,8 +20,24 @@ const EXAMPLES = {
   bySeason: `query {
   season(id: "spring-2026") {
     name
-    pending
-    skipped
+    reviewed {
+      titleEN
+      ratingText
+      review
+    }
+  }
+}`,
+  exploreFields: `query {
+  __type(name: "Season") {
+    fields {
+      name
+      description
+      type {
+        name
+        kind
+        ofType { name kind }
+      }
+    }
   }
 }`,
 };

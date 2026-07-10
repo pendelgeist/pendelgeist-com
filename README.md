@@ -91,7 +91,13 @@ the gists directly, client-side.
 
 The API fetches the same manifest + per-season gists documented above, reshaping each
 review to add its `season`/`seasonName`, the way `public/vqar/app.js` does on the client.
-Nothing is cached; every query re-fetches from the gists.
+
+Gist fetches (manifest and each season) are cached at the edge via `src/cache.js`, keyed
+on URL, for 10 minutes — shows are added at most a few times a day, often zero, so a
+query lagging behind a fresh edit by up to that long is a reasonable trade for cutting
+nearly all repeat gist fetches. A failed fetch is never cached, so an outage isn't stuck.
+`caches.default` isn't available under `node --test`, so tests exercise it via a small
+in-memory stub (see `test/cache.test.js`) and otherwise just fall back to a plain fetch.
 
 ```
 type Query {
