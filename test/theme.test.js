@@ -29,6 +29,10 @@ test('renders a theme picker into the nav with every theme option', async () => 
     [...select.options].map(o => o.value),
     ['system', 'light', 'dark', 'rainbow', 'vaporwave', 'ffvii', 'random-light', 'random-dark']
   );
+  assert.deepEqual(
+    [...select.options].map(o => o.textContent),
+    ['Auto', 'AMO - L', 'AMO - Kira', 'Rainbow', 'Vaporwave', 'FFVII Menu', 'Random (Light)', 'Random (Dark)']
+  );
 });
 
 test('renders a reroll button in the nav, hidden by default', async () => {
@@ -37,6 +41,21 @@ test('renders a reroll button in the nav, hidden by default', async () => {
   const reroll = document.getElementById('themeReroll');
   assert.ok(reroll, 'expected a #themeReroll button in the nav');
   assert.equal(reroll.hidden, true);
+});
+
+test('groups the picker and reroll button in one wrapper, so nav always has exactly two flex children', async () => {
+  // Regression test: nav uses `justify-content: space-between`, so a third
+  // direct child (the reroll button) would space all three apart evenly and
+  // strand the picker in the middle of the bar instead of at the end.
+  const { document } = await loadThemeScript();
+
+  const nav = document.querySelector('nav');
+  assert.equal(nav.children.length, 2, 'expected exactly two direct children of <nav>');
+
+  const controls = nav.querySelector(':scope > .theme-controls');
+  assert.ok(controls, 'expected a .theme-controls wrapper as the second child of <nav>');
+  assert.equal(controls.contains(document.getElementById('themePicker')), true);
+  assert.equal(controls.contains(document.getElementById('themeReroll')), true);
 });
 
 test('defaults to "Auto" (no data-theme override) when nothing is saved', async () => {

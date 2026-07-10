@@ -65,8 +65,31 @@
   --shadow-focus: 0 0 10px rgba(122, 46, 161, 0.4);
 }
 
+/* Rainbow goes all-in: a slowly spinning wash behind everything, gradient
+ * text on every heading, an animated gradient "frame" around every card and
+ * under the nav bar, and confetti-colored list bullets. Body text and inputs
+ * stay on solid --color-surface/--color-bg so none of this touches
+ * readability - it's all decoration layered around the actual content. */
+:root[data-theme="rainbow"] body {
+  position: relative;
+}
+
+:root[data-theme="rainbow"] body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background: conic-gradient(from 0deg, red, orange, yellow, green, blue, indigo, violet, red);
+  opacity: 0.18;
+  filter: blur(80px);
+  animation: rainbow-spin 12s linear infinite;
+}
+
 :root[data-theme="rainbow"] h1,
-:root[data-theme="rainbow"] .section h2 {
+:root[data-theme="rainbow"] .section h2,
+:root[data-theme="rainbow"] .subtitle,
+:root[data-theme="rainbow"] .entry-title,
+:root[data-theme="rainbow"] .entry-title-jp {
   background: linear-gradient(90deg, #ff0000, #ff9900, #ffee00, #33ff00, #00d9ff, #6600ff, #ff00cc, #ff0000);
   background-size: 200% auto;
   -webkit-background-clip: text;
@@ -75,9 +98,89 @@
   animation: rainbow-shift 6s linear infinite;
 }
 
+:root[data-theme="rainbow"] nav {
+  border-bottom: 4px solid transparent;
+  background-image:
+    linear-gradient(var(--color-chrome), var(--color-chrome)),
+    linear-gradient(90deg, red, orange, yellow, green, blue, indigo, violet, red);
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  background-size: 100% 100%, 300% 100%;
+  animation: rainbow-border-shift 6s linear infinite;
+}
+
+:root[data-theme="rainbow"] .section,
+:root[data-theme="rainbow"] article,
+:root[data-theme="rainbow"] .guidelines,
+:root[data-theme="rainbow"] .container input,
+:root[data-theme="rainbow"] .container select,
+:root[data-theme="rainbow"] .container button {
+  border: 3px solid transparent;
+  background-image:
+    linear-gradient(var(--color-surface), var(--color-surface)),
+    linear-gradient(90deg, red, orange, yellow, green, blue, indigo, violet, red);
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  background-size: 100% 100%, 300% 100%;
+  animation: rainbow-border-shift 6s linear infinite;
+}
+
+:root[data-theme="rainbow"] .section {
+  border-radius: 6px;
+  padding: 0.75rem;
+}
+
+/* #runQuery normally sits on --color-chrome and uses --color-nav-link for
+ * readable text; the gradient fill above swaps its background to
+ * --color-surface, so its text needs to be pinned to --color-text instead.
+ * Needs the extra [data-theme] specificity to beat the plain #runQuery rule. */
+:root[data-theme="rainbow"] #runQuery {
+  color: var(--color-text);
+}
+
+:root[data-theme="rainbow"] .show-list li:nth-child(7n + 1)::before {
+  color: #ff0000;
+}
+
+:root[data-theme="rainbow"] .show-list li:nth-child(7n + 2)::before {
+  color: #ff9900;
+}
+
+:root[data-theme="rainbow"] .show-list li:nth-child(7n + 3)::before {
+  color: #cca300;
+}
+
+:root[data-theme="rainbow"] .show-list li:nth-child(7n + 4)::before {
+  color: #33aa00;
+}
+
+:root[data-theme="rainbow"] .show-list li:nth-child(7n + 5)::before {
+  color: #00a3c4;
+}
+
+:root[data-theme="rainbow"] .show-list li:nth-child(7n + 6)::before {
+  color: #6600ff;
+}
+
+:root[data-theme="rainbow"] .show-list li:nth-child(7n + 7)::before {
+  color: #d6009e;
+}
+
 @keyframes rainbow-shift {
   to {
     background-position: 200% center;
+  }
+}
+
+@keyframes rainbow-border-shift {
+  to {
+    background-position: 0 0, -300% 0;
+  }
+}
+
+@keyframes rainbow-spin {
+  to {
+    transform: rotate(1turn);
   }
 }
 
@@ -189,6 +292,11 @@ nav > a {
 
 .theme-picker option {
   color: initial;
+}
+
+.theme-controls {
+  display: flex;
+  align-items: center;
 }
 
 .theme-reroll {

@@ -8,8 +8,8 @@ const PALETTE_KEY_PREFIX = 'pendelgeist:theme:palette:';
 // follows the OS/browser preference.
 const THEMES = [
   { id: 'system', label: 'Auto' },
-  { id: 'light', label: 'Light' },
-  { id: 'dark', label: 'Dark' },
+  { id: 'light', label: 'AMO - L' },
+  { id: 'dark', label: 'AMO - Kira' },
   { id: 'rainbow', label: 'Rainbow' },
   { id: 'vaporwave', label: 'Vaporwave' },
   { id: 'ffvii', label: 'FFVII Menu' },
@@ -138,8 +138,15 @@ function buildPicker() {
     rerollTheme(select.value);
   });
 
-  nav.appendChild(select);
-  nav.appendChild(reroll);
+  // Grouped in one wrapper so nav's `justify-content: space-between` always
+  // sees exactly two children (the Home link and this group) - otherwise the
+  // reroll button becoming a third child would space all three apart evenly,
+  // stranding the picker in the middle of the bar instead of at the end.
+  const controls = document.createElement('div');
+  controls.className = 'theme-controls';
+  controls.appendChild(select);
+  controls.appendChild(reroll);
+  nav.appendChild(controls);
 }
 
 buildPicker();
