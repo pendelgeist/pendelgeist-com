@@ -10,24 +10,41 @@ The Worker (`src/worker.js`) also backs a small GraphQL API over the same anime 
 - `public/graphql/` — a GraphQL query explorer for the API described below.
 - `public/styles.css` — shared site styles. `public/vqar/styles.css` and `public/graphql/styles.css`
   layer page-specific styles on top.
-- `public/theme.js` — the theme picker (see below), loaded by every page.
+- `public/theme.js` / `public/theme-palette.js` — the theme picker (see below) and the
+  color-math behind the two random themes, loaded by every page.
 - `src/worker.js` / `src/schema.js` — the Worker's fetch handler and GraphQL schema/resolvers.
 
 ## Theme
 
-Every page loads `theme.js`, which adds an Auto/Light/Dark `<select>` into the `<nav>`
-and persists the choice to `localStorage` (`pendelgeist:theme`). Picking a theme sets
-`data-theme="light"|"dark"` on `<html>`; "Auto" removes it and falls back to the
-OS/browser preference. An inline script in each page's `<head>` applies a saved theme
-before first paint to avoid a flash of the wrong theme.
+Every page loads `theme.js`, which adds a theme `<select>` into the `<nav>` and persists
+the choice to `localStorage` (`pendelgeist:theme`). Picking a theme sets `data-theme="..."`
+on `<html>`; "Auto" removes it and falls back to the OS/browser preference. An inline
+script in each page's `<head>` applies a saved theme (and, for the random themes, its
+saved palette — see below) before first paint to avoid a flash of the wrong theme.
 
-The actual colors live in `styles.css` as `--color-*` custom properties defined with
-`light-dark(lightValue, darkValue)`, which resolve off the *used value* of `color-scheme`
-— so picking a theme just narrows `color-scheme` to `light` or `dark`
-(`:root[data-theme="dark"] { color-scheme: dark; }`) rather than redefining every
-variable. A future non-light/dark theme would instead override the `--color-*`
-variables directly for its own `[data-theme="..."]` selector, and get added to the
-`THEMES` list in `theme.js`.
+The actual colors live in `styles.css` as `--color-*` custom properties. "Auto"/Light/Dark
+define them with `light-dark(lightValue, darkValue)`, which resolves off the *used value*
+of `color-scheme` — so picking Light or Dark just narrows `color-scheme` to one value
+(`:root[data-theme="dark"] { color-scheme: dark; }`) rather than redefining every variable.
+Rainbow, Vaporwave, and FFVII Menu are fixed novelty themes that instead override every
+`--color-*` directly for their own `[data-theme="..."]` selector (plus a couple of small
+flourishes: an animated gradient on headings for Rainbow, a gradient body background for
+Vaporwave/FFVII Menu). A new theme along these lines just needs a CSS block like those and
+an entry in the `THEMES` list in `theme.js`.
+
+### Random (Light) / Random (Dark)
+
+These two don't have fixed colors — `public/theme-palette.js` rolls a random hue for the
+background and a random (but sufficiently different) hue for the accent, then *solves for*
+a lightness at each hue that clears WCAG AA contrast (4.5:1) against whatever it'll actually
+render on, rather than just picking one and hoping. `test/theme-palette.test.js` rolls each
+mode 200 times and checks every text/background pairing still clears that bar.
+
+The rolled palette is saved to `localStorage` per mode (`pendelgeist:theme:palette:random-light`/
+`...random-dark`), so revisiting or switching back to it reuses the same colors instead of
+re-rolling — a 🎲 button appears next to the picker (only while a random theme is active) to
+roll a new one on demand. Switching to any other theme clears the inline overrides so they
+don't linger on top of that theme's plain CSS.
 
 ## VQAR data
 

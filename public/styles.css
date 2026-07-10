@@ -40,6 +40,105 @@
   color-scheme: dark;
 }
 
+/*
+ * Fixed novelty themes: same idea, just overriding every --color-* directly
+ * instead of relying on light-dark(). "Random (Light)"/"Random (Dark)" work
+ * the same way, except theme.js computes and inline-sets these variables
+ * itself (see public/theme-palette.js) - only their color-scheme lives here.
+ */
+:root[data-theme="rainbow"] {
+  color-scheme: light;
+  --color-bg: #fdfdff;
+  --color-text: #1a1a1a;
+  --color-accent: #7a2ea1;
+  --color-surface: #fff;
+  --color-chrome: #1a1a2e;
+  --color-muted: #555;
+  --color-nav-link: #fff;
+  --color-input-border: #7a2ea1;
+  --color-input-focus: #7a2ea1;
+  --color-title: #1a1a1a;
+  --color-guideline-border: #ddd;
+  --color-article-border: #ddd;
+  --color-section-border: #7a2ea1;
+  --shadow-heading: 0 0 20px transparent;
+  --shadow-focus: 0 0 10px rgba(122, 46, 161, 0.4);
+}
+
+:root[data-theme="rainbow"] h1,
+:root[data-theme="rainbow"] .section h2 {
+  background: linear-gradient(90deg, #ff0000, #ff9900, #ffee00, #33ff00, #00d9ff, #6600ff, #ff00cc, #ff0000);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: rainbow-shift 6s linear infinite;
+}
+
+@keyframes rainbow-shift {
+  to {
+    background-position: 200% center;
+  }
+}
+
+:root[data-theme="vaporwave"] {
+  color-scheme: dark;
+  --color-bg: #1a0b2e;
+  --color-text: #f2e9ff;
+  --color-accent: #ff71ce;
+  --color-surface: #2d1b4e;
+  --color-chrome: #130821;
+  --color-muted: #b39ddb;
+  --color-nav-link: #01cdfe;
+  --color-input-border: #01cdfe;
+  --color-input-focus: #ff71ce;
+  --color-title: #ff71ce;
+  --color-guideline-border: rgba(1, 205, 254, 0.4);
+  --color-article-border: transparent;
+  --color-section-border: #01cdfe;
+  --shadow-heading: 0 0 20px rgba(255, 113, 206, 0.6);
+  --shadow-focus: 0 0 10px rgba(1, 205, 254, 0.6);
+}
+
+:root[data-theme="vaporwave"] body {
+  background: linear-gradient(180deg, #1a0b2e 0%, #2d1b4e 60%, #4a1942 100%);
+}
+
+:root[data-theme="vaporwave"] nav {
+  background: linear-gradient(90deg, #130821, #2d1b4e, #130821);
+}
+
+:root[data-theme="ffvii"] {
+  color-scheme: dark;
+  --color-bg: #0a1030;
+  --color-text: #fff;
+  --color-accent: #6ecfff;
+  --color-surface: #14206b;
+  --color-chrome: #0a1030;
+  --color-muted: #9fb4e0;
+  --color-nav-link: #fff;
+  --color-input-border: #6ecfff;
+  --color-input-focus: #a8e6ff;
+  --color-title: #fff;
+  --color-guideline-border: rgba(110, 207, 255, 0.5);
+  --color-article-border: rgba(110, 207, 255, 0.35);
+  --color-section-border: #6ecfff;
+  --shadow-heading: 0 0 12px rgba(110, 207, 255, 0.6);
+  --shadow-focus: 0 0 10px rgba(110, 207, 255, 0.6);
+}
+
+:root[data-theme="ffvii"] body {
+  background: radial-gradient(ellipse at top, #14206b 0%, #0a1030 70%);
+}
+
+:root[data-theme="random-light"] {
+  color-scheme: light;
+}
+
+:root[data-theme="random-dark"] {
+  color-scheme: dark;
+}
+
 /* Base */
 
 body {
@@ -90,6 +189,21 @@ nav > a {
 
 .theme-picker option {
   color: initial;
+}
+
+.theme-reroll {
+  margin-inline-end: 0.75rem;
+  padding: 0.3rem 0.5rem;
+  font-size: 1rem;
+  line-height: 1;
+  cursor: pointer;
+  border: 1px solid var(--color-nav-link);
+  background-color: transparent;
+  color: var(--color-nav-link);
+}
+
+.theme-reroll:hover {
+  opacity: 0.8;
 }
 
 /* Layout */

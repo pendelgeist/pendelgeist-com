@@ -8,8 +8,15 @@
     // match the storage key/values theme.js uses.
     try {
       var savedTheme = localStorage.getItem('pendelgeist:theme');
-      if (savedTheme === 'light' || savedTheme === 'dark') {
+      if (savedTheme && savedTheme !== 'system') {
         document.documentElement.setAttribute('data-theme', savedTheme);
+        var savedPalette = localStorage.getItem('pendelgeist:theme:palette:' + savedTheme);
+        if (savedPalette) {
+          var palette = JSON.parse(savedPalette);
+          for (var prop in palette) {
+            document.documentElement.style.setProperty(prop, palette[prop]);
+          }
+        }
       }
     } catch (e) {}
   </script>
