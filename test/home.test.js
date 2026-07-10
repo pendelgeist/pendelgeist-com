@@ -8,11 +8,12 @@ import { JSDOM } from 'jsdom';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const html = fs.readFileSync(path.join(__dirname, '../public/index.html'), 'utf-8');
 
-test('homepage links to VQAR and amokenzoku.com', () => {
+test('homepage links to VQAR, the GraphQL API, and amokenzoku.com', () => {
   const { document } = new JSDOM(html).window;
 
   const links = [...document.querySelectorAll('.show-list a')].map((a) => a.getAttribute('href'));
   assert.ok(links.includes('/vqar'), 'expected a link to /vqar');
+  assert.ok(links.includes('/graphql'), 'expected a link to /graphql');
   assert.ok(
     links.some((href) => href === 'https://www.amokenzoku.com' || href === 'https://www.amokenzoku.com/'),
     'expected a link to amokenzoku.com'

@@ -9,6 +9,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const PAGES = {
   home: path.join(__dirname, '../public/index.html'),
   vqar: path.join(__dirname, '../public/vqar/index.html'),
+  graphql: path.join(__dirname, '../public/graphql/index.html'),
 };
 
 for (const [name, htmlPath] of Object.entries(PAGES)) {
