@@ -22,6 +22,16 @@
   --shadow-card: 0 1px 6px rgb(0 0 0 / 6%), 0 2px 32px rgb(0 0 0 / 16%);
   --shadow-heading: 0 0 20px light-dark(transparent, rgba(0, 162, 0, 0.5));
   --shadow-focus: 0 0 10px light-dark(transparent, rgba(0, 162, 0, 0.5));
+
+  /* Typography */
+  --font-heading: 'Raleway', sans-serif;
+  --font-body: 'Raleway', sans-serif;
+
+  /* Structure */
+  --border-width: 1px;
+  --border-style: solid;
+  --radius-card: 0px;
+  --spacing-section: 2rem;
 }
 
 /*
@@ -63,6 +73,12 @@
   --color-section-border: #7a2ea1;
   --shadow-heading: 0 0 20px transparent;
   --shadow-focus: 0 0 10px rgba(122, 46, 161, 0.4);
+  --font-heading: 'Comic Sans MS', 'Chalkboard SE', cursive;
+  --font-body: 'Comic Sans MS', 'Chalkboard SE', cursive;
+  --border-width: 3px;
+  --border-style: solid;
+  --radius-card: 6px;
+  --spacing-section: 2.5rem;
 }
 
 /* Rainbow goes all-in: a slowly spinning wash behind everything, gradient
@@ -126,7 +142,6 @@
 }
 
 :root[data-theme="rainbow"] .section {
-  border-radius: 6px;
   padding: 0.75rem;
 }
 
@@ -201,6 +216,12 @@
   --color-section-border: #01cdfe;
   --shadow-heading: 0 0 20px rgba(255, 113, 206, 0.6);
   --shadow-focus: 0 0 10px rgba(1, 205, 254, 0.6);
+  --font-heading: 'Times New Roman', Times, serif;
+  --font-body: 'Courier New', monospace;
+  --border-width: 3px;
+  --border-style: double;
+  --radius-card: 6px;
+  --spacing-section: 3rem;
 }
 
 :root[data-theme="vaporwave"] body {
@@ -232,6 +253,13 @@
     repeating-linear-gradient(to bottom, rgba(0, 0, 0, 0.15) 0 1px, transparent 1px 3px);
   mask-image: linear-gradient(to bottom, transparent 0%, transparent 30%, black 55%, black 100%);
   -webkit-mask-image: linear-gradient(to bottom, transparent 0%, transparent 30%, black 55%, black 100%);
+  animation: vaporwave-drift 4s linear infinite;
+}
+
+@keyframes vaporwave-drift {
+  to {
+    background-position: 0 56px, 0 0, 0 0;
+  }
 }
 
 :root[data-theme="vaporwave"] nav {
@@ -243,12 +271,11 @@
 :root[data-theme="vaporwave"] .section,
 :root[data-theme="vaporwave"] article,
 :root[data-theme="vaporwave"] .guidelines {
-  border: 1px solid rgba(1, 205, 254, 0.5);
+  border: var(--border-width) var(--border-style) rgba(1, 205, 254, 0.5);
   box-shadow: var(--shadow-card), 0 0 16px rgba(255, 113, 206, 0.35), 0 0 24px rgba(1, 205, 254, 0.25);
 }
 
 :root[data-theme="vaporwave"] .section {
-  border-radius: 6px;
   padding: 0.75rem;
 }
 
@@ -269,10 +296,42 @@
   --color-section-border: #6ecfff;
   --shadow-heading: 0 0 12px rgba(110, 207, 255, 0.6);
   --shadow-focus: 0 0 10px rgba(110, 207, 255, 0.6);
+  --font-heading: Impact, 'Arial Narrow Bold', sans-serif;
+  --font-body: Verdana, Geneva, sans-serif;
+  --border-width: 2px;
+  --border-style: solid;
+  --radius-card: 2px;
+  --spacing-section: 1.5rem;
 }
 
 :root[data-theme="ffvii"] body {
   background: radial-gradient(ellipse at top, #14206b 0%, #0a1030 70%);
+}
+
+/* Materia glow: a slow pulse on the section-heading underline, echoing the
+ * game's glowing materia orbs rather than anything busier - FFVII's menus
+ * are otherwise static, so this stays the theme's one motion touch. */
+:root[data-theme="ffvii"] .section h2 {
+  animation: ffvii-pulse 2.4s ease-in-out infinite;
+}
+
+@keyframes ffvii-pulse {
+  0%, 100% {
+    text-shadow: 0 0 4px rgba(110, 207, 255, 0.4);
+  }
+  50% {
+    text-shadow: 0 0 14px rgba(110, 207, 255, 0.9);
+  }
+}
+
+:root[data-theme="ffvii"] .section,
+:root[data-theme="ffvii"] article,
+:root[data-theme="ffvii"] .guidelines {
+  border: var(--border-width) var(--border-style) rgba(110, 207, 255, 0.35);
+}
+
+:root[data-theme="ffvii"] .section {
+  padding: 0.75rem;
 }
 
 /* FFXIV: the game's own UI is near-black panels with gilded gold trim and a
@@ -295,6 +354,12 @@
   --color-section-border: #d4af37;
   --shadow-heading: 0 0 12px rgba(212, 175, 55, 0.55);
   --shadow-focus: 0 0 10px rgba(79, 195, 217, 0.6);
+  --font-heading: Garamond, 'Book Antiqua', Palatino, serif;
+  --font-body: Garamond, 'Book Antiqua', Palatino, serif;
+  --border-width: 2px;
+  --border-style: double;
+  --radius-card: 4px;
+  --spacing-section: 2.75rem;
   /* A stylized gauntlet-pointer cursor, echoing the game's own UI cursor.
    * Left off text inputs on purpose - a hand cursor over a text caret reads
    * wrong, so this only gets applied to actionable (link/button/select)
@@ -332,13 +397,36 @@
 :root[data-theme="ffxiv"] .section,
 :root[data-theme="ffxiv"] article,
 :root[data-theme="ffxiv"] .guidelines {
-  border: 1px solid rgba(212, 175, 55, 0.35);
+  border: var(--border-width) var(--border-style) rgba(212, 175, 55, 0.35);
 }
 
 :root[data-theme="ffxiv"] .section {
-  border-radius: 4px;
   padding: 0.75rem;
   background: var(--color-surface);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Gilded shimmer: a soft gold sweep crossing each card every few seconds,
+ * like light catching an engraved frame - the theme's one motion touch,
+ * kept subtle since FFXIV's own UI doesn't animate its panels either. */
+:root[data-theme="ffxiv"] .section::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(115deg, transparent 40%, rgba(212, 175, 55, 0.18) 50%, transparent 60%);
+  background-size: 250% 100%;
+  animation: ffxiv-shimmer 5s ease-in-out infinite;
+}
+
+@keyframes ffxiv-shimmer {
+  0% {
+    background-position: 150% 0;
+  }
+  60%, 100% {
+    background-position: -50% 0;
+  }
 }
 
 /* Tab-bar chrome: the nav's Home link and theme controls read as adjacent
@@ -391,6 +479,75 @@
   cursor: var(--cursor-hand);
 }
 
+/* GeoCities '99: the loudest theme on purpose - navy/neon Web 1.0 colors, a
+ * shouty display font, a thick dashed frame, a hard offset "sticker" shadow
+ * instead of a soft blur, oversized gaps between sections, a tiled starfield,
+ * and a blinking tagline, echoing a hand-built personal homepage circa 1999. */
+:root[data-theme="geocities"] {
+  color-scheme: light;
+  --color-bg: #000080;
+  --color-text: #00ff00;
+  --color-accent: #ff00ff;
+  --color-surface: #c0c0c0;
+  --color-chrome: #000000;
+  --color-muted: #ffff00;
+  --color-nav-link: #00ffff;
+  --color-input-border: #ff00ff;
+  --color-input-focus: #ffff00;
+  --color-title: #ff0000;
+  --color-guideline-border: #ffff00;
+  --color-article-border: #00ffff;
+  --color-section-border: #ff00ff;
+  --shadow-heading: 2px 2px 0 #000;
+  --shadow-focus: 0 0 0 3px #ffff00;
+  --font-heading: 'Arial Black', 'Arial Bold', Gadget, sans-serif;
+  --font-body: Verdana, Geneva, sans-serif;
+  --border-width: 4px;
+  --border-style: dashed;
+  --radius-card: 0px;
+  --spacing-section: 4rem;
+}
+
+:root[data-theme="geocities"] body {
+  background-color: #000080;
+  background-image:
+    radial-gradient(1px 1px at 10% 20%, #fff, transparent),
+    radial-gradient(1px 1px at 30% 70%, #fff, transparent),
+    radial-gradient(1px 1px at 50% 15%, #fff, transparent),
+    radial-gradient(1px 1px at 70% 55%, #fff, transparent),
+    radial-gradient(1px 1px at 85% 85%, #fff, transparent),
+    radial-gradient(1px 1px at 95% 35%, #fff, transparent);
+  background-size: 200px 200px;
+  animation: geocities-twinkle 3s steps(2, jump-none) infinite;
+}
+
+@keyframes geocities-twinkle {
+  50% {
+    background-position: 4px 6px;
+  }
+}
+
+:root[data-theme="geocities"] .subtitle {
+  animation: geocities-blink 1s steps(1, jump-none) infinite;
+}
+
+@keyframes geocities-blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+:root[data-theme="geocities"] .section,
+:root[data-theme="geocities"] article,
+:root[data-theme="geocities"] .guidelines {
+  border: var(--border-width) var(--border-style) var(--color-section-border);
+  box-shadow: 6px 6px 0 #000;
+}
+
+:root[data-theme="geocities"] .section {
+  padding: 0.75rem;
+}
+
 :root[data-theme="random-light"] {
   color-scheme: light;
 }
@@ -402,7 +559,7 @@
 /* Base */
 
 body {
-  font-family: 'Raleway', sans-serif;
+  font-family: var(--font-body);
   line-height: 1.6;
   min-height: 100dvh;
   margin: 8px;
@@ -411,6 +568,7 @@ body {
 }
 
 h1 {
+  font-family: var(--font-heading);
   font-size: 68px;
   font-stretch: expanded;
   font-weight: bolder;
@@ -496,7 +654,8 @@ header {
 /* Sections */
 
 .section {
-  margin-bottom: 2rem;
+  margin-bottom: var(--spacing-section);
+  border-radius: var(--radius-card);
 }
 
 .section-grid {
@@ -506,6 +665,7 @@ header {
 }
 
 .section h2 {
+  font-family: var(--font-heading);
   font-size: 2rem;
   font-weight: 900;
   letter-spacing: 0.2rem;
@@ -558,5 +718,19 @@ header {
   h1 {
     font-size: 2.5rem;
     letter-spacing: 0.2rem;
+  }
+}
+
+/* Accessibility: every per-theme animation added below (Rainbow's spin,
+ * Vaporwave's drift, FFVII's pulse, FFXIV's shimmer, GeoCities' blink/scroll)
+ * gets neutralized here rather than individually, so a theme can't
+ * accidentally ship motion that ignores the OS/browser preference. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }

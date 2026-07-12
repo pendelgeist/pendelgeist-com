@@ -14,6 +14,7 @@ const THEMES = [
   { id: 'vaporwave', label: 'Vaporwave' },
   { id: 'ffvii', label: 'FFVII Menu' },
   { id: 'ffxiv', label: 'FFXIV Eorzea' },
+  { id: 'geocities', label: "GeoCities '99" },
   { id: 'random-light', label: 'Random (Light)' },
   { id: 'random-dark', label: 'Random (Dark)' },
 ];
