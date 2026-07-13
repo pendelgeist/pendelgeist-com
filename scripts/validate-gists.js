@@ -8,31 +8,8 @@
  *   npm run validate-gists
  *   npm run validate-gists -- ./draft-season.json
  */
-import { readFile } from 'node:fs/promises';
 import { validateSeason } from './validateSeason.js';
-import { MANIFEST_URL } from '../public/manifest-url.js';
-
-/** @param {string} source - a file path or an http(s) URL */
-async function loadJson(source) {
-  if (/^https?:\/\//.test(source)) {
-    const response = await fetch(source);
-    if (!response.ok) throw new Error(`HTTP ${response.status} fetching ${source}`);
-    return response.json();
-  }
-  return JSON.parse(await readFile(source, 'utf-8'));
-}
-
-/** @returns {Promise<{ label: string, season: object }[]>} */
-async function resolveTargets(args) {
-  if (args.length > 0) {
-    return Promise.all(args.map(async source => ({ label: source, season: await loadJson(source) })));
-  }
-
-  const manifest = await loadJson(MANIFEST_URL);
-  return Promise.all(
-    manifest.seasons.map(async meta => ({ label: meta.name, season: await loadJson(meta.file) }))
-  );
-}
+import { resolveTargets } from './loadTargets.js';
 
 async function main() {
   const targets = await resolveTargets(process.argv.slice(2));

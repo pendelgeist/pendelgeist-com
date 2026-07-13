@@ -99,6 +99,12 @@ follow-up notes, each shaped like `{ ratingNumber, ratingText, review, dateRevie
 
 All three are optional and independent — add whichever applies whenever you get to it.
 
+A review may also carry an optional `anilistId` (an AniList media id, e.g. `154587`) —
+purely for linking out to that show's AniList page from VQAR and the GraphQL API. Full
+show metadata (synopsis, episode counts, community scores) intentionally lives on AniList
+rather than being duplicated into these gists; see "Validating against AniList" below for
+finding the right id.
+
 ### Validating gist data
 
 `scripts/validate-gists.js` is a standalone check — it's not part of the website, just
@@ -110,6 +116,22 @@ required fields or with an unparseable date.
 ```
 npm run validate-gists                  # fetches the live manifest and checks every season
 npm run validate-gists -- ./draft.json  # or check one or more local files/URLs directly
+```
+
+### Validating against AniList
+
+`scripts/validate-against-anilist.js` cross-checks the same gist data against
+[AniList's public GraphQL API](https://anilist.co/graphiql) — one live request per show, so
+it's meant to be run occasionally rather than in CI (unlike `validate-gists`, which is
+purely local). For each reviewed show it either confirms an existing `anilistId` still
+resolves to a matching title, or searches by title and suggests an `anilistId` to add when
+it finds a confident match; pending/skipped titles just get a lighter existence check as a
+spelling sanity check.
+
+```
+npm run validate-anilist                    # fetches the live manifest and checks every season
+npm run validate-anilist -- ./draft.json    # or check one or more local files/URLs directly
+npm run validate-anilist -- --delay=2500    # slow down if AniList starts rate-limiting
 ```
 
 ## GraphQL API

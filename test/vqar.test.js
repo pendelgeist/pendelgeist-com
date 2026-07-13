@@ -216,6 +216,27 @@ test('a full-series re-review and OP/ED notes render as addenda below the main r
   assert.match(document.getElementById('reviewedShows').textContent, /still stuck in my head/);
 });
 
+test('a review with an anilistId renders an AniList link; one without does not', async () => {
+  const fetch = createFetchStub({
+    'vqar-manifest.json': manifest,
+    'vqar-season-summer-2026.json': {
+      id: 'summer-2026',
+      name: 'Summer 2026',
+      reviewed: [
+        { titleEN: 'Linked Show', ratingText: 'Meh', dateReviewed: '2026-07-01', anilistId: 154587 },
+        { titleEN: 'Unlinked Show', ratingText: 'Meh', dateReviewed: '2026-07-02' },
+      ],
+      pending: [],
+      skipped: [],
+    },
+  });
+  const { document } = await loadApp({ fetch });
+
+  const links = [...document.querySelectorAll('.entry-anilist-link')];
+  assert.equal(links.length, 1);
+  assert.equal(links[0].getAttribute('href'), 'https://anilist.co/anime/154587');
+});
+
 test('search matches text inside a full-series re-review or OP/ED note, not just the main review', async () => {
   const fetch = createFetchStub({
     'vqar-manifest.json': manifest,

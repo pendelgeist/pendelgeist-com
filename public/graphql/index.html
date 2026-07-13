@@ -67,6 +67,12 @@
         POST a <code>{ "query": "..." }</code> JSON body to <code>/graphql</code> (standard
         GraphQL-over-HTTP). CORS is open, so it's queryable from other origins too.
       </p>
+      <p>
+        This API is intentionally scoped to personal review data only. For full anime metadata
+        (synopses, episode counts, community scores, and more), pair it with
+        <a href="https://anilist.co/graphiql" target="_blank" rel="noopener noreferrer">AniList's own public GraphQL API</a>
+        &mdash; a review's <code>anilistId</code>, when set, is the id to look it up by.
+      </p>
 
       <h3>Query</h3>
       <ul class="show-list">
@@ -98,6 +104,7 @@
         <li><code>ed: SubReview</code> &mdash; ending callout</li>
         <li><code>season: ID!</code> &mdash; id of the season this review belongs to</li>
         <li><code>seasonName: String!</code> &mdash; display name of that season</li>
+        <li><code>anilistId: Int</code> &mdash; optional AniList media id, when set</li>
       </ul>
 
       <h3>SubReview</h3>

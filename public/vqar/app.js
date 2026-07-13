@@ -24,6 +24,7 @@ import { MANIFEST_URL } from '../manifest-url.js';
  * @property {string} season
  * @property {string} seasonName
  * @property {number} _timestamp
+ * @property {number} [anilistId] - optional AniList media id, links out to the show's AniList page
  */
 
 /**
@@ -317,6 +318,15 @@ function createReviewArticle(r) {
   const title = document.createElement('div');
   title.className = 'entry-title';
   title.textContent = r.titleEN ?? 'Untitled';
+  if (r.anilistId) {
+    const anilistLink = document.createElement('a');
+    anilistLink.className = 'entry-anilist-link';
+    anilistLink.href = `https://anilist.co/anime/${r.anilistId}`;
+    anilistLink.target = '_blank';
+    anilistLink.rel = 'noopener noreferrer';
+    anilistLink.textContent = 'AniList';
+    title.appendChild(anilistLink);
+  }
 
   const titleJp = document.createElement('div');
   titleJp.className = 'entry-title-jp';

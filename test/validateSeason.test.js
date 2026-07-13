@@ -81,6 +81,31 @@ test('flags a malformed fullReview/op/ed (not an object)', () => {
   assert.ok(issues.some(i => i.includes('"Malformed Addenda Show"') && i.includes('op')));
 });
 
+test('flags a malformed anilistId (not an integer)', () => {
+  const season = cleanSeason();
+  season.reviewed.push({
+    titleEN: 'Bad AnilistId Show',
+    ratingText: 'Meh',
+    dateReviewed: '2026-04-02',
+    anilistId: 'not-a-number',
+  });
+
+  const issues = validateSeason(season);
+  assert.ok(issues.some(i => i.includes('"Bad AnilistId Show"') && i.includes('anilistId')));
+});
+
+test('a well-formed anilistId does not trigger a false positive', () => {
+  const season = cleanSeason();
+  season.reviewed.push({
+    titleEN: 'Linked Show',
+    ratingText: 'Meh',
+    dateReviewed: '2026-04-02',
+    anilistId: 154587,
+  });
+
+  assert.deepEqual(validateSeason(season), []);
+});
+
 test('a well-formed fullReview/op/ed does not trigger a false positive', () => {
   const season = cleanSeason();
   season.reviewed.push({

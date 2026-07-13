@@ -32,6 +32,8 @@ type Review {
   season: ID!
   "The display name of the season this review belongs to."
   seasonName: String!
+  "Optional AniList media id, for linking out to the show's AniList page."
+  anilistId: Int
 }
 
 """One anime season: its reviewed shows, plus titles still pending or skipped."""
