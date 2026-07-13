@@ -1,5 +1,8 @@
 # pendelgeist-com
 
+**Status: alpha.** Personal site, actively in flux — structure, content, and conventions
+here can and do change without much ceremony.
+
 Personal site, served as static assets from a Cloudflare Worker (see `wrangler.jsonc`).
 The Worker (`src/worker.js`) also backs a small GraphQL API over the same anime data.
 
@@ -7,6 +10,7 @@ The Worker (`src/worker.js`) also backs a small GraphQL API over the same anime 
 
 - `public/index.html` — homepage, links out to the other sites.
 - `public/vqar/` — Very Quick Anime Reviews, a small vanilla-JS app.
+- `public/eva/` — Neon Genesis Evangelion facts/theories/unknowables, a small vanilla-JS app.
 - `public/graphql/` — a GraphQL query explorer for the API described below.
 - `public/styles.css` — shared site styles. `public/vqar/styles.css` and `public/graphql/styles.css`
   layer page-specific styles on top.
@@ -111,6 +115,25 @@ required fields or with an unparseable date.
 npm run validate-gists                  # fetches the live manifest and checks every season
 npm run validate-gists -- ./draft.json  # or check one or more local files/URLs directly
 ```
+
+## Evangelion page
+
+`public/eva/` is a small standalone page at `/eva`, separate from the VQAR/gist data flow
+above — its content lives in `public/eva/data.json`, committed to this repo rather than a
+gist, since it changes far less often than a season's reviews. The JSON has four arrays:
+
+- `characters` — who's who (`name`, `aka`, `summary`).
+- `facts` — things stated or directly shown on-screen, grouped by `category` (Timeline,
+  Organizations, Terminology, Angels & Evas).
+- `theories` — popular fan readings inferred from the text but never confirmed outright,
+  grouped by `topic`.
+- `unknowables` — questions the series poses and deliberately never answers.
+
+`public/eva/app.js` fetches that file directly (no manifest indirection, since it's one
+file) and renders each array into its own section, with a type filter and a text search
+that matches across every string field of the currently-visible entries. Editing the
+content means editing `data.json` and redeploying — there's no live external data source
+to keep in sync here, unlike VQAR.
 
 ## GraphQL API
 
