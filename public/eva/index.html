@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>
+    // Applied before first paint to avoid a flash of the wrong theme; must
+    // match the storage key/values theme.js uses.
+    try {
+      var savedTheme = localStorage.getItem('pendelgeist:theme');
+      if (savedTheme && savedTheme !== 'system') {
+        document.documentElement.setAttribute('data-theme', savedTheme);
+        var savedPalette = localStorage.getItem('pendelgeist:theme:palette:' + savedTheme);
+        if (savedPalette) {
+          var palette = JSON.parse(savedPalette);
+          for (var prop in palette) {
+            document.documentElement.style.setProperty(prop, palette[prop]);
+          }
+        }
+      }
+    } catch (e) {}
+  </script>
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/eva/styles.css">
+  <title>Neon Genesis Evangelion: Facts &amp; Theories</title>
+</head>
+<body>
+  <nav>
+    <a href="/">Home</a>
+  </nav>
+  <script type="module" src="/theme.js"></script>
+  <div class="container">
+    <header>
+      <h1>Neon Genesis Evangelion <a href="#" class="info-link" id="infoToggle" aria-label="Show about this page">i</a></h1>
+      <div class="subtitle">Facts, and the theories/guesses/unknowables the show deliberately leaves open</div>
+    </header>
+
+    <div class="guidelines" id="guidelines">
+      <h3>What's a Fact vs. a Theory?</h3>
+      <p><strong>Facts</strong> are things stated or directly shown on-screen (dates, character roles, terminology).</p>
+      <p><strong>Theories</strong> are popular fan readings inferred from the text — reasonable, but not confirmed outright.</p>
+      <p><strong>Unknowables</strong> are questions the series poses and pointedly never answers, on purpose.</p>
+      <p style="font-style: italic;">Spoilers throughout, for the original TV series and The End of Evangelion.</p>
+    </div>
+
+    <div class="filters">
+      <div class="filter-group">
+        <label for="typeFilter">Type</label>
+        <select id="typeFilter">
+          <option value="all">Everything</option>
+          <option value="characters">Characters</option>
+          <option value="facts">Facts</option>
+          <option value="theories">Theories</option>
+          <option value="unknowables">Unknowables</option>
+        </select>
+      </div>
+      <div class="filter-group">
+        <label for="searchInput">Search</label>
+        <input type="text" id="searchInput" placeholder="Search characters, facts, theories...">
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Characters</h2>
+      <div id="characterEntries"><div class="loading">LOADING DATA...</div></div>
+    </div>
+
+    <div class="section">
+      <h2>Facts</h2>
+      <div id="factEntries"></div>
+    </div>
+
+    <div class="section">
+      <h2>Theories</h2>
+      <div id="theoryEntries"></div>
+    </div>
+
+    <div class="section">
+      <h2>Unknowables</h2>
+      <div id="unknowableEntries"></div>
+    </div>
+  </div>
+
+  <script type="module" src="/eva/app.js"></script>
+</body>
+</html>
