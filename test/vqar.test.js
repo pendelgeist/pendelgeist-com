@@ -74,6 +74,26 @@ test('initial load fetches only the manifest and the current season', async () =
   );
 });
 
+test('current season link points at the matching AniChart page', async () => {
+  const fetch = createFetchStub(routes());
+  const { document } = await loadApp({ fetch });
+
+  const link = /** @type {HTMLAnchorElement} */ (document.getElementById('currentSeasonAnichart'));
+  assert.equal(link.hidden, false);
+  assert.equal(link.getAttribute('href'), 'https://anichart.net/Summer-2026');
+});
+
+test('current season link stays hidden if the manifest\'s currentSeason id has no matching season', async () => {
+  const fetch = createFetchStub({
+    'vqar-manifest.json': { currentSeason: 'nonexistent-2026', seasons: manifest.seasons },
+    ...seasons,
+  });
+  const { document } = await loadApp({ fetch });
+
+  const link = /** @type {HTMLAnchorElement} */ (document.getElementById('currentSeasonAnichart'));
+  assert.equal(link.hidden, true);
+});
+
 test('season dropdown is populated from the manifest, current season selected', async () => {
   const fetch = createFetchStub(routes());
   const { document } = await loadApp({ fetch });
