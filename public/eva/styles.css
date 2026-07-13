@@ -1,6 +1,6 @@
-/* Eva-specific styles; shared site styles live in /styles.css. Layout mirrors
- * /vqar/styles.css (filters bar, article/entry-* blocks, collapsible
- * guidelines) since this page follows the same content-list pattern. */
+/* Eva-specific styles; shared site styles live in /styles.css. This page is
+ * a horizontally scrolling timeline of entry "nodes" grouped into episode
+ * columns, with a fixed detail panel at the bottom for the selected entry. */
 
 .info-link {
   display: inline-flex;
@@ -65,7 +65,7 @@ input:focus, select:focus {
 
 .guidelines {
   box-shadow: var(--shadow-card);
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
   padding: 1rem;
   display: none;
   background-color: var(--color-surface);
@@ -93,30 +93,185 @@ input:focus, select:focus {
   margin: 0.25rem 0;
 }
 
-article {
+.legend-dot {
+  display: inline-block;
+  width: 0.75rem;
+  height: 0.75rem;
+  border-radius: 50%;
+  margin: 0 0.15rem 0 0.6rem;
+  vertical-align: middle;
+}
+
+.legend-dot:first-child {
+  margin-left: 0;
+}
+
+.legend-character { background-color: var(--color-accent); }
+.legend-fact { background-color: var(--color-muted); }
+.legend-theory { background: repeating-linear-gradient(45deg, var(--color-accent), var(--color-accent) 2px, transparent 2px, transparent 4px); }
+.legend-unknowable { background: repeating-linear-gradient(45deg, var(--color-muted), var(--color-muted) 1px, transparent 1px, transparent 3px); }
+
+/* Timeline */
+
+.timeline-scroll {
+  overflow-x: auto;
+  overflow-y: hidden;
   box-shadow: var(--shadow-card);
-  display: flex;
-  margin-bottom: 0.75rem;
-  padding: 1rem 0.75rem;
-  transition: transform 0.3s ease;
+  margin-bottom: 1.5rem;
   background-color: var(--color-surface);
-  border-bottom: var(--border-width) var(--border-style) var(--color-article-border);
+  border: var(--border-width) var(--border-style) var(--color-article-border);
   border-radius: var(--radius-card);
 }
 
-.entry-body {
-  flex-grow: 1;
+.timeline-track {
+  display: flex;
+  align-items: stretch;
+  min-height: 20rem;
+  padding: 1rem;
 }
 
-article:last-child {
-  border-bottom: none;
+.episode-column {
+  flex: 0 0 13rem;
+  min-width: 13rem;
+  padding: 0 0.75rem;
+  border-right: 1px dashed var(--color-article-border);
 }
 
-article:hover {
-  transform: translateX(5px);
+.episode-column:first-child {
+  padding-left: 0.25rem;
 }
 
-.entry-title {
+.episode-column:last-child {
+  border-right: none;
+}
+
+.episode-header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  margin-bottom: 0.25rem;
+}
+
+.episode-number {
+  font-family: var(--font-heading);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1rem;
+  color: var(--color-accent);
+}
+
+.episode-title {
+  font-size: 0.85rem;
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--color-title);
+}
+
+.episode-subtitle {
+  font-size: 0.7rem;
+  font-style: italic;
+  opacity: 0.7;
+  margin-bottom: 0.5rem;
+}
+
+.episode-entries {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+}
+
+.entry-node {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  text-align: left;
+  padding: 0.4rem 0.5rem;
+  font: inherit;
+  font-size: 0.78rem;
+  line-height: 1.3;
+  cursor: pointer;
+  background-color: var(--color-chrome);
+  color: var(--color-text);
+  border: 1px solid var(--color-article-border);
+  border-radius: var(--radius-card);
+  width: 100%;
+  height: auto;
+}
+
+.entry-node-badge {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.1rem;
+  height: 1.1rem;
+  font-size: 0.65rem;
+  font-weight: 700;
+  border-radius: 50%;
+  color: var(--color-bg);
+  background-color: var(--color-accent);
+}
+
+.entry-type-fact .entry-node-badge,
+.entry-type-unknowable .entry-node-badge {
+  background-color: var(--color-muted);
+}
+
+.entry-type-theory { border-left: 3px dashed var(--color-accent); }
+.entry-type-unknowable { border-left: 3px dotted var(--color-muted); }
+.entry-type-character { border-left: 3px solid var(--color-accent); }
+.entry-type-fact { border-left: 3px solid var(--color-muted); }
+
+.entry-node:hover {
+  transform: translateX(2px);
+}
+
+.entry-node.active {
+  border-color: var(--color-accent);
+  box-shadow: var(--shadow-focus);
+}
+
+.entry-node.node-hidden {
+  display: none;
+}
+
+/* Detail panel */
+
+.detail-panel {
+  position: sticky;
+  bottom: 0;
+  z-index: 5;
+  box-shadow: var(--shadow-card);
+  padding: 1rem 1.25rem;
+  background-color: var(--color-surface);
+  border: var(--border-width) var(--border-style) var(--color-guideline-border);
+  border-radius: var(--radius-card);
+  max-width: 900px;
+  margin: 0 auto 2rem;
+}
+
+.detail-content {
+  position: relative;
+  padding-right: 1.5rem;
+}
+
+.detail-close {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.75rem;
+  background: none;
+  border: none;
+  font-size: 1.3rem;
+  line-height: 1;
+  cursor: pointer;
+  color: var(--color-muted);
+  padding: 0.25rem;
+  width: auto;
+  height: auto;
+}
+
+.detail-title {
   font-family: var(--font-heading);
   font-size: 1.3rem;
   font-weight: 700;
@@ -124,18 +279,12 @@ article:hover {
   color: var(--color-title);
 }
 
-.entry-description {
-  font-weight: 500;
-  line-height: 1.8;
-  font-size: 0.9rem;
-}
-
-.entry-meta {
-  margin-bottom: 0.75rem;
+.detail-meta {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.75rem;
   flex-wrap: wrap;
+  margin-bottom: 0.75rem;
 }
 
 .entry-tag {
@@ -149,15 +298,47 @@ article:hover {
   color: var(--color-accent);
 }
 
-/* Theories get a dashed accent border to read as "inferred, not confirmed";
- * unknowables drop the tag row entirely since the question is the label. */
-
-.theory-article {
-  border-left: 3px dashed var(--color-accent);
+.entry-tag-fact, .entry-tag-unknowable {
+  border-color: var(--color-muted);
+  color: var(--color-muted);
 }
 
-.unknowable-article {
-  border-left: 3px dotted var(--color-muted);
+.detail-episode {
+  font-size: 0.78rem;
+  opacity: 0.75;
+}
+
+.detail-body {
+  font-weight: 500;
+  line-height: 1.8;
+  font-size: 0.9rem;
+  margin-bottom: 0.75rem;
+}
+
+.detail-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding-top: 0.6rem;
+  border-top: 1px dashed var(--color-article-border);
+}
+
+.jump-link {
+  font: inherit;
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 0.35rem 0.7rem;
+  cursor: pointer;
+  background-color: var(--color-chrome);
+  color: var(--color-accent);
+  border: 1px solid var(--color-accent);
+  border-radius: 999px;
+  width: auto;
+  height: auto;
+}
+
+.jump-link:hover {
+  opacity: 0.8;
 }
 
 @media (max-width: 768px) {

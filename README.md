@@ -142,20 +142,34 @@ npm run validate-anilist -- --delay=2500    # slow down if AniList starts rate-l
 
 `public/eva/` is a small standalone page at `/eva`, separate from the VQAR/gist data flow
 above — its content lives in `public/eva/data.json`, committed to this repo rather than a
-gist, since it changes far less often than a season's reviews. The JSON has four arrays:
+gist, since it changes far less often than a season's reviews.
 
-- `characters` — who's who (`name`, `aka`, `summary`).
-- `facts` — things stated or directly shown on-screen, grouped by `category` (Timeline,
-  Organizations, Terminology, Angels & Evas).
-- `theories` — popular fan readings inferred from the text but never confirmed outright,
-  grouped by `topic`.
-- `unknowables` — questions the series poses and deliberately never answers.
+It's a horizontally-scrolling timeline anchored to the 26 TV episodes plus a final "EoE"
+(*The End of Evangelion*) column. The JSON has two arrays:
 
-`public/eva/app.js` fetches that file directly (no manifest indirection, since it's one
-file) and renders each array into its own section, with a type filter and a text search
-that matches across every string field of the currently-visible entries. Editing the
-content means editing `data.json` and redeploying — there's no live external data source
-to keep in sync here, unlike VQAR.
+- `episodes` — the columns themselves, in order: `{ number, title, subtitle? }`. `number`
+  is either a TV episode int (1–26) or the string `"eoe"`.
+- `entries` — everything that gets plotted onto the timeline: characters, facts, fan
+  theories, and open questions, all in one flat list rather than four separate ones.
+  Each has `{ id, episode, scene?, type, title, body, links }`:
+  - `episode` matches an entry in `episodes[].number` — put an entry at whichever episode
+    is its first meaningful point of appearance.
+  - `scene` is an optional free-text marker (e.g. "Power cable severed, plug depth
+    critical") for *where within* that episode, when it's clearly identifiable — left out
+    otherwise rather than guessed at.
+  - `type` is one of `character` / `fact` / `theory` / `unknowable`, and drives both the
+    filter dropdown and each node's styling on the timeline.
+  - `links` is a list of `{ id, label }` pairs pointing at other entries — these render as
+    "jump to" buttons in the detail panel, letting a theory point forward to where it's
+    paid off, or a fact point forward to a theory built on it. This is deliberately
+    hand-curated (not auto-derived), so where things link to is easy to keep tweaking.
+
+`public/eva/app.js` fetches `data.json` directly (no manifest indirection, since it's one
+file), lays out one column per episode with its entries as clickable nodes, and opens the
+selected entry in a fixed detail panel at the bottom — including its "jump to" links. The
+type filter and text search both narrow which nodes are visible on the timeline itself.
+Editing the content means editing `data.json` and redeploying — there's no live external
+data source to keep in sync here, unlike VQAR.
 
 ## GraphQL API
 
