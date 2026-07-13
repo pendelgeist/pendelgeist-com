@@ -25,7 +25,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/styles.css">
   <link rel="stylesheet" href="/eva/styles.css">
-  <title>Neon Genesis Evangelion: Facts &amp; Theories</title>
+  <title>Neon Genesis Evangelion: Timeline</title>
 </head>
 <body>
   <nav>
@@ -35,14 +35,14 @@
   <div class="container">
     <header>
       <h1>Neon Genesis Evangelion <a href="#" class="info-link" id="infoToggle" aria-label="Show about this page">i</a></h1>
-      <div class="subtitle">Facts, and the theories/guesses/unknowables the show deliberately leaves open</div>
+      <div class="subtitle">A side-scrolling timeline of the TV episodes, stitching together what's shown (facts), what fans infer (theories), and what's never answered (unknowables)</div>
     </header>
 
     <div class="guidelines" id="guidelines">
-      <h3>What's a Fact vs. a Theory?</h3>
-      <p><strong>Facts</strong> are things stated or directly shown on-screen (dates, character roles, terminology).</p>
-      <p><strong>Theories</strong> are popular fan readings inferred from the text — reasonable, but not confirmed outright.</p>
-      <p><strong>Unknowables</strong> are questions the series poses and pointedly never answers, on purpose.</p>
+      <h3>How to read this</h3>
+      <p>Scroll sideways through the episodes. Each entry sits at the episode where it first comes up. Tap one to open it below, and use its "Jump to" links to follow a thread to wherever it's picked up again.</p>
+      <h3>Entry types</h3>
+      <p><span class="legend-dot legend-character"></span> Character — <span class="legend-dot legend-fact"></span> Fact — <span class="legend-dot legend-theory"></span> Theory — <span class="legend-dot legend-unknowable"></span> Unknowable</p>
       <p style="font-style: italic;">Spoilers throughout, for the original TV series and The End of Evangelion.</p>
     </div>
 
@@ -51,37 +51,28 @@
         <label for="typeFilter">Type</label>
         <select id="typeFilter">
           <option value="all">Everything</option>
-          <option value="characters">Characters</option>
-          <option value="facts">Facts</option>
-          <option value="theories">Theories</option>
-          <option value="unknowables">Unknowables</option>
+          <option value="character">Characters</option>
+          <option value="fact">Facts</option>
+          <option value="theory">Theories</option>
+          <option value="unknowable">Unknowables</option>
         </select>
       </div>
       <div class="filter-group">
         <label for="searchInput">Search</label>
-        <input type="text" id="searchInput" placeholder="Search characters, facts, theories...">
+        <input type="text" id="searchInput" placeholder="Search entries...">
       </div>
     </div>
 
-    <div class="section">
-      <h2>Characters</h2>
-      <div id="characterEntries"><div class="loading">LOADING DATA...</div></div>
+    <div class="timeline-scroll" id="timelineScroll">
+      <div class="timeline-track" id="timelineTrack">
+        <div class="loading">LOADING TIMELINE...</div>
+      </div>
     </div>
+  </div>
 
-    <div class="section">
-      <h2>Facts</h2>
-      <div id="factEntries"></div>
-    </div>
-
-    <div class="section">
-      <h2>Theories</h2>
-      <div id="theoryEntries"></div>
-    </div>
-
-    <div class="section">
-      <h2>Unknowables</h2>
-      <div id="unknowableEntries"></div>
-    </div>
+  <div class="detail-panel" id="detailPanel" hidden>
+    <button class="detail-close" id="detailClose" aria-label="Close">&times;</button>
+    <div class="detail-content" id="detailContent"></div>
   </div>
 
   <script type="module" src="/eva/app.js"></script>
