@@ -24,6 +24,7 @@ import { MANIFEST_URL } from '../manifest-url.js';
  * @property {string} season
  * @property {string} seasonName
  * @property {number} _timestamp
+ * @property {number} [anilistId] - optional AniList media id, links out to the show's AniList page
  */
 
 /**
@@ -51,6 +52,16 @@ import { MANIFEST_URL } from '../manifest-url.js';
 // Bump this if SeasonData's shape ever changes, to invalidate everything cached under the old shape.
 const CACHE_PREFIX = 'vqar:v1:season:';
 
+/**
+ * Builds an AniChart URL for a season id like "spring-2026" (AniChart, the
+ * seasonal-browsing frontend for AniList's same backend, expects the season
+ * word capitalized: "https://anichart.net/Spring-2026").
+ * @param {string} seasonId
+ */
+function anichartUrlForSeason(seasonId) {
+  return `https://anichart.net/${seasonId.replace(/^[a-z]/, (c) => c.toUpperCase())}`;
+}
+
 /** @type {Record<string, (a: Review, b: Review) => number>} */
 const SORTERS = {
   recent: (a, b) => b._timestamp - a._timestamp,
@@ -63,6 +74,7 @@ const dom = {
   infoToggle: document.getElementById('infoToggle'),
   guidelines: document.getElementById('guidelines'),
   currentSeasonName: document.getElementById('currentSeasonName'),
+  currentSeasonAnichart: /** @type {HTMLAnchorElement|null} */ (document.getElementById('currentSeasonAnichart')),
   seasonFilter: /** @type {HTMLSelectElement|null} */ (document.getElementById('seasonFilter')),
   searchInput: /** @type {HTMLInputElement|null} */ (document.getElementById('searchInput')),
   sortBy: /** @type {HTMLSelectElement|null} */ (document.getElementById('sortBy')),
@@ -239,6 +251,14 @@ async function loadData() {
     if (dom.currentSeasonName) {
       dom.currentSeasonName.textContent = currentMeta?.name ?? '';
     }
+    if (dom.currentSeasonAnichart) {
+      if (currentMeta) {
+        dom.currentSeasonAnichart.href = anichartUrlForSeason(currentSeasonId);
+        dom.currentSeasonAnichart.hidden = false;
+      } else {
+        dom.currentSeasonAnichart.hidden = true;
+      }
+    }
 
     if (dom.seasonFilter) {
       const allOption = document.createElement('option');
@@ -317,6 +337,15 @@ function createReviewArticle(r) {
   const title = document.createElement('div');
   title.className = 'entry-title';
   title.textContent = r.titleEN ?? 'Untitled';
+  if (r.anilistId) {
+    const anilistLink = document.createElement('a');
+    anilistLink.className = 'entry-anilist-link';
+    anilistLink.href = `https://anilist.co/anime/${r.anilistId}`;
+    anilistLink.target = '_blank';
+    anilistLink.rel = 'noopener noreferrer';
+    anilistLink.textContent = 'AniList';
+    title.appendChild(anilistLink);
+  }
 
   const titleJp = document.createElement('div');
   titleJp.className = 'entry-title-jp';

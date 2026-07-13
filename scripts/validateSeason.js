@@ -47,6 +47,9 @@ export function validateSeason(season) {
     if (!r.dateReviewed || Number.isNaN(Date.parse(r.dateReviewed))) {
       issues.push(`"${label}" has a missing or unparseable dateReviewed`);
     }
+    if (r.anilistId !== undefined && !Number.isInteger(r.anilistId)) {
+      issues.push(`"${label}" has a malformed anilistId (expected an integer)`);
+    }
     for (const key of ['fullReview', 'op', 'ed']) {
       if (r[key] !== undefined && (typeof r[key] !== 'object' || r[key] === null || Array.isArray(r[key]))) {
         issues.push(`"${label}" has a malformed ${key} (expected an object)`);

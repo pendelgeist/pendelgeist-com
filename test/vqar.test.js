@@ -74,6 +74,26 @@ test('initial load fetches only the manifest and the current season', async () =
   );
 });
 
+test('current season link points at the matching AniChart page', async () => {
+  const fetch = createFetchStub(routes());
+  const { document } = await loadApp({ fetch });
+
+  const link = /** @type {HTMLAnchorElement} */ (document.getElementById('currentSeasonAnichart'));
+  assert.equal(link.hidden, false);
+  assert.equal(link.getAttribute('href'), 'https://anichart.net/Summer-2026');
+});
+
+test('current season link stays hidden if the manifest\'s currentSeason id has no matching season', async () => {
+  const fetch = createFetchStub({
+    'vqar-manifest.json': { currentSeason: 'nonexistent-2026', seasons: manifest.seasons },
+    ...seasons,
+  });
+  const { document } = await loadApp({ fetch });
+
+  const link = /** @type {HTMLAnchorElement} */ (document.getElementById('currentSeasonAnichart'));
+  assert.equal(link.hidden, true);
+});
+
 test('season dropdown is populated from the manifest, current season selected', async () => {
   const fetch = createFetchStub(routes());
   const { document } = await loadApp({ fetch });
@@ -214,6 +234,27 @@ test('a full-series re-review and OP/ED notes render as addenda below the main r
   assert.match(document.getElementById('reviewedShows').textContent, /stuck the landing/);
   assert.match(document.getElementById('reviewedShows').textContent, /incredible guitar riff/);
   assert.match(document.getElementById('reviewedShows').textContent, /still stuck in my head/);
+});
+
+test('a review with an anilistId renders an AniList link; one without does not', async () => {
+  const fetch = createFetchStub({
+    'vqar-manifest.json': manifest,
+    'vqar-season-summer-2026.json': {
+      id: 'summer-2026',
+      name: 'Summer 2026',
+      reviewed: [
+        { titleEN: 'Linked Show', ratingText: 'Meh', dateReviewed: '2026-07-01', anilistId: 154587 },
+        { titleEN: 'Unlinked Show', ratingText: 'Meh', dateReviewed: '2026-07-02' },
+      ],
+      pending: [],
+      skipped: [],
+    },
+  });
+  const { document } = await loadApp({ fetch });
+
+  const links = [...document.querySelectorAll('.entry-anilist-link')];
+  assert.equal(links.length, 1);
+  assert.equal(links[0].getAttribute('href'), 'https://anilist.co/anime/154587');
 });
 
 test('search matches text inside a full-series re-review or OP/ED note, not just the main review', async () => {

@@ -178,6 +178,16 @@ article:hover {
   margin-bottom: 0.75rem;
 }
 
+.entry-anilist-link {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 500;
+  margin-left: 0.5rem;
+  color: var(--color-accent);
+  text-decoration: underline;
+  vertical-align: middle;
+}
+
 .entry-description {
   font-weight: 500;
   line-height: 1.8;
