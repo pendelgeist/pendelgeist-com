@@ -1,5 +1,8 @@
 # pendelgeist-com
 
+**Status: alpha.** Personal site, actively in flux — structure, content, and conventions
+here can and do change without much ceremony.
+
 Personal site, served as static assets from a Cloudflare Worker (see `wrangler.jsonc`).
 The Worker (`src/worker.js`) also backs a small GraphQL API over the same anime data.
 
