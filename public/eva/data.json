@@ -1,0 +1,244 @@
+{
+  "characters": [
+    {
+      "id": "shinji-ikari",
+      "name": "Shinji Ikari",
+      "aka": "Third Child, Unit-01 pilot",
+      "summary": "Gendo and Yui's son, summoned to Tokyo-3 by the father who abandoned him and put in the cockpit of Unit-01 the day he arrives. Withdrawn and conflict-averse, his search for a reason to exist beyond \"the boy his father needs\" is the show's emotional spine."
+    },
+    {
+      "id": "asuka-langley-souryuu",
+      "name": "Asuka Langley Souryuu",
+      "aka": "Second Child, Unit-02 pilot",
+      "summary": "A German-Japanese prodigy pilot whose relentless competitiveness is a defense mechanism built on childhood trauma (her mother's breakdown and suicide). Her arc tracks what happens when a self-worth built entirely on being needed as a pilot stops working."
+    },
+    {
+      "id": "rei-ayanami",
+      "name": "Rei Ayanami",
+      "aka": "First Child, Unit-00 pilot",
+      "summary": "A quiet, compliant pilot grown rather than born — cloned from Yui Ikari's remains using the Angel Lilith's genetic material. Multiple physical copies of her exist in Terminal Dogma; the show is coy about how much continuity of self survives between them."
+    },
+    {
+      "id": "misato-katsuragi",
+      "name": "Misato Katsuragi",
+      "aka": "NERV Operations Director",
+      "summary": "Commands Eva deployment in the field and takes Shinji in as a housemate. A Second Impact survivor whose father died in the disaster that created it, which shapes both her drive to fight the Angels and her difficulty staying close to anyone."
+    },
+    {
+      "id": "gendo-ikari",
+      "name": "Gendo Ikari",
+      "aka": "NERV Commander",
+      "summary": "Runs NERV and, through it, humanity's entire Angel defense as cover for a private goal: using the Human Instrumentality Project to reunite with his dead wife Yui, whose soul he believes persists inside Unit-01. Treats nearly everyone, including Shinji, as an instrument toward that end."
+    },
+    {
+      "id": "kaworu-nagisa",
+      "name": "Kaworu Nagisa",
+      "aka": "Fifth Child / the Seventeenth Angel, Tabris",
+      "summary": "Arrives late in the story as a new pilot candidate, forms an immediate bond with Shinji, and is then revealed to be an Angel in human form, sent by SEELE to reach Lilith in Terminal Dogma. Shinji is left to decide whether to kill him."
+    },
+    {
+      "id": "ritsuko-akagi",
+      "name": "Ritsuko Akagi",
+      "aka": "NERV Chief Scientist",
+      "summary": "Oversees the Evangelions and the MAGI supercomputers, inheriting both her position and a tangled personal history from her mother, Naoko Akagi, the MAGI's original designer."
+    },
+    {
+      "id": "ryoji-kaji",
+      "name": "Ryoji Kaji",
+      "aka": "NERV special agent / double agent",
+      "summary": "Officially a NERV agent, unofficially reporting to SEELE and Japan's government simultaneously, digging into NERV's secrets — including Adam and Instrumentality — while romantically entangled with Misato."
+    }
+  ],
+  "facts": [
+    {
+      "id": "second-impact",
+      "category": "Timeline",
+      "title": "Second Impact (2000)",
+      "body": "A catastrophic explosion at an Antarctic research site, publicly blamed on a meteorite. It melted the polar ice caps, shifted the Earth's axis, and killed roughly half the world's population. The series later reveals it as the result of a deliberate contact experiment on the being called Adam."
+    },
+    {
+      "id": "tokyo-3",
+      "category": "Timeline",
+      "title": "Tokyo-3 and the Angel War (2015)",
+      "body": "Fifteen years after Second Impact, the fortified city of Tokyo-3 is built over NERV's geofront headquarters specifically to fight the Angels, whose periodic attacks make up the bulk of the series' episodic structure."
+    },
+    {
+      "id": "nerv",
+      "category": "Organizations",
+      "title": "NERV",
+      "body": "A UN-supervised paramilitary organization, publicly tasked with defending humanity from the Angels using the Evangelions. It answers, less publicly, to SEELE and to Gendo Ikari's own agenda."
+    },
+    {
+      "id": "seele",
+      "category": "Organizations",
+      "title": "SEELE",
+      "body": "A secretive committee that founded NERV and steers events from behind it, working from the Dead Sea Scrolls toward its own version of the Human Instrumentality Project — a version Gendo Ikari is simultaneously trying to hijack for himself."
+    },
+    {
+      "id": "magi",
+      "category": "Organizations",
+      "title": "MAGI",
+      "body": "NERV's supercomputer system, three semi-independent processors modeled on aspects of their designer Naoko Akagi's personality, which must reach consensus to authorize NERV's most critical decisions."
+    },
+    {
+      "id": "angels",
+      "category": "Terminology",
+      "title": "Angels (Shito)",
+      "body": "The beings NERV exists to fight, each biologically and tactically distinct, sharing an AT Field and a strong drive to reach Lilith in Terminal Dogma. Their exact origin and nature is never pinned down on-screen (see Theories/Unknowables)."
+    },
+    {
+      "id": "at-field",
+      "category": "Terminology",
+      "title": "AT Field",
+      "body": "\"Absolute Terror Field\": a barrier every Angel and Evangelion projects, physically blocking conventional weapons. Late in the series it's reframed less as a shield and more as the boundary that keeps one soul separate from every other — the thing Instrumentality proposes to dissolve."
+    },
+    {
+      "id": "evangelions",
+      "category": "Terminology",
+      "title": "Evangelions",
+      "body": "Giant bio-mechanical units, piloted via synchronization with a teenage pilot's nervous system, built as humanity's only weapon capable of matching an Angel's AT Field. Their organic, unwilling-looking behavior under stress is a recurring source of unease."
+    },
+    {
+      "id": "eva-01-berserk",
+      "category": "Angels & Evas",
+      "title": "Unit-01's unpowered \"berserk\" state",
+      "body": "In episode 19, Unit-01 keeps fighting an Angel after its power cable is severed and its plug depth goes critical — something no dummy plug or external system explains. The show treats this as evidence the Eva itself is, in some sense, alive."
+    },
+    {
+      "id": "adam",
+      "category": "Angels & Evas",
+      "title": "Adam",
+      "body": "The first of the beings created by the \"First Ancestral Race\" long before humanity; the Angels are described as Adam's offspring. A contact experiment on Adam is what triggered Second Impact."
+    },
+    {
+      "id": "lilith",
+      "category": "Angels & Evas",
+      "title": "Lilith",
+      "body": "A being of the same origin as Adam, kept crucified and sealed in NERV's Terminal Dogma. The Lilin — i.e., humanity — are described as descended from Lilith rather than Adam, and Lilith's flesh and soul are the source material for the Evangelions and for Rei."
+    },
+    {
+      "id": "rei-clones",
+      "category": "Angels & Evas",
+      "title": "The Rei clones",
+      "body": "A tank of spare Rei bodies is kept in Terminal Dogma; when a given Rei dies, another takes her place, personality and memory carried over to a degree the show never fully explains."
+    },
+    {
+      "id": "dummy-plug",
+      "category": "Angels & Evas",
+      "title": "Dummy plug system",
+      "body": "An unmanned-operation system meant to let an Evangelion fight without a live pilot, built by transplanting a simulated version of a pilot's mental patterns (Rei's, and later Kaworu's, for the mass-production units) into the entry plug."
+    },
+    {
+      "id": "human-instrumentality-project",
+      "category": "Angels & Evas",
+      "title": "Human Instrumentality Project",
+      "body": "The plan, pursued in incompatible versions by SEELE and by Gendo, to trigger a forced next stage of human evolution by dissolving every individual AT Field and merging all souls into one, via a ritual called the Third Impact."
+    },
+    {
+      "id": "third-impact",
+      "category": "Timeline",
+      "title": "Third Impact",
+      "body": "The series' climax: the event that carries out (or nearly carries out) Human Instrumentality. What actually happens, and how much of it is undone by the end, differs between the TV series' final two episodes and the alternate ending in The End of Evangelion."
+    },
+    {
+      "id": "two-endings",
+      "category": "Timeline",
+      "title": "Two different endings exist",
+      "body": "The TV series' original episodes 25–26, made under a tightened budget, resolve the story almost entirely inside Shinji's own psyche. The End of Evangelion (1997), a theatrical film, was written and produced afterward as an alternate, effects-driven ending depicting Third Impact's events directly — both are considered canon, telling the same climax from different angles."
+    }
+  ],
+  "theories": [
+    {
+      "id": "accept-vs-reject",
+      "title": "Acceptance vs. rejection of Instrumentality",
+      "topic": "The ending(s)",
+      "body": "A common reading pairs the TV finale and The End of Evangelion as two sides of the same choice: the TV ending shows Shinji arriving at self-acceptance from inside a dissolved, unified consciousness, while EoE shows the same decision played out physically — Shinji ultimately rejecting total union with others (choking Asuka on the beach) in favor of a painful but individual existence. Neither film states this framing outright; it's inferred from how the two versions rhyme."
+    },
+    {
+      "id": "eoe-beach-scene",
+      "title": "What actually happens on the beach at the end of EoE",
+      "topic": "The ending(s)",
+      "body": "The final shot — Shinji strangling, then stopping, Asuka, who touches his cheek and says \"kimochi warui\" (\"disgusting\" / \"I feel sick\") — is one of anime's most argued-over endings. Readings range from a literal moment between two survivors of a mostly-undone Third Impact, to a purely symbolic beat with no fixed literal status, to a bleak coda implying nothing is resolved. The film gives no voiceover or text to settle it."
+    },
+    {
+      "id": "yuis-soul-in-unit-01",
+      "title": "Yui's soul inside Unit-01",
+      "topic": "The Evangelions",
+      "body": "The show never states in dialogue that Yui Ikari's soul resides in Unit-01, but strongly implies it — her disappearance during an activation test, Gendo's fixation on the unit, and Unit-01's unpowered \"berserk\" rescues of Shinji are the load-bearing evidence. Whether \"soul\" is meant literally or as shorthand for something else the show's cosmology allows is left open."
+    },
+    {
+      "id": "rei-lilith-soul-split",
+      "title": "Lilith's soul divided across Rei and Unit-00",
+      "topic": "Rei / Lilith",
+      "body": "Building on End of Evangelion's scene where Rei is welcomed \"home\" by Lilith, a popular theory holds that souls in this universe are divisible, and that a fragment of Lilith's soul persists in each Rei clone and possibly in Unit-00 itself (offered as one explanation for Unit-00's own unexplained hostile incidents). This is an inference from a handful of suggestive scenes, not a stated rule."
+    },
+    {
+      "id": "adam-lilith-confusion",
+      "title": "Adam/Lilith identity mix-ups across versions",
+      "topic": "Angels' origin",
+      "body": "Which being is sealed in Terminal Dogma, which one Gendo's faction actually possesses, and which one the embryo NERV keeps separately is called is inconsistent enough between the TV series, supplementary material, and later reprints that fans still debate the \"correct\" mapping. Some treat this as evidence of a deliberately unresolved cosmology rather than a continuity error."
+    },
+    {
+      "id": "kaworus-feelings",
+      "title": "What Kaworu actually felt for Shinji",
+      "topic": "Kaworu",
+      "body": "Kaworu tells Shinji he loves him within a day of meeting him, then lets Shinji kill him rather than fight back. Whether this is genuine affection an Angel is nonetheless capable of, a calculated move to complete his mission, or both at once, is never resolved — the scene is written to support any of the three."
+    },
+    {
+      "id": "dummy-plug-ethics",
+      "title": "How much of a person is in a dummy plug",
+      "topic": "Dummy plugs",
+      "body": "The dummy plug is described as simulating a pilot's mental patterns rather than containing a true digitized soul, but the mass-production Evas' dummy plugs are built from Kaworu specifically, and their on-screen behavior (screaming, bleeding) reads as more than simulation. How much of that is meant literally is left to the viewer."
+    },
+    {
+      "id": "cyclical-impacts",
+      "title": "A cyclical/recurring Third Impact",
+      "topic": "Timeline",
+      "body": "Some fans read hints across the franchise (including the later Rebuild films, which explicitly restart the story after a Third Impact) as evidence that impacts recur in cycles rather than the original 1995–2014 TV/EoE story being a one-off — though the original series itself makes no such claim; this reading leans heavily on later material re-interpreted backward."
+    },
+    {
+      "id": "gendos-motive-reading",
+      "title": "Gendo as tragic rather than purely villainous",
+      "topic": "Gendo",
+      "body": "Gendo's plan is explicitly framed late in the story as wanting to be with Yui again, but how much sympathy that deserves given the harm he causes Shinji and everyone around him to get there is a matter of ongoing viewer disagreement rather than something the text adjudicates for you."
+    },
+    {
+      "id": "anno-metanarrative",
+      "title": "The finale as commentary on Anno's own depression",
+      "topic": "The ending(s)",
+      "body": "Director Hideaki Anno has spoken about depression during the show's production, and the TV finale's abrupt turn toward real-world footage, character-actor congratulations, and direct address to the viewer is widely read as breaking the fourth wall on purpose — a message about escapism versus engaging with a difficult reality, layered on top of Shinji's in-story arc rather than replacing it."
+    }
+  ],
+  "unknowables": [
+    {
+      "id": "angels-true-nature",
+      "question": "What are the Angels, biologically or metaphysically?",
+      "body": "\"Offspring of Adam\" is as precise as the show gets. Whether they're organisms, weapons, something closer to concepts, or all three depending on continuity is never fixed — and the Rebuild films decline to answer it too."
+    },
+    {
+      "id": "post-eoe-world",
+      "question": "What state is the world actually in after The End of Evangelion?",
+      "body": "The final scene shows Shinji and Asuka alone on a wrecked shoreline. Whether this is a reversed, near-total, or partial Third Impact — and whether anyone else survived it — is left to the audience."
+    },
+    {
+      "id": "dead-sea-scrolls-contents",
+      "question": "What do the Dead Sea Scrolls actually say?",
+      "body": "SEELE and NERV both act on a text called the Dead Sea Scrolls that supposedly predicts the Angels' attacks and the path to Instrumentality. Its actual contents are never shown or quoted at length."
+    },
+    {
+      "id": "first-impact",
+      "question": "What was First Impact?",
+      "body": "Referenced as the event that shaped the Earth long before Second Impact, tied to Adam and Lilith's arrival. Different tie-in material describes it differently, and the TV series itself barely touches it."
+    },
+    {
+      "id": "kaworu-classification",
+      "question": "Is Kaworu an Angel, in exactly the same sense the others are?",
+      "body": "Kaworu is called the Seventeenth Angel but presents as fully human and self-aware in a way none of the others do, and material outside the original TV run has described his origin differently. The TV series itself leaves the discrepancy alone."
+    },
+    {
+      "id": "true-continuity-of-self",
+      "question": "Do the Rei clones share one continuous identity?",
+      "body": "Each Rei carries the prior one's memories to some extent, but the show never states whether that makes her the same person, a new person with inherited memories, or something in between — the question is posed to the audience more than once and never answered for them."
+    }
+  ]
+}
