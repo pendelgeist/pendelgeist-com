@@ -6,6 +6,7 @@
     "test": "node --test test/*.test.js",
     "validate-gists": "node scripts/validate-gists.js",
     "validate-anilist": "node scripts/validate-against-anilist.js",
+    "update-gist": "node scripts/update-gist.js",
     "dev": "wrangler dev",
     "deploy": "wrangler deploy"
   },
