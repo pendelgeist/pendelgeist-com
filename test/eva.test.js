@@ -10,13 +10,17 @@ const INDEX_HTML_PATH = path.join(__dirname, '../public/eva/index.html');
 const APP_JS_PATH = path.join(__dirname, '../public/eva/app.js');
 
 const sampleData = {
+  sources: {
+    'ja-wiki-nge': { lang: 'ja', title: '新世紀エヴァンゲリオン — Wikipedia (Japanese)', url: 'https://ja.wikipedia.org/wiki/新世紀エヴァンゲリオン' },
+    'en-wiki-nge': { lang: 'en', title: 'Neon Genesis Evangelion — Wikipedia', url: 'https://en.wikipedia.org/wiki/Neon_Genesis_Evangelion' },
+  },
   episodes: [
     { number: 1, title: 'Angel Attack' },
     { number: 19, title: 'Introjection' },
     { number: 'eoe', title: 'The End of Evangelion' },
   ],
   entries: [
-    { id: 'shinji-ikari', episode: 1, type: 'character', title: 'Shinji Ikari', body: 'Pilots Unit-01.', links: [] },
+    { id: 'shinji-ikari', episode: 1, type: 'character', title: 'Shinji Ikari', body: 'Pilots Unit-01.', links: [], sourceRefs: ['en-wiki-nge'] },
     {
       id: 'eva-01-berserk',
       episode: 19,
@@ -25,6 +29,8 @@ const sampleData = {
       title: "Unit-01's berserk state",
       body: 'Keeps fighting unpowered.',
       links: [{ id: 'yuis-soul-in-unit-01', label: 'One reading of why' }],
+      sourceRefs: ['ja-wiki-nge', 'en-wiki-nge'],
+      quote: { lang: 'ja', original: 'テスト原文', translation: 'Test original text (translated).' },
     },
     {
       id: 'yuis-soul-in-unit-01',
@@ -142,6 +148,38 @@ test('filtering out the open entry closes the detail panel', async () => {
   select.dispatchEvent(new document.defaultView.Event('change'));
 
   assert.equal(document.getElementById('detailPanel').hidden, true);
+});
+
+test('the detail panel shows the original-language quote and its translation', async () => {
+  const { document } = await loadApp();
+
+  clickNode(document, 'eva-01-berserk');
+
+  assert.equal(document.querySelector('.detail-quote-original').textContent, 'テスト原文');
+  assert.equal(document.querySelector('.detail-quote-original').lang, 'ja');
+  assert.equal(document.querySelector('.detail-quote-translation').textContent, 'Test original text (translated).');
+});
+
+test('the detail panel links out to each of the entry\'s sources', async () => {
+  const { document } = await loadApp();
+
+  clickNode(document, 'eva-01-berserk');
+
+  const links = [...document.querySelectorAll('.source-link')];
+  assert.deepEqual(links.map((a) => a.href), [
+    'https://ja.wikipedia.org/wiki/%E6%96%B0%E4%B8%96%E7%B4%80%E3%82%A8%E3%83%B4%E3%82%A1%E3%83%B3%E3%82%B2%E3%83%AA%E3%82%AA%E3%83%B3',
+    'https://en.wikipedia.org/wiki/Neon_Genesis_Evangelion',
+  ]);
+  assert.ok(links.every((a) => a.target === '_blank'));
+});
+
+test('an entry with no quote renders no quote block, only its sources', async () => {
+  const { document } = await loadApp();
+
+  clickNode(document, 'shinji-ikari');
+
+  assert.equal(document.querySelector('.detail-quote'), null);
+  assert.equal(document.querySelectorAll('.source-link').length, 1);
 });
 
 test('a failed fetch shows an error in the timeline track', async () => {

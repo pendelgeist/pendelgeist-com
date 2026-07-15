@@ -10,7 +10,7 @@ The Worker (`src/worker.js`) also backs a small GraphQL API over the same anime 
 
 - `public/index.html` — homepage, links out to the other sites.
 - `public/vqar/` — Very Quick Anime Reviews, a small vanilla-JS app.
-- `public/eva/` — Neon Genesis Evangelion facts/theories/unknowables, a small vanilla-JS app.
+- `public/eva/` — Neon Genesis Evangelion episode timeline, a small vanilla-JS app.
 - `public/graphql/` — a GraphQL query explorer for the API described below.
 - `public/styles.css` — shared site styles. `public/vqar/styles.css` and `public/graphql/styles.css`
   layer page-specific styles on top.
@@ -160,13 +160,16 @@ above — its content lives in `public/eva/data.json`, committed to this repo ra
 gist, since it changes far less often than a season's reviews.
 
 It's a horizontally-scrolling timeline anchored to the 26 TV episodes plus a final "EoE"
-(*The End of Evangelion*) column. The JSON has two arrays:
+(*The End of Evangelion*) column. The JSON has three top-level keys:
 
+- `sources` — a dictionary of citations, keyed by a short id: `{ lang, title, url }`.
+  Shared across entries so the same Wikipedia/EvaGeeks/etc. page isn't repeated inline
+  every time it's cited.
 - `episodes` — the columns themselves, in order: `{ number, title, subtitle? }`. `number`
   is either a TV episode int (1–26) or the string `"eoe"`.
 - `entries` — everything that gets plotted onto the timeline: characters, facts, fan
   theories, and open questions, all in one flat list rather than four separate ones.
-  Each has `{ id, episode, scene?, type, title, body, links }`:
+  Each has `{ id, episode, scene?, type, title, body, links, sourceRefs?, quote? }`:
   - `episode` matches an entry in `episodes[].number` — put an entry at whichever episode
     is its first meaningful point of appearance.
   - `scene` is an optional free-text marker (e.g. "Power cable severed, plug depth
@@ -178,6 +181,15 @@ It's a horizontally-scrolling timeline anchored to the 26 TV episodes plus a fin
     "jump to" buttons in the detail panel, letting a theory point forward to where it's
     paid off, or a fact point forward to a theory built on it. This is deliberately
     hand-curated (not auto-derived), so where things link to is easy to keep tweaking.
+  - `sourceRefs` is a list of keys into the top-level `sources` dictionary; each renders as
+    a clickable citation link at the bottom of the entry's detail panel.
+  - `quote` is optional: `{ lang, original, translation }` — the original-language excerpt
+    a fact was actually drawn from (almost always Japanese, since most of the deeper
+    production/episode-title material only exists on Japanese Wikipedia), paired with an
+    English translation. Rendered as a small blockquote above the sources line. Entries
+    sourced from English-language material (most of the character/theory entries) cite
+    their `sourceRefs` without a `quote`, since there's no original-language excerpt to
+    pair against.
 
 `public/eva/app.js` fetches `data.json` directly (no manifest indirection, since it's one
 file), lays out one column per episode with its entries as clickable nodes, and opens the
