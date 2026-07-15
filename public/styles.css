@@ -548,6 +548,59 @@
   padding: 0.75rem;
 }
 
+/* GeoCities '99 pairs a light "silver" --color-surface with a neon
+ * text/title/accent/muted palette tuned for its navy page background - none
+ * of those colors have enough contrast against silver. Scoped down to
+ * whatever actually renders on that surface (review cards, the Evangelion
+ * detail panel, form controls, the GraphQL result box), these give it a
+ * Windows-95-dialog-style navy/maroon/purple/gray palette instead, without
+ * touching the loud neon-on-navy look everywhere else. Setting `color`
+ * directly (not just the variable) makes sure descendants that don't set
+ * their own color - and so just inherit it - pick up the new value too. */
+:root[data-theme="geocities"] article,
+:root[data-theme="geocities"] .guidelines,
+:root[data-theme="geocities"] .detail-panel,
+:root[data-theme="geocities"] input,
+:root[data-theme="geocities"] select,
+:root[data-theme="geocities"] textarea,
+:root[data-theme="geocities"] #result {
+  --color-text: #000080;
+  --color-title: #800000;
+  --color-accent: #800080;
+  --color-muted: #404040;
+  --color-input-border: #000080;
+  --color-input-focus: #800080;
+  --color-guideline-border: #800000;
+  --color-article-border: #000080;
+  --color-section-border: #800080;
+  color: var(--color-text);
+}
+
+/* eva's .entry-node moved to --color-surface too, but only needs its own
+ * text color fixed here - unlike the block above, it deliberately leaves
+ * --color-accent/--color-muted alone, since .entry-node-badge relies on
+ * those staying paired with --color-bg (a pairing that's already correct.
+ * Overriding them here would break the badge without fixing anything, so
+ * the type-indicator left borders get their replacement colors hardcoded
+ * instead of by redefining the shared variables. */
+:root[data-theme="geocities"] .entry-node {
+  color: #000080;
+}
+
+:root[data-theme="geocities"] .entry-type-theory,
+:root[data-theme="geocities"] .entry-type-character {
+  border-left-color: #800080;
+}
+
+:root[data-theme="geocities"] .entry-type-fact,
+:root[data-theme="geocities"] .entry-type-unknowable {
+  border-left-color: #404040;
+}
+
+:root[data-theme="geocities"] .entry-node.active {
+  border-color: #800080;
+}
+
 :root[data-theme="random-light"] {
   color-scheme: light;
 }

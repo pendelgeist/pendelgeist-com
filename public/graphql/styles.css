@@ -19,11 +19,15 @@
   gap: 0.25rem;
 }
 
+/* color:nav-link (not the default text color), since this label sits on
+ * .filters' chrome background - some themes pair a dark chrome with a dark
+ * default text color (see /styles.css), so a plain inherited color can end
+ * up nearly invisible here. */
 .filter-group label {
   font-size: 0.75rem;
   font-weight: 700;
   text-transform: uppercase;
-  opacity: 0.7;
+  color: var(--color-nav-link);
 }
 
 select {
