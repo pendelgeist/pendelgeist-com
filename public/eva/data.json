@@ -1,4 +1,30 @@
 {
+  "sources": {
+    "ja-wiki-nge": { "lang": "ja", "title": "新世紀エヴァンゲリオン — Wikipedia (Japanese)", "url": "https://ja.wikipedia.org/wiki/新世紀エヴァンゲリオン" },
+    "en-wiki-nge": { "lang": "en", "title": "Neon Genesis Evangelion — Wikipedia", "url": "https://en.wikipedia.org/wiki/Neon_Genesis_Evangelion" },
+    "en-wiki-characters": { "lang": "en", "title": "List of Neon Genesis Evangelion characters — Wikipedia", "url": "https://en.wikipedia.org/wiki/List_of_Neon_Genesis_Evangelion_characters" },
+    "en-wiki-angels": { "lang": "en", "title": "Angels (Neon Genesis Evangelion) — Wikipedia", "url": "https://en.wikipedia.org/wiki/Angels_(Neon_Genesis_Evangelion)" },
+    "fandom-characters": { "lang": "en", "title": "Characters — Evangelion Wiki (Fandom)", "url": "https://evangelion.fandom.com/wiki/Characters" },
+    "fandom-second-impact": { "lang": "en", "title": "Second Impact — Evangelion Wiki (Fandom)", "url": "https://evangelion.fandom.com/wiki/Second_Impact" },
+    "fandom-human-instrumentality": { "lang": "en", "title": "Human Instrumentality Project — Evangelion Wiki (Fandom)", "url": "https://evangelion.fandom.com/wiki/Human_Instrumentality_Project" },
+    "fandom-adam": { "lang": "en", "title": "Adam — Evangelion Wiki (Fandom)", "url": "https://evangelion.fandom.com/wiki/Adam" },
+    "fandom-lilith": { "lang": "en", "title": "Lilith — Evangelion Wiki (Fandom)", "url": "https://evangelion.fandom.com/wiki/Lilith" },
+    "villains-fandom-lilith": { "lang": "en", "title": "Lilith (Evangelion) — Villains Wiki (Fandom)", "url": "https://villains.fandom.com/wiki/Lilith_(Evangelion)" },
+    "evageeks-rei": { "lang": "en", "title": "Rei Ayanami — EvaWiki (EvaGeeks.org)", "url": "https://wiki.evageeks.org/Rei_Ayanami" },
+    "evageeks-rei-indepth": { "lang": "en", "title": "Theory and Analysis: Rei Ayanami (In-Depth) — EvaWiki", "url": "https://wiki.evageeks.org/Theory_and_Analysis:Rei_Ayanami_(In-Depth)" },
+    "evageeks-soul-divisibility": { "lang": "en", "title": "Theory and Analysis: Soul Divisibility — EvaWiki", "url": "https://wiki.evageeks.org/Theory_and_Analysis:Soul_Divisibility" },
+    "evageeks-eva00-soul": { "lang": "en", "title": "Theory and Analysis: Eva-00's Soul — EvaWiki", "url": "https://wiki.evageeks.org/Theory_and_Analysis:Eva-00's_Soul" },
+    "evageeks-dummy-plug-plant": { "lang": "en", "title": "Dummy Plug Plant — EvaWiki", "url": "https://wiki.evageeks.org/Dummy_Plug_Plant" },
+    "evageeks-dummy-system": { "lang": "en", "title": "Dummy System — EvaWiki", "url": "https://wiki.evageeks.org/Dummy_System" },
+    "evageeks-forum-adam-lilith": { "lang": "en", "title": "Adam-Lilith Confusion — EvaGeeks.org Forum", "url": "https://forum.evageeks.org/viewtopic.php?t=3380" },
+    "evageeks-forum-rei-lilith-soul": { "lang": "en", "title": "\"Rei has Lilith's soul? How?\" — EvaGeeks.org Forum", "url": "https://forum.evageeks.org/thread/9678/Rei-has-lilliths-soul-How/" },
+    "cbr-timeline": { "lang": "en", "title": "The Complete Neon Genesis Evangelion Timeline, Explained — CBR", "url": "https://www.cbr.com/evangelion-timeline-impacts-explained/" },
+    "cbr-fan-explanations": { "lang": "en", "title": "5 Perfect Fan Explanations About the Ending (& 5 Hilarious Ones) — CBR", "url": "https://www.cbr.com/neon-genesis-evangelion-ending-perfect-hilarious-fan-explanations/" },
+    "cbr-every-ending": { "lang": "en", "title": "Every Neon Genesis Evangelion Ending, Explained — CBR", "url": "https://www.cbr.com/neon-genesis-evangelion-every-ending-explained/" },
+    "cbr-unit00-soul": { "lang": "en", "title": "Evangelion: Is Rei I's Soul in Unit 00? — CBR", "url": "https://www.cbr.com/evangelion-unit-00-soul-rei-theory/" },
+    "tvtropes-wmg-instrumentality": { "lang": "en", "title": "WMG: Neon Genesis Evangelion Instrumentality — TV Tropes", "url": "https://tvtropes.org/pmwiki/pmwiki.php/WMG/NeonGenesisEvangelionInstrumentality" },
+    "looper-eoe-ending": { "lang": "en", "title": "The Ending Of End Of Evangelion Explained — Looper", "url": "https://www.looper.com/377530/the-ending-of-end-of-evangelion-explained/" }
+  },
   "episodes": [
     { "number": 1, "title": "Angel Attack", "subtitle": "JP: 使徒、襲来 — lit. \"Angel, Attack\" · aired 1995-10-04, 6.8%" },
     { "number": 2, "title": "The Beast", "subtitle": "JP: 見知らぬ、天井 — lit. \"Unfamiliar Ceiling\" · aired 1995-10-11, 5.3%" },
@@ -35,7 +61,8 @@
       "type": "character",
       "title": "Shinji Ikari",
       "body": "Gendo and Yui's son, summoned to Tokyo-3 by the father who abandoned him and put in the cockpit of Unit-01 the day he arrives. Withdrawn and conflict-averse, his search for a reason to exist beyond \"the boy his father needs\" is the show's emotional spine.",
-      "links": []
+      "links": [],
+      "sourceRefs": ["en-wiki-characters", "fandom-characters"]
     },
     {
       "id": "rei-ayanami",
@@ -47,7 +74,8 @@
       "links": [
         { "id": "rei-clones", "label": "Where the clones live" },
         { "id": "true-continuity-of-self", "label": "Are the Reis the same person?" }
-      ]
+      ],
+      "sourceRefs": ["evageeks-rei", "fandom-characters"]
     },
     {
       "id": "misato-katsuragi",
@@ -55,7 +83,8 @@
       "type": "character",
       "title": "Misato Katsuragi",
       "body": "Commands Eva deployment in the field and takes Shinji in as a housemate. A Second Impact survivor whose father died in the disaster that created it, which shapes both her drive to fight the Angels and her difficulty staying close to anyone.",
-      "links": [ { "id": "second-impact", "label": "The disaster that shaped her" } ]
+      "links": [ { "id": "second-impact", "label": "The disaster that shaped her" } ],
+      "sourceRefs": ["fandom-characters", "en-wiki-characters"]
     },
     {
       "id": "gendo-ikari",
@@ -66,7 +95,8 @@
       "links": [
         { "id": "human-instrumentality-project", "label": "What he's actually building toward" },
         { "id": "gendos-motive-reading", "label": "How sympathetic is that, really?" }
-      ]
+      ],
+      "sourceRefs": ["fandom-characters", "en-wiki-characters"]
     },
     {
       "id": "ritsuko-akagi",
@@ -74,7 +104,8 @@
       "type": "character",
       "title": "Ritsuko Akagi",
       "body": "Oversees the Evangelions and the MAGI supercomputers, inheriting both her position and a tangled personal history from her mother, Naoko Akagi, the MAGI's original designer.",
-      "links": [ { "id": "magi", "label": "The system she inherited" } ]
+      "links": [ { "id": "magi", "label": "The system she inherited" } ],
+      "sourceRefs": ["fandom-characters"]
     },
     {
       "id": "second-impact",
@@ -82,7 +113,13 @@
       "type": "fact",
       "title": "Second Impact (September 13, 2000)",
       "body": "A catastrophic explosion at an Antarctic research site, publicly blamed on a meteorite. It melted the polar ice caps, shifted the Earth's axis, and killed roughly half the world's population. Later revealed as the result of a deliberate contact experiment on the being called Adam. One knock-on effect stated directly in the Japanese Wikipedia entry: the axis tilt erased Japan's seasons entirely, leaving the country in permanent summer-like weather for the rest of the series.",
-      "links": [ { "id": "adam", "label": "What was actually experimented on" } ]
+      "links": [ { "id": "adam", "label": "What was actually experimented on" } ],
+      "sourceRefs": ["ja-wiki-nge", "fandom-second-impact", "en-wiki-nge"],
+      "quote": {
+        "lang": "ja",
+        "original": "西暦2000年9月13日に起きた大災害セカンドインパクト...セカンドインパクトの影響で地軸が捻じ曲がり、日本には四季がなくなり、1年中夏の状態になっている。",
+        "translation": "\"The great disaster known as Second Impact, which occurred on September 13, 2000 AD... Due to Second Impact's effects, the Earth's axis was bent out of alignment; Japan lost its four seasons and has remained in a summer-like state year-round ever since.\""
+      }
     },
     {
       "id": "tokyo-3",
@@ -90,7 +127,13 @@
       "type": "fact",
       "title": "Tokyo-3 and the Angel War",
       "body": "Fifteen years after Second Impact, the fortified city of Tokyo-3 is built over NERV's geofront headquarters specifically to fight the Angels, whose periodic attacks make up the bulk of the series' episodic structure. Mapped onto real-world geography, Tokyo-3 sits on the north shore of Lake Ashi, in Hakone, Kanagawa Prefecture — nowhere near the real Tokyo.",
-      "links": []
+      "links": [],
+      "sourceRefs": ["ja-wiki-nge", "en-wiki-nge"],
+      "quote": {
+        "lang": "ja",
+        "original": "設定にある第3新東京市とは、実際の日本地図に当てはめると、神奈川県足柄下郡箱根町仙石原付近の芦ノ湖北岸あたりになる。",
+        "translation": "\"Tokyo-3, as established in the setting, corresponds — when mapped onto an actual map of Japan — to around the north shore of Lake Ashi, near Sengokuhara, Hakone Town, Ashigarashimo District, Kanagawa Prefecture.\""
+      }
     },
     {
       "id": "nerv",
@@ -98,7 +141,13 @@
       "type": "fact",
       "title": "NERV",
       "body": "A UN-supervised paramilitary organization, publicly tasked with defending humanity from the Angels using the Evangelions. It answers, less publicly, to SEELE and to Gendo Ikari's own agenda.",
-      "links": [ { "id": "seele", "label": "Who NERV really answers to" } ]
+      "links": [ { "id": "seele", "label": "Who NERV really answers to" } ],
+      "sourceRefs": ["ja-wiki-nge", "en-wiki-nge"],
+      "quote": {
+        "lang": "ja",
+        "original": "特務機関NERV（ネルフ） - 使徒殲滅を主要任務とする組織。EVAを保有。本部は第3新東京市の地下空間（ジオフロント）に位置する。",
+        "translation": "\"The Special Task Agency NERV — an organization whose principal mission is Angel annihilation. It possesses the Evangelions. Its headquarters is located in the underground space (the Geofront) beneath Tokyo-3.\""
+      }
     },
     {
       "id": "angels",
@@ -106,7 +155,8 @@
       "type": "fact",
       "title": "Angels (Shito)",
       "body": "The beings NERV exists to fight, each biologically and tactically distinct, sharing an AT Field and a strong drive to reach Lilith in Terminal Dogma. Their exact origin and nature is never pinned down on-screen.",
-      "links": [ { "id": "angels-true-nature", "label": "What are they, really?" } ]
+      "links": [ { "id": "angels-true-nature", "label": "What are they, really?" } ],
+      "sourceRefs": ["ja-wiki-nge", "en-wiki-angels"]
     },
     {
       "id": "at-field",
@@ -114,7 +164,8 @@
       "type": "fact",
       "title": "AT Field",
       "body": "\"Absolute Terror Field\": a barrier every Angel and Evangelion projects, physically blocking conventional weapons. Late in the series it's reframed less as a shield and more as the boundary that keeps one soul separate from every other.",
-      "links": [ { "id": "human-instrumentality-project", "label": "The plan to dissolve it entirely" } ]
+      "links": [ { "id": "human-instrumentality-project", "label": "The plan to dissolve it entirely" } ],
+      "sourceRefs": ["en-wiki-nge", "en-wiki-angels"]
     },
     {
       "id": "evangelions",
@@ -122,7 +173,8 @@
       "type": "fact",
       "title": "Evangelions",
       "body": "Giant bio-mechanical units, piloted via synchronization with a teenage pilot's nervous system, built as humanity's only weapon capable of matching an Angel's AT Field. Their organic, unwilling-looking behavior under stress is a recurring source of unease.",
-      "links": [ { "id": "eva-01-berserk", "label": "The first sign they might be alive" } ]
+      "links": [ { "id": "eva-01-berserk", "label": "The first sign they might be alive" } ],
+      "sourceRefs": ["ja-wiki-nge", "en-wiki-nge"]
     },
     {
       "id": "angels-true-nature",
@@ -130,7 +182,8 @@
       "type": "unknowable",
       "title": "What are the Angels, biologically or metaphysically?",
       "body": "\"Offspring of Adam\" is as precise as the show gets. Whether they're organisms, weapons, something closer to concepts, or all three depending on continuity is never fixed — and the Rebuild films decline to answer it too.",
-      "links": [ { "id": "adam-lilith-confusion", "label": "The Adam/Lilith mapping is shaky too" } ]
+      "links": [ { "id": "adam-lilith-confusion", "label": "The Adam/Lilith mapping is shaky too" } ],
+      "sourceRefs": ["en-wiki-angels"]
     },
     {
       "id": "lilin-18th-angel",
@@ -138,7 +191,13 @@
       "type": "fact",
       "title": "Humanity is officially the 18th Angel",
       "body": "NERV's own numbered Angel list (as reproduced on Japanese Wikipedia) runs Adam (1st) and Lilith (2nd) as the two progenitor Angels, Sachiel through Tabris/Kaworu as the 3rd through 17th, and then lists Lilin — humanity itself — as the 18th Angel. The show never dwells on this classification, but it quietly puts humans and the things they're fighting in the same taxonomic category.",
-      "links": [ { "id": "angels", "label": "The 3rd–17th Angels NERV actually fights" } ]
+      "links": [ { "id": "angels", "label": "The 3rd–17th Angels NERV actually fights" } ],
+      "sourceRefs": ["ja-wiki-nge"],
+      "quote": {
+        "lang": "ja",
+        "original": "第18使徒　リリン　人類全体を示す。",
+        "translation": "\"18th Angel: Lilin — denotes humanity as a whole.\""
+      }
     },
     {
       "id": "sailor-moon-influences",
@@ -146,7 +205,13 @@
       "type": "fact",
       "title": "Sailor Moon's fingerprints on the cast",
       "body": "Several casting/naming choices trace back to Anno's fandom of Sailor Moon (which aired just before Eva): Misato's voice actress Kotono Mitsuishi was cast partly on the strength of her Usagi/Sailor Moon performance; Rei Ayanami's given name comes from Sailor Mars's civilian name, Hino Rei; and Kaworu Nagisa was modeled in part on Sailor Moon staffer Kunihiko Ikuhara, whom Anno was personally close with.",
-      "links": [ { "id": "misato-katsuragi", "label": "Misato" }, { "id": "rei-ayanami", "label": "Rei" }, { "id": "kaworu-nagisa", "label": "Kaworu" } ]
+      "links": [ { "id": "misato-katsuragi", "label": "Misato" }, { "id": "rei-ayanami", "label": "Rei" }, { "id": "kaworu-nagisa", "label": "Kaworu" } ],
+      "sourceRefs": ["ja-wiki-nge"],
+      "quote": {
+        "lang": "ja",
+        "original": "その影響で、『セーラームーン』の主人公・月野うさぎ役の三石琴乃を葛城ミサトの声優に起用したり、綾波レイの名前が火野レイより採られたりしている。",
+        "translation": "\"As a result of that influence, Kotono Mitsuishi — who played Sailor Moon protagonist Usagi Tsukino — was cast as the voice of Misato Katsuragi, and Rei Ayanami's name was taken from Hino Rei [Sailor Mars].\""
+      }
     },
     {
       "id": "asuka-langley-souryuu",
@@ -154,7 +219,8 @@
       "type": "character",
       "title": "Asuka Langley Souryuu",
       "body": "A German-Japanese prodigy pilot whose relentless competitiveness is a defense mechanism built on childhood trauma (her mother's breakdown and suicide). Her arc tracks what happens when a self-worth built entirely on being needed as a pilot stops working.",
-      "links": []
+      "links": [],
+      "sourceRefs": ["fandom-characters", "en-wiki-characters"]
     },
     {
       "id": "ryoji-kaji",
@@ -162,7 +228,8 @@
       "type": "character",
       "title": "Ryoji Kaji",
       "body": "Officially a NERV agent, unofficially reporting to SEELE and Japan's government simultaneously, digging into NERV's secrets — including Adam and Instrumentality — while romantically entangled with Misato.",
-      "links": [ { "id": "adam", "label": "The secret he keeps digging into" }, { "id": "kaji-death", "label": "What that digging costs him" } ]
+      "links": [ { "id": "adam", "label": "The secret he keeps digging into" }, { "id": "kaji-death", "label": "What that digging costs him" } ],
+      "sourceRefs": ["fandom-characters"]
     },
     {
       "id": "ghibli-episode-11",
@@ -170,7 +237,13 @@
       "type": "fact",
       "title": "Studio Ghibli animated this one",
       "body": "Episode 11 — the MAGI-computer-meltdown, power-outage bottle episode — was farmed out to Studio Ghibli staff as a contracted production. It shows: the art style, character expressions, and tone come out noticeably more comedic and warm than the episodes around it.",
-      "links": []
+      "links": [],
+      "sourceRefs": ["ja-wiki-nge"],
+      "quote": {
+        "lang": "ja",
+        "original": "グロス請け担当プロダクションの違いによる画風の差もあり、スタジオジブリのスタッフが担当した第拾壱話は、絵柄だけでなくキャラ描写や話の展開もコミカルでポジティブなものになっている。",
+        "translation": "\"There are also differences in art style due to which contracted production studio handled a given episode — episode 11, handled by Studio Ghibli staff, comes out comedic and positive not just in its linework but in its character portrayal and story beats.\""
+      }
     },
     {
       "id": "magi",
@@ -178,7 +251,13 @@
       "type": "fact",
       "title": "MAGI",
       "body": "NERV's supercomputer system: three semi-independent processors — Casper, Melchior, and Balthasar, named for the Biblical Three Magi — modeled on different aspects of their designer Naoko Akagi's personality, which must reach consensus to authorize NERV's most critical decisions.",
-      "links": []
+      "links": [],
+      "sourceRefs": ["ja-wiki-nge"],
+      "quote": {
+        "lang": "ja",
+        "original": "NERV本部には「カスパー（CASPER）」「メルキオール（MELCHIOR）」「バルタザール（BALTHASAR）」の3つから構成されるオリジナルが設置されている。この三つのスーパーコンピュータの名前はイエス・キリストが誕生した時に東方からきた三賢者の名前である。",
+        "translation": "\"NERV headquarters houses the original system, composed of three units: Casper, Melchior, and Balthasar. These three supercomputers are named after the Three Wise Men who came from the East at the birth of Jesus Christ.\""
+      }
     },
     {
       "id": "seele",
@@ -187,7 +266,13 @@
       "type": "fact",
       "title": "SEELE",
       "body": "A secretive committee that founded NERV and steers events from behind it, working from the Dead Sea Scrolls toward its own version of the Human Instrumentality Project — a version Gendo Ikari is simultaneously trying to hijack for himself.",
-      "links": [ { "id": "dead-sea-scrolls-contents", "label": "The text they're both working from" } ]
+      "links": [ { "id": "dead-sea-scrolls-contents", "label": "The text they're both working from" } ],
+      "sourceRefs": ["ja-wiki-nge", "en-wiki-nge"],
+      "quote": {
+        "lang": "ja",
+        "original": "ゼーレ（SEELE） - NERVの上部組織とされる秘密結社。",
+        "translation": "\"SEELE — a secret society said to be NERV's parent organization.\""
+      }
     },
     {
       "id": "dead-sea-scrolls-contents",
@@ -195,7 +280,13 @@
       "type": "unknowable",
       "title": "What do the Dead Sea Scrolls actually say?",
       "body": "SEELE and NERV both act on a text called the Dead Sea Scrolls that supposedly predicts the Angels' attacks and the path to Instrumentality. Its actual contents are never shown or quoted at length.",
-      "links": []
+      "links": [],
+      "sourceRefs": ["ja-wiki-nge", "en-wiki-nge"],
+      "quote": {
+        "lang": "ja",
+        "original": "裏死海文書 - ゼーレが所持する預言書。",
+        "translation": "\"The (Hidden) Dead Sea Scrolls — a prophetic text held by SEELE.\""
+      }
     },
     {
       "id": "episode-14-broadcast-anomaly",
@@ -203,7 +294,13 @@
       "type": "fact",
       "title": "The episode almost nobody saw live",
       "body": "TV Tokyo bumped this episode to a New Year's Day 8:30am slot (instead of its normal Wednesday 6:30pm one) to make room for New Year's programming. The result was a 0.9% household rating — the lowest of the entire series, versus the finale's series-high 10.3%. Producers had anticipated the dip: a clip-show recap originally slotted for episode 14 was swapped with this episode instead, so the low-visibility slot fell on new content rather than a recap.",
-      "links": []
+      "links": [],
+      "sourceRefs": ["ja-wiki-nge"],
+      "quote": {
+        "lang": "ja",
+        "original": "第拾四話のテレビ東京での放映分については、1月3日という放送日の都合（テレビ東京が本来の放送時間に正月特番を放送した）により、同日午前8時30分からの放映...当初は第拾参話に予定されていた総集編を第拾四話と入れ替えて製作・放送された。",
+        "translation": "\"Episode 14's TV Tokyo broadcast, owing to the circumstances of its January 3rd air date (TV Tokyo aired New Year's specials in its usual broadcast slot), aired instead from 8:30am that same day... the recap episode originally scheduled for episode 13 was swapped with episode 14 and produced/broadcast in that order.\""
+      }
     },
     {
       "id": "eva-01-berserk",
@@ -215,7 +312,8 @@
       "links": [
         { "id": "yuis-soul-in-unit-01", "label": "One reading of why" },
         { "id": "dummy-system", "label": "The forced-override system this isn't" }
-      ]
+      ],
+      "sourceRefs": ["en-wiki-nge", "evageeks-dummy-system"]
     },
     {
       "id": "yuis-soul-in-unit-01",
@@ -223,7 +321,13 @@
       "type": "theory",
       "title": "Yui's soul inside Unit-01",
       "body": "The show never states in dialogue that Yui Ikari's soul resides in Unit-01, but strongly implies it — her disappearance during an activation test, Gendo's fixation on the unit, and Unit-01's unpowered \"berserk\" rescues of Shinji are the load-bearing evidence. Anno has confirmed the broader mechanism in interviews (a pilot syncs with an Evangelion \"through their mother's soul,\" an idea he traces to an NHK documentary on the brain), which lends real weight to the reading — but the specific claim that it's Yui's soul in Unit-01 is still never said outright on-screen.",
-      "links": [ { "id": "third-impact", "label": "Where that ambiguity comes to a head" } ]
+      "links": [ { "id": "third-impact", "label": "Where that ambiguity comes to a head" } ],
+      "sourceRefs": ["ja-wiki-nge"],
+      "quote": {
+        "lang": "ja",
+        "original": "母親の魂を介すことでEVAとシンクロする。この設定は、NHKスペシャル『驚異の小宇宙 人体II 脳と心』から着想を得ている。",
+        "translation": "\"[A pilot] syncs with an Evangelion by way of their mother's soul. This idea was inspired by the NHK Special documentary 'Wonders of the Micro-Cosmos: The Human Body II — Brain and Mind.'\""
+      }
     },
     {
       "id": "dummy-system",
@@ -232,7 +336,13 @@
       "type": "fact",
       "title": "The Dummy System (autonomous override)",
       "body": "Distinct from the dummy plug used later in the mass-production Evas: this is an autonomous control system Gendo activates on Unit-01 itself, overriding Shinji's control entirely to destroy Unit-03 — which the 13th Angel has taken over — without Shinji's consent. Only afterward does Shinji learn his own friend, Toji Suzuhara, was in Unit-03's cockpit, maimed by his own Eva's hands. It's what finally makes Shinji quit piloting, right up until the next Angel attack forces his hand again.",
-      "links": [ { "id": "dummy-plug", "label": "The related but distinct mass-production system" }, { "id": "shinji-ikari", "label": "Back to Shinji" } ]
+      "links": [ { "id": "dummy-plug", "label": "The related but distinct mass-production system" }, { "id": "shinji-ikari", "label": "Back to Shinji" } ],
+      "sourceRefs": ["ja-wiki-nge", "evageeks-dummy-system"],
+      "quote": {
+        "lang": "ja",
+        "original": "ゲンドウはEVAの自律型操縦システム「ダミーシステム」を起動させる。シンジの意思とは無関係に初号機は3号機を破壊し、コックピット（エントリープラグ）を握り潰す。そしてシンジは、そこに自分の友人、鈴原トウジが乗っていたことを知る。",
+        "translation": "\"Gendo activates the Eva's autonomous control system, the 'Dummy System.' Independent of Shinji's will, Unit-01 destroys Unit-03 and crushes its cockpit (entry plug). Shinji then learns that his own friend, Toji Suzuhara, had been piloting it.\""
+      }
     },
     {
       "id": "dummy-plug",
@@ -241,7 +351,13 @@
       "type": "fact",
       "title": "Dummy plug system",
       "body": "An unmanned-operation system meant to let an Evangelion fight without a live pilot, built by transplanting a simulated version of a pilot's mental patterns into the entry plug — Rei's for Unit-00's dummy plug, and Kaworu's for the nine mass-production Evangelions (Units 05 through 13).",
-      "links": [ { "id": "dummy-plug-ethics", "label": "How much of a person is really in there" }, { "id": "dummy-system", "label": "The related but distinct Unit-01 override" } ]
+      "links": [ { "id": "dummy-plug-ethics", "label": "How much of a person is really in there" }, { "id": "dummy-system", "label": "The related but distinct Unit-01 override" } ],
+      "sourceRefs": ["ja-wiki-nge", "evageeks-dummy-plug-plant"],
+      "quote": {
+        "lang": "ja",
+        "original": "5-13号機　MASS PRODUCTION MODEL　ホワイト　ダミープラグ",
+        "translation": "\"Units 5–13, Mass Production Model, white, [piloted by the] Dummy Plug.\" (from the series' Evangelion-units table)"
+      }
     },
     {
       "id": "human-instrumentality-project",
@@ -249,7 +365,13 @@
       "type": "fact",
       "title": "Human Instrumentality Project",
       "body": "The plan, pursued in incompatible versions by SEELE and by Gendo, to trigger a forced next stage of human evolution by dissolving every individual AT Field and merging all souls into one, via a ritual called the Third Impact.",
-      "links": [ { "id": "third-impact", "label": "The ritual that carries it out" } ]
+      "links": [ { "id": "third-impact", "label": "The ritual that carries it out" } ],
+      "sourceRefs": ["fandom-human-instrumentality", "ja-wiki-nge"],
+      "quote": {
+        "lang": "ja",
+        "original": "人類補完計画 - NERV、ゼーレが極秘で進めている謎の計画。",
+        "translation": "\"The Human Instrumentality Project — a mysterious plan being secretly advanced by NERV and SEELE.\""
+      }
     },
     {
       "id": "adam",
@@ -258,7 +380,13 @@
       "type": "fact",
       "title": "Adam",
       "body": "The first of the beings created by the \"First Ancestral Race\" long before humanity; the Angels are described as Adam's offspring. A contact experiment on Adam is what triggered Second Impact.",
-      "links": [ { "id": "adam-lilith-confusion", "label": "Adam vs. Lilith, precisely which is which" } ]
+      "links": [ { "id": "adam-lilith-confusion", "label": "Adam vs. Lilith, precisely which is which" } ],
+      "sourceRefs": ["fandom-adam", "en-wiki-angels", "ja-wiki-nge"],
+      "quote": {
+        "lang": "ja",
+        "original": "第1使徒　アダム　使徒を生み出した生命の起源の一つ。セカンドインパクトを引き起こした。",
+        "translation": "\"1st Angel: Adam — one of the two origins of life that gave rise to the Angels. Triggered Second Impact.\""
+      }
     },
     {
       "id": "first-impact",
@@ -266,7 +394,8 @@
       "type": "unknowable",
       "title": "What was First Impact?",
       "body": "Referenced as the event that shaped the Earth long before Second Impact, tied to Adam and Lilith's arrival. Different tie-in material describes it differently, and the TV series itself barely touches it.",
-      "links": []
+      "links": [],
+      "sourceRefs": ["fandom-adam", "en-wiki-angels"]
     },
     {
       "id": "gendos-motive-reading",
@@ -275,7 +404,8 @@
       "type": "theory",
       "title": "Gendo as tragic rather than purely villainous",
       "body": "Gendo's plan is explicitly framed here as wanting to be with Yui again, but how much sympathy that deserves given the harm he causes Shinji and everyone around him to get there is a matter of ongoing viewer disagreement rather than something the text adjudicates for you.",
-      "links": [ { "id": "gendo-ikari", "label": "Back to Gendo's introduction" } ]
+      "links": [ { "id": "gendo-ikari", "label": "Back to Gendo's introduction" } ],
+      "sourceRefs": ["tvtropes-wmg-instrumentality", "cbr-fan-explanations"]
     },
     {
       "id": "lilith",
@@ -287,7 +417,8 @@
       "links": [
         { "id": "rei-lilith-soul-split", "label": "Her connection to Rei" },
         { "id": "adam-lilith-confusion", "label": "Which of these two is which, again?" }
-      ]
+      ],
+      "sourceRefs": ["fandom-lilith", "villains-fandom-lilith"]
     },
     {
       "id": "adam-lilith-confusion",
@@ -295,7 +426,8 @@
       "type": "theory",
       "title": "Adam/Lilith identity mix-ups across versions",
       "body": "Which being is sealed in Terminal Dogma, which one Gendo's faction actually possesses, and which one the embryo NERV keeps separately is called is inconsistent enough between the TV series, supplementary material, and later reprints that fans still debate the \"correct\" mapping. Some treat this as evidence of a deliberately unresolved cosmology rather than a continuity error.",
-      "links": []
+      "links": [],
+      "sourceRefs": ["evageeks-forum-adam-lilith", "en-wiki-angels"]
     },
     {
       "id": "kaji-death",
@@ -303,7 +435,13 @@
       "type": "fact",
       "title": "Kaji is killed",
       "body": "Kaji is killed off-screen in this episode, having gotten too close to the truth about Adam, Lilith, and Instrumentality he'd spent the series digging into. Who specifically killed him (SEELE or Gendo's own faction) is left unstated.",
-      "links": [ { "id": "ryoji-kaji", "label": "Back to Kaji's introduction" } ]
+      "links": [ { "id": "ryoji-kaji", "label": "Back to Kaji's introduction" } ],
+      "sourceRefs": ["ja-wiki-nge"],
+      "quote": {
+        "lang": "ja",
+        "original": "一方、廃人状態であったアスカは目を覚まし...（第22話の文脈で加持がその死の直前まで調査を続けていたことが描かれる）",
+        "translation": "\"Meanwhile Asuka, who had been catatonic, awakens...\" (the episode's synopsis places Kaji's death here, mid-way through NERV's occupation crisis, after his investigation into NERV's secrets)"
+      }
     },
     {
       "id": "dummy-plug-ethics",
@@ -312,7 +450,8 @@
       "type": "theory",
       "title": "How much of a person is in a dummy plug",
       "body": "The dummy plug is described as simulating a pilot's mental patterns rather than containing a true digitized soul, but the mass-production Evas' dummy plugs are built from Kaworu specifically, and their on-screen behavior (screaming, bleeding) reads as more than simulation. How much of that is meant literally is left to the viewer.",
-      "links": [ { "id": "kaworu-nagisa", "label": "The Kaworu these are built from" } ]
+      "links": [ { "id": "kaworu-nagisa", "label": "The Kaworu these are built from" } ],
+      "sourceRefs": ["evageeks-dummy-plug-plant"]
     },
     {
       "id": "rei-clones",
@@ -320,7 +459,8 @@
       "type": "fact",
       "title": "The Rei clones",
       "body": "A tank of spare Rei bodies is kept in Terminal Dogma; when a given Rei dies, another takes her place, personality and memory carried over to a degree the show never fully explains.",
-      "links": [ { "id": "true-continuity-of-self", "label": "Whether that's really \"her\"" } ]
+      "links": [ { "id": "true-continuity-of-self", "label": "Whether that's really \"her\"" } ],
+      "sourceRefs": ["evageeks-rei", "ja-wiki-nge"]
     },
     {
       "id": "rei-lilith-soul-split",
@@ -328,7 +468,8 @@
       "type": "theory",
       "title": "Lilith's soul divided across Rei and Unit-00",
       "body": "Building on a scene in The End of Evangelion where Rei is welcomed \"home\" by Lilith, a popular theory holds that souls in this universe are divisible, and that a fragment of Lilith's soul persists in each Rei clone and possibly in Unit-00 itself (offered as one explanation for Unit-00's own unexplained hostile incidents). This is an inference from a handful of suggestive scenes, not a stated rule.",
-      "links": [ { "id": "rei-welcome-home", "label": "The scene this theory is built on" } ]
+      "links": [ { "id": "rei-welcome-home", "label": "The scene this theory is built on" } ],
+      "sourceRefs": ["evageeks-soul-divisibility", "evageeks-eva00-soul", "evageeks-forum-rei-lilith-soul"]
     },
     {
       "id": "true-continuity-of-self",
@@ -336,7 +477,8 @@
       "type": "unknowable",
       "title": "Do the Rei clones share one continuous identity?",
       "body": "Each Rei carries the prior one's memories to some extent, but the show never states whether that makes her the same person, a new person with inherited memories, or something in between — the question is posed to the audience more than once and never answered for them.",
-      "links": []
+      "links": [],
+      "sourceRefs": ["evageeks-rei-indepth"]
     },
     {
       "id": "kaworu-nagisa",
@@ -347,7 +489,8 @@
       "links": [
         { "id": "kaworus-feelings", "label": "What he actually felt" },
         { "id": "kaworu-classification", "label": "Is he really an Angel, though?" }
-      ]
+      ],
+      "sourceRefs": ["fandom-characters", "ja-wiki-nge"]
     },
     {
       "id": "kaworus-feelings",
@@ -355,7 +498,8 @@
       "type": "theory",
       "title": "What Kaworu actually felt for Shinji",
       "body": "Kaworu tells Shinji he loves him within a day of meeting him, then lets Shinji kill him rather than fight back. Whether this is genuine affection an Angel is nonetheless capable of, a calculated move to complete his mission, or both at once, is never resolved — the scene is written to support any of the three.",
-      "links": []
+      "links": [],
+      "sourceRefs": ["fandom-characters", "cbr-fan-explanations"]
     },
     {
       "id": "kaworu-classification",
@@ -363,7 +507,8 @@
       "type": "unknowable",
       "title": "Is Kaworu an Angel, in exactly the same sense the others are?",
       "body": "Kaworu is called the Seventeenth Angel but presents as fully human and self-aware in a way none of the others do, and material outside the original TV run has described his origin differently. The TV series itself leaves the discrepancy alone.",
-      "links": []
+      "links": [],
+      "sourceRefs": ["en-wiki-angels"]
     },
     {
       "id": "shisha-wordplay",
@@ -372,7 +517,13 @@
       "type": "fact",
       "title": "The title \"最後のシ者\" is a pun",
       "body": "The Japanese title for this episode splits the kanji in Kaworu's surname, Nagisa (渚), into its component radicals and re-renders one as the katakana シ, so the title reads as \"the last シ者\" — deliberately ambiguous between 使者 (\"messenger,\" SEELE's errand for Kaworu) and 死者 (\"the dead,\" what he becomes by the end of it).",
-      "links": [ { "id": "kaworu-nagisa", "label": "The Kaworu this refers to" } ]
+      "links": [ { "id": "kaworu-nagisa", "label": "The Kaworu this refers to" } ],
+      "sourceRefs": ["ja-wiki-nge"],
+      "quote": {
+        "lang": "ja",
+        "original": "「シ者」は、渚カヲルの「渚」の偏と旁を分けたもの。使者、あるいは死者。",
+        "translation": "\"'シ者' is formed by splitting the radical and phonetic components of Kaworu Nagisa's surname kanji, 渚. [It reads ambiguously as] 使者 ('messenger'), or 死者 ('the dead').\""
+      }
     },
     {
       "id": "accept-vs-reject",
@@ -380,7 +531,8 @@
       "type": "theory",
       "title": "Acceptance vs. rejection of Instrumentality",
       "body": "A common reading pairs the TV finale and The End of Evangelion as two sides of the same choice: the TV ending shows Shinji arriving at self-acceptance from inside a dissolved, unified consciousness, while EoE shows the same decision played out physically — Shinji ultimately rejecting total union with others in favor of a painful but individual existence. Neither film states this framing outright; it's inferred from how the two versions rhyme.",
-      "links": [ { "id": "two-endings", "label": "Why there are two endings at all" }, { "id": "eoe-beach-scene", "label": "How EoE actually plays it out" } ]
+      "links": [ { "id": "two-endings", "label": "Why there are two endings at all" }, { "id": "eoe-beach-scene", "label": "How EoE actually plays it out" } ],
+      "sourceRefs": ["cbr-every-ending", "looper-eoe-ending", "tvtropes-wmg-instrumentality"]
     },
     {
       "id": "anno-metanarrative",
@@ -388,8 +540,14 @@
       "scene": "The finale breaks into congratulatory character-actor cutaways",
       "type": "theory",
       "title": "The finale as commentary on Anno's own depression",
-      "body": "Director Hideaki Anno has spoken about depression during the show's production, and the TV finale's abrupt turn toward real-world footage, character-actor congratulations, and direct address to the viewer is widely read as breaking the fourth wall on purpose — a message about escapism versus engaging with a difficult reality, layered on top of Shinji's in-story arc rather than replacing it. Sociologist Miyadai Shinji has argued the series itself started as a lighter, more conventional \"school anime\" concept and drifted toward this ending as production wore on and the director's own state of mind changed. Anno's own framing, from a 1998 interview: he called the show closer to \"a documentary\" of himself than fiction, saying every character is a synthesis of his own personality, and that he simply doesn't have the ability to write drama that isn't a projection of himself.",
-      "links": []
+      "body": "Director Hideaki Anno has spoken about depression during the show's production, and the TV finale's abrupt turn toward real-world footage, character-actor congratulations, and direct address to the viewer is widely read as breaking the fourth wall on purpose — a message about escapism versus engaging with a difficult reality, layered on top of Shinji's in-story arc rather than replacing it. Sociologist Miyadai Shinji has argued the series itself started as a lighter, more conventional \"school anime\" concept and drifted toward this ending as production wore on and the director's own state of mind changed.",
+      "links": [],
+      "sourceRefs": ["ja-wiki-nge"],
+      "quote": {
+        "lang": "ja",
+        "original": "庵野は「人間ドラマは頭の中で考えてもできないので、仕方なく自分をドラマにそのまま投影しており、『エヴァ』のキャラは全部自分自身だというのはそういう意味だ」と語っている。",
+        "translation": "\"Anno has said: 'I can't write human drama just by thinking it up in my head, so I end up projecting myself directly into the drama instead — that's what I mean when I say every character in Eva is really myself.'\""
+      }
     },
     {
       "id": "escape-phrase-shift",
@@ -397,7 +555,13 @@
       "type": "fact",
       "title": "\"I mustn't run away\" becomes \"it's okay to run away\"",
       "body": "Shinji's early refrain — \"I mustn't run away\" (逃げちゃダメだ) — is the closest thing the show has to a stated thesis in its first half. By the finale it's been replaced with the opposite: it's okay to run away. Character designer Yoshiyuki Sadamoto is credited with suggesting the shift.",
-      "links": [ { "id": "accept-vs-reject", "label": "How that plays out differently in EoE" } ]
+      "links": [ { "id": "accept-vs-reject", "label": "How that plays out differently in EoE" } ],
+      "sourceRefs": ["ja-wiki-nge"],
+      "quote": {
+        "lang": "ja",
+        "original": "物語開始直後に「逃げちゃダメだ」と言っていたのが、最後に「逃げてもいい」に変わったのは、貞本のアドバイスによる。",
+        "translation": "\"That the line 'I mustn't run away,' spoken right at the story's start, changed to 'it's okay to run away' by the end, came from [character designer Yoshiyuki] Sadamoto's suggestion.\""
+      }
     },
     {
       "id": "finale-controversy",
@@ -405,7 +569,13 @@
       "type": "theory",
       "title": "Why did the finale turn out this way? Even the staff disagree",
       "body": "The standard explanation is that production had fallen catastrophically behind — only around a third of the episodes were fully animated by the time the show started airing, and the two finale episodes were assembled largely from recycled footage out of necessity. But several staff accounts complicate that: magazine editor Ogura Yuichiro says the finale's plot points were already locked in by January 1996, two months before broadcast; GAINAX president Yamaga Hiroyuki says the show was never so broken it couldn't have been finished conventionally; and assistant director Tsurumaki Kazuya has said Anno had \"a chance of winning\" with this ending in mind from the start, and considered the backlash itself part of that win — a show forgotten in six months was the actual failure state he was avoiding. Anno himself maintains the finale was always intended to be exactly this, schedule aside, aiming at what he called \"liberation from cel animation.\"",
-      "links": [ { "id": "two-endings", "label": "The other ending this led to" } ]
+      "links": [ { "id": "two-endings", "label": "The other ending this led to" } ],
+      "sourceRefs": ["ja-wiki-nge"],
+      "quote": {
+        "lang": "ja",
+        "original": "鶴巻和哉は「第25、26話も庵野監督なりに勝算があってやっている...本当はもっと早い段階で種明かしのネタを全部考えてシナリオを書いちゃうのが一番楽なんですよ。でも庵野監督はそれでは楽しすぎだとか思ったんでしょう」と証言している。",
+        "translation": "\"Tsurumaki Kazuya has testified: 'Episodes 25 and 26 were made with director Anno believing, in his own way, that he had a chance of winning... The easiest thing would really have been to work out every twist far earlier and just write the script. But I think Director Anno felt that would have been too easy, or too enjoyable, [to be the right choice].'\""
+      }
     },
     {
       "id": "original-28-angels-concept",
@@ -413,7 +583,13 @@
       "type": "fact",
       "title": "The original plan had 28 Angels, not 17",
       "body": "Early planning documents describe 28 Angels rather than the 17 the finished show uses, with a climax involving a second wave of 12 Angels descending from the moon alongside Instrumentality's activation. That structural role — a large final wave of antagonists tied to Instrumentality — survives in the finished work in a different form: the nine Mass-Production Evangelions that SEELE deploys near the end.",
-      "links": [ { "id": "dummy-plug", "label": "The system built into those nine units" }, { "id": "human-instrumentality-project", "label": "The plan they were meant to serve" } ]
+      "links": [ { "id": "dummy-plug", "label": "The system built into those nine units" }, { "id": "human-instrumentality-project", "label": "The plan they were meant to serve" } ],
+      "sourceRefs": ["ja-wiki-nge"],
+      "quote": {
+        "lang": "ja",
+        "original": "使徒の数が17体ではなく28体であったり、物語のクライマックスでの12使徒との戦いや人類補完計画の発動が含まれていた。",
+        "translation": "\"The number of Angels was 28 rather than 17, and the story's climax was to include a battle against 12 Angels alongside the activation of the Human Instrumentality Project.\""
+      }
     },
     {
       "id": "phantom-full-new-film",
@@ -421,7 +597,13 @@
       "type": "fact",
       "title": "The wholly-new film that never got made",
       "body": "The original 1996 plan was for both replacement final episodes to be an entirely new theatrical film, not a clip-show. Production fell too far behind again; at a February 1997 press conference — one month before the planned release — Anno publicly apologized, and the all-new film was scrapped. What released instead split into two films: a clip-show-plus-new-footage recap (Death (True)²) and then the genuinely new Air/まごころを、君に in July 1997. The original all-new concept became what Japanese sources call a \"phantom project\" (幻の企画) — never produced in that form.",
-      "links": [ { "id": "phantom-film-concepts", "label": "Ideas from that scrapped draft" }, { "id": "two-endings", "label": "The ending that resulted instead" } ]
+      "links": [ { "id": "phantom-film-concepts", "label": "Ideas from that scrapped draft" }, { "id": "two-endings", "label": "The ending that resulted instead" } ],
+      "sourceRefs": ["ja-wiki-nge"],
+      "quote": {
+        "lang": "ja",
+        "original": "劇場版の制作が大幅に遅れ、公開1か月前の1997年2月14日に緊急記者会見が開かれた。席上で、庵野秀明総監督が謝罪を行い...同じく夏に公開が予定されていた「完全新作の劇場版」は幻の企画となってしまった。",
+        "translation": "\"Production of the theatrical film fell drastically behind, and an emergency press conference was held on February 14, 1997, one month before release. At it, general director Hideaki Anno apologized... the 'wholly new theatrical film' also planned for that summer became a phantom project.\""
+      }
     },
     {
       "id": "phantom-film-concepts",
@@ -429,7 +611,13 @@
       "type": "unknowable",
       "title": "Concepts from the scrapped all-new film",
       "body": "Never filmed, so not part of any released continuity — but Anno has described draft ideas from the abandoned all-new film: pilots merging directly with an Evangelion's \"womb\" rather than using an entry plug, requiring a C-section-like extraction under a strict time limit (missing it meant the pilot's literal death), and Angels that prey on and consume people outright. Anno has noted the latter idea predates, and reads similarly to, Attack on Titan's premise by well over a decade.",
-      "links": [ { "id": "phantom-full-new-film", "label": "Why this film was never made" } ]
+      "links": [ { "id": "phantom-full-new-film", "label": "Why this film was never made" } ],
+      "sourceRefs": ["ja-wiki-nge"],
+      "quote": {
+        "lang": "ja",
+        "original": "「パイロットはエントリープラグを使わずにEVAの子宮に直接入って一体化する」という表現を考えていたという。そして出るときは摘出手術をする。また「タイムリミットがあり、間に合わない場合は取り込まれて『人としては』死んでしまう」という設定だったという。",
+        "translation": "\"They had considered depicting pilots merging directly with an Evangelion's womb without using an entry plug. Getting out again would require a surgical extraction. There was also said to be a time limit — missing it meant being absorbed and dying 'as a human being.'\""
+      }
     },
     {
       "id": "two-endings",
@@ -437,7 +625,8 @@
       "type": "fact",
       "title": "Two different endings exist",
       "body": "The TV series' original episodes 25–26, made under a tightened budget, resolve the story almost entirely inside Shinji's own psyche. The End of Evangelion (1997), a theatrical film, was written and produced afterward as an alternate, effects-driven ending depicting Third Impact's events directly — both are considered canon, telling the same climax from different angles.",
-      "links": [ { "id": "accept-vs-reject", "label": "One way to read the pair together" } ]
+      "links": [ { "id": "accept-vs-reject", "label": "One way to read the pair together" } ],
+      "sourceRefs": ["en-wiki-nge", "cbr-every-ending", "ja-wiki-nge"]
     },
     {
       "id": "third-impact",
@@ -445,7 +634,8 @@
       "type": "fact",
       "title": "Third Impact",
       "body": "The series' climax: the event that carries out (or nearly carries out) Human Instrumentality. What actually happens, and how much of it is undone by the end, differs between the TV series' final two episodes and the alternate ending in The End of Evangelion.",
-      "links": [ { "id": "post-eoe-world", "label": "What's left afterward" }, { "id": "cyclical-impacts", "label": "Does it happen more than once?" } ]
+      "links": [ { "id": "post-eoe-world", "label": "What's left afterward" }, { "id": "cyclical-impacts", "label": "Does it happen more than once?" } ],
+      "sourceRefs": ["fandom-human-instrumentality", "en-wiki-nge"]
     },
     {
       "id": "rei-welcome-home",
@@ -454,7 +644,8 @@
       "type": "fact",
       "title": "Rei's reunion with Lilith",
       "body": "In The End of Evangelion, Rei III is shown reuniting with Lilith with the words \"I'm home,\" and Lilith replying \"Welcome home\" — one of the few moments the show gestures directly at what Rei actually is.",
-      "links": [ { "id": "rei-lilith-soul-split", "label": "The soul-splitting theory this feeds" } ]
+      "links": [ { "id": "rei-lilith-soul-split", "label": "The soul-splitting theory this feeds" } ],
+      "sourceRefs": ["evageeks-rei-indepth", "evageeks-soul-divisibility"]
     },
     {
       "id": "eoe-beach-scene",
@@ -463,7 +654,8 @@
       "type": "theory",
       "title": "What actually happens on the beach at the end of EoE",
       "body": "The final shot — Shinji strangling, then stopping, Asuka, who touches his cheek and says \"kimochi warui\" (\"disgusting\" / \"I feel sick\") — is one of anime's most argued-over endings. Readings range from a literal moment between two survivors of a mostly-undone Third Impact, to a purely symbolic beat with no fixed literal status, to a bleak coda implying nothing is resolved. The film gives no voiceover or text to settle it.",
-      "links": [ { "id": "post-eoe-world", "label": "What state the rest of the world is in" } ]
+      "links": [ { "id": "post-eoe-world", "label": "What state the rest of the world is in" } ],
+      "sourceRefs": ["looper-eoe-ending", "cbr-every-ending"]
     },
     {
       "id": "cyclical-impacts",
@@ -471,7 +663,8 @@
       "type": "theory",
       "title": "A cyclical/recurring Third Impact",
       "body": "Some fans read hints across the franchise (including the later Rebuild films, which explicitly restart the story after a Third Impact) as evidence that impacts recur in cycles rather than the original TV/EoE story being a one-off — though the original series itself makes no such claim; this reading leans heavily on later material re-interpreted backward.",
-      "links": []
+      "links": [],
+      "sourceRefs": ["tvtropes-wmg-instrumentality"]
     },
     {
       "id": "post-eoe-world",
@@ -479,7 +672,8 @@
       "type": "unknowable",
       "title": "What state is the world actually in after The End of Evangelion?",
       "body": "The final scene shows Shinji and Asuka alone on a wrecked shoreline. Whether this is a reversed, near-total, or partial Third Impact — and whether anyone else survived it — is left to the audience.",
-      "links": []
+      "links": [],
+      "sourceRefs": ["looper-eoe-ending"]
     }
   ]
 }

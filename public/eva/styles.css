@@ -341,6 +341,64 @@ input:focus, select:focus {
   opacity: 0.8;
 }
 
+/* Original-language excerpt backing a fact, plus its translation. Kept as one
+ * visual unit (a single border, not two) since the pair only makes sense
+ * together. */
+
+.detail-quote {
+  margin: 0 0 0.75rem;
+  padding: 0.6rem 0.9rem;
+  border-left: 3px solid var(--color-accent);
+  background-color: var(--color-chrome);
+}
+
+.detail-quote p {
+  margin: 0;
+}
+
+.detail-quote-original {
+  font-style: italic;
+  margin-bottom: 0.4rem !important;
+}
+
+.detail-quote-ja {
+  font-family: var(--font-body);
+}
+
+.detail-quote-translation {
+  font-size: 0.85rem;
+  opacity: 0.85;
+}
+
+.detail-sources {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  padding-top: 0.6rem;
+  margin-top: 0.6rem;
+  border-top: 1px dashed var(--color-article-border);
+}
+
+.detail-sources-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.05rem;
+  text-transform: uppercase;
+  opacity: 0.6;
+}
+
+.source-link {
+  font-size: 0.78rem;
+  color: var(--color-accent);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.source-link:hover {
+  opacity: 0.8;
+}
+
 @media (max-width: 768px) {
   .filters {
     grid-template-columns: 1fr;

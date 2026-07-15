@@ -12,6 +12,20 @@
  */
 
 /**
+ * @typedef {Object} Source
+ * @property {'en'|'ja'} lang
+ * @property {string} title
+ * @property {string} url
+ */
+
+/**
+ * @typedef {Object} Quote
+ * @property {'en'|'ja'} lang - the language the entry's fact was originally sourced in
+ * @property {string} original - the original-language excerpt
+ * @property {string} translation - a translation into the other language
+ */
+
+/**
  * @typedef {Object} Entry
  * @property {string} id
  * @property {number|string} episode - matches an Episode's `number`
@@ -20,10 +34,13 @@
  * @property {string} title
  * @property {string} body
  * @property {EntryLink[]} links
+ * @property {string[]} [sourceRefs] - keys into EvaData.sources
+ * @property {Quote} [quote] - original-language excerpt + translation backing this entry
  */
 
 /**
  * @typedef {Object} EvaData
+ * @property {Record<string, Source>} sources
  * @property {Episode[]} episodes
  * @property {Entry[]} entries
  */
@@ -153,6 +170,53 @@ function createJumpButton(link) {
   return button;
 }
 
+/** @param {Quote} quote */
+function createQuoteBlock(quote) {
+  const block = document.createElement('blockquote');
+  block.className = 'detail-quote';
+
+  const original = document.createElement('p');
+  original.className = `detail-quote-original detail-quote-${quote.lang}`;
+  original.lang = quote.lang;
+  original.textContent = quote.original;
+
+  const translation = document.createElement('p');
+  translation.className = 'detail-quote-translation';
+  translation.textContent = quote.translation;
+
+  block.append(original, translation);
+  return block;
+}
+
+/**
+ * @param {string[]} sourceRefs
+ * @param {Record<string, Source>} sources
+ */
+function createSourcesSection(sourceRefs, sources) {
+  const section = document.createElement('div');
+  section.className = 'detail-sources';
+
+  const label = document.createElement('span');
+  label.className = 'detail-sources-label';
+  label.textContent = 'Sources:';
+  section.appendChild(label);
+
+  for (const ref of sourceRefs) {
+    const source = sources[ref];
+    if (!source) continue;
+    const link = document.createElement('a');
+    link.className = 'source-link';
+    link.href = source.url;
+    link.target = '_blank';
+    link.rel = 'noopener noreferrer';
+    link.textContent = source.title;
+    link.lang = source.lang;
+    section.appendChild(link);
+  }
+
+  return section;
+}
+
 /**
  * @param {string} id
  * @param {{ scroll: boolean }} options
@@ -194,6 +258,10 @@ function openDetail(id, { scroll }) {
 
   const nodes = [title, meta, body];
 
+  if (entry.quote) {
+    nodes.push(createQuoteBlock(entry.quote));
+  }
+
   if (entry.links?.length) {
     const linksSection = document.createElement('div');
     linksSection.className = 'detail-links';
@@ -203,6 +271,10 @@ function openDetail(id, { scroll }) {
       }
     }
     if (linksSection.children.length) nodes.push(linksSection);
+  }
+
+  if (entry.sourceRefs?.length && data?.sources) {
+    nodes.push(createSourcesSection(entry.sourceRefs, data.sources));
   }
 
   dom.detailContent.replaceChildren(...nodes);
