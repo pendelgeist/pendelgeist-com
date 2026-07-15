@@ -109,6 +109,21 @@ show metadata (synopsis, episode counts, community scores) intentionally lives o
 rather than being duplicated into these gists; see "Validating against AniList" below for
 finding the right id.
 
+### Updating gist data
+
+`scripts/update-gist.js` pushes a locally-edited season (or the manifest) straight to its
+gist via the GitHub API, instead of hand-pasting JSON into the gist editor. It always runs
+a season through `validateSeason` first — a season with issues is never pushed — and
+prints a diff summary (titles added/removed/edited) against the live content. It's a dry
+run by default; pass `--write` to actually push, which requires a `GITHUB_TOKEN` env var
+(a PAT scoped to just `gist` write access).
+
+```
+npm run update-gist -- spring-2026 ./draft-season.json           # dry run: prints the diff
+npm run update-gist -- spring-2026 ./draft-season.json --write   # pushes it
+npm run update-gist -- manifest ./draft-manifest.json --write    # or update the manifest itself
+```
+
 ### Validating gist data
 
 `scripts/validate-gists.js` is a standalone check — it's not part of the website, just
