@@ -1,31 +1,31 @@
 {
   "episodes": [
-    { "number": 1, "title": "Angel Attack" },
-    { "number": 2, "title": "The Beast" },
-    { "number": 3, "title": "A Transfer" },
-    { "number": 4, "title": "Hedgehog's Dilemma" },
-    { "number": 5, "title": "Rei I" },
-    { "number": 6, "title": "Rei II" },
-    { "number": 7, "title": "A Human Work" },
-    { "number": 8, "title": "Asuka Strikes!" },
-    { "number": 9, "title": "Both of You, Dance Like You Want to Win!" },
-    { "number": 10, "title": "Magma Diver" },
-    { "number": 11, "title": "The Day Tokyo-3 Stood Still" },
-    { "number": 12, "title": "She said, \"Don't make others suffer for your personal hatred.\"" },
-    { "number": 13, "title": "Lilliputian Hitcher" },
-    { "number": 14, "title": "Weaving a Story" },
-    { "number": 15, "title": "Those Women Longed for the Touch of Others' Lips, and Thus Invited Their Kisses" },
-    { "number": 16, "title": "Splitting of the Breast" },
-    { "number": 17, "title": "Fourth Children" },
-    { "number": 18, "title": "Ambivalence" },
-    { "number": 19, "title": "Introjection" },
-    { "number": 20, "title": "Weaving a Story 2: Oral Stage" },
-    { "number": 21, "title": "He Was Aware That He Was Still a Child" },
-    { "number": 22, "title": "Don't Be" },
-    { "number": 23, "title": "Rei III" },
-    { "number": 24, "title": "The Beginning and the End, or \"Knockin' on Heaven's Door\"" },
-    { "number": 25, "title": "Do You Love Me?" },
-    { "number": 26, "title": "Take Care of Yourself" },
+    { "number": 1, "title": "Angel Attack", "subtitle": "JP: 使徒、襲来 — lit. \"Angel, Attack\" · aired 1995-10-04, 6.8%" },
+    { "number": 2, "title": "The Beast", "subtitle": "JP: 見知らぬ、天井 — lit. \"Unfamiliar Ceiling\" · aired 1995-10-11, 5.3%" },
+    { "number": 3, "title": "A Transfer", "subtitle": "JP: 鳴らない、電話 — lit. \"The Phone That Doesn't Ring\" · aired 1995-10-18, 7.1%" },
+    { "number": 4, "title": "Hedgehog's Dilemma", "subtitle": "JP: 雨、逃げ出した後 — lit. \"Rain, After Running Away\" · aired 1995-10-25, 5.8%" },
+    { "number": 5, "title": "Rei I", "subtitle": "JP: レイ、心のむこうに — lit. \"Rei, Beyond the Heart\" · aired 1995-11-01, 7.2%" },
+    { "number": 6, "title": "Rei II", "subtitle": "JP: 決戦、第3新東京市 — lit. \"Decisive Battle, Tokyo-3\" · aired 1995-11-08, 7.7%" },
+    { "number": 7, "title": "A Human Work", "subtitle": "JP: 人の造りしもの — lit. \"A Thing Made by Man\" · aired 1995-11-15, 5.9%" },
+    { "number": 8, "title": "Asuka Strikes!", "subtitle": "JP: アスカ、来日 — lit. \"Asuka Arrives in Japan\" · aired 1995-11-22, 7.6%" },
+    { "number": 9, "title": "Both of You, Dance Like You Want to Win!", "subtitle": "JP: 瞬間、心、重ねて · aired 1995-11-29, 7.1%" },
+    { "number": 10, "title": "Magma Diver", "subtitle": "JP: マグマダイバー · aired 1995-12-06, 9.5%" },
+    { "number": 11, "title": "The Day Tokyo-3 Stood Still", "subtitle": "JP: 静止した闇の中で — lit. \"Amid the Frozen Dark\" · aired 1995-12-13, 9.0%" },
+    { "number": 12, "title": "She said, \"Don't make others suffer for your personal hatred.\"", "subtitle": "JP: 奇跡の価値は — lit. \"The Value of a Miracle\" · aired 1995-12-20, 7.4%" },
+    { "number": 13, "title": "Lilliputian Hitcher", "subtitle": "JP: 使徒、侵入 — lit. \"Angel, Intrusion\" · aired 1995-12-27, 3.4%" },
+    { "number": 14, "title": "Weaving a Story", "subtitle": "JP: ゼーレ、魂の座 — lit. \"SEELE, Seat of the Soul\" · aired 1996-01-03, 0.9% (lowest rating of the series)" },
+    { "number": 15, "title": "Those Women Longed for the Touch of Others' Lips, and Thus Invited Their Kisses", "subtitle": "JP: 嘘と沈黙 — lit. \"Lies and Silence\" · aired 1996-01-10, 6.0%" },
+    { "number": 16, "title": "Splitting of the Breast", "subtitle": "JP: 死に至る病、そして — lit. \"The Sickness Unto Death, and Then...\" (after Kierkegaard) · aired 1996-01-17, 9.1%" },
+    { "number": 17, "title": "Fourth Children", "subtitle": "JP: 四人目の適格者 — lit. \"The Fourth Qualified Child\" · aired 1996-01-24, 7.3%" },
+    { "number": 18, "title": "Ambivalence", "subtitle": "JP: 命の選択を — lit. \"A Choice of Life\" · aired 1996-01-31, 9.6%" },
+    { "number": 19, "title": "Introjection", "subtitle": "JP: 男の戰い — lit. \"A Man's Battle\" · aired 1996-02-07, 8.0%" },
+    { "number": 20, "title": "Weaving a Story 2: Oral Stage", "subtitle": "JP: 心のかたち　人のかたち — lit. \"The Shape of Heart, the Shape of Man\" · aired 1996-02-14, 7.4%" },
+    { "number": 21, "title": "He Was Aware That He Was Still a Child", "subtitle": "JP: ネルフ、誕生 — lit. \"NERV, Birth\" · aired 1996-02-21, 7.7%" },
+    { "number": 22, "title": "Don't Be", "subtitle": "JP: せめて、人間らしく — lit. \"At Least, Like a Human\" · aired 1996-02-28, 7.9%" },
+    { "number": 23, "title": "Rei III", "subtitle": "JP: 涙 — lit. \"Tears\" · aired 1996-03-06, 6.9%" },
+    { "number": 24, "title": "The Beginning and the End, or \"Knockin' on Heaven's Door\"", "subtitle": "JP: 最後のシ者 — lit. \"The Last Shisha\" (pun: 使者 messenger / 死者 the dead) · aired 1996-03-13, 6.0%" },
+    { "number": 25, "title": "Do You Love Me?", "subtitle": "JP: 終わる世界 — lit. \"A World That Is Ending\" · aired 1996-03-20, 7.7%" },
+    { "number": 26, "title": "Take Care of Yourself", "subtitle": "JP: 世界の中心でアイを叫んだけもの (after Harlan Ellison's \"The Beast that Shouted Love at the Heart of the World\") · aired 1996-03-27, 10.3% (highest rating of the series)" },
     { "number": "eoe", "title": "The End of Evangelion", "subtitle": "Theatrical alternate ending to episodes 25–26" }
   ],
   "entries": [
@@ -80,8 +80,8 @@
       "id": "second-impact",
       "episode": 1,
       "type": "fact",
-      "title": "Second Impact (2000)",
-      "body": "A catastrophic explosion at an Antarctic research site, publicly blamed on a meteorite. It melted the polar ice caps, shifted the Earth's axis, and killed roughly half the world's population. Later revealed as the result of a deliberate contact experiment on the being called Adam.",
+      "title": "Second Impact (September 13, 2000)",
+      "body": "A catastrophic explosion at an Antarctic research site, publicly blamed on a meteorite. It melted the polar ice caps, shifted the Earth's axis, and killed roughly half the world's population. Later revealed as the result of a deliberate contact experiment on the being called Adam. One knock-on effect stated directly in the Japanese Wikipedia entry: the axis tilt erased Japan's seasons entirely, leaving the country in permanent summer-like weather for the rest of the series.",
       "links": [ { "id": "adam", "label": "What was actually experimented on" } ]
     },
     {
@@ -89,7 +89,7 @@
       "episode": 1,
       "type": "fact",
       "title": "Tokyo-3 and the Angel War",
-      "body": "Fifteen years after Second Impact, the fortified city of Tokyo-3 is built over NERV's geofront headquarters specifically to fight the Angels, whose periodic attacks make up the bulk of the series' episodic structure.",
+      "body": "Fifteen years after Second Impact, the fortified city of Tokyo-3 is built over NERV's geofront headquarters specifically to fight the Angels, whose periodic attacks make up the bulk of the series' episodic structure. Mapped onto real-world geography, Tokyo-3 sits on the north shore of Lake Ashi, in Hakone, Kanagawa Prefecture — nowhere near the real Tokyo.",
       "links": []
     },
     {
@@ -133,6 +133,22 @@
       "links": [ { "id": "adam-lilith-confusion", "label": "The Adam/Lilith mapping is shaky too" } ]
     },
     {
+      "id": "lilin-18th-angel",
+      "episode": 1,
+      "type": "fact",
+      "title": "Humanity is officially the 18th Angel",
+      "body": "NERV's own numbered Angel list (as reproduced on Japanese Wikipedia) runs Adam (1st) and Lilith (2nd) as the two progenitor Angels, Sachiel through Tabris/Kaworu as the 3rd through 17th, and then lists Lilin — humanity itself — as the 18th Angel. The show never dwells on this classification, but it quietly puts humans and the things they're fighting in the same taxonomic category.",
+      "links": [ { "id": "angels", "label": "The 3rd–17th Angels NERV actually fights" } ]
+    },
+    {
+      "id": "sailor-moon-influences",
+      "episode": 1,
+      "type": "fact",
+      "title": "Sailor Moon's fingerprints on the cast",
+      "body": "Several casting/naming choices trace back to Anno's fandom of Sailor Moon (which aired just before Eva): Misato's voice actress Kotono Mitsuishi was cast partly on the strength of her Usagi/Sailor Moon performance; Rei Ayanami's given name comes from Sailor Mars's civilian name, Hino Rei; and Kaworu Nagisa was modeled in part on Sailor Moon staffer Kunihiko Ikuhara, whom Anno was personally close with.",
+      "links": [ { "id": "misato-katsuragi", "label": "Misato" }, { "id": "rei-ayanami", "label": "Rei" }, { "id": "kaworu-nagisa", "label": "Kaworu" } ]
+    },
+    {
       "id": "asuka-langley-souryuu",
       "episode": 8,
       "type": "character",
@@ -146,30 +162,47 @@
       "type": "character",
       "title": "Ryoji Kaji",
       "body": "Officially a NERV agent, unofficially reporting to SEELE and Japan's government simultaneously, digging into NERV's secrets — including Adam and Instrumentality — while romantically entangled with Misato.",
-      "links": [ { "id": "adam", "label": "The secret he keeps digging into" } ]
+      "links": [ { "id": "adam", "label": "The secret he keeps digging into" }, { "id": "kaji-death", "label": "What that digging costs him" } ]
+    },
+    {
+      "id": "ghibli-episode-11",
+      "episode": 11,
+      "type": "fact",
+      "title": "Studio Ghibli animated this one",
+      "body": "Episode 11 — the MAGI-computer-meltdown, power-outage bottle episode — was farmed out to Studio Ghibli staff as a contracted production. It shows: the art style, character expressions, and tone come out noticeably more comedic and warm than the episodes around it.",
+      "links": []
+    },
+    {
+      "id": "magi",
+      "episode": 11,
+      "type": "fact",
+      "title": "MAGI",
+      "body": "NERV's supercomputer system: three semi-independent processors — Casper, Melchior, and Balthasar, named for the Biblical Three Magi — modeled on different aspects of their designer Naoko Akagi's personality, which must reach consensus to authorize NERV's most critical decisions.",
+      "links": []
     },
     {
       "id": "seele",
-      "episode": 8,
+      "episode": 14,
+      "scene": "Episode title translates literally as \"SEELE, Seat of the Soul\"",
       "type": "fact",
       "title": "SEELE",
       "body": "A secretive committee that founded NERV and steers events from behind it, working from the Dead Sea Scrolls toward its own version of the Human Instrumentality Project — a version Gendo Ikari is simultaneously trying to hijack for himself.",
       "links": [ { "id": "dead-sea-scrolls-contents", "label": "The text they're both working from" } ]
     },
     {
-      "id": "magi",
-      "episode": 8,
-      "type": "fact",
-      "title": "MAGI",
-      "body": "NERV's supercomputer system, three semi-independent processors modeled on aspects of their designer Naoko Akagi's personality, which must reach consensus to authorize NERV's most critical decisions.",
-      "links": []
-    },
-    {
       "id": "dead-sea-scrolls-contents",
-      "episode": 8,
+      "episode": 14,
       "type": "unknowable",
       "title": "What do the Dead Sea Scrolls actually say?",
       "body": "SEELE and NERV both act on a text called the Dead Sea Scrolls that supposedly predicts the Angels' attacks and the path to Instrumentality. Its actual contents are never shown or quoted at length.",
+      "links": []
+    },
+    {
+      "id": "episode-14-broadcast-anomaly",
+      "episode": 14,
+      "type": "fact",
+      "title": "The episode almost nobody saw live",
+      "body": "TV Tokyo bumped this episode to a New Year's Day 8:30am slot (instead of its normal Wednesday 6:30pm one) to make room for New Year's programming. The result was a 0.9% household rating — the lowest of the entire series, versus the finale's series-high 10.3%. Producers had anticipated the dip: a clip-show recap originally slotted for episode 14 was swapped with this episode instead, so the low-visibility slot fell on new content rather than a recap.",
       "links": []
     },
     {
@@ -181,7 +214,7 @@
       "body": "Unit-01 keeps fighting an Angel after its power cable is severed and its plug depth goes critical — something no dummy plug or external system explains. The show treats this as evidence the Eva itself is, in some sense, alive.",
       "links": [
         { "id": "yuis-soul-in-unit-01", "label": "One reading of why" },
-        { "id": "dummy-plug", "label": "The unmanned-operation system this isn't" }
+        { "id": "dummy-system", "label": "The forced-override system this isn't" }
       ]
     },
     {
@@ -189,16 +222,26 @@
       "episode": 19,
       "type": "theory",
       "title": "Yui's soul inside Unit-01",
-      "body": "The show never states in dialogue that Yui Ikari's soul resides in Unit-01, but strongly implies it — her disappearance during an activation test, Gendo's fixation on the unit, and Unit-01's unpowered \"berserk\" rescues of Shinji are the load-bearing evidence. Whether \"soul\" is meant literally or as shorthand for something else the show's cosmology allows is left open.",
+      "body": "The show never states in dialogue that Yui Ikari's soul resides in Unit-01, but strongly implies it — her disappearance during an activation test, Gendo's fixation on the unit, and Unit-01's unpowered \"berserk\" rescues of Shinji are the load-bearing evidence. Anno has confirmed the broader mechanism in interviews (a pilot syncs with an Evangelion \"through their mother's soul,\" an idea he traces to an NHK documentary on the brain), which lends real weight to the reading — but the specific claim that it's Yui's soul in Unit-01 is still never said outright on-screen.",
       "links": [ { "id": "third-impact", "label": "Where that ambiguity comes to a head" } ]
     },
     {
+      "id": "dummy-system",
+      "episode": 18,
+      "scene": "Gendo forces Unit-01 onto autopilot to destroy the Angel-possessed Unit-03",
+      "type": "fact",
+      "title": "The Dummy System (autonomous override)",
+      "body": "Distinct from the dummy plug used later in the mass-production Evas: this is an autonomous control system Gendo activates on Unit-01 itself, overriding Shinji's control entirely to destroy Unit-03 — which the 13th Angel has taken over — without Shinji's consent. Only afterward does Shinji learn his own friend, Toji Suzuhara, was in Unit-03's cockpit, maimed by his own Eva's hands. It's what finally makes Shinji quit piloting, right up until the next Angel attack forces his hand again.",
+      "links": [ { "id": "dummy-plug", "label": "The related but distinct mass-production system" }, { "id": "shinji-ikari", "label": "Back to Shinji" } ]
+    },
+    {
       "id": "dummy-plug",
-      "episode": 19,
+      "episode": 22,
+      "scene": "The mass-production Evangelions are activated",
       "type": "fact",
       "title": "Dummy plug system",
-      "body": "An unmanned-operation system meant to let an Evangelion fight without a live pilot, built by transplanting a simulated version of a pilot's mental patterns (Rei's, and later Kaworu's, for the mass-production units) into the entry plug.",
-      "links": [ { "id": "dummy-plug-ethics", "label": "How much of a person is really in there" } ]
+      "body": "An unmanned-operation system meant to let an Evangelion fight without a live pilot, built by transplanting a simulated version of a pilot's mental patterns into the entry plug — Rei's for Unit-00's dummy plug, and Kaworu's for the nine mass-production Evangelions (Units 05 through 13).",
+      "links": [ { "id": "dummy-plug-ethics", "label": "How much of a person is really in there" }, { "id": "dummy-system", "label": "The related but distinct Unit-01 override" } ]
     },
     {
       "id": "human-instrumentality-project",
@@ -253,6 +296,14 @@
       "title": "Adam/Lilith identity mix-ups across versions",
       "body": "Which being is sealed in Terminal Dogma, which one Gendo's faction actually possesses, and which one the embryo NERV keeps separately is called is inconsistent enough between the TV series, supplementary material, and later reprints that fans still debate the \"correct\" mapping. Some treat this as evidence of a deliberately unresolved cosmology rather than a continuity error.",
       "links": []
+    },
+    {
+      "id": "kaji-death",
+      "episode": 22,
+      "type": "fact",
+      "title": "Kaji is killed",
+      "body": "Kaji is killed off-screen in this episode, having gotten too close to the truth about Adam, Lilith, and Instrumentality he'd spent the series digging into. Who specifically killed him (SEELE or Gendo's own faction) is left unstated.",
+      "links": [ { "id": "ryoji-kaji", "label": "Back to Kaji's introduction" } ]
     },
     {
       "id": "dummy-plug-ethics",
@@ -315,6 +366,15 @@
       "links": []
     },
     {
+      "id": "shisha-wordplay",
+      "episode": 24,
+      "scene": "The episode's Japanese title",
+      "type": "fact",
+      "title": "The title \"最後のシ者\" is a pun",
+      "body": "The Japanese title for this episode splits the kanji in Kaworu's surname, Nagisa (渚), into its component radicals and re-renders one as the katakana シ, so the title reads as \"the last シ者\" — deliberately ambiguous between 使者 (\"messenger,\" SEELE's errand for Kaworu) and 死者 (\"the dead,\" what he becomes by the end of it).",
+      "links": [ { "id": "kaworu-nagisa", "label": "The Kaworu this refers to" } ]
+    },
+    {
       "id": "accept-vs-reject",
       "episode": 26,
       "type": "theory",
@@ -328,8 +388,48 @@
       "scene": "The finale breaks into congratulatory character-actor cutaways",
       "type": "theory",
       "title": "The finale as commentary on Anno's own depression",
-      "body": "Director Hideaki Anno has spoken about depression during the show's production, and the TV finale's abrupt turn toward real-world footage, character-actor congratulations, and direct address to the viewer is widely read as breaking the fourth wall on purpose — a message about escapism versus engaging with a difficult reality, layered on top of Shinji's in-story arc rather than replacing it.",
+      "body": "Director Hideaki Anno has spoken about depression during the show's production, and the TV finale's abrupt turn toward real-world footage, character-actor congratulations, and direct address to the viewer is widely read as breaking the fourth wall on purpose — a message about escapism versus engaging with a difficult reality, layered on top of Shinji's in-story arc rather than replacing it. Sociologist Miyadai Shinji has argued the series itself started as a lighter, more conventional \"school anime\" concept and drifted toward this ending as production wore on and the director's own state of mind changed. Anno's own framing, from a 1998 interview: he called the show closer to \"a documentary\" of himself than fiction, saying every character is a synthesis of his own personality, and that he simply doesn't have the ability to write drama that isn't a projection of himself.",
       "links": []
+    },
+    {
+      "id": "escape-phrase-shift",
+      "episode": 26,
+      "type": "fact",
+      "title": "\"I mustn't run away\" becomes \"it's okay to run away\"",
+      "body": "Shinji's early refrain — \"I mustn't run away\" (逃げちゃダメだ) — is the closest thing the show has to a stated thesis in its first half. By the finale it's been replaced with the opposite: it's okay to run away. Character designer Yoshiyuki Sadamoto is credited with suggesting the shift.",
+      "links": [ { "id": "accept-vs-reject", "label": "How that plays out differently in EoE" } ]
+    },
+    {
+      "id": "finale-controversy",
+      "episode": 26,
+      "type": "theory",
+      "title": "Why did the finale turn out this way? Even the staff disagree",
+      "body": "The standard explanation is that production had fallen catastrophically behind — only around a third of the episodes were fully animated by the time the show started airing, and the two finale episodes were assembled largely from recycled footage out of necessity. But several staff accounts complicate that: magazine editor Ogura Yuichiro says the finale's plot points were already locked in by January 1996, two months before broadcast; GAINAX president Yamaga Hiroyuki says the show was never so broken it couldn't have been finished conventionally; and assistant director Tsurumaki Kazuya has said Anno had \"a chance of winning\" with this ending in mind from the start, and considered the backlash itself part of that win — a show forgotten in six months was the actual failure state he was avoiding. Anno himself maintains the finale was always intended to be exactly this, schedule aside, aiming at what he called \"liberation from cel animation.\"",
+      "links": [ { "id": "two-endings", "label": "The other ending this led to" } ]
+    },
+    {
+      "id": "original-28-angels-concept",
+      "episode": "eoe",
+      "type": "fact",
+      "title": "The original plan had 28 Angels, not 17",
+      "body": "Early planning documents describe 28 Angels rather than the 17 the finished show uses, with a climax involving a second wave of 12 Angels descending from the moon alongside Instrumentality's activation. That structural role — a large final wave of antagonists tied to Instrumentality — survives in the finished work in a different form: the nine Mass-Production Evangelions that SEELE deploys near the end.",
+      "links": [ { "id": "dummy-plug", "label": "The system built into those nine units" }, { "id": "human-instrumentality-project", "label": "The plan they were meant to serve" } ]
+    },
+    {
+      "id": "phantom-full-new-film",
+      "episode": "eoe",
+      "type": "fact",
+      "title": "The wholly-new film that never got made",
+      "body": "The original 1996 plan was for both replacement final episodes to be an entirely new theatrical film, not a clip-show. Production fell too far behind again; at a February 1997 press conference — one month before the planned release — Anno publicly apologized, and the all-new film was scrapped. What released instead split into two films: a clip-show-plus-new-footage recap (Death (True)²) and then the genuinely new Air/まごころを、君に in July 1997. The original all-new concept became what Japanese sources call a \"phantom project\" (幻の企画) — never produced in that form.",
+      "links": [ { "id": "phantom-film-concepts", "label": "Ideas from that scrapped draft" }, { "id": "two-endings", "label": "The ending that resulted instead" } ]
+    },
+    {
+      "id": "phantom-film-concepts",
+      "episode": "eoe",
+      "type": "unknowable",
+      "title": "Concepts from the scrapped all-new film",
+      "body": "Never filmed, so not part of any released continuity — but Anno has described draft ideas from the abandoned all-new film: pilots merging directly with an Evangelion's \"womb\" rather than using an entry plug, requiring a C-section-like extraction under a strict time limit (missing it meant the pilot's literal death), and Angels that prey on and consume people outright. Anno has noted the latter idea predates, and reads similarly to, Attack on Titan's premise by well over a decade.",
+      "links": [ { "id": "phantom-full-new-film", "label": "Why this film was never made" } ]
     },
     {
       "id": "two-endings",
