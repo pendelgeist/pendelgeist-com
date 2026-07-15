@@ -16,7 +16,7 @@
  */
 import { readFile } from 'node:fs/promises';
 import { validateSeason } from './validateSeason.js';
-import { parseGistRawUrl, resolveTargetUrl, isSeasonData, summarizeDiff } from './updateGist.js';
+import { resolveTarget, fetchGistFile, isSeasonData, summarizeDiff } from './updateGist.js';
 
 async function main() {
   const args = process.argv.slice(2);
@@ -29,8 +29,8 @@ async function main() {
     return;
   }
 
-  const url = await resolveTargetUrl(target);
-  const { gistId, filename } = parseGistRawUrl(url);
+  const token = process.env.GITHUB_TOKEN;
+  const { gistId, filename } = await resolveTarget(target, token);
 
   const updated = JSON.parse(await readFile(filePath, 'utf-8'));
 
@@ -44,9 +44,7 @@ async function main() {
     }
   }
 
-  const liveResponse = await fetch(`${url}?_=${Date.now()}`);
-  if (!liveResponse.ok) throw new Error(`HTTP ${liveResponse.status} fetching current ${url}`);
-  const live = await liveResponse.json();
+  const live = JSON.parse(await fetchGistFile(gistId, filename, token));
 
   console.log(`${filename} (gist ${gistId}):`);
   for (const line of summarizeDiff(live, updated)) console.log(`  ${line}`);
@@ -56,7 +54,6 @@ async function main() {
     return;
   }
 
-  const token = process.env.GITHUB_TOKEN;
   if (!token) throw new Error('GITHUB_TOKEN env var is required to --write (a PAT with gist write access)');
 
   const response = await fetch(`https://api.github.com/gists/${gistId}`, {

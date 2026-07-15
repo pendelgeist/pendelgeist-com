@@ -11,21 +11,47 @@ export function parseGistRawUrl(url) {
 }
 
 /**
- * Resolves the target gist raw URL for "manifest", a season id from the live
- * manifest, or a raw gist URL passed directly.
- * @param {string} target
+ * Fetches one file's content from a gist via the GitHub API (not the raw CDN
+ * URL) so this only ever needs api.github.com to be reachable. Optionally
+ * authenticated for a higher rate limit; unauthenticated works fine for
+ * public gists.
+ * @param {string} gistId @param {string} filename @param {string} [token]
  */
-export async function resolveTargetUrl(target) {
-  if (GIST_RAW_RE.test(target)) return target;
-  if (target === 'manifest') return MANIFEST_URL;
+export async function fetchGistFile(gistId, filename, token) {
+  const headers = { Accept: 'application/vnd.github+json', 'User-Agent': 'pendelgeist-com-update-gist-script' };
+  if (token) headers.Authorization = `Bearer ${token}`;
 
-  const manifest = await (await fetch(MANIFEST_URL)).json();
+  const response = await fetch(`https://api.github.com/gists/${gistId}`, { headers });
+  if (!response.ok) throw new Error(`HTTP ${response.status} fetching gist ${gistId}`);
+  const gist = await response.json();
+
+  const file = gist.files[filename];
+  if (!file) throw new Error(`Gist ${gistId} has no file named "${filename}"`);
+  if (!file.truncated) return file.content;
+
+  // Files over ~1MB come back truncated; fall back to raw_url for those.
+  const rawResponse = await fetch(file.raw_url, token ? { headers: { Authorization: `Bearer ${token}` } } : undefined);
+  if (!rawResponse.ok) throw new Error(`HTTP ${rawResponse.status} fetching truncated file ${filename}`);
+  return rawResponse.text();
+}
+
+/**
+ * Resolves the target gist id + filename for "manifest", a season id from
+ * the live manifest, or a raw gist URL passed directly.
+ * @param {string} target @param {string} [token]
+ */
+export async function resolveTarget(target, token) {
+  if (GIST_RAW_RE.test(target)) return parseGistRawUrl(target);
+  if (target === 'manifest') return parseGistRawUrl(MANIFEST_URL);
+
+  const { gistId: manifestGistId, filename: manifestFilename } = parseGistRawUrl(MANIFEST_URL);
+  const manifest = JSON.parse(await fetchGistFile(manifestGistId, manifestFilename, token));
   const season = manifest.seasons.find(s => s.id === target);
   if (!season) {
     const known = manifest.seasons.map(s => s.id).join(', ');
     throw new Error(`No season "${target}" in the manifest. Known seasons: ${known}`);
   }
-  return season.file;
+  return parseGistRawUrl(season.file);
 }
 
 /** @param {unknown} value */
