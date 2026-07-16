@@ -64,6 +64,32 @@ re-rolling — a 🎲 button appears next to the picker (only while a random the
 roll a new one on demand. Switching to any other theme clears the inline overrides so they
 don't linger on top of that theme's plain CSS.
 
+### Contrast conventions for the fixed themes
+
+Unlike Random Light/Dark, the fixed themes (Auto/Light/Dark, Rainbow, Vaporwave, FFVII,
+FFXIV, GeoCities) have hand-picked colors that can't self-correct — `test/theme-contrast.test.js`
+checks every one of them against the real pairings the CSS actually produces, and encodes the
+two conventions that keep new components from breaking it:
+
+- **Never pair `--color-text`/`--color-accent` with a `--color-chrome` background.**
+  `--color-chrome` is meant for nav-bar-style UI (the nav itself, filter bars, chrome-styled
+  buttons), and in some themes it's deliberately close to or identical to `--color-accent`
+  (Light: both `#315979`) or close to `--color-text`'s darkness (Rainbow). Anything rendering
+  text or a border on `--color-chrome` should use `--color-nav-link` instead — the variable
+  specifically chosen to stay readable against it.
+- **GeoCities '99's `--color-surface` is a special case.** It's a light "silver" tuned to look
+  like a Windows-95 dialog against the theme's navy page background, but every foreground color
+  (`--color-text`/`--color-title`/`--color-accent`/`--color-muted`) is tuned for that navy
+  background, not silver — so `styles.css` re-scopes those variables (plus a couple of
+  hardcoded border colors) specifically for the elements that render on `--color-surface`
+  (review cards, the Evangelion detail panel, form controls, the GraphQL result box).
+- **Don't dim text with `opacity` for a "muted/secondary" look** — it stacks with whatever
+  color is already chosen (sometimes on top of `--color-muted`, which is already the
+  de-emphasized tone) and can push a previously-fine pairing below AA depending on the theme.
+  Use `--color-muted` outright instead; if a distinct hover state is needed, prefer inverting
+  foreground/background or changing `text-decoration` over dimming opacity, since those don't
+  put the contrast ratio at risk.
+
 ## VQAR data
 
 Review data lives in gists, not in this repo. `public/vqar/app.js` fetches a manifest
