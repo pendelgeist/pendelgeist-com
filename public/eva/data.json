@@ -33,7 +33,13 @@
     "en-wiki-ep6": { "lang": "en", "title": "Rei II (episode) — Wikipedia", "url": "https://en.wikipedia.org/wiki/Rei_II" },
     "en-wiki-ep7": { "lang": "en", "title": "A Human Work (episode) — Wikipedia", "url": "https://en.wikipedia.org/wiki/A_Human_Work" },
     "en-wiki-ep8": { "lang": "en", "title": "Asuka Strikes! (episode) — Wikipedia", "url": "https://en.wikipedia.org/wiki/Asuka_Strikes!" },
-    "en-wiki-ep9": { "lang": "en", "title": "Both of You, Dance Like You Want to Win! (episode) — Wikipedia", "url": "https://en.wikipedia.org/wiki/Both_of_You,_Dance_Like_You_Want_to_Win!" }
+    "en-wiki-ep9": { "lang": "en", "title": "Both of You, Dance Like You Want to Win! (episode) — Wikipedia", "url": "https://en.wikipedia.org/wiki/Both_of_You,_Dance_Like_You_Want_to_Win!" },
+    "en-wiki-ep10": { "lang": "en", "title": "Magmadiver (episode) — Wikipedia", "url": "https://en.wikipedia.org/wiki/Magmadiver" },
+    "en-wiki-ep11": { "lang": "en", "title": "The Day Tokyo-3 Stood Still (episode) — Wikipedia", "url": "https://en.wikipedia.org/wiki/The_Day_Tokyo-3_Stood_Still" },
+    "en-wiki-ep12": { "lang": "en", "title": "She said, \"Don't make others suffer for your personal hatred.\" (episode) — Wikipedia", "url": "https://en.wikipedia.org/wiki/She_said,_%22Don%27t_make_others_suffer_for_your_personal_hatred.%22" },
+    "en-wiki-ep13": { "lang": "en", "title": "Lilliputian Hitcher (episode) — Wikipedia", "url": "https://en.wikipedia.org/wiki/Lilliputian_Hitcher" },
+    "en-wiki-ep14": { "lang": "en", "title": "Weaving a Story (episode) — Wikipedia", "url": "https://en.wikipedia.org/wiki/Weaving_a_Story" },
+    "en-wiki-ep15": { "lang": "en", "title": "Those women longed for the touch of others' lips, and thus invited their kisses (episode) — Wikipedia", "url": "https://en.wikipedia.org/wiki/Those_women_longed_for_the_touch_of_others%27_lips,_and_thus_invited_their_kisses" }
   },
   "episodes": [
     { "number": 1, "title": "Angel Attack", "subtitle": "JP: 使徒、襲来 — lit. \"Angel, Attack\" · aired 1995-10-04, 6.8%" },
@@ -85,7 +91,8 @@
         { "id": "rei-clones", "label": "Where the clones live" },
         { "id": "true-continuity-of-self", "label": "Are the Reis the same person?" },
         { "id": "rei-apartment-ep5", "label": "A closer look at how she lives" },
-        { "id": "ramiel-attack", "label": "An early episode built around her getting hurt" }
+        { "id": "ramiel-attack", "label": "An early episode built around her getting hurt" },
+        { "id": "rei-inner-monologue-origin", "label": "Her first extended inner monologue" }
       ],
       "sourceRefs": ["evageeks-rei", "fandom-characters"]
     },
@@ -95,7 +102,7 @@
       "type": "character",
       "title": "Misato Katsuragi",
       "body": "Commands Eva deployment in the field and takes Shinji in as a housemate. A Second Impact survivor whose father died in the disaster that created it, which shapes both her drive to fight the Angels and her difficulty staying close to anyone.",
-      "links": [ { "id": "second-impact", "label": "The disaster that shaped her" } ],
+      "links": [ { "id": "second-impact", "label": "The disaster that shaped her" }, { "id": "misato-second-impact-backstory", "label": "The flashback that spells this out directly" } ],
       "sourceRefs": ["fandom-characters", "en-wiki-characters"]
     },
     {
@@ -108,7 +115,8 @@
         { "id": "human-instrumentality-project", "label": "What he's actually building toward" },
         { "id": "gendos-motive-reading", "label": "How sympathetic is that, really?" },
         { "id": "gendo-visual-motif", "label": "How he's shot, from the start" },
-        { "id": "gendo-photo-slap", "label": "A rare, stark display of his temper" }
+        { "id": "gendo-photo-slap", "label": "A rare, stark display of his temper" },
+        { "id": "yui-grave-visit", "label": "One of his only unguarded moments with Shinji" }
       ],
       "sourceRefs": ["fandom-characters", "en-wiki-characters"]
     },
@@ -118,7 +126,7 @@
       "type": "character",
       "title": "Ritsuko Akagi",
       "body": "Oversees the Evangelions and the MAGI supercomputers, inheriting both her position and a tangled personal history from her mother, Naoko Akagi, the MAGI's original designer.",
-      "links": [ { "id": "magi", "label": "The system she inherited" } ],
+      "links": [ { "id": "magi", "label": "The system she inherited" }, { "id": "iruel-hack-battle", "label": "Her biggest test of that inheritance" }, { "id": "ritsuko-naoko-relationship", "label": "Her complicated relationship with her mother" } ],
       "sourceRefs": ["fandom-characters"]
     },
     {
@@ -127,7 +135,7 @@
       "type": "fact",
       "title": "Second Impact (September 13, 2000)",
       "body": "A catastrophic explosion at an Antarctic research site, publicly blamed on a meteorite. It melted the polar ice caps, shifted the Earth's axis, and killed roughly half the world's population. Later revealed as the result of a deliberate contact experiment on the being called Adam. One knock-on effect stated directly in the Japanese Wikipedia entry: the axis tilt erased Japan's seasons entirely, leaving the country in permanent summer-like weather for the rest of the series.",
-      "links": [ { "id": "adam", "label": "What was actually experimented on" } ],
+      "links": [ { "id": "adam", "label": "What was actually experimented on" }, { "id": "misato-second-impact-backstory", "label": "One survivor's firsthand account of it" } ],
       "sourceRefs": ["ja-wiki-nge", "fandom-second-impact", "en-wiki-nge"],
       "quote": {
         "lang": "ja",
@@ -155,7 +163,7 @@
       "type": "fact",
       "title": "NERV",
       "body": "A UN-supervised paramilitary organization, publicly tasked with defending humanity from the Angels using the Evangelions. It answers, less publicly, to SEELE and to Gendo Ikari's own agenda.",
-      "links": [ { "id": "seele", "label": "Who NERV really answers to" }, { "id": "jet-alone-incident", "label": "A rival robot program NERV has to contend with" } ],
+      "links": [ { "id": "seele", "label": "Who NERV really answers to" }, { "id": "jet-alone-incident", "label": "A rival robot program NERV has to contend with" }, { "id": "marduk-institute-reveal", "label": "The shell-company front NERV pulls its pilots through" } ],
       "sourceRefs": ["ja-wiki-nge", "en-wiki-nge"],
       "quote": {
         "lang": "ja",
@@ -322,7 +330,7 @@
       "type": "theory",
       "title": "Shinji (and Rei) as instruments, not sons",
       "body": "Several scholars single out this episode as already making clear that Gendo treats both Shinji and Rei as tools toward his own ends rather than as people he has any relationship with — a reading that only sharpens once Gendo's actual motive (reuniting with Yui through Instrumentality) is spelled out later in the series.",
-      "links": [ { "id": "gendos-motive-reading", "label": "Gendo's motive, once it's made explicit" } ],
+      "links": [ { "id": "gendos-motive-reading", "label": "Gendo's motive, once it's made explicit" }, { "id": "gendo-praise-shinji-motivation", "label": "Where this reading pays off explicitly, in episode 12" } ],
       "sourceRefs": ["en-wiki-ep1"]
     },
     {
@@ -555,6 +563,329 @@
       "sourceRefs": ["en-wiki-ep9"]
     },
     {
+      "id": "ep10-production-swap",
+      "episode": 10,
+      "type": "fact",
+      "title": "Episodes 10 and 11 were swapped during production",
+      "body": "Gainax's 1993 planning document originally slated the magma-dive Angel-capture story as episode 11 and a Nerv-blackout story as episode 10; during production the two were swapped, so the magma story became episode 10 (\"Magmadiver\") and the blackout draft became episode 11 (\"The Day Tokyo-3 Stood Still\") instead.",
+      "links": [ { "id": "matarael-blackout-battle", "label": "The blackout episode this became" } ],
+      "sourceRefs": ["en-wiki-ep10"]
+    },
+    {
+      "id": "sandalphon-design-origin",
+      "episode": 10,
+      "type": "fact",
+      "title": "Sandalphon's design comes from a documentary about ancient life",
+      "body": "The dormant, larval Angel Sandalphon — found in a volcano's magma chamber — was designed with inspiration from an NHK documentary, Life: A Long Journey of 4 Billion Years, specifically its depiction of the prehistoric predator Anomalocaris; trilobites are cited as a secondary influence. Writer Virginie Nebbia has separately argued the episode's battle staging draws on David Brin's novel Sundiver.",
+      "links": [ { "id": "angels-true-nature", "label": "The broader question of what Angels even are" } ],
+      "sourceRefs": ["en-wiki-ep10"]
+    },
+    {
+      "id": "ep10-title-origin",
+      "episode": 10,
+      "type": "theory",
+      "title": "\"Magmadiver\", by way of a novel Anno never read",
+      "body": "Anno has confirmed in interview that the episode's English title was inspired by David Brin's 1980 novel Sundiver — while also stating flatly that he never actually read it, just picked up the title.",
+      "links": [],
+      "sourceRefs": ["en-wiki-ep10"]
+    },
+    {
+      "id": "misato-scar-foreshadowing",
+      "episode": 10,
+      "scene": "Misato's naked body, seen in the episode's final scene",
+      "type": "fact",
+      "title": "A scar that pays off two episodes later",
+      "body": "The final scene of \"Magmadiver\" shows Misato's bare torso, including a scar later revisited directly in episode 12's flashback to her Second Impact trauma. Evangelion Chronicle argues the scene is doing more than fan service — it's quietly seeding Misato's connection to the disaster two episodes ahead of the reveal.",
+      "links": [ { "id": "misato-second-impact-backstory", "label": "The flashback this sets up" }, { "id": "second-impact", "label": "The disaster itself" } ],
+      "sourceRefs": ["en-wiki-ep10"]
+    },
+    {
+      "id": "asuka-rei-rivalry-motivation",
+      "episode": 10,
+      "type": "theory",
+      "title": "Asuka pilots out of rivalry with Rei, not duty",
+      "body": "According to Evangelion Chronicle, Asuka's decision to take on the Sandalphon mission alone is driven less by a sense of duty to Nerv than by simple competitiveness with Rei — an early, explicit statement of the rivalry that structures most of Asuka's choices as a pilot going forward.",
+      "links": [ { "id": "asuka-langley-souryuu", "label": "Back to Asuka" }, { "id": "rei-ayanami", "label": "The rival she measures herself against" } ],
+      "sourceRefs": ["en-wiki-ep10"]
+    },
+    {
+      "id": "ep10-reception",
+      "episode": 10,
+      "type": "fact",
+      "title": "Highest rating yet, most divisive reviews yet",
+      "body": "\"Magmadiver\" drew a 9.5% household rating — the highest for the series to that point — but landed an ambivalent-to-negative critical reception, frequently singled out as the closest the show gets to pure filler and criticized for leaning hard on fan service (Asuka's swimsuit scene, Misato's ending shot). Other reviewers pushed back, defending its humor, the tension of the magma-chamber battle, and Shinji's rescue of Asuka as one of his better moments.",
+      "links": [ { "id": "misato-fanservice-debate", "label": "The same critical argument, first raised back in episode 1" } ],
+      "sourceRefs": ["en-wiki-ep10"]
+    },
+    {
+      "id": "matarael-blackout-battle",
+      "episode": 11,
+      "type": "fact",
+      "title": "A sabotage blackout, and the first three-Eva team-up",
+      "body": "Nerv headquarters loses power to unidentified sabotage just as the Angel Matarael arrives; with electricity out, Gendo and staff activate the Evangelions manually, and Shinji, Rei, and Asuka fight together for the first time as a genuine three-pilot team, with Shinji landing the finishing shot.",
+      "links": [ { "id": "ep10-production-swap", "label": "The production swap that put this story here" }, { "id": "shinji-asuka-sync-training", "label": "Their first two-pilot coordination, two episodes earlier" } ],
+      "sourceRefs": ["en-wiki-ep11"]
+    },
+    {
+      "id": "ep11-title-homage",
+      "episode": 11,
+      "type": "fact",
+      "title": "A title borrowed from a 1951 sci-fi classic",
+      "body": "The English title directly echoes the 1951 film The Day the Earth Stood Still, one of several NGE episode titles that reference existing science fiction cinema; the episode's storyboard-stage English title was the more mundane \"Panic in Geo Front\" before the change. Anno's fondness for genre callbacks shows up again here in a UCC coffee can visible on-screen, the same brand featured in his earlier series Gunbuster.",
+      "links": [],
+      "sourceRefs": ["en-wiki-ep11"]
+    },
+    {
+      "id": "gendo-humanizing-moment",
+      "episode": 11,
+      "scene": "Gendo personally helps Nerv staff manually activate the Evangelions",
+      "type": "theory",
+      "title": "Gendo's one unusually warm moment",
+      "body": "Normally cold and unapproachable, Gendo pitches in directly to help his subordinates get the Evas running without power — a rare glimpse of him as responsible and human rather than purely instrumental, and one that visibly surprises Shinji. Writer Dennis Redmond calls it unusual by the norms of Japanese storytelling, which \"tends to recognise group achievement rather than individual merit.\"",
+      "links": [ { "id": "gendo-visual-motif", "label": "How he's usually shot instead" }, { "id": "gendo-photo-slap", "label": "How quickly that warmth can flip, one episode earlier" } ],
+      "sourceRefs": ["en-wiki-ep11"]
+    },
+    {
+      "id": "asuka-rei-miss-perfect",
+      "episode": 11,
+      "scene": "Asuka mocks Rei's calm under pressure by calling her \"Miss Perfect\"",
+      "type": "theory",
+      "title": "\"Miss Perfect\", and the masculine-protest reading of Asuka",
+      "body": "Asuka's hostility toward Rei's composure under fire — she calls her yūtōsei, \"honor student\" or \"Miss Perfect\" — has been read by critics (including editor Gualtiero Cannarsi) through the lens of \"masculine protest\", a psychological term for rebellion by women weary of a stereotyped gender role: Asuka tries to out-perform and out-tough everyone around her, fusing an inferiority complex with radical rivalry. The episode ends with her softening toward Rei as a teammate for the first time.",
+      "links": [ { "id": "asuka-rei-rivalry-motivation", "label": "The same rivalry, one episode earlier" } ],
+      "sourceRefs": ["en-wiki-ep11"]
+    },
+    {
+      "id": "shinji-why-fight-angels",
+      "episode": 11,
+      "scene": "The three pilots lie on a hillside after the battle, watching Tokyo-3's lights come back on",
+      "type": "unknowable",
+      "title": "Why does humanity even fight the Angels?",
+      "body": "Shinji wonders aloud, after the battle, what the Angels' attacks are actually for — a question the show raises here and never really answers. Writer Rob Vuckovich reads it as evidence that God is functionally absent or indifferent in Evangelion's world, despite Nerv's own motto (\"God's in His Heaven, All's right with the World\").",
+      "links": [ { "id": "angels-true-nature", "label": "The deeper unknown this question sits on top of" } ],
+      "sourceRefs": ["en-wiki-ep11"]
+    },
+    {
+      "id": "ep11-reception",
+      "episode": 11,
+      "type": "fact",
+      "title": "One of the best-reviewed episodes of the run",
+      "body": "\"The Day Tokyo-3 Stood Still\" drew a 9.0% household rating and was widely praised — critics singled out Matarael's battle, the episode's pacing and script, its positive tone, and its handling of philosophical questions about technology and human agency.",
+      "links": [],
+      "sourceRefs": ["en-wiki-ep11"]
+    },
+    {
+      "id": "sahaquiel-battle-turel-draft",
+      "episode": 12,
+      "type": "fact",
+      "title": "A scrapped Angel called Turel, and the actual Sahaquiel fight",
+      "body": "The episode's original planning-document draft cast a different Angel, Turel (\"the rock of God\"), as the antagonist; it was replaced during production by Sahaquiel, a satellite-sized Angel that tries to crash-land onto Nerv using its own body as a bomb. All three Evas team up to destroy it against Nerv's own odds, with Asuka landing the final blow.",
+      "links": [ { "id": "matarael-blackout-battle", "label": "The previous episode's three-pilot fight" } ],
+      "sourceRefs": ["en-wiki-ep12"]
+    },
+    {
+      "id": "misato-second-impact-backstory",
+      "episode": 12,
+      "scene": "A sepia-toned flashback to Misato at fourteen, at the South Pole",
+      "type": "fact",
+      "title": "Misato's Second Impact flashback",
+      "body": "The episode opens with a flashback revealing that fourteen-year-old Misato was present at the South Pole when Second Impact occurred, and that her father died there; she alone survived. It's the clearest on-screen account yet of how the disaster made her who she is, and it directly follows up the scar glimpsed at the end of the previous episode.",
+      "links": [ { "id": "misato-katsuragi", "label": "Back to Misato's introduction" }, { "id": "second-impact", "label": "The disaster itself" }, { "id": "misato-scar-foreshadowing", "label": "The scar that foreshadowed this, one episode earlier" } ],
+      "sourceRefs": ["en-wiki-ep12"]
+    },
+    {
+      "id": "gendo-praise-shinji-motivation",
+      "episode": 12,
+      "scene": "Gendo compliments Shinji after the Sahaquiel battle",
+      "type": "theory",
+      "title": "Shinji realizes he pilots for his father's approval",
+      "body": "After Gendo unexpectedly praises him, Shinji recognizes that the real reason he keeps getting in the Eva is to earn that approval — not duty, not saving the world. Newtype magazine calls Gendo's praise a \"double-edged sword\": it gives Shinji a reason to keep piloting, but ties his self-worth to a father who is otherwise withholding, a dynamic the series revisits explicitly in episode 16.",
+      "links": [ { "id": "shinji-gendo-tool-reading", "label": "How coldly Gendo treated him from episode 1" }, { "id": "gendo-humanizing-moment", "label": "Another rare warm moment, one episode earlier" } ],
+      "sourceRefs": ["en-wiki-ep12"]
+    },
+    {
+      "id": "spear-of-longinus-intro",
+      "episode": 12,
+      "scene": "A maritime convoy transports a giant sealed object toward Antarctica",
+      "type": "fact",
+      "title": "First glimpse of the Spear of Longinus",
+      "body": "This episode gives the first on-screen look at the Spear of Longinus, a massive artifact being shipped by sea — named for the legendary Roman soldier whose spear pierced the crucified Christ, and for the belief that whoever wields it, blood-soaked, commands the world. Its full significance and destination aren't spelled out yet.",
+      "links": [],
+      "sourceRefs": ["en-wiki-ep12"]
+    },
+    {
+      "id": "ep12-religious-refs",
+      "episode": 12,
+      "type": "fact",
+      "title": "Adam as a giant of light, and Sodom and Gomorrah in Antarctica",
+      "body": "The episode's opening flashback depicts Adam, the first Angel, as a colossal being of light — a form scholars have linked to Kabbalistic depictions of Adam \"before his Fall\" and to the giant of light from Ultraman 80. Later, Gendo and Fuyutsuki discuss Second Impact over shots of salt columns rising from Antarctica's reddened seas, an explicit visual reference to Lot's wife and the destruction of Sodom and Gomorrah; Fuyutsuki calls the disaster a \"punishment\" and the pole itself a \"real Dead Sea.\"",
+      "links": [ { "id": "adam", "label": "Adam's fuller introduction, later in the series" }, { "id": "second-impact", "label": "The disaster being discussed" } ],
+      "sourceRefs": ["en-wiki-ep12"]
+    },
+    {
+      "id": "ep12-reception",
+      "episode": 12,
+      "type": "fact",
+      "title": "A generally well-liked episode — and an unlikely nod from Jordan Peele",
+      "body": "\"She said, 'Don't make others suffer for your personal hatred'\" drew a 7.4% rating and placed 12th in a 1996 Animage magazine readers' poll of best episodes. Reception was largely positive, with some critics calling out the plot as stock and the Sahaquiel fight as too brief. Decades later, Jordan Peele's production notes for the film Nope confirmed the design of its flying creature, Jean Jacket, was directly inspired by Evangelion's Angels — Peele specifically cited their \"hyper minimalism\" and \"biomechanical design flair,\" and commentators drew a direct visual line to Sahaquiel's design.",
+      "links": [],
+      "sourceRefs": ["en-wiki-ep12"]
+    },
+    {
+      "id": "iruel-hack-battle",
+      "episode": 13,
+      "type": "fact",
+      "title": "A battle fought entirely inside the Magi",
+      "body": "A microscopic Angel, Iruel, infiltrates Nerv through a research chamber and rapidly evolves into something that behaves like a computer virus, attempting to hijack the Magi supercomputer into triggering Nerv's self-destruct. Ritsuko Akagi defeats it not by force but with a \"reverse hack\": rather than fighting Iruel's evolution, she engineers a program that gets it to choose coexistence with the Magi instead.",
+      "links": [ { "id": "magi", "label": "The system under attack" }, { "id": "ritsuko-akagi", "label": "Back to Ritsuko's introduction" } ],
+      "sourceRefs": ["en-wiki-ep13"]
+    },
+    {
+      "id": "ep13-scrapped-trilogy",
+      "episode": 13,
+      "type": "fact",
+      "title": "The abandoned three-episode \"fear\" arc, and where the schedule finally breaks",
+      "body": "This episode was originally drafted as \"What Comes After Fear,\" the opening chapter of a planned three-episode arc in which Shinji would be defeated and trapped inside an Angel. Gainax abandoned the arc mid-production; some of its ideas were later folded into episode 16 instead. Wikipedia's account also marks this episode as the point where the show's chronic scheduling crisis becomes acute: only twelve episodes were finished when the series began airing, leaving the remaining fourteen to be made in about a third of the time already spent.",
+      "links": [ { "id": "ep1-schedule-crisis", "label": "The same production crunch, described from episode 1's side" } ],
+      "sourceRefs": ["en-wiki-ep13"]
+    },
+    {
+      "id": "magi-trinity-naoko-symbolism",
+      "episode": 13,
+      "type": "theory",
+      "title": "The three Magi as a split portrait of one woman",
+      "body": "Casper, Melchior, and Balthasar are each modeled on a different facet of designer Naoko Akagi's personality — as scientist, mother, and woman, per the series' own film books. Writer Dennis Redmond reads the arrangement as a \"clever gender bend\" of the Christian Trinity; that Casper (associated with Naoko-as-woman) is the last of the three to resist Iruel's attack has been read as Ritsuko coming to understand her mother on that specific, human level.",
+      "links": [ { "id": "magi", "label": "The system itself" } ],
+      "sourceRefs": ["en-wiki-ep13"]
+    },
+    {
+      "id": "ritsuko-naoko-relationship",
+      "episode": 13,
+      "scene": "Ritsuko and Misato talk about Naoko during the Iruel operation",
+      "type": "theory",
+      "title": "Ritsuko, Naoko, and Evangelion's \"cannibalistic\" mothers",
+      "body": "Ritsuko admits during the operation that she never liked her mother, Naoko, whose personality is nonetheless imprinted permanently into the Magi she now depends on. Scholar Mariana Ortega notes Ritsuko physically entering the Magi's cabling mirrors how Eva pilots enter cockpits built around their own mothers' souls, and describes the mother figure across the series as metaphorically and literally \"cannibalistic.\"",
+      "links": [ { "id": "ritsuko-akagi", "label": "Back to Ritsuko" }, { "id": "yuis-soul-in-unit-01", "label": "The parallel mother-in-the-machine theory for Shinji and Yui" } ],
+      "sourceRefs": ["en-wiki-ep13"]
+    },
+    {
+      "id": "iso-scifi-worldbuilding",
+      "episode": 13,
+      "type": "fact",
+      "title": "One animator's crash course in molecular biology, drafted into the script",
+      "body": "Animator Mitsuo Iso, largely self-taught in computer science and biology, wrote an early, much-denser draft of this episode's script full of real genetics terminology — polysomes, the Pribnow box, the central dogma of molecular biology, the sigma factor — deliberately modeled on structures like tRNA, and drew Central Dogma's own layout from The Andromeda Strain. Much of Iso's original draft was cut or reworked by Akio Satsukawa and Anno, but the terminology survived into the aired episode.",
+      "links": [],
+      "sourceRefs": ["en-wiki-ep13"]
+    },
+    {
+      "id": "ep13-reception",
+      "episode": 13,
+      "type": "fact",
+      "title": "A low rating, a strong critical response",
+      "body": "\"Lilliputian Hitcher\" drew only a 3.4% household rating but was well-reviewed, with critics praising its sense of suspense, the visual design of Nerv's control rooms, its focus on Ritsuko, and the Iruel hacking sequence — Comic Book Resources ranked the fight as the second-best in the entire series.",
+      "links": [],
+      "sourceRefs": ["en-wiki-ep13"]
+    },
+    {
+      "id": "rei-inner-monologue-origin",
+      "episode": 14,
+      "scene": "Rei's extended stream-of-consciousness sequence during the pilot compatibility test",
+      "type": "fact",
+      "title": "Where Rei's monologue actually came from",
+      "body": "Anno has said he felt he'd been neglecting Rei as a character partway through the series, and set out to correct it here by writing her first extended inner monologue — originally conceived with Rei as a girl with schizophrenia. He struggled to write it convincingly until a friend lent him a book on mental illness containing a poem written by a person living with one; that poem gave him the words, and the monologue was written in a single sitting. It marks the point the series turns more explicitly introspective for its remaining episodes.",
+      "links": [ { "id": "rei-ayanami", "label": "Back to Rei's introduction" }, { "id": "true-continuity-of-self", "label": "The identity question this monologue circles without answering" } ],
+      "sourceRefs": ["en-wiki-ep14"]
+    },
+    {
+      "id": "spear-delivered-to-terminal-dogma",
+      "episode": 14,
+      "scene": "Rei pilots Unit-00 to deliver the Spear of Longinus to Terminal Dogma",
+      "type": "fact",
+      "title": "The Spear reaches Terminal Dogma",
+      "body": "The Spear of Longinus, first glimpsed being shipped from Antarctica two episodes earlier, is delivered by Rei via Unit-00 to the deepest level of Nerv's base — Terminal Dogma, the same restricted area that later turns out to hold Lilith.",
+      "links": [ { "id": "spear-of-longinus-intro", "label": "The Spear's first appearance" }, { "id": "lilith", "label": "What else is kept in Terminal Dogma" } ],
+      "sourceRefs": ["en-wiki-ep14"]
+    },
+    {
+      "id": "eva00-soul-speculation",
+      "episode": 14,
+      "scene": "Shinji, briefly piloting Unit-00, glimpses a distorted image of Rei and it goes berserk",
+      "type": "theory",
+      "title": "Whose soul is really in Unit-00?",
+      "body": "When Shinji attempts to sync with Unit-00 instead of his usual Unit-01, it violently attacks the observation booth — and he glimpses a warped image of Rei in the process. Fans and critics have read this as evidence Unit-00 carries the soul of an earlier Rei clone (or, in one reading, of Naoko Akagi, given Ritsuko is present and resembles her mother in the same scene); the episode itself never says which, if either, is correct.",
+      "links": [ { "id": "eva-01-devours-sachiel", "label": "The equivalent unexplained incident for Unit-01" }, { "id": "rei-lilith-soul-split", "label": "The later theory this feeds into" } ],
+      "sourceRefs": ["en-wiki-ep14"]
+    },
+    {
+      "id": "marduk-institute-reveal",
+      "episode": 15,
+      "scene": "Kaji's investigation into Eva pilot selection",
+      "type": "fact",
+      "title": "The Marduk Institute",
+      "body": "Kaji's investigation surfaces the Marduk Institute, the body apparently responsible for selecting Evangelion pilot candidates — revealed to be a front for 108 shell companies rather than a real organization. One of those shells lists Gendo, Fuyutsuki, and SEELE's Keel Lorenz among its registered names, tying Nerv's pilot-selection process directly back to the same people steering Instrumentality from behind it.",
+      "links": [ { "id": "seele", "label": "The organization these names ultimately answer to" }, { "id": "nerv", "label": "The agency Marduk feeds pilots into" } ],
+      "sourceRefs": ["en-wiki-ep15"]
+    },
+    {
+      "id": "yui-grave-visit",
+      "episode": 15,
+      "scene": "Shinji visits Yui's grave with Gendo for the first time in years",
+      "type": "theory",
+      "title": "An empty grave, and \"humans survive by forgetting\"",
+      "body": "Gendo takes Shinji to Yui's grave and admits there's no body under the stone — it's purely a place to remember her by — before adding that humans survive by forgetting. Scholars read the scene as one of the only moments Shinji and Gendo approach genuine mutual understanding, letting Shinji settle (however partially) why he was the one entrusted with fighting the Angels.",
+      "links": [ { "id": "gendo-ikari", "label": "Back to Gendo" }, { "id": "yuis-soul-in-unit-01", "label": "Where Yui actually persists, per one theory" }, { "id": "gendo-humanizing-moment", "label": "Another of Gendo's rare unguarded moments" } ],
+      "sourceRefs": ["en-wiki-ep15"]
+    },
+    {
+      "id": "shinji-asuka-first-kiss",
+      "episode": 15,
+      "scene": "Asuka kisses Shinji out of boredom, then insists it meant nothing",
+      "type": "theory",
+      "title": "The first Shinji/Asuka kiss, and how much it actually means",
+      "body": "Bored and restless, Asuka kisses Shinji and immediately downplays it as nothing more than boredom — a lie critics (Fabio Bartoli among them) read as reassurance aimed at herself as much as at him. Commentators disagree sharply on how to take it: some read it as one of Asuka's worse impulsive moments toward Shinji, others as evidence both of them have real feelings for each other that neither is equipped to admit or act on.",
+      "links": [ { "id": "asuka-langley-souryuu", "label": "Back to Asuka" }, { "id": "hedgehogs-dilemma-concept", "label": "The parable this dynamic keeps testing" } ],
+      "sourceRefs": ["en-wiki-ep15"]
+    },
+    {
+      "id": "misato-kaji-backstory",
+      "episode": 15,
+      "scene": "A drunk, tearful Misato tells Kaji the real reason she left him",
+      "type": "theory",
+      "title": "Why Misato really left Kaji",
+      "body": "Misato admits to Kaji that she broke up with him years earlier because he reminded her too much of her father, with whom she had an unresolved, conflicted relationship. Some critics read this through Jung's Electra complex; more broadly, several commentators note Misato unconsciously searches every relationship for a father figure, then panics and withdraws once she finds the resemblance — the same pattern this scene names directly.",
+      "links": [ { "id": "misato-katsuragi", "label": "Back to Misato" }, { "id": "misato-second-impact-backstory", "label": "The trauma underneath that pattern" }, { "id": "ryoji-kaji", "label": "Back to Kaji" } ],
+      "sourceRefs": ["en-wiki-ep15"]
+    },
+    {
+      "id": "crucified-giant-reveal",
+      "episode": 15,
+      "scene": "Kaji shows Misato a crucified giant in Terminal Dogma, calling it Adam",
+      "type": "fact",
+      "title": "The giant Kaji calls \"Adam\" — except it isn't",
+      "body": "Kaji secretly brings Misato into Terminal Dogma and shows her a crucified, seven-eyed giant, identifying it as Adam, the first Angel. The series finale later reveals this figure is actually Lilith, the second Angel — one of several points across the show where characters' own labels for Adam and Lilith turn out to be unreliable.",
+      "links": [ { "id": "lilith", "label": "Who this figure actually is" }, { "id": "adam-lilith-confusion", "label": "The wider pattern of Adam/Lilith mix-ups" } ],
+      "sourceRefs": ["en-wiki-ep15"]
+    },
+    {
+      "id": "seven-eyes-symbolism",
+      "episode": 15,
+      "scene": "The seven-eyed mask on the crucified giant, echoing Seele's own emblem",
+      "type": "fact",
+      "title": "Seven eyes, and the Book of Revelation",
+      "body": "The seven-eyed mask on the giant in Terminal Dogma echoes Seele's own emblem, and multiple scholars trace both to the Book of Revelation's lamb with \"seven horns and seven eyes,\" described there as \"the Seven Spirits of God sent out into all the earth.\" Assistant director Kazuya Tsurumaki has said the show's Christian imagery was chosen largely for aesthetic and exoticizing effect on its Japanese audience, rather than to encode a specific theology.",
+      "links": [ { "id": "seele", "label": "The organization whose emblem this echoes" } ],
+      "sourceRefs": ["en-wiki-ep15"]
+    },
+    {
+      "id": "ep15-reception",
+      "episode": 15,
+      "type": "fact",
+      "title": "A quiet, character-focused episode with a divisive kiss",
+      "body": "Without a single Angel battle, \"Those women longed for the touch of others' lips, and thus invited their kisses\" drew a 6% rating and split critics: some found the Misato/Kaji romance overwrought and Asuka's behavior toward Shinji indefensible, while others praised the same scenes' focus on character interiority, plus the episode's religious imagery and its use of Bach's Cello Suite No. 1 over Shinji's private cello practice.",
+      "links": [],
+      "sourceRefs": ["en-wiki-ep15"]
+    },
+    {
       "id": "asuka-langley-souryuu",
       "episode": 8,
       "type": "character",
@@ -569,7 +900,7 @@
       "type": "character",
       "title": "Ryoji Kaji",
       "body": "Officially a NERV agent, unofficially reporting to SEELE and Japan's government simultaneously, digging into NERV's secrets — including Adam and Instrumentality — while romantically entangled with Misato.",
-      "links": [ { "id": "adam", "label": "The secret he keeps digging into" }, { "id": "kaji-death", "label": "What that digging costs him" }, { "id": "asuka-arrival", "label": "Escorting Asuka to Japan" } ],
+      "links": [ { "id": "adam", "label": "The secret he keeps digging into" }, { "id": "kaji-death", "label": "What that digging costs him" }, { "id": "asuka-arrival", "label": "Escorting Asuka to Japan" }, { "id": "misato-kaji-backstory", "label": "His unresolved history with Misato" }, { "id": "crucified-giant-reveal", "label": "What he shows Misato in Terminal Dogma" } ],
       "sourceRefs": ["fandom-characters"]
     },
     {
@@ -592,7 +923,7 @@
       "type": "fact",
       "title": "MAGI",
       "body": "NERV's supercomputer system: three semi-independent processors — Casper, Melchior, and Balthasar, named for the Biblical Three Magi — modeled on different aspects of their designer Naoko Akagi's personality, which must reach consensus to authorize NERV's most critical decisions.",
-      "links": [],
+      "links": [ { "id": "iruel-hack-battle", "label": "The Magi's biggest on-screen test" }, { "id": "magi-trinity-naoko-symbolism", "label": "What the three-way split is read as symbolizing" } ],
       "sourceRefs": ["ja-wiki-nge"],
       "quote": {
         "lang": "ja",
@@ -607,7 +938,7 @@
       "type": "fact",
       "title": "SEELE",
       "body": "A secretive committee that founded NERV and steers events from behind it, working from the Dead Sea Scrolls toward its own version of the Human Instrumentality Project — a version Gendo Ikari is simultaneously trying to hijack for himself.",
-      "links": [ { "id": "dead-sea-scrolls-contents", "label": "The text they're both working from" } ],
+      "links": [ { "id": "dead-sea-scrolls-contents", "label": "The text they're both working from" }, { "id": "marduk-institute-reveal", "label": "The shell-company front SEELE's members hide behind" }, { "id": "seven-eyes-symbolism", "label": "The symbolism behind SEELE's own emblem" } ],
       "sourceRefs": ["ja-wiki-nge", "en-wiki-nge"],
       "quote": {
         "lang": "ja",
@@ -663,7 +994,7 @@
       "type": "theory",
       "title": "Yui's soul inside Unit-01",
       "body": "The show never states in dialogue that Yui Ikari's soul resides in Unit-01, but strongly implies it — her disappearance during an activation test, Gendo's fixation on the unit, and Unit-01's unpowered \"berserk\" rescues of Shinji are the load-bearing evidence. Anno has confirmed the broader mechanism in interviews (a pilot syncs with an Evangelion \"through their mother's soul,\" an idea he traces to an NHK documentary on the brain), which lends real weight to the reading — but the specific claim that it's Yui's soul in Unit-01 is still never said outright on-screen.",
-      "links": [ { "id": "third-impact", "label": "Where that ambiguity comes to a head" }, { "id": "family-triad-imagery", "label": "The earliest staging that hints at this" }, { "id": "eva-01-devours-sachiel", "label": "An early unexplained rampage this could explain" } ],
+      "links": [ { "id": "third-impact", "label": "Where that ambiguity comes to a head" }, { "id": "family-triad-imagery", "label": "The earliest staging that hints at this" }, { "id": "eva-01-devours-sachiel", "label": "An early unexplained rampage this could explain" }, { "id": "ritsuko-naoko-relationship", "label": "The equivalent mother-in-the-machine reading for Ritsuko" } ],
       "sourceRefs": ["ja-wiki-nge"],
       "quote": {
         "lang": "ja",
@@ -758,7 +1089,9 @@
       "body": "A being of the same origin as Adam, kept crucified and sealed in NERV's Terminal Dogma. The Lilin — i.e., humanity — are described as descended from Lilith rather than Adam, and Lilith's flesh and soul are the source material for the Evangelions and for Rei.",
       "links": [
         { "id": "rei-lilith-soul-split", "label": "Her connection to Rei" },
-        { "id": "adam-lilith-confusion", "label": "Which of these two is which, again?" }
+        { "id": "adam-lilith-confusion", "label": "Which of these two is which, again?" },
+        { "id": "spear-delivered-to-terminal-dogma", "label": "The other artifact kept in the same chamber" },
+        { "id": "crucified-giant-reveal", "label": "The scene where Kaji first shows her off, misidentified" }
       ],
       "sourceRefs": ["fandom-lilith", "villains-fandom-lilith"]
     },
