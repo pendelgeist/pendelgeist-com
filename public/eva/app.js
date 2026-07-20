@@ -52,6 +52,14 @@ const TYPE_LABELS = {
   unknowable: 'Unknowable',
 };
 
+// Episodes with more entries than fit in one screenful get split into extra
+// side-by-side sub-columns (built here, not via CSS flex-wrap column) so the
+// timeline only ever grows horizontally, never vertically. flex-wrap: wrap
+// with flex-direction: column is unreliable across browsers once items have
+// variable, text-driven heights - Safari in particular can overlap items
+// instead of wrapping them into a new column.
+const ENTRIES_PER_SUBCOLUMN = 10;
+
 const dom = {
   infoToggle: document.getElementById('infoToggle'),
   guidelines: document.getElementById('guidelines'),
@@ -151,8 +159,13 @@ function render() {
     const column = createEpisodeColumn(episode);
     const entriesContainer = column.querySelector('.episode-entries');
     const entries = data.entries.filter((e) => String(e.episode) === String(episode.number));
-    for (const entry of entries) {
-      entriesContainer.appendChild(createEntryNode(entry));
+    for (let i = 0; i < entries.length; i += ENTRIES_PER_SUBCOLUMN) {
+      const subcolumn = document.createElement('div');
+      subcolumn.className = 'entry-subcolumn';
+      for (const entry of entries.slice(i, i + ENTRIES_PER_SUBCOLUMN)) {
+        subcolumn.appendChild(createEntryNode(entry));
+      }
+      entriesContainer.appendChild(subcolumn);
     }
     fragment.appendChild(column);
   }
