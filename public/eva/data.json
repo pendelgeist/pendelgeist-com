@@ -197,7 +197,7 @@
     },
     {
       "id": "at-field",
-      "episode": 1,
+      "episode": 6,
       "type": "fact",
       "title": "AT Field",
       "body": "\"Absolute Terror Field\": a barrier every Angel and Evangelion projects, physically blocking conventional weapons. Late in the series it's reframed less as a shield and more as the boundary that keeps one soul separate from every other.",
@@ -224,11 +224,11 @@
     },
     {
       "id": "lilin-18th-angel",
-      "episode": 1,
+      "episode": 24,
       "type": "fact",
       "title": "Humanity is officially the 18th Angel",
       "body": "NERV's own numbered Angel list (as reproduced on Japanese Wikipedia) runs Adam (1st) and Lilith (2nd) as the two progenitor Angels, Sachiel through Tabris/Kaworu as the 3rd through 17th, and then lists Lilin — humanity itself — as the 18th Angel. The show never dwells on this classification, but it quietly puts humans and the things they're fighting in the same taxonomic category.",
-      "links": [ { "id": "angels", "label": "The 3rd–17th Angels NERV actually fights" } ],
+      "links": [ { "id": "angels", "label": "The 3rd–17th Angels NERV actually fights" }, { "id": "kaworu-classification", "label": "The 17th Angel, whose classification is its own can of worms" } ],
       "sourceRefs": ["ja-wiki-nge"],
       "quote": {
         "lang": "ja",
@@ -1359,7 +1359,7 @@
     },
     {
       "id": "nge-script-credits-breakdown",
-      "episode": 1,
+      "episode": 4,
       "type": "fact",
       "title": "Who actually wrote each episode",
       "body": "Per Anime News Network's staff credits, script duties break down as: Hideaki Anno on every episode except the fourth (episodes 1–3 and 5–26), Akio Satsukawa co-credited on 12 of those, Yōji Enokido on episodes 2, 7, 8, and 11, Hiroshi Yamaguchi on episodes 16, 22, and 23, Shinji Higuchi on episodes 17 and 18, and Mitsuo Iso as the sole writer of episode 13. Episode 4, \"Hedgehog's Dilemma,\" is the only one of the 26 with no Anno script credit at all.",
@@ -1377,7 +1377,7 @@
     },
     {
       "id": "nge-full-voice-cast",
-      "episode": 1,
+      "episode": 19,
       "type": "fact",
       "title": "The Japanese voice cast, and a few of its stranger double-castings",
       "body": "Core cast: Megumi Ogata (Shinji), Megumi Hayashibara (Rei Ayanami — and also Yui Ikari), Kotono Mitsuishi (Misato), Yūko Miyamura (Asuka), Fumihiko Tachiki (Gendo), Yuriko Yamaguchi (Ritsuko), Kōichi Yamadera (Kaji), Motomu Kiyokawa (Fuyutsuki), Akira Ishida (Kaworu, episode 24), Mugihito (Keel Lorenz), Tomokazu Seki (Toji), Tetsuya Iwanaga (Kensuke), Junko Iwao (Hikari), and Miki Nagasawa (Maya). Per Anime News Network's cast credits, Hayashibara is also billed as the voice of \"EVA-01 (Berserker)\" — meaning the same actress who voices Rei and Yui is the one making Unit-01's inhuman berserk-state sounds, a small but suggestive piece of casting given the theories about whose soul is actually driving the Eva in those moments.",
@@ -1386,7 +1386,7 @@
     },
     {
       "id": "nge-fly-me-to-the-moon-versions",
-      "episode": 1,
+      "episode": 24,
       "type": "fact",
       "title": "Nearly every episode ends with a different cover of \"Fly Me to the Moon\"",
       "body": "Rather than reusing one closing theme recording, the series pairs Bart Howard's \"Fly Me to the Moon\" with a new arrangement and vocalist almost every episode — sung in turn by Claire, Yoko Takahashi, and, in character-specific versions, by Megumi Hayashibara as Rei, Yūko Miyamura as Asuka, and Kotono Mitsuishi as Misato (sometimes all three together), plus a couple of purely instrumental versions by composer Shirō Sagisu himself. Episode 24 is the one conspicuous exception, using no version of the song at all — consistent with it being the only episode built entirely around Beethoven's Ninth instead.",
@@ -1692,7 +1692,7 @@
       "type": "unknowable",
       "title": "Is Kaworu an Angel, in exactly the same sense the others are?",
       "body": "Kaworu is called the Seventeenth Angel but presents as fully human and self-aware in a way none of the others do, and material outside the original TV run has described his origin differently. The TV series itself leaves the discrepancy alone.",
-      "links": [],
+      "links": [ { "id": "lilin-18th-angel", "label": "Where humanity itself lands on the same numbered list" } ],
       "sourceRefs": ["en-wiki-angels"]
     },
     {
@@ -1962,7 +1962,7 @@
     },
     {
       "id": "nge-production-companies",
-      "episode": 1,
+      "episode": 11,
       "type": "fact",
       "title": "It wasn't just Gainax — and a couple of surprising names show up in the credits",
       "body": "Gainax is the credited studio, but the show was a joint venture from the start: it was produced under the \"Project Eva.\" banner alongside Kadokawa Shoten, NAS, and TV Tokyo, with Tatsunoko Production a whole-series co-animation partner (also handling most of the photography). King Records ran music production for Sagisu's score. Buried in the per-episode breakdown, a few now-famous studios turn up doing uncredited contract work on individual episodes — Kyoto Animation on backgrounds for episodes 5 and 9, and SHAFT on cel painting for episodes 8-9 — alongside Studio Ghibli's episode 11.",

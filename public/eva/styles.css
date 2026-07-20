@@ -140,8 +140,7 @@ input:focus, select:focus {
 }
 
 .episode-column {
-  flex: 0 0 13rem;
-  min-width: 13rem;
+  flex: 0 0 auto;
   padding: 0 0.75rem;
   border-right: 1px dashed var(--color-article-border);
 }
@@ -159,6 +158,7 @@ input:focus, select:focus {
   flex-direction: column;
   gap: 0.15rem;
   margin-bottom: 0.25rem;
+  width: 12rem;
 }
 
 .episode-number {
@@ -181,12 +181,20 @@ input:focus, select:focus {
   font-style: italic;
   color: var(--color-muted);
   margin-bottom: 0.5rem;
+  width: 12rem;
 }
 
+/* Fixed height + flex-wrap turns a long episode's entry list into extra
+ * side-by-side sub-columns instead of growing the page vertically — the
+ * timeline only ever scrolls horizontally, never both axes at once. */
 .episode-entries {
   display: flex;
   flex-direction: column;
+  flex-wrap: wrap;
+  align-content: flex-start;
   gap: 0.5rem;
+  column-gap: 0.75rem;
+  height: 26rem;
   margin-top: 0.75rem;
 }
 
@@ -204,7 +212,8 @@ input:focus, select:focus {
   color: var(--color-text);
   border: 1px solid var(--color-article-border);
   border-radius: var(--radius-card);
-  width: 100%;
+  width: 12rem;
+  flex: 0 0 auto;
   height: auto;
 }
 
