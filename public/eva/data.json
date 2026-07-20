@@ -39,7 +39,12 @@
     "en-wiki-ep12": { "lang": "en", "title": "She said, \"Don't make others suffer for your personal hatred.\" (episode) — Wikipedia", "url": "https://en.wikipedia.org/wiki/She_said,_%22Don%27t_make_others_suffer_for_your_personal_hatred.%22" },
     "en-wiki-ep13": { "lang": "en", "title": "Lilliputian Hitcher (episode) — Wikipedia", "url": "https://en.wikipedia.org/wiki/Lilliputian_Hitcher" },
     "en-wiki-ep14": { "lang": "en", "title": "Weaving a Story (episode) — Wikipedia", "url": "https://en.wikipedia.org/wiki/Weaving_a_Story" },
-    "en-wiki-ep15": { "lang": "en", "title": "Those women longed for the touch of others' lips, and thus invited their kisses (episode) — Wikipedia", "url": "https://en.wikipedia.org/wiki/Those_women_longed_for_the_touch_of_others%27_lips,_and_thus_invited_their_kisses" }
+    "en-wiki-ep15": { "lang": "en", "title": "Those women longed for the touch of others' lips, and thus invited their kisses (episode) — Wikipedia", "url": "https://en.wikipedia.org/wiki/Those_women_longed_for_the_touch_of_others%27_lips,_and_thus_invited_their_kisses" },
+    "en-wiki-ep16": { "lang": "en", "title": "Splitting of the Breast (episode) — Wikipedia", "url": "https://en.wikipedia.org/wiki/Splitting_of_the_Breast" },
+    "en-wiki-ep17": { "lang": "en", "title": "Fourth Children (episode) — Wikipedia", "url": "https://en.wikipedia.org/wiki/Fourth_Children" },
+    "en-wiki-ep18": { "lang": "en", "title": "Ambivalence (Neon Genesis Evangelion) — Wikipedia", "url": "https://en.wikipedia.org/wiki/Ambivalence_(Neon_Genesis_Evangelion)" },
+    "en-wiki-ep19": { "lang": "en", "title": "Introjection (Neon Genesis Evangelion) — Wikipedia", "url": "https://en.wikipedia.org/wiki/Introjection_(Neon_Genesis_Evangelion)" },
+    "en-wiki-ep20": { "lang": "en", "title": "Weaving a Story 2: oral stage — Wikipedia", "url": "https://en.wikipedia.org/wiki/Weaving_a_Story_2:_oral_stage" }
   },
   "episodes": [
     { "number": 1, "title": "Angel Attack", "subtitle": "JP: 使徒、襲来 — lit. \"Angel, Attack\" · aired 1995-10-04, 6.8%" },
@@ -884,6 +889,224 @@
       "body": "Without a single Angel battle, \"Those women longed for the touch of others' lips, and thus invited their kisses\" drew a 6% rating and split critics: some found the Misato/Kaji romance overwrought and Asuka's behavior toward Shinji indefensible, while others praised the same scenes' focus on character interiority, plus the episode's religious imagery and its use of Bach's Cello Suite No. 1 over Shinji's private cello practice.",
       "links": [],
       "sourceRefs": ["en-wiki-ep15"]
+    },
+    {
+      "id": "leliel-dirac-sea",
+      "episode": 16,
+      "scene": "Unit-01 is absorbed into Leliel's shadow",
+      "type": "fact",
+      "title": "Leliel, and the Dirac sea",
+      "body": "Leliel, the twelfth Angel, appears as a floating sphere over Tokyo-3; Ritsuko determines its true body is actually the shadow it casts on the ground, while the visible sphere is merely its shadow. Shinji, attacking alone out of wounded pride, is pulled into that shadow — a pocket dimension the show calls the Dirac sea, named after physicist Paul Dirac's theoretical sea of negative-energy particles, though the episode's usage is closer to \"another dimension entirely\" than the real physics concept.",
+      "links": [ { "id": "angels-true-nature", "label": "The broader unknown this Angel adds to" } ],
+      "sourceRefs": ["en-wiki-ep16"]
+    },
+    {
+      "id": "splitting-of-the-breast-title",
+      "episode": 16,
+      "type": "theory",
+      "title": "Two titles, two different references",
+      "body": "The English title refers to psychoanalyst Melanie Klein's concept of \"splitting\" — an infant's habit of dividing its perception of the mother's breast into a wholly \"good\" and wholly \"bad\" object rather than one complex whole. The Japanese title instead references Søren Kierkegaard's The Sickness Unto Death, on despair as the human condition; editor Yūichirō Oguro reads the title as pointing at Shinji's confrontation with himself inside Leliel. Anno has since admitted, bluntly, that he never actually read Kierkegaard's book past the first few pages and cited it mostly \"out of pedantry, to seem intelligent.\"",
+      "links": [ { "id": "two-shinjis-scene", "label": "The confrontation this title is read against" }, { "id": "ep10-title-origin", "label": "Another Anno title borrowed from a book he never finished" } ],
+      "sourceRefs": ["en-wiki-ep16"]
+    },
+    {
+      "id": "two-shinjis-scene",
+      "episode": 16,
+      "scene": "Suspended in the Dirac sea, Shinji argues with a younger version of himself on a train",
+      "type": "theory",
+      "title": "Shinji versus Shinji",
+      "body": "Trapped in a timeless void, Shinji has an extended dialogue with another version of himself, who coldly picks apart his weaknesses and tells him that other \"Shinjis\" exist inside everyone else's minds too — \"they are all Ikari Shinji.\" The series' own film books describe the two Shinjis as literalizing Freud's ego and superego; other critics have compared the scene to psychoanalytic therapy, to Pirandello's theory that the self fragments into social masks, and to Sartre's \"hell is other people.\"",
+      "links": [ { "id": "rei-inner-monologue-origin", "label": "Rei's own identity-questioning monologue, two episodes earlier" }, { "id": "true-continuity-of-self", "label": "The same kind of identity question, asked of Rei instead" } ],
+      "sourceRefs": ["en-wiki-ep16"]
+    },
+    {
+      "id": "eva01-second-birth",
+      "episode": 16,
+      "scene": "Unit-01 tears itself free of Leliel's shadow, screaming and covered in blood",
+      "type": "theory",
+      "title": "Eva-01's second birth, and the \"bad breast\"",
+      "body": "Unit-01 violently escapes Leliel under its own power, screaming and drenched in blood — critics uniformly read the image as a second, more literal birth. Yūichirō Oguro extends the episode's Kleinian framing directly onto the Evas themselves: Eva-01, trapping and nearly killing Shinji, reads as the \"bad breast,\" while Yui's presence saving him at the last moment reads as the \"good breast\" — the same object split in two, exactly as Klein's theory describes.",
+      "links": [ { "id": "yuis-soul-in-unit-01", "label": "Yui's presence this theory leans on" }, { "id": "splitting-of-the-breast-title", "label": "The Kleinian concept the title names" } ],
+      "sourceRefs": ["en-wiki-ep16"]
+    },
+    {
+      "id": "gendo-vision-praise",
+      "episode": 16,
+      "scene": "Inside the void, Shinji sees an image of Gendo praising him",
+      "type": "theory",
+      "title": "Even trapped and half-dead, Shinji still wants his father's approval",
+      "body": "Among the visions Shinji has while suspended in Leliel is his estranged father praising him — read as a source of spiritual strength Shinji clings to even here, and as evidence he still fundamentally fears Gendo while wanting his approval more than almost anything else. It's the same dynamic the series named explicitly four episodes earlier.",
+      "links": [ { "id": "gendo-praise-shinji-motivation", "label": "Where this dynamic was first spelled out, in episode 12" } ],
+      "sourceRefs": ["en-wiki-ep16"]
+    },
+    {
+      "id": "masculinity-collapse-ep16",
+      "episode": 16,
+      "scene": "Asuka goads Shinji into fighting Leliel alone, calling it \"a man's job\"",
+      "type": "theory",
+      "title": "A masculine posture that collapses into a womb",
+      "body": "Provoked by Asuka, Shinji puts on an unusually confident, masculine front before attacking Leliel alone — then spends the rest of the episode passively curled in a fetal position inside a womb-like void, dependent on the women around him (Misato, Ritsuko, and ultimately Yui) to bring him back. Scholar Cristopher Smith reads the sequence as the show visibly undercutting the value of conventional masculinity in real time, right as Shinji tries hardest to perform it.",
+      "links": [ { "id": "asuka-langley-souryuu", "label": "Back to Asuka" }, { "id": "eva01-second-birth", "label": "The birth imagery this passivity feeds into" } ],
+      "sourceRefs": ["en-wiki-ep16"]
+    },
+    {
+      "id": "ep16-scrapped-trilogy-fold",
+      "episode": 16,
+      "type": "fact",
+      "title": "Where the abandoned \"fear trilogy\" actually landed",
+      "body": "This episode absorbs the leftover ideas from the three-episode arc Gainax scrapped back at episode 13 — its third chapter would have had Shinji absorbed by an Angel and attempting first contact with it, which becomes, in the aired version, Shinji absorbed into Leliel and left alone with only himself to talk to instead. Some of the same abandoned material was also folded into episode 19.",
+      "links": [ { "id": "ep13-scrapped-trilogy", "label": "The original three-episode plan this replaced" } ],
+      "sourceRefs": ["en-wiki-ep16"]
+    },
+    {
+      "id": "ep16-reception",
+      "episode": 16,
+      "type": "fact",
+      "title": "A turning point, and one of the show's best-reviewed episodes",
+      "body": "\"Splitting of the Breast\" drew a 9.4% rating, placed 16th in a 1996 Animage readers' poll, and is widely marked by critics as the point Evangelion shifts from a fairly conventional mecha series into what one critic called \"an enigmatic character study\" — the last episode, by most readings, before the show's back half fully commits to psychological introspection over monster-of-the-week plotting.",
+      "links": [],
+      "sourceRefs": ["en-wiki-ep16"]
+    },
+    {
+      "id": "ep17-toji-fourth-child",
+      "episode": 17,
+      "type": "fact",
+      "title": "Toji is confirmed as the Fourth Child, and Marduk is exposed as a front",
+      "body": "Eva-03 is airlifted from America to Japan with an unnamed new pilot; the episode never states outright that it's Toji, though the editing and staging make it obvious. Separately, Kaji confirms to Misato what episode 15 first implied: the Marduk Institute, supposedly responsible for selecting Eva pilots, doesn't actually exist — it's a shell built from over a hundred fictitious companies with Gendo hiding behind it.",
+      "links": [ { "id": "toji-suzuhara", "label": "Back to Toji" }, { "id": "marduk-institute-reveal", "label": "Where Marduk was first exposed" } ],
+      "sourceRefs": ["en-wiki-ep17"]
+    },
+    {
+      "id": "gendo-rei-cut-concept",
+      "episode": 17,
+      "type": "theory",
+      "title": "A scrapped, more explicitly incestuous Gendo/Rei concept",
+      "body": "Assistant director Kazuya Tsurumaki has said staff originally conceived Rei as simultaneously a clone of Gendo's dead wife and, functionally, both a wife and daughter figure to him — a draft scene even had Rei waiting for Gendo naked in a tube. The concept was walked back for the aired series, and Tsurumaki has said the most compelling part of the finished dynamic is precisely that Gendo and Rei never act on the incestuous undertone the early concept implied.",
+      "links": [ { "id": "rei-ayanami", "label": "Back to Rei" }, { "id": "gendo-photo-slap", "label": "The scene that hints at some closeness between them" } ],
+      "sourceRefs": ["en-wiki-ep17"]
+    },
+    {
+      "id": "instrumentality-committee-intro",
+      "episode": 17,
+      "scene": "Misato is interrogated about Leliel's apparent attempt to communicate with Shinji",
+      "type": "fact",
+      "title": "The Instrumentality Committee, and Angels that might be learning",
+      "body": "A body called the Instrumentality Committee questions Misato over whether the Angel Leliel deliberately targeted Shinji psychologically. Afterward, Gendo tells Fuyutsuki plainly that the Angels are beginning to develop intelligence — the first explicit statement that NERV's enemies might be capable of learning and adapting, not just repeating the same kind of attack.",
+      "links": [ { "id": "human-instrumentality-project", "label": "The project this committee is presumably tied to" }, { "id": "angels-true-nature", "label": "The larger unknown about what the Angels are" } ],
+      "sourceRefs": ["en-wiki-ep17"]
+    },
+    {
+      "id": "s2-engine-named",
+      "episode": 17,
+      "type": "fact",
+      "title": "The S² engine gets a name",
+      "body": "Ritsuko names the \"Super-Solenoid\" engine here for the first time — an internal power source, acquired from the Angel Shamshel, that becomes central to the back half of the series once an Evangelion manages to absorb one for itself.",
+      "links": [ { "id": "shamshel-attack", "label": "The Angel this engine was taken from" } ],
+      "sourceRefs": ["en-wiki-ep17"]
+    },
+    {
+      "id": "bardiel-possession-toji",
+      "episode": 18,
+      "scene": "Eva-03's activation test goes wrong mid-transport",
+      "type": "fact",
+      "title": "Bardiel possesses Eva-03 — with Toji still inside",
+      "body": "The Angel Bardiel possesses Eva-03 during its activation test, easily defeating both Rei's and Asuka's units. Shinji refuses to fight the possessed Eva-03, unwilling to risk killing whoever is piloting it — at which point Gendo overrides him entirely, using the Dummy System to force Unit-01 to destroy Eva-03 without Shinji's consent, only for Shinji (and the audience) to learn afterward that his friend Toji was in the cockpit the whole time.",
+      "links": [ { "id": "dummy-system", "label": "Gendo's override, and what it costs Toji" }, { "id": "ep17-toji-fourth-child", "label": "Toji's selection as the pilot, one episode earlier" } ],
+      "sourceRefs": ["en-wiki-ep18"]
+    },
+    {
+      "id": "toji-injury-annos-father",
+      "episode": 18,
+      "type": "theory",
+      "title": "Toji's amputation, and Anno's own father",
+      "body": "Anno reportedly considered killing Toji outright after the Bardiel incident, but had promised a producer early in production that he wouldn't kill child characters, so the staff settled on maiming him instead — Toji loses his left leg. Anno has connected the choice to his own father, who lost a leg in an accident and wore a prosthesis for the rest of his life; Anno has said the experience left him with a lasting fascination with deformity, tracing it back to a childhood robot show in which a mecha loses an arm, and that he came to believe he \"could love only something that is stumpy.\"",
+      "links": [ { "id": "toji-suzuhara", "label": "Back to Toji" } ],
+      "sourceRefs": ["en-wiki-ep18"]
+    },
+    {
+      "id": "carneades-table-dilemma",
+      "episode": 18,
+      "type": "theory",
+      "title": "Gendo vs. Shinji as the plank of Carneades",
+      "body": "Editor Yūichirō Oguro compares the Gendo/Shinji standoff over Eva-03 to the ancient dilemma of Carneades' plank — two shipwrecked men fighting over a single piece of wood that can only keep one of them alive, in which killing the other might be ethically defensible given the stakes. Gendo acts on that calculus without hesitation; Shinji's entire refusal is a rejection of it.",
+      "links": [ { "id": "gendos-motive-reading", "label": "How sympathetic Gendo's ends-justify-means logic really is" }, { "id": "shinji-gendo-tool-reading", "label": "The instrumental way Gendo has treated Shinji from the start" } ],
+      "sourceRefs": ["en-wiki-ep18"]
+    },
+    {
+      "id": "ep18-production-collapse",
+      "episode": 18,
+      "type": "fact",
+      "title": "The last episode made with (nearly) the full toolkit",
+      "body": "Around this episode and the next, Anno and Gainax staff privately concluded they could no longer finish the series to the standard they wanted within the remaining broadcast schedule — though they kept trying anyway, all the way to the end. \"Ambivalence\" and \"Introjection\" mark the last point the studio could still draw on virtually all its remaining production resources before the system properly broke down; Anno has said it was also around here that he finally settled on how the series would end.",
+      "links": [ { "id": "ep1-schedule-crisis", "label": "How far back this production crunch actually started" }, { "id": "finale-controversy", "label": "Where this schedule collapse ultimately leads" } ],
+      "sourceRefs": ["en-wiki-ep18"]
+    },
+    {
+      "id": "eva01-devours-zeruel",
+      "episode": 19,
+      "scene": "Unit-01 runs out of power against Zeruel, then reactivates and eats it",
+      "type": "fact",
+      "title": "Zeruel, and Eva-01's second berserk feast",
+      "body": "The Angel Zeruel overwhelms Asuka's and Rei's Evas and nearly kills a depowered Unit-01 before Shinji's despair triggers a full, uncontrolled reactivation: Eva-01 devours Zeruel outright, absorbing its S² engine in the process and effectively gaining unlimited operating power. It's the same unpowered-berserk phenomenon from episode 2, taken to its most extreme form yet.",
+      "links": [ { "id": "eva-01-devours-sachiel", "label": "The earlier, smaller-scale version of this same phenomenon" }, { "id": "s2-engine-named", "label": "The engine Eva-01 absorbs here" } ],
+      "sourceRefs": ["en-wiki-ep19"]
+    },
+    {
+      "id": "shinji-returns-for-himself",
+      "episode": 19,
+      "scene": "Kaji talks to Shinji after Shinji quits NERV in protest over Toji",
+      "type": "theory",
+      "title": "Shinji chooses to fight for himself, not for his father",
+      "body": "After walking away from NERV over what happened to Toji, Shinji is talked back by Kaji, not Gendo — and critically, he returns to pilot Unit-01 having decided to do it for his own reasons rather than to win his father's approval, a break from the pattern the series named explicitly back in episode 12. Several scholars mark this as the point Shinji first claims something like a self-authored identity, even though the show immediately complicates it by having him waver again afterward.",
+      "links": [ { "id": "gendo-praise-shinji-motivation", "label": "The approval-seeking pattern this breaks from" }, { "id": "ryoji-kaji", "label": "Back to Kaji" } ],
+      "sourceRefs": ["en-wiki-ep19"]
+    },
+    {
+      "id": "introjection-title-theory",
+      "episode": 19,
+      "type": "theory",
+      "title": "\"Introjection\": Shinji absorbing his father's rule about necessary sacrifice",
+      "body": "The episode's English title names the psychoanalytic process of taking another person's values in as your own. One reading, drawn from the series' own glossary material, is that by episode's end Shinji has introjected Gendo's underlying rule — that sacrifice is sometimes necessary in war — the same norm that later lets him bring himself to kill Kaworu.",
+      "links": [ { "id": "kaworus-feelings", "label": "Where this internalized rule gets tested hardest" } ],
+      "sourceRefs": ["en-wiki-ep19"]
+    },
+    {
+      "id": "ep19-cannibalism-symbolism",
+      "episode": 19,
+      "type": "theory",
+      "title": "A body horror scene deliberately meant to unsettle, not thrill",
+      "body": "Anno has said outright he wanted the sight of Eva-01 devouring Zeruel to disturb young viewers, even make a child vomit, arguing that sex and violence are ordinary parts of life and that shielding children from \"repulsive things\" does them no favors. Scholars have read the scene in sharply different directions since — as an act coded feminine and maternal (Eva-01 build from Lilith, folding a \"sibling\" Angel born of Adam into itself) as much as it is monstrous.",
+      "links": [ { "id": "eva01-devours-zeruel", "label": "The scene this reading is built on" } ],
+      "sourceRefs": ["en-wiki-ep19"]
+    },
+    {
+      "id": "shinji-eva01-absorption",
+      "episode": 20,
+      "type": "fact",
+      "title": "Shinji dissolves into Eva-01's cockpit",
+      "body": "In the aftermath of the Zeruel fight, Shinji's body dissolves inside Unit-01's cockpit; NERV spends a month devising a recovery plan while Shinji, without a physical body, drifts through an extended reconstruction of his own memories and motivations for piloting at all.",
+      "links": [ { "id": "eva01-devours-zeruel", "label": "The battle this follows directly" }, { "id": "rei-inner-monologue-origin", "label": "The equivalent clip-show/monologue structure from episode 14" } ],
+      "sourceRefs": ["en-wiki-ep20"]
+    },
+    {
+      "id": "yui-oral-stage-scene",
+      "episode": 20,
+      "scene": "Shinji, dissolved inside the Eva, senses Yui and is breastfed as an infant in his own memory",
+      "type": "theory",
+      "title": "\"Anywhere can be heaven if you have the desire to live\"",
+      "body": "The episode's title references Freud's oral stage, the earliest phase of psychosexual development centered on the mother's breast; Shinji's dissolution inside Eva-01 is staged explicitly around nursing and womb imagery, and it's Yui's presence — not Gendo's, not Misato's — that ultimately persuades him to choose to return to his body at all, repeating a line (\"anywhere can be heaven if you have the desire to live\") that recurs almost verbatim in The End of Evangelion.",
+      "links": [ { "id": "yuis-soul-in-unit-01", "label": "The theory this scene is the strongest evidence for" }, { "id": "eva01-second-birth", "label": "The earlier \"good breast/bad breast\" reading this directly echoes" } ],
+      "sourceRefs": ["en-wiki-ep20"]
+    },
+    {
+      "id": "misato-kaji-scene-controversy",
+      "episode": 20,
+      "scene": "The episode's closing scene, implying Misato and Kaji have sex",
+      "type": "fact",
+      "title": "An implied sex scene that provoked real backlash",
+      "body": "The episode closes on an implied, non-explicit sex scene between Misato and Kaji, aired in a supposedly protected evening timeslot; it drew immediate controversy in Japan as unsuitable for a show watched by children, and producer Toshimichi Ōtsuki — who by that point had largely stopped being consulted on the show day-to-day — has said he'd have stopped it if he'd seen it before broadcast. Anno has defended it on the same grounds he's used elsewhere: that shielding children from sex and violence does them no favors.",
+      "links": [ { "id": "ryoji-kaji", "label": "Back to Kaji" }, { "id": "misato-fanservice-debate", "label": "The wider critical debate over the show's sexual content" } ],
+      "sourceRefs": ["en-wiki-ep20"]
     },
     {
       "id": "asuka-langley-souryuu",
