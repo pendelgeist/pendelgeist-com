@@ -47,7 +47,8 @@
     "en-wiki-ep20": { "lang": "en", "title": "Weaving a Story 2: oral stage — Wikipedia", "url": "https://en.wikipedia.org/wiki/Weaving_a_Story_2:_oral_stage" },
     "en-wiki-ep21": { "lang": "en", "title": "He was aware that he was still a child — Wikipedia", "url": "https://en.wikipedia.org/wiki/He_was_aware_that_he_was_still_a_child" },
     "en-wiki-ep22": { "lang": "en", "title": "Don't Be (Neon Genesis Evangelion) — Wikipedia", "url": "https://en.wikipedia.org/wiki/Don%27t_Be_(Neon_Genesis_Evangelion)" },
-    "en-wiki-ep23": { "lang": "en", "title": "Rei III — Wikipedia", "url": "https://en.wikipedia.org/wiki/Rei_III" }
+    "en-wiki-ep23": { "lang": "en", "title": "Rei III — Wikipedia", "url": "https://en.wikipedia.org/wiki/Rei_III" },
+    "en-wiki-ep24": { "lang": "en", "title": "The Beginning and the End, or \"Knockin' on Heaven's Door\" — Wikipedia", "url": "https://en.wikipedia.org/wiki/The_Beginning_and_the_End,_or_%22Knockin%27_on_Heaven%27s_Door%22" }
   },
   "episodes": [
     { "number": 1, "title": "Angel Attack", "subtitle": "JP: 使徒、襲来 — lit. \"Angel, Attack\" · aired 1995-10-04, 6.8%" },
@@ -1284,6 +1285,72 @@
       "body": "\"Rei III\" drew a 6.9% rating and split critics: some praised the starkness of Rei's true nature finally being spelled out and the intensity of the Armisael battle, while others felt the reveal wasted a stronger character concept by resolving it so quickly, and criticized recycled animation and some of the voice performances.",
       "links": [],
       "sourceRefs": ["en-wiki-ep23"]
+    },
+    {
+      "id": "kaworu-lilith-reveal",
+      "episode": 24,
+      "scene": "Kaworu descends into Terminal Dogma expecting to find Adam",
+      "type": "fact",
+      "title": "Kaworu discovers the giant is Lilith, not Adam — and stops",
+      "body": "Sent by SEELE to reach the being kept in Terminal Dogma, Kaworu finds it's actually Lilith, not Adam as he (and everyone else) had assumed. Recognizing humanity's will to live, he abandons the mission entirely and asks Shinji to kill him instead — the same Adam/Lilith mix-up that has run through the whole series, this time settled at the cost of Kaworu's own life.",
+      "links": [ { "id": "lilith", "label": "The figure Kaworu finds instead of Adam" }, { "id": "adam-lilith-confusion", "label": "The wider pattern of Adam/Lilith mix-ups this resolves" }, { "id": "kaworus-feelings", "label": "What this decision meant for him personally" } ],
+      "sourceRefs": ["en-wiki-ep24"]
+    },
+    {
+      "id": "at-field-walls-of-heart",
+      "episode": 24,
+      "scene": "Kaworu explains the AT Field to Shinji",
+      "type": "theory",
+      "title": "\"The walls of the heart\"",
+      "body": "Kaworu describes the AT Field — introduced purely as a combat mechanic back in episode 1 — as the barrier separating one person's heart from everyone else's. Rather than attacking Shinji's defenses the way earlier Angels did, Kaworu lowers them through kindness instead; the show's own staff have said the AT Field carried no such philosophical weight when it was first written, and only became \"walls of the heart\" retroactively, here.",
+      "links": [ { "id": "at-field", "label": "The concept's original, purely mechanical introduction" }, { "id": "human-instrumentality-project", "label": "The larger project built on dissolving these same walls" } ],
+      "sourceRefs": ["en-wiki-ep24"]
+    },
+    {
+      "id": "kaworu-shinji-bath-scene-history",
+      "episode": 24,
+      "type": "fact",
+      "title": "A much more explicit draft, and a director who nearly quit",
+      "body": "Screenwriter Akio Satsukawa's original script for this episode was considerably more overtly homoerotic — including a scene of Shinji and Kaworu swimming naked together and kissing. Anno found it too explicit and rewrote it, relocating the intimacy to NERV's public baths instead; episode director Masayuki has said he seriously considered walking off the production over the content in Satsukawa's draft.",
+      "links": [ { "id": "kaworus-feelings", "label": "The ambiguity this rewrite still leaves in place" } ],
+      "sourceRefs": ["en-wiki-ep24"]
+    },
+    {
+      "id": "ode-to-joy-only-score",
+      "episode": 24,
+      "type": "fact",
+      "title": "The one episode with no original score",
+      "body": "Unlike every other episode, this one uses no music by series composer Shirō Sagisu at all — its only accompaniment is Beethoven's Ninth Symphony, specifically the \"Ode to Joy,\" which Kaworu hums on first meeting Shinji and which later plays under both his death and the episode's climactic battle.",
+      "links": [],
+      "sourceRefs": ["en-wiki-ep24"]
+    },
+    {
+      "id": "kaworu-hand-still-frame",
+      "episode": 24,
+      "scene": "The episode closes on an extended still image of Kaworu cradled in Eva-01's hand",
+      "type": "theory",
+      "title": "A held frame, timed to the length of Kaworu's death",
+      "body": "The episode ends on roughly a minute-long still shot of Kaworu in Unit-01's palm — the same held-frame technique the show had already used for tense character moments in episodes 4 and 22, here stretched out for the full length of Shinji's hesitation before he finally kills him.",
+      "links": [ { "id": "rei-asuka-lift-scene", "label": "The earlier long freeze-frame this technique echoes" } ],
+      "sourceRefs": ["en-wiki-ep24"]
+    },
+    {
+      "id": "netflix-dub-controversy",
+      "episode": 24,
+      "type": "fact",
+      "title": "\"I love you\" becomes \"I like you\"",
+      "body": "Netflix's 2019 English redub changed Kaworu's line to Shinji from ADV's earlier \"I love you\" to \"I like you,\" and \"worthy of love\" to \"worthy of grace\" — a change some fans read as queer erasure. The new translator has defended the choice as closer to the ambiguity of the original Japanese suki, and Shinji's own Japanese voice actress, Megumi Ogata, publicly said she'd always read the line the same way and welcomed the revision.",
+      "links": [ { "id": "kaworus-feelings", "label": "The underlying ambiguity both translations are wrestling with" } ],
+      "sourceRefs": ["en-wiki-ep24"]
+    },
+    {
+      "id": "ep24-reception",
+      "episode": 24,
+      "type": "fact",
+      "title": "One of the series' most acclaimed episodes",
+      "body": "This episode topped the 1997 Animage readers' poll for best episode of the year, with Kaworu placing second in the same poll's best-male-character category. Western critical reception has been just as strong, though Kaworu's introduction and his relationship with Shinji have remained a subject of extensive debate among both scholars and fans.",
+      "links": [],
+      "sourceRefs": ["en-wiki-ep24"]
     },
     {
       "id": "asuka-langley-souryuu",
