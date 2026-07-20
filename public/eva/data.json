@@ -52,7 +52,8 @@
     "en-wiki-eoe": { "lang": "en", "title": "The End of Evangelion — Wikipedia", "url": "https://en.wikipedia.org/wiki/The_End_of_Evangelion" },
     "ja-wiki-eoe": { "lang": "ja", "title": "新世紀エヴァンゲリオン劇場版 Air/まごころを、君に — Wikipedia (Japanese)", "url": "https://ja.wikipedia.org/wiki/新世紀エヴァンゲリオン劇場版_Air/まごころを、君に" },
     "ann-staff": { "lang": "en", "title": "Neon Genesis Evangelion (TV) — Staff — Anime News Network", "url": "https://www.animenewsnetwork.com/encyclopedia/anime.php?id=45" },
-    "ann-cast": { "lang": "en", "title": "Neon Genesis Evangelion (TV) — Cast — Anime News Network", "url": "https://www.animenewsnetwork.com/encyclopedia/anime.php?id=45&page=cast" }
+    "ann-cast": { "lang": "en", "title": "Neon Genesis Evangelion (TV) — Cast — Anime News Network", "url": "https://www.animenewsnetwork.com/encyclopedia/anime.php?id=45&page=cast" },
+    "ann-companies": { "lang": "en", "title": "Neon Genesis Evangelion (TV) — Companies — Anime News Network", "url": "https://www.animenewsnetwork.com/encyclopedia/anime.php?id=45&page=companies" }
   },
   "episodes": [
     { "number": 1, "title": "Angel Attack", "subtitle": "JP: 使徒、襲来 — lit. \"Angel, Attack\" · aired 1995-10-04, 6.8%" },
@@ -287,7 +288,7 @@
       "type": "fact",
       "title": "Only 12 of 26 episodes were done when the show went on air",
       "body": "By the time \"Angel Attack\" actually broadcast, Gainax had completed only twelve episodes after nearly two years of production — leaving the remaining fourteen to be finished in roughly a third of the time already spent. This compressed schedule is widely identified as the root of the severe production problems that hit the second half of the series.",
-      "links": [ { "id": "finale-controversy", "label": "Where that time crunch ends up" } ],
+      "links": [ { "id": "finale-controversy", "label": "Where that time crunch ends up" }, { "id": "nge-production-companies", "label": "Who else was involved in getting the show made" } ],
       "sourceRefs": ["en-wiki-ep1"]
     },
     {
@@ -1416,7 +1417,7 @@
       "type": "fact",
       "title": "Studio Ghibli animated this one",
       "body": "Episode 11 — the MAGI-computer-meltdown, power-outage bottle episode — was farmed out to Studio Ghibli staff as a contracted production. It shows: the art style, character expressions, and tone come out noticeably more comedic and warm than the episodes around it.",
-      "links": [],
+      "links": [ { "id": "nge-production-companies", "label": "The other studios that quietly worked on individual episodes" } ],
       "sourceRefs": ["ja-wiki-nge"],
       "quote": {
         "lang": "ja",
@@ -1958,6 +1959,18 @@
       "body": "The final scene shows Shinji and Asuka alone on a wrecked shoreline. Whether this is a reversed, near-total, or partial Third Impact — and whether anyone else survived it — is left to the audience.",
       "links": [],
       "sourceRefs": ["looper-eoe-ending"]
+    },
+    {
+      "id": "nge-production-companies",
+      "episode": 1,
+      "type": "fact",
+      "title": "It wasn't just Gainax — and a couple of surprising names show up in the credits",
+      "body": "Gainax is the credited studio, but the show was a joint venture from the start: it was produced under the \"Project Eva.\" banner alongside Kadokawa Shoten, NAS, and TV Tokyo, with Tatsunoko Production a whole-series co-animation partner (also handling most of the photography). King Records ran music production for Sagisu's score. Buried in the per-episode breakdown, a few now-famous studios turn up doing uncredited contract work on individual episodes — Kyoto Animation on backgrounds for episodes 5 and 9, and SHAFT on cel painting for episodes 8-9 — alongside Studio Ghibli's episode 11.",
+      "links": [
+        { "id": "ghibli-episode-11", "label": "The most famous of these one-off contract jobs" },
+        { "id": "ep1-schedule-crisis", "label": "Why so much work ended up farmed out" }
+      ],
+      "sourceRefs": ["ann-companies"]
     }
   ]
 }
