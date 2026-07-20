@@ -23,7 +23,9 @@
     "cbr-every-ending": { "lang": "en", "title": "Every Neon Genesis Evangelion Ending, Explained — CBR", "url": "https://www.cbr.com/neon-genesis-evangelion-every-ending-explained/" },
     "cbr-unit00-soul": { "lang": "en", "title": "Evangelion: Is Rei I's Soul in Unit 00? — CBR", "url": "https://www.cbr.com/evangelion-unit-00-soul-rei-theory/" },
     "tvtropes-wmg-instrumentality": { "lang": "en", "title": "WMG: Neon Genesis Evangelion Instrumentality — TV Tropes", "url": "https://tvtropes.org/pmwiki/pmwiki.php/WMG/NeonGenesisEvangelionInstrumentality" },
-    "looper-eoe-ending": { "lang": "en", "title": "The Ending Of End Of Evangelion Explained — Looper", "url": "https://www.looper.com/377530/the-ending-of-end-of-evangelion-explained/" }
+    "looper-eoe-ending": { "lang": "en", "title": "The Ending Of End Of Evangelion Explained — Looper", "url": "https://www.looper.com/377530/the-ending-of-end-of-evangelion-explained/" },
+    "ja-wiki-ep1": { "lang": "ja", "title": "使徒、襲来 — Wikipedia (Japanese)", "url": "https://ja.wikipedia.org/wiki/使徒、襲来" },
+    "en-wiki-ep1": { "lang": "en", "title": "Angel Attack (episode) — Wikipedia", "url": "https://en.wikipedia.org/wiki/Angel_Attack" }
   },
   "episodes": [
     { "number": 1, "title": "Angel Attack", "subtitle": "JP: 使徒、襲来 — lit. \"Angel, Attack\" · aired 1995-10-04, 6.8%" },
@@ -94,7 +96,8 @@
       "body": "Runs NERV and, through it, humanity's entire Angel defense as cover for a private goal: using the Human Instrumentality Project to reunite with his dead wife Yui, whose soul he believes persists inside Unit-01. Treats nearly everyone, including Shinji, as an instrument toward that end.",
       "links": [
         { "id": "human-instrumentality-project", "label": "What he's actually building toward" },
-        { "id": "gendos-motive-reading", "label": "How sympathetic is that, really?" }
+        { "id": "gendos-motive-reading", "label": "How sympathetic is that, really?" },
+        { "id": "gendo-visual-motif", "label": "How he's shot, from the start" }
       ],
       "sourceRefs": ["fandom-characters", "en-wiki-characters"]
     },
@@ -214,6 +217,156 @@
       }
     },
     {
+      "id": "ep1-director-writer",
+      "episode": 1,
+      "type": "fact",
+      "title": "Anno wrote it, but didn't direct it",
+      "body": "Hideaki Anno — the series' overall director — wrote this episode's script himself, but the episode itself was directed by his assistant director, Kazuya Tsurumaki, with Anno and Masayuki assisting on storyboards. Series-director-as-episode-director isn't a given even on a show this personal to Anno.",
+      "links": [],
+      "sourceRefs": ["en-wiki-ep1", "ja-wiki-ep1"]
+    },
+    {
+      "id": "ep1-production-timeline",
+      "episode": 1,
+      "type": "fact",
+      "title": "A year of planning, then six months just for this script",
+      "body": "Gainax began planning the series in July 1993 and held its first internal project meeting that September, but actual production on episodes 1–2 didn't start until September 1994 — a full year later. Anno has said the script for this episode alone took six months to finish; production wrapped in April 1995, six months before the October broadcast.",
+      "links": [ { "id": "ep1-schedule-crisis", "label": "How that lead time ran out later" } ],
+      "sourceRefs": ["en-wiki-ep1", "ja-wiki-ep1"]
+    },
+    {
+      "id": "ep1-original-two-parter-draft",
+      "episode": 1,
+      "type": "fact",
+      "title": "The scrapped two-part opening",
+      "body": "Gainax's original 1993 pitch document had this episode titled \"People's Reunion\" and structured as a diptych with episode 2. It was to open with Shinji stuck on a train during a battle between Rei's Eva-00 and a \"metallic\" Angel named Raziel, who vanishes into a lake, sending a damaged Unit 00 back to base; the start of a separate fight between Raziel and a berserk Unit 01 was also planned for this episode before being pushed into episode 2.",
+      "links": [ { "id": "original-28-angels-concept", "label": "Another scrapped early-draft concept" } ],
+      "sourceRefs": ["ja-wiki-ep1", "en-wiki-ep1"],
+      "quote": {
+        "lang": "ja",
+        "original": "当初の案では、列車に乗っていたシンジが、綾波レイの操縦するエヴァ零号機と使徒「ラジエル」の戦闘により足止めを食らう場面から始まる予定であった。その戦闘でラジエルは湖へと姿を消し、損傷した零号機はNERV本部へと帰還するという流れである。",
+        "translation": "\"In the original plan, the episode was to open with Shinji stuck on a train during a battle between Rei Ayanami's piloted Eva Unit-00 and the Angel 'Raziel'; in that battle Raziel would vanish into a lake, and the damaged Unit-00 would return to NERV headquarters.\""
+      }
+    },
+    {
+      "id": "ep1-schedule-crisis",
+      "episode": 1,
+      "type": "fact",
+      "title": "Only 12 of 26 episodes were done when the show went on air",
+      "body": "By the time \"Angel Attack\" actually broadcast, Gainax had completed only twelve episodes after nearly two years of production — leaving the remaining fourteen to be finished in roughly a third of the time already spent. This compressed schedule is widely identified as the root of the severe production problems that hit the second half of the series.",
+      "links": [ { "id": "finale-controversy", "label": "Where that time crunch ends up" } ],
+      "sourceRefs": ["en-wiki-ep1"]
+    },
+    {
+      "id": "escape-phrase-origin",
+      "episode": 1,
+      "type": "theory",
+      "title": "Where \"I mustn't run away\" actually comes from",
+      "body": "Shinji's refrain is traced by several sources to Anno's own life: he has described feeling \"completely destroyed\" after finishing Nadia: The Secret of Blue Water, spent four difficult years before Evangelion, and returned to anime work carrying the same resolve the line expresses. Gainax co-founder Yasuhiro Takeda has separately said the phrase traces further back, to the director's shelved project Blue Uru — and has suggested, more broadly, that Evangelion itself may just be a reflection of Anno's feelings during that period.",
+      "links": [ { "id": "escape-phrase-shift", "label": "How the line changes by the finale" }, { "id": "anno-metanarrative", "label": "The broader reading of the finale as Anno's own story" } ],
+      "sourceRefs": ["en-wiki-ep1", "ja-wiki-ep1"],
+      "quote": {
+        "lang": "ja",
+        "original": "このセリフは、シリーズ公開前の4年間に困難な時期を過ごし、そこから同様の理念を持ってアニメ制作に復帰した庵野秀明自身の個人的な経験から着想を得たものである。",
+        "translation": "\"This line was inspired by Hideaki Anno's own personal experience: he spent four difficult years before the series' release, and returned to anime production from that period carrying the same conviction.\""
+      }
+    },
+    {
+      "id": "rei-ghost-ep1",
+      "episode": 1,
+      "scene": "Shinji sees a silent figure resembling Rei in the empty streets before Gendo summons him",
+      "type": "theory",
+      "title": "The Rei who shouldn't be there yet",
+      "body": "Early in this episode, alone in the deserted streets near Tokyo-3, Shinji glimpses what looks like Rei Ayanami — before he's ever met her. It isn't the \"real\" Rei on-screen at that point in the story, and multiple critics/scholars connect the apparition to The End of Evangelion's Instrumentality sequence, in which Rei-like figures appear to the dying as \"messengers of redemption\" guiding them into the merged whole. One reading (Nebbia) goes further: this is Rei appearing to Shinji backward across time, already on her way to godhood.",
+      "links": [ { "id": "rei-welcome-home", "label": "The later scene this apparition is read against" }, { "id": "rei-lilith-soul-split", "label": "The soul-nature theory this feeds" } ],
+      "sourceRefs": ["en-wiki-ep1", "ja-wiki-ep1"],
+      "quote": {
+        "lang": "ja",
+        "original": "本話の冒頭、シンジは第3新東京市近郊の無人の街で綾波レイの幻影を目撃する。このシーンに現れるレイは実在するレイではなく、その出現はテレビシリーズの完結編として1997年に公開された映画『新世紀エヴァンゲリオン劇場版 Air/まごころを、君に』の内容と関連付けられている。",
+        "translation": "\"At the start of this episode, Shinji glimpses an apparition of Rei Ayanami in the deserted streets near Tokyo-3. The Rei who appears in this scene isn't the real Rei — her appearance here has been linked to the content of the 1997 film The End of Evangelion, released as the TV series' conclusion.\""
+      }
+    },
+    {
+      "id": "family-triad-imagery",
+      "episode": 1,
+      "scene": "Shinji is shown Unit-01 in its hangar as Gendo appears above him",
+      "type": "theory",
+      "title": "Eva-01 staged as the mother in the room",
+      "body": "Scholars (Betty Stojnic, Claudio Cordella) read this episode's hangar scene as staging a full Freudian family triad on-screen: Shinji dwarfed between his distant, authoritative father above him and a maternal Eva-01 beside him — Eva-01 later raises its arm to shield Shinji, read as a maternal gesture rather than a mechanical reflex. It's the earliest visual argument for the idea that Yui's presence is somehow in the machine itself.",
+      "links": [ { "id": "yuis-soul-in-unit-01", "label": "The theory this staging feeds" } ],
+      "sourceRefs": ["en-wiki-ep1"]
+    },
+    {
+      "id": "gendo-visual-motif",
+      "episode": 1,
+      "type": "fact",
+      "title": "Gendo is staged to be unreadable from episode 1 on",
+      "body": "From his very first scenes, Gendo is shot with his face partly hidden behind clasped hands, or behind glasses that reflect the monitor screens rather than showing his eyes. Scholar William Routt reads this as a deliberate graphic metaphor for a man who holds authority precisely by never revealing what he actually feels or intends — a visual rule the show keeps up for most of Gendo's screen time.",
+      "links": [ { "id": "gendo-ikari", "label": "Back to Gendo himself" } ],
+      "sourceRefs": ["en-wiki-ep1"]
+    },
+    {
+      "id": "shinji-gendo-tool-reading",
+      "episode": 1,
+      "type": "theory",
+      "title": "Shinji (and Rei) as instruments, not sons",
+      "body": "Several scholars single out this episode as already making clear that Gendo treats both Shinji and Rei as tools toward his own ends rather than as people he has any relationship with — a reading that only sharpens once Gendo's actual motive (reuniting with Yui through Instrumentality) is spelled out later in the series.",
+      "links": [ { "id": "gendos-motive-reading", "label": "Gendo's motive, once it's made explicit" } ],
+      "sourceRefs": ["en-wiki-ep1"]
+    },
+    {
+      "id": "misato-fanservice-debate",
+      "episode": 1,
+      "scene": "Misato's photo/note to Shinji",
+      "type": "theory",
+      "title": "An ongoing critical argument over Misato's introduction",
+      "body": "Misato's introductory note to Shinji includes a risqué photo of herself — read by some critics/scholars (Afanasov, Arbonés) as straightforward fan service sexualizing a female character for a young male audience, and by others as characterization consistent with Misato's personality. Writer Andrew M. Winters has linked the moment forward to the TV finale, where Misato tries to spur Shinji into the Eva by kissing him and promising sex afterward — read by some as the same device recurring at the story's most serious moment, and by others as something else entirely by then.",
+      "links": [ { "id": "misato-katsuragi", "label": "Back to Misato's introduction" } ],
+      "sourceRefs": ["en-wiki-ep1"]
+    },
+    {
+      "id": "itano-circus-tokusatsu-refs",
+      "episode": 1,
+      "scene": "The JSSDF's missile barrage against Sachiel",
+      "type": "fact",
+      "title": "A Macross homage, and a pile of tokusatsu references",
+      "body": "The opening missile-barrage attack on Sachiel visually quotes the \"Itano Circus\" — the swarming-missile animation technique from Macross, a series Anno and other future Gainax staff worked on as animators before Evangelion. Beyond that one homage, critic Philip Brophy describes the episode's opening minutes as a dense collage of Japanese tokusatsu/kaiju quotations (Godzilla, Ultra Q, Mazinger Z, Yamato, Gundam), and the episode borrows visual language from director Akio Jissoji's own distinctive style. Real-world military hardware appears throughout, including Type 74 tanks, Yak-38-inspired VTOLs, and M270 MLRS launchers.",
+      "links": [],
+      "sourceRefs": ["en-wiki-ep1", "ja-wiki-ep1"]
+    },
+    {
+      "id": "gainax-festival-preview",
+      "episode": 1,
+      "type": "fact",
+      "title": "200 fans saw this months before anyone else",
+      "body": "Episodes 1 and 2 previewed for about 200 attendees at the second Gainax Festival in Itako, Ibaraki, on July 22–23, 1995 — roughly two and a half months before the October 4 broadcast. Per Gainax co-founder Yasuhiro Takeda, the screening showed only the raw episodes; the opening sequence and other finishing elements weren't ready yet.",
+      "links": [],
+      "sourceRefs": ["ja-wiki-ep1", "en-wiki-ep1"]
+    },
+    {
+      "id": "ep1-reception-and-legacy",
+      "episode": 1,
+      "type": "fact",
+      "title": "How episode 1 landed, then and later",
+      "body": "\"Angel Attack\" scored a 6.8% household rating on its original broadcast and later placed 17th in an Animage magazine \"Animage Grand Prix\" poll of favorite episode subtitles; the scene where Shinji and Rei first meet separately placed 16th in a TV Asahi viewer survey of the best anime scenes ever. At the 2006 Tokyo International Anime Fair, fans voted the first two episodes the anime installment they'd most like to watch again. Separately, novelist/scenario writer Kinoko Nasu (Fate/stay night, Tsukihime) has said watching this episode is what made him start writing.",
+      "links": [],
+      "sourceRefs": ["ja-wiki-ep1", "en-wiki-ep1"]
+    },
+    {
+      "id": "anno-happiness-quote",
+      "episode": 1,
+      "type": "theory",
+      "title": "\"Is that person really happy?\" — Anno on his own audience",
+      "body": "In an interview during production of the first two episodes, Anno directly questioned the happiness of his own target audience — adult fans of robot anime and \"bishōjo\" anime — and said making the show was partly an attempt to work out what \"happiness\" could even mean for someone like that. It's about as blunt a statement of the show's self-critical relationship to its own audience as exists anywhere in its production history, well before the finale made that theme explicit.",
+      "links": [ { "id": "anno-metanarrative", "label": "Where this attitude resurfaces at the end" } ],
+      "sourceRefs": ["ja-wiki-ep1", "en-wiki-ep1"],
+      "quote": {
+        "lang": "ja",
+        "original": "たとえば、２０歳を過ぎてロボットアニメや美少女アニメが好きな人間って、本当に幸福なんでしょうか。（中略）この作品をつくりながら、そんな人間にとっての幸福ってなんなんだろうって考えてみたいんですよ。",
+        "translation": "\"For instance, is a person over the age of twenty who likes robot anime and bishōjo anime really happy? [...] While making this work, I wanted to try thinking about what 'happiness' could even mean for a person like that.\""
+      }
+    },
+    {
       "id": "asuka-langley-souryuu",
       "episode": 8,
       "type": "character",
@@ -321,7 +474,7 @@
       "type": "theory",
       "title": "Yui's soul inside Unit-01",
       "body": "The show never states in dialogue that Yui Ikari's soul resides in Unit-01, but strongly implies it — her disappearance during an activation test, Gendo's fixation on the unit, and Unit-01's unpowered \"berserk\" rescues of Shinji are the load-bearing evidence. Anno has confirmed the broader mechanism in interviews (a pilot syncs with an Evangelion \"through their mother's soul,\" an idea he traces to an NHK documentary on the brain), which lends real weight to the reading — but the specific claim that it's Yui's soul in Unit-01 is still never said outright on-screen.",
-      "links": [ { "id": "third-impact", "label": "Where that ambiguity comes to a head" } ],
+      "links": [ { "id": "third-impact", "label": "Where that ambiguity comes to a head" }, { "id": "family-triad-imagery", "label": "The earliest staging that hints at this" } ],
       "sourceRefs": ["ja-wiki-nge"],
       "quote": {
         "lang": "ja",
@@ -404,7 +557,7 @@
       "type": "theory",
       "title": "Gendo as tragic rather than purely villainous",
       "body": "Gendo's plan is explicitly framed here as wanting to be with Yui again, but how much sympathy that deserves given the harm he causes Shinji and everyone around him to get there is a matter of ongoing viewer disagreement rather than something the text adjudicates for you.",
-      "links": [ { "id": "gendo-ikari", "label": "Back to Gendo's introduction" } ],
+      "links": [ { "id": "gendo-ikari", "label": "Back to Gendo's introduction" }, { "id": "shinji-gendo-tool-reading", "label": "How that read Gendo from the very first episode" } ],
       "sourceRefs": ["tvtropes-wmg-instrumentality", "cbr-fan-explanations"]
     },
     {
@@ -468,7 +621,7 @@
       "type": "theory",
       "title": "Lilith's soul divided across Rei and Unit-00",
       "body": "Building on a scene in The End of Evangelion where Rei is welcomed \"home\" by Lilith, a popular theory holds that souls in this universe are divisible, and that a fragment of Lilith's soul persists in each Rei clone and possibly in Unit-00 itself (offered as one explanation for Unit-00's own unexplained hostile incidents). This is an inference from a handful of suggestive scenes, not a stated rule.",
-      "links": [ { "id": "rei-welcome-home", "label": "The scene this theory is built on" } ],
+      "links": [ { "id": "rei-welcome-home", "label": "The scene this theory is built on" }, { "id": "rei-ghost-ep1", "label": "The earliest hint of this, well before it's explained" } ],
       "sourceRefs": ["evageeks-soul-divisibility", "evageeks-eva00-soul", "evageeks-forum-rei-lilith-soul"]
     },
     {
@@ -541,7 +694,7 @@
       "type": "theory",
       "title": "The finale as commentary on Anno's own depression",
       "body": "Director Hideaki Anno has spoken about depression during the show's production, and the TV finale's abrupt turn toward real-world footage, character-actor congratulations, and direct address to the viewer is widely read as breaking the fourth wall on purpose — a message about escapism versus engaging with a difficult reality, layered on top of Shinji's in-story arc rather than replacing it. Sociologist Miyadai Shinji has argued the series itself started as a lighter, more conventional \"school anime\" concept and drifted toward this ending as production wore on and the director's own state of mind changed.",
-      "links": [],
+      "links": [ { "id": "anno-happiness-quote", "label": "The same self-scrutiny, voiced during episode 1" } ],
       "sourceRefs": ["ja-wiki-nge"],
       "quote": {
         "lang": "ja",
@@ -555,7 +708,7 @@
       "type": "fact",
       "title": "\"I mustn't run away\" becomes \"it's okay to run away\"",
       "body": "Shinji's early refrain — \"I mustn't run away\" (逃げちゃダメだ) — is the closest thing the show has to a stated thesis in its first half. By the finale it's been replaced with the opposite: it's okay to run away. Character designer Yoshiyuki Sadamoto is credited with suggesting the shift.",
-      "links": [ { "id": "accept-vs-reject", "label": "How that plays out differently in EoE" } ],
+      "links": [ { "id": "accept-vs-reject", "label": "How that plays out differently in EoE" }, { "id": "escape-phrase-origin", "label": "Where the original line actually comes from" } ],
       "sourceRefs": ["ja-wiki-nge"],
       "quote": {
         "lang": "ja",
@@ -569,7 +722,7 @@
       "type": "theory",
       "title": "Why did the finale turn out this way? Even the staff disagree",
       "body": "The standard explanation is that production had fallen catastrophically behind — only around a third of the episodes were fully animated by the time the show started airing, and the two finale episodes were assembled largely from recycled footage out of necessity. But several staff accounts complicate that: magazine editor Ogura Yuichiro says the finale's plot points were already locked in by January 1996, two months before broadcast; GAINAX president Yamaga Hiroyuki says the show was never so broken it couldn't have been finished conventionally; and assistant director Tsurumaki Kazuya has said Anno had \"a chance of winning\" with this ending in mind from the start, and considered the backlash itself part of that win — a show forgotten in six months was the actual failure state he was avoiding. Anno himself maintains the finale was always intended to be exactly this, schedule aside, aiming at what he called \"liberation from cel animation.\"",
-      "links": [ { "id": "two-endings", "label": "The other ending this led to" } ],
+      "links": [ { "id": "two-endings", "label": "The other ending this led to" }, { "id": "ep1-schedule-crisis", "label": "How far behind production already was at episode 1" } ],
       "sourceRefs": ["ja-wiki-nge"],
       "quote": {
         "lang": "ja",
@@ -583,7 +736,7 @@
       "type": "fact",
       "title": "The original plan had 28 Angels, not 17",
       "body": "Early planning documents describe 28 Angels rather than the 17 the finished show uses, with a climax involving a second wave of 12 Angels descending from the moon alongside Instrumentality's activation. That structural role — a large final wave of antagonists tied to Instrumentality — survives in the finished work in a different form: the nine Mass-Production Evangelions that SEELE deploys near the end.",
-      "links": [ { "id": "dummy-plug", "label": "The system built into those nine units" }, { "id": "human-instrumentality-project", "label": "The plan they were meant to serve" } ],
+      "links": [ { "id": "dummy-plug", "label": "The system built into those nine units" }, { "id": "human-instrumentality-project", "label": "The plan they were meant to serve" }, { "id": "ep1-original-two-parter-draft", "label": "Another abandoned early draft, from episode 1's own plot" } ],
       "sourceRefs": ["ja-wiki-nge"],
       "quote": {
         "lang": "ja",
@@ -644,7 +797,7 @@
       "type": "fact",
       "title": "Rei's reunion with Lilith",
       "body": "In The End of Evangelion, Rei III is shown reuniting with Lilith with the words \"I'm home,\" and Lilith replying \"Welcome home\" — one of the few moments the show gestures directly at what Rei actually is.",
-      "links": [ { "id": "rei-lilith-soul-split", "label": "The soul-splitting theory this feeds" } ],
+      "links": [ { "id": "rei-lilith-soul-split", "label": "The soul-splitting theory this feeds" }, { "id": "rei-ghost-ep1", "label": "An earlier apparition read against this scene" } ],
       "sourceRefs": ["evageeks-rei-indepth", "evageeks-soul-divisibility"]
     },
     {
