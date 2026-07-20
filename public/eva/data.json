@@ -26,7 +26,7 @@
     "looper-eoe-ending": { "lang": "en", "title": "The Ending Of End Of Evangelion Explained — Looper", "url": "https://www.looper.com/377530/the-ending-of-end-of-evangelion-explained/" },
     "ja-wiki-ep1": { "lang": "ja", "title": "使徒、襲来 — Wikipedia (Japanese)", "url": "https://ja.wikipedia.org/wiki/使徒、襲来" },
     "en-wiki-ep1": { "lang": "en", "title": "Angel Attack (episode) — Wikipedia", "url": "https://en.wikipedia.org/wiki/Angel_Attack" },
-    "en-wiki-ep2": { "lang": "en", "title": "The Beast (episode) — Wikipedia", "url": "https://en.wikipedia.org/wiki/The_Beast_(Neon_Genesis_Evangelion)" },
+    "en-wiki-ep2": { "lang": "en", "title": "The Beast (episode) — Wikipedia", "url": "https://en.wikipedia.org/wiki/The_Beast_(Neon_Genesis_Evangelion_episode)" },
     "en-wiki-ep3": { "lang": "en", "title": "A Transfer (episode) — Wikipedia", "url": "https://en.wikipedia.org/wiki/A_Transfer" },
     "en-wiki-ep4": { "lang": "en", "title": "Hedgehog's Dilemma (episode) — Wikipedia", "url": "https://en.wikipedia.org/wiki/Hedgehog%27s_Dilemma_(Neon_Genesis_Evangelion)" },
     "en-wiki-ep5": { "lang": "en", "title": "Rei I (episode) — Wikipedia", "url": "https://en.wikipedia.org/wiki/Rei_I" },
@@ -42,15 +42,18 @@
     "en-wiki-ep15": { "lang": "en", "title": "Those women longed for the touch of others' lips, and thus invited their kisses (episode) — Wikipedia", "url": "https://en.wikipedia.org/wiki/Those_women_longed_for_the_touch_of_others%27_lips,_and_thus_invited_their_kisses" },
     "en-wiki-ep16": { "lang": "en", "title": "Splitting of the Breast (episode) — Wikipedia", "url": "https://en.wikipedia.org/wiki/Splitting_of_the_Breast" },
     "en-wiki-ep17": { "lang": "en", "title": "Fourth Children (episode) — Wikipedia", "url": "https://en.wikipedia.org/wiki/Fourth_Children" },
-    "en-wiki-ep18": { "lang": "en", "title": "Ambivalence (Neon Genesis Evangelion) — Wikipedia", "url": "https://en.wikipedia.org/wiki/Ambivalence_(Neon_Genesis_Evangelion)" },
-    "en-wiki-ep19": { "lang": "en", "title": "Introjection (Neon Genesis Evangelion) — Wikipedia", "url": "https://en.wikipedia.org/wiki/Introjection_(Neon_Genesis_Evangelion)" },
+    "en-wiki-ep18": { "lang": "en", "title": "Ambivalence (Neon Genesis Evangelion) — Wikipedia", "url": "https://en.wikipedia.org/wiki/Ambivalence_(Neon_Genesis_Evangelion_episode)" },
+    "en-wiki-ep19": { "lang": "en", "title": "Introjection (Neon Genesis Evangelion) — Wikipedia", "url": "https://en.wikipedia.org/wiki/Introjection_(Neon_Genesis_Evangelion_episode)" },
     "en-wiki-ep20": { "lang": "en", "title": "Weaving a Story 2: oral stage — Wikipedia", "url": "https://en.wikipedia.org/wiki/Weaving_a_Story_2:_oral_stage" },
     "en-wiki-ep21": { "lang": "en", "title": "He was aware that he was still a child — Wikipedia", "url": "https://en.wikipedia.org/wiki/He_was_aware_that_he_was_still_a_child" },
-    "en-wiki-ep22": { "lang": "en", "title": "Don't Be (Neon Genesis Evangelion) — Wikipedia", "url": "https://en.wikipedia.org/wiki/Don%27t_Be_(Neon_Genesis_Evangelion)" },
+    "en-wiki-ep22": { "lang": "en", "title": "Don't Be (Neon Genesis Evangelion) — Wikipedia", "url": "https://en.wikipedia.org/wiki/Don't_Be" },
     "en-wiki-ep23": { "lang": "en", "title": "Rei III — Wikipedia", "url": "https://en.wikipedia.org/wiki/Rei_III" },
     "en-wiki-ep24": { "lang": "en", "title": "The Beginning and the End, or \"Knockin' on Heaven's Door\" — Wikipedia", "url": "https://en.wikipedia.org/wiki/The_Beginning_and_the_End,_or_%22Knockin%27_on_Heaven%27s_Door%22" },
     "en-wiki-eoe": { "lang": "en", "title": "The End of Evangelion — Wikipedia", "url": "https://en.wikipedia.org/wiki/The_End_of_Evangelion" },
-    "ja-wiki-eoe": { "lang": "ja", "title": "新世紀エヴァンゲリオン劇場版 Air/まごころを、君に — Wikipedia (Japanese)", "url": "https://ja.wikipedia.org/wiki/新世紀エヴァンゲリオン劇場版_Air/まごころを、君に" }
+    "ja-wiki-eoe": { "lang": "ja", "title": "新世紀エヴァンゲリオン劇場版 Air/まごころを、君に — Wikipedia (Japanese)", "url": "https://ja.wikipedia.org/wiki/新世紀エヴァンゲリオン劇場版_Air/まごころを、君に" },
+    "ann-staff": { "lang": "en", "title": "Neon Genesis Evangelion (TV) — Staff — Anime News Network", "url": "https://www.animenewsnetwork.com/encyclopedia/anime.php?id=45" },
+    "ann-cast": { "lang": "en", "title": "Neon Genesis Evangelion (TV) — Cast — Anime News Network", "url": "https://www.animenewsnetwork.com/encyclopedia/anime.php?id=45&page=cast" },
+    "ann-companies": { "lang": "en", "title": "Neon Genesis Evangelion (TV) — Companies — Anime News Network", "url": "https://www.animenewsnetwork.com/encyclopedia/anime.php?id=45&page=companies" }
   },
   "episodes": [
     { "number": 1, "title": "Angel Attack", "subtitle": "JP: 使徒、襲来 — lit. \"Angel, Attack\" · aired 1995-10-04, 6.8%" },
@@ -253,7 +256,7 @@
       "type": "fact",
       "title": "Anno wrote it, but didn't direct it",
       "body": "Hideaki Anno — the series' overall director — wrote this episode's script himself, but the episode itself was directed by his assistant director, Kazuya Tsurumaki, with Anno and Masayuki assisting on storyboards. Series-director-as-episode-director isn't a given even on a show this personal to Anno.",
-      "links": [],
+      "links": [ { "id": "nge-script-credits-breakdown", "label": "The writing-credit breakdown for the whole series" }, { "id": "nge-direction-credits-breakdown", "label": "The direction-credit breakdown for the whole series" } ],
       "sourceRefs": ["en-wiki-ep1", "ja-wiki-ep1"]
     },
     {
@@ -285,7 +288,7 @@
       "type": "fact",
       "title": "Only 12 of 26 episodes were done when the show went on air",
       "body": "By the time \"Angel Attack\" actually broadcast, Gainax had completed only twelve episodes after nearly two years of production — leaving the remaining fourteen to be finished in roughly a third of the time already spent. This compressed schedule is widely identified as the root of the severe production problems that hit the second half of the series.",
-      "links": [ { "id": "finale-controversy", "label": "Where that time crunch ends up" } ],
+      "links": [ { "id": "finale-controversy", "label": "Where that time crunch ends up" }, { "id": "nge-production-companies", "label": "Who else was involved in getting the show made" } ],
       "sourceRefs": ["en-wiki-ep1"]
     },
     {
@@ -468,7 +471,7 @@
       "type": "theory",
       "title": "The Hedgehog's Dilemma",
       "body": "The episode takes its English title from Schopenhauer's parable (by way of Freud): hedgehogs huddling for warmth keep pricking each other with their spines, and must find a distance close enough to share warmth but far enough to avoid pain. It's presented as the closest thing the series has to an explicit thesis statement for Shinji's relationships — with Misato, with Toji and Kensuke, and eventually with everyone else in his life.",
-      "links": [ { "id": "shinji-runs-away-ep4", "label": "How Shinji tests that distance in this same episode" }, { "id": "escape-phrase-origin", "label": "The refrain that runs alongside it" } ],
+      "links": [ { "id": "shinji-runs-away-ep4", "label": "How Shinji tests that distance in this same episode" }, { "id": "escape-phrase-origin", "label": "The refrain that runs alongside it" }, { "id": "nge-script-credits-breakdown", "label": "The one episode Anno didn't personally script" } ],
       "sourceRefs": ["en-wiki-ep4"]
     },
     {
@@ -579,7 +582,7 @@
       "episode": 10,
       "type": "fact",
       "title": "Episodes 10 and 11 were swapped during production",
-      "body": "Gainax's 1993 planning document originally slated the magma-dive Angel-capture story as episode 11 and a Nerv-blackout story as episode 10; during production the two were swapped, so the magma story became episode 10 (\"Magmadiver\") and the blackout draft became episode 11 (\"The Day Tokyo-3 Stood Still\") instead.",
+      "body": "Gainax's 1993 planning document originally slated the magma-dive Angel-capture story as episode 11 and a NERV-blackout story as episode 10; during production the two were swapped, so the magma story became episode 10 (\"Magmadiver\") and the blackout draft became episode 11 (\"The Day Tokyo-3 Stood Still\") instead.",
       "links": [ { "id": "matarael-blackout-battle", "label": "The blackout episode this became" } ],
       "sourceRefs": ["en-wiki-ep10"]
     },
@@ -616,7 +619,7 @@
       "episode": 10,
       "type": "theory",
       "title": "Asuka pilots out of rivalry with Rei, not duty",
-      "body": "According to Evangelion Chronicle, Asuka's decision to take on the Sandalphon mission alone is driven less by a sense of duty to Nerv than by simple competitiveness with Rei — an early, explicit statement of the rivalry that structures most of Asuka's choices as a pilot going forward.",
+      "body": "According to Evangelion Chronicle, Asuka's decision to take on the Sandalphon mission alone is driven less by a sense of duty to NERV than by simple competitiveness with Rei — an early, explicit statement of the rivalry that structures most of Asuka's choices as a pilot going forward.",
       "links": [ { "id": "asuka-langley-souryuu", "label": "Back to Asuka" }, { "id": "rei-ayanami", "label": "The rival she measures herself against" } ],
       "sourceRefs": ["en-wiki-ep10"]
     },
@@ -634,7 +637,7 @@
       "episode": 11,
       "type": "fact",
       "title": "A sabotage blackout, and the first three-Eva team-up",
-      "body": "Nerv headquarters loses power to unidentified sabotage just as the Angel Matarael arrives; with electricity out, Gendo and staff activate the Evangelions manually, and Shinji, Rei, and Asuka fight together for the first time as a genuine three-pilot team, with Shinji landing the finishing shot.",
+      "body": "NERV headquarters loses power to unidentified sabotage just as the Angel Matarael arrives; with electricity out, Gendo and staff activate the Evangelions manually, and Shinji, Rei, and Asuka fight together for the first time as a genuine three-pilot team, with Shinji landing the finishing shot.",
       "links": [ { "id": "ep10-production-swap", "label": "The production swap that put this story here" }, { "id": "shinji-asuka-sync-training", "label": "Their first two-pilot coordination, two episodes earlier" } ],
       "sourceRefs": ["en-wiki-ep11"]
     },
@@ -650,7 +653,7 @@
     {
       "id": "gendo-humanizing-moment",
       "episode": 11,
-      "scene": "Gendo personally helps Nerv staff manually activate the Evangelions",
+      "scene": "Gendo personally helps NERV staff manually activate the Evangelions",
       "type": "theory",
       "title": "Gendo's one unusually warm moment",
       "body": "Normally cold and unapproachable, Gendo pitches in directly to help his subordinates get the Evas running without power — a rare glimpse of him as responsible and human rather than purely instrumental, and one that visibly surprises Shinji. Writer Dennis Redmond calls it unusual by the norms of Japanese storytelling, which \"tends to recognise group achievement rather than individual merit.\"",
@@ -673,7 +676,7 @@
       "scene": "The three pilots lie on a hillside after the battle, watching Tokyo-3's lights come back on",
       "type": "unknowable",
       "title": "Why does humanity even fight the Angels?",
-      "body": "Shinji wonders aloud, after the battle, what the Angels' attacks are actually for — a question the show raises here and never really answers. Writer Rob Vuckovich reads it as evidence that God is functionally absent or indifferent in Evangelion's world, despite Nerv's own motto (\"God's in His Heaven, All's right with the World\").",
+      "body": "Shinji wonders aloud, after the battle, what the Angels' attacks are actually for — a question the show raises here and never really answers. Writer Rob Vuckovich reads it as evidence that God is functionally absent or indifferent in Evangelion's world, despite NERV's own motto (\"God's in His Heaven, All's right with the World\").",
       "links": [ { "id": "angels-true-nature", "label": "The deeper unknown this question sits on top of" } ],
       "sourceRefs": ["en-wiki-ep11"]
     },
@@ -691,7 +694,7 @@
       "episode": 12,
       "type": "fact",
       "title": "A scrapped Angel called Turel, and the actual Sahaquiel fight",
-      "body": "The episode's original planning-document draft cast a different Angel, Turel (\"the rock of God\"), as the antagonist; it was replaced during production by Sahaquiel, a satellite-sized Angel that tries to crash-land onto Nerv using its own body as a bomb. All three Evas team up to destroy it against Nerv's own odds, with Asuka landing the final blow.",
+      "body": "The episode's original planning-document draft cast a different Angel, Turel (\"the rock of God\"), as the antagonist; it was replaced during production by Sahaquiel, a satellite-sized Angel that tries to crash-land onto NERV using its own body as a bomb. All three Evas team up to destroy it against NERV's own odds, with Asuka landing the final blow.",
       "links": [ { "id": "matarael-blackout-battle", "label": "The previous episode's three-pilot fight" } ],
       "sourceRefs": ["en-wiki-ep12"]
     },
@@ -748,7 +751,7 @@
       "episode": 13,
       "type": "fact",
       "title": "A battle fought entirely inside the Magi",
-      "body": "A microscopic Angel, Iruel, infiltrates Nerv through a research chamber and rapidly evolves into something that behaves like a computer virus, attempting to hijack the Magi supercomputer into triggering Nerv's self-destruct. Ritsuko Akagi defeats it not by force but with a \"reverse hack\": rather than fighting Iruel's evolution, she engineers a program that gets it to choose coexistence with the Magi instead.",
+      "body": "A microscopic Angel, Iruel, infiltrates NERV through a research chamber and rapidly evolves into something that behaves like a computer virus, attempting to hijack the Magi supercomputer into triggering NERV's self-destruct. Ritsuko Akagi defeats it not by force but with a \"reverse hack\": rather than fighting Iruel's evolution, she engineers a program that gets it to choose coexistence with the Magi instead.",
       "links": [ { "id": "magi", "label": "The system under attack" }, { "id": "ritsuko-akagi", "label": "Back to Ritsuko's introduction" } ],
       "sourceRefs": ["en-wiki-ep13"]
     },
@@ -794,7 +797,7 @@
       "episode": 13,
       "type": "fact",
       "title": "A low rating, a strong critical response",
-      "body": "\"Lilliputian Hitcher\" drew only a 3.4% household rating but was well-reviewed, with critics praising its sense of suspense, the visual design of Nerv's control rooms, its focus on Ritsuko, and the Iruel hacking sequence — Comic Book Resources ranked the fight as the second-best in the entire series.",
+      "body": "\"Lilliputian Hitcher\" drew only a 3.4% household rating but was well-reviewed, with critics praising its sense of suspense, the visual design of NERV's control rooms, its focus on Ritsuko, and the Iruel hacking sequence — Comic Book Resources ranked the fight as the second-best in the entire series.",
       "links": [],
       "sourceRefs": ["en-wiki-ep13"]
     },
@@ -814,7 +817,7 @@
       "scene": "Rei pilots Unit-00 to deliver the Spear of Longinus to Terminal Dogma",
       "type": "fact",
       "title": "The Spear reaches Terminal Dogma",
-      "body": "The Spear of Longinus, first glimpsed being shipped from Antarctica two episodes earlier, is delivered by Rei via Unit-00 to the deepest level of Nerv's base — Terminal Dogma, the same restricted area that later turns out to hold Lilith.",
+      "body": "The Spear of Longinus, first glimpsed being shipped from Antarctica two episodes earlier, is delivered by Rei via Unit-00 to the deepest level of NERV's base — Terminal Dogma, the same restricted area that later turns out to hold Lilith.",
       "links": [ { "id": "spear-of-longinus-intro", "label": "The Spear's first appearance" }, { "id": "lilith", "label": "What else is kept in Terminal Dogma" } ],
       "sourceRefs": ["en-wiki-ep14"]
     },
@@ -834,7 +837,7 @@
       "scene": "Kaji's investigation into Eva pilot selection",
       "type": "fact",
       "title": "The Marduk Institute",
-      "body": "Kaji's investigation surfaces the Marduk Institute, the body apparently responsible for selecting Evangelion pilot candidates — revealed to be a front for 108 shell companies rather than a real organization. One of those shells lists Gendo, Fuyutsuki, and SEELE's Keel Lorenz among its registered names, tying Nerv's pilot-selection process directly back to the same people steering Instrumentality from behind it.",
+      "body": "Kaji's investigation surfaces the Marduk Institute, the body apparently responsible for selecting Evangelion pilot candidates — revealed to be a front for 108 shell companies rather than a real organization. One of those shells lists Gendo, Fuyutsuki, and SEELE's Keel Lorenz among its registered names, tying NERV's pilot-selection process directly back to the same people steering Instrumentality from behind it.",
       "links": [ { "id": "seele", "label": "The organization these names ultimately answer to" }, { "id": "nerv", "label": "The agency Marduk feeds pilots into" } ],
       "sourceRefs": ["en-wiki-ep15"]
     },
@@ -881,10 +884,10 @@
     {
       "id": "seven-eyes-symbolism",
       "episode": 15,
-      "scene": "The seven-eyed mask on the crucified giant, echoing Seele's own emblem",
+      "scene": "The seven-eyed mask on the crucified giant, echoing SEELE's own emblem",
       "type": "fact",
       "title": "Seven eyes, and the Book of Revelation",
-      "body": "The seven-eyed mask on the giant in Terminal Dogma echoes Seele's own emblem, and multiple scholars trace both to the Book of Revelation's lamb with \"seven horns and seven eyes,\" described there as \"the Seven Spirits of God sent out into all the earth.\" Assistant director Kazuya Tsurumaki has said the show's Christian imagery was chosen largely for aesthetic and exoticizing effect on its Japanese audience, rather than to encode a specific theology.",
+      "body": "The seven-eyed mask on the giant in Terminal Dogma echoes SEELE's own emblem, and multiple scholars trace both to the Book of Revelation's lamb with \"seven horns and seven eyes,\" described there as \"the Seven Spirits of God sent out into all the earth.\" Assistant director Kazuya Tsurumaki has said the show's Christian imagery was chosen largely for aesthetic and exoticizing effect on its Japanese audience, rather than to encode a specific theology.",
       "links": [ { "id": "seele", "label": "The organization whose emblem this echoes" } ],
       "sourceRefs": ["en-wiki-ep15"]
     },
@@ -1118,7 +1121,7 @@
     {
       "id": "fuyutsuki-yui-backstory",
       "episode": 21,
-      "scene": "Seele interrogates a kidnapped Fuyutsuki about his past with Gendo",
+      "scene": "SEELE interrogates a kidnapped Fuyutsuki about his past with Gendo",
       "type": "fact",
       "title": "Fuyutsuki's flashback: Yui, Gendo, and the founding of Gehirn",
       "body": "Under interrogation, Fuyutsuki recalls falling for a young researcher, Yui Ikari — then still involved with a man using his old surname, Rokubungi — while growing suspicious that Gendo was really after her connections to SEELE. Investigating Second Impact and an artificial cavity in Antarctica leads Fuyutsuki straight to Gendo and SEELE's involvement; shown the full scope of the Evangelion project by Gendo and researcher Naoko Akagi, he joins the organization that will later become NERV.",
@@ -1177,7 +1180,7 @@
       "episode": 22,
       "scene": "Asuka's flashback to her mother Kyoko's decline and suicide",
       "type": "fact",
-      "title": "Kyoko Zeppelin Soryu's madness and death",
+      "title": "Kyoko Zeppelin Souryuu's madness and death",
       "body": "Asuka's mother Kyoko developed a severe mental illness after her own contact experiment with an Evangelion unit, eventually coming to treat a doll as if it were her daughter while the real Asuka watched, before dying by suicide — with Asuka present, and refusing to cry at the funeral afterward. Part of Kyoko's psyche is implied to remain bound up in the Evangelion unit she made contact with, echoing the pattern already established with Yui and Unit-01.",
       "links": [ { "id": "asuka-langley-souryuu", "label": "Back to Asuka" }, { "id": "yuis-soul-in-unit-01", "label": "The parallel mother-in-the-Eva theory" }, { "id": "ritsuko-naoko-relationship", "label": "A parallel mother's breakdown, one generation over" } ],
       "sourceRefs": ["en-wiki-ep22"]
@@ -1323,7 +1326,7 @@
       "type": "fact",
       "title": "The one episode with no original score",
       "body": "Unlike every other episode, this one uses no music by series composer Shirō Sagisu at all — its only accompaniment is Beethoven's Ninth Symphony, specifically the \"Ode to Joy,\" which Kaworu hums on first meeting Shinji and which later plays under both his death and the episode's climactic battle.",
-      "links": [],
+      "links": [ { "id": "nge-fly-me-to-the-moon-versions", "label": "The recurring closing-theme pattern this episode alone skips" } ],
       "sourceRefs": ["en-wiki-ep24"]
     },
     {
@@ -1355,6 +1358,42 @@
       "sourceRefs": ["en-wiki-ep24"]
     },
     {
+      "id": "nge-script-credits-breakdown",
+      "episode": 1,
+      "type": "fact",
+      "title": "Who actually wrote each episode",
+      "body": "Per Anime News Network's staff credits, script duties break down as: Hideaki Anno on every episode except the fourth (episodes 1–3 and 5–26), Akio Satsukawa co-credited on 12 of those, Yōji Enokido on episodes 2, 7, 8, and 11, Hiroshi Yamaguchi on episodes 16, 22, and 23, Shinji Higuchi on episodes 17 and 18, and Mitsuo Iso as the sole writer of episode 13. Episode 4, \"Hedgehog's Dilemma,\" is the only one of the 26 with no Anno script credit at all.",
+      "links": [ { "id": "hedgehogs-dilemma-concept", "label": "The one episode Anno didn't personally script" }, { "id": "iso-scifi-worldbuilding", "label": "Iso's episode, written solo" }, { "id": "kaworu-shinji-bath-scene-history", "label": "Satsukawa's original, more explicit draft of episode 24" } ],
+      "sourceRefs": ["ann-staff"]
+    },
+    {
+      "id": "nge-direction-credits-breakdown",
+      "episode": 1,
+      "type": "fact",
+      "title": "Who actually storyboarded and directed each episode",
+      "body": "Beyond Anno's overall series direction, per-episode storyboard and \"episode director\" credits (as distinct roles) were spread across a rotating team: Kazuya Tsurumaki and Masayuki each handled roughly six to eight episodes; Hiroyuki Ishido about five. Several episodes have specific, named episode directors: Tsuyoshi Kaga (4, 10), Keiichi Sugiyama (5, 7), Seiji Mizushima (9), Tetsuya Watanabe (11), Tensai Okamura (13), Ken Andō and Masahiko Ōtsuka (14), Naoyasu Habu (15), Minoru Ōhara (17), Akira Takamura (22), Shōichi Masuo (23), and Masayuki himself on 19, 24, and 26 — the finale.",
+      "links": [ { "id": "ep1-director-writer", "label": "The director/writer split, back in episode 1" }, { "id": "iruel-hack-battle", "label": "Okamura's episode" }, { "id": "eva01-devours-zeruel", "label": "Masayuki's episode 19" } ],
+      "sourceRefs": ["ann-staff"]
+    },
+    {
+      "id": "nge-full-voice-cast",
+      "episode": 1,
+      "type": "fact",
+      "title": "The Japanese voice cast, and a few of its stranger double-castings",
+      "body": "Core cast: Megumi Ogata (Shinji), Megumi Hayashibara (Rei Ayanami — and also Yui Ikari), Kotono Mitsuishi (Misato), Yūko Miyamura (Asuka), Fumihiko Tachiki (Gendo), Yuriko Yamaguchi (Ritsuko), Kōichi Yamadera (Kaji), Motomu Kiyokawa (Fuyutsuki), Akira Ishida (Kaworu, episode 24), Mugihito (Keel Lorenz), Tomokazu Seki (Toji), Tetsuya Iwanaga (Kensuke), Junko Iwao (Hikari), and Miki Nagasawa (Maya). Per Anime News Network's cast credits, Hayashibara is also billed as the voice of \"EVA-01 (Berserker)\" — meaning the same actress who voices Rei and Yui is the one making Unit-01's inhuman berserk-state sounds, a small but suggestive piece of casting given the theories about whose soul is actually driving the Eva in those moments.",
+      "links": [ { "id": "yuis-soul-in-unit-01", "label": "The theory this casting choice quietly supports" }, { "id": "eva-01-berserk", "label": "The berserk state being voiced" }, { "id": "rei-ayanami", "label": "Back to Rei" } ],
+      "sourceRefs": ["ann-cast"]
+    },
+    {
+      "id": "nge-fly-me-to-the-moon-versions",
+      "episode": 1,
+      "type": "fact",
+      "title": "Nearly every episode ends with a different cover of \"Fly Me to the Moon\"",
+      "body": "Rather than reusing one closing theme recording, the series pairs Bart Howard's \"Fly Me to the Moon\" with a new arrangement and vocalist almost every episode — sung in turn by Claire, Yoko Takahashi, and, in character-specific versions, by Megumi Hayashibara as Rei, Yūko Miyamura as Asuka, and Kotono Mitsuishi as Misato (sometimes all three together), plus a couple of purely instrumental versions by composer Shirō Sagisu himself. Episode 24 is the one conspicuous exception, using no version of the song at all — consistent with it being the only episode built entirely around Beethoven's Ninth instead.",
+      "links": [ { "id": "ode-to-joy-only-score", "label": "The episode that breaks this pattern entirely" } ],
+      "sourceRefs": ["ann-staff"]
+    },
+    {
       "id": "asuka-langley-souryuu",
       "episode": 8,
       "type": "character",
@@ -1378,7 +1417,7 @@
       "type": "fact",
       "title": "Studio Ghibli animated this one",
       "body": "Episode 11 — the MAGI-computer-meltdown, power-outage bottle episode — was farmed out to Studio Ghibli staff as a contracted production. It shows: the art style, character expressions, and tone come out noticeably more comedic and warm than the episodes around it.",
-      "links": [],
+      "links": [ { "id": "nge-production-companies", "label": "The other studios that quietly worked on individual episodes" } ],
       "sourceRefs": ["ja-wiki-nge"],
       "quote": {
         "lang": "ja",
@@ -1453,7 +1492,8 @@
       "links": [
         { "id": "yuis-soul-in-unit-01", "label": "One reading of why" },
         { "id": "dummy-system", "label": "The forced-override system this isn't" },
-        { "id": "eva-01-devours-sachiel", "label": "The earliest hint of this, back in episode 2" }
+        { "id": "eva-01-devours-sachiel", "label": "The earliest hint of this, back in episode 2" },
+        { "id": "nge-full-voice-cast", "label": "Who actually voices this state" }
       ],
       "sourceRefs": ["en-wiki-nge", "evageeks-dummy-system"]
     },
@@ -1463,7 +1503,7 @@
       "type": "theory",
       "title": "Yui's soul inside Unit-01",
       "body": "The show never states in dialogue that Yui Ikari's soul resides in Unit-01, but strongly implies it — her disappearance during an activation test, Gendo's fixation on the unit, and Unit-01's unpowered \"berserk\" rescues of Shinji are the load-bearing evidence. Anno has confirmed the broader mechanism in interviews (a pilot syncs with an Evangelion \"through their mother's soul,\" an idea he traces to an NHK documentary on the brain), which lends real weight to the reading — but the specific claim that it's Yui's soul in Unit-01 is still never said outright on-screen.",
-      "links": [ { "id": "third-impact", "label": "Where that ambiguity comes to a head" }, { "id": "family-triad-imagery", "label": "The earliest staging that hints at this" }, { "id": "eva-01-devours-sachiel", "label": "An early unexplained rampage this could explain" }, { "id": "ritsuko-naoko-relationship", "label": "The equivalent mother-in-the-machine reading for Ritsuko" }, { "id": "yui-death-contact-experiment", "label": "The contact experiment that killed her" } ],
+      "links": [ { "id": "third-impact", "label": "Where that ambiguity comes to a head" }, { "id": "family-triad-imagery", "label": "The earliest staging that hints at this" }, { "id": "eva-01-devours-sachiel", "label": "An early unexplained rampage this could explain" }, { "id": "ritsuko-naoko-relationship", "label": "The equivalent mother-in-the-machine reading for Ritsuko" }, { "id": "yui-death-contact-experiment", "label": "The contact experiment that killed her" }, { "id": "nge-full-voice-cast", "label": "A casting detail that quietly backs up this theory" } ],
       "sourceRefs": ["ja-wiki-nge"],
       "quote": {
         "lang": "ja",
@@ -1919,6 +1959,18 @@
       "body": "The final scene shows Shinji and Asuka alone on a wrecked shoreline. Whether this is a reversed, near-total, or partial Third Impact — and whether anyone else survived it — is left to the audience.",
       "links": [],
       "sourceRefs": ["looper-eoe-ending"]
+    },
+    {
+      "id": "nge-production-companies",
+      "episode": 1,
+      "type": "fact",
+      "title": "It wasn't just Gainax — and a couple of surprising names show up in the credits",
+      "body": "Gainax is the credited studio, but the show was a joint venture from the start: it was produced under the \"Project Eva.\" banner alongside Kadokawa Shoten, NAS, and TV Tokyo, with Tatsunoko Production a whole-series co-animation partner (also handling most of the photography). King Records ran music production for Sagisu's score. Buried in the per-episode breakdown, a few now-famous studios turn up doing uncredited contract work on individual episodes — Kyoto Animation on backgrounds for episodes 5 and 9, and SHAFT on cel painting for episodes 8-9 — alongside Studio Ghibli's episode 11.",
+      "links": [
+        { "id": "ghibli-episode-11", "label": "The most famous of these one-off contract jobs" },
+        { "id": "ep1-schedule-crisis", "label": "Why so much work ended up farmed out" }
+      ],
+      "sourceRefs": ["ann-companies"]
     }
   ]
 }
