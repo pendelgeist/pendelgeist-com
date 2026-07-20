@@ -38,7 +38,8 @@
     "en-wiki-ep11": { "lang": "en", "title": "The Day Tokyo-3 Stood Still (episode) — Wikipedia", "url": "https://en.wikipedia.org/wiki/The_Day_Tokyo-3_Stood_Still" },
     "en-wiki-ep12": { "lang": "en", "title": "She said, \"Don't make others suffer for your personal hatred.\" (episode) — Wikipedia", "url": "https://en.wikipedia.org/wiki/She_said,_%22Don%27t_make_others_suffer_for_your_personal_hatred.%22" },
     "en-wiki-ep13": { "lang": "en", "title": "Lilliputian Hitcher (episode) — Wikipedia", "url": "https://en.wikipedia.org/wiki/Lilliputian_Hitcher" },
-    "en-wiki-ep14": { "lang": "en", "title": "Weaving a Story (episode) — Wikipedia", "url": "https://en.wikipedia.org/wiki/Weaving_a_Story" }
+    "en-wiki-ep14": { "lang": "en", "title": "Weaving a Story (episode) — Wikipedia", "url": "https://en.wikipedia.org/wiki/Weaving_a_Story" },
+    "en-wiki-ep15": { "lang": "en", "title": "Those women longed for the touch of others' lips, and thus invited their kisses (episode) — Wikipedia", "url": "https://en.wikipedia.org/wiki/Those_women_longed_for_the_touch_of_others%27_lips,_and_thus_invited_their_kisses" }
   },
   "episodes": [
     { "number": 1, "title": "Angel Attack", "subtitle": "JP: 使徒、襲来 — lit. \"Angel, Attack\" · aired 1995-10-04, 6.8%" },
@@ -114,7 +115,8 @@
         { "id": "human-instrumentality-project", "label": "What he's actually building toward" },
         { "id": "gendos-motive-reading", "label": "How sympathetic is that, really?" },
         { "id": "gendo-visual-motif", "label": "How he's shot, from the start" },
-        { "id": "gendo-photo-slap", "label": "A rare, stark display of his temper" }
+        { "id": "gendo-photo-slap", "label": "A rare, stark display of his temper" },
+        { "id": "yui-grave-visit", "label": "One of his only unguarded moments with Shinji" }
       ],
       "sourceRefs": ["fandom-characters", "en-wiki-characters"]
     },
@@ -161,7 +163,7 @@
       "type": "fact",
       "title": "NERV",
       "body": "A UN-supervised paramilitary organization, publicly tasked with defending humanity from the Angels using the Evangelions. It answers, less publicly, to SEELE and to Gendo Ikari's own agenda.",
-      "links": [ { "id": "seele", "label": "Who NERV really answers to" }, { "id": "jet-alone-incident", "label": "A rival robot program NERV has to contend with" } ],
+      "links": [ { "id": "seele", "label": "Who NERV really answers to" }, { "id": "jet-alone-incident", "label": "A rival robot program NERV has to contend with" }, { "id": "marduk-institute-reveal", "label": "The shell-company front NERV pulls its pilots through" } ],
       "sourceRefs": ["ja-wiki-nge", "en-wiki-nge"],
       "quote": {
         "lang": "ja",
@@ -815,6 +817,75 @@
       "sourceRefs": ["en-wiki-ep14"]
     },
     {
+      "id": "marduk-institute-reveal",
+      "episode": 15,
+      "scene": "Kaji's investigation into Eva pilot selection",
+      "type": "fact",
+      "title": "The Marduk Institute",
+      "body": "Kaji's investigation surfaces the Marduk Institute, the body apparently responsible for selecting Evangelion pilot candidates — revealed to be a front for 108 shell companies rather than a real organization. One of those shells lists Gendo, Fuyutsuki, and SEELE's Keel Lorenz among its registered names, tying Nerv's pilot-selection process directly back to the same people steering Instrumentality from behind it.",
+      "links": [ { "id": "seele", "label": "The organization these names ultimately answer to" }, { "id": "nerv", "label": "The agency Marduk feeds pilots into" } ],
+      "sourceRefs": ["en-wiki-ep15"]
+    },
+    {
+      "id": "yui-grave-visit",
+      "episode": 15,
+      "scene": "Shinji visits Yui's grave with Gendo for the first time in years",
+      "type": "theory",
+      "title": "An empty grave, and \"humans survive by forgetting\"",
+      "body": "Gendo takes Shinji to Yui's grave and admits there's no body under the stone — it's purely a place to remember her by — before adding that humans survive by forgetting. Scholars read the scene as one of the only moments Shinji and Gendo approach genuine mutual understanding, letting Shinji settle (however partially) why he was the one entrusted with fighting the Angels.",
+      "links": [ { "id": "gendo-ikari", "label": "Back to Gendo" }, { "id": "yuis-soul-in-unit-01", "label": "Where Yui actually persists, per one theory" }, { "id": "gendo-humanizing-moment", "label": "Another of Gendo's rare unguarded moments" } ],
+      "sourceRefs": ["en-wiki-ep15"]
+    },
+    {
+      "id": "shinji-asuka-first-kiss",
+      "episode": 15,
+      "scene": "Asuka kisses Shinji out of boredom, then insists it meant nothing",
+      "type": "theory",
+      "title": "The first Shinji/Asuka kiss, and how much it actually means",
+      "body": "Bored and restless, Asuka kisses Shinji and immediately downplays it as nothing more than boredom — a lie critics (Fabio Bartoli among them) read as reassurance aimed at herself as much as at him. Commentators disagree sharply on how to take it: some read it as one of Asuka's worse impulsive moments toward Shinji, others as evidence both of them have real feelings for each other that neither is equipped to admit or act on.",
+      "links": [ { "id": "asuka-langley-souryuu", "label": "Back to Asuka" }, { "id": "hedgehogs-dilemma-concept", "label": "The parable this dynamic keeps testing" } ],
+      "sourceRefs": ["en-wiki-ep15"]
+    },
+    {
+      "id": "misato-kaji-backstory",
+      "episode": 15,
+      "scene": "A drunk, tearful Misato tells Kaji the real reason she left him",
+      "type": "theory",
+      "title": "Why Misato really left Kaji",
+      "body": "Misato admits to Kaji that she broke up with him years earlier because he reminded her too much of her father, with whom she had an unresolved, conflicted relationship. Some critics read this through Jung's Electra complex; more broadly, several commentators note Misato unconsciously searches every relationship for a father figure, then panics and withdraws once she finds the resemblance — the same pattern this scene names directly.",
+      "links": [ { "id": "misato-katsuragi", "label": "Back to Misato" }, { "id": "misato-second-impact-backstory", "label": "The trauma underneath that pattern" }, { "id": "ryoji-kaji", "label": "Back to Kaji" } ],
+      "sourceRefs": ["en-wiki-ep15"]
+    },
+    {
+      "id": "crucified-giant-reveal",
+      "episode": 15,
+      "scene": "Kaji shows Misato a crucified giant in Terminal Dogma, calling it Adam",
+      "type": "fact",
+      "title": "The giant Kaji calls \"Adam\" — except it isn't",
+      "body": "Kaji secretly brings Misato into Terminal Dogma and shows her a crucified, seven-eyed giant, identifying it as Adam, the first Angel. The series finale later reveals this figure is actually Lilith, the second Angel — one of several points across the show where characters' own labels for Adam and Lilith turn out to be unreliable.",
+      "links": [ { "id": "lilith", "label": "Who this figure actually is" }, { "id": "adam-lilith-confusion", "label": "The wider pattern of Adam/Lilith mix-ups" } ],
+      "sourceRefs": ["en-wiki-ep15"]
+    },
+    {
+      "id": "seven-eyes-symbolism",
+      "episode": 15,
+      "scene": "The seven-eyed mask on the crucified giant, echoing Seele's own emblem",
+      "type": "fact",
+      "title": "Seven eyes, and the Book of Revelation",
+      "body": "The seven-eyed mask on the giant in Terminal Dogma echoes Seele's own emblem, and multiple scholars trace both to the Book of Revelation's lamb with \"seven horns and seven eyes,\" described there as \"the Seven Spirits of God sent out into all the earth.\" Assistant director Kazuya Tsurumaki has said the show's Christian imagery was chosen largely for aesthetic and exoticizing effect on its Japanese audience, rather than to encode a specific theology.",
+      "links": [ { "id": "seele", "label": "The organization whose emblem this echoes" } ],
+      "sourceRefs": ["en-wiki-ep15"]
+    },
+    {
+      "id": "ep15-reception",
+      "episode": 15,
+      "type": "fact",
+      "title": "A quiet, character-focused episode with a divisive kiss",
+      "body": "Without a single Angel battle, \"Those women longed for the touch of others' lips, and thus invited their kisses\" drew a 6% rating and split critics: some found the Misato/Kaji romance overwrought and Asuka's behavior toward Shinji indefensible, while others praised the same scenes' focus on character interiority, plus the episode's religious imagery and its use of Bach's Cello Suite No. 1 over Shinji's private cello practice.",
+      "links": [],
+      "sourceRefs": ["en-wiki-ep15"]
+    },
+    {
       "id": "asuka-langley-souryuu",
       "episode": 8,
       "type": "character",
@@ -829,7 +900,7 @@
       "type": "character",
       "title": "Ryoji Kaji",
       "body": "Officially a NERV agent, unofficially reporting to SEELE and Japan's government simultaneously, digging into NERV's secrets — including Adam and Instrumentality — while romantically entangled with Misato.",
-      "links": [ { "id": "adam", "label": "The secret he keeps digging into" }, { "id": "kaji-death", "label": "What that digging costs him" }, { "id": "asuka-arrival", "label": "Escorting Asuka to Japan" } ],
+      "links": [ { "id": "adam", "label": "The secret he keeps digging into" }, { "id": "kaji-death", "label": "What that digging costs him" }, { "id": "asuka-arrival", "label": "Escorting Asuka to Japan" }, { "id": "misato-kaji-backstory", "label": "His unresolved history with Misato" }, { "id": "crucified-giant-reveal", "label": "What he shows Misato in Terminal Dogma" } ],
       "sourceRefs": ["fandom-characters"]
     },
     {
@@ -867,7 +938,7 @@
       "type": "fact",
       "title": "SEELE",
       "body": "A secretive committee that founded NERV and steers events from behind it, working from the Dead Sea Scrolls toward its own version of the Human Instrumentality Project — a version Gendo Ikari is simultaneously trying to hijack for himself.",
-      "links": [ { "id": "dead-sea-scrolls-contents", "label": "The text they're both working from" } ],
+      "links": [ { "id": "dead-sea-scrolls-contents", "label": "The text they're both working from" }, { "id": "marduk-institute-reveal", "label": "The shell-company front SEELE's members hide behind" }, { "id": "seven-eyes-symbolism", "label": "The symbolism behind SEELE's own emblem" } ],
       "sourceRefs": ["ja-wiki-nge", "en-wiki-nge"],
       "quote": {
         "lang": "ja",
@@ -1019,7 +1090,8 @@
       "links": [
         { "id": "rei-lilith-soul-split", "label": "Her connection to Rei" },
         { "id": "adam-lilith-confusion", "label": "Which of these two is which, again?" },
-        { "id": "spear-delivered-to-terminal-dogma", "label": "The other artifact kept in the same chamber" }
+        { "id": "spear-delivered-to-terminal-dogma", "label": "The other artifact kept in the same chamber" },
+        { "id": "crucified-giant-reveal", "label": "The scene where Kaji first shows her off, misidentified" }
       ],
       "sourceRefs": ["fandom-lilith", "villains-fandom-lilith"]
     },
