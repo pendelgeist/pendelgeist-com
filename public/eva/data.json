@@ -26,7 +26,7 @@
     "looper-eoe-ending": { "lang": "en", "title": "The Ending Of End Of Evangelion Explained — Looper", "url": "https://www.looper.com/377530/the-ending-of-end-of-evangelion-explained/" },
     "ja-wiki-ep1": { "lang": "ja", "title": "使徒、襲来 — Wikipedia (Japanese)", "url": "https://ja.wikipedia.org/wiki/使徒、襲来" },
     "en-wiki-ep1": { "lang": "en", "title": "Angel Attack (episode) — Wikipedia", "url": "https://en.wikipedia.org/wiki/Angel_Attack" },
-    "en-wiki-ep2": { "lang": "en", "title": "The Beast (episode) — Wikipedia", "url": "https://en.wikipedia.org/wiki/The_Beast_(Neon_Genesis_Evangelion)" },
+    "en-wiki-ep2": { "lang": "en", "title": "The Beast (episode) — Wikipedia", "url": "https://en.wikipedia.org/wiki/The_Beast_(Neon_Genesis_Evangelion_episode)" },
     "en-wiki-ep3": { "lang": "en", "title": "A Transfer (episode) — Wikipedia", "url": "https://en.wikipedia.org/wiki/A_Transfer" },
     "en-wiki-ep4": { "lang": "en", "title": "Hedgehog's Dilemma (episode) — Wikipedia", "url": "https://en.wikipedia.org/wiki/Hedgehog%27s_Dilemma_(Neon_Genesis_Evangelion)" },
     "en-wiki-ep5": { "lang": "en", "title": "Rei I (episode) — Wikipedia", "url": "https://en.wikipedia.org/wiki/Rei_I" },
@@ -42,11 +42,11 @@
     "en-wiki-ep15": { "lang": "en", "title": "Those women longed for the touch of others' lips, and thus invited their kisses (episode) — Wikipedia", "url": "https://en.wikipedia.org/wiki/Those_women_longed_for_the_touch_of_others%27_lips,_and_thus_invited_their_kisses" },
     "en-wiki-ep16": { "lang": "en", "title": "Splitting of the Breast (episode) — Wikipedia", "url": "https://en.wikipedia.org/wiki/Splitting_of_the_Breast" },
     "en-wiki-ep17": { "lang": "en", "title": "Fourth Children (episode) — Wikipedia", "url": "https://en.wikipedia.org/wiki/Fourth_Children" },
-    "en-wiki-ep18": { "lang": "en", "title": "Ambivalence (Neon Genesis Evangelion) — Wikipedia", "url": "https://en.wikipedia.org/wiki/Ambivalence_(Neon_Genesis_Evangelion)" },
-    "en-wiki-ep19": { "lang": "en", "title": "Introjection (Neon Genesis Evangelion) — Wikipedia", "url": "https://en.wikipedia.org/wiki/Introjection_(Neon_Genesis_Evangelion)" },
+    "en-wiki-ep18": { "lang": "en", "title": "Ambivalence (Neon Genesis Evangelion) — Wikipedia", "url": "https://en.wikipedia.org/wiki/Ambivalence_(Neon_Genesis_Evangelion_episode)" },
+    "en-wiki-ep19": { "lang": "en", "title": "Introjection (Neon Genesis Evangelion) — Wikipedia", "url": "https://en.wikipedia.org/wiki/Introjection_(Neon_Genesis_Evangelion_episode)" },
     "en-wiki-ep20": { "lang": "en", "title": "Weaving a Story 2: oral stage — Wikipedia", "url": "https://en.wikipedia.org/wiki/Weaving_a_Story_2:_oral_stage" },
     "en-wiki-ep21": { "lang": "en", "title": "He was aware that he was still a child — Wikipedia", "url": "https://en.wikipedia.org/wiki/He_was_aware_that_he_was_still_a_child" },
-    "en-wiki-ep22": { "lang": "en", "title": "Don't Be (Neon Genesis Evangelion) — Wikipedia", "url": "https://en.wikipedia.org/wiki/Don%27t_Be_(Neon_Genesis_Evangelion)" },
+    "en-wiki-ep22": { "lang": "en", "title": "Don't Be (Neon Genesis Evangelion) — Wikipedia", "url": "https://en.wikipedia.org/wiki/Don't_Be" },
     "en-wiki-ep23": { "lang": "en", "title": "Rei III — Wikipedia", "url": "https://en.wikipedia.org/wiki/Rei_III" },
     "en-wiki-ep24": { "lang": "en", "title": "The Beginning and the End, or \"Knockin' on Heaven's Door\" — Wikipedia", "url": "https://en.wikipedia.org/wiki/The_Beginning_and_the_End,_or_%22Knockin%27_on_Heaven%27s_Door%22" },
     "en-wiki-eoe": { "lang": "en", "title": "The End of Evangelion — Wikipedia", "url": "https://en.wikipedia.org/wiki/The_End_of_Evangelion" },
@@ -579,7 +579,7 @@
       "episode": 10,
       "type": "fact",
       "title": "Episodes 10 and 11 were swapped during production",
-      "body": "Gainax's 1993 planning document originally slated the magma-dive Angel-capture story as episode 11 and a Nerv-blackout story as episode 10; during production the two were swapped, so the magma story became episode 10 (\"Magmadiver\") and the blackout draft became episode 11 (\"The Day Tokyo-3 Stood Still\") instead.",
+      "body": "Gainax's 1993 planning document originally slated the magma-dive Angel-capture story as episode 11 and a NERV-blackout story as episode 10; during production the two were swapped, so the magma story became episode 10 (\"Magmadiver\") and the blackout draft became episode 11 (\"The Day Tokyo-3 Stood Still\") instead.",
       "links": [ { "id": "matarael-blackout-battle", "label": "The blackout episode this became" } ],
       "sourceRefs": ["en-wiki-ep10"]
     },
@@ -616,7 +616,7 @@
       "episode": 10,
       "type": "theory",
       "title": "Asuka pilots out of rivalry with Rei, not duty",
-      "body": "According to Evangelion Chronicle, Asuka's decision to take on the Sandalphon mission alone is driven less by a sense of duty to Nerv than by simple competitiveness with Rei — an early, explicit statement of the rivalry that structures most of Asuka's choices as a pilot going forward.",
+      "body": "According to Evangelion Chronicle, Asuka's decision to take on the Sandalphon mission alone is driven less by a sense of duty to NERV than by simple competitiveness with Rei — an early, explicit statement of the rivalry that structures most of Asuka's choices as a pilot going forward.",
       "links": [ { "id": "asuka-langley-souryuu", "label": "Back to Asuka" }, { "id": "rei-ayanami", "label": "The rival she measures herself against" } ],
       "sourceRefs": ["en-wiki-ep10"]
     },
@@ -634,7 +634,7 @@
       "episode": 11,
       "type": "fact",
       "title": "A sabotage blackout, and the first three-Eva team-up",
-      "body": "Nerv headquarters loses power to unidentified sabotage just as the Angel Matarael arrives; with electricity out, Gendo and staff activate the Evangelions manually, and Shinji, Rei, and Asuka fight together for the first time as a genuine three-pilot team, with Shinji landing the finishing shot.",
+      "body": "NERV headquarters loses power to unidentified sabotage just as the Angel Matarael arrives; with electricity out, Gendo and staff activate the Evangelions manually, and Shinji, Rei, and Asuka fight together for the first time as a genuine three-pilot team, with Shinji landing the finishing shot.",
       "links": [ { "id": "ep10-production-swap", "label": "The production swap that put this story here" }, { "id": "shinji-asuka-sync-training", "label": "Their first two-pilot coordination, two episodes earlier" } ],
       "sourceRefs": ["en-wiki-ep11"]
     },
@@ -650,7 +650,7 @@
     {
       "id": "gendo-humanizing-moment",
       "episode": 11,
-      "scene": "Gendo personally helps Nerv staff manually activate the Evangelions",
+      "scene": "Gendo personally helps NERV staff manually activate the Evangelions",
       "type": "theory",
       "title": "Gendo's one unusually warm moment",
       "body": "Normally cold and unapproachable, Gendo pitches in directly to help his subordinates get the Evas running without power — a rare glimpse of him as responsible and human rather than purely instrumental, and one that visibly surprises Shinji. Writer Dennis Redmond calls it unusual by the norms of Japanese storytelling, which \"tends to recognise group achievement rather than individual merit.\"",
@@ -673,7 +673,7 @@
       "scene": "The three pilots lie on a hillside after the battle, watching Tokyo-3's lights come back on",
       "type": "unknowable",
       "title": "Why does humanity even fight the Angels?",
-      "body": "Shinji wonders aloud, after the battle, what the Angels' attacks are actually for — a question the show raises here and never really answers. Writer Rob Vuckovich reads it as evidence that God is functionally absent or indifferent in Evangelion's world, despite Nerv's own motto (\"God's in His Heaven, All's right with the World\").",
+      "body": "Shinji wonders aloud, after the battle, what the Angels' attacks are actually for — a question the show raises here and never really answers. Writer Rob Vuckovich reads it as evidence that God is functionally absent or indifferent in Evangelion's world, despite NERV's own motto (\"God's in His Heaven, All's right with the World\").",
       "links": [ { "id": "angels-true-nature", "label": "The deeper unknown this question sits on top of" } ],
       "sourceRefs": ["en-wiki-ep11"]
     },
@@ -691,7 +691,7 @@
       "episode": 12,
       "type": "fact",
       "title": "A scrapped Angel called Turel, and the actual Sahaquiel fight",
-      "body": "The episode's original planning-document draft cast a different Angel, Turel (\"the rock of God\"), as the antagonist; it was replaced during production by Sahaquiel, a satellite-sized Angel that tries to crash-land onto Nerv using its own body as a bomb. All three Evas team up to destroy it against Nerv's own odds, with Asuka landing the final blow.",
+      "body": "The episode's original planning-document draft cast a different Angel, Turel (\"the rock of God\"), as the antagonist; it was replaced during production by Sahaquiel, a satellite-sized Angel that tries to crash-land onto NERV using its own body as a bomb. All three Evas team up to destroy it against NERV's own odds, with Asuka landing the final blow.",
       "links": [ { "id": "matarael-blackout-battle", "label": "The previous episode's three-pilot fight" } ],
       "sourceRefs": ["en-wiki-ep12"]
     },
@@ -748,7 +748,7 @@
       "episode": 13,
       "type": "fact",
       "title": "A battle fought entirely inside the Magi",
-      "body": "A microscopic Angel, Iruel, infiltrates Nerv through a research chamber and rapidly evolves into something that behaves like a computer virus, attempting to hijack the Magi supercomputer into triggering Nerv's self-destruct. Ritsuko Akagi defeats it not by force but with a \"reverse hack\": rather than fighting Iruel's evolution, she engineers a program that gets it to choose coexistence with the Magi instead.",
+      "body": "A microscopic Angel, Iruel, infiltrates NERV through a research chamber and rapidly evolves into something that behaves like a computer virus, attempting to hijack the Magi supercomputer into triggering NERV's self-destruct. Ritsuko Akagi defeats it not by force but with a \"reverse hack\": rather than fighting Iruel's evolution, she engineers a program that gets it to choose coexistence with the Magi instead.",
       "links": [ { "id": "magi", "label": "The system under attack" }, { "id": "ritsuko-akagi", "label": "Back to Ritsuko's introduction" } ],
       "sourceRefs": ["en-wiki-ep13"]
     },
@@ -794,7 +794,7 @@
       "episode": 13,
       "type": "fact",
       "title": "A low rating, a strong critical response",
-      "body": "\"Lilliputian Hitcher\" drew only a 3.4% household rating but was well-reviewed, with critics praising its sense of suspense, the visual design of Nerv's control rooms, its focus on Ritsuko, and the Iruel hacking sequence — Comic Book Resources ranked the fight as the second-best in the entire series.",
+      "body": "\"Lilliputian Hitcher\" drew only a 3.4% household rating but was well-reviewed, with critics praising its sense of suspense, the visual design of NERV's control rooms, its focus on Ritsuko, and the Iruel hacking sequence — Comic Book Resources ranked the fight as the second-best in the entire series.",
       "links": [],
       "sourceRefs": ["en-wiki-ep13"]
     },
@@ -814,7 +814,7 @@
       "scene": "Rei pilots Unit-00 to deliver the Spear of Longinus to Terminal Dogma",
       "type": "fact",
       "title": "The Spear reaches Terminal Dogma",
-      "body": "The Spear of Longinus, first glimpsed being shipped from Antarctica two episodes earlier, is delivered by Rei via Unit-00 to the deepest level of Nerv's base — Terminal Dogma, the same restricted area that later turns out to hold Lilith.",
+      "body": "The Spear of Longinus, first glimpsed being shipped from Antarctica two episodes earlier, is delivered by Rei via Unit-00 to the deepest level of NERV's base — Terminal Dogma, the same restricted area that later turns out to hold Lilith.",
       "links": [ { "id": "spear-of-longinus-intro", "label": "The Spear's first appearance" }, { "id": "lilith", "label": "What else is kept in Terminal Dogma" } ],
       "sourceRefs": ["en-wiki-ep14"]
     },
@@ -834,7 +834,7 @@
       "scene": "Kaji's investigation into Eva pilot selection",
       "type": "fact",
       "title": "The Marduk Institute",
-      "body": "Kaji's investigation surfaces the Marduk Institute, the body apparently responsible for selecting Evangelion pilot candidates — revealed to be a front for 108 shell companies rather than a real organization. One of those shells lists Gendo, Fuyutsuki, and SEELE's Keel Lorenz among its registered names, tying Nerv's pilot-selection process directly back to the same people steering Instrumentality from behind it.",
+      "body": "Kaji's investigation surfaces the Marduk Institute, the body apparently responsible for selecting Evangelion pilot candidates — revealed to be a front for 108 shell companies rather than a real organization. One of those shells lists Gendo, Fuyutsuki, and SEELE's Keel Lorenz among its registered names, tying NERV's pilot-selection process directly back to the same people steering Instrumentality from behind it.",
       "links": [ { "id": "seele", "label": "The organization these names ultimately answer to" }, { "id": "nerv", "label": "The agency Marduk feeds pilots into" } ],
       "sourceRefs": ["en-wiki-ep15"]
     },
@@ -881,10 +881,10 @@
     {
       "id": "seven-eyes-symbolism",
       "episode": 15,
-      "scene": "The seven-eyed mask on the crucified giant, echoing Seele's own emblem",
+      "scene": "The seven-eyed mask on the crucified giant, echoing SEELE's own emblem",
       "type": "fact",
       "title": "Seven eyes, and the Book of Revelation",
-      "body": "The seven-eyed mask on the giant in Terminal Dogma echoes Seele's own emblem, and multiple scholars trace both to the Book of Revelation's lamb with \"seven horns and seven eyes,\" described there as \"the Seven Spirits of God sent out into all the earth.\" Assistant director Kazuya Tsurumaki has said the show's Christian imagery was chosen largely for aesthetic and exoticizing effect on its Japanese audience, rather than to encode a specific theology.",
+      "body": "The seven-eyed mask on the giant in Terminal Dogma echoes SEELE's own emblem, and multiple scholars trace both to the Book of Revelation's lamb with \"seven horns and seven eyes,\" described there as \"the Seven Spirits of God sent out into all the earth.\" Assistant director Kazuya Tsurumaki has said the show's Christian imagery was chosen largely for aesthetic and exoticizing effect on its Japanese audience, rather than to encode a specific theology.",
       "links": [ { "id": "seele", "label": "The organization whose emblem this echoes" } ],
       "sourceRefs": ["en-wiki-ep15"]
     },
@@ -1118,7 +1118,7 @@
     {
       "id": "fuyutsuki-yui-backstory",
       "episode": 21,
-      "scene": "Seele interrogates a kidnapped Fuyutsuki about his past with Gendo",
+      "scene": "SEELE interrogates a kidnapped Fuyutsuki about his past with Gendo",
       "type": "fact",
       "title": "Fuyutsuki's flashback: Yui, Gendo, and the founding of Gehirn",
       "body": "Under interrogation, Fuyutsuki recalls falling for a young researcher, Yui Ikari — then still involved with a man using his old surname, Rokubungi — while growing suspicious that Gendo was really after her connections to SEELE. Investigating Second Impact and an artificial cavity in Antarctica leads Fuyutsuki straight to Gendo and SEELE's involvement; shown the full scope of the Evangelion project by Gendo and researcher Naoko Akagi, he joins the organization that will later become NERV.",
@@ -1177,7 +1177,7 @@
       "episode": 22,
       "scene": "Asuka's flashback to her mother Kyoko's decline and suicide",
       "type": "fact",
-      "title": "Kyoko Zeppelin Soryu's madness and death",
+      "title": "Kyoko Zeppelin Souryuu's madness and death",
       "body": "Asuka's mother Kyoko developed a severe mental illness after her own contact experiment with an Evangelion unit, eventually coming to treat a doll as if it were her daughter while the real Asuka watched, before dying by suicide — with Asuka present, and refusing to cry at the funeral afterward. Part of Kyoko's psyche is implied to remain bound up in the Evangelion unit she made contact with, echoing the pattern already established with Yui and Unit-01.",
       "links": [ { "id": "asuka-langley-souryuu", "label": "Back to Asuka" }, { "id": "yuis-soul-in-unit-01", "label": "The parallel mother-in-the-Eva theory" }, { "id": "ritsuko-naoko-relationship", "label": "A parallel mother's breakdown, one generation over" } ],
       "sourceRefs": ["en-wiki-ep22"]
