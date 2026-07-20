@@ -50,7 +50,9 @@
     "en-wiki-ep23": { "lang": "en", "title": "Rei III — Wikipedia", "url": "https://en.wikipedia.org/wiki/Rei_III" },
     "en-wiki-ep24": { "lang": "en", "title": "The Beginning and the End, or \"Knockin' on Heaven's Door\" — Wikipedia", "url": "https://en.wikipedia.org/wiki/The_Beginning_and_the_End,_or_%22Knockin%27_on_Heaven%27s_Door%22" },
     "en-wiki-eoe": { "lang": "en", "title": "The End of Evangelion — Wikipedia", "url": "https://en.wikipedia.org/wiki/The_End_of_Evangelion" },
-    "ja-wiki-eoe": { "lang": "ja", "title": "新世紀エヴァンゲリオン劇場版 Air/まごころを、君に — Wikipedia (Japanese)", "url": "https://ja.wikipedia.org/wiki/新世紀エヴァンゲリオン劇場版_Air/まごころを、君に" }
+    "ja-wiki-eoe": { "lang": "ja", "title": "新世紀エヴァンゲリオン劇場版 Air/まごころを、君に — Wikipedia (Japanese)", "url": "https://ja.wikipedia.org/wiki/新世紀エヴァンゲリオン劇場版_Air/まごころを、君に" },
+    "ann-staff": { "lang": "en", "title": "Neon Genesis Evangelion (TV) — Staff — Anime News Network", "url": "https://www.animenewsnetwork.com/encyclopedia/anime.php?id=45" },
+    "ann-cast": { "lang": "en", "title": "Neon Genesis Evangelion (TV) — Cast — Anime News Network", "url": "https://www.animenewsnetwork.com/encyclopedia/anime.php?id=45&page=cast" }
   },
   "episodes": [
     { "number": 1, "title": "Angel Attack", "subtitle": "JP: 使徒、襲来 — lit. \"Angel, Attack\" · aired 1995-10-04, 6.8%" },
@@ -253,7 +255,7 @@
       "type": "fact",
       "title": "Anno wrote it, but didn't direct it",
       "body": "Hideaki Anno — the series' overall director — wrote this episode's script himself, but the episode itself was directed by his assistant director, Kazuya Tsurumaki, with Anno and Masayuki assisting on storyboards. Series-director-as-episode-director isn't a given even on a show this personal to Anno.",
-      "links": [],
+      "links": [ { "id": "nge-script-credits-breakdown", "label": "The writing-credit breakdown for the whole series" }, { "id": "nge-direction-credits-breakdown", "label": "The direction-credit breakdown for the whole series" } ],
       "sourceRefs": ["en-wiki-ep1", "ja-wiki-ep1"]
     },
     {
@@ -468,7 +470,7 @@
       "type": "theory",
       "title": "The Hedgehog's Dilemma",
       "body": "The episode takes its English title from Schopenhauer's parable (by way of Freud): hedgehogs huddling for warmth keep pricking each other with their spines, and must find a distance close enough to share warmth but far enough to avoid pain. It's presented as the closest thing the series has to an explicit thesis statement for Shinji's relationships — with Misato, with Toji and Kensuke, and eventually with everyone else in his life.",
-      "links": [ { "id": "shinji-runs-away-ep4", "label": "How Shinji tests that distance in this same episode" }, { "id": "escape-phrase-origin", "label": "The refrain that runs alongside it" } ],
+      "links": [ { "id": "shinji-runs-away-ep4", "label": "How Shinji tests that distance in this same episode" }, { "id": "escape-phrase-origin", "label": "The refrain that runs alongside it" }, { "id": "nge-script-credits-breakdown", "label": "The one episode Anno didn't personally script" } ],
       "sourceRefs": ["en-wiki-ep4"]
     },
     {
@@ -1323,7 +1325,7 @@
       "type": "fact",
       "title": "The one episode with no original score",
       "body": "Unlike every other episode, this one uses no music by series composer Shirō Sagisu at all — its only accompaniment is Beethoven's Ninth Symphony, specifically the \"Ode to Joy,\" which Kaworu hums on first meeting Shinji and which later plays under both his death and the episode's climactic battle.",
-      "links": [],
+      "links": [ { "id": "nge-fly-me-to-the-moon-versions", "label": "The recurring closing-theme pattern this episode alone skips" } ],
       "sourceRefs": ["en-wiki-ep24"]
     },
     {
@@ -1353,6 +1355,42 @@
       "body": "This episode topped the 1997 Animage readers' poll for best episode of the year, with Kaworu placing second in the same poll's best-male-character category. Western critical reception has been just as strong, though Kaworu's introduction and his relationship with Shinji have remained a subject of extensive debate among both scholars and fans.",
       "links": [],
       "sourceRefs": ["en-wiki-ep24"]
+    },
+    {
+      "id": "nge-script-credits-breakdown",
+      "episode": 1,
+      "type": "fact",
+      "title": "Who actually wrote each episode",
+      "body": "Per Anime News Network's staff credits, script duties break down as: Hideaki Anno on every episode except the fourth (episodes 1–3 and 5–26), Akio Satsukawa co-credited on 12 of those, Yōji Enokido on episodes 2, 7, 8, and 11, Hiroshi Yamaguchi on episodes 16, 22, and 23, Shinji Higuchi on episodes 17 and 18, and Mitsuo Iso as the sole writer of episode 13. Episode 4, \"Hedgehog's Dilemma,\" is the only one of the 26 with no Anno script credit at all.",
+      "links": [ { "id": "hedgehogs-dilemma-concept", "label": "The one episode Anno didn't personally script" }, { "id": "iso-scifi-worldbuilding", "label": "Iso's episode, written solo" }, { "id": "kaworu-shinji-bath-scene-history", "label": "Satsukawa's original, more explicit draft of episode 24" } ],
+      "sourceRefs": ["ann-staff"]
+    },
+    {
+      "id": "nge-direction-credits-breakdown",
+      "episode": 1,
+      "type": "fact",
+      "title": "Who actually storyboarded and directed each episode",
+      "body": "Beyond Anno's overall series direction, per-episode storyboard and \"episode director\" credits (as distinct roles) were spread across a rotating team: Kazuya Tsurumaki and Masayuki each handled roughly six to eight episodes; Hiroyuki Ishido about five. Several episodes have specific, named episode directors: Tsuyoshi Kaga (4, 10), Keiichi Sugiyama (5, 7), Seiji Mizushima (9), Tetsuya Watanabe (11), Tensai Okamura (13), Ken Andō and Masahiko Ōtsuka (14), Naoyasu Habu (15), Minoru Ōhara (17), Akira Takamura (22), Shōichi Masuo (23), and Masayuki himself on 19, 24, and 26 — the finale.",
+      "links": [ { "id": "ep1-director-writer", "label": "The director/writer split, back in episode 1" }, { "id": "iruel-hack-battle", "label": "Okamura's episode" }, { "id": "eva01-devours-zeruel", "label": "Masayuki's episode 19" } ],
+      "sourceRefs": ["ann-staff"]
+    },
+    {
+      "id": "nge-full-voice-cast",
+      "episode": 1,
+      "type": "fact",
+      "title": "The Japanese voice cast, and a few of its stranger double-castings",
+      "body": "Core cast: Megumi Ogata (Shinji), Megumi Hayashibara (Rei Ayanami — and also Yui Ikari), Kotono Mitsuishi (Misato), Yūko Miyamura (Asuka), Fumihiko Tachiki (Gendo), Yuriko Yamaguchi (Ritsuko), Kōichi Yamadera (Kaji), Motomu Kiyokawa (Fuyutsuki), Akira Ishida (Kaworu, episode 24), Mugihito (Keel Lorenz), Tomokazu Seki (Toji), Tetsuya Iwanaga (Kensuke), Junko Iwao (Hikari), and Miki Nagasawa (Maya). Per Anime News Network's cast credits, Hayashibara is also billed as the voice of \"EVA-01 (Berserker)\" — meaning the same actress who voices Rei and Yui is the one making Unit-01's inhuman berserk-state sounds, a small but suggestive piece of casting given the theories about whose soul is actually driving the Eva in those moments.",
+      "links": [ { "id": "yuis-soul-in-unit-01", "label": "The theory this casting choice quietly supports" }, { "id": "eva-01-berserk", "label": "The berserk state being voiced" }, { "id": "rei-ayanami", "label": "Back to Rei" } ],
+      "sourceRefs": ["ann-cast"]
+    },
+    {
+      "id": "nge-fly-me-to-the-moon-versions",
+      "episode": 1,
+      "type": "fact",
+      "title": "Nearly every episode ends with a different cover of \"Fly Me to the Moon\"",
+      "body": "Rather than reusing one closing theme recording, the series pairs Bart Howard's \"Fly Me to the Moon\" with a new arrangement and vocalist almost every episode — sung in turn by Claire, Yoko Takahashi, and, in character-specific versions, by Megumi Hayashibara as Rei, Yūko Miyamura as Asuka, and Kotono Mitsuishi as Misato (sometimes all three together), plus a couple of purely instrumental versions by composer Shirō Sagisu himself. Episode 24 is the one conspicuous exception, using no version of the song at all — consistent with it being the only episode built entirely around Beethoven's Ninth instead.",
+      "links": [ { "id": "ode-to-joy-only-score", "label": "The episode that breaks this pattern entirely" } ],
+      "sourceRefs": ["ann-staff"]
     },
     {
       "id": "asuka-langley-souryuu",
@@ -1453,7 +1491,8 @@
       "links": [
         { "id": "yuis-soul-in-unit-01", "label": "One reading of why" },
         { "id": "dummy-system", "label": "The forced-override system this isn't" },
-        { "id": "eva-01-devours-sachiel", "label": "The earliest hint of this, back in episode 2" }
+        { "id": "eva-01-devours-sachiel", "label": "The earliest hint of this, back in episode 2" },
+        { "id": "nge-full-voice-cast", "label": "Who actually voices this state" }
       ],
       "sourceRefs": ["en-wiki-nge", "evageeks-dummy-system"]
     },
@@ -1463,7 +1502,7 @@
       "type": "theory",
       "title": "Yui's soul inside Unit-01",
       "body": "The show never states in dialogue that Yui Ikari's soul resides in Unit-01, but strongly implies it — her disappearance during an activation test, Gendo's fixation on the unit, and Unit-01's unpowered \"berserk\" rescues of Shinji are the load-bearing evidence. Anno has confirmed the broader mechanism in interviews (a pilot syncs with an Evangelion \"through their mother's soul,\" an idea he traces to an NHK documentary on the brain), which lends real weight to the reading — but the specific claim that it's Yui's soul in Unit-01 is still never said outright on-screen.",
-      "links": [ { "id": "third-impact", "label": "Where that ambiguity comes to a head" }, { "id": "family-triad-imagery", "label": "The earliest staging that hints at this" }, { "id": "eva-01-devours-sachiel", "label": "An early unexplained rampage this could explain" }, { "id": "ritsuko-naoko-relationship", "label": "The equivalent mother-in-the-machine reading for Ritsuko" }, { "id": "yui-death-contact-experiment", "label": "The contact experiment that killed her" } ],
+      "links": [ { "id": "third-impact", "label": "Where that ambiguity comes to a head" }, { "id": "family-triad-imagery", "label": "The earliest staging that hints at this" }, { "id": "eva-01-devours-sachiel", "label": "An early unexplained rampage this could explain" }, { "id": "ritsuko-naoko-relationship", "label": "The equivalent mother-in-the-machine reading for Ritsuko" }, { "id": "yui-death-contact-experiment", "label": "The contact experiment that killed her" }, { "id": "nge-full-voice-cast", "label": "A casting detail that quietly backs up this theory" } ],
       "sourceRefs": ["ja-wiki-nge"],
       "quote": {
         "lang": "ja",
