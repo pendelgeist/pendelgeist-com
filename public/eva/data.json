@@ -25,7 +25,15 @@
     "tvtropes-wmg-instrumentality": { "lang": "en", "title": "WMG: Neon Genesis Evangelion Instrumentality — TV Tropes", "url": "https://tvtropes.org/pmwiki/pmwiki.php/WMG/NeonGenesisEvangelionInstrumentality" },
     "looper-eoe-ending": { "lang": "en", "title": "The Ending Of End Of Evangelion Explained — Looper", "url": "https://www.looper.com/377530/the-ending-of-end-of-evangelion-explained/" },
     "ja-wiki-ep1": { "lang": "ja", "title": "使徒、襲来 — Wikipedia (Japanese)", "url": "https://ja.wikipedia.org/wiki/使徒、襲来" },
-    "en-wiki-ep1": { "lang": "en", "title": "Angel Attack (episode) — Wikipedia", "url": "https://en.wikipedia.org/wiki/Angel_Attack" }
+    "en-wiki-ep1": { "lang": "en", "title": "Angel Attack (episode) — Wikipedia", "url": "https://en.wikipedia.org/wiki/Angel_Attack" },
+    "en-wiki-ep2": { "lang": "en", "title": "The Beast (episode) — Wikipedia", "url": "https://en.wikipedia.org/wiki/The_Beast_(Neon_Genesis_Evangelion)" },
+    "en-wiki-ep3": { "lang": "en", "title": "A Transfer (episode) — Wikipedia", "url": "https://en.wikipedia.org/wiki/A_Transfer" },
+    "en-wiki-ep4": { "lang": "en", "title": "Hedgehog's Dilemma (episode) — Wikipedia", "url": "https://en.wikipedia.org/wiki/Hedgehog%27s_Dilemma_(Neon_Genesis_Evangelion)" },
+    "en-wiki-ep5": { "lang": "en", "title": "Rei I (episode) — Wikipedia", "url": "https://en.wikipedia.org/wiki/Rei_I" },
+    "en-wiki-ep6": { "lang": "en", "title": "Rei II (episode) — Wikipedia", "url": "https://en.wikipedia.org/wiki/Rei_II" },
+    "en-wiki-ep7": { "lang": "en", "title": "A Human Work (episode) — Wikipedia", "url": "https://en.wikipedia.org/wiki/A_Human_Work" },
+    "en-wiki-ep8": { "lang": "en", "title": "Asuka Strikes! (episode) — Wikipedia", "url": "https://en.wikipedia.org/wiki/Asuka_Strikes!" },
+    "en-wiki-ep9": { "lang": "en", "title": "Both of You, Dance Like You Want to Win! (episode) — Wikipedia", "url": "https://en.wikipedia.org/wiki/Both_of_You,_Dance_Like_You_Want_to_Win!" }
   },
   "episodes": [
     { "number": 1, "title": "Angel Attack", "subtitle": "JP: 使徒、襲来 — lit. \"Angel, Attack\" · aired 1995-10-04, 6.8%" },
@@ -75,7 +83,9 @@
       "body": "A quiet, compliant pilot grown rather than born — cloned from Yui Ikari's remains using the Angel Lilith's genetic material. Multiple physical copies of her exist in Terminal Dogma; the show is coy about how much continuity of self survives between them.",
       "links": [
         { "id": "rei-clones", "label": "Where the clones live" },
-        { "id": "true-continuity-of-self", "label": "Are the Reis the same person?" }
+        { "id": "true-continuity-of-self", "label": "Are the Reis the same person?" },
+        { "id": "rei-apartment-ep5", "label": "A closer look at how she lives" },
+        { "id": "ramiel-attack", "label": "An early episode built around her getting hurt" }
       ],
       "sourceRefs": ["evageeks-rei", "fandom-characters"]
     },
@@ -97,7 +107,8 @@
       "links": [
         { "id": "human-instrumentality-project", "label": "What he's actually building toward" },
         { "id": "gendos-motive-reading", "label": "How sympathetic is that, really?" },
-        { "id": "gendo-visual-motif", "label": "How he's shot, from the start" }
+        { "id": "gendo-visual-motif", "label": "How he's shot, from the start" },
+        { "id": "gendo-photo-slap", "label": "A rare, stark display of his temper" }
       ],
       "sourceRefs": ["fandom-characters", "en-wiki-characters"]
     },
@@ -144,7 +155,7 @@
       "type": "fact",
       "title": "NERV",
       "body": "A UN-supervised paramilitary organization, publicly tasked with defending humanity from the Angels using the Evangelions. It answers, less publicly, to SEELE and to Gendo Ikari's own agenda.",
-      "links": [ { "id": "seele", "label": "Who NERV really answers to" } ],
+      "links": [ { "id": "seele", "label": "Who NERV really answers to" }, { "id": "jet-alone-incident", "label": "A rival robot program NERV has to contend with" } ],
       "sourceRefs": ["ja-wiki-nge", "en-wiki-nge"],
       "quote": {
         "lang": "ja",
@@ -167,7 +178,7 @@
       "type": "fact",
       "title": "AT Field",
       "body": "\"Absolute Terror Field\": a barrier every Angel and Evangelion projects, physically blocking conventional weapons. Late in the series it's reframed less as a shield and more as the boundary that keeps one soul separate from every other.",
-      "links": [ { "id": "human-instrumentality-project", "label": "The plan to dissolve it entirely" } ],
+      "links": [ { "id": "human-instrumentality-project", "label": "The plan to dissolve it entirely" }, { "id": "operation-yashima", "label": "An entire operation built to pierce one" } ],
       "sourceRefs": ["en-wiki-nge", "en-wiki-angels"]
     },
     {
@@ -263,7 +274,7 @@
       "type": "theory",
       "title": "Where \"I mustn't run away\" actually comes from",
       "body": "Shinji's refrain is traced by several sources to Anno's own life: he has described feeling \"completely destroyed\" after finishing Nadia: The Secret of Blue Water, spent four difficult years before Evangelion, and returned to anime work carrying the same resolve the line expresses. Gainax co-founder Yasuhiro Takeda has separately said the phrase traces further back, to the director's shelved project Blue Uru — and has suggested, more broadly, that Evangelion itself may just be a reflection of Anno's feelings during that period.",
-      "links": [ { "id": "escape-phrase-shift", "label": "How the line changes by the finale" }, { "id": "anno-metanarrative", "label": "The broader reading of the finale as Anno's own story" } ],
+      "links": [ { "id": "escape-phrase-shift", "label": "How the line changes by the finale" }, { "id": "anno-metanarrative", "label": "The broader reading of the finale as Anno's own story" }, { "id": "hedgehogs-dilemma-concept", "label": "The parable the show pairs this refrain with" } ],
       "sourceRefs": ["en-wiki-ep1", "ja-wiki-ep1"],
       "quote": {
         "lang": "ja",
@@ -367,12 +378,189 @@
       }
     },
     {
+      "id": "eva-01-devours-sachiel",
+      "episode": 2,
+      "scene": "Unit-01 runs out of power mid-battle but keeps fighting",
+      "type": "fact",
+      "title": "Unit-01's power runs out — and it keeps fighting anyway",
+      "body": "Cut off from its external power cable, Unit-01 should shut down; instead it goes into a silent, feral rampage, tearing Sachiel apart with its bare hands and biting into the Angel's core. It's the first on-screen sign of the Evangelions' unexplained not-quite-machine nature, well before the show says anything explicit about it.",
+      "links": [ { "id": "eva-01-berserk", "label": "The later, more explicit berserk episode" }, { "id": "yuis-soul-in-unit-01", "label": "One reading of why it happens at all" } ],
+      "sourceRefs": ["en-wiki-ep2"]
+    },
+    {
+      "id": "ep2-title-unfamiliar-ceiling",
+      "episode": 2,
+      "scene": "Shinji wakes in a NERV hospital bed after the battle",
+      "type": "fact",
+      "title": "\"Unfamiliar Ceiling\"",
+      "body": "The episode's Japanese title, 見知らぬ、天井 (\"Unfamiliar Ceiling\"), names the shot of Shinji waking disoriented in a hospital bed after Unit-01's rampage — a framing device the series returns to more than once whenever Shinji wakes up somewhere that isn't home.",
+      "links": [ { "id": "eva-01-devours-sachiel", "label": "What put him there" } ],
+      "sourceRefs": ["en-wiki-ep2"]
+    },
+    {
+      "id": "misato-moves-shinji-in",
+      "episode": 2,
+      "type": "fact",
+      "title": "Shinji moves in with Misato",
+      "body": "Rather than send Shinji back to the guardian he'd been living with before NERV summoned him, Misato takes him into her own apartment at this episode's end — the arrangement that structures most of the series' domestic, non-battle scenes going forward.",
+      "links": [ { "id": "misato-katsuragi", "label": "Back to Misato's introduction" } ],
+      "sourceRefs": ["en-wiki-ep2"]
+    },
+    {
+      "id": "toji-suzuhara",
+      "episode": 3,
+      "type": "character",
+      "title": "Toji Suzuhara",
+      "body": "A blunt, athletic classmate of Shinji's whose younger sister was hurt as civilian collateral during Unit-01's battle with Sachiel — he confronts and punches Shinji over it before eventually becoming one of his closer friends. His arc later takes a much darker turn once he's drafted as a pilot.",
+      "links": [ { "id": "eva-01-devours-sachiel", "label": "The battle that hurt his sister" }, { "id": "dummy-system", "label": "Where his story goes later" } ],
+      "sourceRefs": ["en-wiki-ep3"]
+    },
+    {
+      "id": "kensuke-aida",
+      "episode": 3,
+      "type": "character",
+      "title": "Kensuke Aida",
+      "body": "A military-otaku classmate of Shinji's, more fascinated by the Evangelions and NERV's hardware than afraid of them; he and Toji round out the trio of friends around Shinji that gives the show most of its ordinary-teenager scenes amid the Angel attacks.",
+      "links": [ { "id": "toji-suzuhara", "label": "The friend he's usually paired with" } ],
+      "sourceRefs": ["en-wiki-ep3"]
+    },
+    {
+      "id": "ep3-title-phone-that-doesnt-ring",
+      "episode": 3,
+      "type": "fact",
+      "title": "\"The Phone That Doesn't Ring\"",
+      "body": "The episode's Japanese title, 鳴らない、電話 (\"The Phone That Doesn't Ring\"), points at Shinji waiting for a call from Gendo that never comes, even as he starts to settle into an ordinary school routine with Misato, Toji, and Kensuke.",
+      "links": [ { "id": "gendo-ikari", "label": "The father who doesn't call" } ],
+      "sourceRefs": ["en-wiki-ep3"]
+    },
+    {
+      "id": "shamshel-attack",
+      "episode": 4,
+      "type": "fact",
+      "title": "Shamshel's attack, and the crowd that comes to watch",
+      "body": "The Angel Shamshel attacks Tokyo-3 while Shinji is at school; Toji and Kensuke sneak out to watch Unit-01 fight from a hillside, one of the show's few scenes of ordinary civilians treating an Angel battle as a spectacle rather than a catastrophe.",
+      "links": [ { "id": "toji-suzuhara", "label": "One of the classmates watching" } ],
+      "sourceRefs": ["en-wiki-ep4"]
+    },
+    {
+      "id": "hedgehogs-dilemma-concept",
+      "episode": 4,
+      "type": "theory",
+      "title": "The Hedgehog's Dilemma",
+      "body": "The episode takes its English title from Schopenhauer's parable (by way of Freud): hedgehogs huddling for warmth keep pricking each other with their spines, and must find a distance close enough to share warmth but far enough to avoid pain. It's presented as the closest thing the series has to an explicit thesis statement for Shinji's relationships — with Misato, with Toji and Kensuke, and eventually with everyone else in his life.",
+      "links": [ { "id": "shinji-runs-away-ep4", "label": "How Shinji tests that distance in this same episode" }, { "id": "escape-phrase-origin", "label": "The refrain that runs alongside it" } ],
+      "sourceRefs": ["en-wiki-ep4"]
+    },
+    {
+      "id": "shinji-runs-away-ep4",
+      "episode": 4,
+      "scene": "Shinji leaves Tokyo-3 alone after the battle",
+      "type": "fact",
+      "title": "Shinji's first attempt to just leave",
+      "body": "After the Shamshel battle, Shinji boards a train out of Tokyo-3 alone, seriously considering not coming back at all, before ultimately returning — the first full dry run of the running-away-and-returning pattern the show repeats for him right through the finale.",
+      "links": [ { "id": "hedgehogs-dilemma-concept", "label": "The idea the episode hangs this on" }, { "id": "escape-phrase-shift", "label": "Where that pattern ends up by episode 26" } ],
+      "sourceRefs": ["en-wiki-ep4"]
+    },
+    {
+      "id": "rei-apartment-ep5",
+      "episode": 5,
+      "scene": "Shinji delivers Rei's replacement student ID to her apartment",
+      "type": "theory",
+      "title": "Rei's apartment as a portrait of her lack of self",
+      "body": "Sent to deliver Rei's ID card after an Eva testing accident hospitalizes her, Shinji finds her apartment nearly bare — barely furnished, barely lived-in, with used bandages left out and almost nothing personal on display. Critics read the space itself as characterization: a person who has never been given, or allowed herself, much of an identity to decorate a room with.",
+      "links": [ { "id": "rei-ayanami", "label": "Back to Rei's introduction" }, { "id": "true-continuity-of-self", "label": "The larger question this scene feeds" } ],
+      "sourceRefs": ["en-wiki-ep5"]
+    },
+    {
+      "id": "gendo-photo-slap",
+      "episode": 5,
+      "scene": "Shinji picks up a photo and Gendo's spare glasses in Rei's apartment",
+      "type": "fact",
+      "title": "The slap over Gendo's glasses",
+      "body": "Among the few personal items in Rei's apartment, Shinji finds a photo of a young Gendo and Yui, plus a spare pair of Gendo's glasses — implying a relationship between Gendo and Rei closer than commander-and-pilot. When Gendo later catches Shinji holding the glasses, he slaps him and orders him to leave them alone, one of the starkest displays of Gendo's temper toward his son in the whole series.",
+      "links": [ { "id": "gendo-ikari", "label": "Back to Gendo" }, { "id": "rei-apartment-ep5", "label": "The scene this happens right after" } ],
+      "sourceRefs": ["en-wiki-ep5"]
+    },
+    {
+      "id": "ramiel-attack",
+      "episode": 6,
+      "type": "fact",
+      "title": "Ramiel's drilling attack",
+      "body": "The Angel Ramiel — a stationary, geometrically simple Angel — begins drilling straight down toward NERV's Geofront headquarters, forcing a defense built around holding a fixed position rather than the mobile fights of earlier episodes. Rei is hurt again defending the position, continuing this stretch of the show's focus on her as a character rather than just a second pilot.",
+      "links": [ { "id": "rei-ayanami", "label": "Back to Rei" }, { "id": "operation-yashima", "label": "The plan built to finish Ramiel off" } ],
+      "sourceRefs": ["en-wiki-ep6"]
+    },
+    {
+      "id": "operation-yashima",
+      "episode": 6,
+      "type": "fact",
+      "title": "Operation Yashima",
+      "body": "To pierce Ramiel's AT Field, NERV draws power from the entire Japanese electrical grid to fire a single positron-rifle shot — a citywide blackout mobilized around one attack, and one of the series' clearest illustrations of just how much of Japan's remaining infrastructure exists to keep the Angel fight going.",
+      "links": [ { "id": "ramiel-attack", "label": "The Angel this is built to kill" }, { "id": "at-field", "label": "The barrier the whole operation exists to pierce" } ],
+      "sourceRefs": ["en-wiki-ep6"]
+    },
+    {
+      "id": "jet-alone-incident",
+      "episode": 7,
+      "type": "fact",
+      "title": "Jet Alone",
+      "body": "A rival, conventionally-powered giant robot, Jet Alone, is unveiled by a Japanese government agency as a possible non-Eva alternative to NERV's defense program — and immediately malfunctions during its public demonstration, running rampant with an armed nuclear reactor on board. Unlike most of the series' crises, this one has nothing to do with the Angels at all; it's framed as pure institutional rivalry.",
+      "links": [ { "id": "nerv", "label": "The organization Jet Alone was built to compete with" } ],
+      "sourceRefs": ["en-wiki-ep7"]
+    },
+    {
+      "id": "ep7-comic-tone",
+      "episode": 7,
+      "type": "fact",
+      "title": "One of the series' lighter episodes",
+      "body": "With no Angel involved, this episode leans into physical comedy and workplace farce — Misato and Ritsuko racing to shut Jet Alone down manually — a deliberate tonal break between the darker material building up around Rei and Gendo in the episodes just before and after it.",
+      "links": [ { "id": "jet-alone-incident", "label": "The incident this episode is built around" } ],
+      "sourceRefs": ["en-wiki-ep7"]
+    },
+    {
+      "id": "asuka-arrival",
+      "episode": 8,
+      "scene": "The aircraft carrier convoy brings Unit-02 and Asuka to Japan",
+      "type": "fact",
+      "title": "Asuka and Unit-02 arrive in Japan",
+      "body": "Asuka Langley Souryuu makes her first on-screen appearance being transported to Japan by an aircraft-carrier convoy alongside the newly built, already field-tested Evangelion Unit-02 — introduced immediately as brash, multilingual, and openly contemptuous of Shinji's comparative inexperience as a pilot.",
+      "links": [ { "id": "asuka-langley-souryuu", "label": "Her fuller introduction" }, { "id": "ryoji-kaji", "label": "The NERV agent escorting her" } ],
+      "sourceRefs": ["en-wiki-ep8"]
+    },
+    {
+      "id": "unit02-field-tested",
+      "episode": 8,
+      "type": "fact",
+      "title": "Unit-02: already combat-tested before Japan ever sees it",
+      "body": "Unlike Units 00 and 01, Unit-02 arrives in Japan with prior field experience under Asuka's piloting — part of what the show uses to establish the pecking order between her and Shinji before they ever fight side by side.",
+      "links": [ { "id": "asuka-arrival", "label": "The arrival this establishes" } ],
+      "sourceRefs": ["en-wiki-ep8"]
+    },
+    {
+      "id": "gaghiel-convoy-attack",
+      "episode": 9,
+      "type": "fact",
+      "title": "Gaghiel attacks the carrier convoy",
+      "body": "The aquatic Angel Gaghiel ambushes the same aircraft-carrier convoy transporting Unit-02, forcing Shinji and Asuka into their first fight together — and forcing NERV to solve, on the fly, the problem of two Evangelions with no prior experience coordinating an attack.",
+      "links": [ { "id": "asuka-arrival", "label": "The convoy this attacks" }, { "id": "shinji-asuka-sync-training", "label": "How Shinji and Asuka solve the coordination problem" } ],
+      "sourceRefs": ["en-wiki-ep9"]
+    },
+    {
+      "id": "shinji-asuka-sync-training",
+      "episode": 9,
+      "type": "fact",
+      "title": "Forced synchronization, and the dance metaphor",
+      "body": "Misato has Shinji and Asuka train together like dance partners so their combined movements read as a single, coordinated fighter rather than two separate pilots working against each other — the source of the episode's title, and an early example of the show using a mundane, non-military metaphor (dancing) to frame what piloting an Eva actually demands of two people.",
+      "links": [ { "id": "gaghiel-convoy-attack", "label": "The fight this training is for" }, { "id": "asuka-langley-souryuu", "label": "Back to Asuka" } ],
+      "sourceRefs": ["en-wiki-ep9"]
+    },
+    {
       "id": "asuka-langley-souryuu",
       "episode": 8,
       "type": "character",
       "title": "Asuka Langley Souryuu",
       "body": "A German-Japanese prodigy pilot whose relentless competitiveness is a defense mechanism built on childhood trauma (her mother's breakdown and suicide). Her arc tracks what happens when a self-worth built entirely on being needed as a pilot stops working.",
-      "links": [],
+      "links": [ { "id": "asuka-arrival", "label": "Her first on-screen appearance" }, { "id": "shinji-asuka-sync-training", "label": "Her first fight alongside Shinji" } ],
       "sourceRefs": ["fandom-characters", "en-wiki-characters"]
     },
     {
@@ -381,7 +569,7 @@
       "type": "character",
       "title": "Ryoji Kaji",
       "body": "Officially a NERV agent, unofficially reporting to SEELE and Japan's government simultaneously, digging into NERV's secrets — including Adam and Instrumentality — while romantically entangled with Misato.",
-      "links": [ { "id": "adam", "label": "The secret he keeps digging into" }, { "id": "kaji-death", "label": "What that digging costs him" } ],
+      "links": [ { "id": "adam", "label": "The secret he keeps digging into" }, { "id": "kaji-death", "label": "What that digging costs him" }, { "id": "asuka-arrival", "label": "Escorting Asuka to Japan" } ],
       "sourceRefs": ["fandom-characters"]
     },
     {
@@ -464,7 +652,8 @@
       "body": "Unit-01 keeps fighting an Angel after its power cable is severed and its plug depth goes critical — something no dummy plug or external system explains. The show treats this as evidence the Eva itself is, in some sense, alive.",
       "links": [
         { "id": "yuis-soul-in-unit-01", "label": "One reading of why" },
-        { "id": "dummy-system", "label": "The forced-override system this isn't" }
+        { "id": "dummy-system", "label": "The forced-override system this isn't" },
+        { "id": "eva-01-devours-sachiel", "label": "The earliest hint of this, back in episode 2" }
       ],
       "sourceRefs": ["en-wiki-nge", "evageeks-dummy-system"]
     },
@@ -474,7 +663,7 @@
       "type": "theory",
       "title": "Yui's soul inside Unit-01",
       "body": "The show never states in dialogue that Yui Ikari's soul resides in Unit-01, but strongly implies it — her disappearance during an activation test, Gendo's fixation on the unit, and Unit-01's unpowered \"berserk\" rescues of Shinji are the load-bearing evidence. Anno has confirmed the broader mechanism in interviews (a pilot syncs with an Evangelion \"through their mother's soul,\" an idea he traces to an NHK documentary on the brain), which lends real weight to the reading — but the specific claim that it's Yui's soul in Unit-01 is still never said outright on-screen.",
-      "links": [ { "id": "third-impact", "label": "Where that ambiguity comes to a head" }, { "id": "family-triad-imagery", "label": "The earliest staging that hints at this" } ],
+      "links": [ { "id": "third-impact", "label": "Where that ambiguity comes to a head" }, { "id": "family-triad-imagery", "label": "The earliest staging that hints at this" }, { "id": "eva-01-devours-sachiel", "label": "An early unexplained rampage this could explain" } ],
       "sourceRefs": ["ja-wiki-nge"],
       "quote": {
         "lang": "ja",
@@ -489,7 +678,7 @@
       "type": "fact",
       "title": "The Dummy System (autonomous override)",
       "body": "Distinct from the dummy plug used later in the mass-production Evas: this is an autonomous control system Gendo activates on Unit-01 itself, overriding Shinji's control entirely to destroy Unit-03 — which the 13th Angel has taken over — without Shinji's consent. Only afterward does Shinji learn his own friend, Toji Suzuhara, was in Unit-03's cockpit, maimed by his own Eva's hands. It's what finally makes Shinji quit piloting, right up until the next Angel attack forces his hand again.",
-      "links": [ { "id": "dummy-plug", "label": "The related but distinct mass-production system" }, { "id": "shinji-ikari", "label": "Back to Shinji" } ],
+      "links": [ { "id": "dummy-plug", "label": "The related but distinct mass-production system" }, { "id": "shinji-ikari", "label": "Back to Shinji" }, { "id": "toji-suzuhara", "label": "Back to Toji's introduction" } ],
       "sourceRefs": ["ja-wiki-nge", "evageeks-dummy-system"],
       "quote": {
         "lang": "ja",
@@ -708,7 +897,7 @@
       "type": "fact",
       "title": "\"I mustn't run away\" becomes \"it's okay to run away\"",
       "body": "Shinji's early refrain — \"I mustn't run away\" (逃げちゃダメだ) — is the closest thing the show has to a stated thesis in its first half. By the finale it's been replaced with the opposite: it's okay to run away. Character designer Yoshiyuki Sadamoto is credited with suggesting the shift.",
-      "links": [ { "id": "accept-vs-reject", "label": "How that plays out differently in EoE" }, { "id": "escape-phrase-origin", "label": "Where the original line actually comes from" } ],
+      "links": [ { "id": "accept-vs-reject", "label": "How that plays out differently in EoE" }, { "id": "escape-phrase-origin", "label": "Where the original line actually comes from" }, { "id": "shinji-runs-away-ep4", "label": "The first dry run of running away, back in episode 4" } ],
       "sourceRefs": ["ja-wiki-nge"],
       "quote": {
         "lang": "ja",
