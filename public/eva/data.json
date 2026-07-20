@@ -46,7 +46,8 @@
     "en-wiki-ep19": { "lang": "en", "title": "Introjection (Neon Genesis Evangelion) — Wikipedia", "url": "https://en.wikipedia.org/wiki/Introjection_(Neon_Genesis_Evangelion)" },
     "en-wiki-ep20": { "lang": "en", "title": "Weaving a Story 2: oral stage — Wikipedia", "url": "https://en.wikipedia.org/wiki/Weaving_a_Story_2:_oral_stage" },
     "en-wiki-ep21": { "lang": "en", "title": "He was aware that he was still a child — Wikipedia", "url": "https://en.wikipedia.org/wiki/He_was_aware_that_he_was_still_a_child" },
-    "en-wiki-ep22": { "lang": "en", "title": "Don't Be (Neon Genesis Evangelion) — Wikipedia", "url": "https://en.wikipedia.org/wiki/Don%27t_Be_(Neon_Genesis_Evangelion)" }
+    "en-wiki-ep22": { "lang": "en", "title": "Don't Be (Neon Genesis Evangelion) — Wikipedia", "url": "https://en.wikipedia.org/wiki/Don%27t_Be_(Neon_Genesis_Evangelion)" },
+    "en-wiki-ep23": { "lang": "en", "title": "Rei III — Wikipedia", "url": "https://en.wikipedia.org/wiki/Rei_III" }
   },
   "episodes": [
     { "number": 1, "title": "Angel Attack", "subtitle": "JP: 使徒、襲来 — lit. \"Angel, Attack\" · aired 1995-10-04, 6.8%" },
@@ -1216,6 +1217,73 @@
       "body": "Misato initially wonders if Asuka's sudden, sharp drop in Eva-02 performance is tied to her first menstrual cycle; Ritsuko argues instead that the real cause is psychological — Asuka's mounting jealousy of Shinji and Rei, and the resurfacing trauma around her mother. Critics have read Asuka's whole arc through this episode as \"masculine protest\" pushed to its breaking point: a girl who built her entire self-worth on outperforming everyone around her, finally forced to confront that the performance was covering for something else.",
       "links": [ { "id": "asuka-rei-miss-perfect", "label": "The same masculine-protest reading from episode 11" }, { "id": "asuka-mother-backstory", "label": "The trauma underneath the collapse" } ],
       "sourceRefs": ["en-wiki-ep22"]
+    },
+    {
+      "id": "armisael-attack-rei-suicide",
+      "episode": 23,
+      "scene": "Armisael penetrates Eva-00 and Rei's mind directly",
+      "type": "fact",
+      "title": "Armisael, and Rei's decision to self-destruct",
+      "body": "The Angel Armisael attacks by physically penetrating Unit-00 and merging with Rei's own mind rather than fighting conventionally. Unable to dislodge it any other way, Rei chooses to detonate herself along with the Angel inside her own Eva — killing Armisael, destroying a chunk of Tokyo-3, and (seemingly) herself.",
+      "links": [ { "id": "rei-clones", "label": "Why her death isn't quite the end of the story" }, { "id": "arael-mindrape-attack", "label": "The same kind of psychological attack, one episode earlier" } ],
+      "sourceRefs": ["en-wiki-ep23"]
+    },
+    {
+      "id": "ritsuko-reveals-rei-clones",
+      "episode": 23,
+      "scene": "Ritsuko, sent by Gendo to a SEELE interrogation in Rei's place, shows Shinji and Misato the truth",
+      "type": "fact",
+      "title": "Ritsuko exposes — and destroys — Rei's spare clones",
+      "body": "Furious at being used as Rei's stand-in, Ritsuko takes Shinji and Misato down into Terminal Dogma and reveals what NERV has kept hidden: a tank of soulless, replaceable Rei clones, only one of which is ever \"active\" at a time. Out of anger at Gendo, Ritsuko destroys the remaining clones on the spot, then breaks down in tears.",
+      "links": [ { "id": "rei-clones", "label": "The clone tank this confirms" }, { "id": "ritsuko-naoko-relationship", "label": "Ritsuko's own history with betrayal and motherhood" } ],
+      "sourceRefs": ["en-wiki-ep23"]
+    },
+    {
+      "id": "rei-iii-glasses-scene",
+      "episode": 23,
+      "scene": "The newly awakened Rei III finds Gendo's old glasses, kept by her predecessor since episode 1",
+      "type": "theory",
+      "title": "The new Rei tries to break the old Rei's attachment — and can't quite do it",
+      "body": "Rei III attempts to break the spare pair of Gendo's glasses her predecessor had kept and guarded since the very first episode — then stops and cries instead, an unscripted-feeling crack in the idea that each new Rei starts as a blank slate. Anno has said the new clone still carries the previous one's memories, and reads the scene as Rei III trying, and failing, to fully sever the emotional tie the earlier Rei had to Gendo.",
+      "links": [ { "id": "gendo-photo-slap", "label": "The scene, back in episode 5, where those glasses first mattered" }, { "id": "true-continuity-of-self", "label": "The larger question of how much carries over between clones" } ],
+      "sourceRefs": ["en-wiki-ep23"]
+    },
+    {
+      "id": "armisael-unite-with-shinji",
+      "episode": 23,
+      "scene": "Armisael, after failing with Rei, tries to merge with Shinji's Eva-01 instead",
+      "type": "theory",
+      "title": "Armisael's proposal echoes Rei's own buried wish",
+      "body": "After Rei subdues it, Armisael turns and tries to \"become one\" with Shinji's Unit-01 instead — nearly the same words used during Shinji's own dissolution into Eva-01 three episodes earlier. Rei recognizes, in the moment, that Armisael's move mirrors an unconscious desire of her own to merge with Shinji; it's presented as part of what finally pushes her toward her decision to self-destruct rather than let the Angel take him instead.",
+      "links": [ { "id": "shinji-eva01-absorption", "label": "The earlier scene this echoes almost verbatim" }, { "id": "armisael-attack-rei-suicide", "label": "Where this realization leads her" } ],
+      "sourceRefs": ["en-wiki-ep23"]
+    },
+    {
+      "id": "asuka-depression-arc",
+      "episode": 23,
+      "type": "fact",
+      "title": "Asuka drops out entirely",
+      "body": "Following Arael's psychic attack, Asuka sinks into what the episode frames as clinical depression: she moves out of Misato's apartment into her friend Hikari's, stops engaging with anyone, and spends her days playing video games instead. It's the most visible sign yet of how completely her earlier confidence has collapsed.",
+      "links": [ { "id": "asuka-psychological-collapse", "label": "The breakdown this follows directly" } ],
+      "sourceRefs": ["en-wiki-ep23"]
+    },
+    {
+      "id": "ep23-production-history",
+      "episode": 23,
+      "type": "fact",
+      "title": "Originally \"The Human Instrumentality Project\" — and a decision the staff came to regret",
+      "body": "This episode was originally titled \"The Human Instrumentality Project\" in Gainax's 1993 planning document, envisioned as a dense reveal of Gendo's and Ritsuko's true intentions, with the next episode meant to bring twelve powerful new Angels down from the Moon. Series assistant director Kazuya Tsurumaki has said he initially opposed killing off the second Rei this late in the series, and staff — Tsurumaki included — have since said they regretted not giving Rei II's specific personality more room before replacing her.",
+      "links": [ { "id": "human-instrumentality-project", "label": "The project this episode was originally going to be named for" }, { "id": "ep13-scrapped-trilogy", "label": "Another early plan abandoned partway through production" } ],
+      "sourceRefs": ["en-wiki-ep23"]
+    },
+    {
+      "id": "ep23-reception",
+      "episode": 23,
+      "type": "fact",
+      "title": "A dry, fast-paced reveal episode — reviewers split on the execution",
+      "body": "\"Rei III\" drew a 6.9% rating and split critics: some praised the starkness of Rei's true nature finally being spelled out and the intensity of the Armisael battle, while others felt the reveal wasted a stronger character concept by resolving it so quickly, and criticized recycled animation and some of the voice performances.",
+      "links": [],
+      "sourceRefs": ["en-wiki-ep23"]
     },
     {
       "id": "asuka-langley-souryuu",
