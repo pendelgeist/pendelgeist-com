@@ -44,7 +44,9 @@
     "en-wiki-ep17": { "lang": "en", "title": "Fourth Children (episode) — Wikipedia", "url": "https://en.wikipedia.org/wiki/Fourth_Children" },
     "en-wiki-ep18": { "lang": "en", "title": "Ambivalence (Neon Genesis Evangelion) — Wikipedia", "url": "https://en.wikipedia.org/wiki/Ambivalence_(Neon_Genesis_Evangelion)" },
     "en-wiki-ep19": { "lang": "en", "title": "Introjection (Neon Genesis Evangelion) — Wikipedia", "url": "https://en.wikipedia.org/wiki/Introjection_(Neon_Genesis_Evangelion)" },
-    "en-wiki-ep20": { "lang": "en", "title": "Weaving a Story 2: oral stage — Wikipedia", "url": "https://en.wikipedia.org/wiki/Weaving_a_Story_2:_oral_stage" }
+    "en-wiki-ep20": { "lang": "en", "title": "Weaving a Story 2: oral stage — Wikipedia", "url": "https://en.wikipedia.org/wiki/Weaving_a_Story_2:_oral_stage" },
+    "en-wiki-ep21": { "lang": "en", "title": "He was aware that he was still a child — Wikipedia", "url": "https://en.wikipedia.org/wiki/He_was_aware_that_he_was_still_a_child" },
+    "en-wiki-ep22": { "lang": "en", "title": "Don't Be (Neon Genesis Evangelion) — Wikipedia", "url": "https://en.wikipedia.org/wiki/Don%27t_Be_(Neon_Genesis_Evangelion)" }
   },
   "episodes": [
     { "number": 1, "title": "Angel Attack", "subtitle": "JP: 使徒、襲来 — lit. \"Angel, Attack\" · aired 1995-10-04, 6.8%" },
@@ -97,7 +99,8 @@
         { "id": "true-continuity-of-self", "label": "Are the Reis the same person?" },
         { "id": "rei-apartment-ep5", "label": "A closer look at how she lives" },
         { "id": "ramiel-attack", "label": "An early episode built around her getting hurt" },
-        { "id": "rei-inner-monologue-origin", "label": "Her first extended inner monologue" }
+        { "id": "rei-inner-monologue-origin", "label": "Her first extended inner monologue" },
+        { "id": "rei-asuka-lift-scene", "label": "Her fraught elevator scene with Asuka" }
       ],
       "sourceRefs": ["evageeks-rei", "fandom-characters"]
     },
@@ -657,7 +660,7 @@
       "type": "theory",
       "title": "\"Miss Perfect\", and the masculine-protest reading of Asuka",
       "body": "Asuka's hostility toward Rei's composure under fire — she calls her yūtōsei, \"honor student\" or \"Miss Perfect\" — has been read by critics (including editor Gualtiero Cannarsi) through the lens of \"masculine protest\", a psychological term for rebellion by women weary of a stereotyped gender role: Asuka tries to out-perform and out-tough everyone around her, fusing an inferiority complex with radical rivalry. The episode ends with her softening toward Rei as a teammate for the first time.",
-      "links": [ { "id": "asuka-rei-rivalry-motivation", "label": "The same rivalry, one episode earlier" } ],
+      "links": [ { "id": "asuka-rei-rivalry-motivation", "label": "The same rivalry, one episode earlier" }, { "id": "asuka-psychological-collapse", "label": "Where this pattern finally breaks her down" } ],
       "sourceRefs": ["en-wiki-ep11"]
     },
     {
@@ -1109,6 +1112,112 @@
       "sourceRefs": ["en-wiki-ep20"]
     },
     {
+      "id": "fuyutsuki-yui-backstory",
+      "episode": 21,
+      "scene": "Seele interrogates a kidnapped Fuyutsuki about his past with Gendo",
+      "type": "fact",
+      "title": "Fuyutsuki's flashback: Yui, Gendo, and the founding of Gehirn",
+      "body": "Under interrogation, Fuyutsuki recalls falling for a young researcher, Yui Ikari — then still involved with a man using his old surname, Rokubungi — while growing suspicious that Gendo was really after her connections to SEELE. Investigating Second Impact and an artificial cavity in Antarctica leads Fuyutsuki straight to Gendo and SEELE's involvement; shown the full scope of the Evangelion project by Gendo and researcher Naoko Akagi, he joins the organization that will later become NERV.",
+      "links": [ { "id": "gendo-ikari", "label": "Back to Gendo" }, { "id": "second-impact", "label": "The disaster Fuyutsuki was investigating" } ],
+      "sourceRefs": ["en-wiki-ep21"]
+    },
+    {
+      "id": "yui-death-contact-experiment",
+      "episode": 21,
+      "type": "fact",
+      "title": "Yui's death, in Fuyutsuki's own account",
+      "body": "In 2004, Yui dies volunteering as the subject of a contact experiment with the newly built Evangelion Unit-01 — the flashback's most direct on-screen account of how she died, though it stops short of confirming what happened to her afterward. Gendo, after a period of mourning, is the one who then proposes the Human Instrumentality Project to Fuyutsuki.",
+      "links": [ { "id": "yuis-soul-in-unit-01", "label": "The theory of what happened to her next" }, { "id": "human-instrumentality-project", "label": "The project Gendo proposes right after" } ],
+      "sourceRefs": ["en-wiki-ep21"]
+    },
+    {
+      "id": "naoko-kills-rei-suicide",
+      "episode": 21,
+      "scene": "Naoko finds the first Rei clone alone and lost inside Gehirn's base",
+      "type": "fact",
+      "title": "Naoko strangles the first Rei, then takes her own life",
+      "body": "After completing the Magi, Naoko finds the newly created first Rei clone wandering Gehirn's base; when the girl echoes something cruel Gendo apparently called Naoko, and Naoko recognizes Yui's features in Rei's face, she strangles the child and then kills herself. Gehirn is restructured and renamed NERV in the aftermath.",
+      "links": [ { "id": "ritsuko-naoko-relationship", "label": "Ritsuko's own relationship with Naoko" }, { "id": "rei-clones", "label": "The clone lineage this death sits inside" }, { "id": "magi", "label": "The system Naoko had just finished" } ],
+      "sourceRefs": ["en-wiki-ep21"]
+    },
+    {
+      "id": "white-black-moon-concept",
+      "episode": 21,
+      "type": "fact",
+      "title": "White Moon and Black Moon",
+      "body": "Fuyutsuki's investigation surfaces two giant artificial cavities: one beneath Antarctica (White Moon) and one beneath Hakone, under what becomes NERV's geofront (Black Moon) — both said to have arrived on Earth during a prehistoric \"Giant Impact\" carried out by an alien First Ancestral Race. The concept is only sketched here; a video game spin-off later fleshes out the idea that the Black Moon carried Lilith to Earth in the first place.",
+      "links": [ { "id": "tokyo-3", "label": "The city built over the Black Moon's location" }, { "id": "first-impact", "label": "The prehistoric event this cavity is tied to" } ],
+      "sourceRefs": ["en-wiki-ep21"]
+    },
+    {
+      "id": "seele-monoliths-2001-homage",
+      "episode": 21,
+      "scene": "SEELE's members are visualized as identical black monoliths during Fuyutsuki's interrogation",
+      "type": "fact",
+      "title": "SEELE's monolith imagery, borrowed from 2001: A Space Odyssey",
+      "body": "SEELE's members are depicted, for the first time, as a row of featureless black monoliths rather than people — a direct visual reference to the monoliths of Stanley Kubrick's 2001: A Space Odyssey (and, behind that, Arthur C. Clarke's short story \"The Sentinel\"), reinforcing SEELE's fixation on forcing the next stage of human evolution.",
+      "links": [ { "id": "seele", "label": "Back to SEELE" }, { "id": "human-instrumentality-project", "label": "The evolutionary leap SEELE is forcing" } ],
+      "sourceRefs": ["en-wiki-ep21"]
+    },
+    {
+      "id": "kaji-death-confirmed-seele",
+      "episode": 21,
+      "type": "fact",
+      "title": "Kaji's death is pinned on SEELE",
+      "body": "Kaji frees the kidnapped Fuyutsuki and is killed immediately afterward. During the episode's original TV broadcast, some viewers suspected Misato was somehow responsible; the later, extended \"video format\" version re-edited the closing scenes specifically to make clear SEELE's own agents killed him, not Misato.",
+      "links": [ { "id": "kaji-death", "label": "The death this confirms the culprit for" } ],
+      "sourceRefs": ["en-wiki-ep21"]
+    },
+    {
+      "id": "asuka-mother-backstory",
+      "episode": 22,
+      "scene": "Asuka's flashback to her mother Kyoko's decline and suicide",
+      "type": "fact",
+      "title": "Kyoko Zeppelin Soryu's madness and death",
+      "body": "Asuka's mother Kyoko developed a severe mental illness after her own contact experiment with an Evangelion unit, eventually coming to treat a doll as if it were her daughter while the real Asuka watched, before dying by suicide — with Asuka present, and refusing to cry at the funeral afterward. Part of Kyoko's psyche is implied to remain bound up in the Evangelion unit she made contact with, echoing the pattern already established with Yui and Unit-01.",
+      "links": [ { "id": "asuka-langley-souryuu", "label": "Back to Asuka" }, { "id": "yuis-soul-in-unit-01", "label": "The parallel mother-in-the-Eva theory" }, { "id": "ritsuko-naoko-relationship", "label": "A parallel mother's breakdown, one generation over" } ],
+      "sourceRefs": ["en-wiki-ep22"]
+    },
+    {
+      "id": "arael-mindrape-attack",
+      "episode": 22,
+      "scene": "Arael attacks Asuka's mind directly with a beam of light rather than fighting Eva-02",
+      "type": "fact",
+      "title": "Arael's psychological attack on Asuka",
+      "body": "Rather than fighting conventionally, the Angel Arael erodes Asuka's psyche directly through a beam of light, forcing her repressed memories of her mother's breakdown and death to the surface and leaving her unable to function as a pilot afterward. Critics have described the sequence in terms as strong as \"mind rape,\" and it's the first of several Angels in the back half of the series to attack psychologically rather than physically.",
+      "links": [ { "id": "asuka-mother-backstory", "label": "The memories this attack forces to the surface" }, { "id": "angels-true-nature", "label": "What this kind of attack implies about the Angels" } ],
+      "sourceRefs": ["en-wiki-ep22"]
+    },
+    {
+      "id": "spear-launched-to-moon",
+      "episode": 22,
+      "scene": "Gendo orders the Spear of Longinus fired into lunar orbit to stop Arael",
+      "type": "fact",
+      "title": "The Spear is fired at the Moon — and SEELE loses it",
+      "body": "To defeat Arael, Gendo has Unit-00 extract the Spear of Longinus from the crucified figure in Terminal Dogma and launch it into lunar orbit, over Fuyutsuki's and Misato's objections. The move works, but it also permanently strips SEELE of a weapon central to its own version of Instrumentality — making unmistakably clear that Gendo is running his own, incompatible agenda underneath NERV's.",
+      "links": [ { "id": "spear-delivered-to-terminal-dogma", "label": "How the Spear got to Terminal Dogma in the first place" }, { "id": "human-instrumentality-project", "label": "The plan this weapon was meant to serve" }, { "id": "lilith", "label": "The figure the Spear is pulled from" } ],
+      "sourceRefs": ["en-wiki-ep22"]
+    },
+    {
+      "id": "rei-asuka-lift-scene",
+      "episode": 22,
+      "scene": "Asuka and Rei are left alone together in an elevator for nearly a full minute of silence",
+      "type": "theory",
+      "title": "The elevator scene, and Asuka calling Rei a \"doll\"",
+      "body": "An unusually long, nearly motionless freeze-frame leaves Asuka and Rei alone in an elevator; when Rei finally suggests Asuka simply isn't opening her heart to Unit-02, Asuka calls her a \"doll\" and slaps her. Critics have singled the scene out both as a striking use of stillness and as thematically central — Rei's insistence, later in the episode, that she isn't a doll either complicates Asuka's accusation directly.",
+      "links": [ { "id": "rei-ayanami", "label": "Back to Rei" }, { "id": "asuka-langley-souryuu", "label": "Back to Asuka" } ],
+      "sourceRefs": ["en-wiki-ep22"]
+    },
+    {
+      "id": "asuka-psychological-collapse",
+      "episode": 22,
+      "type": "theory",
+      "title": "Asuka's collapsing sync ratio is psychological, not physical",
+      "body": "Misato initially wonders if Asuka's sudden, sharp drop in Eva-02 performance is tied to her first menstrual cycle; Ritsuko argues instead that the real cause is psychological — Asuka's mounting jealousy of Shinji and Rei, and the resurfacing trauma around her mother. Critics have read Asuka's whole arc through this episode as \"masculine protest\" pushed to its breaking point: a girl who built her entire self-worth on outperforming everyone around her, finally forced to confront that the performance was covering for something else.",
+      "links": [ { "id": "asuka-rei-miss-perfect", "label": "The same masculine-protest reading from episode 11" }, { "id": "asuka-mother-backstory", "label": "The trauma underneath the collapse" } ],
+      "sourceRefs": ["en-wiki-ep22"]
+    },
+    {
       "id": "asuka-langley-souryuu",
       "episode": 8,
       "type": "character",
@@ -1161,7 +1270,7 @@
       "type": "fact",
       "title": "SEELE",
       "body": "A secretive committee that founded NERV and steers events from behind it, working from the Dead Sea Scrolls toward its own version of the Human Instrumentality Project — a version Gendo Ikari is simultaneously trying to hijack for himself.",
-      "links": [ { "id": "dead-sea-scrolls-contents", "label": "The text they're both working from" }, { "id": "marduk-institute-reveal", "label": "The shell-company front SEELE's members hide behind" }, { "id": "seven-eyes-symbolism", "label": "The symbolism behind SEELE's own emblem" } ],
+      "links": [ { "id": "dead-sea-scrolls-contents", "label": "The text they're both working from" }, { "id": "marduk-institute-reveal", "label": "The shell-company front SEELE's members hide behind" }, { "id": "seven-eyes-symbolism", "label": "The symbolism behind SEELE's own emblem" }, { "id": "seele-monoliths-2001-homage", "label": "How SEELE's members are actually shown on-screen" } ],
       "sourceRefs": ["ja-wiki-nge", "en-wiki-nge"],
       "quote": {
         "lang": "ja",
@@ -1217,7 +1326,7 @@
       "type": "theory",
       "title": "Yui's soul inside Unit-01",
       "body": "The show never states in dialogue that Yui Ikari's soul resides in Unit-01, but strongly implies it — her disappearance during an activation test, Gendo's fixation on the unit, and Unit-01's unpowered \"berserk\" rescues of Shinji are the load-bearing evidence. Anno has confirmed the broader mechanism in interviews (a pilot syncs with an Evangelion \"through their mother's soul,\" an idea he traces to an NHK documentary on the brain), which lends real weight to the reading — but the specific claim that it's Yui's soul in Unit-01 is still never said outright on-screen.",
-      "links": [ { "id": "third-impact", "label": "Where that ambiguity comes to a head" }, { "id": "family-triad-imagery", "label": "The earliest staging that hints at this" }, { "id": "eva-01-devours-sachiel", "label": "An early unexplained rampage this could explain" }, { "id": "ritsuko-naoko-relationship", "label": "The equivalent mother-in-the-machine reading for Ritsuko" } ],
+      "links": [ { "id": "third-impact", "label": "Where that ambiguity comes to a head" }, { "id": "family-triad-imagery", "label": "The earliest staging that hints at this" }, { "id": "eva-01-devours-sachiel", "label": "An early unexplained rampage this could explain" }, { "id": "ritsuko-naoko-relationship", "label": "The equivalent mother-in-the-machine reading for Ritsuko" }, { "id": "yui-death-contact-experiment", "label": "The contact experiment that killed her" } ],
       "sourceRefs": ["ja-wiki-nge"],
       "quote": {
         "lang": "ja",
@@ -1276,7 +1385,7 @@
       "type": "fact",
       "title": "Adam",
       "body": "The first of the beings created by the \"First Ancestral Race\" long before humanity; the Angels are described as Adam's offspring. A contact experiment on Adam is what triggered Second Impact.",
-      "links": [ { "id": "adam-lilith-confusion", "label": "Adam vs. Lilith, precisely which is which" } ],
+      "links": [ { "id": "adam-lilith-confusion", "label": "Adam vs. Lilith, precisely which is which" }, { "id": "white-black-moon-concept", "label": "The two artificial cavities tied to Adam's and Lilith's arrival" } ],
       "sourceRefs": ["fandom-adam", "en-wiki-angels", "ja-wiki-nge"],
       "quote": {
         "lang": "ja",
@@ -1300,7 +1409,7 @@
       "type": "theory",
       "title": "Gendo as tragic rather than purely villainous",
       "body": "Gendo's plan is explicitly framed here as wanting to be with Yui again, but how much sympathy that deserves given the harm he causes Shinji and everyone around him to get there is a matter of ongoing viewer disagreement rather than something the text adjudicates for you.",
-      "links": [ { "id": "gendo-ikari", "label": "Back to Gendo's introduction" }, { "id": "shinji-gendo-tool-reading", "label": "How that read Gendo from the very first episode" } ],
+      "links": [ { "id": "gendo-ikari", "label": "Back to Gendo's introduction" }, { "id": "shinji-gendo-tool-reading", "label": "How that read Gendo from the very first episode" }, { "id": "fuyutsuki-yui-backstory", "label": "How Gendo and Yui's relationship actually started" } ],
       "sourceRefs": ["tvtropes-wmg-instrumentality", "cbr-fan-explanations"]
     },
     {
@@ -1314,7 +1423,8 @@
         { "id": "rei-lilith-soul-split", "label": "Her connection to Rei" },
         { "id": "adam-lilith-confusion", "label": "Which of these two is which, again?" },
         { "id": "spear-delivered-to-terminal-dogma", "label": "The other artifact kept in the same chamber" },
-        { "id": "crucified-giant-reveal", "label": "The scene where Kaji first shows her off, misidentified" }
+        { "id": "crucified-giant-reveal", "label": "The scene where Kaji first shows her off, misidentified" },
+        { "id": "spear-launched-to-moon", "label": "The Spear being pulled out of her and fired at the Moon" }
       ],
       "sourceRefs": ["fandom-lilith", "villains-fandom-lilith"]
     },
@@ -1333,7 +1443,7 @@
       "type": "fact",
       "title": "Kaji is killed",
       "body": "Kaji is killed off-screen in this episode, having gotten too close to the truth about Adam, Lilith, and Instrumentality he'd spent the series digging into. Who specifically killed him (SEELE or Gendo's own faction) is left unstated.",
-      "links": [ { "id": "ryoji-kaji", "label": "Back to Kaji's introduction" } ],
+      "links": [ { "id": "ryoji-kaji", "label": "Back to Kaji's introduction" }, { "id": "kaji-death-confirmed-seele", "label": "The later edit that confirms who actually did it" } ],
       "sourceRefs": ["ja-wiki-nge"],
       "quote": {
         "lang": "ja",
