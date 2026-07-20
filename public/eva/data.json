@@ -48,7 +48,9 @@
     "en-wiki-ep21": { "lang": "en", "title": "He was aware that he was still a child — Wikipedia", "url": "https://en.wikipedia.org/wiki/He_was_aware_that_he_was_still_a_child" },
     "en-wiki-ep22": { "lang": "en", "title": "Don't Be (Neon Genesis Evangelion) — Wikipedia", "url": "https://en.wikipedia.org/wiki/Don%27t_Be_(Neon_Genesis_Evangelion)" },
     "en-wiki-ep23": { "lang": "en", "title": "Rei III — Wikipedia", "url": "https://en.wikipedia.org/wiki/Rei_III" },
-    "en-wiki-ep24": { "lang": "en", "title": "The Beginning and the End, or \"Knockin' on Heaven's Door\" — Wikipedia", "url": "https://en.wikipedia.org/wiki/The_Beginning_and_the_End,_or_%22Knockin%27_on_Heaven%27s_Door%22" }
+    "en-wiki-ep24": { "lang": "en", "title": "The Beginning and the End, or \"Knockin' on Heaven's Door\" — Wikipedia", "url": "https://en.wikipedia.org/wiki/The_Beginning_and_the_End,_or_%22Knockin%27_on_Heaven%27s_Door%22" },
+    "en-wiki-eoe": { "lang": "en", "title": "The End of Evangelion — Wikipedia", "url": "https://en.wikipedia.org/wiki/The_End_of_Evangelion" },
+    "ja-wiki-eoe": { "lang": "ja", "title": "新世紀エヴァンゲリオン劇場版 Air/まごころを、君に — Wikipedia (Japanese)", "url": "https://ja.wikipedia.org/wiki/新世紀エヴァンゲリオン劇場版_Air/まごころを、君に" }
   },
   "episodes": [
     { "number": 1, "title": "Angel Attack", "subtitle": "JP: 使徒、襲来 — lit. \"Angel, Attack\" · aired 1995-10-04, 6.8%" },
@@ -1719,6 +1721,106 @@
         "original": "鶴巻和哉は「第25、26話も庵野監督なりに勝算があってやっている...本当はもっと早い段階で種明かしのネタを全部考えてシナリオを書いちゃうのが一番楽なんですよ。でも庵野監督はそれでは楽しすぎだとか思ったんでしょう」と証言している。",
         "translation": "\"Tsurumaki Kazuya has testified: 'Episodes 25 and 26 were made with director Anno believing, in his own way, that he had a chance of winning... The easiest thing would really have been to work out every twist far earlier and just write the script. But I think Director Anno felt that would have been too easy, or too enjoyable, [to be the right choice].'\""
       }
+    },
+    {
+      "id": "eoe-death-rebirth-precursor",
+      "episode": "eoe",
+      "type": "fact",
+      "title": "Death & Rebirth, the precursor film",
+      "body": "Before The End of Evangelion released, Gainax put out Neon Genesis Evangelion: Death & Rebirth (March 1997): its first half, Death, recaps the TV series' first 24 episodes; its second, Rebirth, is a 25-minute preview of what became The End of Evangelion, cutting off right as the Eva Series begins its assault on Unit-02. The full alternate ending only released four months later, in July 1997.",
+      "links": [ { "id": "two-endings", "label": "Why an alternate ending exists at all" }, { "id": "phantom-full-new-film", "label": "The wholly-new film this was originally meant to replace" } ],
+      "sourceRefs": ["en-wiki-eoe"]
+    },
+    {
+      "id": "eoe-titles-meaning",
+      "episode": "eoe",
+      "type": "fact",
+      "title": "Where \"Air\" and \"Sincerely Yours\" come from",
+      "body": "\"Air,\" the film's first half, is named after the second movement of Bach's Orchestral Suite No. 3 — \"Air on the G String\" — used in one of its key scenes. \"Sincerely Yours,\" the second half's Japanese title (まごころを、君に), is a tribute to the 1968 film Charly (based on Flowers for Algernon), which was released in Japan under that exact title — continuing a Gainax tradition of naming a series' final installment after an existing story or film.",
+      "links": [],
+      "sourceRefs": ["en-wiki-eoe"]
+    },
+    {
+      "id": "nerv-jssdf-assault",
+      "episode": "eoe",
+      "scene": "The Japanese Strategic Self-Defense Force storms NERV headquarters",
+      "type": "fact",
+      "title": "SEELE frames NERV and sends in the military",
+      "body": "SEELE feeds Japan's government false intelligence branding NERV the real threat to humanity, triggering a military assault on NERV headquarters with orders to kill on sight — a massacre of NERV's own staff. Ritsuko, held for insubordination, is ordered by Gendo to stop SEELE's attempt to hack NERV's MAGI systems; she complies, but had secretly planted a self-destruct command of her own, which fails when the three Magi don't reach unanimous consent — the \"Casper\" unit, carrying the part of Naoko modeled on her as a woman, votes it down. Gendo shoots Ritsuko dead moments later.",
+      "links": [ { "id": "ritsuko-naoko-relationship", "label": "The mother Casper is modeled on" }, { "id": "magi-trinity-naoko-symbolism", "label": "The three-way split in the Magi this vote depends on" }, { "id": "seele", "label": "The organization orchestrating the frame-up" } ],
+      "sourceRefs": ["en-wiki-eoe"]
+    },
+    {
+      "id": "asuka-eva02-revival-eoe",
+      "episode": "eoe",
+      "scene": "Asuka reactivates Eva-02 to fight off the invading forces",
+      "type": "fact",
+      "title": "Asuka's last stand",
+      "body": "Moved to Unit-02 for safekeeping while catatonic, Asuka overcomes her trauma on learning her dead mother Kyoko's soul is bound up in the Eva itself; she reactivates it and single-handedly destroys the invading military force, then all nine of SEELE's Mass Production Evangelions. The MP units regenerate once Unit-02's power runs out, though, and disembowel it while Shinji — paralyzed in bakelite-sealed Unit-01 — watches, unable to help.",
+      "links": [ { "id": "asuka-mother-backstory", "label": "Kyoko's death and the soul now bound to this Eva" }, { "id": "yuis-soul-in-unit-01", "label": "The same soul-in-the-Eva pattern, for Shinji and Yui" } ],
+      "sourceRefs": ["en-wiki-eoe"]
+    },
+    {
+      "id": "rei-merges-lilith-eoe",
+      "episode": "eoe",
+      "scene": "Rei rejects Gendo, takes Adam's embryo from his hand, and merges with Lilith",
+      "type": "fact",
+      "title": "Rei's betrayal, and her fusion with Lilith",
+      "body": "Gendo attempts to merge with Lilith himself, using the Adam embryo he's kept grafted into his own hand, intending to reunite with Yui on his own terms. Rei refuses to let him, takes Adam for herself instead, and merges directly with Lilith — transforming into a colossal version of herself and triggering Third Impact on SEELE's terms rather than Gendo's.",
+      "links": [ { "id": "lilith", "label": "The being Rei merges with" }, { "id": "rei-lilith-soul-split", "label": "The soul-splitting theory this scene is read as confirming" }, { "id": "gendos-motive-reading", "label": "Gendo's own version of Instrumentality, denied here" } ],
+      "sourceRefs": ["en-wiki-eoe"]
+    },
+    {
+      "id": "eoe-otaku-critique-live-action",
+      "episode": "eoe",
+      "scene": "Live-action footage of real streets, cinema audiences, and fan graffiti is intercut into Shinji's Instrumentality sequence",
+      "type": "theory",
+      "title": "Live-action footage as a mirror held up to the audience",
+      "body": "Anno deliberately broke from animation for parts of the finale, cutting in real film of trains, street lamps, graffiti scrawled on Gainax's own offices, and — most pointedly — footage of a real theater audience watching the previous Evangelion film. Anno has said he wanted something closer to reality than cel animation could give, worried that fans were dissolving their own sense of self into fiction; he called the audience footage itself a kind of mirror, meant to make viewers notice their own reality rather than lose themselves further in his.",
+      "links": [ { "id": "anno-metanarrative", "label": "The same fourth-wall-breaking impulse in the TV finale" } ],
+      "sourceRefs": ["en-wiki-eoe", "ja-wiki-eoe"],
+      "quote": {
+        "lang": "ja",
+        "original": "色々な人たちが過剰にフィクションにのめり込んで、他者が作った脳内世界に自分の存在を依存し過ぎているのが見ていて怖い感じがした。とにかく少しでも外界を認めて、自分の尺度で相対的な視野を持って欲しかった。",
+        "translation": "\"It felt frightening to watch how many people were excessively immersing themselves in fiction, depending too much on a mental world someone else had built for their own sense of existence. I just wanted them, even a little, to acknowledge the outside world and hold onto a relative perspective measured by their own yardstick.\""
+      }
+    },
+    {
+      "id": "anno-death-threats-depression",
+      "episode": "eoe",
+      "type": "fact",
+      "title": "The backlash that nearly ended Anno's career",
+      "body": "After the TV finale aired, Anno faced fierce backlash accusing him of abandoning the plot and being lazy; he read online discussions debating the best way to kill him, stopped wanting to work in animation, and has said he contemplated suicide. Director and friend Hayao Miyazaki reportedly advised him to take a break before starting work on the film version.",
+      "links": [ { "id": "finale-controversy", "label": "The finale backlash this responds to" }, { "id": "anno-happiness-quote", "label": "Anno's own doubts about his audience, voiced as far back as episode 1" } ],
+      "sourceRefs": ["ja-wiki-eoe"],
+      "quote": {
+        "lang": "ja",
+        "original": "本当のことを言っているかどうか実際は怪しいのに、そのインタビューを読んだ人が額面通りに受け取め、観る側が「監督がそう言ったから、そうだろう」みたいな先入観や見方を限定されたくない",
+        "translation": "\"Even though it's genuinely questionable whether I'm telling the truth, people who read an interview take it at face value — I don't want viewers' perspectives limited by a preconception like 'the director said so, so it must be true.'\""
+      }
+    },
+    {
+      "id": "asuka-kimochi-warui-origin",
+      "episode": "eoe",
+      "type": "fact",
+      "title": "Where \"kimochi warui\" actually came from",
+      "body": "Asuka's closing line was originally scripted as a colder \"I can't stand the idea of being killed by someone like you.\" Unsatisfied, Anno asked voice actress Yūko Miyamura to imagine waking up to find a stranger had broken in and was masturbating while watching her sleep, then asked what she'd say. Miyamura's genuine, disgusted answer — \"kimochi warui\" (\"how disgusting\"/\"I feel sick\") — became the actual final line of the series.",
+      "links": [ { "id": "eoe-beach-scene", "label": "The scene this line closes out" } ],
+      "sourceRefs": ["en-wiki-eoe", "ja-wiki-eoe"],
+      "quote": {
+        "lang": "ja",
+        "original": "もし宮村が一人で寝ていて、窓から知らない男が入ってきて、それに気づかず寝ていて、いつでも襲われるような状況だったにもかかわらず、寝ているところを観ながらオナニーされて…それをされたときに目が覚めたらなんて言う？",
+        "translation": "\"Suppose Miyamura were sleeping alone, and an unfamiliar man climbed in through the window — she doesn't notice, she's asleep and vulnerable to attack at any moment — and he masturbates while watching her sleep... if she woke up right as that was happening, what would she say?\""
+      }
+    },
+    {
+      "id": "eoe-reception-legacy",
+      "episode": "eoe",
+      "type": "fact",
+      "title": "A box-office hit, and a fixture on \"greatest anime films\" lists",
+      "body": "The End of Evangelion grossed roughly ¥2.47 billion, placed third at the Japanese box office the week it opened (behind The Lost World: Jurassic Park and Princess Mononoke), and won the 1997 Animage Anime Grand Prix along with honors at the Japan Academy Awards and Animation Kobe. It's since been named repeatedly among the greatest animated films ever made, even as its opening masturbation scene and closing strangulation remain among the most argued-over moments in the franchise.",
+      "links": [ { "id": "eoe-beach-scene", "label": "The ending most argued over" } ],
+      "sourceRefs": ["en-wiki-eoe"]
     },
     {
       "id": "original-28-angels-concept",
