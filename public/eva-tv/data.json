@@ -69,7 +69,8 @@
     "ann-understanding-evangelion": { "lang": "en", "title": "Understanding Evangelion — Anime News Network", "url": "https://www.animenewsnetwork.com/feature/2002-06-11" },
     "ann-edit-list-eva-ep1": { "lang": "en", "title": "The Edit List: Evangelion - ep. 1: Angel Attack — Anime News Network", "url": "https://www.animenewsnetwork.com/edit-list/2003-02-24/evangelion-ep-1" },
     "ann-edit-list-eva-ep2": { "lang": "en", "title": "The Edit List: Evangelion - ep. 2: Unfamiliar Ceiling — Anime News Network", "url": "https://www.animenewsnetwork.com/edit-list/2003-02-26/evangelion-ep-2" },
-    "ann-answerman-evangelion-pronunciation": { "lang": "en", "title": "Answerman: the \"Evangelion\" pronunciation debate — Anime News Network", "url": "https://www.animenewsnetwork.com/answerman/2004-07-23" }
+    "ann-answerman-evangelion-pronunciation": { "lang": "en", "title": "Answerman: the \"Evangelion\" pronunciation debate — Anime News Network", "url": "https://www.animenewsnetwork.com/answerman/2004-07-23" },
+    "ann-thin-veneer-evangelion": { "lang": "en", "title": "The Thin Veneer Known as \"Evangelion\" — Anime News Network", "url": "https://www.animenewsnetwork.com/editorial/1998-09-09" }
   },
   "episodes": [
     { "number": 1, "title": "Angel Attack", "subtitle": "JP: 使徒、襲来 — lit. \"Angel, Attack\" · aired 1995-10-04, 6.8%" },
@@ -2661,6 +2662,72 @@
       "body": "A 2003-2004 back-and-forth in Anime News Network's Answerman column landed on a hard-G pronunciation, \"Evan-GHEL-ion,\" matching the English dub, despite reader pushback arguing for a soft-G \"Evan-JELL-yon\" to match the word's Greek root Ευαγγέλιον (\"gospel\"/\"good news\"). The hard-G case won out: ancient Greek gamma is itself a hard G, the word's Japanese katakana rendering エヴァンゲリオン uses the hard-G ゲ rather than the soft-G ジェ despite Japanese having a perfectly usable je sound (the cast's ability to pronounce it correctly elsewhere, e.g. Cowboy Bebop's \"Jet Black,\" ruled out simple mispronunciation), and the specific \"v\" spelling (versus the Greek upsilon) traces to the word's Latin form, Evangelium, rather than the Greek original.",
       "links": [],
       "sourceRefs": ["ann-answerman-evangelion-pronunciation"]
+    },
+    {
+      "id": "ep21-24-narrative-style-criticism",
+      "episode": 21,
+      "type": "fact",
+      "title": "A harsh 1998 review of the flashback-heavy narration in episodes 21-24",
+      "body": "One of the earliest published English-language reviews of the finale, by Kenneth Lee for Anime News Network, singled out episode 21's rapid-fire flashback structure for criticism: the narration jumps between Fuyutsuki's own memories, an apparently impossible first-person account of Naoko murdering the first Rei, present-day Misato listening to a tape, and Kaji's own recorded words, all within a few minutes. The review argued this \"MTV-style\" barrage of information looks like it's answering the show's biggest outstanding questions — how Yui died, who Rei is, why Kaji died — while actually leaving most of them unresolved.",
+      "links": [],
+      "sourceRefs": ["ann-thin-veneer-evangelion"]
+    },
+    {
+      "id": "arael-attack-music-choice-criticism",
+      "episode": 22,
+      "type": "fact",
+      "title": "A contemporary complaint about the music playing over Asuka's suffering",
+      "body": "The same 1998 review singled out the choral, celebratory religious music playing during Arael's psychic assault on Asuka — which the reviewer names as \"Symphony No. 9 in D-minor, the 'Alleluia' song\" — as one of the worst music cues in the show, arguing it reads as incongruous whichever way it's meant: as sincere accompaniment to Asuka's breakdown, or as expressing the Angel's own perspective.",
+      "links": [{ "id": "arael-mindrape-attack", "label": "The scene this music plays over" }],
+      "sourceRefs": ["ann-thin-veneer-evangelion"]
+    },
+    {
+      "id": "rei-pinocchio-parallel",
+      "episode": 23,
+      "type": "theory",
+      "title": "Rei II's arc as a compressed \"puppet becomes human\" story",
+      "body": "Critic Kenneth Lee compares Rei II's rapid development of what looks like a soul — learning gratitude when she thanks Shinji for cleaning her room, learning to smile, being told by Toji that she has a purpose, and finally choosing to sacrifice herself to protect Shinji — to the familiar \"puppet becomes human\" arc of Pinocchio or Key the Metal Idol. His complaint isn't that the parallel doesn't work, but that a premise substantial enough to carry an entire series on its own gets compressed into a handful of episodes before Rei dies.",
+      "links": [{ "id": "armisael-attack-rei-suicide", "label": "The death this arc builds toward" }],
+      "sourceRefs": ["ann-thin-veneer-evangelion"]
+    },
+    {
+      "id": "toji-kensuke-hikari-abrupt-writeoff",
+      "episode": 24,
+      "type": "fact",
+      "title": "A criticized one-line dismissal of Toji, Kensuke, and Hikari",
+      "body": "After building up Toji as a sympathetic tragic figure across several episodes — his growing friendship with Shinji, his relationship with Hikari, and his crippling injury as Unit-03's pilot — the show writes all three off with a single line of Shinji's narration: \"The city was destroyed, so they had to move away.\" Kenneth Lee's 1998 review holds this up as the clearest example of the finale discarding secondary characters the moment their plot usefulness runs out, with none of the three getting so much as a farewell scene.",
+      "links": [{ "id": "bardiel-possession-toji", "label": "The injury this writeoff follows" }],
+      "sourceRefs": ["ann-thin-veneer-evangelion"]
+    },
+    {
+      "id": "eva-sins-of-father-biblical-parallel",
+      "episode": 21,
+      "type": "theory",
+      "title": "A \"sins of the fathers\" reading across four generations",
+      "body": "Kenneth Lee's 1998 review proposes a shared pattern across the show's main parent/child pairs, modeled on the Exodus line about the sins of the parents being visited on their children: Naoko's affair and betrayal echoed in Ritsuko's own entanglement with Gendo; Misato's father dying in pursuit of the truth behind Second Impact echoed in Misato's own reckless disregard for her safety chasing the same secrets; Kyoko's breakdown and suicide after Angel contact echoed in Asuka's breakdown and suicide attempt after her own; and Gendo's willingness to die for his convictions echoed in Shinji's repeated willingness to risk death for his. The review treats the pattern as suggestive rather than something the text confirms outright.",
+      "links": [
+        { "id": "naoko-kills-rei-suicide", "label": "The first half of the Naoko/Ritsuko pairing" },
+        { "id": "asuka-mother-backstory", "label": "The first half of the Kyoko/Asuka pairing" }
+      ],
+      "sourceRefs": ["ann-thin-veneer-evangelion"]
+    },
+    {
+      "id": "eva-kaworu-relationship-pacing-criticism",
+      "episode": 24,
+      "type": "fact",
+      "title": "Early, skeptical criticism of the pace of Shinji and Kaworu's bond",
+      "body": "Alongside far more sympathetic later readings, Kenneth Lee's 1998 review is an early example of criticism aimed squarely at how quickly Shinji and Kaworu's relationship is drawn — arguing it's implausible for a character established across twenty episodes as guarded and withdrawn. The review specifically contrasts Shinji recoiling from Misato's comforting touch right after Rei's death with his acceptance of Kaworu's touch soon after meeting him, reading the shift as unearned rather than as a deliberate contrast.",
+      "links": [{ "id": "kaworus-feelings", "label": "A more sympathetic reading of the same relationship" }],
+      "sourceRefs": ["ann-thin-veneer-evangelion"]
+    },
+    {
+      "id": "ep2126-1998-negative-review",
+      "episode": 26,
+      "type": "fact",
+      "title": "An early, harshly negative published review of the finale",
+      "body": "Kenneth Lee's September 1998 Anime News Network editorial is one of the earliest published English-language reviews of the finale, and among its harshest: it argues episodes 21-26 abandon the narrative foundation built across the first twenty episodes, dismisses the introspective closing episodes as failed \"art-house\" pretension rather than earned catharsis, and singles out Kaworu's line \"death is the only true freedom\" as especially ironic — coming, as the review points out, from a character who is himself an Angel.",
+      "links": [{ "id": "finale-controversy", "label": "Production-side explanations for how the finale took shape" }],
+      "sourceRefs": ["ann-thin-veneer-evangelion"]
     }
   ]
 }
