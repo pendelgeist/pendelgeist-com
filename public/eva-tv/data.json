@@ -2481,6 +2481,51 @@
         { "id": "eoe-instrumentality-as-therapy", "label": "Another reading of what happens to Shinji inside Instrumentality" }
       ],
       "sourceRefs": ["evageeks-forum-eoe-last-scene-dualism"]
+    },
+    {
+      "id": "eoe-strangling-ep2-at-field-parallel",
+      "episode": "eoe",
+      "type": "theory",
+      "title": "A deliberate echo of the episode 2 Sachiel fight",
+      "body": "Forum poster FreakyFilmFan4ever reads the strangling as staged to mirror Unit-01's fight with Sachiel: in both, a body sits pinned atop another, and the pinned party reaches up toward the other's face — Sachiel to tear down Unit-01's AT Field, Asuka to caress Shinji's cheek. Where the AT Field theme is first raised in episode 2 and explained outright in episode 24, this reading frames EoE's version as being about learning to live alongside other people's AT Fields after Third Impact rather than tearing through them by force. Poster Reichu offered a correction worth keeping alongside it: Sachiel's AT Field was actually neutralized earlier, when Unit-01 forced its core open, not by the embrace itself — and Eva-01 straddling something (Sachiel, Eva-03, Zeruel) is consistently a killing posture in the show, making Shinji's initial position a mirror of his Eva's murderous instinct, with the difference being that — unlike his mother inside it — he can actually be talked down.",
+      "links": [{ "id": "eva-01-devours-sachiel", "label": "The episode 2 fight this reading mirrors" }],
+      "sourceRefs": ["evageeks-forum-shinji-strangling-thread"]
+    },
+    {
+      "id": "eoe-strangling-naoko-rei-parallel",
+      "episode": "eoe",
+      "type": "theory",
+      "title": "A parallel to Naoko strangling the first Rei",
+      "body": "EoE briefly flashes Naoko's silhouette strangling Rei I right after Asuka's own strangling scene, which some fans read as a deliberate pairing: both Rei I and Asuka verbally put distance between their strangler and Gendo in the moment (Rei I calling Naoko an \"old hag,\" Asuka calling Shinji \"Daddy's Boy\"). On this reading, the difference is the outcome — Naoko couldn't let go of her toxic attachment to Gendo as her lover and the encounter ends in death, while Shinji can let go of his to Gendo as his father, and stops once he feels Asuka's touch.",
+      "links": [{ "id": "naoko-kills-rei-suicide", "label": "The scene this one is read as echoing" }],
+      "sourceRefs": ["evageeks-forum-shinji-strangling-thread"]
+    },
+    {
+      "id": "eoe-strangling-hand-position-not-lethal",
+      "episode": "eoe",
+      "type": "theory",
+      "title": "A close reading of Shinji's hands: maybe not actually trying to kill her",
+      "body": "Poster StrokeMeGoat points out that every other strangling in the show — including Shinji's own strangling of Asuka earlier, at the start of Instrumentality — shows both thumbs stacked together over the windpipe, the standard lethal grip. In the beach scene, though, Shinji's thumbs instead line up separately over each carotid artery, which would cut off blood flow and cause someone to pass out rather than asphyxiate. Combined with how visibly he's trembling, the reading holds that Shinji may be testing whether Asuka is real and checking for a pulse rather than trying to kill her outright — something poster C.T.1290 separately described as \"strangling her to confirm her existence.\"",
+      "links": [{ "id": "eoe-strangling-as-mercy-killing", "label": "A competing reading of the same act as intentional killing" }],
+      "sourceRefs": ["evageeks-forum-shinji-strangling-thread"]
+    },
+    {
+      "id": "eoe-strangling-ego-id-reintegration",
+      "episode": "eoe",
+      "type": "theory",
+      "title": "A reading through ego reintegration: two moments of unfiltered honesty",
+      "body": "Poster VoidEater reads the scene as capturing Shinji and Asuka mid-reintegration, briefly acting without the social \"ego\" self that normally filters them: Shinji finally lets out the anger and resentment he's built up over how Asuka has treated him, while Asuka finally shows the desire she's kept hidden. As their egos fully reassert themselves, Shinji catches himself and draws back, while Asuka's closing line is read as her ego's trained rejection of the very tenderness and desire she just allowed herself to express.",
+      "links": [{ "id": "eoe-beach-scene", "label": "The scene this reading applies to" }],
+      "sourceRefs": ["evageeks-forum-shinji-strangling-thread"]
+    },
+    {
+      "id": "eoe-hospital-scene-instrumentality-callback",
+      "episode": "eoe",
+      "type": "theory",
+      "title": "Tying the closing line to one specific memory, not general disgust",
+      "body": "One reading (summarized on the forum from a separate Hegel-influenced analysis) argues Shinji and Asuka don't fully snap back into themselves the instant they leave the LCL sea — the two lie beside each other silent and expressionless before visibly \"waking up\" through the exchange that follows, paralleling how the beach caress reverses the earlier rejection at the start of Instrumentality. On this reading, Asuka's final line specifically calls back to the hospital-room scene: inside Instrumentality, with no barriers between people, Asuka acknowledges what Shinji did there and even permits his attraction to her on her own terms; back in reality, with those barriers restored, she reacts to that same memory with disgust instead — making the line about that particular moment rather than a blanket judgment of him.",
+      "links": [{ "id": "asuka-kimochi-warui-origin", "label": "How the line was actually written and directed" }],
+      "sourceRefs": ["evageeks-forum-shinji-strangling-thread"]
     }
   ]
 }
