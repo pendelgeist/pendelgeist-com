@@ -104,15 +104,24 @@ h1 {
 
 /* Timeline */
 
-/* A fixed, viewport-derived height (not just a max-height) so the flex/
- * multicol layout below has a definite size to lay entries out against —
- * taller in portrait, shorter in landscape, clamped to a sane range either
- * way. This is what lets a long episode's entries flow into exactly as many
- * columns as the current window actually needs, instead of a fixed count. */
+/* A fixed, viewport-derived height (not just a max-height) so the flex
+ * layout below has a definite size to pack entries against — taller in
+ * portrait, shorter in landscape, clamped to a sane range either way. This
+ * is what lets a long episode's entries pack into exactly as many columns
+ * as the current window actually needs, instead of a fixed count.
+ *
+ * Uses 100svh (the smallest possible viewport, i.e. with browser/in-app-
+ * browser chrome fully expanded), not 100dvh, deliberately: dvh can
+ * under-report how much chrome is actually reserved in some embedded
+ * browsers (e.g. opening this page inside another app), which made this
+ * height come out taller than the space actually visible and pushed the
+ * page's own nav bar out of view. svh is a conservative lower bound, so
+ * this may not always fill 100% of the space once a toolbar auto-hides,
+ * but it won't overflow the space that's actually there either. */
 .timeline-scroll {
   overflow-x: auto;
   overflow-y: hidden;
-  height: clamp(20rem, calc(100dvh - 9.5rem), 60rem);
+  height: clamp(20rem, calc(100svh - 11rem), 60rem);
   box-shadow: var(--shadow-card);
   margin-bottom: 1.5rem;
   background-color: var(--color-surface);
