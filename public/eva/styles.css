@@ -12,6 +12,16 @@
   }
 }
 
+/* Unlike the site's other pages, this one scrolls its content horizontally
+ * on its own rather than relying on a comfortable text-reading width, so the
+ * shared .container's 1400px cap (see /styles.css) just wastes space on
+ * anything wider than that - an iPad in landscape included. Letting it run
+ * full width means a wide viewport shows more of the timeline before a
+ * horizontal scroll is needed, instead of padding empty margin at the sides. */
+.container {
+  max-width: none;
+}
+
 .guidelines {
   box-shadow: var(--shadow-card);
   margin-bottom: 1.5rem;

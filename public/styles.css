@@ -658,33 +658,6 @@ nav {
   padding: 0.75rem 0;
 }
 
-.info-link {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 1.1rem;
-  height: 1.1rem;
-  margin-left: 0.6rem;
-  vertical-align: middle;
-  border: 2px solid var(--color-nav-link);
-  border-radius: 50%;
-  font-size: 0.7rem;
-  font-weight: 700;
-  color: var(--color-nav-link);
-  text-decoration: none;
-  cursor: pointer;
-  user-select: none;
-}
-
-/* Inverted fill rather than a dimmed opacity: some themes' nav-link color
- * doesn't have enough headroom for a translucent version to stay readable,
- * so hover swaps foreground/background instead, which is guaranteed to keep
- * the same contrast ratio (contrast is symmetric either direction). */
-.info-link:hover {
-  background-color: var(--color-nav-link);
-  color: var(--color-chrome);
-}
-
 .theme-picker {
   width: auto;
   height: auto;
@@ -733,13 +706,6 @@ nav {
   .nav-title {
     font-size: 0.85rem;
     padding: 0.5rem 0;
-  }
-
-  .info-link {
-    width: 0.95rem;
-    height: 0.95rem;
-    margin-left: 0.4rem;
-    font-size: 0.6rem;
   }
 
   .theme-picker {
