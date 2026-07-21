@@ -382,6 +382,7 @@
 :root[data-theme="ffxiv"] .section,
 :root[data-theme="ffxiv"] article,
 :root[data-theme="ffxiv"] .guidelines,
+:root[data-theme="ffxiv"] .detail-panel,
 :root[data-theme="ffxiv"] .container input,
 :root[data-theme="ffxiv"] .container select,
 :root[data-theme="ffxiv"] .container button {

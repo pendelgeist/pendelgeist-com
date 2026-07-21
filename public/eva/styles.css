@@ -1,6 +1,8 @@
 /* Eva-specific styles; shared site styles live in /styles.css. This page is
  * a horizontally scrolling timeline of entry "nodes" grouped into episode
- * columns, with a fixed detail panel at the bottom for the selected entry. */
+ * columns. Selecting one opens its detail panel - as a bottom sheet overlay
+ * on narrow (phone-width) screens, or a persistent side panel next to the
+ * timeline on anything wider - see the "Detail panel" section below. */
 
 /* This page's title is the longest on the site (a deliberate pun on the
  * show's own "Weaving a Story" episode titles), so on top of the shared
@@ -72,17 +74,20 @@
 
 /* Timeline */
 
-/* A fixed, viewport-derived height (not just a max-height) so the flex
+/* Wraps the timeline and its detail panel so they can sit side by side on
+ * wide screens (see "Detail panel" below) - --timeline-height lives here,
+ * not on .timeline-scroll directly, so the wide-screen panel can size
+ * itself to match without duplicating the calc().
+ *
+ * A fixed, viewport-derived height (not just a max-height) so the flex
  * layout below has a definite size to pack entries against — taller in
  * portrait, shorter in landscape. This is what lets a long episode's
  * entries pack into exactly as many columns as the current window actually
- * needs, instead of a fixed count.
- *
- * No upper bound: an earlier version capped this at 60rem as a "sane max",
- * but on a tall viewport (a big-screen iPad in either orientation) that cap
- * kicked in well before the bottom of the screen did, leaving a dead gap
- * below the card instead of using the space that was actually there. Only
- * the 20rem floor (for a viewport too short to be worth solving for) stays.
+ * needs, instead of a fixed count. No upper bound: an earlier version
+ * capped it at 60rem as a "sane max", but on a tall viewport (a big-screen
+ * iPad in either orientation) that cap kicked in well before the bottom of
+ * the screen did, leaving a dead gap below the card. Only the 20rem floor
+ * (for a viewport too short to be worth solving for) stays.
  *
  * Uses 100svh (the smallest possible viewport, i.e. with browser/in-app-
  * browser chrome fully expanded), not 100dvh, deliberately: dvh can
@@ -92,10 +97,14 @@
  * page's own nav bar out of view. svh is a conservative lower bound, so
  * this may not always fill 100% of the space once a toolbar auto-hides,
  * but it won't overflow the space that's actually there either. */
+.eva-layout {
+  --timeline-height: max(20rem, calc(100svh - 11rem));
+}
+
 .timeline-scroll {
   overflow-x: auto;
   overflow-y: hidden;
-  height: max(20rem, calc(100svh - 11rem));
+  height: var(--timeline-height);
   box-shadow: var(--shadow-card);
   margin-bottom: 1.5rem;
   background-color: var(--color-surface);
@@ -242,17 +251,64 @@
 
 /* Detail panel */
 
+/* Below 701px (phone-width - see the shared nav breakpoint in /styles.css),
+ * the panel is a fixed bottom sheet with its own dimmed backdrop: a real
+ * overlay, floating above the timeline rather than sharing document flow
+ * with it. An earlier version used `position: sticky` for this, which
+ * looked like an overlay once scrolled into place but was really just
+ * sitting in-flow after the timeline - on themes with a translucent
+ * --color-surface (e.g. FFXIV), that meant timeline text showing through
+ * it undimmed and unblurred, legible enough to read both layers at once. */
+.detail-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 15;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
 .detail-panel {
-  position: sticky;
+  position: fixed;
+  left: 0;
+  right: 0;
   bottom: 0;
-  z-index: 5;
+  z-index: 20;
+  max-height: 70svh;
+  overflow-y: auto;
   box-shadow: var(--shadow-card);
   padding: 1rem 1.25rem;
   background-color: var(--color-surface);
   border: var(--border-width) var(--border-style) var(--color-guideline-border);
-  border-radius: var(--radius-card);
-  max-width: 900px;
-  margin: 0 auto 2rem;
+  border-radius: var(--radius-card) var(--radius-card) 0 0;
+}
+
+/* From 701px up (an iPad in either orientation and up), there's room to show
+ * the detail alongside the timeline instead of covering it: a persistent
+ * side panel that's part of the row layout, sized to match the timeline
+ * card's own height. Nothing is covered, so there's no backdrop to dim. */
+@media (min-width: 701px) {
+  .eva-layout {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .eva-layout .timeline-scroll {
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+
+  .detail-backdrop {
+    display: none;
+  }
+
+  .detail-panel {
+    position: static;
+    flex: 0 0 22rem;
+    width: 22rem;
+    max-height: none;
+    height: var(--timeline-height);
+    border-radius: var(--radius-card);
+  }
 }
 
 .detail-content {

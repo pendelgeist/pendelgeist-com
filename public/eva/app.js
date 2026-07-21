@@ -60,6 +60,7 @@ const dom = {
   detailPanel: document.getElementById('detailPanel'),
   detailContent: document.getElementById('detailContent'),
   detailClose: document.getElementById('detailClose'),
+  detailBackdrop: document.getElementById('detailBackdrop'),
 };
 
 /** @type {EvaData|null} */
@@ -317,6 +318,7 @@ function openDetail(id, { scroll }) {
 
   dom.detailContent.replaceChildren(...nodes);
   dom.detailPanel.hidden = false;
+  if (dom.detailBackdrop) dom.detailBackdrop.hidden = false;
 
   if (scroll && node) {
     node.scrollIntoView({ inline: 'center', block: 'nearest', behavior: 'smooth' });
@@ -326,6 +328,7 @@ function openDetail(id, { scroll }) {
 function closeDetail() {
   if (!dom.detailPanel) return;
   dom.detailPanel.hidden = true;
+  if (dom.detailBackdrop) dom.detailBackdrop.hidden = true;
   activeEntryId = null;
   for (const node of dom.timelineTrack.querySelectorAll('.entry-node.active')) {
     node.classList.remove('active');
@@ -349,6 +352,7 @@ async function loadData() {
 }
 
 dom.detailClose?.addEventListener('click', closeDetail);
+dom.detailBackdrop?.addEventListener('click', closeDetail);
 
 // Re-pack the sub-columns on resize/orientation change (e.g. rotating a
 // tablet) rather than leaving them sized for whatever the viewport was at
