@@ -62,7 +62,8 @@
     "mihaigolanul-cruel-angels-thesis": { "lang": "en", "title": "The Cruel Angel's Thesis: An Analysis — mihaigolanul (Golan & Mario Tye Dobre)", "url": "https://mihaigolanul.neocities.org/cruel_angel_thesis" },
     "evageeks-forum-shinji-asuka-parallels": { "lang": "en", "title": "Parallels between Shinji and Asuka's journey as the show ends — EvaGeeks Forum", "url": "https://forum.evageeks.org/thread/21967/Parallels-between-Shinji-and-Asukas-journey-as-the-show-ends/" },
     "evageeks-forum-time-loop-theory": { "lang": "en", "title": "[THEORY] The Time-Loop is Present in the Original TV Series — EvaGeeks Forum", "url": "https://forum.evageeks.org/thread/21963/THEORY-The-Time-Loop-is-Present-in-the-Original-TV-Series/" },
-    "evageeks-forum-shinji-strangling-thread": { "lang": "en", "title": "Why was Shinji strangling Asuka at the end of EoE? — EvaGeeks Forum", "url": "https://forum.evageeks.org/thread/12382/Why-was-Shinji-strangling-Asuka-at-the-end-of-EoE/" }
+    "evageeks-forum-shinji-strangling-thread": { "lang": "en", "title": "Why was Shinji strangling Asuka at the end of EoE? — EvaGeeks Forum", "url": "https://forum.evageeks.org/thread/12382/Why-was-Shinji-strangling-Asuka-at-the-end-of-EoE/" },
+    "evageeks-forum-eoe-last-scene-dualism": { "lang": "en", "title": "\"NGE Ultimate Dualism Theory\" (post by Eva Yojimbo) — EoE last scene, EvaGeeks Forum", "url": "https://forum.evageeks.org/post/317693/EoE-last-scene/#317693" }
   },
   "episodes": [
     { "number": 1, "title": "Angel Attack", "subtitle": "JP: 使徒、襲来 — lit. \"Angel, Attack\" · aired 1995-10-04, 6.8%" },
@@ -2450,6 +2451,36 @@
         { "id": "eoe-asuka-caress-motive-debate", "label": "The broader debate over what Asuka's caress is doing" }
       ],
       "sourceRefs": ["evageeks-forum-shinji-strangling-thread"]
+    },
+    {
+      "id": "eoe-red-blue-color-dualism",
+      "episode": "eoe",
+      "type": "theory",
+      "title": "A red/blue color-symbolism reading of Asuka and Rei",
+      "body": "An extended fan theory (posted by Eva Yojimbo) argues Anno consistently codes Asuka in red — tied to sexuality, harsh reality, and an individual life separated from others by their AT Field — against Rei in blue, tied to origins (Lilith and Yui), motherhood, Instrumentality, and the \"collective unconscious.\" On this reading, Shinji's arc throughout the series and EoE alike is a choice between the two poles, summed up in a line the theory attributes to longtime poster Reichu: Shinji \"leaves MOTHER for his SIGNIFICANT OTHER.\"",
+      "links": [{ "id": "accept-vs-reject", "label": "The choice this color pairing is read as mapping onto" }],
+      "sourceRefs": ["evageeks-forum-eoe-last-scene-dualism"]
+    },
+    {
+      "id": "eoe-closed-fist-open-palm-symbolism",
+      "episode": "eoe",
+      "type": "theory",
+      "title": "Closed fist vs. open palm as a life/death visual motif",
+      "body": "The same theory tracks a recurring gesture pairing across the series: closed fists consistently associated with death (including in Eva battles), open palms with life — citing the Gates of Guf located in Lilith's own palms, and the bookend shots of Shinji with blood on his hands over Rei versus semen on his hands over Asuka. Shinji's hands clenching and unclenching are read as tracking the show's recurring question of what choice and action actually look like for him, most directly voiced as \"what are your hands for?\"",
+      "links": [{ "id": "eoe-strangling-masturbation-parallel", "label": "The other reading connecting these two bookend gestures" }],
+      "sourceRefs": ["evageeks-forum-eoe-last-scene-dualism"]
+    },
+    {
+      "id": "eoe-choke-caress-reiteration",
+      "episode": "eoe",
+      "type": "theory",
+      "title": "The beach exchange as a replay of how Instrumentality began",
+      "body": "On this reading, the closing choke-then-caress exchange deliberately re-stages the moment Instrumentality began: Shinji symbolically \"chooses\" death by strangling Asuka and everything she represents, and is answered inside Instrumentality by Yui's own caress as he re-emerges into reality — a link the theory ties to a red streak visible across the moon (itself coded blue/Rei/Lilith) at that moment. On the beach, Shinji is read as trying to \"kill\" the fresh pain of rebirth into individual, harsh reality by strangling Asuka again; releasing his grip is what actually accepting that reality looks like, while Asuka's caress reaffirms \"we're alive\" — offered as hope rather than any promise that things get easier.",
+      "links": [
+        { "id": "eoe-beach-scene", "label": "The scene this reading is built around" },
+        { "id": "eoe-instrumentality-as-therapy", "label": "Another reading of what happens to Shinji inside Instrumentality" }
+      ],
+      "sourceRefs": ["evageeks-forum-eoe-last-scene-dualism"]
     }
   ]
 }
