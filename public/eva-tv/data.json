@@ -2426,6 +2426,30 @@
         { "id": "eoe-beach-scene", "label": "The scene this line closes out" }
       ],
       "sourceRefs": ["evageeks-forum-shinji-strangling-thread"]
+    },
+    {
+      "id": "eoe-strangling-as-mercy-killing",
+      "episode": "eoe",
+      "type": "theory",
+      "title": "A third reading: the strangling as sparing Asuka, not connecting with her",
+      "body": "Poster Sanada Yukimura pushed back on the \"unafraid to connect\" reading of the strangling with a dog-behavior analogy: a dog that barks a lot but never bites can be less dangerous than a quiet one that lashes out only when it feels genuinely cornered, so lashing out isn't automatically evidence of openness — it can just as easily be self-defense. Their own alternative reading is bleaker still: Shinji's attempt to kill Asuka is read as an act of mercy, meant to spare her from a post-Instrumentality world he no longer believes can offer real happiness — a much darker note than the TV finale, where Shinji explicitly comes to believe a good life is possible.",
+      "links": [
+        { "id": "eoe-strangling-as-self-assertion", "label": "The self-assertion reading this pushes back on" },
+        { "id": "accept-vs-reject", "label": "How this compares to the TV finale's more hopeful ending" }
+      ],
+      "sourceRefs": ["evageeks-forum-shinji-strangling-thread"]
+    },
+    {
+      "id": "eoe-strangling-masturbation-parallel",
+      "episode": "eoe",
+      "type": "theory",
+      "title": "The strangling scene read as a mirror of the film's opening masturbation scene",
+      "body": "Poster Azathoth reads the strangling as deliberately paralleling the film's earlier masturbation scene: both are framed as Shinji acting purely on his own wounded feelings at Asuka's expense, rather than reckoning with why she pushed him away — indulging himself instead of actually meeting her. On this reading, the self-indulgence runs all the way up to triggering Instrumentality itself, making the strangling scene's ending a final test: Asuka reaches out anyway, and Shinji's response is to sob rather than accept it, which isn't the outcome she was hoping to get out of the gesture.",
+      "links": [
+        { "id": "asuka-kimochi-warui-origin", "label": "The scene direction this reading extends beyond its literal meaning" },
+        { "id": "eoe-asuka-caress-motive-debate", "label": "The broader debate over what Asuka's caress is doing" }
+      ],
+      "sourceRefs": ["evageeks-forum-shinji-strangling-thread"]
     }
   ]
 }
