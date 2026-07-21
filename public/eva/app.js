@@ -75,6 +75,17 @@ dom.infoToggle?.addEventListener('click', (e) => {
   dom.guidelines?.classList.toggle('show');
 });
 
+// On wide screens the detail panel is always visible (see .detail-panel[hidden]
+// in eva/styles.css), so it needs something to show before anything's been
+// picked yet - this is also what it resets to on close.
+function showDetailPlaceholder() {
+  if (!dom.detailContent) return;
+  const p = document.createElement('p');
+  p.className = 'detail-placeholder';
+  p.textContent = 'Select an entry from the timeline to see its details here.';
+  dom.detailContent.replaceChildren(p);
+}
+
 function showError(message) {
   if (!dom.timelineTrack) return;
   const div = document.createElement('div');
@@ -329,6 +340,7 @@ function closeDetail() {
   if (!dom.detailPanel) return;
   dom.detailPanel.hidden = true;
   if (dom.detailBackdrop) dom.detailBackdrop.hidden = true;
+  showDetailPlaceholder();
   activeEntryId = null;
   for (const node of dom.timelineTrack.querySelectorAll('.entry-node.active')) {
     node.classList.remove('active');
@@ -350,6 +362,8 @@ async function loadData() {
     showError(error instanceof Error ? error.message : 'Unknown error');
   }
 }
+
+showDetailPlaceholder();
 
 dom.detailClose?.addEventListener('click', closeDetail);
 dom.detailBackdrop?.addEventListener('click', closeDetail);
