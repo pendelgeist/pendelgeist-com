@@ -68,7 +68,8 @@
     "sparknotes-hegel-master-slave": { "lang": "en", "title": "Phenomenology of Spirit: Lordship and Bondage — SparkNotes", "url": "https://www.sparknotes.com/philosophy/hegel/section2/" },
     "ann-understanding-evangelion": { "lang": "en", "title": "Understanding Evangelion — Anime News Network", "url": "https://www.animenewsnetwork.com/feature/2002-06-11" },
     "ann-edit-list-eva-ep1": { "lang": "en", "title": "The Edit List: Evangelion - ep. 1: Angel Attack — Anime News Network", "url": "https://www.animenewsnetwork.com/edit-list/2003-02-24/evangelion-ep-1" },
-    "ann-edit-list-eva-ep2": { "lang": "en", "title": "The Edit List: Evangelion - ep. 2: Unfamiliar Ceiling — Anime News Network", "url": "https://www.animenewsnetwork.com/edit-list/2003-02-26/evangelion-ep-2" }
+    "ann-edit-list-eva-ep2": { "lang": "en", "title": "The Edit List: Evangelion - ep. 2: Unfamiliar Ceiling — Anime News Network", "url": "https://www.animenewsnetwork.com/edit-list/2003-02-26/evangelion-ep-2" },
+    "ann-answerman-evangelion-pronunciation": { "lang": "en", "title": "Answerman: the \"Evangelion\" pronunciation debate — Anime News Network", "url": "https://www.animenewsnetwork.com/answerman/2004-07-23" }
   },
   "episodes": [
     { "number": 1, "title": "Angel Attack", "subtitle": "JP: 使徒、襲来 — lit. \"Angel, Attack\" · aired 1995-10-04, 6.8%" },
@@ -2651,6 +2652,15 @@
       "body": "\"Unfamiliar Ceiling\" got a far more aggressive cut for its 2003 Cartoon Network airing than the premiere, driven almost entirely by Misato's drinking and undress: her Yebisu beer cans were digitally recolored blue throughout, whole scenes built around her apartment's clutter of empty cans and liquor bottles were removed (including Shinji taking inventory of her second refrigerator and their Pen Pen conversation), her drying lingerie and a shot of a nude Shinji looking at it were cut, and a bath scene had her redrawn into a digital bikini. The Eva-vs-Sachiel violence fared no better — shots of Unit-01's blood-spraying head and of it breaking the Angel's arms and tearing open its chest were all cut, along with Ritsuko's \"Berserker\" line — though, as in episode 1, the cross-shaped explosions were left alone.",
       "links": [{ "id": "cartoon-network-2003-censorship", "label": "The same broadcast's edits to episode 1" }],
       "sourceRefs": ["ann-edit-list-eva-ep2"]
+    },
+    {
+      "id": "evangelion-pronunciation-etymology",
+      "episode": 1,
+      "type": "fact",
+      "title": "How to actually pronounce \"Evangelion\"",
+      "body": "A 2003-2004 back-and-forth in Anime News Network's Answerman column landed on a hard-G pronunciation, \"Evan-GHEL-ion,\" matching the English dub, despite reader pushback arguing for a soft-G \"Evan-JELL-yon\" to match the word's Greek root Ευαγγέλιον (\"gospel\"/\"good news\"). The hard-G case won out: ancient Greek gamma is itself a hard G, the word's Japanese katakana rendering エヴァンゲリオン uses the hard-G ゲ rather than the soft-G ジェ despite Japanese having a perfectly usable je sound (the cast's ability to pronounce it correctly elsewhere, e.g. Cowboy Bebop's \"Jet Black,\" ruled out simple mispronunciation), and the specific \"v\" spelling (versus the Greek upsilon) traces to the word's Latin form, Evangelium, rather than the Greek original.",
+      "links": [],
+      "sourceRefs": ["ann-answerman-evangelion-pronunciation"]
     }
   ]
 }
