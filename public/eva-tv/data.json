@@ -70,7 +70,9 @@
     "ann-edit-list-eva-ep1": { "lang": "en", "title": "The Edit List: Evangelion - ep. 1: Angel Attack — Anime News Network", "url": "https://www.animenewsnetwork.com/edit-list/2003-02-24/evangelion-ep-1" },
     "ann-edit-list-eva-ep2": { "lang": "en", "title": "The Edit List: Evangelion - ep. 2: Unfamiliar Ceiling — Anime News Network", "url": "https://www.animenewsnetwork.com/edit-list/2003-02-26/evangelion-ep-2" },
     "ann-answerman-evangelion-pronunciation": { "lang": "en", "title": "Answerman: the \"Evangelion\" pronunciation debate — Anime News Network", "url": "https://www.animenewsnetwork.com/answerman/2004-07-23" },
-    "ann-thin-veneer-evangelion": { "lang": "en", "title": "The Thin Veneer Known as \"Evangelion\" — Anime News Network", "url": "https://www.animenewsnetwork.com/editorial/1998-09-09" }
+    "ann-thin-veneer-evangelion": { "lang": "en", "title": "The Thin Veneer Known as \"Evangelion\" — Anime News Network", "url": "https://www.animenewsnetwork.com/editorial/1998-09-09" },
+    "ann-brain-diving-little-boy": { "lang": "en", "title": "Brain Diving: Mommy's Little Monster — Anime News Network", "url": "https://www.animenewsnetwork.com/brain-diving/2011-05-31" },
+    "ann-buried-treasure-anno-talks-to-kids": { "lang": "en", "title": "Buried Treasure: Hideaki Anno Talks to Kids — Anime News Network", "url": "https://www.animenewsnetwork.com/buried-treasure/2007-05-03" }
   },
   "episodes": [
     { "number": 1, "title": "Angel Attack", "subtitle": "JP: 使徒、襲来 — lit. \"Angel, Attack\" · aired 1995-10-04, 6.8%" },
@@ -2728,6 +2730,54 @@
       "body": "Kenneth Lee's September 1998 Anime News Network editorial is one of the earliest published English-language reviews of the finale, and among its harshest: it argues episodes 21-26 abandon the narrative foundation built across the first twenty episodes, dismisses the introspective closing episodes as failed \"art-house\" pretension rather than earned catharsis, and singles out Kaworu's line \"death is the only true freedom\" as especially ironic — coming, as the review points out, from a character who is himself an Angel.",
       "links": [{ "id": "finale-controversy", "label": "Production-side explanations for how the finale took shape" }],
       "sourceRefs": ["ann-thin-veneer-evangelion"]
+    },
+    {
+      "id": "murakami-little-boy-postwar-trauma",
+      "episode": 1,
+      "type": "theory",
+      "title": "One line in a much bigger argument: Eva and postwar trauma",
+      "body": "Artist Takashi Murakami's 2005 book and exhibition Little Boy: The Arts of Japan's Exploding Subculture — its title borrowed from the code name of the Hiroshima atomic bomb — situates Evangelion as one data point in a much wider argument that postwar Japanese pop culture (kaiju, mecha, apocalyptic anime broadly) channels an unprocessed national trauma from defeat and Allied occupation. Murakami's own essay only touches on the show briefly, alongside dozens of other subjects from Akira and Gundam to convenience stores and neuroscience writing, so the claim functions more as a passing citation within his broader thesis than a developed reading of Eva specifically.",
+      "links": [{ "id": "second-impact", "label": "The in-story catastrophe this reading is implicitly reading through" }],
+      "sourceRefs": ["ann-brain-diving-little-boy"]
+    },
+    {
+      "id": "anno-evangelion-name-explanation",
+      "episode": 1,
+      "type": "fact",
+      "title": "Anno's own explanation of the title, to a class of schoolkids",
+      "body": "In a 1999 NHK special where Anno returned to his old elementary school to teach a class, a student asked why the show was called Evangelion. Anno's answer: \"It comes from a Christian word meaning 'Gospel,' and it's supposed to bring blessings. It has some Greek roots. I chose the name because it sounds complicated.\"",
+      "links": [{ "id": "evangelion-pronunciation-etymology", "label": "The etymology this explanation touches on" }],
+      "sourceRefs": ["ann-buried-treasure-anno-talks-to-kids"]
+    },
+    {
+      "id": "anno-hometown-visual-influence",
+      "episode": 1,
+      "type": "fact",
+      "title": "Anno's hometown, and how much of it ended up on screen",
+      "body": "The same 1999 special returns Anno to Ube, his hometown in Yamaguchi Prefecture — a struggling factory town dominated by smog, smokestacks, and power lines, built around a chemical plant. The reviewer covering the special notes how directly Eva's own visual signature (power lines strung across man-made landscapes, industrial infrastructure) traces back to these surroundings, going so far as to say the imagery makes you expect to see Asuka round the corner.",
+      "links": [],
+      "sourceRefs": ["ann-buried-treasure-anno-talks-to-kids"]
+    },
+    {
+      "id": "anno-self-esteem-quotes-1999",
+      "episode": "eoe",
+      "type": "fact",
+      "title": "Anno, asked directly about self-esteem, in 1999",
+      "body": "Fielding questions from his old schoolkids, Anno was open about his own self-regard: \"I'm not crazy about myself. I'm often told that those who don't like themselves have high ideals, but I think someone who says that doesn't really understand the pain that's involved.\" Asked which parts of his own anime he dislikes, he answered: \"The parts that I'm in.\"",
+      "links": [
+        { "id": "anno-metanarrative", "label": "How this self-regard is read into the finale itself" },
+        { "id": "anno-death-threats-depression", "label": "The backlash Anno faced around the same period" }
+      ],
+      "sourceRefs": ["ann-buried-treasure-anno-talks-to-kids"]
+    },
+    {
+      "id": "anno-young-anno-biographical-details",
+      "episode": 1,
+      "type": "fact",
+      "title": "A few details about young Anno",
+      "body": "Interviewed by the schoolkids for the same special, Anno's parents and childhood friends filled in a few details: he was rejected from a childhood painting contest and turned his attention to manga afterward, loved watching the stars, and wrote his elementary-school graduation essay about his frustration at not being allowed to draw manga in class. He also recalled attending a Gundam exhibition on a department store rooftop as a kid.",
+      "links": [],
+      "sourceRefs": ["ann-buried-treasure-anno-talks-to-kids"]
     }
   ]
 }
