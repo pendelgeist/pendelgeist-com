@@ -57,7 +57,11 @@
     "ann-absolute-borderline-p1": { "lang": "en", "title": "Absolute Borderline: The Early Days of Evangelion Fandom, Part One — Anime News Network", "url": "https://www.animenewsnetwork.com/feature/2026-03-04/absolute-borderline-the-early-days-of-evangelion-fandom-part-one/.234620" },
     "ann-absolute-borderline-p2": { "lang": "en", "title": "Absolute Borderline: The Early Days of Evangelion Fandom, Part Two — Anime News Network", "url": "https://www.animenewsnetwork.com/feature/2026-03-11/absolute-borderline-the-early-days-of-evangelion-fandom-part-two/.235144" },
     "ann-absolute-borderline-p3": { "lang": "en", "title": "Absolute Borderline: The Early Days of Evangelion Fandom, Part Three — Anime News Network", "url": "https://www.animenewsnetwork.com/feature/2026-04-03/absolute-borderline-the-early-days-of-evangelion-fandom-part-three/.235164" },
-    "skapbadoa-eoe-psychoanalytic": { "lang": "en", "title": "End of Evangelion – Psychoanalytic Impact III [2017] — skapbadoa", "url": "https://skapbadoa.com/2019/05/29/end-of-evangelion-psychoanalytic-impact-iii-2017/" }
+    "skapbadoa-eoe-psychoanalytic": { "lang": "en", "title": "End of Evangelion – Psychoanalytic Impact III [2017] — skapbadoa", "url": "https://skapbadoa.com/2019/05/29/end-of-evangelion-psychoanalytic-impact-iii-2017/" },
+    "opiniojuris-eva-warfare": { "lang": "en", "title": "A Step Forward into Terror: What Neon Genesis Evangelion Tells Us About the Future of Warfare — Opinio Juris", "url": "https://opiniojuris.org/2022/10/27/a-step-forward-into-terror-what-neon-genesis-evangelion-tells-us-about-the-future-of-warfare/" },
+    "mihaigolanul-cruel-angels-thesis": { "lang": "en", "title": "The Cruel Angel's Thesis: An Analysis — mihaigolanul (Golan & Mario Tye Dobre)", "url": "https://mihaigolanul.neocities.org/cruel_angel_thesis" },
+    "evageeks-forum-shinji-asuka-parallels": { "lang": "en", "title": "Parallels between Shinji and Asuka's journey as the show ends — EvaGeeks Forum", "url": "https://forum.evageeks.org/thread/21967/Parallels-between-Shinji-and-Asukas-journey-as-the-show-ends/" },
+    "evageeks-forum-time-loop-theory": { "lang": "en", "title": "[THEORY] The Time-Loop is Present in the Original TV Series — EvaGeeks Forum", "url": "https://forum.evageeks.org/thread/21963/THEORY-The-Time-Loop-is-Present-in-the-Original-TV-Series/" }
   },
   "episodes": [
     { "number": 1, "title": "Angel Attack", "subtitle": "JP: 使徒、襲来 — lit. \"Angel, Attack\" · aired 1995-10-04, 6.8%" },
@@ -2275,6 +2279,122 @@
         { "id": "accept-vs-reject", "label": "The broader TV-finale/EoE framing this choice echoes" }
       ],
       "sourceRefs": ["skapbadoa-eoe-psychoanalytic"]
+    },
+    {
+      "id": "nerv-as-peace-enforcement-operation",
+      "episode": 1,
+      "type": "theory",
+      "title": "NERV read as a UN peace-enforcement operation",
+      "body": "International-law scholar Santiago Vargas Niño has analyzed NERV's mandate through the real UN Security Council framework for \"peace enforcement operations\" under Chapter VII of the UN Charter — the same legal basis behind, e.g., the 2013 Intervention Brigade authorized in the Democratic Republic of the Congo to proactively use force against non-state armed groups. On this reading, NERV's mandate to destroy the Angels fits that model closely enough that, as a UN subsidiary organ, it would arguably be bound by Common Article 3 of the Geneva Conventions and international humanitarian law more broadly.",
+      "links": [{ "id": "nerv", "label": "What NERV actually is" }],
+      "sourceRefs": ["opiniojuris-eva-warfare"]
+    },
+    {
+      "id": "eva-01-as-laws-case-study",
+      "episode": 2,
+      "type": "theory",
+      "title": "Unit-01's unpowered rampage as a lethal-autonomous-weapons case study",
+      "body": "Legal scholarship on lethal autonomous weapons systems (LAWS) has used Unit-01's uncommanded reactivation and kill of Sachiel as an illustrative worst case: a weapon acting on its own initiative, unpredictably, beyond its operators' control. The essay frames this against the real \"techno-pessimist\" vs. \"techno-optimist\" debate over whether such systems could ever reliably apply international humanitarian law's rules on distinguishing combatants from civilians and weighing proportionality — arguing the evidence needed to settle that question can only come from deploying the weapons in the first place, which is itself the problem.",
+      "links": [{ "id": "eva-01-devours-sachiel", "label": "The scene being read this way" }],
+      "sourceRefs": ["opiniojuris-eva-warfare"]
+    },
+    {
+      "id": "nerv-immunity-toji-sister",
+      "episode": 1,
+      "type": "theory",
+      "title": "Why Toji's sister likely had no legal recourse against NERV",
+      "body": "Extending the UN-peace-enforcement reading, Vargas Niño argues NERV would inherit the UN's own broad immunity from domestic courts under the Convention on the Privileges and Immunities of the UN and the model Status of Forces Agreement — the same immunity real courts in the Netherlands, the United States, and the European Court of Human Rights have upheld for the UN itself. On that basis, a civilian hurt as collateral damage during an authorized operation like the Sachiel battle would have essentially no path to compensation, since her injury would likely be deemed proportionate to the operational necessity of stopping an extinction-level threat.",
+      "links": [{ "id": "toji-suzuhara", "label": "The civilian casualty this reading is built around" }],
+      "sourceRefs": ["opiniojuris-eva-warfare"]
+    },
+    {
+      "id": "nge-as-planetary-psychoanalytic-clinic",
+      "episode": 1,
+      "type": "theory",
+      "title": "Reading NERV's Earth as one giant psychoanalytic clinic",
+      "body": "One extended reading, drawing on Deleuze and Guattari's concept of the assemblage, frames the entire world of Evangelion as a planetary analytic clinic: its traumatized characters (Shinji, Rei, Asuka, Gendo, Ritsuko, Misato) are the analysands, while the Angels function as \"Lesser Analysts\" — brief, low-impact encounters that provoke expressions of repressed desire without resolving anything on their own. Two recurring figures, Kaji and later Kaworu, are cast as \"Greater Analysts\" instead, running longer sessions that actually move characters toward psychological resolution.",
+      "links": [
+        { "id": "kaji-as-greater-analyst", "label": "The first \"Greater Analyst,\" and his sessions" },
+        { "id": "kaworu-as-second-greater-analyst", "label": "The second \"Greater Analyst\"" }
+      ],
+      "sourceRefs": ["mihaigolanul-cruel-angels-thesis"]
+    },
+    {
+      "id": "geofront-dogma-psychic-topology",
+      "episode": 21,
+      "type": "theory",
+      "title": "The GeoFront's three layers as a map of the psyche",
+      "body": "The same reading extends NERV's own underground architecture into a Lacanian topology: the GeoFront's visible surface stands in for the ego or persona, Central Dogma (housing the MAGI) for the Symbolic Order where signifiers circulate, and Terminal Dogma — the crucified Lilith, the LCL lake, the Eva graveyard, Rei's birthplace — for the unsignifiable Real: drives, jouissance, and the raw facts of life and death.",
+      "links": [{ "id": "white-black-moon-concept", "label": "What's actually built into these layers" }],
+      "sourceRefs": ["mihaigolanul-cruel-angels-thesis"]
+    },
+    {
+      "id": "kaji-as-greater-analyst",
+      "episode": 15,
+      "type": "theory",
+      "title": "Kaji as the story's first \"Greater Analyst\"",
+      "body": "Unlike the Angels' brief provocations, Kaji is read as running full analytic sessions: with Misato on the drunken car ride home this episode, drawing out her confession about her father, and later with Shinji across episodes 18 and 19. In the episode 19 watermelon-patch scene in particular, Kaji is read as doing something none of Shinji's other pressuring adults do — presenting piloting as a latent potential Shinji can choose to actualize rather than a demand disguised as a choice, which is why that decision reads as more genuinely his own.",
+      "links": [
+        { "id": "misato-kaji-backstory", "label": "The session with Misato this reading is built on" },
+        { "id": "shinji-returns-for-himself", "label": "The choice this reading says Kaji made possible" }
+      ],
+      "sourceRefs": ["mihaigolanul-cruel-angels-thesis"]
+    },
+    {
+      "id": "kaworu-as-second-greater-analyst",
+      "episode": 24,
+      "type": "theory",
+      "title": "Kaworu as the story's second \"Greater Analyst\"",
+      "body": "On the same reading, Kaworu completes the analytic work Kaji began: letting Shinji kill him functions as one last session, surfacing Shinji's buried need for connection right before his lowest point. The reading also leans on his name, Tabris — said to mean \"the Revealed\" and to mark him as patron of free will — to tie together his double role as both the final Angel and, as Adam's soul in a Lilin body, effectively the first.",
+      "links": [
+        { "id": "kaworus-feelings", "label": "What that final session is read as revealing" },
+        { "id": "kaworu-classification", "label": "The unresolved question of what Kaworu actually is" }
+      ],
+      "sourceRefs": ["mihaigolanul-cruel-angels-thesis"]
+    },
+    {
+      "id": "arael-uncreated-light-theology",
+      "episode": 22,
+      "type": "theory",
+      "title": "Arael's light, read through Eastern Orthodox theology",
+      "body": "Eastern Orthodox theology holds that Heaven and Hell aren't separate places but different reactions of the soul to the same Uncreated Light of God — bliss for those in communion with it, torment for those who reject it. One reading maps this directly onto Arael's attack: the same light is neither cruel nor kind on its own, but forces Asuka's own repressed trauma to the surface, and it's what she's unwilling to face, not the light itself, that makes the experience torturous for her.",
+      "links": [{ "id": "arael-mindrape-attack", "label": "The attack this reading reinterprets" }],
+      "sourceRefs": ["mihaigolanul-cruel-angels-thesis"]
+    },
+    {
+      "id": "rei-fandom-empty-signifier-critique",
+      "episode": "eoe",
+      "type": "theory",
+      "title": "A meta-critique: Eva as the object of its own diagnosis",
+      "body": "One closing argument holds that Evangelion, while structured to guide its audience toward the same kind of self-analysis its characters undergo, has for some fans become the neurotic symptom rather than the cure — pointing to the intensity of fan idolization around Rei specifically as an example. On this reading, Rei fulfills the Mother and Daughter archetypes but never the Lover, leaving her an \"empty signifier\" that an invested fandom fills with its own fantasy rather than engaging with as written.",
+      "links": [{ "id": "rei-ayanami", "label": "The character this critique is aimed at" }],
+      "sourceRefs": ["mihaigolanul-cruel-angels-thesis"]
+    },
+    {
+      "id": "shinji-asuka-parallel-arcs",
+      "episode": 26,
+      "type": "theory",
+      "title": "Shinji and Asuka run the same arc, offset by a few episodes",
+      "body": "A close-reading fan theory lines up Shinji and Asuka's final-act beats as the same sequence, with Asuka consistently hitting each one first: an attempted-suicide moment (Asuka in 24, Shinji in 25), anger at the other for \"not being there\" for them (Asuka during Arael's attack in 22, Shinji across the hospital, kitchen, and hell-train scenes in 26), a reconciliation with their mother (Asuka in 25, Shinji in 26), a \"breaking scream\" (Asuka's flashing-kanji breakdown in 22 versus Shinji's silence after asking Rei \"is it alright for me to be here?\" in 26), a slide into detachment bordering on catatonia, and finally being used as a vessel by the Mass Production Evangelions (Asuka in 25, Shinji in 26). The theory argues this offset is why Asuka, having processed her own trauma slightly ahead of Shinji, is the one able to touch his cheek instead of rejecting him at the very end of The End of Evangelion.",
+      "links": [
+        { "id": "asuka-psychological-collapse", "label": "Asuka's version of the \"breaking scream\" beat" },
+        { "id": "eoe-reis-silence-as-intervention", "label": "Shinji's version of the same beat" },
+        { "id": "eoe-beach-scene", "label": "Where this parallel is argued to pay off" }
+      ],
+      "sourceRefs": ["evageeks-forum-shinji-asuka-parallels"]
+    },
+    {
+      "id": "dc-onair-continuity-split-theory",
+      "episode": "eoe",
+      "type": "theory",
+      "title": "A fan theory: the Director's Cuts and EoE form a separate continuity from the On-Air finale",
+      "body": "One fan theory argues the show effectively splits into two internally consistent continuities from episode 22 or 23 onward: episodes 1-26 as originally broadcast, versus episodes 1-21 followed by the Director's Cut versions of 22-24 and then The End of Evangelion instead of the On-Air 25-26. It points to concrete differences between the On-Air and Director's Cut versions of the Armisael/Rei sequence, a redesigned Terminal Dogma and Eva graveyard, and roughly double the Rei clones visible in the Director's Cut tank — and further reads the apostrophe on the alternate episode titles as a deliberate nod to the mathematical/musical use of a prime mark to denote a transformed variant of the original, a reading voice actress Kotono Mitsuishi has jokingly gestured at regarding the Rebuild films' own use of the same mark. Streaming versions that splice the Director's Cuts of 22-24 into the On-Air 25-26, as Netflix does, merge what this theory treats as two separate branches into one.",
+      "links": [
+        { "id": "two-endings", "label": "The more conventional framing of how the TV finale and EoE relate" },
+        { "id": "cyclical-impacts", "label": "A related theory about impacts recurring across tellings" },
+        { "id": "armisael-attack-rei-suicide", "label": "The sequence cited as the clearest On-Air/DC divergence" }
+      ],
+      "sourceRefs": ["evageeks-forum-time-loop-theory"]
     }
   ]
 }
