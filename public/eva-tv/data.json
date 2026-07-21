@@ -65,6 +65,7 @@
     "evageeks-forum-shinji-strangling-thread": { "lang": "en", "title": "Why was Shinji strangling Asuka at the end of EoE? — EvaGeeks Forum", "url": "https://forum.evageeks.org/thread/12382/Why-was-Shinji-strangling-Asuka-at-the-end-of-EoE/" },
     "evageeks-forum-eoe-last-scene-dualism": { "lang": "en", "title": "\"NGE Ultimate Dualism Theory\" (post by Eva Yojimbo) — EoE last scene, EvaGeeks Forum", "url": "https://forum.evageeks.org/post/317693/EoE-last-scene/#317693" },
     "evageeks-forum-eoe-hegel-thread": { "lang": "en", "title": "EoE Final scene explained and connected to EoTV, G.W.F. Hegel — EvaGeeks Forum", "url": "https://forum.evageeks.org/thread/17500/EoE-Final-scene-explained-and-connected-to-EoTV-GWF-Hegel/" },
+    "evageeks-forum-s2-organ-in-core-thread": { "lang": "en", "title": "Is The S^2 Organ In The Core? — EvaGeeks Forum", "url": "https://forum.evageeks.org/thread/708/Is-The-S2-Organ-In-The-Core/" },
     "sparknotes-hegel-master-slave": { "lang": "en", "title": "Phenomenology of Spirit: Lordship and Bondage — SparkNotes", "url": "https://www.sparknotes.com/philosophy/hegel/section2/" },
     "ann-understanding-evangelion": { "lang": "en", "title": "Understanding Evangelion — Anime News Network", "url": "https://www.animenewsnetwork.com/feature/2002-06-11" },
     "ann-edit-list-eva-ep1": { "lang": "en", "title": "The Edit List: Evangelion - ep. 1: Angel Attack — Anime News Network", "url": "https://www.animenewsnetwork.com/edit-list/2003-02-24/evangelion-ep-1" },
@@ -483,7 +484,7 @@
       "type": "fact",
       "title": "Shamshel's attack, and the crowd that comes to watch",
       "body": "The Angel Shamshel attacks Tokyo-3 while Shinji is at school; Toji and Kensuke sneak out to watch Unit-01 fight from a hillside, one of the show's few scenes of ordinary civilians treating an Angel battle as a spectacle rather than a catastrophe.",
-      "links": [ { "id": "toji-suzuhara", "label": "One of the classmates watching" } ],
+      "links": [ { "id": "toji-suzuhara", "label": "One of the classmates watching" }, { "id": "s2-salvaged-from-shamshel", "label": "What NERV later recovers from Shamshel's remains" } ],
       "sourceRefs": ["en-wiki-ep4"]
     },
     {
@@ -1032,8 +1033,35 @@
       "type": "fact",
       "title": "The S² engine gets a name",
       "body": "Ritsuko names the \"Super-Solenoid\" engine here for the first time — an internal power source, acquired from the Angel Shamshel, that becomes central to the back half of the series once an Evangelion manages to absorb one for itself.",
-      "links": [ { "id": "shamshel-attack", "label": "The Angel this engine was taken from" } ],
+      "links": [ { "id": "shamshel-attack", "label": "The Angel this engine was taken from" }, { "id": "s2-salvaged-from-shamshel", "label": "How NERV actually got hold of one" } ],
       "sourceRefs": ["en-wiki-ep17"]
+    },
+    {
+      "id": "s2-salvaged-from-shamshel",
+      "episode": 17,
+      "type": "fact",
+      "title": "The S² engine was salvaged from Shamshel's core",
+      "body": "Background dialogue added for the Renewal re-release makes explicit what the original broadcast only implies: while NERV staff dismantle Shamshel's remains, a technician announces a \"power analysis unit\" inbound from NERV's German 2nd Branch and orders a team to \"place extreme priority on recovering the existing core.\" Gendo and Fuyutsuki turn up in person to inspect what's recovered, and, once satisfied, Gendo orders everything else discarded — Eva-04's ill-fated S² sample, later sent to America and installed with disastrous results, traces back to this scene.",
+      "links": [ { "id": "shamshel-attack", "label": "The Angel this sample was taken from" }, { "id": "s2-organ-inside-core-theory", "label": "What this implies about where the S² organ actually sits" } ],
+      "sourceRefs": ["evageeks-forum-s2-organ-in-core-thread"]
+    },
+    {
+      "id": "s2-organ-inside-core-theory",
+      "episode": 17,
+      "type": "theory",
+      "title": "Is the S² organ physically inside the Eva's core?",
+      "body": "A long-running EvaGeeks forum thread (kicked off by poster ObsessiveMathsFreak) argues from two angles that an Eva or Angel's S² organ lives inside its core rather than being some separate structure: NERV's evident fixation on recovering Shamshel's core specifically when after an S² sample, and the way Unit-01 targets Zeruel's core precisely when it bites down and absorbs its S² engine. Posters ultimately converge on treating the core as a container — for a soul, and, where present, for an S² organ — rather than the core and the S² organ being identical. Frame-by-frame analysis posted to the thread backs this up: Eva-01's jaws in that scene close over Zeruel's nuclear region, not its face, despite the face being the last part visibly consumed.",
+      "links": [ { "id": "s2-salvaged-from-shamshel", "label": "The salvage operation that started the debate" }, { "id": "eva01-devours-zeruel", "label": "The feeding scene used as visual evidence" }, { "id": "why-evas-lack-s2-organ-theory", "label": "The follow-on question of why Evas don't just have one already" } ],
+      "sourceRefs": ["evageeks-forum-s2-organ-in-core-thread"]
+    },
+    {
+      "id": "why-evas-lack-s2-organ-theory",
+      "episode": 17,
+      "type": "theory",
+      "title": "Why don't Units 00–02 grow their own S² organs?",
+      "body": "If Evangelions are derived from Adam just like the Angels, why doesn't NERV simply have one that comes with a working S² organ built in? Forum theories split two ways. One camp argues NERV engineered the trait out deliberately, at the genetic level — handing pilots of unknown reliability an effectively unlimited, un-killswitchable power source was too dangerous, so the umbilical cable stays as a built-in leash. A competing theory (from poster ObsessiveMathsFreak) ties it to the soul instead: since NERV can't manufacture a soul from nothing, and the core may only mature enough to support an S² organ once a soul is present to drive that growth, a soul-less Eva would never develop a functioning S² regardless of its genetics — leaving Angel salvage as the only way NERV ever gets one installed.",
+      "links": [ { "id": "s2-organ-inside-core-theory", "label": "The premise this theory builds on" }, { "id": "rei-kaworu-s2-question", "label": "A later wrinkle in this same debate" } ],
+      "sourceRefs": ["evageeks-forum-s2-organ-in-core-thread"]
     },
     {
       "id": "bardiel-possession-toji",
@@ -1079,7 +1107,7 @@
       "type": "fact",
       "title": "Zeruel, and Eva-01's second berserk feast",
       "body": "The Angel Zeruel overwhelms Asuka's and Rei's Evas and nearly kills a depowered Unit-01 before Shinji's despair triggers a full, uncontrolled reactivation: Eva-01 devours Zeruel outright, absorbing its S² engine in the process and effectively gaining unlimited operating power. It's the same unpowered-berserk phenomenon from episode 2, taken to its most extreme form yet.",
-      "links": [ { "id": "eva-01-devours-sachiel", "label": "The earlier, smaller-scale version of this same phenomenon" }, { "id": "s2-engine-named", "label": "The engine Eva-01 absorbs here" } ],
+      "links": [ { "id": "eva-01-devours-sachiel", "label": "The earlier, smaller-scale version of this same phenomenon" }, { "id": "s2-engine-named", "label": "The engine Eva-01 absorbs here" }, { "id": "s2-organ-inside-core-theory", "label": "Fan analysis of exactly where this bite lands" } ],
       "sourceRefs": ["en-wiki-ep19"]
     },
     {
@@ -1715,6 +1743,16 @@
       "body": "Kaworu is called the Seventeenth Angel but presents as fully human and self-aware in a way none of the others do, and material outside the original TV run has described his origin differently. The TV series itself leaves the discrepancy alone.",
       "links": [ { "id": "lilin-18th-angel", "label": "Where humanity itself lands on the same numbered list" } ],
       "sourceRefs": ["en-wiki-angels"]
+    },
+    {
+      "id": "rei-kaworu-s2-question",
+      "episode": 24,
+      "scene": "Rei and Kaworu both project AT Fields here without any on-screen core or S² organ",
+      "type": "unknowable",
+      "title": "Do Rei and Kaworu even have S² organs?",
+      "body": "A later addition to the same forum thread raises a wrinkle in the soul-driven-core theory: both Rei and Kaworu project AT Fields in this episode, and NERV's own dialogue elsewhere ties AT Field generation to S²-scale power, yet neither shows any sign of a core or S² organ the way Adam-derived Angels and Evas do. Suggested fixes floated on the thread include a separate, core-free \"S² effect\" available only to Lilith-derived bodies, or an angelic soul temporarily switching on some latent Lilim capacity — but posters concede neither is confirmed by anything the show actually shows.",
+      "links": [ { "id": "why-evas-lack-s2-organ-theory", "label": "The soul/core theory this complicates" }, { "id": "at-field", "label": "The mechanic this AT Field use is measured against" }, { "id": "kaworu-classification", "label": "The wider ambiguity around what Kaworu even is" } ],
+      "sourceRefs": ["evageeks-forum-s2-organ-in-core-thread"]
     },
     {
       "id": "shisha-wordplay",
