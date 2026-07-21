@@ -56,7 +56,8 @@
     "ann-companies": { "lang": "en", "title": "Neon Genesis Evangelion (TV) — Companies — Anime News Network", "url": "https://www.animenewsnetwork.com/encyclopedia/anime.php?id=45&page=companies" },
     "ann-absolute-borderline-p1": { "lang": "en", "title": "Absolute Borderline: The Early Days of Evangelion Fandom, Part One — Anime News Network", "url": "https://www.animenewsnetwork.com/feature/2026-03-04/absolute-borderline-the-early-days-of-evangelion-fandom-part-one/.234620" },
     "ann-absolute-borderline-p2": { "lang": "en", "title": "Absolute Borderline: The Early Days of Evangelion Fandom, Part Two — Anime News Network", "url": "https://www.animenewsnetwork.com/feature/2026-03-11/absolute-borderline-the-early-days-of-evangelion-fandom-part-two/.235144" },
-    "ann-absolute-borderline-p3": { "lang": "en", "title": "Absolute Borderline: The Early Days of Evangelion Fandom, Part Three — Anime News Network", "url": "https://www.animenewsnetwork.com/feature/2026-04-03/absolute-borderline-the-early-days-of-evangelion-fandom-part-three/.235164" }
+    "ann-absolute-borderline-p3": { "lang": "en", "title": "Absolute Borderline: The Early Days of Evangelion Fandom, Part Three — Anime News Network", "url": "https://www.animenewsnetwork.com/feature/2026-04-03/absolute-borderline-the-early-days-of-evangelion-fandom-part-three/.235164" },
+    "skapbadoa-eoe-psychoanalytic": { "lang": "en", "title": "End of Evangelion – Psychoanalytic Impact III [2017] — skapbadoa", "url": "https://skapbadoa.com/2019/05/29/end-of-evangelion-psychoanalytic-impact-iii-2017/" }
   },
   "episodes": [
     { "number": 1, "title": "Angel Attack", "subtitle": "JP: 使徒、襲来 — lit. \"Angel, Attack\" · aired 1995-10-04, 6.8%" },
@@ -2217,6 +2218,63 @@
       "body": "The rec.arts.anime newsgroup that carried most of this early discussion has long since given way to venues like the Evangelion subreddit and EvaGeeks.org, but the pattern it set — Western fans debating a still-airing Japanese show in something close to real time — became the default mode for anime fandom that followed.",
       "links": [],
       "sourceRefs": ["ann-absolute-borderline-p3"]
+    },
+    {
+      "id": "eoe-instrumentality-as-therapy",
+      "episode": "eoe",
+      "type": "theory",
+      "title": "Third Impact staged as a therapy session",
+      "body": "One reading frames the whole Instrumentality sequence as a symbolic psychoanalytic process, with Rei guiding Shinji through his memories and traumas as an analyst would a patient — opening by pressing him to retract his claim that all of humanity should die. The Misato's-apartment setting the sequence begins in is read not as a physical memory but as a staging of Shinji's subconscious itself, where Asuka's refusal to help him draws out his defining line: \"Don't leave me alone! Don't abandon me! Please don't kill me!\"",
+      "links": [{ "id": "hedgehogs-dilemma-concept", "label": "The relational pattern this session is meant to break" }],
+      "sourceRefs": ["skapbadoa-eoe-psychoanalytic"]
+    },
+    {
+      "id": "eoe-reis-silence-as-intervention",
+      "episode": "eoe",
+      "type": "theory",
+      "title": "Rei's silence as a deliberate act, not an absence of one",
+      "body": "When child Shinji asks Rei \"is it alright for me to be here?\", her refusal to answer can be read as intentional rather than withholding: Shinji's core neurosis is his need for external validation to justify his own existence, so an analyst-figure affirming him would only reinforce it. Tearing that down first is what the film's own tagline gestures at — \"the fate of destruction is also the joy of rebirth\" — with Shinji visually rendered as scratched apart in the frames that follow.",
+      "links": [{ "id": "eoe-instrumentality-as-therapy", "label": "The larger scene this moment belongs to" }],
+      "sourceRefs": ["skapbadoa-eoe-psychoanalytic"]
+    },
+    {
+      "id": "shinji-castration-anxiety-reading",
+      "episode": "eoe",
+      "type": "theory",
+      "title": "A Freudian castration-anxiety reading of Shinji and Gendo",
+      "body": "Shinji's compulsive need for others' approval has been linked to Freudian castration anxiety: just as the theory holds that a boy fears his father will take his phallus as punishment, Shinji carries an unspoken fear that if he stops being useful, Gendo — who he holds responsible for losing Yui — will \"kill\" him too, even though nothing in the story states this literally.",
+      "links": [{ "id": "gendo-visual-motif", "label": "How the show keeps Gendo deliberately unreadable to Shinji" }],
+      "sourceRefs": ["skapbadoa-eoe-psychoanalytic"]
+    },
+    {
+      "id": "shinji-oedipal-imagery-eoe",
+      "episode": "eoe",
+      "type": "theory",
+      "title": "Oedipal undertones in Third Impact's staging",
+      "body": "A shot late in the sequence frames Shinji looking up first at Misato, then at Rei, in a composition read as deliberately sexually intimate — Misato as a surrogate mother who took him into her home, Rei as an (unbeknownst-to-Shinji) clone of Yui. Piloting Unit-01, which houses Yui's own soul, becomes literally Oedipal on this reading; because Yui died when Shinji was four, before his phallic-stage development had resolved on its own, his Oedipus complex never got the chance to subside the way Freudian theory says it normally would, leaving its influence running under his character for the rest of the story.",
+      "links": [{ "id": "rei-ayanami", "label": "What Rei actually is, underneath the reading" }],
+      "sourceRefs": ["skapbadoa-eoe-psychoanalytic"]
+    },
+    {
+      "id": "lcl-sea-lacanian-imaginary",
+      "episode": "eoe",
+      "type": "theory",
+      "title": "The LCL Sea as Lacan's Imaginary register",
+      "body": "Rei's description of Instrumentality — \"an ambiguous world where it is impossible to tell where you end and other people begin\" — maps onto Jacques Lacan's Imaginary register, the pre-language state before an infant distinguishes its own fragmented self from others. On this reading, the collapse of every individual's AT Field into a shared sea of LCL is Instrumentality literalizing that undifferentiated state at a species-wide scale.",
+      "links": [{ "id": "shinji-mirror-stage-rejection", "label": "How Shinji is read as leaving this state again" }],
+      "sourceRefs": ["skapbadoa-eoe-psychoanalytic"]
+    },
+    {
+      "id": "shinji-mirror-stage-rejection",
+      "episode": "eoe",
+      "type": "theory",
+      "title": "Shinji's rejection of Instrumentality as Lacan's Mirror Stage",
+      "body": "Where Instrumentality is read as Lacan's Imaginary register, Shinji's exit from it has been read as Lacan's Mirror Stage: he recognizes his own reflection within the LCL sea and, in that act of self-recognition, separates himself back out from the collective unconscious — the same mechanism Lacan describes as giving rise to the ego. The End of Evangelion's soundtrack track \"Interference of Others\" is noted as an on-the-nose nod to the same idea, and the finale's own title pun (\"the beast that shouted 'I' at the heart of the world\") lands the same beat in miniature.",
+      "links": [
+        { "id": "lcl-sea-lacanian-imaginary", "label": "The state Shinji is separating himself out from" },
+        { "id": "accept-vs-reject", "label": "The broader TV-finale/EoE framing this choice echoes" }
+      ],
+      "sourceRefs": ["skapbadoa-eoe-psychoanalytic"]
     }
   ]
 }
