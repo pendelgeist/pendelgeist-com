@@ -201,8 +201,8 @@ It's a horizontally-scrolling timeline anchored to the 26 TV episodes plus a fin
   - `scene` is an optional free-text marker (e.g. "Power cable severed, plug depth
     critical") for *where within* that episode, when it's clearly identifiable — left out
     otherwise rather than guessed at.
-  - `type` is one of `character` / `fact` / `theory` / `unknowable`, and drives both the
-    filter dropdown and each node's styling on the timeline.
+  - `type` is one of `character` / `fact` / `theory` / `unknowable`, and drives each
+    node's styling on the timeline (badge letter, border style/color).
   - `links` is a list of `{ id, label }` pairs pointing at other entries — these render as
     "jump to" buttons in the detail panel, letting a theory point forward to where it's
     paid off, or a fact point forward to a theory built on it. This is deliberately
@@ -219,10 +219,13 @@ It's a horizontally-scrolling timeline anchored to the 26 TV episodes plus a fin
 
 `public/eva/app.js` fetches `data.json` directly (no manifest indirection, since it's one
 file), lays out one column per episode with its entries as clickable nodes, and opens the
-selected entry in a fixed detail panel at the bottom — including its "jump to" links. The
-type filter and text search both narrow which nodes are visible on the timeline itself.
-Editing the content means editing `data.json` and redeploying — there's no live external
-data source to keep in sync here, unlike VQAR.
+selected entry in a fixed detail panel at the bottom — including its "jump to" links. A
+long episode's entries flow into extra side-by-side sub-columns via plain CSS multi-column
+layout (`columns` on `.episode-entries`, sized against a viewport-derived height on
+`.timeline-scroll`) rather than a fixed per-episode count, so the split adapts to whatever
+height is actually available in portrait or landscape. Editing the content means editing
+`data.json` and redeploying — there's no live external data source to keep in sync here,
+unlike VQAR.
 
 ## GraphQL API
 

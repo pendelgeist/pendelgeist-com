@@ -4,8 +4,8 @@
 
 /* The shared site header (68px h1 + large subtitle) eats too much of the
  * viewport on this page, especially in a short/landscape window - this is
- * the one page where getting to the actual timeline and search matters more
- * than a big hero title, so those shared rules are cut down just here. */
+ * the one page where getting to the actual timeline matters more than a big
+ * hero title, so those shared rules are cut down just here. */
 nav {
   margin-bottom: 0.5rem;
 }
@@ -52,49 +52,6 @@ h1 {
 .info-link:hover {
   background-color: var(--color-accent);
   color: var(--color-bg);
-}
-
-.filters {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 1rem;
-  margin-bottom: 0.5rem;
-  padding: 0.5rem 1rem;
-  border: 1px solid var(--color-input-border);
-  background-color: var(--color-chrome);
-}
-
-.filter-group {
-  display: flex;
-  flex-direction: column;
-  gap: 0.25rem;
-}
-
-/* color:nav-link (not the default text color), since this label sits on
- * .filters' chrome background - some themes pair a dark chrome with a dark
- * default text color (see /styles.css), so a plain inherited color can end
- * up nearly invisible here. */
-.filter-group label {
-  font-size: 0.75rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  color: var(--color-nav-link);
-}
-
-input, select {
-  height: 2.75rem;
-  padding: 0.5rem;
-  font: inherit;
-  border: 2px solid var(--color-input-border);
-  width: 100%;
-  box-sizing: border-box;
-  background-color: var(--color-surface);
-  color: var(--color-text);
-}
-
-input:focus, select:focus {
-  border-color: var(--color-input-focus);
-  box-shadow: var(--shadow-focus);
 }
 
 .guidelines {
@@ -147,9 +104,15 @@ input:focus, select:focus {
 
 /* Timeline */
 
+/* A fixed, viewport-derived height (not just a max-height) so the flex/
+ * multicol layout below has a definite size to lay entries out against —
+ * taller in portrait, shorter in landscape, clamped to a sane range either
+ * way. This is what lets a long episode's entries flow into exactly as many
+ * columns as the current window actually needs, instead of a fixed count. */
 .timeline-scroll {
   overflow-x: auto;
   overflow-y: hidden;
+  height: clamp(20rem, calc(100dvh - 9.5rem), 60rem);
   box-shadow: var(--shadow-card);
   margin-bottom: 1.5rem;
   background-color: var(--color-surface);
@@ -160,11 +123,15 @@ input:focus, select:focus {
 .timeline-track {
   display: flex;
   align-items: stretch;
-  min-height: 20rem;
+  height: 100%;
   padding: 1rem;
+  box-sizing: border-box;
 }
 
 .episode-column {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
   flex: 0 0 auto;
   padding: 0 0.75rem;
   border-right: 1px dashed var(--color-article-border);
@@ -209,18 +176,25 @@ input:focus, select:focus {
   width: 12rem;
 }
 
-/* Long episodes are split (in app.js) into multiple .entry-subcolumn chunks
- * laid out side by side here, instead of growing downward — the timeline
- * only ever scrolls horizontally, never both axes at once. This is built in
- * JS rather than via CSS flex-wrap: wrap on a column-direction flexbox
- * because that approach is unreliable across browsers once items have
- * variable, text-driven heights (Safari in particular can overlap items). */
+/* app.js measures each entry's real rendered height against this
+ * container's actual available height (set by flex:1 above, against
+ * .timeline-scroll's viewport-derived height) and packs them into
+ * .entry-subcolumn groups accordingly — so a long episode spreads into
+ * exactly as many ~12rem sub-columns as the current window/orientation
+ * needs, instead of a fixed per-episode count. This is done in JS rather
+ * than via CSS auto-wrapping (flex-wrap on a column-direction flexbox, or
+ * native multi-column layout) because both turned out to size unreliably
+ * once a definite height and variable, text-driven item heights were both
+ * in play - see git history on this file for what each one broke. */
 .episode-entries {
   display: flex;
   flex-direction: row;
   align-items: flex-start;
   gap: 0.75rem;
+  flex: 1 1 auto;
+  min-height: 0;
   margin-top: 0.75rem;
+  overflow: hidden;
 }
 
 .entry-subcolumn {
@@ -246,6 +220,7 @@ input:focus, select:focus {
   border-radius: var(--radius-card);
   width: 12rem;
   flex: 0 0 auto;
+  box-sizing: border-box;
   height: auto;
 }
 
@@ -280,10 +255,6 @@ input:focus, select:focus {
 .entry-node.active {
   border-color: var(--color-accent);
   box-shadow: var(--shadow-focus);
-}
-
-.entry-node.node-hidden {
-  display: none;
 }
 
 /* Detail panel */
@@ -373,9 +344,9 @@ input:focus, select:focus {
   border-top: 1px dashed var(--color-article-border);
 }
 
-/* color:nav-link (not color:accent), same reasoning as .filter-group label
- * above - this sits on a chrome background, and some themes' accent color
- * doesn't have enough contrast against their own chrome to read as text. */
+/* color:nav-link (not color:accent), since this sits on a chrome background
+ * and some themes' accent color doesn't have enough contrast against their
+ * own chrome to read as text. */
 .jump-link {
   font: inherit;
   font-size: 0.78rem;
@@ -451,14 +422,4 @@ input:focus, select:focus {
 
 .source-link:hover {
   text-decoration-thickness: 2px;
-}
-
-@media (max-width: 768px) {
-  .filters {
-    grid-template-columns: 1fr;
-  }
-
-  input, select {
-    min-width: 100%;
-  }
 }
