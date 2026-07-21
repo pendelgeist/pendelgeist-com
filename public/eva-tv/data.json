@@ -75,7 +75,10 @@
     "ann-brain-diving-little-boy": { "lang": "en", "title": "Brain Diving: Mommy's Little Monster — Anime News Network", "url": "https://www.animenewsnetwork.com/brain-diving/2011-05-31" },
     "ann-buried-treasure-anno-talks-to-kids": { "lang": "en", "title": "Buried Treasure: Hideaki Anno Talks to Kids — Anime News Network", "url": "https://www.animenewsnetwork.com/buried-treasure/2007-05-03" },
     "ann-take-care-of-yourself-p1": { "lang": "en", "title": "Take Care of Yourself - Part One — Anime News Network", "url": "https://www.animenewsnetwork.com/feature/2006-08-02/2" },
-    "ann-take-care-of-yourself-p2": { "lang": "en", "title": "Take Care of Yourself - Part Two — Anime News Network", "url": "https://www.animenewsnetwork.com/feature/2006-09-20" }
+    "ann-take-care-of-yourself-p2": { "lang": "en", "title": "Take Care of Yourself - Part Two — Anime News Network", "url": "https://www.animenewsnetwork.com/feature/2006-09-20" },
+    "ann-list-strange-merchandise": { "lang": "en", "title": "7 Strangest Pieces of Evangelion Merchandise — Anime News Network (The List)", "url": "https://www.animenewsnetwork.com/the-list/2016-12-24/.110316" },
+    "ann-list-seven-angels-etymology": { "lang": "en", "title": "Get to Know Seven of Evangelion's Angels — Anime News Network (The List)", "url": "https://www.animenewsnetwork.com/the-list/2019-06-15/.147742" },
+    "ann-anno-after-evangelion": { "lang": "en", "title": "Hideaki Anno: After Evangelion — Anime News Network", "url": "https://www.animenewsnetwork.com/feature/2019-06-19/hideaki-anno-after-evangelion/.148019" }
   },
   "episodes": [
     { "number": 1, "title": "Angel Attack", "subtitle": "JP: 使徒、襲来 — lit. \"Angel, Attack\" · aired 1995-10-04, 6.8%" },
@@ -214,8 +217,26 @@
       "type": "fact",
       "title": "Angels (Shito)",
       "body": "The beings NERV exists to fight, each biologically and tactically distinct, sharing an AT Field and a strong drive to reach Lilith in Terminal Dogma. Their exact origin and nature is never pinned down on-screen.",
-      "links": [ { "id": "angels-true-nature", "label": "What are they, really?" } ],
+      "links": [ { "id": "angels-true-nature", "label": "What are they, really?" }, { "id": "angel-names-occult-sources", "label": "Where the Angels' individual names actually come from" } ],
       "sourceRefs": ["ja-wiki-nge", "en-wiki-angels"]
+    },
+    {
+      "id": "angel-names-occult-sources",
+      "episode": 1,
+      "type": "fact",
+      "title": "The Angels' names come from apocrypha and occult grimoires, not the Bible itself",
+      "body": "Most of the show's Angel names don't come from the canonical Bible at all, but from a long tradition of extra-biblical Jewish and Christian angelology — apocryphal texts like the Book of Enoch, mystical works like the Zohar, and later occult grimoires such as The Heptameron and The Nuctemeron — the same body of medieval and early-modern angel-and-demon classification that underlies much of the celestial-hierarchy pop culture still recycled in manga today. Most angel names in this tradition follow theophory, tacking a form of \"-el\" (god) onto a root word; Kaworu's Angel name, Tabris, notably breaks that pattern.",
+      "links": [ { "id": "angels", "label": "Back to the Angels generally" }, { "id": "sachiel-name-origin", "label": "Sachiel's specific textual origin" }, { "id": "tabris-name-origin", "label": "Why Tabris is the exception to the naming pattern" } ],
+      "sourceRefs": ["ann-list-seven-angels-etymology"]
+    },
+    {
+      "id": "sachiel-name-origin",
+      "episode": 1,
+      "type": "fact",
+      "title": "Sachiel: \"the covering of God\"",
+      "body": "Sachiel's name (\"the covering of God\") appears in Jewish occult texts as early as the 1200s and again in the 16th-century grimoire The Heptameron, and the Book of Enoch counts him among the Archangels alongside the better-known Michael, Uriel, and Raphael. Unlike the Angel he lends his name to, mythological Sachiel has no stories of interacting with humans directly — occult texts instead invoke him, like a minor deity, for help with legal and financial matters.",
+      "links": [ { "id": "angel-names-occult-sources", "label": "The wider naming pattern this fits" }, { "id": "eva-01-devours-sachiel", "label": "The Angel itself, being devoured by Unit-01" } ],
+      "sourceRefs": ["ann-list-seven-angels-etymology"]
     },
     {
       "id": "at-field",
@@ -484,8 +505,17 @@
       "type": "fact",
       "title": "Shamshel's attack, and the crowd that comes to watch",
       "body": "The Angel Shamshel attacks Tokyo-3 while Shinji is at school; Toji and Kensuke sneak out to watch Unit-01 fight from a hillside, one of the show's few scenes of ordinary civilians treating an Angel battle as a spectacle rather than a catastrophe.",
-      "links": [ { "id": "toji-suzuhara", "label": "One of the classmates watching" }, { "id": "s2-salvaged-from-shamshel", "label": "What NERV later recovers from Shamshel's remains" } ],
+      "links": [ { "id": "toji-suzuhara", "label": "One of the classmates watching" }, { "id": "s2-salvaged-from-shamshel", "label": "What NERV later recovers from Shamshel's remains" }, { "id": "shamshel-name-origin", "label": "Where the name Shamshel comes from" } ],
       "sourceRefs": ["en-wiki-ep4"]
+    },
+    {
+      "id": "shamshel-name-origin",
+      "episode": 4,
+      "type": "fact",
+      "title": "Shamshel: \"sun of God\", guardian of Eden",
+      "body": "Shamshel's name means \"sun of God\"; the Jewish mystical text the Zohar describes an angel by this name as the guardian posted at the Garden of Eden — matching Genesis 3:24's flaming-sword-wielding sentry. The Angel's design, a humanoid with two long, light-based whip arms that burn through whatever they strike, is a plausible visual echo of that flaming weapon, though animator Yoshitoh Asari's own account of the design's origin isn't on record.",
+      "links": [ { "id": "angel-names-occult-sources", "label": "The naming pattern this fits" }, { "id": "shamshel-attack", "label": "The Angel this name belongs to" } ],
+      "sourceRefs": ["ann-list-seven-angels-etymology"]
     },
     {
       "id": "hedgehogs-dilemma-concept",
@@ -532,8 +562,17 @@
       "type": "fact",
       "title": "Ramiel's drilling attack",
       "body": "The Angel Ramiel — a stationary, geometrically simple Angel — begins drilling straight down toward NERV's Geofront headquarters, forcing a defense built around holding a fixed position rather than the mobile fights of earlier episodes. Rei is hurt again defending the position, continuing this stretch of the show's focus on her as a character rather than just a second pilot.",
-      "links": [ { "id": "rei-ayanami", "label": "Back to Rei" }, { "id": "operation-yashima", "label": "The plan built to finish Ramiel off" } ],
+      "links": [ { "id": "rei-ayanami", "label": "Back to Rei" }, { "id": "operation-yashima", "label": "The plan built to finish Ramiel off" }, { "id": "ramiel-name-origin", "label": "Where the name Ramiel comes from" } ],
       "sourceRefs": ["en-wiki-ep6"]
+    },
+    {
+      "id": "ramiel-name-origin",
+      "episode": 6,
+      "type": "fact",
+      "title": "Ramiel: a fallen angel from the Book of Enoch",
+      "body": "The Book of Enoch — an apocryphal text attributed to Noah's great-grandfather, fleshing out the fallen-angel and Nephilim mythology behind Genesis's flood — names Ramiel as one of the leaders of the angels corrupted through contact with humanity. A separate text, the Apocalypse of Baruch, credits him with ruling over \"true visions.\" Whether either association shaped the Angel's crystalline, self-reflective design in the show, or whether Anno was simply nodding to the tokusatsu series Future Police Urashiman as he's said elsewhere, is untested either way.",
+      "links": [ { "id": "angel-names-occult-sources", "label": "The naming pattern this fits" }, { "id": "ramiel-attack", "label": "The Angel this name belongs to" } ],
+      "sourceRefs": ["ann-list-seven-angels-etymology"]
     },
     {
       "id": "operation-yashima",
@@ -583,12 +622,30 @@
     },
     {
       "id": "gaghiel-convoy-attack",
-      "episode": 9,
+      "episode": 8,
       "type": "fact",
       "title": "Gaghiel attacks the carrier convoy",
-      "body": "The aquatic Angel Gaghiel ambushes the same aircraft-carrier convoy transporting Unit-02, forcing Shinji and Asuka into their first fight together — and forcing NERV to solve, on the fly, the problem of two Evangelions with no prior experience coordinating an attack.",
-      "links": [ { "id": "asuka-arrival", "label": "The convoy this attacks" }, { "id": "shinji-asuka-sync-training", "label": "How Shinji and Asuka solve the coordination problem" } ],
+      "body": "The aquatic Angel Gaghiel ambushes the same aircraft-carrier convoy transporting Unit-02, forcing Shinji and Asuka into their first fight together. Gaghiel drags Unit-02 underwater mid-battle; Misato's crews finish it off by lodging two sunken battleships in its jaws and opening fire with everything left in the convoy — no synchronized piloting required yet, unlike the very next Angel they face.",
+      "links": [ { "id": "asuka-arrival", "label": "The convoy this attacks" }, { "id": "israfel-attack", "label": "The next Angel, which does demand real coordination" } ],
+      "sourceRefs": ["en-wiki-ep8"]
+    },
+    {
+      "id": "israfel-attack",
+      "episode": 9,
+      "type": "fact",
+      "title": "Israfel splits into two identical copies",
+      "body": "The Angel Israfel attacks Tokyo-3 and, after apparently being defeated, splits into two fully identical copies that each overpower a separate Eva. Beating it requires Shinji and Asuka to fight as a single coordinated unit rather than two pilots improvising separately — the problem Misato's subsequent training regimen is built to solve.",
+      "links": [ { "id": "gaghiel-convoy-attack", "label": "The previous battle, fought with no coordination needed" }, { "id": "shinji-asuka-sync-training", "label": "The training this attack makes necessary" }, { "id": "israfel-name-origin", "label": "Where the name Israfel comes from" } ],
       "sourceRefs": ["en-wiki-ep9"]
+    },
+    {
+      "id": "israfel-name-origin",
+      "episode": 9,
+      "type": "fact",
+      "title": "Israfel: the angel of music and the last trumpet",
+      "body": "Israfel is traditionally the angel of music — Edgar Allan Poe's poem \"Israfel\" describes him singing with a \"lyre\" of unusually expressive strings — and, per the 14th-century Arabic text The Wonders of Creation, the angel who will sound the trumpet marking the end of all earthly life, weeping at the sight of Hell while he waits for God's order to do it. He's also said to have tutored Muhammad. In the show, the Angel Israfel's defining trait is splitting into two identical bodies that can only be beaten by a synchronized, music-timed dual attack — a fight the episode literally choreographs to a beat.",
+      "links": [ { "id": "angel-names-occult-sources", "label": "The naming pattern this fits" }, { "id": "israfel-attack", "label": "The Angel this name belongs to" }, { "id": "shinji-asuka-sync-training", "label": "The music-timed fight this mythology maps onto directly" } ],
+      "sourceRefs": ["ann-list-seven-angels-etymology"]
     },
     {
       "id": "shinji-asuka-sync-training",
@@ -596,7 +653,7 @@
       "type": "fact",
       "title": "Forced synchronization, and the dance metaphor",
       "body": "Misato has Shinji and Asuka train together like dance partners so their combined movements read as a single, coordinated fighter rather than two separate pilots working against each other — the source of the episode's title, and an early example of the show using a mundane, non-military metaphor (dancing) to frame what piloting an Eva actually demands of two people.",
-      "links": [ { "id": "gaghiel-convoy-attack", "label": "The fight this training is for" }, { "id": "asuka-langley-souryuu", "label": "Back to Asuka" } ],
+      "links": [ { "id": "israfel-attack", "label": "The fight this training is for" }, { "id": "asuka-langley-souryuu", "label": "Back to Asuka" } ],
       "sourceRefs": ["en-wiki-ep9"]
     },
     {
@@ -614,8 +671,17 @@
       "type": "fact",
       "title": "Sandalphon's design comes from a documentary about ancient life",
       "body": "The dormant, larval Angel Sandalphon — found in a volcano's magma chamber — was designed with inspiration from an NHK documentary, Life: A Long Journey of 4 Billion Years, specifically its depiction of the prehistoric predator Anomalocaris; trilobites are cited as a secondary influence. Writer Virginie Nebbia has separately argued the episode's battle staging draws on David Brin's novel Sundiver.",
-      "links": [ { "id": "angels-true-nature", "label": "The broader question of what Angels even are" } ],
+      "links": [ { "id": "angels-true-nature", "label": "The broader question of what Angels even are" }, { "id": "sandalphon-name-origin", "label": "Where the name Sandalphon comes from" } ],
       "sourceRefs": ["en-wiki-ep10"]
+    },
+    {
+      "id": "sandalphon-name-origin",
+      "episode": 10,
+      "type": "fact",
+      "title": "Sandalphon: the prophet Elijah, reborn as an angel who watches over children",
+      "body": "In Jewish tradition, Sandalphon is the biblical prophet Elijah, transformed into angelic form after ascending to Heaven; Elijah is associated with unborn and newborn children, and a seat is traditionally reserved for him at circumcision ceremonies. As Sandalphon he's said to be able to reach any part of the earth — a trait the show echoes by having its own Sandalphon dwell inside a volcano. The mythological tie to children lines up with the Angel's design: a small, larval creature that cries like a human infant before metamorphosing into a prehistoric-fish shape.",
+      "links": [ { "id": "angel-names-occult-sources", "label": "The naming pattern this fits" }, { "id": "sandalphon-design-origin", "label": "The documentary that shaped its actual on-screen design" } ],
+      "sourceRefs": ["ann-list-seven-angels-etymology"]
     },
     {
       "id": "ep10-title-origin",
@@ -1448,7 +1514,7 @@
       "type": "character",
       "title": "Asuka Langley Souryuu",
       "body": "A German-Japanese prodigy pilot whose relentless competitiveness is a defense mechanism built on childhood trauma (her mother's breakdown and suicide). Her arc tracks what happens when a self-worth built entirely on being needed as a pilot stops working.",
-      "links": [ { "id": "asuka-arrival", "label": "Her first on-screen appearance" }, { "id": "shinji-asuka-sync-training", "label": "Her first fight alongside Shinji" } ],
+      "links": [ { "id": "asuka-arrival", "label": "Her first on-screen appearance" }, { "id": "gaghiel-convoy-attack", "label": "Her first fight alongside Shinji" } ],
       "sourceRefs": ["fandom-characters", "en-wiki-characters"]
     },
     {
@@ -1650,9 +1716,19 @@
         { "id": "adam-lilith-confusion", "label": "Which of these two is which, again?" },
         { "id": "spear-delivered-to-terminal-dogma", "label": "The other artifact kept in the same chamber" },
         { "id": "crucified-giant-reveal", "label": "The scene where Kaji first shows her off, misidentified" },
-        { "id": "spear-launched-to-moon", "label": "The Spear being pulled out of her and fired at the Moon" }
+        { "id": "spear-launched-to-moon", "label": "The Spear being pulled out of her and fired at the Moon" },
+        { "id": "lilith-name-origin", "label": "Where the name Lilith comes from, outside the show" }
       ],
       "sourceRefs": ["fandom-lilith", "villains-fandom-lilith"]
+    },
+    {
+      "id": "lilith-name-origin",
+      "episode": 22,
+      "type": "fact",
+      "title": "Lilith, outside Evangelion: Adam's rejected first partner",
+      "body": "In Jewish folklore, Lilith is Adam's first partner, made — unlike Eve — from the same dirt as Adam himself; she refuses subordination to him and is cast out, after which Mesopotamian tradition attaches to her name a whole class of demons blamed for promiscuity and child-snatching, and some sources give her a subsequent romance with Samael, the archangel of death. More recent retellings have recast her as a symbol of independent womanhood rather than a monster. The show's own Lilith keeps the \"origin of humanity, treated as something to be used\" thread from the myth, but drops the demonic and vampiric associations the name usually carries elsewhere in pop culture.",
+      "links": [ { "id": "lilith", "label": "The being this name belongs to in the show" }, { "id": "lilin-18th-angel", "label": "Where her \"children,\" humanity, land on NERV's own Angel list" } ],
+      "sourceRefs": ["ann-list-seven-angels-etymology"]
     },
     {
       "id": "adam-lilith-confusion",
@@ -1741,8 +1817,17 @@
       "type": "unknowable",
       "title": "Is Kaworu an Angel, in exactly the same sense the others are?",
       "body": "Kaworu is called the Seventeenth Angel but presents as fully human and self-aware in a way none of the others do, and material outside the original TV run has described his origin differently. The TV series itself leaves the discrepancy alone.",
-      "links": [ { "id": "lilin-18th-angel", "label": "Where humanity itself lands on the same numbered list" } ],
+      "links": [ { "id": "lilin-18th-angel", "label": "Where humanity itself lands on the same numbered list" }, { "id": "tabris-name-origin", "label": "Why his Angel name alone breaks from every other Angel's naming pattern" } ],
       "sourceRefs": ["en-wiki-angels"]
+    },
+    {
+      "id": "tabris-name-origin",
+      "episode": 24,
+      "type": "fact",
+      "title": "Tabris: the one Angel name with no \"god\" in it",
+      "body": "Every other Angel's name is built by theophory — tacking a form of \"-el\" (god) onto a root word. Tabris (Kaworu's Angel name) breaks that pattern outright; it traces instead to the occult text The Nuctemeron, attributed to Apollonius of Tyana, which names Tabris the \"genius of free will\" and ruler of the sixth hour, glossed by 19th-century magician Éliphas Lévi as \"the magus is free; he is the occult king of the earth\" — language that lines up closely with the freedom Kaworu tries to hand Shinji. A separate, likely-unrelated tradition gives a woman named Tharbis (or Tabris) as a wife Moses later uses a memory-erasing pair of rings to leave behind, a story some read as a loose echo of Shinji and Kaworu's own short-lived, deliberately incomplete bond.",
+      "links": [ { "id": "angel-names-occult-sources", "label": "The naming pattern every other Angel follows" }, { "id": "kaworu-classification", "label": "The wider ambiguity around what Kaworu actually is" }, { "id": "kaworus-feelings", "label": "The relationship this mythology is read against" } ],
+      "sourceRefs": ["ann-list-seven-angels-etymology"]
     },
     {
       "id": "rei-kaworu-s2-question",
@@ -2848,6 +2933,141 @@
       "body": "Henderson reads Shinji's ever-present cassette Walkman through a Deleuzian theory of cinematic affect, in which expression comes from micro-movement on an otherwise still, \"reflective\" surface — the same principle that makes a clock face or a gleaming knife blade feel expressive. The Walkman is mostly shown reaching the end of a tape side and flipping, until one scene in episode 9 breaks the pattern: as Asuka sleepwalks over and presses herself toward him, Shinji's startled finger slips and sends the tape into fast-forward, transmitting a jolt of urgency straight to the audience without a line of dialogue.",
       "links": [],
       "sourceRefs": ["ann-take-care-of-yourself-p2"]
+    },
+    {
+      "id": "anno-post-finale-breakdown",
+      "episode": "eoe",
+      "type": "fact",
+      "title": "Anno \"broke down\" the moment the TV series finished airing",
+      "body": "Per Studio Khara's own biography of Anno, he withdrew from nearly all creative work for roughly six months immediately after the TV finale aired, producing almost nothing until colleagues talked him into returning to Gainax to adapt the original, unfinished ending into a theatrical film — the project that became Death & Rebirth and then The End of Evangelion.",
+      "links": [ { "id": "anno-death-threats-depression", "label": "The backlash that was arriving during this same period" }, { "id": "eoe-death-rebirth-precursor", "label": "The film this breakdown eventually led to" } ],
+      "sourceRefs": ["ann-anno-after-evangelion"]
+    },
+    {
+      "id": "anno-protoculture-finale-defense-quote",
+      "episode": "eoe",
+      "type": "fact",
+      "title": "Anno's own defense of the TV finale, in print",
+      "body": "Responding to the backlash in Protoculture Addicts issue #43, Anno stood by the original ending without qualification: \"Most anime fans are furious. I understand their anger. I can't help laughing when hard-core anime fans say that we did a very lousy job, with intentional negligence. No we didn't. No staff members did a lousy job. In fact, every member at Gainax gave more energy than anybody can imagine. I feel sad that those fans couldn't see our efforts. Personally I think the original TV ending we showed ended up beautifully.\"",
+      "links": [ { "id": "ep2526-fan-backlash-quotes", "label": "The fan reactions this is responding to" }, { "id": "chow-finale-structure-theory", "label": "One theory for why the ending provoked this reaction at all" } ],
+      "sourceRefs": ["ann-anno-after-evangelion"]
+    },
+    {
+      "id": "eoe-directorial-split",
+      "episode": "eoe",
+      "type": "fact",
+      "title": "EoE's two halves had two different directors",
+      "body": "\"Air/Love is Destructive\" — built around the roughly 27 minutes of new footage first previewed in Death & Rebirth — was helmed by Kazuya Tsurumaki, who has gone on to work on every Evangelion theatrical release since. \"Sincerely Yours/ONE MORE FINAL: I need you,\" the film's second half, was directed by Anno himself.",
+      "links": [ { "id": "eoe-titles-meaning", "label": "Where each half's title actually comes from" }, { "id": "eoe-death-rebirth-precursor", "label": "The earlier film this footage first appeared in" } ],
+      "sourceRefs": ["ann-anno-after-evangelion"]
+    },
+    {
+      "id": "anno-love-and-pop-live-action-turn",
+      "episode": "eoe",
+      "type": "fact",
+      "title": "Anno's post-Eva pivot to live action: Love & Pop",
+      "body": "Anno's first professionally released live-action film, Love & Pop (1998), adapts Ryu Murakami's novel about a high schooler drawn into teenage prostitution, shot entirely handheld on consumer digital camcorders — a format he'd later say reawakened the enthusiasm for filmmaking he'd had as a teenager, following straight on from the exhaustion of finishing Evangelion.",
+      "links": [ { "id": "anno-post-finale-breakdown", "label": "The exhaustion this project followed" } ],
+      "sourceRefs": ["ann-anno-after-evangelion"]
+    },
+    {
+      "id": "anno-his-and-her-circumstances-departure",
+      "episode": "eoe",
+      "type": "fact",
+      "title": "Anno walked off his next anime series before it finished",
+      "body": "Anno returned to directing anime for His and Her Circumstances (1998), adapted concurrently with Masami Tsuda's ongoing manga, but left the production before its final episodes over disagreements with Tsuda about the show's creative direction and merchandising, plus new restrictions TV Tokyo imposed after the unrelated Pokémon seizure incident. Hiroki Satō finished the series in his place; it would be Anno's last TV anime directing credit for many years.",
+      "links": [],
+      "sourceRefs": ["ann-anno-after-evangelion"]
+    },
+    {
+      "id": "anno-moyoco-marriage",
+      "episode": "eoe",
+      "type": "fact",
+      "title": "Anno married manga artist Moyoco Anno in 2002",
+      "body": "Anno married Happy Mania creator Moyoco Anno on March 26, 2002; friends and colleagues have said the marriage visibly softened him. Moyoco's 2005 manga essay Insufficient Direction chronicles the idiosyncrasies of life married to an otaku director, opening with the question \"Am I truly prepared to be an otaku's wife?\"",
+      "links": [],
+      "sourceRefs": ["ann-anno-after-evangelion"]
+    },
+    {
+      "id": "anno-rebuild-tetralogy-and-gainax-split",
+      "episode": "eoe",
+      "type": "fact",
+      "title": "The Rebuild films, and Anno's split from Gainax",
+      "body": "Anno's Rebuild of Evangelion tetralogy began with Evangelion: 1.0 You Are [Not] Alone (2007) and Evangelion: 2.0 You Can [Not] Advance (2009), both produced with his own Studio Khara alongside Gainax. Around 2.0's release, Anno formally resigned from Gainax after roughly 23 years — the two studios parted on reportedly amicable terms at the time, though Anno later sued Gainax in 2016 over unpaid Evangelion royalties and a negligent loan Khara had extended the studio in 2014.",
+      "links": [],
+      "sourceRefs": ["ann-anno-after-evangelion"]
+    },
+    {
+      "id": "anno-shin-godzilla",
+      "episode": "eoe",
+      "type": "fact",
+      "title": "Shin Godzilla: Anno's return to live-action, and to kaiju",
+      "body": "Co-directed with Shinji Higuchi, Shin Godzilla (2016) reframes Godzilla's arrival as a modern Japanese bureaucratic crisis explicitly patterned on the 2011 Tōhoku earthquake/tsunami and the Fukushima Daiichi nuclear meltdown. It swept most of the Japan Academy Prizes it was nominated for and became Japan's highest-grossing domestic film that year — Anno's first live-action theatrical release in twelve years.",
+      "links": [],
+      "sourceRefs": ["ann-anno-after-evangelion"]
+    },
+    {
+      "id": "eva-rody-rompers",
+      "episode": "eoe",
+      "type": "fact",
+      "title": "Baby onesies that turn infants into Eva-colored Rody the horse",
+      "body": "The license has crossed over with existing kids'-toy IP more than once: a set of infant onesies paired Evangelion with Rody, the already-unsettling smiling rubber ride-on horse toy previously licensed alongside Hello Kitty and Hatsune Miku, recoloring the onesie's built-in horse ears and body to match the color schemes of Units 00, 01, and 02.",
+      "links": [],
+      "sourceRefs": ["ann-list-strange-merchandise"]
+    },
+    {
+      "id": "eva-kagome-tomato-juice-ads",
+      "episode": "eoe",
+      "type": "fact",
+      "title": "Kagome tomato juice ads restaged an Eva battle against a giant tomato",
+      "body": "A tie-in with Kagome's tomato juice produced a commercial restaging an Angel battle, with the Eva pilots fighting a giant, ominous tomato in the middle of Tokyo-3. A follow-up ad, styled after the show's own Misato-hosted next-episode previews, revealed Shinji and Asuka weren't piloting Evas at all in this version, but giant juice boxes.",
+      "links": [],
+      "sourceRefs": ["ann-list-strange-merchandise"]
+    },
+    {
+      "id": "eva-schick-razor-gendo-ads",
+      "episode": "eoe",
+      "type": "fact",
+      "title": "Schick recast a smiling, clean-shaven Gendo as its razor pitchman",
+      "body": "An ongoing ad campaign for Schick razors, running since 2012, depicts a cheerful, beardless Gendo Ikari — a sharp departure from the character's cold, scheming characterization in the show — endorsing a close shave, alongside a line of Eva-branded razor-holder figures and accessories sold to match.",
+      "links": [ { "id": "gendo-ikari", "label": "The character being reimagined" }, { "id": "gendo-visual-motif", "label": "How differently the show itself stages his face" } ],
+      "sourceRefs": ["ann-list-strange-merchandise"]
+    },
+    {
+      "id": "eva-rei-giant-inflatable-slide",
+      "episode": "eoe",
+      "type": "fact",
+      "title": "A 61-foot inflatable Rei doubled as an amusement-park slide",
+      "body": "Promotion for Tokyo's Shiohaku Expo 2012 included an 18.5-meter (about 61-foot) inflatable Rei Ayanami in her plug suit, seated with one leg replaced by a slide visitors could climb and ride down — reportedly taller than Odaiba's life-size Gundam statue by about two feet.",
+      "links": [ { "id": "rei-ayanami", "label": "The character behind the figure" } ],
+      "sourceRefs": ["ann-list-strange-merchandise"]
+    },
+    {
+      "id": "eva-preserved-flower-merch",
+      "episode": "eoe",
+      "type": "fact",
+      "title": "US$126 for a box of flowers, because they're colored like Unit-01",
+      "body": "Among the official Eva Store's line of ordinary household and fashion goods bearing a small Eva-branded charm, patch, or color scheme, a boxed set of preserved (long-lasting, no-water-needed) flowers sold for roughly US$126 — an otherwise unremarkable bouquet priced up purely for being dyed in Unit-01's color scheme.",
+      "links": [],
+      "sourceRefs": ["ann-list-strange-merchandise"]
+    },
+    {
+      "id": "eva-bishoujo-angel-figures",
+      "episode": "eoe",
+      "type": "fact",
+      "title": "Figure maker Wave turned the Angels into bishōjo figures for the 10th anniversary",
+      "body": "For the franchise's 10th anniversary, figure maker Wave passed over more conventional choices like Misato or Ritsuko and instead redesigned several non-humanoid Angels as \"bishōjo\" figures: Sachiel came out looking like a busty Rei variant, Tabris (Kaworu's Angel identity) wears a version of Shinji's shirt with Kaworu's hairstyle, and Zeruel was the one design built with LCL-filled breasts, unique in the set.",
+      "links": [ { "id": "eva-01-devours-sachiel", "label": "Sachiel, before the merchandise makeover" }, { "id": "kaworu-classification", "label": "Tabris/Kaworu, before the merchandise makeover" } ],
+      "sourceRefs": ["ann-list-strange-merchandise"]
+    },
+    {
+      "id": "eva-shinji-kaworu-body-spray",
+      "episode": "eoe",
+      "type": "fact",
+      "title": "Shinji and Kaworu got a matching pair of body sprays",
+      "body": "The Eva Store sold \"Shinji: Blue Musk\" and \"kaworu: White Citrus\" body sprays as a paired set, marketed as a \"gentle aroma that spreads like the sea and sky\" and a \"refreshing scent that's clear like water\" respectively. A separate three-Eva-Unit body spray line included key art of Rei and Asuka opening Shinji's shirt to spray him.",
+      "links": [ { "id": "kaworus-feelings", "label": "The relationship the pairing is presumably trading on" } ],
+      "sourceRefs": ["ann-list-strange-merchandise"]
     },
     {
       "id": "eva-plot-as-vehicle-not-point",
