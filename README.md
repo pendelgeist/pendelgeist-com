@@ -10,7 +10,7 @@ The Worker (`src/worker.js`) also backs a small GraphQL API over the same anime 
 
 - `public/index.html` — homepage, links out to the other sites.
 - `public/vqar/` — Very Quick Anime Reviews, a small vanilla-JS app.
-- `public/eva/` — Neon Genesis Evangelion episode timeline, a small vanilla-JS app.
+- `public/eva-tv/` — Neon Genesis Evangelion episode timeline, a small vanilla-JS app.
 - `public/graphql/` — a GraphQL query explorer for the API described below.
 - `public/styles.css` — shared site styles. `public/vqar/styles.css` and `public/graphql/styles.css`
   layer page-specific styles on top.
@@ -181,9 +181,9 @@ npm run validate-anilist -- --delay=2500    # slow down if AniList starts rate-l
 
 ## Evangelion page
 
-`public/eva/` is a small standalone page at `/eva`, separate from the VQAR/gist data flow
-above — its content lives in `public/eva/data.json`, committed to this repo rather than a
-gist, since it changes far less often than a season's reviews.
+`public/eva-tv/` is a small standalone page at `/eva-tv`, separate from the VQAR/gist data
+flow above — its content lives in `public/eva-tv/data.json`, committed to this repo rather
+than a gist, since it changes far less often than a season's reviews.
 
 It's a horizontally-scrolling timeline anchored to the 26 TV episodes plus a final "EoE"
 (*The End of Evangelion*) column. The JSON has three top-level keys:
@@ -217,7 +217,7 @@ It's a horizontally-scrolling timeline anchored to the 26 TV episodes plus a fin
     their `sourceRefs` without a `quote`, since there's no original-language excerpt to
     pair against.
 
-`public/eva/app.js` fetches `data.json` directly (no manifest indirection, since it's one
+`public/eva-tv/app.js` fetches `data.json` directly (no manifest indirection, since it's one
 file), lays out one column per episode with its entries as clickable nodes, and opens the
 selected entry in a fixed detail panel at the bottom — including its "jump to" links. A
 long episode's entries flow into extra side-by-side sub-columns via plain CSS multi-column
