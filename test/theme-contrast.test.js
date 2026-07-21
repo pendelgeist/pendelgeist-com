@@ -93,7 +93,7 @@ for (const [name, t] of Object.entries(THEMES)) {
   test(`${name}: nav-link meets AA against chrome (nav, filter bars, chrome-styled buttons)`, () => {
     assert.ok(
       contrastRatio(navLink, chrome) >= MIN_NORMAL,
-      `nav-link vs chrome: ${contrastRatio(navLink, chrome).toFixed(2)} -- covers .nav-left a, .nav-title, .info-link, ` +
+      `nav-link vs chrome: ${contrastRatio(navLink, chrome).toFixed(2)} -- covers .nav-left a, .nav-title, ` +
       `.theme-picker, .theme-reroll, #runQuery, section summary h2, .filter-group label, eva's .jump-link/.detail-quote`
     );
   });
