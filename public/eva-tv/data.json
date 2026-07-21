@@ -65,7 +65,10 @@
     "evageeks-forum-shinji-strangling-thread": { "lang": "en", "title": "Why was Shinji strangling Asuka at the end of EoE? — EvaGeeks Forum", "url": "https://forum.evageeks.org/thread/12382/Why-was-Shinji-strangling-Asuka-at-the-end-of-EoE/" },
     "evageeks-forum-eoe-last-scene-dualism": { "lang": "en", "title": "\"NGE Ultimate Dualism Theory\" (post by Eva Yojimbo) — EoE last scene, EvaGeeks Forum", "url": "https://forum.evageeks.org/post/317693/EoE-last-scene/#317693" },
     "evageeks-forum-eoe-hegel-thread": { "lang": "en", "title": "EoE Final scene explained and connected to EoTV, G.W.F. Hegel — EvaGeeks Forum", "url": "https://forum.evageeks.org/thread/17500/EoE-Final-scene-explained-and-connected-to-EoTV-GWF-Hegel/" },
-    "sparknotes-hegel-master-slave": { "lang": "en", "title": "Phenomenology of Spirit: Lordship and Bondage — SparkNotes", "url": "https://www.sparknotes.com/philosophy/hegel/section2/" }
+    "sparknotes-hegel-master-slave": { "lang": "en", "title": "Phenomenology of Spirit: Lordship and Bondage — SparkNotes", "url": "https://www.sparknotes.com/philosophy/hegel/section2/" },
+    "ann-understanding-evangelion": { "lang": "en", "title": "Understanding Evangelion — Anime News Network", "url": "https://www.animenewsnetwork.com/feature/2002-06-11" },
+    "ann-edit-list-eva-ep1": { "lang": "en", "title": "The Edit List: Evangelion - ep. 1: Angel Attack — Anime News Network", "url": "https://www.animenewsnetwork.com/edit-list/2003-02-24/evangelion-ep-1" },
+    "ann-edit-list-eva-ep2": { "lang": "en", "title": "The Edit List: Evangelion - ep. 2: Unfamiliar Ceiling — Anime News Network", "url": "https://www.animenewsnetwork.com/edit-list/2003-02-26/evangelion-ep-2" }
   },
   "episodes": [
     { "number": 1, "title": "Angel Attack", "subtitle": "JP: 使徒、襲来 — lit. \"Angel, Attack\" · aired 1995-10-04, 6.8%" },
@@ -2600,6 +2603,54 @@
         { "id": "accept-vs-reject", "label": "A reading that treats the two endings as complementary rather than opposed" }
       ],
       "sourceRefs": ["evageeks-forum-eoe-hegel-thread"]
+    },
+    {
+      "id": "eva-four-levels-allegory",
+      "episode": 1,
+      "type": "theory",
+      "title": "A show working on four levels at once",
+      "body": "Critic Mike Crandol argues most allegorical fiction operates on two levels — the story itself and its symbolic meaning — but Evangelion runs on four simultaneously: a straightforward sci-fi action-adventure, a bleak satire of the giant-robot genre it belongs to, a coming-of-age parable, and a treatise on confronting loneliness and uncertainty as an adult. On this reading, the early episodes' deceptively conventional feel is doing real work — letting the other three layers build underneath a show that still reads, on its surface, like just another entry in an overcrowded genre.",
+      "links": [],
+      "sourceRefs": ["ann-understanding-evangelion"]
+    },
+    {
+      "id": "ep26-duck-amuck-comparison",
+      "episode": 26,
+      "type": "theory",
+      "title": "Episode 26's animation collapse, compared to \"Duck Amuck\"",
+      "body": "As the TV finale strips away plot for direct psychological interrogation, its visuals regress in step — full animation gives way to storyboards, which give way to a black-and-white scribble of Shinji adrift in a white void. Critic Mike Crandol compares the effect to the classic Chuck Jones Looney Tunes short \"Duck Amuck,\" in which Daffy Duck's cartoon universe is dismantled around him by an unseen animator — reading Shinji's restrictions being handed to him one at a time (a line to stand on, \"a top and a bottom,\" the ability to walk) as the show applying the same device to a psychological rather than comedic end.",
+      "links": [{ "id": "eotv-ep26-hegel-dialogue-staging", "label": "A reading of the same sequence's dialogue" }],
+      "sourceRefs": ["ann-understanding-evangelion"]
+    },
+    {
+      "id": "eoe-kiss-scene-strangling-echo",
+      "episode": "eoe",
+      "type": "theory",
+      "title": "The strangling scene as a dark echo of the TV series' kiss",
+      "body": "Critic Mike Crandol draws a direct line between the TV series' lighthearted first kiss and its much darker counterpart in EoE. Where Asuka's earlier kiss ends in her fleeing in mock disgust, one of Shinji's pre-Instrumentality head-trips restages the same beat with a confession of love instead of a kiss — and this time Asuka accuses him of loving her only as a convenient source of comfort, not for herself. Unable to bear the accusation, Shinji strangles her within the vision itself, foreshadowing the real strangling later in the film — reframing that later scene as the culmination of an anxiety the show planted episodes earlier.",
+      "links": [
+        { "id": "shinji-asuka-first-kiss", "label": "The earlier scene this one darkly echoes" },
+        { "id": "eoe-beach-scene", "label": "Where the echoed anxiety plays out for real" }
+      ],
+      "sourceRefs": ["ann-understanding-evangelion"]
+    },
+    {
+      "id": "cartoon-network-2003-censorship",
+      "episode": 1,
+      "type": "fact",
+      "title": "How Cartoon Network censored episode 1 for broadcast",
+      "body": "When \"Angel Attack\" aired on Cartoon Network's Giant Robot Week block in February 2003, edits included cutting the opening animation entirely, softening dialogue to remove profanity (both Misato's and a general's \"Damn!\"), digitally erasing a joke note on Misato's photo directing Shinji's attention to her breasts, and cutting a shot of Shinji's hand covered in Rei's blood. Other material made it through untouched, including a full ashtray of cigarette butts, the show's cross-shaped explosions, and Misato telling Shinji \"don't get killed out there\" — and the airing wasn't the uncut, commercial-free broadcast some viewers had been led to expect.",
+      "links": [],
+      "sourceRefs": ["ann-edit-list-eva-ep1"]
+    },
+    {
+      "id": "cartoon-network-2003-censorship-ep2",
+      "episode": 2,
+      "type": "fact",
+      "title": "Cartoon Network's much heavier edit of episode 2",
+      "body": "\"Unfamiliar Ceiling\" got a far more aggressive cut for its 2003 Cartoon Network airing than the premiere, driven almost entirely by Misato's drinking and undress: her Yebisu beer cans were digitally recolored blue throughout, whole scenes built around her apartment's clutter of empty cans and liquor bottles were removed (including Shinji taking inventory of her second refrigerator and their Pen Pen conversation), her drying lingerie and a shot of a nude Shinji looking at it were cut, and a bath scene had her redrawn into a digital bikini. The Eva-vs-Sachiel violence fared no better — shots of Unit-01's blood-spraying head and of it breaking the Angel's arms and tearing open its chest were all cut, along with Ritsuko's \"Berserker\" line — though, as in episode 1, the cross-shaped explosions were left alone.",
+      "links": [{ "id": "cartoon-network-2003-censorship", "label": "The same broadcast's edits to episode 1" }],
+      "sourceRefs": ["ann-edit-list-eva-ep2"]
     }
   ]
 }
