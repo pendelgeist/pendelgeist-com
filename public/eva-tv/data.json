@@ -61,7 +61,8 @@
     "opiniojuris-eva-warfare": { "lang": "en", "title": "A Step Forward into Terror: What Neon Genesis Evangelion Tells Us About the Future of Warfare — Opinio Juris", "url": "https://opiniojuris.org/2022/10/27/a-step-forward-into-terror-what-neon-genesis-evangelion-tells-us-about-the-future-of-warfare/" },
     "mihaigolanul-cruel-angels-thesis": { "lang": "en", "title": "The Cruel Angel's Thesis: An Analysis — mihaigolanul (Golan & Mario Tye Dobre)", "url": "https://mihaigolanul.neocities.org/cruel_angel_thesis" },
     "evageeks-forum-shinji-asuka-parallels": { "lang": "en", "title": "Parallels between Shinji and Asuka's journey as the show ends — EvaGeeks Forum", "url": "https://forum.evageeks.org/thread/21967/Parallels-between-Shinji-and-Asukas-journey-as-the-show-ends/" },
-    "evageeks-forum-time-loop-theory": { "lang": "en", "title": "[THEORY] The Time-Loop is Present in the Original TV Series — EvaGeeks Forum", "url": "https://forum.evageeks.org/thread/21963/THEORY-The-Time-Loop-is-Present-in-the-Original-TV-Series/" }
+    "evageeks-forum-time-loop-theory": { "lang": "en", "title": "[THEORY] The Time-Loop is Present in the Original TV Series — EvaGeeks Forum", "url": "https://forum.evageeks.org/thread/21963/THEORY-The-Time-Loop-is-Present-in-the-Original-TV-Series/" },
+    "evageeks-forum-shinji-strangling-thread": { "lang": "en", "title": "Why was Shinji strangling Asuka at the end of EoE? — EvaGeeks Forum", "url": "https://forum.evageeks.org/thread/12382/Why-was-Shinji-strangling-Asuka-at-the-end-of-EoE/" }
   },
   "episodes": [
     { "number": 1, "title": "Angel Attack", "subtitle": "JP: 使徒、襲来 — lit. \"Angel, Attack\" · aired 1995-10-04, 6.8%" },
@@ -2395,6 +2396,36 @@
         { "id": "armisael-attack-rei-suicide", "label": "The sequence cited as the clearest On-Air/DC divergence" }
       ],
       "sourceRefs": ["evageeks-forum-time-loop-theory"]
+    },
+    {
+      "id": "eoe-strangling-as-self-assertion",
+      "episode": "eoe",
+      "type": "theory",
+      "title": "Reading the strangling as self-assertion, not hatred",
+      "body": "One long-running forum reading (posted by user sephirotic) argues the strangling is Shinji's first genuinely active, aggressive act after a lifetime of passivity — a wordless \"stop hurting me\" from someone who likes Asuka and has never before been able to resist being pushed away, rather than a sign of hatred or a breakdown into violence. On this reading, his tears afterward aren't guilt at the act itself but shock: braced for the rejection he expects, he gets tenderness instead, and that's what breaks him.",
+      "links": [{ "id": "eoe-beach-scene", "label": "The scene this reading is one interpretation of" }],
+      "sourceRefs": ["evageeks-forum-shinji-strangling-thread"]
+    },
+    {
+      "id": "eoe-asuka-caress-motive-debate",
+      "episode": "eoe",
+      "type": "theory",
+      "title": "Why did Asuka choose kindness over rejection?",
+      "body": "Forum posters split over what Asuka's cheek-touch is actually doing. One camp (including a reading attributed to longtime poster Mr. Tines) takes it as gratitude — thanks for being willing to end her life. Others read it as her finally offering Shinji the gentleness he'd begged for and been refused earlier, on the hell train. A counter-argument (from poster Bagheera) pushes back on the gratitude reading specifically: if Asuka actually wanted to die, tenderness is close to the worst tool available, since Shinji is starved for affection and receiving it — rather than rejection — is what's shown to break him down, not drive him to finish the act.",
+      "links": [{ "id": "eoe-strangling-as-self-assertion", "label": "A reading of the strangling itself this debate responds to" }],
+      "sourceRefs": ["evageeks-forum-shinji-strangling-thread"]
+    },
+    {
+      "id": "eoe-kimochi-warui-scene-context",
+      "episode": "eoe",
+      "type": "theory",
+      "title": "Whether \"kimochi warui\" undercuts or confirms the scene's tenderness",
+      "body": "Fans disagree on how to read Asuka's closing line in context. Some argue it's consistent with her established character rather than a softening — pointing out her glare on the beach visually echoes her glare at Shinji during the earlier kitchen breakdown, and that showing him a moment of kindness doesn't obligate her to find his crying any less pathetic by her own standards. Others (including a reading from poster sephirotic) read it as something closer to regret or an apology for how she'd treated him, rather than renewed rejection. The scene's shooting script originally had Shinji respond by calling her \"baka\" (idiot) — a deliberate callback to the show's opening train-platform scene — before the line was cut for tone.",
+      "links": [
+        { "id": "asuka-kimochi-warui-origin", "label": "How the line was actually written on set" },
+        { "id": "eoe-beach-scene", "label": "The scene this line closes out" }
+      ],
+      "sourceRefs": ["evageeks-forum-shinji-strangling-thread"]
     }
   ]
 }
