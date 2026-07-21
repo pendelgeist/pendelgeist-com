@@ -76,7 +76,7 @@ dom.infoToggle?.addEventListener('click', (e) => {
 });
 
 // On wide screens the detail panel is always visible (see .detail-panel[hidden]
-// in eva/styles.css), so it needs something to show before anything's been
+// in eva-tv/styles.css), so it needs something to show before anything's been
 // picked yet - this is also what it resets to on close.
 function showDetailPlaceholder() {
   if (!dom.detailContent) return;
@@ -349,7 +349,7 @@ function closeDetail() {
 
 async function loadData() {
   try {
-    const response = await fetch('/eva/data.json');
+    const response = await fetch('/eva-tv/data.json');
     if (!response.ok) {
       showError(`HTTP ${response.status}`);
       return;

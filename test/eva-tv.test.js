@@ -6,8 +6,8 @@ import { fileURLToPath, pathToFileURL } from 'node:url';
 import { JSDOM } from 'jsdom';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const INDEX_HTML_PATH = path.join(__dirname, '../public/eva/index.html');
-const APP_JS_PATH = path.join(__dirname, '../public/eva/app.js');
+const INDEX_HTML_PATH = path.join(__dirname, '../public/eva-tv/index.html');
+const APP_JS_PATH = path.join(__dirname, '../public/eva-tv/app.js');
 
 const sampleData = {
   sources: {
@@ -55,7 +55,7 @@ let importCounter = 0;
 
 async function loadApp({ data = sampleData, ok = true, status = 200 } = {}) {
   const html = fs.readFileSync(INDEX_HTML_PATH, 'utf-8');
-  const dom = new JSDOM(html, { url: 'http://localhost/eva/index.html', runScripts: 'outside-only' });
+  const dom = new JSDOM(html, { url: 'http://localhost/eva-tv/index.html', runScripts: 'outside-only' });
 
   global.document = dom.window.document;
   global.fetch = async () => ({ ok, status, json: async () => data });

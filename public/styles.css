@@ -783,6 +783,11 @@ nav {
   text-decoration: underline;
 }
 
+.list-note {
+  color: var(--color-muted);
+  font-style: italic;
+}
+
 .loading {
   text-align: center;
   font-size: 1.5em;
