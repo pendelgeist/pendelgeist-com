@@ -72,7 +72,9 @@
     "ann-answerman-evangelion-pronunciation": { "lang": "en", "title": "Answerman: the \"Evangelion\" pronunciation debate — Anime News Network", "url": "https://www.animenewsnetwork.com/answerman/2004-07-23" },
     "ann-thin-veneer-evangelion": { "lang": "en", "title": "The Thin Veneer Known as \"Evangelion\" — Anime News Network", "url": "https://www.animenewsnetwork.com/editorial/1998-09-09" },
     "ann-brain-diving-little-boy": { "lang": "en", "title": "Brain Diving: Mommy's Little Monster — Anime News Network", "url": "https://www.animenewsnetwork.com/brain-diving/2011-05-31" },
-    "ann-buried-treasure-anno-talks-to-kids": { "lang": "en", "title": "Buried Treasure: Hideaki Anno Talks to Kids — Anime News Network", "url": "https://www.animenewsnetwork.com/buried-treasure/2007-05-03" }
+    "ann-buried-treasure-anno-talks-to-kids": { "lang": "en", "title": "Buried Treasure: Hideaki Anno Talks to Kids — Anime News Network", "url": "https://www.animenewsnetwork.com/buried-treasure/2007-05-03" },
+    "ann-take-care-of-yourself-p1": { "lang": "en", "title": "Take Care of Yourself - Part One — Anime News Network", "url": "https://www.animenewsnetwork.com/feature/2006-08-02/2" },
+    "ann-take-care-of-yourself-p2": { "lang": "en", "title": "Take Care of Yourself - Part Two — Anime News Network", "url": "https://www.animenewsnetwork.com/feature/2006-09-20" }
   },
   "episodes": [
     { "number": 1, "title": "Angel Attack", "subtitle": "JP: 使徒、襲来 — lit. \"Angel, Attack\" · aired 1995-10-04, 6.8%" },
@@ -2778,6 +2780,45 @@
       "body": "Interviewed by the schoolkids for the same special, Anno's parents and childhood friends filled in a few details: he was rejected from a childhood painting contest and turned his attention to manga afterward, loved watching the stars, and wrote his elementary-school graduation essay about his frustration at not being allowed to draw manga in class. He also recalled attending a Gundam exhibition on a department store rooftop as a kid.",
       "links": [],
       "sourceRefs": ["ann-buried-treasure-anno-talks-to-kids"]
+    },
+    {
+      "id": "eva-two-structural-halves",
+      "episode": 1,
+      "type": "theory",
+      "title": "A show in two structural halves: obsession, then atmosphere",
+      "body": "Critic Tim Henderson divides the series into two halves that work in different registers: the first breeds obsession through brisk, accessible, almost Hollywood-textbook screenwriting that balances comedy, action, and drama, while the second breathes atmosphere instead, working on the viewer through the fabric of how episodes are put together rather than through fresh intellectual puzzle-solving. On this reading, the first half's very familiarity and comfort is what allows the second half's departure from it to land as hard as it does.",
+      "links": [],
+      "sourceRefs": ["ann-take-care-of-yourself-p1"]
+    },
+    {
+      "id": "eva-bordwell-narrative-theory-arc",
+      "episode": 26,
+      "type": "theory",
+      "title": "A show that satisfies classical narrative theory, then detonates it",
+      "body": "Henderson frames Eva's structure against David Bordwell and Kristin Thompson's account of what audiences expect from narrative film: connected incidents building toward some resolved or newly-illuminated conflict. For most of its run Eva plays directly into this — the Jet Alone episode is cited as the clearest early evidence that NERV has an agenda beyond the Angels, and the opening credits themselves flash forward to a younger Misato, Kaji, and Ritsuko together, plus a glimpse of Kaworu, proof the endgame was mapped out from the start. By the final two episodes, though, this reading holds that the show detonates the very framework it spent twenty-plus episodes satisfying, pushing forward in a way classical narrative theory simply can't account for — dragging the audience's own built-up expectations along with it, which Henderson treats as a root cause of the backlash against the ending.",
+      "links": [
+        { "id": "jet-alone-incident", "label": "The episode cited as early evidence of a bigger agenda" },
+        { "id": "finale-controversy", "label": "Production-side explanations for the same rupture" }
+      ],
+      "sourceRefs": ["ann-take-care-of-yourself-p1", "ann-take-care-of-yourself-p2"]
+    },
+    {
+      "id": "shinji-walkman-deleuzian-affect",
+      "episode": 9,
+      "type": "theory",
+      "title": "Shinji's Walkman as a Deleuzian \"face\"",
+      "body": "Henderson reads Shinji's ever-present cassette Walkman through a Deleuzian theory of cinematic affect, in which expression comes from micro-movement on an otherwise still, \"reflective\" surface — the same principle that makes a clock face or a gleaming knife blade feel expressive. The Walkman is mostly shown reaching the end of a tape side and flipping, until one scene in episode 9 breaks the pattern: as Asuka sleepwalks over and presses herself toward him, Shinji's startled finger slips and sends the tape into fast-forward, transmitting a jolt of urgency straight to the audience without a line of dialogue.",
+      "links": [],
+      "sourceRefs": ["ann-take-care-of-yourself-p2"]
+    },
+    {
+      "id": "eva-plot-as-vehicle-not-point",
+      "episode": 1,
+      "type": "theory",
+      "title": "The plot is a vehicle, not the point",
+      "body": "Henderson argues Eva's actual plot, taken on its own terms, is \"quite silly\" — a jellyfish-shaped Angel threatening to replace humanity as the dominant species, a diamond-bodied Angel with a drill for a body, an orange \"teething ring\" shape that flies — but that this doesn't make the show badly written, since \"good writing\" and \"good stories\" aren't the same thing. On this reading, the monster-of-the-week format and its gimmicky Angel premises are a scaffold carrying the show's real content (character expression) rather than being that content themselves — pointing to how a diamond-drill Angel becomes the occasion for an ambitious countrywide sniping operation, or a flying \"teething ring\" becomes a tense race-against-time game of catch.",
+      "links": [],
+      "sourceRefs": ["ann-take-care-of-yourself-p1", "ann-take-care-of-yourself-p2"]
     }
   ]
 }
