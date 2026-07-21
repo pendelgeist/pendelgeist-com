@@ -721,6 +721,39 @@ nav {
   opacity: 0.8;
 }
 
+/* Full title text stays intact at every width (an abbreviated swap-in read
+ * as more confusing than a slightly taller nav) - instead everything in the
+ * nav just tightens up on a narrow screen, so a wrapped title still costs
+ * noticeably less vertical space per line than it would at full size. */
+@media (max-width: 700px) {
+  .nav-left > a {
+    padding: 0.5rem;
+  }
+
+  .nav-title {
+    font-size: 0.85rem;
+    padding: 0.5rem 0;
+  }
+
+  .info-link {
+    width: 0.95rem;
+    height: 0.95rem;
+    margin-left: 0.4rem;
+    font-size: 0.6rem;
+  }
+
+  .theme-picker {
+    margin-inline: 0.5rem;
+    padding: 0.2rem 0.4rem;
+    font-size: 0.78rem;
+  }
+
+  .theme-reroll {
+    margin-inline-end: 0.5rem;
+    padding: 0.2rem 0.4rem;
+  }
+}
+
 /* Layout */
 
 .container {

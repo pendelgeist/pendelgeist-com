@@ -2,6 +2,16 @@
  * a horizontally scrolling timeline of entry "nodes" grouped into episode
  * columns, with a fixed detail panel at the bottom for the selected entry. */
 
+/* This page's title is the longest on the site (a deliberate pun on the
+ * show's own "Weaving a Story" episode titles), so on top of the shared
+ * nav-tightening at 700px it gets an extra, smaller step once the nav gets
+ * tighter still - still the full title text, just smaller. */
+@media (max-width: 420px) {
+  .nav-title {
+    font-size: 0.7rem;
+  }
+}
+
 .guidelines {
   box-shadow: var(--shadow-card);
   margin-bottom: 1.5rem;
