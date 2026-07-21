@@ -63,7 +63,9 @@
     "evageeks-forum-shinji-asuka-parallels": { "lang": "en", "title": "Parallels between Shinji and Asuka's journey as the show ends — EvaGeeks Forum", "url": "https://forum.evageeks.org/thread/21967/Parallels-between-Shinji-and-Asukas-journey-as-the-show-ends/" },
     "evageeks-forum-time-loop-theory": { "lang": "en", "title": "[THEORY] The Time-Loop is Present in the Original TV Series — EvaGeeks Forum", "url": "https://forum.evageeks.org/thread/21963/THEORY-The-Time-Loop-is-Present-in-the-Original-TV-Series/" },
     "evageeks-forum-shinji-strangling-thread": { "lang": "en", "title": "Why was Shinji strangling Asuka at the end of EoE? — EvaGeeks Forum", "url": "https://forum.evageeks.org/thread/12382/Why-was-Shinji-strangling-Asuka-at-the-end-of-EoE/" },
-    "evageeks-forum-eoe-last-scene-dualism": { "lang": "en", "title": "\"NGE Ultimate Dualism Theory\" (post by Eva Yojimbo) — EoE last scene, EvaGeeks Forum", "url": "https://forum.evageeks.org/post/317693/EoE-last-scene/#317693" }
+    "evageeks-forum-eoe-last-scene-dualism": { "lang": "en", "title": "\"NGE Ultimate Dualism Theory\" (post by Eva Yojimbo) — EoE last scene, EvaGeeks Forum", "url": "https://forum.evageeks.org/post/317693/EoE-last-scene/#317693" },
+    "evageeks-forum-eoe-hegel-thread": { "lang": "en", "title": "EoE Final scene explained and connected to EoTV, G.W.F. Hegel — EvaGeeks Forum", "url": "https://forum.evageeks.org/thread/17500/EoE-Final-scene-explained-and-connected-to-EoTV-GWF-Hegel/" },
+    "sparknotes-hegel-master-slave": { "lang": "en", "title": "Phenomenology of Spirit: Lordship and Bondage — SparkNotes", "url": "https://www.sparknotes.com/philosophy/hegel/section2/" }
   },
   "episodes": [
     { "number": 1, "title": "Angel Attack", "subtitle": "JP: 使徒、襲来 — lit. \"Angel, Attack\" · aired 1995-10-04, 6.8%" },
@@ -2526,6 +2528,78 @@
       "body": "One reading (summarized on the forum from a separate Hegel-influenced analysis) argues Shinji and Asuka don't fully snap back into themselves the instant they leave the LCL sea — the two lie beside each other silent and expressionless before visibly \"waking up\" through the exchange that follows, paralleling how the beach caress reverses the earlier rejection at the start of Instrumentality. On this reading, Asuka's final line specifically calls back to the hospital-room scene: inside Instrumentality, with no barriers between people, Asuka acknowledges what Shinji did there and even permits his attraction to her on her own terms; back in reality, with those barriers restored, she reacts to that same memory with disgust instead — making the line about that particular moment rather than a blanket judgment of him.",
       "links": [{ "id": "asuka-kimochi-warui-origin", "label": "How the line was actually written and directed" }],
       "sourceRefs": ["evageeks-forum-shinji-strangling-thread"]
+    },
+    {
+      "id": "eoe-hegel-master-slave-strangling",
+      "episode": "eoe",
+      "type": "theory",
+      "title": "A Hegelian \"struggle for recognition\" reading of the strangling",
+      "body": "EoE's official recap card states Shinji chokes Asuka \"to feel the existence of an 'other'. To confirm... rejection and denial.\" Forum poster zlink64 reads that line through the \"Lordship and Bondage\" section of Hegel's Phenomenology of Spirit: two self-conscious beings must risk a struggle to the death for the other's recognition, but the one who wins must stop short of actually killing the other, or the recognition that was the whole point is lost along with them. On this reading, Shinji strangling Asuka and then stopping directly re-enacts that structure — he needs her continued, independent existence, not her death, to have his own reality confirmed by someone who could deny him. zlink64 later narrowed the claim considerably: the recap card names \"the idea of the other\" as Shinji's motive, and Hegel simply offers the clearest existing vocabulary for that idea — not a claim that Anno specifically read Hegel.",
+      "links": [{ "id": "eoe-beach-scene", "label": "The scene this reading applies to" }],
+      "sourceRefs": ["evageeks-forum-eoe-hegel-thread", "sparknotes-hegel-master-slave"]
+    },
+    {
+      "id": "eotv-ep26-hegel-dialogue-staging",
+      "episode": 26,
+      "type": "theory",
+      "title": "Episode 26's abstract sequence read as Hegel's argument staged in dialogue",
+      "body": "The same reading walks through the TV finale's white-void sequence line by line as a near-literal staging of Hegel's argument: Shinji alone in \"a world of nothing,\" told this is \"perfect freedom,\" unable to act without anything to act on; other characters' voices handing him constraints one at a time — a floor, gravity, the ability to walk — as something like a will to perceive takes hold; and finally, once he has objects to relate to, the explicit lines \"without others to interact with you cannot truly recognize your own image\" and \"by recognizing the differences between yourself and others, you establish your identity as yourself.\" The reading treats those lines as close to a direct paraphrase of Hegel's claim that self-consciousness exists only by being recognized by another self-consciousness, not merely by being distinct from objects.",
+      "links": [
+        { "id": "accept-vs-reject", "label": "A more conventional framing of how this sequence relates to EoE" },
+        { "id": "eoe-hegel-master-slave-strangling", "label": "How this dialogue is read as connecting to the strangling scene" }
+      ],
+      "sourceRefs": ["evageeks-forum-eoe-hegel-thread", "sparknotes-hegel-master-slave"]
+    },
+    {
+      "id": "eoe-asuka-as-first-other-mother-echo",
+      "episode": "eoe",
+      "type": "theory",
+      "title": "Asuka's caress echoed as Shinji's \"first other\"",
+      "body": "Episode 26's dialogue states \"the very first other person is your mother\" — an infant's mother being the first consciousness it ever encounters as separate from itself. This reading notes EoE gives Asuka's cheek-caress the same gesture used elsewhere for Yui, casting Asuka symbolically as the \"first other\" Shinji meets on waking from Instrumentality, reinforcing the film's birth and rebirth imagery around his emergence from the LCL sea. The reading is explicit that this isn't meant literally — Shinji and Asuka's relationship is treated as sexual, not maternal — only that her affection is read as filling the same reassurance Yui's death left missing from his development.",
+      "links": [{ "id": "yuis-soul-in-unit-01", "label": "The Yui connection this gesture is read as echoing" }],
+      "sourceRefs": ["evageeks-forum-eoe-hegel-thread"]
+    },
+    {
+      "id": "eoe-master-slave-role-reversal-reading",
+      "episode": "eoe",
+      "type": "theory",
+      "title": "Shinji and Asuka trading Master/Slave roles as mutual recognition",
+      "body": "zlink64 extends their own reading further: rather than one party staying fixed in the dominant role, the beach exchange has Shinji and Asuka trade positions — Shinji rejects (strangling) while Asuka accepts (the caress), then Asuka rejects in turn (her final line) while Shinji is left to accept it. Since Hegel's account has the subordinate party, not the dominant one, end up achieving full self-consciousness through the exchange, this reading treats the reciprocal swap as the healthiest version of the dynamic on offer — both getting a turn at each role instead of either staying fixed as only the recognizer or only the recognized. Fellow poster StrokeMeGoat added that Rei's ghostly appearance to Shinji just before the strangling, paired with Rei and Kaworu's earlier framing of themselves as \"hope that people might one day understand one another,\" reads as foreshadowing this reconciliation rather than undercutting it.",
+      "links": [{ "id": "eoe-asuka-caress-motive-debate", "label": "A separate debate over what motivates Asuka's side of the exchange" }],
+      "sourceRefs": ["evageeks-forum-eoe-hegel-thread"]
+    },
+    {
+      "id": "eoe-hegel-vs-anno-osmosis-debate",
+      "episode": "eoe",
+      "type": "theory",
+      "title": "Whether Anno actually read Hegel, or arrived at the same idea another way",
+      "body": "Several posters pushed back on treating Hegel as a confirmed direct source, pointing out that Anno has said elsewhere he never read Kierkegaard — making close familiarity with Hegel's specific essay unlikely, with culturally-diffused (\"osmosis\") exposure to the idea a more plausible explanation. One reply proposed a more parsimonious lineage: Jacques Lacan, who absorbed Hegel's ideas via Alexandre Kojève's lectures (and Husserl via Sartre, and Freud via de Saussure and Heidegger), would be a more likely single point of contact if Anno studied psychoanalysis through Lacan rather than each of those thinkers individually. The thread's original poster eventually backed off the stronger claim, framing Hegel less as \"confirmed inspiration\" and more as simply the clearest available vocabulary for explaining the abstract idea of \"the Other\" to readers unfamiliar with it.",
+      "links": [
+        { "id": "lcl-sea-lacanian-imaginary", "label": "A separate reading that leans on Lacan directly" },
+        { "id": "shinji-mirror-stage-rejection", "label": "The Lacanian concept this Hegel-via-Lacan lineage would explain" }
+      ],
+      "sourceRefs": ["evageeks-forum-eoe-hegel-thread"]
+    },
+    {
+      "id": "anno-eotv-ending-regression-quote",
+      "episode": 26,
+      "type": "fact",
+      "title": "Anno, on the TV finale, in his own words",
+      "body": "In a 1996 interview conducted during EoE's production — quoted on the forum from a compiled interview archive attributed to researcher gwern — Anno described the TV finale as \"a regression back into the self... I intended to push forward but ended up being drawn into this feeling of blockage.\" Asked directly whether the ending should be read as happy, he said: \"there are probably people who see it as a happy ending. For me, personally, it wasn't very happy. In hindsight.\"",
+      "links": [{ "id": "finale-controversy", "label": "Other staff accounts of how the finale came together" }],
+      "sourceRefs": ["evageeks-forum-eoe-hegel-thread"]
+    },
+    {
+      "id": "eotv-eoe-repudiation-debate",
+      "episode": "eoe",
+      "type": "theory",
+      "title": "Whether EoE quietly repudiates the TV finale's ending",
+      "body": "Some posters argue EoE marks a real shift away from EoTV's message rather than just a variant retelling — pointing to concrete divergences (Misato's and Ritsuko's deaths differ between the two versions, as does the Misato/Kaji scene) and describing EoTV's ending as \"triumphant\" against EoE's \"miserable and depressing\" one, backed by Anno's own hindsight comments about the TV ending. Others push back that a vague, self-reflective interview shouldn't be read as a clear statement of authorial intent on its own — and the Hegel thread's own author acknowledged a real gap in his case: the choking scene at the center of the whole discussion has no equivalent moment anywhere in the TV finale.",
+      "links": [
+        { "id": "anno-eotv-ending-regression-quote", "label": "The interview comments this argument leans on" },
+        { "id": "accept-vs-reject", "label": "A reading that treats the two endings as complementary rather than opposed" }
+      ],
+      "sourceRefs": ["evageeks-forum-eoe-hegel-thread"]
     }
   ]
 }
