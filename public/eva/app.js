@@ -60,6 +60,7 @@ const dom = {
   detailPanel: document.getElementById('detailPanel'),
   detailContent: document.getElementById('detailContent'),
   detailClose: document.getElementById('detailClose'),
+  detailBackdrop: document.getElementById('detailBackdrop'),
 };
 
 /** @type {EvaData|null} */
@@ -73,6 +74,17 @@ dom.infoToggle?.addEventListener('click', (e) => {
   e.preventDefault();
   dom.guidelines?.classList.toggle('show');
 });
+
+// On wide screens the detail panel is always visible (see .detail-panel[hidden]
+// in eva/styles.css), so it needs something to show before anything's been
+// picked yet - this is also what it resets to on close.
+function showDetailPlaceholder() {
+  if (!dom.detailContent) return;
+  const p = document.createElement('p');
+  p.className = 'detail-placeholder';
+  p.textContent = 'Select an entry from the timeline to see its details here.';
+  dom.detailContent.replaceChildren(p);
+}
 
 function showError(message) {
   if (!dom.timelineTrack) return;
@@ -317,6 +329,7 @@ function openDetail(id, { scroll }) {
 
   dom.detailContent.replaceChildren(...nodes);
   dom.detailPanel.hidden = false;
+  if (dom.detailBackdrop) dom.detailBackdrop.hidden = false;
 
   if (scroll && node) {
     node.scrollIntoView({ inline: 'center', block: 'nearest', behavior: 'smooth' });
@@ -326,6 +339,8 @@ function openDetail(id, { scroll }) {
 function closeDetail() {
   if (!dom.detailPanel) return;
   dom.detailPanel.hidden = true;
+  if (dom.detailBackdrop) dom.detailBackdrop.hidden = true;
+  showDetailPlaceholder();
   activeEntryId = null;
   for (const node of dom.timelineTrack.querySelectorAll('.entry-node.active')) {
     node.classList.remove('active');
@@ -348,7 +363,10 @@ async function loadData() {
   }
 }
 
+showDetailPlaceholder();
+
 dom.detailClose?.addEventListener('click', closeDetail);
+dom.detailBackdrop?.addEventListener('click', closeDetail);
 
 // Re-pack the sub-columns on resize/orientation change (e.g. rotating a
 // tablet) rather than leaving them sized for whatever the viewport was at

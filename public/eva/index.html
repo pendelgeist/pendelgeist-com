@@ -39,22 +39,26 @@
   <div class="container">
     <div class="guidelines" id="guidelines">
       <h3>How to read this</h3>
-      <p>Scroll sideways through the episodes. Each entry sits at the episode where it first comes up. Tap one to open it below, and use its "Jump to" links to follow a thread to wherever it's picked up again.</p>
+      <p>Scroll sideways through the episodes. Each entry sits at the episode where it first comes up. Tap one to open its details, and use its "Jump to" links to follow a thread to wherever it's picked up again.</p>
       <h3>Entry types</h3>
       <p><span class="legend-dot legend-character"></span> Character — <span class="legend-dot legend-fact"></span> Fact — <span class="legend-dot legend-theory"></span> Theory — <span class="legend-dot legend-unknowable"></span> Unknowable</p>
       <p style="font-style: italic;">Spoilers throughout, for the original TV series and The End of Evangelion.</p>
     </div>
 
-    <div class="timeline-scroll" id="timelineScroll">
-      <div class="timeline-track" id="timelineTrack">
-        <div class="loading">LOADING TIMELINE...</div>
+    <div class="eva-layout">
+      <div class="timeline-scroll" id="timelineScroll">
+        <div class="timeline-track" id="timelineTrack">
+          <div class="loading">LOADING TIMELINE...</div>
+        </div>
+      </div>
+
+      <div class="detail-backdrop" id="detailBackdrop" hidden></div>
+
+      <div class="detail-panel" id="detailPanel" hidden>
+        <button class="detail-close" id="detailClose" aria-label="Close">&times;</button>
+        <div class="detail-content" id="detailContent"></div>
       </div>
     </div>
-  </div>
-
-  <div class="detail-panel" id="detailPanel" hidden>
-    <button class="detail-close" id="detailClose" aria-label="Close">&times;</button>
-    <div class="detail-content" id="detailContent"></div>
   </div>
 
   <script type="module" src="/eva/app.js"></script>
