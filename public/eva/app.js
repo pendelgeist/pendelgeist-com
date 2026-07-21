@@ -52,19 +52,9 @@ const TYPE_LABELS = {
   unknowable: 'Unknowable',
 };
 
-// Episodes with more entries than fit in one screenful get split into extra
-// side-by-side sub-columns (built here, not via CSS flex-wrap column) so the
-// timeline only ever grows horizontally, never vertically. flex-wrap: wrap
-// with flex-direction: column is unreliable across browsers once items have
-// variable, text-driven heights - Safari in particular can overlap items
-// instead of wrapping them into a new column.
-const ENTRIES_PER_SUBCOLUMN = 10;
-
 const dom = {
   infoToggle: document.getElementById('infoToggle'),
   guidelines: document.getElementById('guidelines'),
-  typeFilter: /** @type {HTMLSelectElement|null} */ (document.getElementById('typeFilter')),
-  searchInput: /** @type {HTMLInputElement|null} */ (document.getElementById('searchInput')),
   timelineTrack: document.getElementById('timelineTrack'),
   timelineScroll: document.getElementById('timelineScroll'),
   detailPanel: document.getElementById('detailPanel'),
@@ -99,8 +89,6 @@ function createEntryNode(entry) {
   button.type = 'button';
   button.className = `entry-node entry-type-${entry.type}`;
   button.dataset.id = entry.id;
-  button.dataset.searchText = [entry.title, entry.body, entry.scene, TYPE_LABELS[entry.type]]
-    .filter(Boolean).join(' ').toLowerCase();
 
   const badge = document.createElement('span');
   badge.className = 'entry-node-badge';
@@ -155,22 +143,59 @@ function render() {
   if (!data || !dom.timelineTrack) return;
 
   const fragment = document.createDocumentFragment();
+  const pendingColumns = [];
   for (const episode of data.episodes) {
     const column = createEpisodeColumn(episode);
     const entriesContainer = column.querySelector('.episode-entries');
     const entries = data.entries.filter((e) => String(e.episode) === String(episode.number));
-    for (let i = 0; i < entries.length; i += ENTRIES_PER_SUBCOLUMN) {
-      const subcolumn = document.createElement('div');
-      subcolumn.className = 'entry-subcolumn';
-      for (const entry of entries.slice(i, i + ENTRIES_PER_SUBCOLUMN)) {
-        subcolumn.appendChild(createEntryNode(entry));
-      }
-      entriesContainer.appendChild(subcolumn);
-    }
     fragment.appendChild(column);
+    pendingColumns.push({ entriesContainer, nodes: entries.map(createEntryNode) });
   }
   dom.timelineTrack.replaceChildren(fragment);
-  applyFilters();
+
+  // Now that the columns are attached (and .episode-entries has its real,
+  // viewport-derived height from the CSS flex layout), measure each entry's
+  // actual rendered height and pack them into side-by-side sub-columns that
+  // fit it - see the comment on .episode-entries in styles.css for why.
+  for (const { entriesContainer, nodes } of pendingColumns) {
+    packEntriesIntoSubcolumns(entriesContainer, nodes);
+  }
+
+  if (activeEntryId) {
+    dom.timelineTrack.querySelector(`.entry-node[data-id="${activeEntryId}"]`)?.classList.add('active');
+  }
+}
+
+// Matches .entry-subcolumn's `gap: 0.5rem` in styles.css, converted to px at
+// the default 16px root font size - used only to decide where to break a
+// column, so a mismatch (e.g. from browser text-zoom) just shifts that
+// slightly rather than causing any visible error.
+const SUBCOLUMN_GAP_PX = 8;
+
+/**
+ * @param {HTMLElement} container
+ * @param {HTMLElement[]} nodes
+ */
+function packEntriesIntoSubcolumns(container, nodes) {
+  if (!nodes.length) return;
+  const available = container.clientHeight;
+  const subcolumns = [];
+  let current = null;
+  let used = 0;
+  for (const node of nodes) {
+    container.appendChild(node);
+    const height = node.getBoundingClientRect().height;
+    if (current && used + SUBCOLUMN_GAP_PX + height <= available) {
+      used += SUBCOLUMN_GAP_PX + height;
+    } else {
+      current = document.createElement('div');
+      current.className = 'entry-subcolumn';
+      subcolumns.push(current);
+      used = height;
+    }
+    current.appendChild(node);
+  }
+  container.replaceChildren(...subcolumns);
 }
 
 /** @param {EntryLink} link */
@@ -307,24 +332,6 @@ function closeDetail() {
   }
 }
 
-function applyFilters() {
-  if (!dom.timelineTrack || !dom.typeFilter || !dom.searchInput) return;
-
-  const typeValue = dom.typeFilter.value;
-  const searchTerm = dom.searchInput.value.trim().toLowerCase();
-
-  let activeStillVisible = false;
-  for (const node of dom.timelineTrack.querySelectorAll('.entry-node')) {
-    const matchesType = typeValue === 'all' || node.classList.contains(`entry-type-${typeValue}`);
-    const matchesSearch = !searchTerm || (node.dataset.searchText ?? '').includes(searchTerm);
-    const visible = matchesType && matchesSearch;
-    node.classList.toggle('node-hidden', !visible);
-    if (visible && node.dataset.id === activeEntryId) activeStillVisible = true;
-  }
-
-  if (activeEntryId && !activeStillVisible) closeDetail();
-}
-
 async function loadData() {
   try {
     const response = await fetch('/eva/data.json');
@@ -341,8 +348,15 @@ async function loadData() {
   }
 }
 
-dom.searchInput?.addEventListener('input', applyFilters);
-dom.typeFilter?.addEventListener('change', applyFilters);
 dom.detailClose?.addEventListener('click', closeDetail);
+
+// Re-pack the sub-columns on resize/orientation change (e.g. rotating a
+// tablet) rather than leaving them sized for whatever the viewport was at
+// load - debounced since resize fires continuously while dragging/rotating.
+let resizeTimeout;
+document.defaultView?.addEventListener('resize', () => {
+  clearTimeout(resizeTimeout);
+  resizeTimeout = setTimeout(render, 150);
+});
 
 await loadData();

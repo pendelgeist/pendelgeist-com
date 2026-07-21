@@ -113,43 +113,6 @@ test('the close button hides the panel and clears the active node', async () => 
   assert.equal(document.querySelectorAll('.entry-node.active').length, 0);
 });
 
-test('type filter hides non-matching entries', async () => {
-  const { document } = await loadApp();
-
-  const select = document.getElementById('typeFilter');
-  select.value = 'theory';
-  select.dispatchEvent(new document.defaultView.Event('change'));
-
-  const hidden = new Set(
-    [...document.querySelectorAll('.entry-node.node-hidden')].map((el) => el.dataset.id)
-  );
-  assert.deepEqual(hidden, new Set(['shinji-ikari', 'eva-01-berserk', 'post-eoe-world']));
-});
-
-test('search filters across title/body/scene text', async () => {
-  const { document } = await loadApp();
-
-  const input = document.getElementById('searchInput');
-  input.value = 'power cable';
-  input.dispatchEvent(new document.defaultView.Event('input'));
-
-  const visible = [...document.querySelectorAll('.entry-node:not(.node-hidden)')].map((el) => el.dataset.id);
-  assert.deepEqual(visible, ['eva-01-berserk']);
-});
-
-test('filtering out the open entry closes the detail panel', async () => {
-  const { document } = await loadApp();
-
-  clickNode(document, 'shinji-ikari');
-  assert.equal(document.getElementById('detailPanel').hidden, false);
-
-  const select = document.getElementById('typeFilter');
-  select.value = 'fact';
-  select.dispatchEvent(new document.defaultView.Event('change'));
-
-  assert.equal(document.getElementById('detailPanel').hidden, true);
-});
-
 test('the detail panel shows the original-language quote and its translation', async () => {
   const { document } = await loadApp();
 
