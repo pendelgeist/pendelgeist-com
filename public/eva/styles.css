@@ -74,9 +74,15 @@
 
 /* A fixed, viewport-derived height (not just a max-height) so the flex
  * layout below has a definite size to pack entries against — taller in
- * portrait, shorter in landscape, clamped to a sane range either way. This
- * is what lets a long episode's entries pack into exactly as many columns
- * as the current window actually needs, instead of a fixed count.
+ * portrait, shorter in landscape. This is what lets a long episode's
+ * entries pack into exactly as many columns as the current window actually
+ * needs, instead of a fixed count.
+ *
+ * No upper bound: an earlier version capped this at 60rem as a "sane max",
+ * but on a tall viewport (a big-screen iPad in either orientation) that cap
+ * kicked in well before the bottom of the screen did, leaving a dead gap
+ * below the card instead of using the space that was actually there. Only
+ * the 20rem floor (for a viewport too short to be worth solving for) stays.
  *
  * Uses 100svh (the smallest possible viewport, i.e. with browser/in-app-
  * browser chrome fully expanded), not 100dvh, deliberately: dvh can
@@ -89,7 +95,7 @@
 .timeline-scroll {
   overflow-x: auto;
   overflow-y: hidden;
-  height: clamp(20rem, calc(100svh - 11rem), 60rem);
+  height: max(20rem, calc(100svh - 11rem));
   box-shadow: var(--shadow-card);
   margin-bottom: 1.5rem;
   background-color: var(--color-surface);
