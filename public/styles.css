@@ -101,9 +101,8 @@
   animation: rainbow-spin 12s linear infinite;
 }
 
-:root[data-theme="rainbow"] h1,
+:root[data-theme="rainbow"] .nav-title,
 :root[data-theme="rainbow"] .section h2,
-:root[data-theme="rainbow"] .subtitle,
 :root[data-theme="rainbow"] .entry-title,
 :root[data-theme="rainbow"] .entry-title-jp {
   background: linear-gradient(90deg, #ff0000, #ff9900, #ffee00, #33ff00, #00d9ff, #6600ff, #ff00cc, #ff0000);
@@ -433,12 +432,12 @@
  * gilded tabs, echoing the game's own tabbed config windows - a gold
  * underline slides in on hover/focus instead of a whole tab being "active",
  * since this nav doesn't actually switch between tab panels. */
-:root[data-theme="ffxiv"] nav > a {
+:root[data-theme="ffxiv"] .nav-left > a {
   position: relative;
   transition: background-color 0.15s ease;
 }
 
-:root[data-theme="ffxiv"] nav > a::after {
+:root[data-theme="ffxiv"] .nav-left > a::after {
   content: '';
   position: absolute;
   left: 0.75rem;
@@ -450,13 +449,13 @@
   transition: transform 0.15s ease;
 }
 
-:root[data-theme="ffxiv"] nav > a:hover,
-:root[data-theme="ffxiv"] nav > a:focus-visible {
+:root[data-theme="ffxiv"] .nav-left > a:hover,
+:root[data-theme="ffxiv"] .nav-left > a:focus-visible {
   background: rgba(212, 175, 55, 0.18);
 }
 
-:root[data-theme="ffxiv"] nav > a:hover::after,
-:root[data-theme="ffxiv"] nav > a:focus-visible::after {
+:root[data-theme="ffxiv"] .nav-left > a:hover::after,
+:root[data-theme="ffxiv"] .nav-left > a:focus-visible::after {
   transform: scaleX(1);
 }
 
@@ -527,7 +526,7 @@
   }
 }
 
-:root[data-theme="geocities"] .subtitle {
+:root[data-theme="geocities"] .nav-title {
   animation: geocities-blink 1s steps(1, jump-none) infinite;
 }
 
@@ -620,18 +619,6 @@ body {
   color: var(--color-text);
 }
 
-h1 {
-  font-family: var(--font-heading);
-  font-size: 68px;
-  font-stretch: expanded;
-  font-weight: bolder;
-  letter-spacing: 0.5rem;
-  line-height: 1;
-  margin: 0.5rem 1rem;
-  text-align: center;
-  text-shadow: var(--shadow-heading);
-}
-
 nav {
   box-shadow: var(--shadow-card);
   display: flex;
@@ -643,9 +630,59 @@ nav {
   background-color: var(--color-chrome);
 }
 
-nav > a {
+/* The page title lives in the nav bar itself now (see .nav-title below)
+ * rather than a separate hero <header> row, so nav needs exactly two direct
+ * children for `justify-content: space-between` to split Home+title from
+ * the theme controls correctly - see the comment in theme.js on why the
+ * left-hand stuff is grouped into this one wrapper. */
+.nav-left {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.nav-left > a {
   padding: 0.75rem;
   color: var(--color-nav-link);
+}
+
+/* Sits on the same --color-chrome nav background as the Home link, so it
+ * uses --color-nav-link too (not --color-title/--color-accent, which are
+ * only guaranteed to read against --color-bg/--color-surface). */
+.nav-title {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 1rem;
+  letter-spacing: 0.05rem;
+  color: var(--color-nav-link);
+  padding: 0.75rem 0;
+}
+
+.info-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.1rem;
+  height: 1.1rem;
+  margin-left: 0.6rem;
+  vertical-align: middle;
+  border: 2px solid var(--color-nav-link);
+  border-radius: 50%;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--color-nav-link);
+  text-decoration: none;
+  cursor: pointer;
+  user-select: none;
+}
+
+/* Inverted fill rather than a dimmed opacity: some themes' nav-link color
+ * doesn't have enough headroom for a translucent version to stay readable,
+ * so hover swaps foreground/background instead, which is guaranteed to keep
+ * the same contrast ratio (contrast is symmetric either direction). */
+.info-link:hover {
+  background-color: var(--color-nav-link);
+  color: var(--color-chrome);
 }
 
 .theme-picker {
@@ -690,20 +727,6 @@ nav > a {
   max-width: 1400px;
   margin-inline: auto;
   padding: 2px;
-}
-
-header {
-  text-align: center;
-  margin-bottom: 0.5rem;
-  padding: 1rem 0.5rem;
-}
-
-.subtitle {
-  font-size: 1.5rem;
-  font-weight: 500;
-  letter-spacing: 0.2rem;
-  margin-top: 1rem;
-  color: var(--color-accent);
 }
 
 /* Sections */
@@ -767,14 +790,6 @@ header {
   color: var(--color-accent);
 }
 
-/* Responsive */
-
-@media (max-width: 768px) {
-  h1 {
-    font-size: 2.5rem;
-    letter-spacing: 0.2rem;
-  }
-}
 
 /* Accessibility: every per-theme animation added below (Rainbow's spin,
  * Vaporwave's drift, FFVII's pulse, FFXIV's shimmer, GeoCities' blink/scroll)

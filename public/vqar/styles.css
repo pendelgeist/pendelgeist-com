@@ -1,30 +1,14 @@
 /* VQAR-specific styles; shared site styles live in /styles.css */
 
-.info-link {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 1.6rem;
-  height: 1.6rem;
-  margin-left: 0.5rem;
-  vertical-align: middle;
-  border: 2px solid var(--color-accent);
-  border-radius: 50%;
-  font-size: 1rem;
-  font-weight: 700;
-  color: var(--color-accent);
-  text-decoration: none;
-  cursor: pointer;
-  user-select: none;
+.season-status {
+  margin-bottom: 0.5rem;
+  padding: 0.4rem 0.5rem;
+  font-size: 0.85rem;
+  color: var(--color-muted);
 }
 
-/* Inverted fill rather than a dimmed opacity: some themes' accent color
- * doesn't have enough headroom for a translucent version to stay readable
- * (e.g. Dark's near-max-saturation red), so hover swaps foreground/background
- * instead, which is guaranteed to keep the same contrast ratio. */
-.info-link:hover {
-  background-color: var(--color-accent);
-  color: var(--color-bg);
+.season-status a {
+  color: var(--color-accent);
 }
 
 /* Filters */

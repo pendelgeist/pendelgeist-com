@@ -86,15 +86,15 @@ for (const [name, t] of Object.entries(THEMES)) {
 
   test(`${name}: page-level text/accent/muted meet AA against bg`, () => {
     assert.ok(contrastRatio(text, bg) >= MIN_NORMAL, `body text vs bg: ${contrastRatio(text, bg).toFixed(2)}`);
-    assert.ok(contrastRatio(accent, bg) >= MIN_LARGE, `.subtitle/.section h2/.loading (accent) vs bg: ${contrastRatio(accent, bg).toFixed(2)}`);
+    assert.ok(contrastRatio(accent, bg) >= MIN_LARGE, `.section h2/.loading (accent) vs bg: ${contrastRatio(accent, bg).toFixed(2)}`);
     assert.ok(contrastRatio(muted, bg) >= MIN_NORMAL, `muted text vs bg: ${contrastRatio(muted, bg).toFixed(2)}`);
   });
 
   test(`${name}: nav-link meets AA against chrome (nav, filter bars, chrome-styled buttons)`, () => {
     assert.ok(
       contrastRatio(navLink, chrome) >= MIN_NORMAL,
-      `nav-link vs chrome: ${contrastRatio(navLink, chrome).toFixed(2)} -- covers nav>a, .theme-picker, .theme-reroll, ` +
-      `#runQuery, section summary h2, .filter-group label, eva's .jump-link/.detail-quote`
+      `nav-link vs chrome: ${contrastRatio(navLink, chrome).toFixed(2)} -- covers .nav-left a, .nav-title, .info-link, ` +
+      `.theme-picker, .theme-reroll, #runQuery, section summary h2, .filter-group label, eva's .jump-link/.detail-quote`
     );
   });
 
