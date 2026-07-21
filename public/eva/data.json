@@ -53,7 +53,10 @@
     "ja-wiki-eoe": { "lang": "ja", "title": "新世紀エヴァンゲリオン劇場版 Air/まごころを、君に — Wikipedia (Japanese)", "url": "https://ja.wikipedia.org/wiki/新世紀エヴァンゲリオン劇場版_Air/まごころを、君に" },
     "ann-staff": { "lang": "en", "title": "Neon Genesis Evangelion (TV) — Staff — Anime News Network", "url": "https://www.animenewsnetwork.com/encyclopedia/anime.php?id=45" },
     "ann-cast": { "lang": "en", "title": "Neon Genesis Evangelion (TV) — Cast — Anime News Network", "url": "https://www.animenewsnetwork.com/encyclopedia/anime.php?id=45&page=cast" },
-    "ann-companies": { "lang": "en", "title": "Neon Genesis Evangelion (TV) — Companies — Anime News Network", "url": "https://www.animenewsnetwork.com/encyclopedia/anime.php?id=45&page=companies" }
+    "ann-companies": { "lang": "en", "title": "Neon Genesis Evangelion (TV) — Companies — Anime News Network", "url": "https://www.animenewsnetwork.com/encyclopedia/anime.php?id=45&page=companies" },
+    "ann-absolute-borderline-p1": { "lang": "en", "title": "Absolute Borderline: The Early Days of Evangelion Fandom, Part One — Anime News Network", "url": "https://www.animenewsnetwork.com/feature/2026-03-04/absolute-borderline-the-early-days-of-evangelion-fandom-part-one/.234620" },
+    "ann-absolute-borderline-p2": { "lang": "en", "title": "Absolute Borderline: The Early Days of Evangelion Fandom, Part Two — Anime News Network", "url": "https://www.animenewsnetwork.com/feature/2026-03-11/absolute-borderline-the-early-days-of-evangelion-fandom-part-two/.235144" },
+    "ann-absolute-borderline-p3": { "lang": "en", "title": "Absolute Borderline: The Early Days of Evangelion Fandom, Part Three — Anime News Network", "url": "https://www.animenewsnetwork.com/feature/2026-04-03/absolute-borderline-the-early-days-of-evangelion-fandom-part-three/.235164" }
   },
   "episodes": [
     { "number": 1, "title": "Angel Attack", "subtitle": "JP: 使徒、襲来 — lit. \"Angel, Attack\" · aired 1995-10-04, 6.8%" },
@@ -1971,6 +1974,249 @@
         { "id": "ep1-schedule-crisis", "label": "Why so much work ended up farmed out" }
       ],
       "sourceRefs": ["ann-companies"]
+    },
+    {
+      "id": "pre-internet-fandom-infrastructure",
+      "episode": 1,
+      "type": "fact",
+      "title": "The fandom infrastructure Eva walked into",
+      "body": "In 1995 North America, official anime was scarce and expensive — early distributors like AnimEigo, US Renditions, and A.D. Vision had only just formed, and a single tape could run $45-50. Fans filled the gap with tape trading: raw or home-recorded episodes moved from Japanese video stores and Japan-based contacts to fansubbing groups like William Chow's Arctic Animation, who copied and mailed tapes to anyone who sent blank cassettes and return postage.",
+      "links": [],
+      "sourceRefs": ["ann-absolute-borderline-p1"]
+    },
+    {
+      "id": "gainax-pre-eva-us-fandom",
+      "episode": 1,
+      "type": "fact",
+      "title": "Gainax already had an American fan base before Eva existed",
+      "body": "Gainax's Daicon opening films played at American conventions years earlier, Toren Smith had shared a house with studio staff, and fans met the crew at the 1987 Los Angeles premiere of Royal Space Force (then titled Star Quest). Gainax co-presented AnimeCon91, the convention that set the template for Anime Expo and Otakon — the latter named for Gainax's own Otaku no Video, which still bookends the video rooms at that con to this day.",
+      "links": [],
+      "sourceRefs": ["ann-absolute-borderline-p1"]
+    },
+    {
+      "id": "eva-first-announced-shonen-ace",
+      "episode": 1,
+      "type": "fact",
+      "title": "First announced in a company newsletter and a manga, not an anime magazine",
+      "body": "Japanese audiences first heard of Evangelion through Gainax's own newsletter G.Press and the start of Sadamoto's manga adaptation in the February 1995 issue of Shōnen Ace (on sale December 1994). The earliest press coverage anywhere, though, ran in the American magazine Animerica that same February — beating Japanese anime magazines like Newtype and Animage to the story.",
+      "links": [],
+      "sourceRefs": ["ann-absolute-borderline-p1"]
+    },
+    {
+      "id": "eva-original-disciples-pitch",
+      "episode": 1,
+      "type": "fact",
+      "title": "\"Disciples,\" not Angels: the pitch that got announced first",
+      "body": "Animerica's February 1995 scoop — sourced from a conversation at a Gainax party the previous December — described alien \"Disciples\" who demand humanity halt its genetic-engineering research and grant a grace period before returning. That language didn't survive to broadcast, but it traces back to Gainax's late-1993 pitch documents and preliminary Sadamoto/Yamashita sketches later reprinted in the art book Der Mond.",
+      "links": [],
+      "sourceRefs": ["ann-absolute-borderline-p1"]
+    },
+    {
+      "id": "eva-june95-animerica-preview",
+      "episode": 1,
+      "type": "fact",
+      "title": "\"No ordinary robot anime\"",
+      "body": "Animerica's June 1995 follow-up (drawing on Newtype's April 1995 coverage) quoted Anno dismissing the mecha genre as stale — \"Don't you think that robot animation is behind the times? ... It's not a refreshing or new genre\" — and speculated the show would land as a cult favorite rather than a mainstream hit on the scale of Nadia or Royal Space Force.",
+      "links": [],
+      "sourceRefs": ["ann-absolute-borderline-p1"]
+    },
+    {
+      "id": "eva-tmnt-lead-in",
+      "episode": 1,
+      "type": "fact",
+      "title": "Its first TV ad ran right after the last Teenage Mutant Ninja Turtles episode",
+      "body": "On September 27, 1995 — a week before Evangelion's premiere — TV Tokyo aired the final episode of the 1987 Teenage Mutant Ninja Turtles series, and followed it immediately, in the same slot, with a commercial for the new show.",
+      "links": [],
+      "sourceRefs": ["ann-absolute-borderline-p1"]
+    },
+    {
+      "id": "awa-fansub-premiere",
+      "episode": 1,
+      "type": "fact",
+      "title": "Its North American debut was a fan-made VHS at a convention, days before Japan's broadcast",
+      "body": "Anime Weekend Atlanta organizer Gordon Waters got a raw tape and a rough translation from a Japanese graduate student, then spent the weekend of October 20-22, 1995 timing subtitles with friends Daric Koslowski and Matt Murray using JACOSUB — a fan-written subtitling program, one of the first of its kind, run on a Commodore Amiga with a video clock synchronizer. The finished fansub premiered October 27 to a packed room at AWA's Castlegate Hotel, five days before most Western fans could see the episode any other way; industry figures Jerry Chu (Bandai), Robert Woodhead (AnimEigo), and Neil Nadelman (U.S. Manga Corps) were in the crowd. It screened again weeks later at New Jersey's Anime East, alongside raw copies of episodes 2-4.",
+      "links": [],
+      "sourceRefs": ["ann-absolute-borderline-p2"]
+    },
+    {
+      "id": "eva-ep1-raa-reception",
+      "episode": 1,
+      "type": "fact",
+      "title": "How rec.arts.anime reacted to episode 1",
+      "body": "On the Usenet newsgroup rec.arts.anime, early posts favorably compared the episode to contemporary OVAs and praised Megumi Hayashibara's performance as Rei as a departure from the loud, brash roles she usually played, like Ranma from Ranma ½ — with some posters already speculating about the nature of the three pilots.",
+      "links": [],
+      "sourceRefs": ["ann-absolute-borderline-p2"]
+    },
+    {
+      "id": "asuka-raa-first-impression",
+      "episode": 8,
+      "type": "fact",
+      "title": "rec.arts.anime's first read on Asuka: \"a total and complete brat\"",
+      "body": "At least one rec.arts.anime poster's immediate reaction to Asuka's introduction was hostile, calling her a \"total and complete brat\" — one of several running threads on the newsgroup through the early episodes, alongside fans debating anime-technology details like the cushioning jets on NERV's power plugs and whether episode 10's magnetic Angel-trap would actually work.",
+      "links": [],
+      "sourceRefs": ["ann-absolute-borderline-p2"]
+    },
+    {
+      "id": "comiket49-eva-boom",
+      "episode": 13,
+      "type": "fact",
+      "title": "Comiket sold out on Eva before most fans had even seen the back half",
+      "body": "By Comiket 49 (December 29-30, 1995, its last year at the Arumi Fairgrounds), doujinshi circles were already flooding the show with fan content, despite having listed Gundam Wing on their booth applications months earlier — those were due the previous August, before Eva had even premiered. Soundtrack CDs and the first laser disc volume reportedly sold out in Japan around the same time, and the show revived a struggling garage-kit industry, mostly through figures of Asuka and Rei rather than the Eva units themselves.",
+      "links": [],
+      "sourceRefs": ["ann-absolute-borderline-p2"]
+    },
+    {
+      "id": "raa-midseries-theorizing",
+      "episode": 15,
+      "type": "fact",
+      "title": "Fans guessed the Rei/Yui connection mid-run — and got plenty else wrong",
+      "body": "Around episode 15, rec.arts.anime posters were already piecing together that the Evas had minds of their own and connecting Rei to Shinji's mother Yui, and drawing comparisons to science fiction writers Cordwainer Smith and Greg Bear. Other theories didn't survive contact with later episodes, notably a popular guess that Toji (piloting Unit-03) and Asuka would go on to work as a two-Eva team.",
+      "links": [{ "id": "marduk-institute-reveal", "label": "What the show actually revealed around this point" }],
+      "sourceRefs": ["ann-absolute-borderline-p2"]
+    },
+    {
+      "id": "ep18-raa-tone-shift",
+      "episode": 18,
+      "type": "fact",
+      "title": "\"No longer a kids show\": rec.arts.anime reacts to Bardiel",
+      "body": "One RAA regular who translated scripts for the fan community called this episode \"very, very atrocious. Very cruel\" and refused to translate it further; another poster accused him of running away from the story the same way its characters do, and a post relaying Japanese RAA sentiment reported calls for the show to be pulled off the air entirely. Because fans were staggered across the tape-trading pipeline at wildly different points, one person following along asked what had even happened — he'd only seen up through episode 3.",
+      "links": [{ "id": "bardiel-possession-toji", "label": "The episode fans were reacting to" }],
+      "sourceRefs": ["ann-absolute-borderline-p2"]
+    },
+    {
+      "id": "ep20-raa-backlash",
+      "episode": 20,
+      "type": "fact",
+      "title": "rec.arts.anime's read on the Misato/Kaji scene",
+      "body": "Western fans picked up the same controversy playing out in Japan: one RAA poster relayed that Japanese viewers were arguing the show shouldn't be airing an implied sex scene in an early-evening timeslot at all, and should have held it for a late-night broadcast instead.",
+      "links": [{ "id": "misato-kaji-scene-controversy", "label": "The scene, and the Japanese broadcast controversy it caused" }],
+      "sourceRefs": ["ann-absolute-borderline-p2"]
+    },
+    {
+      "id": "adv-license-announcement",
+      "episode": 20,
+      "type": "fact",
+      "title": "ADV's license, announced mid-broadcast",
+      "body": "A.D. Vision — already negotiating with MOVIC, which held Eva's international distribution rights — announced on February 12, 1996 that it had won North American rights, surprising competitors who thought they had an inside track. Per co-founder and dub producer Matt Greenfield, MOVIC essentially told ADV the deal was happening rather than shopping it around. Fans were startled ADV landed it at all, given the company's reputation at the time for loose translations and fanservice/hentai releases through its SoftCel Pictures label.",
+      "links": [],
+      "sourceRefs": ["ann-absolute-borderline-p2"]
+    },
+    {
+      "id": "adv-ova-version-confusion",
+      "episode": 20,
+      "type": "fact",
+      "title": "\"OVA version\"? ADV's own announcement confused everyone",
+      "body": "ADV's initial press release promised Eva \"in a newly created OVA version ... with all new high-quality animation,\" setting off fan speculation that ranged from a Nautilus Story-style re-edit to a deliberately sanitized dub, with some Japanese fans guessing ADV had pressured Gainax to add sex and violence specifically for the American market. ADV's \"Internet Liaison\" David Williams clarified the next day that it just meant the full TV series re-rendered at OVA-level animation quality — which puzzled fans further, since the earliest episodes were already close to that standard.",
+      "links": [{ "id": "evagate-96", "label": "The bigger controversy this announcement touched off" }],
+      "sourceRefs": ["ann-absolute-borderline-p2"]
+    },
+    {
+      "id": "evagate-96",
+      "episode": 20,
+      "type": "fact",
+      "title": "\"EvaGate '96\"",
+      "body": "Four days after ADV's announcement, Gainax in-house translator Michael House posted a statement from GM Yasuhiro Takeda denying ADV held any rights and threatening legal action for copyright infringement; ADV's David Williams apologized for the confusion, saying MOVIC had told them the OVA-quality redo was already happening. RAA user Angst-sensei dubbed the standoff \"EvaGate '96,\" announcing it like a prizefight: \"There's the bell. It's time for round one of 'What the Hell is Going On?'\" Most fansub groups still translating the show stopped once ADV's license was announced — per fansubber William Chow, unofficial subs were understood to have a \"shelf life\" that ended where an official release picked up.",
+      "links": [{ "id": "evagate-resolution-directors-cuts", "label": "How the standoff was eventually resolved" }],
+      "sourceRefs": ["ann-absolute-borderline-p2"]
+    },
+    {
+      "id": "ep22-raa-reactions",
+      "episode": 22,
+      "type": "fact",
+      "title": "The elevator scene, and giggling clones — as fans saw it at the time",
+      "body": "Contemporary reactions were more muted than the episode's later reputation suggests, but pointed: one Japanese-fan post relayed on RAA thought the Asuka/Rei elevator scene — since regarded as one of the show's most iconic moments — ran too long, and another found the Rei clones giggling during Naoko's reveal simply frightening rather than thematically loaded.",
+      "links": [{ "id": "rei-asuka-lift-scene", "label": "The scene, and its later critical reading" }],
+      "sourceRefs": ["ann-absolute-borderline-p3"]
+    },
+    {
+      "id": "ep24-muted-reaction-horn",
+      "episode": 24,
+      "type": "fact",
+      "title": "The episode almost nobody posted about",
+      "body": "Unlike the outcry around episodes 18-20, rec.arts.anime barely discussed episode 24 at all. The closest thing to a documented contemporary reaction comes from Carl Horn's own account of watching it fansubbed: his impression of the minute-long shot of Unit-01's hand swung from suspicion of corner-cutting (\"I bet the storyboards for this didn't take too long to draw\") to admiration once it landed — \"as usual, Anno's got a lot of guts.\"",
+      "links": [],
+      "sourceRefs": ["ann-absolute-borderline-p3"]
+    },
+    {
+      "id": "ep2526-fan-backlash-quotes",
+      "episode": 26,
+      "type": "fact",
+      "title": "How angry fans actually got, in their own words",
+      "body": "Protoculture Addicts writers Claude J. Pelletier and Miyoko Graham collected Japanese fan reactions to the finale ranging from \"I was stunned! I thought the ending was a bad joke!\" to \"I almost threw up!\" and \"I won't watch this show any longer!\" On RAA, Western fans reached for comparisons like Mamoru Oshii's Urusei Yatsura 2: Beautiful Dreamer and the British series The Prisoner, or measured the ending against Gainax's own earlier Gunbuster.",
+      "links": [{ "id": "finale-controversy", "label": "The production explanations for why the finale turned out this way" }],
+      "sourceRefs": ["ann-absolute-borderline-p3"]
+    },
+    {
+      "id": "chow-finale-structure-theory",
+      "episode": 26,
+      "type": "theory",
+      "title": "William Chow's theory for why the ending broke people",
+      "body": "Fansubber William Chow argues the finale violated an unwritten structural contract 26-episode shows of the era followed — a midpoint recap around episode 13, a crux around 24, resolution by 26 — and that Eva's refusal to resolve cleanly, paired with an ending left deliberately open, is what sent fans scrambling to fill the gap with their own theories about what \"really\" happened.",
+      "links": [{ "id": "finale-controversy", "label": "Staff accounts of why the finale took the shape it did" }],
+      "sourceRefs": ["ann-absolute-borderline-p3"]
+    },
+    {
+      "id": "spike-spencer-rant",
+      "episode": 26,
+      "type": "fact",
+      "title": "Spike Spencer's on-mic reaction became an ADV home-video Easter egg",
+      "body": "ADV's English dub actor for Shinji, Spike Spencer, had no idea how the show ended going into the recording session. Producer Matt Greenfield let him rant on open mic once he found out, then played the recording back for every other cast member as they arrived — each of whom reacted the same way. The rant was later included as an Easter egg across ADV's home video releases of the series.",
+      "links": [],
+      "sourceRefs": ["ann-absolute-borderline-p3"]
+    },
+    {
+      "id": "evagate-resolution-directors-cuts",
+      "episode": "eoe",
+      "type": "fact",
+      "title": "How EvaGate actually resolved",
+      "body": "With no public word for two months — during which Gainax was also cracking down on English-language fan sites — GM Yasuhiro Takeda eventually released a statement, via publicity manager Hiroki Sato, that episode 19 would get a partial re-dub, episodes 21-24 would receive \"extensive retake footage,\" and the finale would be remade \"using their original scripts.\" That work became the Director's Cuts (some of it folded into the compilation film Death) and The End of Evangelion. A month later, ADV announced its first VHS volume for August 20, 1996.",
+      "links": [{ "id": "eoe-death-rebirth-precursor", "label": "The films this statement was describing" }],
+      "sourceRefs": ["ann-absolute-borderline-p3"]
+    },
+    {
+      "id": "anno-documentary-suicidal-ideation",
+      "episode": "eoe",
+      "type": "fact",
+      "title": "Anno, on how close the backlash brought him to the edge",
+      "body": "The 2021 NHK documentary Hideaki Anno: The Final Challenge of Evangelion has Anno describing the online threads debating how best to kill him after the TV finale aired: \"People came up with ideas about how to kill me. When I saw that, I lost my will to live. I didn't want to make anime anymore.\" He has said the backlash drove him to the edge of suicide on two separate occasions.",
+      "links": [{ "id": "anno-death-threats-depression", "label": "Contemporary reporting on the same backlash" }],
+      "sourceRefs": ["ann-absolute-borderline-p3"]
+    },
+    {
+      "id": "anime-expo-96-eva-wins",
+      "episode": "eoe",
+      "type": "fact",
+      "title": "Anime Expo 1996 gave Eva its first major North American honors",
+      "body": "At Anime Expo '96 (Anaheim, June 28-30), Evangelion won Best New TV Series at the con's awards ceremony, and a fan-built Rei figure won the official modeling contest. Anno attended as a guest that year alongside Noboru Ishiguro, Yoshiaki Kawajiri, Mamoru Oshii, and Kenichi Sonoda — a notably stacked guest lineup even by AX standards.",
+      "links": [],
+      "sourceRefs": ["ann-absolute-borderline-p3"]
+    },
+    {
+      "id": "anno-ax96-panel-quotes",
+      "episode": "eoe",
+      "type": "fact",
+      "title": "Anno's Anime Expo panel, in his own (blunt) words",
+      "body": "Asked about the finale at his AX '96 panel, Anno told the audience, \"I have no problem with them. If there's a problem, it's all with you guys. Too bad\" — switching to English for the last two words. He said the Eva units were inspired by oni, called Asuka his favorite character (\"she's cute\"), was surprised American fans preferred Misato over Rei (\"They can't handle strong women\"), and described Shinji as reflecting his own character \"both in conscious and unconscious parts ... I acknowledged that I'm a fool.\"",
+      "links": [{ "id": "anno-metanarrative", "label": "How that self-portrait plays out in the finale itself" }],
+      "sourceRefs": ["ann-absolute-borderline-p3"]
+    },
+    {
+      "id": "eva-na-home-video-timeline",
+      "episode": "eoe",
+      "type": "fact",
+      "title": "The North American home-video rollout",
+      "body": "ADV's VHS release shipped two episodes per tape from August 20, 1996 through its final volume on July 7, 1998. A parallel laser disc release, starting May 17, 1997, was canceled after two volumes because of disc-rot issues affecting the format.",
+      "links": [],
+      "sourceRefs": ["ann-absolute-borderline-p3"]
+    },
+    {
+      "id": "raa-to-modern-fandom",
+      "episode": "eoe",
+      "type": "fact",
+      "title": "From rec.arts.anime to Reddit and EvaGeeks",
+      "body": "The rec.arts.anime newsgroup that carried most of this early discussion has long since given way to venues like the Evangelion subreddit and EvaGeeks.org, but the pattern it set — Western fans debating a still-airing Japanese show in something close to real time — became the default mode for anime fandom that followed.",
+      "links": [],
+      "sourceRefs": ["ann-absolute-borderline-p3"]
     }
   ]
 }
