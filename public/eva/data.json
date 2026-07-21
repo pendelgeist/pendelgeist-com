@@ -57,7 +57,8 @@
     "ann-absolute-borderline-p1": { "lang": "en", "title": "Absolute Borderline: The Early Days of Evangelion Fandom, Part One — Anime News Network", "url": "https://www.animenewsnetwork.com/feature/2026-03-04/absolute-borderline-the-early-days-of-evangelion-fandom-part-one/.234620" },
     "ann-absolute-borderline-p2": { "lang": "en", "title": "Absolute Borderline: The Early Days of Evangelion Fandom, Part Two — Anime News Network", "url": "https://www.animenewsnetwork.com/feature/2026-03-11/absolute-borderline-the-early-days-of-evangelion-fandom-part-two/.235144" },
     "ann-absolute-borderline-p3": { "lang": "en", "title": "Absolute Borderline: The Early Days of Evangelion Fandom, Part Three — Anime News Network", "url": "https://www.animenewsnetwork.com/feature/2026-04-03/absolute-borderline-the-early-days-of-evangelion-fandom-part-three/.235164" },
-    "skapbadoa-eoe-psychoanalytic": { "lang": "en", "title": "End of Evangelion – Psychoanalytic Impact III [2017] — skapbadoa", "url": "https://skapbadoa.com/2019/05/29/end-of-evangelion-psychoanalytic-impact-iii-2017/" }
+    "skapbadoa-eoe-psychoanalytic": { "lang": "en", "title": "End of Evangelion – Psychoanalytic Impact III [2017] — skapbadoa", "url": "https://skapbadoa.com/2019/05/29/end-of-evangelion-psychoanalytic-impact-iii-2017/" },
+    "opiniojuris-eva-warfare": { "lang": "en", "title": "A Step Forward into Terror: What Neon Genesis Evangelion Tells Us About the Future of Warfare — Opinio Juris", "url": "https://opiniojuris.org/2022/10/27/a-step-forward-into-terror-what-neon-genesis-evangelion-tells-us-about-the-future-of-warfare/" }
   },
   "episodes": [
     { "number": 1, "title": "Angel Attack", "subtitle": "JP: 使徒、襲来 — lit. \"Angel, Attack\" · aired 1995-10-04, 6.8%" },
@@ -2275,6 +2276,33 @@
         { "id": "accept-vs-reject", "label": "The broader TV-finale/EoE framing this choice echoes" }
       ],
       "sourceRefs": ["skapbadoa-eoe-psychoanalytic"]
+    },
+    {
+      "id": "nerv-as-peace-enforcement-operation",
+      "episode": 1,
+      "type": "theory",
+      "title": "NERV read as a UN peace-enforcement operation",
+      "body": "International-law scholar Santiago Vargas Niño has analyzed NERV's mandate through the real UN Security Council framework for \"peace enforcement operations\" under Chapter VII of the UN Charter — the same legal basis behind, e.g., the 2013 Intervention Brigade authorized in the Democratic Republic of the Congo to proactively use force against non-state armed groups. On this reading, NERV's mandate to destroy the Angels fits that model closely enough that, as a UN subsidiary organ, it would arguably be bound by Common Article 3 of the Geneva Conventions and international humanitarian law more broadly.",
+      "links": [{ "id": "nerv", "label": "What NERV actually is" }],
+      "sourceRefs": ["opiniojuris-eva-warfare"]
+    },
+    {
+      "id": "eva-01-as-laws-case-study",
+      "episode": 2,
+      "type": "theory",
+      "title": "Unit-01's unpowered rampage as a lethal-autonomous-weapons case study",
+      "body": "Legal scholarship on lethal autonomous weapons systems (LAWS) has used Unit-01's uncommanded reactivation and kill of Sachiel as an illustrative worst case: a weapon acting on its own initiative, unpredictably, beyond its operators' control. The essay frames this against the real \"techno-pessimist\" vs. \"techno-optimist\" debate over whether such systems could ever reliably apply international humanitarian law's rules on distinguishing combatants from civilians and weighing proportionality — arguing the evidence needed to settle that question can only come from deploying the weapons in the first place, which is itself the problem.",
+      "links": [{ "id": "eva-01-devours-sachiel", "label": "The scene being read this way" }],
+      "sourceRefs": ["opiniojuris-eva-warfare"]
+    },
+    {
+      "id": "nerv-immunity-toji-sister",
+      "episode": 1,
+      "type": "theory",
+      "title": "Why Toji's sister likely had no legal recourse against NERV",
+      "body": "Extending the UN-peace-enforcement reading, Vargas Niño argues NERV would inherit the UN's own broad immunity from domestic courts under the Convention on the Privileges and Immunities of the UN and the model Status of Forces Agreement — the same immunity real courts in the Netherlands, the United States, and the European Court of Human Rights have upheld for the UN itself. On that basis, a civilian hurt as collateral damage during an authorized operation like the Sachiel battle would have essentially no path to compensation, since her injury would likely be deemed proportionate to the operational necessity of stopping an extinction-level threat.",
+      "links": [{ "id": "toji-suzuhara", "label": "The civilian casualty this reading is built around" }],
+      "sourceRefs": ["opiniojuris-eva-warfare"]
     }
   ]
 }
