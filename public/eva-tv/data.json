@@ -65,7 +65,14 @@
     "evageeks-forum-shinji-strangling-thread": { "lang": "en", "title": "Why was Shinji strangling Asuka at the end of EoE? — EvaGeeks Forum", "url": "https://forum.evageeks.org/thread/12382/Why-was-Shinji-strangling-Asuka-at-the-end-of-EoE/" },
     "evageeks-forum-eoe-last-scene-dualism": { "lang": "en", "title": "\"NGE Ultimate Dualism Theory\" (post by Eva Yojimbo) — EoE last scene, EvaGeeks Forum", "url": "https://forum.evageeks.org/post/317693/EoE-last-scene/#317693" },
     "evageeks-forum-eoe-hegel-thread": { "lang": "en", "title": "EoE Final scene explained and connected to EoTV, G.W.F. Hegel — EvaGeeks Forum", "url": "https://forum.evageeks.org/thread/17500/EoE-Final-scene-explained-and-connected-to-EoTV-GWF-Hegel/" },
-    "sparknotes-hegel-master-slave": { "lang": "en", "title": "Phenomenology of Spirit: Lordship and Bondage — SparkNotes", "url": "https://www.sparknotes.com/philosophy/hegel/section2/" }
+    "sparknotes-hegel-master-slave": { "lang": "en", "title": "Phenomenology of Spirit: Lordship and Bondage — SparkNotes", "url": "https://www.sparknotes.com/philosophy/hegel/section2/" },
+    "ann-understanding-evangelion": { "lang": "en", "title": "Understanding Evangelion — Anime News Network", "url": "https://www.animenewsnetwork.com/feature/2002-06-11" },
+    "ann-edit-list-eva-ep1": { "lang": "en", "title": "The Edit List: Evangelion - ep. 1: Angel Attack — Anime News Network", "url": "https://www.animenewsnetwork.com/edit-list/2003-02-24/evangelion-ep-1" },
+    "ann-edit-list-eva-ep2": { "lang": "en", "title": "The Edit List: Evangelion - ep. 2: Unfamiliar Ceiling — Anime News Network", "url": "https://www.animenewsnetwork.com/edit-list/2003-02-26/evangelion-ep-2" },
+    "ann-answerman-evangelion-pronunciation": { "lang": "en", "title": "Answerman: the \"Evangelion\" pronunciation debate — Anime News Network", "url": "https://www.animenewsnetwork.com/answerman/2004-07-23" },
+    "ann-thin-veneer-evangelion": { "lang": "en", "title": "The Thin Veneer Known as \"Evangelion\" — Anime News Network", "url": "https://www.animenewsnetwork.com/editorial/1998-09-09" },
+    "ann-brain-diving-little-boy": { "lang": "en", "title": "Brain Diving: Mommy's Little Monster — Anime News Network", "url": "https://www.animenewsnetwork.com/brain-diving/2011-05-31" },
+    "ann-buried-treasure-anno-talks-to-kids": { "lang": "en", "title": "Buried Treasure: Hideaki Anno Talks to Kids — Anime News Network", "url": "https://www.animenewsnetwork.com/buried-treasure/2007-05-03" }
   },
   "episodes": [
     { "number": 1, "title": "Angel Attack", "subtitle": "JP: 使徒、襲来 — lit. \"Angel, Attack\" · aired 1995-10-04, 6.8%" },
@@ -2600,6 +2607,177 @@
         { "id": "accept-vs-reject", "label": "A reading that treats the two endings as complementary rather than opposed" }
       ],
       "sourceRefs": ["evageeks-forum-eoe-hegel-thread"]
+    },
+    {
+      "id": "eva-four-levels-allegory",
+      "episode": 1,
+      "type": "theory",
+      "title": "A show working on four levels at once",
+      "body": "Critic Mike Crandol argues most allegorical fiction operates on two levels — the story itself and its symbolic meaning — but Evangelion runs on four simultaneously: a straightforward sci-fi action-adventure, a bleak satire of the giant-robot genre it belongs to, a coming-of-age parable, and a treatise on confronting loneliness and uncertainty as an adult. On this reading, the early episodes' deceptively conventional feel is doing real work — letting the other three layers build underneath a show that still reads, on its surface, like just another entry in an overcrowded genre.",
+      "links": [],
+      "sourceRefs": ["ann-understanding-evangelion"]
+    },
+    {
+      "id": "ep26-duck-amuck-comparison",
+      "episode": 26,
+      "type": "theory",
+      "title": "Episode 26's animation collapse, compared to \"Duck Amuck\"",
+      "body": "As the TV finale strips away plot for direct psychological interrogation, its visuals regress in step — full animation gives way to storyboards, which give way to a black-and-white scribble of Shinji adrift in a white void. Critic Mike Crandol compares the effect to the classic Chuck Jones Looney Tunes short \"Duck Amuck,\" in which Daffy Duck's cartoon universe is dismantled around him by an unseen animator — reading Shinji's restrictions being handed to him one at a time (a line to stand on, \"a top and a bottom,\" the ability to walk) as the show applying the same device to a psychological rather than comedic end.",
+      "links": [{ "id": "eotv-ep26-hegel-dialogue-staging", "label": "A reading of the same sequence's dialogue" }],
+      "sourceRefs": ["ann-understanding-evangelion"]
+    },
+    {
+      "id": "eoe-kiss-scene-strangling-echo",
+      "episode": "eoe",
+      "type": "theory",
+      "title": "The strangling scene as a dark echo of the TV series' kiss",
+      "body": "Critic Mike Crandol draws a direct line between the TV series' lighthearted first kiss and its much darker counterpart in EoE. Where Asuka's earlier kiss ends in her fleeing in mock disgust, one of Shinji's pre-Instrumentality head-trips restages the same beat with a confession of love instead of a kiss — and this time Asuka accuses him of loving her only as a convenient source of comfort, not for herself. Unable to bear the accusation, Shinji strangles her within the vision itself, foreshadowing the real strangling later in the film — reframing that later scene as the culmination of an anxiety the show planted episodes earlier.",
+      "links": [
+        { "id": "shinji-asuka-first-kiss", "label": "The earlier scene this one darkly echoes" },
+        { "id": "eoe-beach-scene", "label": "Where the echoed anxiety plays out for real" }
+      ],
+      "sourceRefs": ["ann-understanding-evangelion"]
+    },
+    {
+      "id": "cartoon-network-2003-censorship",
+      "episode": 1,
+      "type": "fact",
+      "title": "How Cartoon Network censored episode 1 for broadcast",
+      "body": "When \"Angel Attack\" aired on Cartoon Network's Giant Robot Week block in February 2003, edits included cutting the opening animation entirely, softening dialogue to remove profanity (both Misato's and a general's \"Damn!\"), digitally erasing a joke note on Misato's photo directing Shinji's attention to her breasts, and cutting a shot of Shinji's hand covered in Rei's blood. Other material made it through untouched, including a full ashtray of cigarette butts, the show's cross-shaped explosions, and Misato telling Shinji \"don't get killed out there\" — and the airing wasn't the uncut, commercial-free broadcast some viewers had been led to expect.",
+      "links": [],
+      "sourceRefs": ["ann-edit-list-eva-ep1"]
+    },
+    {
+      "id": "cartoon-network-2003-censorship-ep2",
+      "episode": 2,
+      "type": "fact",
+      "title": "Cartoon Network's much heavier edit of episode 2",
+      "body": "\"Unfamiliar Ceiling\" got a far more aggressive cut for its 2003 Cartoon Network airing than the premiere, driven almost entirely by Misato's drinking and undress: her Yebisu beer cans were digitally recolored blue throughout, whole scenes built around her apartment's clutter of empty cans and liquor bottles were removed (including Shinji taking inventory of her second refrigerator and their Pen Pen conversation), her drying lingerie and a shot of a nude Shinji looking at it were cut, and a bath scene had her redrawn into a digital bikini. The Eva-vs-Sachiel violence fared no better — shots of Unit-01's blood-spraying head and of it breaking the Angel's arms and tearing open its chest were all cut, along with Ritsuko's \"Berserker\" line — though, as in episode 1, the cross-shaped explosions were left alone.",
+      "links": [{ "id": "cartoon-network-2003-censorship", "label": "The same broadcast's edits to episode 1" }],
+      "sourceRefs": ["ann-edit-list-eva-ep2"]
+    },
+    {
+      "id": "evangelion-pronunciation-etymology",
+      "episode": 1,
+      "type": "fact",
+      "title": "How to actually pronounce \"Evangelion\"",
+      "body": "A 2003-2004 back-and-forth in Anime News Network's Answerman column landed on a hard-G pronunciation, \"Evan-GHEL-ion,\" matching the English dub, despite reader pushback arguing for a soft-G \"Evan-JELL-yon\" to match the word's Greek root Ευαγγέλιον (\"gospel\"/\"good news\"). The hard-G case won out: ancient Greek gamma is itself a hard G, the word's Japanese katakana rendering エヴァンゲリオン uses the hard-G ゲ rather than the soft-G ジェ despite Japanese having a perfectly usable je sound (the cast's ability to pronounce it correctly elsewhere, e.g. Cowboy Bebop's \"Jet Black,\" ruled out simple mispronunciation), and the specific \"v\" spelling (versus the Greek upsilon) traces to the word's Latin form, Evangelium, rather than the Greek original.",
+      "links": [],
+      "sourceRefs": ["ann-answerman-evangelion-pronunciation"]
+    },
+    {
+      "id": "ep21-24-narrative-style-criticism",
+      "episode": 21,
+      "type": "fact",
+      "title": "A harsh 1998 review of the flashback-heavy narration in episodes 21-24",
+      "body": "One of the earliest published English-language reviews of the finale, by Kenneth Lee for Anime News Network, singled out episode 21's rapid-fire flashback structure for criticism: the narration jumps between Fuyutsuki's own memories, an apparently impossible first-person account of Naoko murdering the first Rei, present-day Misato listening to a tape, and Kaji's own recorded words, all within a few minutes. The review argued this \"MTV-style\" barrage of information looks like it's answering the show's biggest outstanding questions — how Yui died, who Rei is, why Kaji died — while actually leaving most of them unresolved.",
+      "links": [],
+      "sourceRefs": ["ann-thin-veneer-evangelion"]
+    },
+    {
+      "id": "arael-attack-music-choice-criticism",
+      "episode": 22,
+      "type": "fact",
+      "title": "A contemporary complaint about the music playing over Asuka's suffering",
+      "body": "The same 1998 review singled out the choral, celebratory religious music playing during Arael's psychic assault on Asuka — which the reviewer names as \"Symphony No. 9 in D-minor, the 'Alleluia' song\" — as one of the worst music cues in the show, arguing it reads as incongruous whichever way it's meant: as sincere accompaniment to Asuka's breakdown, or as expressing the Angel's own perspective.",
+      "links": [{ "id": "arael-mindrape-attack", "label": "The scene this music plays over" }],
+      "sourceRefs": ["ann-thin-veneer-evangelion"]
+    },
+    {
+      "id": "rei-pinocchio-parallel",
+      "episode": 23,
+      "type": "theory",
+      "title": "Rei II's arc as a compressed \"puppet becomes human\" story",
+      "body": "Critic Kenneth Lee compares Rei II's rapid development of what looks like a soul — learning gratitude when she thanks Shinji for cleaning her room, learning to smile, being told by Toji that she has a purpose, and finally choosing to sacrifice herself to protect Shinji — to the familiar \"puppet becomes human\" arc of Pinocchio or Key the Metal Idol. His complaint isn't that the parallel doesn't work, but that a premise substantial enough to carry an entire series on its own gets compressed into a handful of episodes before Rei dies.",
+      "links": [{ "id": "armisael-attack-rei-suicide", "label": "The death this arc builds toward" }],
+      "sourceRefs": ["ann-thin-veneer-evangelion"]
+    },
+    {
+      "id": "toji-kensuke-hikari-abrupt-writeoff",
+      "episode": 24,
+      "type": "fact",
+      "title": "A criticized one-line dismissal of Toji, Kensuke, and Hikari",
+      "body": "After building up Toji as a sympathetic tragic figure across several episodes — his growing friendship with Shinji, his relationship with Hikari, and his crippling injury as Unit-03's pilot — the show writes all three off with a single line of Shinji's narration: \"The city was destroyed, so they had to move away.\" Kenneth Lee's 1998 review holds this up as the clearest example of the finale discarding secondary characters the moment their plot usefulness runs out, with none of the three getting so much as a farewell scene.",
+      "links": [{ "id": "bardiel-possession-toji", "label": "The injury this writeoff follows" }],
+      "sourceRefs": ["ann-thin-veneer-evangelion"]
+    },
+    {
+      "id": "eva-sins-of-father-biblical-parallel",
+      "episode": 21,
+      "type": "theory",
+      "title": "A \"sins of the fathers\" reading across four generations",
+      "body": "Kenneth Lee's 1998 review proposes a shared pattern across the show's main parent/child pairs, modeled on the Exodus line about the sins of the parents being visited on their children: Naoko's affair and betrayal echoed in Ritsuko's own entanglement with Gendo; Misato's father dying in pursuit of the truth behind Second Impact echoed in Misato's own reckless disregard for her safety chasing the same secrets; Kyoko's breakdown and suicide after Angel contact echoed in Asuka's breakdown and suicide attempt after her own; and Gendo's willingness to die for his convictions echoed in Shinji's repeated willingness to risk death for his. The review treats the pattern as suggestive rather than something the text confirms outright.",
+      "links": [
+        { "id": "naoko-kills-rei-suicide", "label": "The first half of the Naoko/Ritsuko pairing" },
+        { "id": "asuka-mother-backstory", "label": "The first half of the Kyoko/Asuka pairing" }
+      ],
+      "sourceRefs": ["ann-thin-veneer-evangelion"]
+    },
+    {
+      "id": "eva-kaworu-relationship-pacing-criticism",
+      "episode": 24,
+      "type": "fact",
+      "title": "Early, skeptical criticism of the pace of Shinji and Kaworu's bond",
+      "body": "Alongside far more sympathetic later readings, Kenneth Lee's 1998 review is an early example of criticism aimed squarely at how quickly Shinji and Kaworu's relationship is drawn — arguing it's implausible for a character established across twenty episodes as guarded and withdrawn. The review specifically contrasts Shinji recoiling from Misato's comforting touch right after Rei's death with his acceptance of Kaworu's touch soon after meeting him, reading the shift as unearned rather than as a deliberate contrast.",
+      "links": [{ "id": "kaworus-feelings", "label": "A more sympathetic reading of the same relationship" }],
+      "sourceRefs": ["ann-thin-veneer-evangelion"]
+    },
+    {
+      "id": "ep2126-1998-negative-review",
+      "episode": 26,
+      "type": "fact",
+      "title": "An early, harshly negative published review of the finale",
+      "body": "Kenneth Lee's September 1998 Anime News Network editorial is one of the earliest published English-language reviews of the finale, and among its harshest: it argues episodes 21-26 abandon the narrative foundation built across the first twenty episodes, dismisses the introspective closing episodes as failed \"art-house\" pretension rather than earned catharsis, and singles out Kaworu's line \"death is the only true freedom\" as especially ironic — coming, as the review points out, from a character who is himself an Angel.",
+      "links": [{ "id": "finale-controversy", "label": "Production-side explanations for how the finale took shape" }],
+      "sourceRefs": ["ann-thin-veneer-evangelion"]
+    },
+    {
+      "id": "murakami-little-boy-postwar-trauma",
+      "episode": 1,
+      "type": "theory",
+      "title": "One line in a much bigger argument: Eva and postwar trauma",
+      "body": "Artist Takashi Murakami's 2005 book and exhibition Little Boy: The Arts of Japan's Exploding Subculture — its title borrowed from the code name of the Hiroshima atomic bomb — situates Evangelion as one data point in a much wider argument that postwar Japanese pop culture (kaiju, mecha, apocalyptic anime broadly) channels an unprocessed national trauma from defeat and Allied occupation. Murakami's own essay only touches on the show briefly, alongside dozens of other subjects from Akira and Gundam to convenience stores and neuroscience writing, so the claim functions more as a passing citation within his broader thesis than a developed reading of Eva specifically.",
+      "links": [{ "id": "second-impact", "label": "The in-story catastrophe this reading is implicitly reading through" }],
+      "sourceRefs": ["ann-brain-diving-little-boy"]
+    },
+    {
+      "id": "anno-evangelion-name-explanation",
+      "episode": 1,
+      "type": "fact",
+      "title": "Anno's own explanation of the title, to a class of schoolkids",
+      "body": "In a 1999 NHK special where Anno returned to his old elementary school to teach a class, a student asked why the show was called Evangelion. Anno's answer: \"It comes from a Christian word meaning 'Gospel,' and it's supposed to bring blessings. It has some Greek roots. I chose the name because it sounds complicated.\"",
+      "links": [{ "id": "evangelion-pronunciation-etymology", "label": "The etymology this explanation touches on" }],
+      "sourceRefs": ["ann-buried-treasure-anno-talks-to-kids"]
+    },
+    {
+      "id": "anno-hometown-visual-influence",
+      "episode": 1,
+      "type": "fact",
+      "title": "Anno's hometown, and how much of it ended up on screen",
+      "body": "The same 1999 special returns Anno to Ube, his hometown in Yamaguchi Prefecture — a struggling factory town dominated by smog, smokestacks, and power lines, built around a chemical plant. The reviewer covering the special notes how directly Eva's own visual signature (power lines strung across man-made landscapes, industrial infrastructure) traces back to these surroundings, going so far as to say the imagery makes you expect to see Asuka round the corner.",
+      "links": [],
+      "sourceRefs": ["ann-buried-treasure-anno-talks-to-kids"]
+    },
+    {
+      "id": "anno-self-esteem-quotes-1999",
+      "episode": "eoe",
+      "type": "fact",
+      "title": "Anno, asked directly about self-esteem, in 1999",
+      "body": "Fielding questions from his old schoolkids, Anno was open about his own self-regard: \"I'm not crazy about myself. I'm often told that those who don't like themselves have high ideals, but I think someone who says that doesn't really understand the pain that's involved.\" Asked which parts of his own anime he dislikes, he answered: \"The parts that I'm in.\"",
+      "links": [
+        { "id": "anno-metanarrative", "label": "How this self-regard is read into the finale itself" },
+        { "id": "anno-death-threats-depression", "label": "The backlash Anno faced around the same period" }
+      ],
+      "sourceRefs": ["ann-buried-treasure-anno-talks-to-kids"]
+    },
+    {
+      "id": "anno-young-anno-biographical-details",
+      "episode": 1,
+      "type": "fact",
+      "title": "A few details about young Anno",
+      "body": "Interviewed by the schoolkids for the same special, Anno's parents and childhood friends filled in a few details: he was rejected from a childhood painting contest and turned his attention to manga afterward, loved watching the stars, and wrote his elementary-school graduation essay about his frustration at not being allowed to draw manga in class. He also recalled attending a Gundam exhibition on a department store rooftop as a kid.",
+      "links": [],
+      "sourceRefs": ["ann-buried-treasure-anno-talks-to-kids"]
     }
   ]
 }
