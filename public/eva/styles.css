@@ -333,8 +333,8 @@ body {
 
   .detail-panel {
     position: static;
-    flex: 0 0 22rem;
-    width: 22rem;
+    flex: 0 0 30%;
+    min-width: 20rem;
     max-height: none;
     height: var(--timeline-height);
     border-radius: var(--radius-card);
