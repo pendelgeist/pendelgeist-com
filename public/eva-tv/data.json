@@ -78,7 +78,8 @@
     "ann-take-care-of-yourself-p2": { "lang": "en", "title": "Take Care of Yourself - Part Two — Anime News Network", "url": "https://www.animenewsnetwork.com/feature/2006-09-20" },
     "ann-list-strange-merchandise": { "lang": "en", "title": "7 Strangest Pieces of Evangelion Merchandise — Anime News Network (The List)", "url": "https://www.animenewsnetwork.com/the-list/2016-12-24/.110316" },
     "ann-list-seven-angels-etymology": { "lang": "en", "title": "Get to Know Seven of Evangelion's Angels — Anime News Network (The List)", "url": "https://www.animenewsnetwork.com/the-list/2019-06-15/.147742" },
-    "ann-anno-after-evangelion": { "lang": "en", "title": "Hideaki Anno: After Evangelion — Anime News Network", "url": "https://www.animenewsnetwork.com/feature/2019-06-19/hideaki-anno-after-evangelion/.148019" }
+    "ann-anno-after-evangelion": { "lang": "en", "title": "Hideaki Anno: After Evangelion — Anime News Network", "url": "https://www.animenewsnetwork.com/feature/2019-06-19/hideaki-anno-after-evangelion/.148019" },
+    "ann-anno-itano-apocalypse": { "lang": "en", "title": "Anno, Itano, and the Apocalypse: Intergenerational Struggle in Megazone 23 and Neon Genesis Evangelion — Anime News Network", "url": "https://www.animenewsnetwork.com/feature/2021-05-03/anno-itano-and-the-apocalypse-intergenerational-struggle-in-megazone-23-and-neon-genesis-evangelion/.172158" }
   },
   "episodes": [
     { "number": 1, "title": "Angel Attack", "subtitle": "JP: 使徒、襲来 — lit. \"Angel, Attack\" · aired 1995-10-04, 6.8%" },
@@ -3077,6 +3078,42 @@
       "body": "Henderson argues Eva's actual plot, taken on its own terms, is \"quite silly\" — a jellyfish-shaped Angel threatening to replace humanity as the dominant species, a diamond-bodied Angel with a drill for a body, an orange \"teething ring\" shape that flies — but that this doesn't make the show badly written, since \"good writing\" and \"good stories\" aren't the same thing. On this reading, the monster-of-the-week format and its gimmicky Angel premises are a scaffold carrying the show's real content (character expression) rather than being that content themselves — pointing to how a diamond-drill Angel becomes the occasion for an ambitious countrywide sniping operation, or a flying \"teething ring\" becomes a tense race-against-time game of catch.",
       "links": [],
       "sourceRefs": ["ann-take-care-of-yourself-p1", "ann-take-care-of-yourself-p2"]
+    },
+    {
+      "id": "anno-megazone23-itano-mentorship",
+      "episode": 1,
+      "type": "fact",
+      "title": "Anno's early career: Megazone 23, and a mentor named Itano",
+      "body": "Before Evangelion, a twenty-something Anno worked as a freelance animator on the original 1985 Megazone 23 OAV for studio AIC, around the same period he was presenting short films at Daicon and impressing Hayao Miyazaki with his work on Nausicaä of the Valley of the Wind. On Megazone 23, and earlier on Space Runaway Ideon and The Super Dimension Fortress Macross, Anno worked alongside animator Ichirō Itano — creator of the swarming-missile \"Itano Circus\" technique — whom he came to regard as a mentor. At the 2014 Tokyo International Film Festival, Anno credited his admiration for Itano's work on the Mobile Suit Gundam franchise as the reason he pursued a career in animation in the first place.",
+      "links": [{ "id": "itano-circus-tokusatsu-refs", "label": "The technique named after Itano, quoted in episode 1 itself" }],
+      "sourceRefs": ["ann-anno-itano-apocalypse"]
+    },
+    {
+      "id": "megazone23-eva-structural-parallels",
+      "episode": 1,
+      "type": "theory",
+      "title": "An underrated precursor: Megazone 23",
+      "body": "Critic Jonny Lobo argues the 1985 OAV Megazone 23 — which Anno worked on as an animator — deserves more recognition as a likely influence on Evangelion than it typically gets. Parallels cited include a secret city built beneath an older Tokyo and shielded by massive moving mechanisms (echoing NERV's Geofront), biblical names used mostly for exotic flavor rather than deep symbolism, human-like extraterrestrial antagonists that provoke existential and epistemological crises rather than straightforward action, and technology cast as a mother figure to disoriented teenage leads.",
+      "links": [{ "id": "nerv", "label": "The organization whose own hidden city echoes Megazone 23's" }],
+      "sourceRefs": ["ann-anno-itano-apocalypse"]
+    },
+    {
+      "id": "anno-newtype-ambiguity-quote",
+      "episode": 26,
+      "type": "fact",
+      "title": "Anno, on why the ending is left so open",
+      "body": "Asked by Newtype magazine about the ambiguity running through Evangelion's ending, Anno said: \"we're offering viewers to think by themselves, so that each person can imagine his/her own world.\"",
+      "links": [{ "id": "finale-controversy", "label": "Other staff accounts of how the finale came together" }],
+      "sourceRefs": ["ann-anno-itano-apocalypse"]
+    },
+    {
+      "id": "eva-megazone23-apocalypse-music-parallel",
+      "episode": "eoe",
+      "type": "theory",
+      "title": "A shared pairing of apocalyptic footage with rapturous music",
+      "body": "Critic Jonny Lobo notes that both EoE and Megazone 23 Part II open on scenes of mass destruction scored to music that reads as melancholic and rapturous at once — \"Komm, süsser Tod\" in EoE's case, \"Himitsu Kudasai\" in Megazone 23's. The reading treats this as more than coincidence: both works suggest that large-scale societal collapse is inevitable and cyclical, with only the outcome (crucible or ruin) left genuinely in question — a nihilistic throughline Lobo also ties to the wider Y2K-era anxieties (rapture fiction, millennial unease) both franchises were made and watched within.",
+      "links": [],
+      "sourceRefs": ["ann-anno-itano-apocalypse"]
     }
   ]
 }
