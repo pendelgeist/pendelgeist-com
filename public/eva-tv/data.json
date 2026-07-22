@@ -1984,7 +1984,7 @@
       "type": "fact",
       "title": "The backlash that nearly ended Anno's career",
       "body": "After the TV finale aired, Anno faced fierce backlash accusing him of abandoning the plot and being lazy; he read online discussions debating the best way to kill him, stopped wanting to work in animation, and has said he contemplated suicide. Director and friend Hayao Miyazaki reportedly advised him to take a break before starting work on the film version.",
-      "links": [ { "id": "finale-controversy", "label": "The finale backlash this responds to" }, { "id": "anno-happiness-quote", "label": "Anno's own doubts about his audience, voiced as far back as episode 1" } ],
+      "links": [ { "id": "finale-controversy", "label": "The finale backlash this responds to" }, { "id": "anno-happiness-quote", "label": "Anno's own doubts about his audience, voiced as far back as episode 1" }, { "id": "anno-his-and-her-circumstances-departure", "label": "What Anno did professionally in the aftermath" } ],
       "sourceRefs": ["ja-wiki-eoe"],
       "quote": {
         "lang": "ja",
@@ -2131,7 +2131,7 @@
       "type": "fact",
       "title": "The fandom infrastructure Eva walked into",
       "body": "In 1995 North America, official anime was scarce and expensive — early distributors like AnimEigo, US Renditions, and A.D. Vision had only just formed, and a single tape could run $45-50. Fans filled the gap with tape trading: raw or home-recorded episodes moved from Japanese video stores and Japan-based contacts to fansubbing groups like William Chow's Arctic Animation, who copied and mailed tapes to anyone who sent blank cassettes and return postage.",
-      "links": [],
+      "links": [{ "id": "gainax-pre-eva-us-fandom", "label": "How Gainax specifically already fit into this fandom" }],
       "sourceRefs": ["ann-absolute-borderline-p1"]
     },
     {
@@ -2140,7 +2140,7 @@
       "type": "fact",
       "title": "Gainax already had an American fan base before Eva existed",
       "body": "Gainax's Daicon opening films played at American conventions years earlier, Toren Smith had shared a house with studio staff, and fans met the crew at the 1987 Los Angeles premiere of Royal Space Force (then titled Star Quest). Gainax co-presented AnimeCon91, the convention that set the template for Anime Expo and Otakon — the latter named for Gainax's own Otaku no Video, which still bookends the video rooms at that con to this day.",
-      "links": [],
+      "links": [{ "id": "eva-first-announced-shonen-ace", "label": "How the studio first announced Eva itself" }],
       "sourceRefs": ["ann-absolute-borderline-p1"]
     },
     {
@@ -2149,7 +2149,7 @@
       "type": "fact",
       "title": "First announced in a company newsletter and a manga, not an anime magazine",
       "body": "Japanese audiences first heard of Evangelion through Gainax's own newsletter G.Press and the start of Sadamoto's manga adaptation in the February 1995 issue of Shōnen Ace (on sale December 1994). The earliest press coverage anywhere, though, ran in the American magazine Animerica that same February — beating Japanese anime magazines like Newtype and Animage to the story.",
-      "links": [],
+      "links": [{ "id": "eva-original-disciples-pitch", "label": "What that first Western scoop actually said" }],
       "sourceRefs": ["ann-absolute-borderline-p1"]
     },
     {
@@ -2158,7 +2158,7 @@
       "type": "fact",
       "title": "\"Disciples,\" not Angels: the pitch that got announced first",
       "body": "Animerica's February 1995 scoop — sourced from a conversation at a Gainax party the previous December — described alien \"Disciples\" who demand humanity halt its genetic-engineering research and grant a grace period before returning. That language didn't survive to broadcast, but it traces back to Gainax's late-1993 pitch documents and preliminary Sadamoto/Yamashita sketches later reprinted in the art book Der Mond.",
-      "links": [],
+      "links": [{ "id": "eva-june95-animerica-preview", "label": "Animerica's next report, a few months later" }],
       "sourceRefs": ["ann-absolute-borderline-p1"]
     },
     {
@@ -2167,7 +2167,7 @@
       "type": "fact",
       "title": "\"No ordinary robot anime\"",
       "body": "Animerica's June 1995 follow-up (drawing on Newtype's April 1995 coverage) quoted Anno dismissing the mecha genre as stale — \"Don't you think that robot animation is behind the times? ... It's not a refreshing or new genre\" — and speculated the show would land as a cult favorite rather than a mainstream hit on the scale of Nadia or Royal Space Force.",
-      "links": [],
+      "links": [{ "id": "eva-tmnt-lead-in", "label": "How the show was actually promoted, months later" }],
       "sourceRefs": ["ann-absolute-borderline-p1"]
     },
     {
@@ -2176,7 +2176,7 @@
       "type": "fact",
       "title": "Its first TV ad ran right after the last Teenage Mutant Ninja Turtles episode",
       "body": "On September 27, 1995 — a week before Evangelion's premiere — TV Tokyo aired the final episode of the 1987 Teenage Mutant Ninja Turtles series, and followed it immediately, in the same slot, with a commercial for the new show.",
-      "links": [],
+      "links": [{ "id": "awa-fansub-premiere", "label": "How Western fans saw the show days before this broadcast even aired" }],
       "sourceRefs": ["ann-absolute-borderline-p1"]
     },
     {
@@ -2185,7 +2185,7 @@
       "type": "fact",
       "title": "Its North American debut was a fan-made VHS at a convention, days before Japan's broadcast",
       "body": "Anime Weekend Atlanta organizer Gordon Waters got a raw tape and a rough translation from a Japanese graduate student, then spent the weekend of October 20-22, 1995 timing subtitles with friends Daric Koslowski and Matt Murray using JACOSUB — a fan-written subtitling program, one of the first of its kind, run on a Commodore Amiga with a video clock synchronizer. The finished fansub premiered October 27 to a packed room at AWA's Castlegate Hotel, five days before most Western fans could see the episode any other way; industry figures Jerry Chu (Bandai), Robert Woodhead (AnimEigo), and Neil Nadelman (U.S. Manga Corps) were in the crowd. It screened again weeks later at New Jersey's Anime East, alongside raw copies of episodes 2-4.",
-      "links": [],
+      "links": [{ "id": "eva-ep1-raa-reception", "label": "How the wider fandom reacted once the episode was actually seen" }],
       "sourceRefs": ["ann-absolute-borderline-p2"]
     },
     {
@@ -2194,7 +2194,7 @@
       "type": "fact",
       "title": "How rec.arts.anime reacted to episode 1",
       "body": "On the Usenet newsgroup rec.arts.anime, early posts favorably compared the episode to contemporary OVAs and praised Megumi Hayashibara's performance as Rei as a departure from the loud, brash roles she usually played, like Ranma from Ranma ½ — with some posters already speculating about the nature of the three pilots.",
-      "links": [],
+      "links": [{ "id": "asuka-raa-first-impression", "label": "The newsgroup's reaction a few episodes later" }],
       "sourceRefs": ["ann-absolute-borderline-p2"]
     },
     {
@@ -2203,7 +2203,7 @@
       "type": "fact",
       "title": "rec.arts.anime's first read on Asuka: \"a total and complete brat\"",
       "body": "At least one rec.arts.anime poster's immediate reaction to Asuka's introduction was hostile, calling her a \"total and complete brat\" — one of several running threads on the newsgroup through the early episodes, alongside fans debating anime-technology details like the cushioning jets on NERV's power plugs and whether episode 10's magnetic Angel-trap would actually work.",
-      "links": [],
+      "links": [{ "id": "comiket49-eva-boom", "label": "How fast Japanese fandom caught up around the same time" }],
       "sourceRefs": ["ann-absolute-borderline-p2"]
     },
     {
@@ -2212,7 +2212,7 @@
       "type": "fact",
       "title": "Comiket sold out on Eva before most fans had even seen the back half",
       "body": "By Comiket 49 (December 29-30, 1995, its last year at the Arumi Fairgrounds), doujinshi circles were already flooding the show with fan content, despite having listed Gundam Wing on their booth applications months earlier — those were due the previous August, before Eva had even premiered. Soundtrack CDs and the first laser disc volume reportedly sold out in Japan around the same time, and the show revived a struggling garage-kit industry, mostly through figures of Asuka and Rei rather than the Eva units themselves.",
-      "links": [],
+      "links": [{ "id": "adv-license-announcement", "label": "The North American licensing news a couple months later" }],
       "sourceRefs": ["ann-absolute-borderline-p2"]
     },
     {
@@ -2248,7 +2248,7 @@
       "type": "fact",
       "title": "ADV's license, announced mid-broadcast",
       "body": "A.D. Vision — already negotiating with MOVIC, which held Eva's international distribution rights — announced on February 12, 1996 that it had won North American rights, surprising competitors who thought they had an inside track. Per co-founder and dub producer Matt Greenfield, MOVIC essentially told ADV the deal was happening rather than shopping it around. Fans were startled ADV landed it at all, given the company's reputation at the time for loose translations and fanservice/hentai releases through its SoftCel Pictures label.",
-      "links": [],
+      "links": [{ "id": "adv-ova-version-confusion", "label": "The confusion ADV's own announcement immediately caused" }],
       "sourceRefs": ["ann-absolute-borderline-p2"]
     },
     {
@@ -2284,7 +2284,7 @@
       "type": "fact",
       "title": "The episode almost nobody posted about",
       "body": "Unlike the outcry around episodes 18-20, rec.arts.anime barely discussed episode 24 at all. The closest thing to a documented contemporary reaction comes from Carl Horn's own account of watching it fansubbed: his impression of the minute-long shot of Unit-01's hand swung from suspicion of corner-cutting (\"I bet the storyboards for this didn't take too long to draw\") to admiration once it landed — \"as usual, Anno's got a lot of guts.\"",
-      "links": [],
+      "links": [{ "id": "ep2526-fan-backlash-quotes", "label": "How much louder that silence got two episodes later" }],
       "sourceRefs": ["ann-absolute-borderline-p3"]
     },
     {
@@ -2311,7 +2311,7 @@
       "type": "fact",
       "title": "Spike Spencer's on-mic reaction became an ADV home-video Easter egg",
       "body": "ADV's English dub actor for Shinji, Spike Spencer, had no idea how the show ended going into the recording session. Producer Matt Greenfield let him rant on open mic once he found out, then played the recording back for every other cast member as they arrived — each of whom reacted the same way. The rant was later included as an Easter egg across ADV's home video releases of the series.",
-      "links": [],
+      "links": [{ "id": "anime-expo-96-eva-wins", "label": "Eva's first major North American convention showing, a couple months later" }],
       "sourceRefs": ["ann-absolute-borderline-p3"]
     },
     {
@@ -2338,7 +2338,7 @@
       "type": "fact",
       "title": "Anime Expo 1996 gave Eva its first major North American honors",
       "body": "At Anime Expo '96 (Anaheim, June 28-30), Evangelion won Best New TV Series at the con's awards ceremony, and a fan-built Rei figure won the official modeling contest. Anno attended as a guest that year alongside Noboru Ishiguro, Yoshiaki Kawajiri, Mamoru Oshii, and Kenichi Sonoda — a notably stacked guest lineup even by AX standards.",
-      "links": [],
+      "links": [{ "id": "eva-na-home-video-timeline", "label": "The home-video rollout running alongside these convention appearances" }],
       "sourceRefs": ["ann-absolute-borderline-p3"]
     },
     {
@@ -2356,7 +2356,7 @@
       "type": "fact",
       "title": "The North American home-video rollout",
       "body": "ADV's VHS release shipped two episodes per tape from August 20, 1996 through its final volume on July 7, 1998. A parallel laser disc release, starting May 17, 1997, was canceled after two volumes because of disc-rot issues affecting the format.",
-      "links": [],
+      "links": [{ "id": "raa-to-modern-fandom", "label": "Where this fandom eventually moved on to" }],
       "sourceRefs": ["ann-absolute-borderline-p3"]
     },
     {
@@ -2727,7 +2727,7 @@
       "type": "fact",
       "title": "Anno, on the TV finale, in his own words",
       "body": "In a 1996 interview conducted during EoE's production — quoted on the forum from a compiled interview archive attributed to researcher gwern — Anno described the TV finale as \"a regression back into the self... I intended to push forward but ended up being drawn into this feeling of blockage.\" Asked directly whether the ending should be read as happy, he said: \"there are probably people who see it as a happy ending. For me, personally, it wasn't very happy. In hindsight.\"",
-      "links": [{ "id": "finale-controversy", "label": "Other staff accounts of how the finale came together" }],
+      "links": [{ "id": "finale-controversy", "label": "Other staff accounts of how the finale came together" }, { "id": "anno-protoculture-finale-defense-quote", "label": "Anno's much more defiant public defense of the same ending" }],
       "sourceRefs": ["evageeks-forum-eoe-hegel-thread"]
     },
     {
@@ -2958,7 +2958,7 @@
       "type": "fact",
       "title": "Anno's own defense of the TV finale, in print",
       "body": "Responding to the backlash in Protoculture Addicts issue #43, Anno stood by the original ending without qualification: \"Most anime fans are furious. I understand their anger. I can't help laughing when hard-core anime fans say that we did a very lousy job, with intentional negligence. No we didn't. No staff members did a lousy job. In fact, every member at Gainax gave more energy than anybody can imagine. I feel sad that those fans couldn't see our efforts. Personally I think the original TV ending we showed ended up beautifully.\"",
-      "links": [ { "id": "ep2526-fan-backlash-quotes", "label": "The fan reactions this is responding to" }, { "id": "chow-finale-structure-theory", "label": "One theory for why the ending provoked this reaction at all" } ],
+      "links": [ { "id": "ep2526-fan-backlash-quotes", "label": "The fan reactions this is responding to" }, { "id": "chow-finale-structure-theory", "label": "One theory for why the ending provoked this reaction at all" }, { "id": "anno-eotv-ending-regression-quote", "label": "Anno's much more private doubts about the same ending" } ],
       "sourceRefs": ["ann-anno-after-evangelion"]
     },
     {
@@ -2985,7 +2985,7 @@
       "type": "fact",
       "title": "Anno walked off his next anime series before it finished",
       "body": "Anno returned to directing anime for His and Her Circumstances (1998), adapted concurrently with Masami Tsuda's ongoing manga, but left the production before its final episodes over disagreements with Tsuda about the show's creative direction and merchandising, plus new restrictions TV Tokyo imposed after the unrelated Pokémon seizure incident. Hiroki Satō finished the series in his place; it would be Anno's last TV anime directing credit for many years.",
-      "links": [],
+      "links": [{ "id": "anno-moyoco-marriage", "label": "What came next in Anno's personal life" }],
       "sourceRefs": ["ann-anno-after-evangelion"]
     },
     {
@@ -2994,7 +2994,7 @@
       "type": "fact",
       "title": "Anno married manga artist Moyoco Anno in 2002",
       "body": "Anno married Happy Mania creator Moyoco Anno on March 26, 2002; friends and colleagues have said the marriage visibly softened him. Moyoco's 2005 manga essay Insufficient Direction chronicles the idiosyncrasies of life married to an otaku director, opening with the question \"Am I truly prepared to be an otaku's wife?\"",
-      "links": [],
+      "links": [{ "id": "anno-rebuild-tetralogy-and-gainax-split", "label": "Anno's next major creative chapter" }],
       "sourceRefs": ["ann-anno-after-evangelion"]
     },
     {
@@ -3003,7 +3003,7 @@
       "type": "fact",
       "title": "The Rebuild films, and Anno's split from Gainax",
       "body": "Anno's Rebuild of Evangelion tetralogy began with Evangelion: 1.0 You Are [Not] Alone (2007) and Evangelion: 2.0 You Can [Not] Advance (2009), both produced with his own Studio Khara alongside Gainax. Around 2.0's release, Anno formally resigned from Gainax after roughly 23 years — the two studios parted on reportedly amicable terms at the time, though Anno later sued Gainax in 2016 over unpaid Evangelion royalties and a negligent loan Khara had extended the studio in 2014.",
-      "links": [],
+      "links": [{ "id": "anno-shin-godzilla", "label": "The detour Anno took partway through the Rebuild films" }],
       "sourceRefs": ["ann-anno-after-evangelion"]
     },
     {
@@ -3157,7 +3157,7 @@
       "title": "A meta reading: the final line as Anno addressing disappointed fans",
       "body": "Forum poster Razeil100 suggests Asuka's closing \"kimochi warui\" isn't really a line spoken by Asuka as a character at all, but one spoken through her — Anno's own message to fans who had reacted badly to the TV finale, a pointed response to being pushed to revisit and \"bastardize\" his original vision with a second ending.",
       "links": [{ "id": "asuka-kimochi-warui-origin", "label": "How the line was actually written and directed" }],
-      "sourceRefs": ["evageeks-forum-pretentiously-deep"]
+      "sourceRefs": ["evageeks-forum-apologies-final-scene"]
     },
     {
       "id": "eoe-red-blue-shift-tv-vs-eoe",
@@ -3166,7 +3166,7 @@
       "title": "A color shift between the TV finale and EoE's ending",
       "body": "Forum poster Eva Yojimbo notes a deliberate color shift between the TV series' \"happy, surreal\" finale and the harsh presentation of EoE's closing scene, even before anything happens in it — reading the blue-to-red shift as visually encoding the tonal gulf between the two endings, ahead of the strangling itself reinforcing that harshness as \"reality\" reasserting itself after Instrumentality.",
       "links": [{ "id": "eoe-red-blue-color-dualism", "label": "A broader red/blue color-symbolism theory applied elsewhere on the page" }],
-      "sourceRefs": ["evageeks-forum-pretentiously-deep"]
+      "sourceRefs": ["evageeks-forum-apologies-final-scene"]
     },
     {
       "id": "eoe-death-complementation-stages-framework",
