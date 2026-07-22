@@ -79,7 +79,15 @@
     "ann-list-strange-merchandise": { "lang": "en", "title": "7 Strangest Pieces of Evangelion Merchandise — Anime News Network (The List)", "url": "https://www.animenewsnetwork.com/the-list/2016-12-24/.110316" },
     "ann-list-seven-angels-etymology": { "lang": "en", "title": "Get to Know Seven of Evangelion's Angels — Anime News Network (The List)", "url": "https://www.animenewsnetwork.com/the-list/2019-06-15/.147742" },
     "ann-anno-after-evangelion": { "lang": "en", "title": "Hideaki Anno: After Evangelion — Anime News Network", "url": "https://www.animenewsnetwork.com/feature/2019-06-19/hideaki-anno-after-evangelion/.148019" },
-    "ann-anno-itano-apocalypse": { "lang": "en", "title": "Anno, Itano, and the Apocalypse: Intergenerational Struggle in Megazone 23 and Neon Genesis Evangelion — Anime News Network", "url": "https://www.animenewsnetwork.com/feature/2021-05-03/anno-itano-and-the-apocalypse-intergenerational-struggle-in-megazone-23-and-neon-genesis-evangelion/.172158" }
+    "ann-anno-itano-apocalypse": { "lang": "en", "title": "Anno, Itano, and the Apocalypse: Intergenerational Struggle in Megazone 23 and Neon Genesis Evangelion — Anime News Network", "url": "https://www.animenewsnetwork.com/feature/2021-05-03/anno-itano-and-the-apocalypse-intergenerational-struggle-in-megazone-23-and-neon-genesis-evangelion/.172158" },
+    "evageeks-forum-pretentiously-deep": { "lang": "en", "title": "Evangelion: Pretentiously deep? — EvaGeeks Forum", "url": "https://forum.evageeks.org/post/75070/Evangelion-Pretentiously-deep/#75070" },
+    "evageeks-forum-apologies-final-scene": { "lang": "en", "title": "Apologies: Final Scene in EoE — EvaGeeks Forum", "url": "https://forum.evageeks.org/thread/3311/Apologies-Final-Scene-in-EoE/" },
+    "stevegilham-death-and-complementation": { "lang": "en", "title": "Death and Complementation — stevegilham.com", "url": "https://stevegilham.com/nge/deathandcomplementation.html" },
+    "stevegilham-first-impressions": { "lang": "en", "title": "Neon Genesis Evangelion — First Impressions — stevegilham.com", "url": "https://stevegilham.com/nge/first.html" },
+    "stevegilham-blood-and-fire": { "lang": "en", "title": "Blood and Fire — Soryu Asuka Langley — stevegilham.com", "url": "https://stevegilham.com/nge/bloodandfire.html" },
+    "stevegilham-second-thoughts": { "lang": "en", "title": "Second Thoughts — stevegilham.com", "url": "https://stevegilham.com/nge/second.html" },
+    "stevegilham-many-worlds": { "lang": "en", "title": "The Many Worlds of Neon Genesis Evangelion — stevegilham.com", "url": "https://stevegilham.com/nge/manyworlds.html" },
+    "stevegilham-eschaton": { "lang": "en", "title": "Neon Genesis Eschaton — stevegilham.com", "url": "https://stevegilham.com/nge/eschaton.html" }
   },
   "episodes": [
     { "number": 1, "title": "Angel Attack", "subtitle": "JP: 使徒、襲来 — lit. \"Angel, Attack\" · aired 1995-10-04, 6.8%" },
@@ -3114,6 +3122,174 @@
       "body": "Critic Jonny Lobo notes that both EoE and Megazone 23 Part II open on scenes of mass destruction scored to music that reads as melancholic and rapturous at once — \"Komm, süsser Tod\" in EoE's case, \"Himitsu Kudasai\" in Megazone 23's. The reading treats this as more than coincidence: both works suggest that large-scale societal collapse is inevitable and cyclical, with only the outcome (crucible or ruin) left genuinely in question — a nihilistic throughline Lobo also ties to the wider Y2K-era anxieties (rapture fiction, millennial unease) both franchises were made and watched within.",
       "links": [],
       "sourceRefs": ["ann-anno-itano-apocalypse"]
+    },
+    {
+      "id": "eoe-visual-linking-technique-ugetsu",
+      "episode": "eoe",
+      "type": "theory",
+      "title": "A formalist reading: visual echoes as scene-linking devices, not hidden meaning",
+      "body": "Forum poster Eva Yojimbo raises a more skeptical, formalist question about Evangelion's habit of visually rhyming distant scenes — most notably, Shinji's tears falling on Asuka's cheek recurring in both the opening credits and the \"One More Final\" closing scene. He compares this to a technique common in older multi-storyline films, citing Kenji Mizoguchi's Ugetsu, where visually similar shots (there, two different characters each killing someone in a near-identical manner) link otherwise unrelated storylines without necessarily implying a deeper causal or thematic connection. On this reading, some of Eva's much-parsed visual callbacks might function primarily as formal nods to earlier moments rather than encoded clues to Asuka's state of mind or the \"true\" meaning of her final line.",
+      "links": [{ "id": "eoe-beach-scene", "label": "The scene this skepticism is aimed at" }],
+      "sourceRefs": ["evageeks-forum-pretentiously-deep"]
+    },
+    {
+      "id": "eotv-congratulations-nation-of-children-reading",
+      "episode": 26,
+      "type": "theory",
+      "title": "A political reading of \"Congratulations\": Japan as a nation of children",
+      "body": "Forum poster Eva Yojimbo connects the TV finale's closing line, \"To all the children — congratulations,\" to Anno's stated feeling that postwar Japan was a nation of children trying to grow up too fast to catch up with the West. On this reading, the line isn't only about Shinji's personal psychological growth — it's also a political and generational statement about Japan's own compressed, pressured modernization.",
+      "links": [{ "id": "anno-metanarrative", "label": "The more personal reading of this same finale" }],
+      "sourceRefs": ["evageeks-forum-pretentiously-deep"]
+    },
+    {
+      "id": "nge-japan-political-vs-west-psychological-reception",
+      "episode": 26,
+      "type": "theory",
+      "title": "A divide in reception: political work in Japan, psychological work in the West",
+      "body": "Forum poster Eva Yojimbo argues that Japanese audiences and critics have tended to receive Evangelion as a fundamentally political work engaging with modern Japanese identity, duty, and the costs of the country's rapid postwar advancement, while Western fandom has more often read it as an existential, psychological character study — a gap he attributes partly to how few Japanese voices participate directly in English-language Eva discussion.",
+      "links": [],
+      "sourceRefs": ["evageeks-forum-pretentiously-deep"]
+    },
+    {
+      "id": "eoe-line-spoken-through-asuka-not-by-her",
+      "episode": "eoe",
+      "type": "theory",
+      "title": "A meta reading: the final line as Anno addressing disappointed fans",
+      "body": "Forum poster Razeil100 suggests Asuka's closing \"kimochi warui\" isn't really a line spoken by Asuka as a character at all, but one spoken through her — Anno's own message to fans who had reacted badly to the TV finale, a pointed response to being pushed to revisit and \"bastardize\" his original vision with a second ending.",
+      "links": [{ "id": "asuka-kimochi-warui-origin", "label": "How the line was actually written and directed" }],
+      "sourceRefs": ["evageeks-forum-pretentiously-deep"]
+    },
+    {
+      "id": "eoe-red-blue-shift-tv-vs-eoe",
+      "episode": "eoe",
+      "type": "theory",
+      "title": "A color shift between the TV finale and EoE's ending",
+      "body": "Forum poster Eva Yojimbo notes a deliberate color shift between the TV series' \"happy, surreal\" finale and the harsh presentation of EoE's closing scene, even before anything happens in it — reading the blue-to-red shift as visually encoding the tonal gulf between the two endings, ahead of the strangling itself reinforcing that harshness as \"reality\" reasserting itself after Instrumentality.",
+      "links": [{ "id": "eoe-red-blue-color-dualism", "label": "A broader red/blue color-symbolism theory applied elsewhere on the page" }],
+      "sourceRefs": ["evageeks-forum-pretentiously-deep"]
+    },
+    {
+      "id": "eoe-death-complementation-stages-framework",
+      "episode": "eoe",
+      "type": "theory",
+      "title": "A five-stage framework for reading Complementation's structure",
+      "body": "Essayist Steve Gilham proposes reading Complementation as unfolding in five distinct stages. \"Coalescence\" begins with Shinji and Asuka in intimate spiritual contact. \"Expansion\" folds in the recently deceased, including Misato's uncensored regrets about Shinji and her memories of Kaji. \"Reiteration\" twists earlier show moments into new shapes — the episode 15 kiss recurs as a kick, and Shinji's callous \"Kaji is dead, Asuka\" from episode 24 resurfaces — separated by a scene replaying Shinji's earlier train-carriage confrontations from within Unit-01. \"Impact\" covers Third Impact itself engulfing the world, with only scattered lines left as Asuka's contribution. \"Transition\" is the re-embodied aftermath: two pilots on a darkling shore, where the strangling and caress finally play out.",
+      "links": [{ "id": "eoe-beach-scene", "label": "The scene this framework builds toward" }],
+      "sourceRefs": ["stevegilham-death-and-complementation"]
+    },
+    {
+      "id": "eoe-asuka-mercy-killing-broken-hypothesis",
+      "episode": "eoe",
+      "type": "theory",
+      "title": "Gilham's hypothesis: a mercy killing Asuka herself asked for",
+      "body": "Steve Gilham's central hypothesis holds that Asuka is already established as dead before the beach scene — fatally wounded fighting the Mass Production Evangelions, and (it's implied) greeted by Rei much as Ritsuko and Misato were. Her last recorded communication to Shinji during Complementation was \"if I have to be with you, I'd rather die\" — so on this reading, Shinji's strangling is him giving her exactly what he believes she asked for, not an act of hatred or self-assertion. Her hand on his cheek reads as fond approval that he remembered; his collapse into tears is him \"bottling\" the act rather than completing it — reinforced by the fact that her caress echoes his mother Yui's own farewell caress just before departing Unit-01 earlier in the film, a memory that would plausibly be what actually breaks his resolve. Under this reading, Asuka's final line isn't disgust at being strangled, but disgusted disappointment that he couldn't go through with it.",
+      "links": [
+        { "id": "eoe-strangling-as-mercy-killing", "label": "A separate mercy-killing reading with a different rationale" },
+        { "id": "asuka-kimochi-warui-origin", "label": "How the closing line was actually written" }
+      ],
+      "sourceRefs": ["stevegilham-death-and-complementation"]
+    },
+    {
+      "id": "eoe-death-complementation-bad-end",
+      "episode": "eoe",
+      "type": "theory",
+      "title": "Gilham's alternate \"Bad End\": unfinished business, not mercy",
+      "body": "Gilham also lays out a considerably darker alternate reading he doesn't rule out: that Shinji's strangling isn't mercy or self-assertion at all, but simply a continuation of unfinished business from the kitchen-scene confrontation earlier in Complementation — Shinji as \"the little squit we already take him for,\" with Asuka's stillness explained by her being too debilitated to fight back rather than by any acceptance of what's happening. Gilham closes this reading by rendering her final line through a misapplied quotation from Marlowe's Doctor Faustus — Mephistopheles' \"Why, this is Hell; nor am I out of it\" — casting the ending as a genuine trap rather than any form of catharsis.",
+      "links": [
+        { "id": "eoe-strangling-as-self-assertion", "label": "The more optimistic reading this directly opposes" },
+        { "id": "eoe-asuka-mercy-killing-broken-hypothesis", "label": "The more sympathetic hypothesis Gilham weighs this against" }
+      ],
+      "sourceRefs": ["stevegilham-death-and-complementation"]
+    },
+    {
+      "id": "eva-unresolved-continuity-questions",
+      "episode": 1,
+      "type": "fact",
+      "title": "A few continuity questions fans have never fully resolved",
+      "body": "Among a list of open questions essayist Steve Gilham compiled after a first viewing: how Unit-00's and Unit-02's in-story activation dates (2014 and 2015) square with Yui and Kyoko supposedly undergoing their contact experiments around the same time in 2004; and, more pointedly, what Shinji actually means when he tells Misato \"I've done terrible things to Asuka\" if the earlier strangling attempt during Instrumentality was only ever a fantasy that never physically happened — a line that reads oddly if nothing had actually occurred between them.",
+      "links": [],
+      "sourceRefs": ["stevegilham-first-impressions"]
+    },
+    {
+      "id": "asuka-hedgehogs-dilemma-armor-reading",
+      "episode": 8,
+      "type": "theory",
+      "title": "Asuka's armor as the Hedgehog's Dilemma from the other side",
+      "body": "Essayist Steve Gilham reads Asuka's loud, aggressive exterior as the same underlying problem Shinji has, expressed in the opposite direction: where Shinji withdraws to avoid being hurt, Asuka's prickliness is a defensive performance covering the same fear of rejection — both of them navigating the same Hedgehog's Dilemma from opposite poles. Given her background (barely a teenager, already fast-tracked through university, and marked by her mother's suicide before she turned four), he argues that managing even this much of an approximation to normal social behavior is impressive rather than a character flaw.",
+      "links": [{ "id": "hedgehogs-dilemma-concept", "label": "The parable this reading applies to Asuka specifically" }],
+      "sourceRefs": ["stevegilham-blood-and-fire"]
+    },
+    {
+      "id": "eoe-taming-of-the-shrew-parallel",
+      "episode": "eoe",
+      "type": "theory",
+      "title": "A Taming of the Shrew parallel for the closing scene",
+      "body": "Essayist Steve Gilham draws a comparison between EoE's final scene and Shakespeare's The Taming of the Shrew, specifically as staged in the feminist-polemic productions that read the play as gruelling rather than romantic — a tonal register he finds similar to EoE's ending. He notes this reading gets unexpected support from trivia: concept art for the unrealized live-action Evangelion film reportedly renamed Asuka \"Kate Rose,\" after the Shrew's own Katherine.",
+      "links": [{ "id": "eoe-beach-scene", "label": "The scene this comparison is drawn to" }],
+      "sourceRefs": ["stevegilham-blood-and-fire"]
+    },
+    {
+      "id": "geofront-geometry-inconsistency",
+      "episode": 1,
+      "type": "fact",
+      "title": "The GeoFront's stated dimensions don't actually add up",
+      "body": "Working through the show's own stated figures — a sphere 13.75km across, 89% buried, with only a 900m-high, 6km-wide cap exposed — essayist Steve Gilham calculates that an 11%-exposed spherical cap and a cap of those specific dimensions are mathematically inconsistent with each other: the stated height and width actually correspond to roughly 1.2% of the sphere's volume being exposed, not 11%. However fictional the underlying physics, the GeoFront's own geometry doesn't check out against itself.",
+      "links": [{ "id": "nerv", "label": "The organization the GeoFront serves as headquarters for" }],
+      "sourceRefs": ["stevegilham-second-thoughts"]
+    },
+    {
+      "id": "eoe-giant-rei-impact-energy-calculation",
+      "episode": "eoe",
+      "type": "theory",
+      "title": "Working out Giant Rei's impact energy, and what it implies about who comes back",
+      "body": "Essayist Steve Gilham runs the numbers on Giant Naked Rei's collapse into the Pacific at the end of EoE — roughly 100 miles tall, and (assuming a flesh-like density) calculated to release energy comparable to a dinosaur-extinction-scale asteroid impact. Taking that scale of devastation seriously, he reads the ending's ambiguous fate for humanity pessimistically: rather than everyone quietly resuming their old lives, most of post-Instrumentality humanity would have little reason to want to return to a ravaged Earth at all, remaining instead as disembodied consciousness in the red-tinted band visible in the sky (bled, in this reading, from Rei's neck wound) — with Shinji and Asuka as special, privileged exceptions forced back into physical bodies rather than granted the same choice.",
+      "links": [
+        { "id": "post-eoe-world", "label": "The broader unresolved question this calculation is trying to answer" },
+        { "id": "rei-merges-lilith-eoe", "label": "The transformation whose scale this calculation is based on" }
+      ],
+      "sourceRefs": ["stevegilham-second-thoughts"]
+    },
+    {
+      "id": "eva-original-pitch-episode-outline",
+      "episode": 1,
+      "type": "fact",
+      "title": "The original episode-by-episode pitch, and how far the show drifted from it",
+      "body": "A pre-production episode outline (reproduced from the 100% Newtype Collection) shows just how different Evangelion's original plan was from what aired: episode 1, titled \"People's Reunion,\" already has Unit-00 fighting an Angel called \"Rajiel\" before Shinji even arrives in Tokyo-3; the endgame is built around a \"Human Completion Program\" rather than Instrumentality; a location called \"Aluka\" serves as a \"promised land\"; Eva units 05 and 06 are sent from Germany; and the 12th Angel erases the Americas outright. Read against the aired series, the outline shows both the shadows of episodes that did make it to screen and plot threads more radical than even most fan fiction attempts.",
+      "links": [
+        { "id": "ep1-original-two-parter-draft", "label": "An earlier, more detailed look at this same original episode 1 pitch" },
+        { "id": "ep1-schedule-crisis", "label": "Part of why the finished show drifted so far from this outline" }
+      ],
+      "sourceRefs": ["stevegilham-many-worlds"]
+    },
+    {
+      "id": "eoe-scrapped-alternate-ending-shots",
+      "episode": "eoe",
+      "type": "fact",
+      "title": "Discarded alternate shots for EoE's closing beats",
+      "body": "Surviving pre-production art shows at least two discarded alternate beats for the ending: one in which Asuka scornfully kicks over Shinji's grave marker, rather than the version that shipped, which simply shows it already fallen; and one in which Shinji is shown holding hands with what turns out to be a disembodied arm. Some read the finished film's own shot of just Asuka's severed forearm as a surviving, darker echo of that scrapped beat.",
+      "links": [{ "id": "eoe-beach-scene", "label": "The finished version of this ending" }],
+      "sourceRefs": ["stevegilham-many-worlds"]
+    },
+    {
+      "id": "eotv-ep25-eoe-concurrency-evidence",
+      "episode": 25,
+      "type": "fact",
+      "title": "Evidence that episode 25 and EoE unfold concurrently",
+      "body": "Scattered within the TV finale's largely abstract episode 25, before its \"Congratulations\" sequence, are brief inserted shots that only make sense if EoE's physical events are already unfolding at the same time: Unit-02 sitting in a lake, Asuka feeling useless at her controls, Ritsuko dissolved into LCL, and Misato's death. Cited as evidence that the TV finale and EoE aren't meant as two separate, mutually exclusive endings so much as two views onto the same underlying event.",
+      "links": [{ "id": "two-endings", "label": "The more general framing of how the two endings relate" }],
+      "sourceRefs": ["stevegilham-many-worlds"]
+    },
+    {
+      "id": "third-impact-technological-singularity-reading",
+      "episode": "eoe",
+      "type": "theory",
+      "title": "Third Impact read as a Technological Singularity \"hard takeoff\"",
+      "body": "Essayist Steve Gilham reads Third Impact through the lens of the Technological Singularity — the idea, from futurist Vernor Vinge, that recursive self-improvement could abruptly produce superhuman intelligence. On this reading, Giant Naked Rei — a fusion of Adam, Lilith, Rei, and fragments of Yui — is the suddenly emergent transhuman intelligence, while the many \"lesser Reis\" appearing to each character in the form of their most beloved person function like Singularitarian \"Transition Guides,\" bridging ordinary humanity and whatever comes after it. Because Gendo occupies a privileged, unfriendly position at the controls rather than a neutral one, the reading treats Third Impact as an involuntary, non-benevolent version of what Singularitarian writing calls a \"hard takeoff.\" Gilham traces the reading's textual hook back to episode 2's title card for the \"Human Instrumentality Project ... Business Plan Outline,\" glimpsed well before Third Impact is ever explained.",
+      "links": [
+        { "id": "human-instrumentality-project", "label": "The in-story program this reading builds on" },
+        { "id": "rei-merges-lilith-eoe", "label": "The transformation read here as an emergent superintelligence" }
+      ],
+      "sourceRefs": ["stevegilham-eschaton"]
     }
   ]
 }
