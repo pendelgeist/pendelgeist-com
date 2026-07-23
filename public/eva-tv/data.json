@@ -116,7 +116,8 @@
     { "number": 24, "title": "The Beginning and the End, or \"Knockin' on Heaven's Door\"", "subtitle": "JP: 最後のシ者 — lit. \"The Last Shisha\" (pun: 使者 messenger / 死者 the dead) · aired 1996-03-13, 6.0%" },
     { "number": 25, "title": "Do You Love Me?", "subtitle": "JP: 終わる世界 — lit. \"A World That Is Ending\" · aired 1996-03-20, 7.7%" },
     { "number": 26, "title": "Take Care of Yourself", "subtitle": "JP: 世界の中心でアイを叫んだけもの (after Harlan Ellison's \"The Beast that Shouted Love at the Heart of the World\") · aired 1996-03-27, 10.3% (highest rating of the series)" },
-    { "number": "eoe", "title": "The End of Evangelion", "subtitle": "Theatrical alternate ending to episodes 25–26" }
+    { "number": "eoe", "title": "The End of Evangelion", "subtitle": "Theatrical alternate ending to episodes 25–26" },
+    { "number": "extra", "title": "Potpourri", "subtitle": "Merchandise, legacy, and other odds and ends that don't belong to any single episode" }
   ],
   "entries": [
     {
@@ -321,20 +322,6 @@
       "sourceRefs": ["en-wiki-ep1", "ja-wiki-ep1"]
     },
     {
-      "id": "ep1-original-two-parter-draft",
-      "episode": 1,
-      "type": "fact",
-      "title": "The scrapped two-part opening",
-      "body": "Gainax's original 1993 pitch document had this episode titled \"People's Reunion\" and structured as a diptych with episode 2. It was to open with Shinji stuck on a train during a battle between Rei's Eva-00 and a \"metallic\" Angel named Raziel, who vanishes into a lake, sending a damaged Unit 00 back to base; the start of a separate fight between Raziel and a berserk Unit 01 was also planned for this episode before being pushed into episode 2.",
-      "links": [ { "id": "original-28-angels-concept", "label": "Another scrapped early-draft concept" } ],
-      "sourceRefs": ["ja-wiki-ep1", "en-wiki-ep1"],
-      "quote": {
-        "lang": "ja",
-        "original": "当初の案では、列車に乗っていたシンジが、綾波レイの操縦するエヴァ零号機と使徒「ラジエル」の戦闘により足止めを食らう場面から始まる予定であった。その戦闘でラジエルは湖へと姿を消し、損傷した零号機はNERV本部へと帰還するという流れである。",
-        "translation": "\"In the original plan, the episode was to open with Shinji stuck on a train during a battle between Rei Ayanami's piloted Eva Unit-00 and the Angel 'Raziel'; in that battle Raziel would vanish into a lake, and the damaged Unit-00 would return to NERV headquarters.\""
-      }
-    },
-    {
       "id": "ep1-schedule-crisis",
       "episode": 1,
       "type": "fact",
@@ -392,15 +379,6 @@
       "sourceRefs": ["en-wiki-ep1"]
     },
     {
-      "id": "shinji-gendo-tool-reading",
-      "episode": 1,
-      "type": "theory",
-      "title": "Shinji (and Rei) as instruments, not sons",
-      "body": "Several scholars single out this episode as already making clear that Gendo treats both Shinji and Rei as tools toward his own ends rather than as people he has any relationship with — a reading that only sharpens once Gendo's actual motive (reuniting with Yui through Instrumentality) is spelled out later in the series.",
-      "links": [ { "id": "gendos-motive-reading", "label": "Gendo's motive, once it's made explicit" }, { "id": "gendo-praise-shinji-motivation", "label": "Where this reading pays off explicitly, in episode 12" } ],
-      "sourceRefs": ["en-wiki-ep1"]
-    },
-    {
       "id": "misato-fanservice-debate",
       "episode": 1,
       "scene": "Misato's photo/note to Shinji",
@@ -419,15 +397,6 @@
       "body": "The opening missile-barrage attack on Sachiel visually quotes the \"Itano Circus\" — the swarming-missile animation technique from Macross, a series Anno and other future Gainax staff worked on as animators before Evangelion. Beyond that one homage, critic Philip Brophy describes the episode's opening minutes as a dense collage of Japanese tokusatsu/kaiju quotations (Godzilla, Ultra Q, Mazinger Z, Yamato, Gundam), and the episode borrows visual language from director Akio Jissoji's own distinctive style. Real-world military hardware appears throughout, including Type 74 tanks, Yak-38-inspired VTOLs, and M270 MLRS launchers.",
       "links": [],
       "sourceRefs": ["en-wiki-ep1", "ja-wiki-ep1"]
-    },
-    {
-      "id": "gainax-festival-preview",
-      "episode": 1,
-      "type": "fact",
-      "title": "200 fans saw this months before anyone else",
-      "body": "Episodes 1 and 2 previewed for about 200 attendees at the second Gainax Festival in Itako, Ibaraki, on July 22–23, 1995 — roughly two and a half months before the October 4 broadcast. Per Gainax co-founder Yasuhiro Takeda, the screening showed only the raw episodes; the opening sequence and other finishing elements weren't ready yet.",
-      "links": [],
-      "sourceRefs": ["ja-wiki-ep1", "en-wiki-ep1"]
     },
     {
       "id": "ep1-reception-and-legacy",
@@ -812,7 +781,7 @@
       "type": "theory",
       "title": "Shinji realizes he pilots for his father's approval",
       "body": "After Gendo unexpectedly praises him, Shinji recognizes that the real reason he keeps getting in the Eva is to earn that approval — not duty, not saving the world. Newtype magazine calls Gendo's praise a \"double-edged sword\": it gives Shinji a reason to keep piloting, but ties his self-worth to a father who is otherwise withholding, a dynamic the series revisits explicitly in episode 16.",
-      "links": [ { "id": "shinji-gendo-tool-reading", "label": "How coldly Gendo treated him from episode 1" }, { "id": "gendo-humanizing-moment", "label": "Another rare warm moment, one episode earlier" } ],
+      "links": [ { "id": "gendo-ikari", "label": "How coldly Gendo treated him from episode 1" }, { "id": "gendo-humanizing-moment", "label": "Another rare warm moment, one episode earlier" } ],
       "sourceRefs": ["en-wiki-ep12"]
     },
     {
@@ -1163,7 +1132,7 @@
       "type": "theory",
       "title": "Gendo vs. Shinji as the plank of Carneades",
       "body": "Editor Yūichirō Oguro compares the Gendo/Shinji standoff over Eva-03 to the ancient dilemma of Carneades' plank — two shipwrecked men fighting over a single piece of wood that can only keep one of them alive, in which killing the other might be ethically defensible given the stakes. Gendo acts on that calculus without hesitation; Shinji's entire refusal is a rejection of it.",
-      "links": [ { "id": "gendos-motive-reading", "label": "How sympathetic Gendo's ends-justify-means logic really is" }, { "id": "shinji-gendo-tool-reading", "label": "The instrumental way Gendo has treated Shinji from the start" } ],
+      "links": [ { "id": "gendos-motive-reading", "label": "How sympathetic Gendo's ends-justify-means logic really is" }, { "id": "gendo-ikari", "label": "The instrumental way Gendo has treated Shinji from the start" } ],
       "sourceRefs": ["en-wiki-ep18"]
     },
     {
@@ -1710,7 +1679,7 @@
       "type": "theory",
       "title": "Gendo as tragic rather than purely villainous",
       "body": "Gendo's plan is explicitly framed here as wanting to be with Yui again, but how much sympathy that deserves given the harm he causes Shinji and everyone around him to get there is a matter of ongoing viewer disagreement rather than something the text adjudicates for you.",
-      "links": [ { "id": "gendo-ikari", "label": "Back to Gendo's introduction" }, { "id": "shinji-gendo-tool-reading", "label": "How that read Gendo from the very first episode" }, { "id": "fuyutsuki-yui-backstory", "label": "How Gendo and Yui's relationship actually started" } ],
+      "links": [ { "id": "gendo-ikari", "label": "Back to Gendo's introduction" }, { "id": "fuyutsuki-yui-backstory", "label": "How Gendo and Yui's relationship actually started" } ],
       "sourceRefs": ["tvtropes-wmg-instrumentality", "cbr-fan-explanations"]
     },
     {
@@ -1979,20 +1948,6 @@
       }
     },
     {
-      "id": "anno-death-threats-depression",
-      "episode": "eoe",
-      "type": "fact",
-      "title": "The backlash that nearly ended Anno's career",
-      "body": "After the TV finale aired, Anno faced fierce backlash accusing him of abandoning the plot and being lazy; he read online discussions debating the best way to kill him, stopped wanting to work in animation, and has said he contemplated suicide. Director and friend Hayao Miyazaki reportedly advised him to take a break before starting work on the film version.",
-      "links": [ { "id": "finale-controversy", "label": "The finale backlash this responds to" }, { "id": "anno-happiness-quote", "label": "Anno's own doubts about his audience, voiced as far back as episode 1" }, { "id": "anno-his-and-her-circumstances-departure", "label": "What Anno did professionally in the aftermath" } ],
-      "sourceRefs": ["ja-wiki-eoe"],
-      "quote": {
-        "lang": "ja",
-        "original": "本当のことを言っているかどうか実際は怪しいのに、そのインタビューを読んだ人が額面通りに受け取め、観る側が「監督がそう言ったから、そうだろう」みたいな先入観や見方を限定されたくない",
-        "translation": "\"Even though it's genuinely questionable whether I'm telling the truth, people who read an interview take it at face value — I don't want viewers' perspectives limited by a preconception like 'the director said so, so it must be true.'\""
-      }
-    },
-    {
       "id": "asuka-kimochi-warui-origin",
       "episode": "eoe",
       "type": "fact",
@@ -2021,7 +1976,7 @@
       "type": "fact",
       "title": "The original plan had 28 Angels, not 17",
       "body": "Early planning documents describe 28 Angels rather than the 17 the finished show uses, with a climax involving a second wave of 12 Angels descending from the moon alongside Instrumentality's activation. That structural role — a large final wave of antagonists tied to Instrumentality — survives in the finished work in a different form: the nine Mass-Production Evangelions that SEELE deploys near the end.",
-      "links": [ { "id": "dummy-plug", "label": "The system built into those nine units" }, { "id": "human-instrumentality-project", "label": "The plan they were meant to serve" }, { "id": "ep1-original-two-parter-draft", "label": "Another abandoned early draft, from episode 1's own plot" } ],
+      "links": [ { "id": "dummy-plug", "label": "The system built into those nine units" }, { "id": "human-instrumentality-project", "label": "The plan they were meant to serve" }, { "id": "eva-original-pitch-and-draft-outline", "label": "Another abandoned early draft, from episode 1's own plot" } ],
       "sourceRefs": ["ja-wiki-nge"],
       "quote": {
         "lang": "ja",
@@ -2126,78 +2081,6 @@
       "sourceRefs": ["ann-companies"]
     },
     {
-      "id": "pre-internet-fandom-infrastructure",
-      "episode": 1,
-      "type": "fact",
-      "title": "The fandom infrastructure Eva walked into",
-      "body": "In 1995 North America, official anime was scarce and expensive — early distributors like AnimEigo, US Renditions, and A.D. Vision had only just formed, and a single tape could run $45-50. Fans filled the gap with tape trading: raw or home-recorded episodes moved from Japanese video stores and Japan-based contacts to fansubbing groups like William Chow's Arctic Animation, who copied and mailed tapes to anyone who sent blank cassettes and return postage.",
-      "links": [{ "id": "gainax-pre-eva-us-fandom", "label": "How Gainax specifically already fit into this fandom" }],
-      "sourceRefs": ["ann-absolute-borderline-p1"]
-    },
-    {
-      "id": "gainax-pre-eva-us-fandom",
-      "episode": 1,
-      "type": "fact",
-      "title": "Gainax already had an American fan base before Eva existed",
-      "body": "Gainax's Daicon opening films played at American conventions years earlier, Toren Smith had shared a house with studio staff, and fans met the crew at the 1987 Los Angeles premiere of Royal Space Force (then titled Star Quest). Gainax co-presented AnimeCon91, the convention that set the template for Anime Expo and Otakon — the latter named for Gainax's own Otaku no Video, which still bookends the video rooms at that con to this day.",
-      "links": [{ "id": "eva-first-announced-shonen-ace", "label": "How the studio first announced Eva itself" }],
-      "sourceRefs": ["ann-absolute-borderline-p1"]
-    },
-    {
-      "id": "eva-first-announced-shonen-ace",
-      "episode": 1,
-      "type": "fact",
-      "title": "First announced in a company newsletter and a manga, not an anime magazine",
-      "body": "Japanese audiences first heard of Evangelion through Gainax's own newsletter G.Press and the start of Sadamoto's manga adaptation in the February 1995 issue of Shōnen Ace (on sale December 1994). The earliest press coverage anywhere, though, ran in the American magazine Animerica that same February — beating Japanese anime magazines like Newtype and Animage to the story.",
-      "links": [{ "id": "eva-original-disciples-pitch", "label": "What that first Western scoop actually said" }],
-      "sourceRefs": ["ann-absolute-borderline-p1"]
-    },
-    {
-      "id": "eva-original-disciples-pitch",
-      "episode": 1,
-      "type": "fact",
-      "title": "\"Disciples,\" not Angels: the pitch that got announced first",
-      "body": "Animerica's February 1995 scoop — sourced from a conversation at a Gainax party the previous December — described alien \"Disciples\" who demand humanity halt its genetic-engineering research and grant a grace period before returning. That language didn't survive to broadcast, but it traces back to Gainax's late-1993 pitch documents and preliminary Sadamoto/Yamashita sketches later reprinted in the art book Der Mond.",
-      "links": [{ "id": "eva-june95-animerica-preview", "label": "Animerica's next report, a few months later" }],
-      "sourceRefs": ["ann-absolute-borderline-p1"]
-    },
-    {
-      "id": "eva-june95-animerica-preview",
-      "episode": 1,
-      "type": "fact",
-      "title": "\"No ordinary robot anime\"",
-      "body": "Animerica's June 1995 follow-up (drawing on Newtype's April 1995 coverage) quoted Anno dismissing the mecha genre as stale — \"Don't you think that robot animation is behind the times? ... It's not a refreshing or new genre\" — and speculated the show would land as a cult favorite rather than a mainstream hit on the scale of Nadia or Royal Space Force.",
-      "links": [{ "id": "eva-tmnt-lead-in", "label": "How the show was actually promoted, months later" }],
-      "sourceRefs": ["ann-absolute-borderline-p1"]
-    },
-    {
-      "id": "eva-tmnt-lead-in",
-      "episode": 1,
-      "type": "fact",
-      "title": "Its first TV ad ran right after the last Teenage Mutant Ninja Turtles episode",
-      "body": "On September 27, 1995 — a week before Evangelion's premiere — TV Tokyo aired the final episode of the 1987 Teenage Mutant Ninja Turtles series, and followed it immediately, in the same slot, with a commercial for the new show.",
-      "links": [{ "id": "awa-fansub-premiere", "label": "How Western fans saw the show days before this broadcast even aired" }],
-      "sourceRefs": ["ann-absolute-borderline-p1"]
-    },
-    {
-      "id": "awa-fansub-premiere",
-      "episode": 1,
-      "type": "fact",
-      "title": "Its North American debut was a fan-made VHS at a convention, days before Japan's broadcast",
-      "body": "Anime Weekend Atlanta organizer Gordon Waters got a raw tape and a rough translation from a Japanese graduate student, then spent the weekend of October 20-22, 1995 timing subtitles with friends Daric Koslowski and Matt Murray using JACOSUB — a fan-written subtitling program, one of the first of its kind, run on a Commodore Amiga with a video clock synchronizer. The finished fansub premiered October 27 to a packed room at AWA's Castlegate Hotel, five days before most Western fans could see the episode any other way; industry figures Jerry Chu (Bandai), Robert Woodhead (AnimEigo), and Neil Nadelman (U.S. Manga Corps) were in the crowd. It screened again weeks later at New Jersey's Anime East, alongside raw copies of episodes 2-4.",
-      "links": [{ "id": "eva-ep1-raa-reception", "label": "How the wider fandom reacted once the episode was actually seen" }],
-      "sourceRefs": ["ann-absolute-borderline-p2"]
-    },
-    {
-      "id": "eva-ep1-raa-reception",
-      "episode": 1,
-      "type": "fact",
-      "title": "How rec.arts.anime reacted to episode 1",
-      "body": "On the Usenet newsgroup rec.arts.anime, early posts favorably compared the episode to contemporary OVAs and praised Megumi Hayashibara's performance as Rei as a departure from the loud, brash roles she usually played, like Ranma from Ranma ½ — with some posters already speculating about the nature of the three pilots.",
-      "links": [{ "id": "asuka-raa-first-impression", "label": "The newsgroup's reaction a few episodes later" }],
-      "sourceRefs": ["ann-absolute-borderline-p2"]
-    },
-    {
       "id": "asuka-raa-first-impression",
       "episode": 8,
       "type": "fact",
@@ -2266,7 +2149,7 @@
       "type": "fact",
       "title": "\"EvaGate '96\"",
       "body": "Four days after ADV's announcement, Gainax in-house translator Michael House posted a statement from GM Yasuhiro Takeda denying ADV held any rights and threatening legal action for copyright infringement; ADV's David Williams apologized for the confusion, saying MOVIC had told them the OVA-quality redo was already happening. RAA user Angst-sensei dubbed the standoff \"EvaGate '96,\" announcing it like a prizefight: \"There's the bell. It's time for round one of 'What the Hell is Going On?'\" Most fansub groups still translating the show stopped once ADV's license was announced — per fansubber William Chow, unofficial subs were understood to have a \"shelf life\" that ended where an official release picked up.",
-      "links": [{ "id": "evagate-resolution-directors-cuts", "label": "How the standoff was eventually resolved" }],
+      "links": [{ "id": "eva-post-finale-licensing-and-legacy", "label": "How the standoff was eventually resolved" }],
       "sourceRefs": ["ann-absolute-borderline-p2"]
     },
     {
@@ -2311,61 +2194,7 @@
       "type": "fact",
       "title": "Spike Spencer's on-mic reaction became an ADV home-video Easter egg",
       "body": "ADV's English dub actor for Shinji, Spike Spencer, had no idea how the show ended going into the recording session. Producer Matt Greenfield let him rant on open mic once he found out, then played the recording back for every other cast member as they arrived — each of whom reacted the same way. The rant was later included as an Easter egg across ADV's home video releases of the series.",
-      "links": [{ "id": "anime-expo-96-eva-wins", "label": "Eva's first major North American convention showing, a couple months later" }],
-      "sourceRefs": ["ann-absolute-borderline-p3"]
-    },
-    {
-      "id": "evagate-resolution-directors-cuts",
-      "episode": "eoe",
-      "type": "fact",
-      "title": "How EvaGate actually resolved",
-      "body": "With no public word for two months — during which Gainax was also cracking down on English-language fan sites — GM Yasuhiro Takeda eventually released a statement, via publicity manager Hiroki Sato, that episode 19 would get a partial re-dub, episodes 21-24 would receive \"extensive retake footage,\" and the finale would be remade \"using their original scripts.\" That work became the Director's Cuts (some of it folded into the compilation film Death) and The End of Evangelion. A month later, ADV announced its first VHS volume for August 20, 1996.",
-      "links": [{ "id": "eoe-death-rebirth-precursor", "label": "The films this statement was describing" }],
-      "sourceRefs": ["ann-absolute-borderline-p3"]
-    },
-    {
-      "id": "anno-documentary-suicidal-ideation",
-      "episode": "eoe",
-      "type": "fact",
-      "title": "Anno, on how close the backlash brought him to the edge",
-      "body": "The 2021 NHK documentary Hideaki Anno: The Final Challenge of Evangelion has Anno describing the online threads debating how best to kill him after the TV finale aired: \"People came up with ideas about how to kill me. When I saw that, I lost my will to live. I didn't want to make anime anymore.\" He has said the backlash drove him to the edge of suicide on two separate occasions.",
-      "links": [{ "id": "anno-death-threats-depression", "label": "Contemporary reporting on the same backlash" }],
-      "sourceRefs": ["ann-absolute-borderline-p3"]
-    },
-    {
-      "id": "anime-expo-96-eva-wins",
-      "episode": "eoe",
-      "type": "fact",
-      "title": "Anime Expo 1996 gave Eva its first major North American honors",
-      "body": "At Anime Expo '96 (Anaheim, June 28-30), Evangelion won Best New TV Series at the con's awards ceremony, and a fan-built Rei figure won the official modeling contest. Anno attended as a guest that year alongside Noboru Ishiguro, Yoshiaki Kawajiri, Mamoru Oshii, and Kenichi Sonoda — a notably stacked guest lineup even by AX standards.",
-      "links": [{ "id": "eva-na-home-video-timeline", "label": "The home-video rollout running alongside these convention appearances" }],
-      "sourceRefs": ["ann-absolute-borderline-p3"]
-    },
-    {
-      "id": "anno-ax96-panel-quotes",
-      "episode": "eoe",
-      "type": "fact",
-      "title": "Anno's Anime Expo panel, in his own (blunt) words",
-      "body": "Asked about the finale at his AX '96 panel, Anno told the audience, \"I have no problem with them. If there's a problem, it's all with you guys. Too bad\" — switching to English for the last two words. He said the Eva units were inspired by oni, called Asuka his favorite character (\"she's cute\"), was surprised American fans preferred Misato over Rei (\"They can't handle strong women\"), and described Shinji as reflecting his own character \"both in conscious and unconscious parts ... I acknowledged that I'm a fool.\"",
-      "links": [{ "id": "anno-metanarrative", "label": "How that self-portrait plays out in the finale itself" }],
-      "sourceRefs": ["ann-absolute-borderline-p3"]
-    },
-    {
-      "id": "eva-na-home-video-timeline",
-      "episode": "eoe",
-      "type": "fact",
-      "title": "The North American home-video rollout",
-      "body": "ADV's VHS release shipped two episodes per tape from August 20, 1996 through its final volume on July 7, 1998. A parallel laser disc release, starting May 17, 1997, was canceled after two volumes because of disc-rot issues affecting the format.",
-      "links": [{ "id": "raa-to-modern-fandom", "label": "Where this fandom eventually moved on to" }],
-      "sourceRefs": ["ann-absolute-borderline-p3"]
-    },
-    {
-      "id": "raa-to-modern-fandom",
-      "episode": "eoe",
-      "type": "fact",
-      "title": "From rec.arts.anime to Reddit and EvaGeeks",
-      "body": "The rec.arts.anime newsgroup that carried most of this early discussion has long since given way to venues like the Evangelion subreddit and EvaGeeks.org, but the pattern it set — Western fans debating a still-airing Japanese show in something close to real time — became the default mode for anime fandom that followed.",
-      "links": [],
+      "links": [{ "id": "eva-post-finale-licensing-and-legacy", "label": "Eva's first major North American convention showing, a couple months later" }],
       "sourceRefs": ["ann-absolute-borderline-p3"]
     },
     {
@@ -2454,7 +2283,7 @@
     },
     {
       "id": "nge-as-planetary-psychoanalytic-clinic",
-      "episode": 1,
+      "episode": 15,
       "type": "theory",
       "title": "Reading NERV's Earth as one giant psychoanalytic clinic",
       "body": "One extended reading, drawing on Deleuze and Guattari's concept of the assemblage, frames the entire world of Evangelion as a planetary analytic clinic: its traumatized characters (Shinji, Rei, Asuka, Gendo, Ritsuko, Misato) are the analysands, while the Angels function as \"Lesser Analysts\" — brief, low-impact encounters that provoke expressions of repressed desire without resolving anything on their own. Two recurring figures, Kaji and later Kaworu, are cast as \"Greater Analysts\" instead, running longer sessions that actually move characters toward psychological resolution.",
@@ -2542,144 +2371,6 @@
       "sourceRefs": ["evageeks-forum-time-loop-theory"]
     },
     {
-      "id": "eoe-strangling-as-self-assertion",
-      "episode": "eoe",
-      "type": "theory",
-      "title": "Reading the strangling as self-assertion, not hatred",
-      "body": "One long-running forum reading (posted by user sephirotic) argues the strangling is Shinji's first genuinely active, aggressive act after a lifetime of passivity — a wordless \"stop hurting me\" from someone who likes Asuka and has never before been able to resist being pushed away, rather than a sign of hatred or a breakdown into violence. On this reading, his tears afterward aren't guilt at the act itself but shock: braced for the rejection he expects, he gets tenderness instead, and that's what breaks him.",
-      "links": [{ "id": "eoe-beach-scene", "label": "The scene this reading is one interpretation of" }],
-      "sourceRefs": ["evageeks-forum-shinji-strangling-thread"]
-    },
-    {
-      "id": "eoe-asuka-caress-motive-debate",
-      "episode": "eoe",
-      "type": "theory",
-      "title": "Why did Asuka choose kindness over rejection?",
-      "body": "Forum posters split over what Asuka's cheek-touch is actually doing. One camp (including a reading attributed to longtime poster Mr. Tines) takes it as gratitude — thanks for being willing to end her life. Others read it as her finally offering Shinji the gentleness he'd begged for and been refused earlier, on the hell train. A counter-argument (from poster Bagheera) pushes back on the gratitude reading specifically: if Asuka actually wanted to die, tenderness is close to the worst tool available, since Shinji is starved for affection and receiving it — rather than rejection — is what's shown to break him down, not drive him to finish the act.",
-      "links": [{ "id": "eoe-strangling-as-self-assertion", "label": "A reading of the strangling itself this debate responds to" }],
-      "sourceRefs": ["evageeks-forum-shinji-strangling-thread"]
-    },
-    {
-      "id": "eoe-kimochi-warui-scene-context",
-      "episode": "eoe",
-      "type": "theory",
-      "title": "Whether \"kimochi warui\" undercuts or confirms the scene's tenderness",
-      "body": "Fans disagree on how to read Asuka's closing line in context. Some argue it's consistent with her established character rather than a softening — pointing out her glare on the beach visually echoes her glare at Shinji during the earlier kitchen breakdown, and that showing him a moment of kindness doesn't obligate her to find his crying any less pathetic by her own standards. Others (including a reading from poster sephirotic) read it as something closer to regret or an apology for how she'd treated him, rather than renewed rejection. The scene's shooting script originally had Shinji respond by calling her \"baka\" (idiot) — a deliberate callback to the show's opening train-platform scene — before the line was cut for tone.",
-      "links": [
-        { "id": "asuka-kimochi-warui-origin", "label": "How the line was actually written on set" },
-        { "id": "eoe-beach-scene", "label": "The scene this line closes out" }
-      ],
-      "sourceRefs": ["evageeks-forum-shinji-strangling-thread"]
-    },
-    {
-      "id": "eoe-strangling-as-mercy-killing",
-      "episode": "eoe",
-      "type": "theory",
-      "title": "A third reading: the strangling as sparing Asuka, not connecting with her",
-      "body": "Poster Sanada Yukimura pushed back on the \"unafraid to connect\" reading of the strangling with a dog-behavior analogy: a dog that barks a lot but never bites can be less dangerous than a quiet one that lashes out only when it feels genuinely cornered, so lashing out isn't automatically evidence of openness — it can just as easily be self-defense. Their own alternative reading is bleaker still: Shinji's attempt to kill Asuka is read as an act of mercy, meant to spare her from a post-Instrumentality world he no longer believes can offer real happiness — a much darker note than the TV finale, where Shinji explicitly comes to believe a good life is possible.",
-      "links": [
-        { "id": "eoe-strangling-as-self-assertion", "label": "The self-assertion reading this pushes back on" },
-        { "id": "accept-vs-reject", "label": "How this compares to the TV finale's more hopeful ending" }
-      ],
-      "sourceRefs": ["evageeks-forum-shinji-strangling-thread"]
-    },
-    {
-      "id": "eoe-strangling-masturbation-parallel",
-      "episode": "eoe",
-      "type": "theory",
-      "title": "The strangling scene read as a mirror of the film's opening masturbation scene",
-      "body": "Poster Azathoth reads the strangling as deliberately paralleling the film's earlier masturbation scene: both are framed as Shinji acting purely on his own wounded feelings at Asuka's expense, rather than reckoning with why she pushed him away — indulging himself instead of actually meeting her. On this reading, the self-indulgence runs all the way up to triggering Instrumentality itself, making the strangling scene's ending a final test: Asuka reaches out anyway, and Shinji's response is to sob rather than accept it, which isn't the outcome she was hoping to get out of the gesture.",
-      "links": [
-        { "id": "asuka-kimochi-warui-origin", "label": "The scene direction this reading extends beyond its literal meaning" },
-        { "id": "eoe-asuka-caress-motive-debate", "label": "The broader debate over what Asuka's caress is doing" }
-      ],
-      "sourceRefs": ["evageeks-forum-shinji-strangling-thread"]
-    },
-    {
-      "id": "eoe-red-blue-color-dualism",
-      "episode": "eoe",
-      "type": "theory",
-      "title": "A red/blue color-symbolism reading of Asuka and Rei",
-      "body": "An extended fan theory (posted by Eva Yojimbo) argues Anno consistently codes Asuka in red — tied to sexuality, harsh reality, and an individual life separated from others by their AT Field — against Rei in blue, tied to origins (Lilith and Yui), motherhood, Instrumentality, and the \"collective unconscious.\" On this reading, Shinji's arc throughout the series and EoE alike is a choice between the two poles, summed up in a line the theory attributes to longtime poster Reichu: Shinji \"leaves MOTHER for his SIGNIFICANT OTHER.\"",
-      "links": [{ "id": "accept-vs-reject", "label": "The choice this color pairing is read as mapping onto" }],
-      "sourceRefs": ["evageeks-forum-eoe-last-scene-dualism"]
-    },
-    {
-      "id": "eoe-closed-fist-open-palm-symbolism",
-      "episode": "eoe",
-      "type": "theory",
-      "title": "Closed fist vs. open palm as a life/death visual motif",
-      "body": "The same theory tracks a recurring gesture pairing across the series: closed fists consistently associated with death (including in Eva battles), open palms with life — citing the Gates of Guf located in Lilith's own palms, and the bookend shots of Shinji with blood on his hands over Rei versus semen on his hands over Asuka. Shinji's hands clenching and unclenching are read as tracking the show's recurring question of what choice and action actually look like for him, most directly voiced as \"what are your hands for?\"",
-      "links": [{ "id": "eoe-strangling-masturbation-parallel", "label": "The other reading connecting these two bookend gestures" }],
-      "sourceRefs": ["evageeks-forum-eoe-last-scene-dualism"]
-    },
-    {
-      "id": "eoe-choke-caress-reiteration",
-      "episode": "eoe",
-      "type": "theory",
-      "title": "The beach exchange as a replay of how Instrumentality began",
-      "body": "On this reading, the closing choke-then-caress exchange deliberately re-stages the moment Instrumentality began: Shinji symbolically \"chooses\" death by strangling Asuka and everything she represents, and is answered inside Instrumentality by Yui's own caress as he re-emerges into reality — a link the theory ties to a red streak visible across the moon (itself coded blue/Rei/Lilith) at that moment. On the beach, Shinji is read as trying to \"kill\" the fresh pain of rebirth into individual, harsh reality by strangling Asuka again; releasing his grip is what actually accepting that reality looks like, while Asuka's caress reaffirms \"we're alive\" — offered as hope rather than any promise that things get easier.",
-      "links": [
-        { "id": "eoe-beach-scene", "label": "The scene this reading is built around" },
-        { "id": "eoe-instrumentality-as-therapy", "label": "Another reading of what happens to Shinji inside Instrumentality" }
-      ],
-      "sourceRefs": ["evageeks-forum-eoe-last-scene-dualism"]
-    },
-    {
-      "id": "eoe-strangling-ep2-at-field-parallel",
-      "episode": "eoe",
-      "type": "theory",
-      "title": "A deliberate echo of the episode 2 Sachiel fight",
-      "body": "Forum poster FreakyFilmFan4ever reads the strangling as staged to mirror Unit-01's fight with Sachiel: in both, a body sits pinned atop another, and the pinned party reaches up toward the other's face — Sachiel to tear down Unit-01's AT Field, Asuka to caress Shinji's cheek. Where the AT Field theme is first raised in episode 2 and explained outright in episode 24, this reading frames EoE's version as being about learning to live alongside other people's AT Fields after Third Impact rather than tearing through them by force. Poster Reichu offered a correction worth keeping alongside it: Sachiel's AT Field was actually neutralized earlier, when Unit-01 forced its core open, not by the embrace itself — and Eva-01 straddling something (Sachiel, Eva-03, Zeruel) is consistently a killing posture in the show, making Shinji's initial position a mirror of his Eva's murderous instinct, with the difference being that — unlike his mother inside it — he can actually be talked down.",
-      "links": [{ "id": "eva-01-devours-sachiel", "label": "The episode 2 fight this reading mirrors" }],
-      "sourceRefs": ["evageeks-forum-shinji-strangling-thread"]
-    },
-    {
-      "id": "eoe-strangling-naoko-rei-parallel",
-      "episode": "eoe",
-      "type": "theory",
-      "title": "A parallel to Naoko strangling the first Rei",
-      "body": "EoE briefly flashes Naoko's silhouette strangling Rei I right after Asuka's own strangling scene, which some fans read as a deliberate pairing: both Rei I and Asuka verbally put distance between their strangler and Gendo in the moment (Rei I calling Naoko an \"old hag,\" Asuka calling Shinji \"Daddy's Boy\"). On this reading, the difference is the outcome — Naoko couldn't let go of her toxic attachment to Gendo as her lover and the encounter ends in death, while Shinji can let go of his to Gendo as his father, and stops once he feels Asuka's touch.",
-      "links": [{ "id": "naoko-kills-rei-suicide", "label": "The scene this one is read as echoing" }],
-      "sourceRefs": ["evageeks-forum-shinji-strangling-thread"]
-    },
-    {
-      "id": "eoe-strangling-hand-position-not-lethal",
-      "episode": "eoe",
-      "type": "theory",
-      "title": "A close reading of Shinji's hands: maybe not actually trying to kill her",
-      "body": "Poster StrokeMeGoat points out that every other strangling in the show — including Shinji's own strangling of Asuka earlier, at the start of Instrumentality — shows both thumbs stacked together over the windpipe, the standard lethal grip. In the beach scene, though, Shinji's thumbs instead line up separately over each carotid artery, which would cut off blood flow and cause someone to pass out rather than asphyxiate. Combined with how visibly he's trembling, the reading holds that Shinji may be testing whether Asuka is real and checking for a pulse rather than trying to kill her outright — something poster C.T.1290 separately described as \"strangling her to confirm her existence.\"",
-      "links": [{ "id": "eoe-strangling-as-mercy-killing", "label": "A competing reading of the same act as intentional killing" }],
-      "sourceRefs": ["evageeks-forum-shinji-strangling-thread"]
-    },
-    {
-      "id": "eoe-strangling-ego-id-reintegration",
-      "episode": "eoe",
-      "type": "theory",
-      "title": "A reading through ego reintegration: two moments of unfiltered honesty",
-      "body": "Poster VoidEater reads the scene as capturing Shinji and Asuka mid-reintegration, briefly acting without the social \"ego\" self that normally filters them: Shinji finally lets out the anger and resentment he's built up over how Asuka has treated him, while Asuka finally shows the desire she's kept hidden. As their egos fully reassert themselves, Shinji catches himself and draws back, while Asuka's closing line is read as her ego's trained rejection of the very tenderness and desire she just allowed herself to express.",
-      "links": [{ "id": "eoe-beach-scene", "label": "The scene this reading applies to" }],
-      "sourceRefs": ["evageeks-forum-shinji-strangling-thread"]
-    },
-    {
-      "id": "eoe-hospital-scene-instrumentality-callback",
-      "episode": "eoe",
-      "type": "theory",
-      "title": "Tying the closing line to one specific memory, not general disgust",
-      "body": "One reading (summarized on the forum from a separate Hegel-influenced analysis) argues Shinji and Asuka don't fully snap back into themselves the instant they leave the LCL sea — the two lie beside each other silent and expressionless before visibly \"waking up\" through the exchange that follows, paralleling how the beach caress reverses the earlier rejection at the start of Instrumentality. On this reading, Asuka's final line specifically calls back to the hospital-room scene: inside Instrumentality, with no barriers between people, Asuka acknowledges what Shinji did there and even permits his attraction to her on her own terms; back in reality, with those barriers restored, she reacts to that same memory with disgust instead — making the line about that particular moment rather than a blanket judgment of him.",
-      "links": [{ "id": "asuka-kimochi-warui-origin", "label": "How the line was actually written and directed" }],
-      "sourceRefs": ["evageeks-forum-shinji-strangling-thread"]
-    },
-    {
-      "id": "eoe-hegel-master-slave-strangling",
-      "episode": "eoe",
-      "type": "theory",
-      "title": "A Hegelian \"struggle for recognition\" reading of the strangling",
-      "body": "EoE's official recap card states Shinji chokes Asuka \"to feel the existence of an 'other'. To confirm... rejection and denial.\" Forum poster zlink64 reads that line through the \"Lordship and Bondage\" section of Hegel's Phenomenology of Spirit: two self-conscious beings must risk a struggle to the death for the other's recognition, but the one who wins must stop short of actually killing the other, or the recognition that was the whole point is lost along with them. On this reading, Shinji strangling Asuka and then stopping directly re-enacts that structure — he needs her continued, independent existence, not her death, to have his own reality confirmed by someone who could deny him. zlink64 later narrowed the claim considerably: the recap card names \"the idea of the other\" as Shinji's motive, and Hegel simply offers the clearest existing vocabulary for that idea — not a claim that Anno specifically read Hegel.",
-      "links": [{ "id": "eoe-beach-scene", "label": "The scene this reading applies to" }],
-      "sourceRefs": ["evageeks-forum-eoe-hegel-thread", "sparknotes-hegel-master-slave"]
-    },
-    {
       "id": "eotv-ep26-hegel-dialogue-staging",
       "episode": 26,
       "type": "theory",
@@ -2687,7 +2378,7 @@
       "body": "The same reading walks through the TV finale's white-void sequence line by line as a near-literal staging of Hegel's argument: Shinji alone in \"a world of nothing,\" told this is \"perfect freedom,\" unable to act without anything to act on; other characters' voices handing him constraints one at a time — a floor, gravity, the ability to walk — as something like a will to perceive takes hold; and finally, once he has objects to relate to, the explicit lines \"without others to interact with you cannot truly recognize your own image\" and \"by recognizing the differences between yourself and others, you establish your identity as yourself.\" The reading treats those lines as close to a direct paraphrase of Hegel's claim that self-consciousness exists only by being recognized by another self-consciousness, not merely by being distinct from objects.",
       "links": [
         { "id": "accept-vs-reject", "label": "A more conventional framing of how this sequence relates to EoE" },
-        { "id": "eoe-hegel-master-slave-strangling", "label": "How this dialogue is read as connecting to the strangling scene" }
+        { "id": "eoe-hegel-master-slave-reading", "label": "How this dialogue is read as connecting to the strangling scene" }
       ],
       "sourceRefs": ["evageeks-forum-eoe-hegel-thread", "sparknotes-hegel-master-slave"]
     },
@@ -2698,27 +2389,6 @@
       "title": "Asuka's caress echoed as Shinji's \"first other\"",
       "body": "Episode 26's dialogue states \"the very first other person is your mother\" — an infant's mother being the first consciousness it ever encounters as separate from itself. This reading notes EoE gives Asuka's cheek-caress the same gesture used elsewhere for Yui, casting Asuka symbolically as the \"first other\" Shinji meets on waking from Instrumentality, reinforcing the film's birth and rebirth imagery around his emergence from the LCL sea. The reading is explicit that this isn't meant literally — Shinji and Asuka's relationship is treated as sexual, not maternal — only that her affection is read as filling the same reassurance Yui's death left missing from his development.",
       "links": [{ "id": "yuis-soul-in-unit-01", "label": "The Yui connection this gesture is read as echoing" }],
-      "sourceRefs": ["evageeks-forum-eoe-hegel-thread"]
-    },
-    {
-      "id": "eoe-master-slave-role-reversal-reading",
-      "episode": "eoe",
-      "type": "theory",
-      "title": "Shinji and Asuka trading Master/Slave roles as mutual recognition",
-      "body": "zlink64 extends their own reading further: rather than one party staying fixed in the dominant role, the beach exchange has Shinji and Asuka trade positions — Shinji rejects (strangling) while Asuka accepts (the caress), then Asuka rejects in turn (her final line) while Shinji is left to accept it. Since Hegel's account has the subordinate party, not the dominant one, end up achieving full self-consciousness through the exchange, this reading treats the reciprocal swap as the healthiest version of the dynamic on offer — both getting a turn at each role instead of either staying fixed as only the recognizer or only the recognized. Fellow poster StrokeMeGoat added that Rei's ghostly appearance to Shinji just before the strangling, paired with Rei and Kaworu's earlier framing of themselves as \"hope that people might one day understand one another,\" reads as foreshadowing this reconciliation rather than undercutting it.",
-      "links": [{ "id": "eoe-asuka-caress-motive-debate", "label": "A separate debate over what motivates Asuka's side of the exchange" }],
-      "sourceRefs": ["evageeks-forum-eoe-hegel-thread"]
-    },
-    {
-      "id": "eoe-hegel-vs-anno-osmosis-debate",
-      "episode": "eoe",
-      "type": "theory",
-      "title": "Whether Anno actually read Hegel, or arrived at the same idea another way",
-      "body": "Several posters pushed back on treating Hegel as a confirmed direct source, pointing out that Anno has said elsewhere he never read Kierkegaard — making close familiarity with Hegel's specific essay unlikely, with culturally-diffused (\"osmosis\") exposure to the idea a more plausible explanation. One reply proposed a more parsimonious lineage: Jacques Lacan, who absorbed Hegel's ideas via Alexandre Kojève's lectures (and Husserl via Sartre, and Freud via de Saussure and Heidegger), would be a more likely single point of contact if Anno studied psychoanalysis through Lacan rather than each of those thinkers individually. The thread's original poster eventually backed off the stronger claim, framing Hegel less as \"confirmed inspiration\" and more as simply the clearest available vocabulary for explaining the abstract idea of \"the Other\" to readers unfamiliar with it.",
-      "links": [
-        { "id": "lcl-sea-lacanian-imaginary", "label": "A separate reading that leans on Lacan directly" },
-        { "id": "shinji-mirror-stage-rejection", "label": "The Lacanian concept this Hegel-via-Lacan lineage would explain" }
-      ],
       "sourceRefs": ["evageeks-forum-eoe-hegel-thread"]
     },
     {
@@ -2758,18 +2428,6 @@
       "title": "Episode 26's animation collapse, compared to \"Duck Amuck\"",
       "body": "As the TV finale strips away plot for direct psychological interrogation, its visuals regress in step — full animation gives way to storyboards, which give way to a black-and-white scribble of Shinji adrift in a white void. Critic Mike Crandol compares the effect to the classic Chuck Jones Looney Tunes short \"Duck Amuck,\" in which Daffy Duck's cartoon universe is dismantled around him by an unseen animator — reading Shinji's restrictions being handed to him one at a time (a line to stand on, \"a top and a bottom,\" the ability to walk) as the show applying the same device to a psychological rather than comedic end.",
       "links": [{ "id": "eotv-ep26-hegel-dialogue-staging", "label": "A reading of the same sequence's dialogue" }],
-      "sourceRefs": ["ann-understanding-evangelion"]
-    },
-    {
-      "id": "eoe-kiss-scene-strangling-echo",
-      "episode": "eoe",
-      "type": "theory",
-      "title": "The strangling scene as a dark echo of the TV series' kiss",
-      "body": "Critic Mike Crandol draws a direct line between the TV series' lighthearted first kiss and its much darker counterpart in EoE. Where Asuka's earlier kiss ends in her fleeing in mock disgust, one of Shinji's pre-Instrumentality head-trips restages the same beat with a confession of love instead of a kiss — and this time Asuka accuses him of loving her only as a convenient source of comfort, not for herself. Unable to bear the accusation, Shinji strangles her within the vision itself, foreshadowing the real strangling later in the film — reframing that later scene as the culmination of an anxiety the show planted episodes earlier.",
-      "links": [
-        { "id": "shinji-asuka-first-kiss", "label": "The earlier scene this one darkly echoes" },
-        { "id": "eoe-beach-scene", "label": "Where the echoed anxiety plays out for real" }
-      ],
       "sourceRefs": ["ann-understanding-evangelion"]
     },
     {
@@ -2866,15 +2524,6 @@
       "sourceRefs": ["ann-thin-veneer-evangelion"]
     },
     {
-      "id": "murakami-little-boy-postwar-trauma",
-      "episode": 1,
-      "type": "theory",
-      "title": "One line in a much bigger argument: Eva and postwar trauma",
-      "body": "Artist Takashi Murakami's 2005 book and exhibition Little Boy: The Arts of Japan's Exploding Subculture — its title borrowed from the code name of the Hiroshima atomic bomb — situates Evangelion as one data point in a much wider argument that postwar Japanese pop culture (kaiju, mecha, apocalyptic anime broadly) channels an unprocessed national trauma from defeat and Allied occupation. Murakami's own essay only touches on the show briefly, alongside dozens of other subjects from Akira and Gundam to convenience stores and neuroscience writing, so the claim functions more as a passing citation within his broader thesis than a developed reading of Eva specifically.",
-      "links": [{ "id": "second-impact", "label": "The in-story catastrophe this reading is implicitly reading through" }],
-      "sourceRefs": ["ann-brain-diving-little-boy"]
-    },
-    {
       "id": "anno-evangelion-name-explanation",
       "episode": 1,
       "type": "fact",
@@ -2900,7 +2549,7 @@
       "body": "Fielding questions from his old schoolkids, Anno was open about his own self-regard: \"I'm not crazy about myself. I'm often told that those who don't like themselves have high ideals, but I think someone who says that doesn't really understand the pain that's involved.\" Asked which parts of his own anime he dislikes, he answered: \"The parts that I'm in.\"",
       "links": [
         { "id": "anno-metanarrative", "label": "How this self-regard is read into the finale itself" },
-        { "id": "anno-death-threats-depression", "label": "The backlash Anno faced around the same period" }
+        { "id": "anno-backlash-breakdown", "label": "The backlash Anno faced around the same period" }
       ],
       "sourceRefs": ["ann-buried-treasure-anno-talks-to-kids"]
     },
@@ -2944,15 +2593,6 @@
       "sourceRefs": ["ann-take-care-of-yourself-p2"]
     },
     {
-      "id": "anno-post-finale-breakdown",
-      "episode": "eoe",
-      "type": "fact",
-      "title": "Anno \"broke down\" the moment the TV series finished airing",
-      "body": "Per Studio Khara's own biography of Anno, he withdrew from nearly all creative work for roughly six months immediately after the TV finale aired, producing almost nothing until colleagues talked him into returning to Gainax to adapt the original, unfinished ending into a theatrical film — the project that became Death & Rebirth and then The End of Evangelion.",
-      "links": [ { "id": "anno-death-threats-depression", "label": "The backlash that was arriving during this same period" }, { "id": "eoe-death-rebirth-precursor", "label": "The film this breakdown eventually led to" } ],
-      "sourceRefs": ["ann-anno-after-evangelion"]
-    },
-    {
       "id": "anno-protoculture-finale-defense-quote",
       "episode": "eoe",
       "type": "fact",
@@ -2971,114 +2611,6 @@
       "sourceRefs": ["ann-anno-after-evangelion"]
     },
     {
-      "id": "anno-love-and-pop-live-action-turn",
-      "episode": "eoe",
-      "type": "fact",
-      "title": "Anno's post-Eva pivot to live action: Love & Pop",
-      "body": "Anno's first professionally released live-action film, Love & Pop (1998), adapts Ryu Murakami's novel about a high schooler drawn into teenage prostitution, shot entirely handheld on consumer digital camcorders — a format he'd later say reawakened the enthusiasm for filmmaking he'd had as a teenager, following straight on from the exhaustion of finishing Evangelion.",
-      "links": [ { "id": "anno-post-finale-breakdown", "label": "The exhaustion this project followed" } ],
-      "sourceRefs": ["ann-anno-after-evangelion"]
-    },
-    {
-      "id": "anno-his-and-her-circumstances-departure",
-      "episode": "eoe",
-      "type": "fact",
-      "title": "Anno walked off his next anime series before it finished",
-      "body": "Anno returned to directing anime for His and Her Circumstances (1998), adapted concurrently with Masami Tsuda's ongoing manga, but left the production before its final episodes over disagreements with Tsuda about the show's creative direction and merchandising, plus new restrictions TV Tokyo imposed after the unrelated Pokémon seizure incident. Hiroki Satō finished the series in his place; it would be Anno's last TV anime directing credit for many years.",
-      "links": [{ "id": "anno-moyoco-marriage", "label": "What came next in Anno's personal life" }],
-      "sourceRefs": ["ann-anno-after-evangelion"]
-    },
-    {
-      "id": "anno-moyoco-marriage",
-      "episode": "eoe",
-      "type": "fact",
-      "title": "Anno married manga artist Moyoco Anno in 2002",
-      "body": "Anno married Happy Mania creator Moyoco Anno on March 26, 2002; friends and colleagues have said the marriage visibly softened him. Moyoco's 2005 manga essay Insufficient Direction chronicles the idiosyncrasies of life married to an otaku director, opening with the question \"Am I truly prepared to be an otaku's wife?\"",
-      "links": [{ "id": "anno-rebuild-tetralogy-and-gainax-split", "label": "Anno's next major creative chapter" }],
-      "sourceRefs": ["ann-anno-after-evangelion"]
-    },
-    {
-      "id": "anno-rebuild-tetralogy-and-gainax-split",
-      "episode": "eoe",
-      "type": "fact",
-      "title": "The Rebuild films, and Anno's split from Gainax",
-      "body": "Anno's Rebuild of Evangelion tetralogy began with Evangelion: 1.0 You Are [Not] Alone (2007) and Evangelion: 2.0 You Can [Not] Advance (2009), both produced with his own Studio Khara alongside Gainax. Around 2.0's release, Anno formally resigned from Gainax after roughly 23 years — the two studios parted on reportedly amicable terms at the time, though Anno later sued Gainax in 2016 over unpaid Evangelion royalties and a negligent loan Khara had extended the studio in 2014.",
-      "links": [{ "id": "anno-shin-godzilla", "label": "The detour Anno took partway through the Rebuild films" }],
-      "sourceRefs": ["ann-anno-after-evangelion"]
-    },
-    {
-      "id": "anno-shin-godzilla",
-      "episode": "eoe",
-      "type": "fact",
-      "title": "Shin Godzilla: Anno's return to live-action, and to kaiju",
-      "body": "Co-directed with Shinji Higuchi, Shin Godzilla (2016) reframes Godzilla's arrival as a modern Japanese bureaucratic crisis explicitly patterned on the 2011 Tōhoku earthquake/tsunami and the Fukushima Daiichi nuclear meltdown. It swept most of the Japan Academy Prizes it was nominated for and became Japan's highest-grossing domestic film that year — Anno's first live-action theatrical release in twelve years.",
-      "links": [],
-      "sourceRefs": ["ann-anno-after-evangelion"]
-    },
-    {
-      "id": "eva-rody-rompers",
-      "episode": "eoe",
-      "type": "fact",
-      "title": "Baby onesies that turn infants into Eva-colored Rody the horse",
-      "body": "The license has crossed over with existing kids'-toy IP more than once: a set of infant onesies paired Evangelion with Rody, the already-unsettling smiling rubber ride-on horse toy previously licensed alongside Hello Kitty and Hatsune Miku, recoloring the onesie's built-in horse ears and body to match the color schemes of Units 00, 01, and 02.",
-      "links": [],
-      "sourceRefs": ["ann-list-strange-merchandise"]
-    },
-    {
-      "id": "eva-kagome-tomato-juice-ads",
-      "episode": "eoe",
-      "type": "fact",
-      "title": "Kagome tomato juice ads restaged an Eva battle against a giant tomato",
-      "body": "A tie-in with Kagome's tomato juice produced a commercial restaging an Angel battle, with the Eva pilots fighting a giant, ominous tomato in the middle of Tokyo-3. A follow-up ad, styled after the show's own Misato-hosted next-episode previews, revealed Shinji and Asuka weren't piloting Evas at all in this version, but giant juice boxes.",
-      "links": [],
-      "sourceRefs": ["ann-list-strange-merchandise"]
-    },
-    {
-      "id": "eva-schick-razor-gendo-ads",
-      "episode": "eoe",
-      "type": "fact",
-      "title": "Schick recast a smiling, clean-shaven Gendo as its razor pitchman",
-      "body": "An ongoing ad campaign for Schick razors, running since 2012, depicts a cheerful, beardless Gendo Ikari — a sharp departure from the character's cold, scheming characterization in the show — endorsing a close shave, alongside a line of Eva-branded razor-holder figures and accessories sold to match.",
-      "links": [ { "id": "gendo-ikari", "label": "The character being reimagined" }, { "id": "gendo-visual-motif", "label": "How differently the show itself stages his face" } ],
-      "sourceRefs": ["ann-list-strange-merchandise"]
-    },
-    {
-      "id": "eva-rei-giant-inflatable-slide",
-      "episode": "eoe",
-      "type": "fact",
-      "title": "A 61-foot inflatable Rei doubled as an amusement-park slide",
-      "body": "Promotion for Tokyo's Shiohaku Expo 2012 included an 18.5-meter (about 61-foot) inflatable Rei Ayanami in her plug suit, seated with one leg replaced by a slide visitors could climb and ride down — reportedly taller than Odaiba's life-size Gundam statue by about two feet.",
-      "links": [ { "id": "rei-ayanami", "label": "The character behind the figure" } ],
-      "sourceRefs": ["ann-list-strange-merchandise"]
-    },
-    {
-      "id": "eva-preserved-flower-merch",
-      "episode": "eoe",
-      "type": "fact",
-      "title": "US$126 for a box of flowers, because they're colored like Unit-01",
-      "body": "Among the official Eva Store's line of ordinary household and fashion goods bearing a small Eva-branded charm, patch, or color scheme, a boxed set of preserved (long-lasting, no-water-needed) flowers sold for roughly US$126 — an otherwise unremarkable bouquet priced up purely for being dyed in Unit-01's color scheme.",
-      "links": [],
-      "sourceRefs": ["ann-list-strange-merchandise"]
-    },
-    {
-      "id": "eva-bishoujo-angel-figures",
-      "episode": "eoe",
-      "type": "fact",
-      "title": "Figure maker Wave turned the Angels into bishōjo figures for the 10th anniversary",
-      "body": "For the franchise's 10th anniversary, figure maker Wave passed over more conventional choices like Misato or Ritsuko and instead redesigned several non-humanoid Angels as \"bishōjo\" figures: Sachiel came out looking like a busty Rei variant, Tabris (Kaworu's Angel identity) wears a version of Shinji's shirt with Kaworu's hairstyle, and Zeruel was the one design built with LCL-filled breasts, unique in the set.",
-      "links": [ { "id": "eva-01-devours-sachiel", "label": "Sachiel, before the merchandise makeover" }, { "id": "kaworu-classification", "label": "Tabris/Kaworu, before the merchandise makeover" } ],
-      "sourceRefs": ["ann-list-strange-merchandise"]
-    },
-    {
-      "id": "eva-shinji-kaworu-body-spray",
-      "episode": "eoe",
-      "type": "fact",
-      "title": "Shinji and Kaworu got a matching pair of body sprays",
-      "body": "The Eva Store sold \"Shinji: Blue Musk\" and \"kaworu: White Citrus\" body sprays as a paired set, marketed as a \"gentle aroma that spreads like the sea and sky\" and a \"refreshing scent that's clear like water\" respectively. A separate three-Eva-Unit body spray line included key art of Rei and Asuka opening Shinji's shirt to spray him.",
-      "links": [ { "id": "kaworus-feelings", "label": "The relationship the pairing is presumably trading on" } ],
-      "sourceRefs": ["ann-list-strange-merchandise"]
-    },
-    {
       "id": "eva-plot-as-vehicle-not-point",
       "episode": 1,
       "type": "theory",
@@ -3088,39 +2620,12 @@
       "sourceRefs": ["ann-take-care-of-yourself-p1", "ann-take-care-of-yourself-p2"]
     },
     {
-      "id": "anno-megazone23-itano-mentorship",
-      "episode": 1,
-      "type": "fact",
-      "title": "Anno's early career: Megazone 23, and a mentor named Itano",
-      "body": "Before Evangelion, a twenty-something Anno worked as a freelance animator on the original 1985 Megazone 23 OAV for studio AIC, around the same period he was presenting short films at Daicon and impressing Hayao Miyazaki with his work on Nausicaä of the Valley of the Wind. On Megazone 23, and earlier on Space Runaway Ideon and The Super Dimension Fortress Macross, Anno worked alongside animator Ichirō Itano — creator of the swarming-missile \"Itano Circus\" technique — whom he came to regard as a mentor. At the 2014 Tokyo International Film Festival, Anno credited his admiration for Itano's work on the Mobile Suit Gundam franchise as the reason he pursued a career in animation in the first place.",
-      "links": [{ "id": "itano-circus-tokusatsu-refs", "label": "The technique named after Itano, quoted in episode 1 itself" }],
-      "sourceRefs": ["ann-anno-itano-apocalypse"]
-    },
-    {
-      "id": "megazone23-eva-structural-parallels",
-      "episode": 1,
-      "type": "theory",
-      "title": "An underrated precursor: Megazone 23",
-      "body": "Critic Jonny Lobo argues the 1985 OAV Megazone 23 — which Anno worked on as an animator — deserves more recognition as a likely influence on Evangelion than it typically gets. Parallels cited include a secret city built beneath an older Tokyo and shielded by massive moving mechanisms (echoing NERV's Geofront), biblical names used mostly for exotic flavor rather than deep symbolism, human-like extraterrestrial antagonists that provoke existential and epistemological crises rather than straightforward action, and technology cast as a mother figure to disoriented teenage leads.",
-      "links": [{ "id": "nerv", "label": "The organization whose own hidden city echoes Megazone 23's" }],
-      "sourceRefs": ["ann-anno-itano-apocalypse"]
-    },
-    {
       "id": "anno-newtype-ambiguity-quote",
       "episode": 26,
       "type": "fact",
       "title": "Anno, on why the ending is left so open",
       "body": "Asked by Newtype magazine about the ambiguity running through Evangelion's ending, Anno said: \"we're offering viewers to think by themselves, so that each person can imagine his/her own world.\"",
       "links": [{ "id": "finale-controversy", "label": "Other staff accounts of how the finale came together" }],
-      "sourceRefs": ["ann-anno-itano-apocalypse"]
-    },
-    {
-      "id": "eva-megazone23-apocalypse-music-parallel",
-      "episode": "eoe",
-      "type": "theory",
-      "title": "A shared pairing of apocalyptic footage with rapturous music",
-      "body": "Critic Jonny Lobo notes that both EoE and Megazone 23 Part II open on scenes of mass destruction scored to music that reads as melancholic and rapturous at once — \"Komm, süsser Tod\" in EoE's case, \"Himitsu Kudasai\" in Megazone 23's. The reading treats this as more than coincidence: both works suggest that large-scale societal collapse is inevitable and cyclical, with only the outcome (crucible or ruin) left genuinely in question — a nihilistic throughline Lobo also ties to the wider Y2K-era anxieties (rapture fiction, millennial unease) both franchises were made and watched within.",
-      "links": [],
       "sourceRefs": ["ann-anno-itano-apocalypse"]
     },
     {
@@ -3165,41 +2670,8 @@
       "type": "theory",
       "title": "A color shift between the TV finale and EoE's ending",
       "body": "Forum poster Eva Yojimbo notes a deliberate color shift between the TV series' \"happy, surreal\" finale and the harsh presentation of EoE's closing scene, even before anything happens in it — reading the blue-to-red shift as visually encoding the tonal gulf between the two endings, ahead of the strangling itself reinforcing that harshness as \"reality\" reasserting itself after Instrumentality.",
-      "links": [{ "id": "eoe-red-blue-color-dualism", "label": "A broader red/blue color-symbolism theory applied elsewhere on the page" }],
+      "links": [{ "id": "eoe-red-blue-dualism-theory", "label": "A broader red/blue color-symbolism theory applied elsewhere on the page" }],
       "sourceRefs": ["evageeks-forum-apologies-final-scene"]
-    },
-    {
-      "id": "eoe-death-complementation-stages-framework",
-      "episode": "eoe",
-      "type": "theory",
-      "title": "A five-stage framework for reading Complementation's structure",
-      "body": "Essayist Steve Gilham proposes reading Complementation as unfolding in five distinct stages. \"Coalescence\" begins with Shinji and Asuka in intimate spiritual contact. \"Expansion\" folds in the recently deceased, including Misato's uncensored regrets about Shinji and her memories of Kaji. \"Reiteration\" twists earlier show moments into new shapes — the episode 15 kiss recurs as a kick, and Shinji's callous \"Kaji is dead, Asuka\" from episode 24 resurfaces — separated by a scene replaying Shinji's earlier train-carriage confrontations from within Unit-01. \"Impact\" covers Third Impact itself engulfing the world, with only scattered lines left as Asuka's contribution. \"Transition\" is the re-embodied aftermath: two pilots on a darkling shore, where the strangling and caress finally play out.",
-      "links": [{ "id": "eoe-beach-scene", "label": "The scene this framework builds toward" }],
-      "sourceRefs": ["stevegilham-death-and-complementation"]
-    },
-    {
-      "id": "eoe-asuka-mercy-killing-broken-hypothesis",
-      "episode": "eoe",
-      "type": "theory",
-      "title": "Gilham's hypothesis: a mercy killing Asuka herself asked for",
-      "body": "Steve Gilham's central hypothesis holds that Asuka is already established as dead before the beach scene — fatally wounded fighting the Mass Production Evangelions, and (it's implied) greeted by Rei much as Ritsuko and Misato were. Her last recorded communication to Shinji during Complementation was \"if I have to be with you, I'd rather die\" — so on this reading, Shinji's strangling is him giving her exactly what he believes she asked for, not an act of hatred or self-assertion. Her hand on his cheek reads as fond approval that he remembered; his collapse into tears is him \"bottling\" the act rather than completing it — reinforced by the fact that her caress echoes his mother Yui's own farewell caress just before departing Unit-01 earlier in the film, a memory that would plausibly be what actually breaks his resolve. Under this reading, Asuka's final line isn't disgust at being strangled, but disgusted disappointment that he couldn't go through with it.",
-      "links": [
-        { "id": "eoe-strangling-as-mercy-killing", "label": "A separate mercy-killing reading with a different rationale" },
-        { "id": "asuka-kimochi-warui-origin", "label": "How the closing line was actually written" }
-      ],
-      "sourceRefs": ["stevegilham-death-and-complementation"]
-    },
-    {
-      "id": "eoe-death-complementation-bad-end",
-      "episode": "eoe",
-      "type": "theory",
-      "title": "Gilham's alternate \"Bad End\": unfinished business, not mercy",
-      "body": "Gilham also lays out a considerably darker alternate reading he doesn't rule out: that Shinji's strangling isn't mercy or self-assertion at all, but simply a continuation of unfinished business from the kitchen-scene confrontation earlier in Complementation — Shinji as \"the little squit we already take him for,\" with Asuka's stillness explained by her being too debilitated to fight back rather than by any acceptance of what's happening. Gilham closes this reading by rendering her final line through a misapplied quotation from Marlowe's Doctor Faustus — Mephistopheles' \"Why, this is Hell; nor am I out of it\" — casting the ending as a genuine trap rather than any form of catharsis.",
-      "links": [
-        { "id": "eoe-strangling-as-self-assertion", "label": "The more optimistic reading this directly opposes" },
-        { "id": "eoe-asuka-mercy-killing-broken-hypothesis", "label": "The more sympathetic hypothesis Gilham weighs this against" }
-      ],
-      "sourceRefs": ["stevegilham-death-and-complementation"]
     },
     {
       "id": "eva-unresolved-continuity-questions",
@@ -3250,18 +2722,6 @@
       "sourceRefs": ["stevegilham-second-thoughts"]
     },
     {
-      "id": "eva-original-pitch-episode-outline",
-      "episode": 1,
-      "type": "fact",
-      "title": "The original episode-by-episode pitch, and how far the show drifted from it",
-      "body": "A pre-production episode outline (reproduced from the 100% Newtype Collection) shows just how different Evangelion's original plan was from what aired: episode 1, titled \"People's Reunion,\" already has Unit-00 fighting an Angel called \"Rajiel\" before Shinji even arrives in Tokyo-3; the endgame is built around a \"Human Completion Program\" rather than Instrumentality; a location called \"Aluka\" serves as a \"promised land\"; Eva units 05 and 06 are sent from Germany; and the 12th Angel erases the Americas outright. Read against the aired series, the outline shows both the shadows of episodes that did make it to screen and plot threads more radical than even most fan fiction attempts.",
-      "links": [
-        { "id": "ep1-original-two-parter-draft", "label": "An earlier, more detailed look at this same original episode 1 pitch" },
-        { "id": "ep1-schedule-crisis", "label": "Part of why the finished show drifted so far from this outline" }
-      ],
-      "sourceRefs": ["stevegilham-many-worlds"]
-    },
-    {
       "id": "eoe-scrapped-alternate-ending-shots",
       "episode": "eoe",
       "type": "fact",
@@ -3290,6 +2750,184 @@
         { "id": "rei-merges-lilith-eoe", "label": "The transformation read here as an emergent superintelligence" }
       ],
       "sourceRefs": ["stevegilham-eschaton"]
+    },
+    {
+      "id": "eva-pre-release-fandom-buildup",
+      "episode": 1,
+      "type": "fact",
+      "title": "The fandom Eva walked into, and how word of it first got out",
+      "body": "Gainax already had an American fan base before Eva existed: its Daicon opening films had played at US conventions years earlier, Toren Smith had shared a house with studio staff, and fans met the crew at the 1987 Los Angeles premiere of Royal Space Force (then titled Star Quest) — the studio went on to co-present AnimeCon91, the convention that set the template for Anime Expo and Otakon (the latter named for Gainax's own Otaku no Video). That fan base had to make do with what tape trading could supply: in 1995, official anime in North America was scarce and expensive — early distributors like AnimEigo, US Renditions, and A.D. Vision had only just formed, and a single tape could run $45-50 — so raw or home-recorded episodes moved from Japanese video stores and Japan-based contacts to fansubbing groups like William Chow's Arctic Animation, who copied and mailed tapes to anyone who sent blank cassettes and return postage.\n\nJapanese audiences first heard of the show itself through Gainax's own newsletter G.Press and the start of Sadamoto's manga adaptation in the February 1995 issue of Shōnen Ace (on sale December 1994) — but the earliest press coverage anywhere ran a beat earlier, in the American magazine Animerica that same February, beating Japanese anime magazines like Newtype and Animage to the story. Sourced from a conversation at a Gainax party the previous December, that scoop described alien \"Disciples\" who demand humanity halt its genetic-engineering research and grant a grace period before returning — language that didn't survive to broadcast but traces back to Gainax's late-1993 pitch documents and preliminary Sadamoto/Yamashita sketches later reprinted in the art book Der Mond. Animerica's June 1995 follow-up (drawing on Newtype's April coverage) quoted Anno dismissing the mecha genre as stale — \"Don't you think that robot animation is behind the times? ... It's not a refreshing or new genre\" — and speculated the show would land as a cult favorite rather than a mainstream hit on the scale of Nadia or Royal Space Force. About 200 fans got an even earlier look than that: episodes 1 and 2 previewed at the second Gainax Festival in Itako, Ibaraki, on July 22–23, 1995, showing only the raw episodes since the opening sequence and other finishing elements weren't ready yet. Its actual TV debut got an odd lead-in: on September 27, 1995, a week before the premiere, TV Tokyo aired the final episode of the 1987 Teenage Mutant Ninja Turtles series and followed it immediately, in the same slot, with a commercial for the new show.",
+      "links": [
+        { "id": "eva-fansub-premiere-and-raa-reaction", "label": "How Western fans saw the show days before this broadcast even aired" }
+      ],
+      "sourceRefs": ["ann-absolute-borderline-p1", "ja-wiki-ep1", "en-wiki-ep1"]
+    },
+    {
+      "id": "eva-fansub-premiere-and-raa-reaction",
+      "episode": 1,
+      "type": "fact",
+      "title": "A fan-made VHS premiere, five days ahead of Japan's broadcast — and how newsgroup opinion reacted",
+      "body": "Anime Weekend Atlanta organizer Gordon Waters got a raw tape and a rough translation from a Japanese graduate student, then spent the weekend of October 20-22, 1995 timing subtitles with friends Daric Koslowski and Matt Murray using JACOSUB — a fan-written subtitling program, one of the first of its kind, run on a Commodore Amiga with a video clock synchronizer. The finished fansub premiered October 27 to a packed room at AWA's Castlegate Hotel, five days before most Western fans could see the episode any other way; industry figures Jerry Chu (Bandai), Robert Woodhead (AnimEigo), and Neil Nadelman (U.S. Manga Corps) were in the crowd. It screened again weeks later at New Jersey's Anime East, alongside raw copies of episodes 2-4.\n\nOn the Usenet newsgroup rec.arts.anime, early posts favorably compared the episode to contemporary OVAs and praised Megumi Hayashibara's performance as Rei as a departure from the loud, brash roles she usually played, like Ranma from Ranma ½ — with some posters already speculating about the nature of the three pilots.",
+      "links": [
+        { "id": "asuka-raa-first-impression", "label": "The newsgroup's reaction a few episodes later" }
+      ],
+      "sourceRefs": ["ann-absolute-borderline-p2"]
+    },
+    {
+      "id": "eva-original-pitch-and-draft-outline",
+      "episode": 1,
+      "type": "fact",
+      "title": "The original pitch: Raziel/Rajiel, a two-part opener, and a wildly different endgame",
+      "body": "Gainax's original 1993 pitch document had this episode titled \"People's Reunion\" and structured as a diptych with episode 2. It was to open with Shinji stuck on a train during a battle between Rei's Eva-00 and a \"metallic\" Angel named Raziel (rendered elsewhere as \"Rajiel\"), who vanishes into a lake, sending a damaged Unit-00 back to base; the start of a separate fight between the Angel and a berserk Unit-01 was also planned for this episode before being pushed into episode 2.\n\nA fuller pre-production episode outline (reproduced from the 100% Newtype Collection) shows just how different the whole series' original plan was from what aired: the endgame was built around a \"Human Completion Program\" rather than Instrumentality, a location called \"Aluka\" served as a \"promised land,\" Eva units 05 and 06 were sent from Germany, and the 12th Angel erased the Americas outright. Read against the aired series, the outline shows both the shadows of episodes that did make it to screen and plot threads more radical than even most fan fiction attempts.",
+      "links": [
+        { "id": "original-28-angels-concept", "label": "Another scrapped early-draft concept" },
+        { "id": "ep1-schedule-crisis", "label": "Part of why the finished show drifted so far from this outline" }
+      ],
+      "sourceRefs": ["ja-wiki-ep1", "en-wiki-ep1", "stevegilham-many-worlds"],
+      "quote": {
+        "lang": "ja",
+        "original": "当初の案では、列車に乗っていたシンジが、綾波レイの操縦するエヴァ零号機と使徒「ラジエル」の戦闘により足止めを食らう場面から始まる予定であった。その戦闘でラジエルは湖へと姿を消し、損傷した零号機はNERV本部へと帰還するという流れである。",
+        "translation": "\"In the original plan, the episode was to open with Shinji stuck on a train during a battle between Rei Ayanami's piloted Eva Unit-00 and the Angel 'Raziel'; in that battle Raziel would vanish into a lake, and the damaged Unit-00 would return to NERV headquarters.\""
+      }
+    },
+    {
+      "id": "megazone23-as-precursor",
+      "episode": 1,
+      "type": "theory",
+      "title": "Megazone 23: Anno's mentor, and a likely uncredited structural precursor",
+      "body": "Before Evangelion, a twenty-something Anno worked as a freelance animator on the original 1985 Megazone 23 OAV for studio AIC, around the same period he was presenting short films at Daicon and impressing Hayao Miyazaki with his work on Nausicaä of the Valley of the Wind. On Megazone 23, and earlier on Space Runaway Ideon and The Super Dimension Fortress Macross, Anno worked alongside animator Ichirō Itano — creator of the swarming-missile \"Itano Circus\" technique — whom he came to regard as a mentor. At the 2014 Tokyo International Film Festival, Anno credited his admiration for Itano's work on the Mobile Suit Gundam franchise as the reason he pursued a career in animation in the first place.\n\nCritic Jonny Lobo argues the OAV itself deserves more recognition as a likely influence on Evangelion than it typically gets: a secret city built beneath an older Tokyo and shielded by massive moving mechanisms (echoing NERV's Geofront), biblical names used mostly for exotic flavor rather than deep symbolism, human-like extraterrestrial antagonists that provoke existential and epistemological crises rather than straightforward action, and technology cast as a mother figure to disoriented teenage leads. Lobo extends the parallel all the way to The End of Evangelion: both EoE and Megazone 23 Part II open on scenes of mass destruction scored to music that reads as melancholic and rapturous at once — \"Komm, süsser Tod\" in EoE's case, \"Himitsu Kudasai\" in Megazone 23's — a pairing he reads as more than coincidence, tying both works' suggestion that large-scale societal collapse is inevitable and cyclical to the wider Y2K-era anxieties (rapture fiction, millennial unease) both franchises were made and watched within.",
+      "links": [
+        { "id": "itano-circus-tokusatsu-refs", "label": "The technique named after Itano, quoted in episode 1 itself" },
+        { "id": "nerv", "label": "The organization whose own hidden city echoes Megazone 23's" }
+      ],
+      "sourceRefs": ["ann-anno-itano-apocalypse"]
+    },
+    {
+      "id": "eoe-strangling-competing-readings",
+      "episode": "eoe",
+      "scene": "The final shot, on the beach",
+      "type": "theory",
+      "title": "Eight competing readings of the strangling itself",
+      "body": "One long-running reading (posted by user sephirotic) takes the strangling as Shinji's first genuinely active, aggressive act after a lifetime of passivity — a wordless \"stop hurting me\" from someone who likes Asuka and has never before been able to resist being pushed away, rather than a sign of hatred or a breakdown into violence. On this reading, his tears afterward aren't guilt at the act itself but shock: braced for the rejection he expects, he gets tenderness instead, and that's what breaks him.\n\nPoster Sanada Yukimura pushed back on that \"unafraid to connect\" framing with a dog-behavior analogy: a dog that barks a lot but never bites can be less dangerous than a quiet one that lashes out only when it feels genuinely cornered, so lashing out isn't automatically evidence of openness — it can just as easily be self-defense. Their own alternative is bleaker: Shinji's attempt to kill Asuka is read as an act of mercy, meant to spare her from a post-Instrumentality world he no longer believes can offer real happiness — a much darker note than the TV finale, where Shinji explicitly comes to believe a good life is possible.\n\nPoster Azathoth reads the strangling as deliberately paralleling the film's earlier masturbation scene: both are framed as Shinji acting purely on his own wounded feelings at Asuka's expense, rather than reckoning with why she pushed him away. On this reading the self-indulgence runs all the way up to triggering Instrumentality itself, making the strangling scene's ending a final test — Asuka reaches out anyway, and Shinji's response is to sob rather than accept it, which isn't the outcome she was hoping to get out of the gesture.\n\nForum poster FreakyFilmFan4ever reads the strangling as staged to mirror Unit-01's fight with Sachiel back in episode 2: in both, a body sits pinned atop another, and the pinned party reaches up toward the other's face — Sachiel to tear down Unit-01's AT Field, Asuka to caress Shinji's cheek. Poster Reichu offered a correction worth keeping alongside it: Sachiel's AT Field was actually neutralized earlier, when Unit-01 forced its core open, not by the embrace itself — and Eva-01 straddling something (Sachiel, Eva-03, Zeruel) is consistently a killing posture in the show, making Shinji's initial position a mirror of his Eva's murderous instinct, with the difference being that — unlike his mother inside it — he can actually be talked down.\n\nSome fans read a deliberate pairing with the moment, flashed just afterward, of Naoko's silhouette strangling Rei I: both Rei I and Asuka verbally put distance between their strangler and Gendo in the moment (Rei I calling Naoko an \"old hag,\" Asuka calling Shinji \"Daddy's Boy\"). On this reading, the difference is the outcome — Naoko couldn't let go of her toxic attachment to Gendo as her lover and the encounter ends in death, while Shinji can let go of his to Gendo as his father, and stops once he feels Asuka's touch.\n\nPoster StrokeMeGoat points out that every other strangling in the show — including Shinji's own strangling of Asuka earlier, at the start of Instrumentality — shows both thumbs stacked together over the windpipe, the standard lethal grip. In the beach scene, though, Shinji's thumbs instead line up separately over each carotid artery, which would cut off blood flow and cause someone to pass out rather than asphyxiate; combined with how visibly he's trembling, the reading holds that Shinji may be testing whether Asuka is real and checking for a pulse rather than trying to kill her outright — something poster C.T.1290 separately described as \"strangling her to confirm her existence.\"\n\nPoster VoidEater reads the scene as capturing Shinji and Asuka mid-reintegration, briefly acting without the social \"ego\" self that normally filters them: Shinji finally lets out the anger and resentment he's built up over how Asuka has treated him, while Asuka finally shows the desire she's kept hidden. As their egos fully reassert themselves, Shinji catches himself and draws back.\n\nOutside the forum, critic Mike Crandol draws a direct line between the TV series' lighthearted first kiss and this much darker counterpart: where Asuka's earlier kiss ends in her fleeing in mock disgust, one of Shinji's pre-Instrumentality head-trips restages the same beat with a confession of love instead of a kiss, and Asuka accuses him of loving her only as a convenient source of comfort. Unable to bear the accusation, Shinji strangles her within the vision itself, foreshadowing the real strangling later in the film — reframing that later scene as the culmination of an anxiety the show planted episodes earlier.",
+      "links": [
+        { "id": "eoe-beach-scene", "label": "The overview of the scene these are all readings of" },
+        { "id": "eoe-caress-and-closing-line-readings", "label": "More readings, of the caress and closing line specifically" },
+        { "id": "eva-01-devours-sachiel", "label": "The episode 2 fight one reading mirrors" },
+        { "id": "naoko-kills-rei-suicide", "label": "The scene another reading is read as echoing" },
+        { "id": "shinji-asuka-first-kiss", "label": "The earlier scene Crandol's reading darkly echoes" }
+      ],
+      "sourceRefs": ["evageeks-forum-shinji-strangling-thread", "ann-understanding-evangelion"]
+    },
+    {
+      "id": "eoe-caress-and-closing-line-readings",
+      "episode": "eoe",
+      "scene": "The final shot, on the beach",
+      "type": "theory",
+      "title": "Three more debates: the caress, and what \"kimochi warui\" actually means",
+      "body": "Forum posters split over what Asuka's cheek-touch is actually doing. One camp (including a reading attributed to longtime poster Mr. Tines) takes it as gratitude — thanks for being willing to end her life. Others read it as her finally offering Shinji the gentleness he'd begged for and been refused earlier, on the hell train. A counter-argument (from poster Bagheera) pushes back on the gratitude reading specifically: if Asuka actually wanted to die, tenderness is close to the worst tool available, since Shinji is starved for affection and receiving it — rather than rejection — is what's shown to break him down, not drive him to finish the act.\n\nFans also disagree on how to read Asuka's closing line in context. Some argue it's consistent with her established character rather than a softening — pointing out her glare on the beach visually echoes her glare at Shinji during the earlier kitchen breakdown, and that showing him a moment of kindness doesn't obligate her to find his crying any less pathetic by her own standards. Others (including a reading from poster sephirotic) read it as something closer to regret or an apology for how she'd treated him, rather than renewed rejection. The scene's shooting script originally had Shinji respond by calling her \"baka\" (idiot) — a deliberate callback to the show's opening train-platform scene — before the line was cut for tone.\n\nA third reading (summarized on the forum from a separate Hegel-influenced analysis) argues Shinji and Asuka don't fully snap back into themselves the instant they leave the LCL sea — the two lie beside each other silent and expressionless before visibly \"waking up\" through the exchange that follows, paralleling how the beach caress reverses the earlier rejection at the start of Instrumentality. On this reading, Asuka's final line specifically calls back to the hospital-room scene: inside Instrumentality, with no barriers between people, Asuka acknowledges what Shinji did there and even permits his attraction to her on her own terms; back in reality, with those barriers restored, she reacts to that same memory with disgust instead — making the line about that particular moment rather than a blanket judgment of him.",
+      "links": [
+        { "id": "eoe-strangling-competing-readings", "label": "Readings of the strangling itself these debates respond to" },
+        { "id": "asuka-kimochi-warui-origin", "label": "How the line was actually written on set" },
+        { "id": "eoe-beach-scene", "label": "The scene this line closes out" }
+      ],
+      "sourceRefs": ["evageeks-forum-shinji-strangling-thread"]
+    },
+    {
+      "id": "eoe-hegel-master-slave-reading",
+      "episode": "eoe",
+      "type": "theory",
+      "title": "A Hegelian \"struggle for recognition\" reading of the strangling — and how far its own author would push it",
+      "body": "EoE's official recap card states Shinji chokes Asuka \"to feel the existence of an 'other'. To confirm... rejection and denial.\" Forum poster zlink64 reads that line through the \"Lordship and Bondage\" section of Hegel's Phenomenology of Spirit: two self-conscious beings must risk a struggle to the death for the other's recognition, but the one who wins must stop short of actually killing the other, or the recognition that was the whole point is lost along with them. On this reading, Shinji strangling Asuka and then stopping directly re-enacts that structure — he needs her continued, independent existence, not her death, to have his own reality confirmed by someone who could deny him.\n\nzlink64 later extended the reading further: rather than one party staying fixed in the dominant role, the beach exchange has Shinji and Asuka trade positions — Shinji rejects (strangling) while Asuka accepts (the caress), then Asuka rejects in turn (her final line) while Shinji is left to accept it. Since Hegel's account has the subordinate party, not the dominant one, end up achieving full self-consciousness through the exchange, this reading treats the reciprocal swap as the healthiest version of the dynamic on offer. Fellow poster StrokeMeGoat added that Rei's ghostly appearance to Shinji just before the strangling, paired with Rei and Kaworu's earlier framing of themselves as \"hope that people might one day understand one another,\" reads as foreshadowing this reconciliation rather than undercutting it.\n\nSeveral posters pushed back on treating Hegel as a confirmed direct source, pointing out that Anno has said elsewhere he never read Kierkegaard — making close familiarity with Hegel's specific essay unlikely, with culturally-diffused (\"osmosis\") exposure to the idea a more plausible explanation. One reply proposed a more parsimonious lineage: Jacques Lacan, who absorbed Hegel's ideas via Alexandre Kojève's lectures (and Husserl via Sartre, and Freud via de Saussure and Heidegger), would be a more likely single point of contact if Anno studied psychoanalysis through Lacan rather than each of those thinkers individually. zlink64 eventually backed off the stronger claim, framing Hegel less as \"confirmed inspiration\" and more as simply the clearest available vocabulary for explaining the abstract idea of \"the Other\" to readers unfamiliar with it.",
+      "links": [
+        { "id": "eoe-beach-scene", "label": "The scene this reading applies to" },
+        { "id": "eoe-caress-and-closing-line-readings", "label": "A separate debate over what motivates Asuka's side of the exchange" },
+        { "id": "lcl-sea-lacanian-imaginary", "label": "A separate reading that leans on Lacan directly" },
+        { "id": "shinji-mirror-stage-rejection", "label": "The Lacanian concept this Hegel-via-Lacan lineage would explain" }
+      ],
+      "sourceRefs": ["evageeks-forum-eoe-hegel-thread", "sparknotes-hegel-master-slave"]
+    },
+    {
+      "id": "eoe-red-blue-dualism-theory",
+      "episode": "eoe",
+      "type": "theory",
+      "title": "Eva Yojimbo's red/blue duality theory: Asuka vs. Rei, fists vs. palms, and the beach as replay",
+      "body": "An extended fan theory (posted by Eva Yojimbo) argues Anno consistently codes Asuka in red — tied to sexuality, harsh reality, and an individual life separated from others by their AT Field — against Rei in blue, tied to origins (Lilith and Yui), motherhood, Instrumentality, and the \"collective unconscious.\" On this reading, Shinji's arc throughout the series and EoE alike is a choice between the two poles, summed up in a line the theory attributes to longtime poster Reichu: Shinji \"leaves MOTHER for his SIGNIFICANT OTHER.\"\n\nThe same theory tracks a recurring gesture pairing across the series: closed fists consistently associated with death (including in Eva battles), open palms with life — citing the Gates of Guf located in Lilith's own palms, and the bookend shots of Shinji with blood on his hands over Rei versus semen on his hands over Asuka. Shinji's hands clenching and unclenching are read as tracking the show's recurring question of what choice and action actually look like for him, most directly voiced as \"what are your hands for?\"\n\nIt extends to the closing choke-then-caress exchange itself, read as deliberately re-staging the moment Instrumentality began: Shinji symbolically \"chooses\" death by strangling Asuka and everything she represents, and is answered inside Instrumentality by Yui's own caress as he re-emerges into reality — a link the theory ties to a red streak visible across the moon (itself coded blue/Rei/Lilith) at that moment. On the beach, Shinji is read as trying to \"kill\" the fresh pain of rebirth into individual, harsh reality by strangling Asuka again; releasing his grip is what actually accepting that reality looks like, while Asuka's caress reaffirms \"we're alive\" — offered as hope rather than any promise that things get easier.",
+      "links": [
+        { "id": "accept-vs-reject", "label": "The choice this color pairing is read as mapping onto" },
+        { "id": "eoe-strangling-competing-readings", "label": "Another reading connecting the same bookend gestures" },
+        { "id": "eoe-instrumentality-as-therapy", "label": "Another reading of what happens to Shinji inside Instrumentality" },
+        { "id": "eoe-beach-scene", "label": "The scene this reading is built around" }
+      ],
+      "sourceRefs": ["evageeks-forum-eoe-last-scene-dualism"]
+    },
+    {
+      "id": "eoe-gilham-complementation-framework",
+      "episode": "eoe",
+      "type": "theory",
+      "title": "Gilham's five-stage Complementation framework, and his two competing readings of the ending",
+      "body": "Essayist Steve Gilham proposes reading Complementation as unfolding in five distinct stages. \"Coalescence\" begins with Shinji and Asuka in intimate spiritual contact. \"Expansion\" folds in the recently deceased, including Misato's uncensored regrets about Shinji and her memories of Kaji. \"Reiteration\" twists earlier show moments into new shapes — the episode 15 kiss recurs as a kick, and Shinji's callous \"Kaji is dead, Asuka\" from episode 24 resurfaces — separated by a scene replaying Shinji's earlier train-carriage confrontations from within Unit-01. \"Impact\" covers Third Impact itself engulfing the world, with only scattered lines left as Asuka's contribution. \"Transition\" is the re-embodied aftermath: two pilots on a darkling shore, where the strangling and caress finally play out.\n\nGilham's central hypothesis holds that Asuka is already established as dead before the beach scene — fatally wounded fighting the Mass Production Evangelions, and (it's implied) greeted by Rei much as Ritsuko and Misato were. Her last recorded communication to Shinji during Complementation was \"if I have to be with you, I'd rather die\" — so on this reading, Shinji's strangling is him giving her exactly what he believes she asked for, not an act of hatred or self-assertion. Her hand on his cheek reads as fond approval that he remembered; his collapse into tears is him \"bottling\" the act rather than completing it — reinforced by the fact that her caress echoes his mother Yui's own farewell caress just before departing Unit-01 earlier in the film, a memory that would plausibly be what actually breaks his resolve. Under this reading, Asuka's final line isn't disgust at being strangled, but disgusted disappointment that he couldn't go through with it.\n\nGilham also lays out a considerably darker alternate reading he doesn't rule out — a \"Bad End\" in which the strangling isn't mercy or self-assertion at all, but simply a continuation of unfinished business from the kitchen-scene confrontation earlier in Complementation: Shinji as \"the little squit we already take him for,\" with Asuka's stillness explained by her being too debilitated to fight back rather than by any acceptance of what's happening. Gilham closes this reading by rendering her final line through a misapplied quotation from Marlowe's Doctor Faustus — Mephistopheles' \"Why, this is Hell; nor am I out of it\" — casting the ending as a genuine trap rather than any form of catharsis.",
+      "links": [
+        { "id": "eoe-beach-scene", "label": "The scene this framework builds toward" },
+        { "id": "eoe-strangling-competing-readings", "label": "A more optimistic forum reading this directly opposes" },
+        { "id": "asuka-kimochi-warui-origin", "label": "How the closing line was actually written" }
+      ],
+      "sourceRefs": ["stevegilham-death-and-complementation"]
+    },
+    {
+      "id": "anno-backlash-breakdown",
+      "episode": "eoe",
+      "type": "fact",
+      "title": "The backlash that nearly ended Anno's career, and the six months of silence after",
+      "body": "After the TV finale aired, Anno faced fierce backlash accusing him of abandoning the plot and being lazy; he read online discussions debating the best way to kill him, stopped wanting to work in animation, and has said he contemplated suicide on two separate occasions. Director and friend Hayao Miyazaki reportedly advised him to take a break before starting work on the film version. Decades later, the 2021 NHK documentary Hideaki Anno: The Final Challenge of Evangelion had Anno describe those threads directly: \"People came up with ideas about how to kill me. When I saw that, I lost my will to live. I didn't want to make anime anymore.\"\n\nPer Studio Khara's own biography of Anno, he withdrew from nearly all creative work for roughly six months immediately after the TV finale aired, producing almost nothing until colleagues talked him into returning to Gainax to adapt the original, unfinished ending into a theatrical film — the project that became Death & Rebirth and then The End of Evangelion.",
+      "links": [
+        { "id": "anno-happiness-quote", "label": "Anno's own doubts about his audience, voiced as far back as episode 1" },
+        { "id": "anno-after-evangelion-career", "label": "What Anno did professionally in the aftermath" },
+        { "id": "eoe-death-rebirth-precursor", "label": "The film this breakdown eventually led to" }
+      ],
+      "sourceRefs": ["ja-wiki-eoe", "ann-absolute-borderline-p3", "ann-anno-after-evangelion"],
+      "quote": {
+        "lang": "ja",
+        "original": "本当のことを言っているかどうか実際は怪しいのに、そのインタビューを読んだ人が額面通りに受け取め、観る側が「監督がそう言ったから、そうだろう」みたいな先入観や見方を限定されたくない",
+        "translation": "\"Even though it's genuinely questionable whether I'm telling the truth, people who read an interview take it at face value — I don't want viewers' perspectives limited by a preconception like 'the director said so, so it must be true.'\""
+      }
+    },
+    {
+      "id": "eva-post-finale-licensing-and-legacy",
+      "episode": "eoe",
+      "type": "fact",
+      "title": "How EvaGate resolved, Anime Expo '96, the home-video rollout, and where the fandom went next",
+      "body": "With no public word for two months after the ADV/Gainax rights standoff fans dubbed \"EvaGate '96\" — during which Gainax was also cracking down on English-language fan sites — GM Yasuhiro Takeda eventually released a statement, via publicity manager Hiroki Sato, that episode 19 would get a partial re-dub, episodes 21-24 would receive \"extensive retake footage,\" and the finale would be remade \"using their original scripts.\" That work became the Director's Cuts (some of it folded into the compilation film Death) and The End of Evangelion. A month later, ADV announced its first VHS volume for August 20, 1996.\n\nAt Anime Expo '96 (Anaheim, June 28-30) shortly after, Evangelion won Best New TV Series at the con's awards ceremony and a fan-built Rei figure won the official modeling contest; Anno attended as a guest alongside Noboru Ishiguro, Yoshiaki Kawajiri, Mamoru Oshii, and Kenichi Sonoda — a notably stacked guest lineup even by AX standards. Asked about the finale at his panel there, Anno told the audience, \"I have no problem with them. If there's a problem, it's all with you guys. Too bad\" — switching to English for the last two words. He said the Eva units were inspired by oni, called Asuka his favorite character (\"she's cute\"), was surprised American fans preferred Misato over Rei (\"They can't handle strong women\"), and described Shinji as reflecting his own character \"both in conscious and unconscious parts ... I acknowledged that I'm a fool.\"\n\nADV's VHS release shipped two episodes per tape from that August through its final volume on July 7, 1998; a parallel laser disc release, starting May 17, 1997, was canceled after two volumes because of disc-rot issues affecting the format. The rec.arts.anime newsgroup that carried most of the era's fan discussion has long since given way to venues like the Evangelion subreddit and EvaGeeks.org, but the pattern it set — Western fans debating a still-airing Japanese show in something close to real time — became the default mode for anime fandom that followed.",
+      "links": [
+        { "id": "eoe-death-rebirth-precursor", "label": "The films this statement was describing" },
+        { "id": "anno-metanarrative", "label": "How that self-portrait plays out in the finale itself" }
+      ],
+      "sourceRefs": ["ann-absolute-borderline-p3"]
+    },
+    {
+      "id": "eva-strangest-merchandise",
+      "episode": "extra",
+      "type": "fact",
+      "title": "Seven of the strangest pieces of official Evangelion merchandise",
+      "body": "The license has produced some memorably odd tie-ins over the decades. A set of infant onesies paired Evangelion with Rody, the already-unsettling smiling rubber ride-on horse toy previously licensed alongside Hello Kitty and Hatsune Miku, recoloring the built-in horse ears and body to match Units 00, 01, and 02. A tie-in with Kagome's tomato juice restaged an Angel battle with the Eva pilots fighting a giant, ominous tomato in the middle of Tokyo-3, followed by an ad, styled after the show's own Misato-hosted next-episode previews, revealing Shinji and Asuka weren't piloting Evas at all in this version, but giant juice boxes. An ongoing Schick razor campaign, running since 2012, recast a cheerful, clean-shaven Gendo Ikari — a sharp departure from his cold, scheming characterization in the show — as a pitchman for a close shave, alongside a line of Eva-branded razor-holder figures.\n\nPromotion for Tokyo's Shiohaku Expo 2012 included an 18.5-meter (about 61-foot) inflatable Rei Ayanami in her plug suit, seated with one leg replaced by a slide visitors could climb and ride down — reportedly taller than Odaiba's life-size Gundam statue by about two feet. The official Eva Store's line of ordinary household and fashion goods bearing a small Eva-branded charm, patch, or color scheme has included a boxed set of preserved (long-lasting, no-water-needed) flowers that sold for roughly US$126 — an otherwise unremarkable bouquet priced up purely for being dyed in Unit-01's color scheme — and a paired set of \"Shinji: Blue Musk\" and \"kaworu: White Citrus\" body sprays, marketed as a \"gentle aroma that spreads like the sea and sky\" and a \"refreshing scent that's clear like water\" respectively (a separate three-Eva-Unit body spray line included key art of Rei and Asuka opening Shinji's shirt to spray him). For the franchise's 10th anniversary, figure maker Wave passed over more conventional choices like Misato or Ritsuko and instead redesigned several non-humanoid Angels as \"bishōjo\" figures: Sachiel came out looking like a busty Rei variant, Tabris (Kaworu's Angel identity) wears a version of Shinji's shirt with Kaworu's hairstyle, and Zeruel was the one design built with LCL-filled breasts, unique in the set.",
+      "links": [
+        { "id": "gendo-ikari", "label": "The character being reimagined for the razor ads" },
+        { "id": "gendo-visual-motif", "label": "How differently the show itself stages Gendo's face" },
+        { "id": "rei-ayanami", "label": "The character behind the inflatable slide" },
+        { "id": "eva-01-devours-sachiel", "label": "Sachiel, before the merchandise makeover" },
+        { "id": "kaworu-classification", "label": "Tabris/Kaworu, before the merchandise makeover" }
+      ],
+      "sourceRefs": ["ann-list-strange-merchandise"]
+    },
+    {
+      "id": "anno-after-evangelion-career",
+      "episode": "extra",
+      "type": "fact",
+      "title": "Anno after Evangelion: Love & Pop, marriage, the Rebuild films, and Shin Godzilla",
+      "body": "Anno's first professionally released live-action film, Love & Pop (1998), adapts Ryu Murakami's novel about a high schooler drawn into teenage prostitution, shot entirely handheld on consumer digital camcorders — a format he'd later say reawakened the enthusiasm for filmmaking he'd had as a teenager, following straight on from the exhaustion of finishing Evangelion. He also returned to directing anime that year for His and Her Circumstances, adapted concurrently with Masami Tsuda's ongoing manga, but left the production before its final episodes over disagreements with Tsuda about the show's creative direction and merchandising, plus new restrictions TV Tokyo imposed after the unrelated Pokémon seizure incident; Hiroki Satō finished the series in his place, and it would be Anno's last TV anime directing credit for many years.\n\nAnno married Happy Mania creator Moyoco Anno on March 26, 2002; friends and colleagues have said the marriage visibly softened him. (Moyoco's 2005 manga essay Insufficient Direction chronicles the idiosyncrasies of life married to an otaku director, opening with the question \"Am I truly prepared to be an otaku's wife?\") His Rebuild of Evangelion tetralogy began with Evangelion: 1.0 You Are [Not] Alone (2007) and Evangelion: 2.0 You Can [Not] Advance (2009), both produced with his own Studio Khara alongside Gainax; around 2.0's release, Anno formally resigned from Gainax after roughly 23 years — the two studios parted on reportedly amicable terms at the time, though Anno later sued Gainax in 2016 over unpaid Evangelion royalties and a negligent loan Khara had extended the studio in 2014. Partway through the Rebuild films, he co-directed Shin Godzilla (2016) with Shinji Higuchi, reframing Godzilla's arrival as a modern Japanese bureaucratic crisis explicitly patterned on the 2011 Tōhoku earthquake/tsunami and the Fukushima Daiichi nuclear meltdown; it swept most of the Japan Academy Prizes it was nominated for and became Japan's highest-grossing domestic film that year — Anno's first live-action theatrical release in twelve years.",
+      "links": [
+        { "id": "anno-backlash-breakdown", "label": "The exhaustion this stretch of work followed" }
+      ],
+      "sourceRefs": ["ann-anno-after-evangelion"]
     }
   ]
 }
