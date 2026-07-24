@@ -268,9 +268,9 @@ body {
  * overlay, floating above the timeline rather than sharing document flow
  * with it. An earlier version used `position: sticky` for this, which
  * looked like an overlay once scrolled into place but was really just
- * sitting in-flow after the timeline - on themes with a translucent
- * --color-surface (e.g. FFXIV), that meant timeline text showing through
- * it undimmed and unblurred, legible enough to read both layers at once. */
+ * sitting in-flow after the timeline - on a theme with a translucent
+ * --color-surface, that would mean timeline text showing through it
+ * undimmed and unblurred, legible enough to read both layers at once. */
 .detail-backdrop {
   position: fixed;
   inset: 0;

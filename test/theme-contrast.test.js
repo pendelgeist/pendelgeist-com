@@ -14,10 +14,7 @@ import { contrastRatio } from '../public/theme-palette.js';
  * buttons) using --color-text or --color-accent instead of --color-nav-link.
  * In the default Light theme (and Rainbow), --color-chrome is intentionally
  * close to (or identical to) --color-accent, so that mismatch produces
- * unreadable or fully invisible text. GeoCities '99 separately pairs a light
- * "silver" --color-surface with a foreground palette tuned only for its navy
- * page background, which fails outright against that surface unless
- * overridden (see the GeoCities-scoped variable block in styles.css).
+ * unreadable or fully invisible text.
  */
 
 const MIN_NORMAL = 4.5;
@@ -47,24 +44,8 @@ const THEMES = {
   'FFVII Menu': {
     bg: '#0a1030', text: '#fff', accent: '#6ecfff', surface: '#14206b', chrome: '#0a1030', muted: '#9fb4e0', navLink: '#fff', title: '#fff',
   },
-  // FFXIV's surface/chrome are translucent (backdrop-filter over a body
-  // gradient); approximated here as solid colors close to their composited
-  // appearance, since exact alpha-compositing isn't the point of this test.
-  'FFXIV Eorzea': {
-    bg: '#0b0d12', text: '#f0e6d2', accent: '#d4af37', surface: '#181c26', chrome: '#0d0f14', muted: '#9a8f78', navLink: '#f0e6d2', title: '#d4af37',
-  },
-  "GeoCities '99": {
-    bg: '#000080', text: '#00ff00', accent: '#ff00ff', surface: '#c0c0c0', chrome: '#000000', muted: '#ffff00', navLink: '#00ffff', title: '#ff0000',
-    // GeoCities-only: the variables actually used by anything rendered on
-    // --color-surface (article/.detail-panel/inputs/#result), overridden in
-    // styles.css since the page-level neon palette above fails against
-    // silver.
-    surfaceText: '#000080', surfaceTitle: '#800000', surfaceAccent: '#800080', surfaceMuted: '#404040',
-    // Also GeoCities-only: eva's .entry-type-* left borders, hardcoded
-    // (not re-exported as --color-accent/--color-muted) so
-    // .entry-node-badge's already-correct color-vs-accent/muted pairing
-    // isn't disturbed by the surface fix.
-    entryBorderAccent: '#800080', entryBorderMuted: '#404040',
+  'Eva-01': {
+    bg: '#170b28', text: '#eafbe0', accent: '#39ff14', surface: '#241340', chrome: '#0d0619', muted: '#b9a8d6', navLink: '#eafbe0', title: '#39ff14',
   },
 };
 
