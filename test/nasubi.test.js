@@ -26,6 +26,15 @@ test('entries-japan.json has one row per contest and parses postcard counts', ()
   }
 });
 
+test('entries-japan.json postcard counts sum to the declared 60,911 total', () => {
+  // Regression test: one source row has an internal-whitespace count cell
+  // ("5 0" instead of "50") that an earlier version of the generator failed
+  // to strip before parseInt, silently undercounting the total by 45.
+  const entries = readJson('entries-japan.json');
+  const total = entries.reduce((sum, e) => sum + (e.postcards ?? 0), 0);
+  assert.equal(total, 60911);
+});
+
 test('winnings-japan.json has 103 items summing to the declared 991,164 JPY total', () => {
   const winnings = readJson('winnings-japan.json');
   assert.equal(winnings.length, 103);

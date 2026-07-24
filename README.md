@@ -257,6 +257,17 @@ the order arrays in `app.js` too) or dropping in a new dataset JSON file plus a 
 `<option>`/`DATASETS` entry for the data browser. There's no live external data source here,
 same as the Evangelion page.
 
+The three raw dataset JSON files are themselves generated, not hand-written: `scripts/nasubi/`
+holds the original transcribed source tables (`source/*.md`), the categorization/parsing
+scripts that turn them into stats, and `generate-data.js`, which imports those scripts'
+parsing logic and writes `public/nasubi/data/{entries-japan,winnings-japan,entries-korea}.json`
+plus prints every numeric table `content.json`'s narrative sections quote (category
+breakdowns, food subcategory breakdown, persistence index) so a content edit can be checked
+against fresh output. Run `node scripts/nasubi/generate-data.js` after editing anything in
+`scripts/nasubi/source/` or the categorization logic. `content.json`'s prose isn't
+regenerated — it's hand-maintained and needs updating manually if a script change shifts a
+number it quotes.
+
 ## GraphQL API
 
 `GET /graphql` serves a small vanilla-JS query explorer (`public/graphql/`); `POST /graphql`

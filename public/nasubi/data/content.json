@@ -43,7 +43,7 @@
         ["Mar", "181", "6,867", "14", "7.7%"],
         ["Apr", "131", "5,506", "12", "9.2%"],
         ["May", "214", "7,368", "8", "3.7%"],
-        ["Jun", "223", "5,550", "7", "3.1%"],
+        ["Jun", "224", "5,553", "7", "3.1%"],
         ["Jul", "207", "5,735", "7", "3.4%"],
         ["Aug", "187", "6,303", "6", "3.2%"],
         ["Sep", "170", "4,703", "8", "4.7%"],
@@ -128,6 +128,7 @@
       ],
       "columns": ["JPY/card", "Item", "Japanese", "Cards Sent", "Value (JPY)"],
       "rows": [
+        ["13", "Stocked rice \"Takuwae-kun\" (2kg)", "備蓄米「たくわえくん」(2kg)", "60", "750"],
         ["12", "Ice cream (24 cups)", "アイスクリーム", "250", "3,000"],
         ["12", "Potato snacks", "ポテトスナック", "250", "3,000"],
         ["11", "Mayonnaise (3)", "マヨネーズ", "50", "540"],
@@ -165,23 +166,23 @@
       "heading": "Category Breakdown",
       "body": [
         "Rice had the best win rate at 13.3% — probably because fewer people enter rice contests. Nasubi was smart to target these.",
-        "Personal Care/Beauty delivered a 10% win rate and the highest total value (141,590 JPY) despite not being a high-volume category. Cosmetics sets and hair products have good prize value.",
+        "Home/Appliances delivered by far the highest total value of any category (226,800 JPY) — but that's almost entirely one win: the 99,800 JPY Kokuyo desk and chair, plus the 85,000 JPY VCR and 78,000 JPY tent. Personal Care/Beauty, by contrast, is a case study in small change: a 9.2% win rate but only 41,790 JPY total — mostly shavers and hair-growth tonics.",
         "Travel contests were a total shutout: 105 entries, 2,720 postcards, zero wins. Everyone wants a free trip to Hawaii.",
         "Noodles/Pasta: 3,355 postcards for a single 3,800 JPY spaghetti set win. Brutal.",
         "Vehicles had a terrible win rate (2.7%) but delivered 125,800 JPY on just 2 wins (the bicycle and tires)."
       ],
       "columns": ["Category", "Items", "Postcards", "Wins", "Win Rate", "Value Won (JPY)"],
       "rows": [
-        ["Food (fresh/specialty)", "175", "8,703", "17", "9.7%", "86,630"],
+        ["Food (fresh/specialty)", "168", "8,687", "16", "9.5%", "81,830"],
         ["Snacks/Sweets", "123", "9,090", "9", "7.3%", "21,804"],
-        ["Home/Appliances", "70", "2,346", "6", "8.6%", "127,000"],
+        ["Home/Appliances", "76", "2,429", "7", "9.2%", "226,800"],
         ["Rice", "30", "1,547", "4", "13.3%", "15,800"],
-        ["Personal Care/Beauty", "70", "1,991", "7", "10.0%", "141,590"],
+        ["Personal Care/Beauty", "65", "1,865", "6", "9.2%", "41,790"],
         ["Electronics (IT/Tech)", "134", "2,751", "7", "5.2%", "95,300"],
-        ["Electronics (AV)", "125", "2,470", "5", "4.0%", "111,300"],
+        ["Electronics (AV)", "127", "2,472", "6", "4.7%", "116,100"],
         ["Vehicles/Transport", "74", "2,812", "2", "2.7%", "125,800"],
         ["Travel", "105", "2,720", "0", "0.0%", "0"],
-        ["Cash/Vouchers/Tickets", "90", "2,148", "3", "3.3%", "20,000"],
+        ["Cash/Vouchers/Tickets", "92", "2,150", "3", "3.3%", "20,000"],
         ["Noodles/Pasta", "66", "3,355", "1", "1.5%", "3,800"],
         ["Beverages", "64", "2,056", "1", "1.6%", "1,200"]
       ]
@@ -189,7 +190,7 @@
     "persistenceIndex": {
       "heading": "The Persistence Index: Items Entered Month After Month",
       "body": [
-        "Nasubi entered chocolate contests for 9 consecutive months (1,265 postcards). He eventually won — 2,000 JPY of chocolate. He tried for 1 million yen in cash for 5 months (261 postcards). Never won.",
+        "Nasubi entered chocolate contests for 9 consecutive months (1,265 postcards). He eventually won — 2,000 JPY of chocolate. He tried for 1 million yen in cash for 4 months (161 postcards). Never won.",
         "The man wanted sunglasses badly — 8 months, 460 postcards, never got them."
       ],
       "columns": ["Months", "Total Cards", "Item", "Won?"],
@@ -206,7 +207,7 @@
         ["6", "257", "MD player", "No"],
         ["5", "933", "Potato snacks", "Yes"],
         ["5", "585", "Watch", "No"],
-        ["5", "261", "1 million yen cash", "No"]
+        ["4", "161", "1 million yen in cash", "No"]
       ]
     },
     "hirosue": {
@@ -227,15 +228,15 @@
     "foodDeepDive": {
       "heading": "Food Deep Dive: Eating (or Not) by Sweepstakes",
       "body": [
-        "For a man whose primary crisis was starvation, Nasubi devoted an enormous share of his effort to food contests. Over half of all postcards — 31,081 out of 60,911 (51%) — went toward food-related prizes. A third of all unique contest entries (631 of 1,891) were food items. Yet the return was disproportionately poor: food wins totaled just 162,514 JPY, about 16% of his overall haul.",
-        "The math is bleak. Nasubi won 41 food items out of 631 entries — a 6.5% win rate, slightly above his overall average. But 590 food entries returned nothing. He sent 480 postcards for miso and soy sauce, 450 for Japanese sweets, 440 for assorted pickles, 351 for cup ramen. All zeroes."
+        "For a man whose primary crisis was starvation, Nasubi devoted an enormous share of his effort to food contests. Over half of all postcards — 31,063 out of 60,911 (51%) — went toward food-related prizes. A third of all unique contest entries (623 of 1,891) were food items. Yet the return was disproportionately poor: food wins totaled just 156,214 JPY, about 16% of his overall haul.",
+        "The math is bleak. Nasubi won 39 food items out of 623 entries — a 6.3% win rate, slightly above his overall average. But 584 food entries returned nothing. He sent 480 postcards for miso and soy sauce, 450 for Japanese sweets, 440 for assorted pickles, 351 for cup ramen. All zeroes."
       ]
     },
     "foodSubcategory": {
       "heading": "Food Subcategory Breakdown",
       "body": [
         "The pattern here mirrors the overall dataset: the unglamorous categories win. Pickles & fermented foods had a 16.7% win rate. Rice hit 14.8%. Meanwhile, the things you'd actually crave — noodles, prepared meals, beverages — came in under 2%. Nobody else was competing for natto (納豆). Everyone was competing for cup ramen.",
-        "Meat and seafood tell an interesting story: respectable win rates (9.3% and 8.0%) and real value — a 15,800 JPY lobster, 15,000 JPY sirloin steak, hairy crab, duck meat. When Nasubi won protein, it mattered.",
+        "Meat and seafood tell an interesting story: respectable win rates (8.6% and 7.8%) and real value — a 15,800 JPY lobster, 15,000 JPY sirloin steak, hairy crab, duck meat. When Nasubi won protein, it mattered.",
         "The pet food line is darkly funny. At 28.6%, it had the highest win rate of any food subcategory. Nobody wants to win dog food. Nasubi won two batches — raw and dry — worth a combined 10,100 JPY. And infamously, he ate it."
       ],
       "columns": ["Subcategory", "Items", "Postcards", "Wins", "Win Rate", "Value Won (JPY)"],
@@ -245,12 +246,12 @@
         ["Noodles & Pasta", "50", "2,619", "1", "2.0%", "3,800"],
         ["Prepared & Convenience", "53", "2,435", "1", "1.9%", "3,000"],
         ["Beverages", "73", "2,419", "1", "1.4%", "15,000"],
-        ["Seafood & Seaweed", "50", "2,287", "4", "8.0%", "26,150"],
+        ["Seafood & Seaweed", "51", "2,337", "4", "7.8%", "26,150"],
         ["Pickles & Fermented", "24", "2,113", "4", "16.7%", "11,400"],
         ["Fruit", "39", "1,781", "4", "10.3%", "7,300"],
-        ["Meat", "43", "1,464", "4", "9.3%", "26,300"],
         ["Rice", "27", "1,437", "4", "14.8%", "15,800"],
-        ["Condiments & Pantry", "58", "1,360", "4", "6.9%", "2,540"],
+        ["Meat", "35", "1,398", "3", "8.6%", "21,500"],
+        ["Condiments & Pantry", "57", "1,358", "3", "5.3%", "1,040"],
         ["Diet & Health Food", "17", "799", "1", "5.9%", "2,640"],
         ["Dairy & Soy", "12", "541", "1", "8.3%", "1,530"],
         ["Pet Food", "7", "320", "2", "28.6%", "10,100"]
@@ -259,7 +260,7 @@
     "survivalTimeline": {
       "heading": "The Survival Timeline: When Did Food Actually Arrive?",
       "body": [
-        "July was a total food blackout — not a single edible item arrived. This aligns with the broader mid-year drought visible in the overall data.",
+        "July and September were both total food blackouts — not a single edible item arrived in either month. This aligns with the broader mid-year drought visible in the overall data.",
         "The early months (Feb–May) were relatively generous. March alone delivered 7 food wins — natto, strawberries, beef, beans. May brought his first major rice haul (10 kg). These months likely kept him from total collapse.",
         "The late surge is notable too. October through November delivered crab, steak, matsutake mushrooms, and 10 kg of premium Koshihikari rice — the most calorically significant stretch of the entire ordeal. By then he'd been starving for nearly a year."
       ],
@@ -272,7 +273,7 @@
         ["Jun", "4", "Duck meat, seaweed, ice cream"],
         ["Jul", "0", "—"],
         ["Aug", "4", "Jelly, rice (2kg), pickled eggplant, watermelon"],
-        ["Sep", "1", "(non-food item miscategorized)"],
+        ["Sep", "0", "—"],
         ["Oct", "4", "Hairy crab, anmitsu, potato snacks, vegetable juice"],
         ["Nov", "5", "Sirloin steak, matsutake, rice (10kg), mayonnaise"],
         ["Dec", "2", "Furikake, rice (2kg + 2kg)"]
@@ -281,7 +282,7 @@
     "edibleBreakdown": {
       "heading": "What He Could Actually Eat",
       "body": [
-        "Not all food wins were equal. Of his 41 food-related wins: ~30 were genuinely edible (rice, meat, seafood, noodles, fruit, sweets, natto), 4 were condiments only (mayonnaise, furikake, pickled eggplant, konjiri), 2 were pet food (which he ate out of desperation), and ~5 were miscategorized non-food items (movie tickets, video, toilet paper, hair products)."
+        "Not all food wins were equal. Of his 39 food-related wins: 31 were genuinely edible (rice, meat, seafood, noodles, fruit, sweets, natto), 4 were condiments only (mayonnaise, furikake, pickled eggplant, konjiri), 2 were pet food (which he ate out of desperation), and 2 were miscategorized non-food items that a simple keyword match couldn't tell apart from groceries: movie tickets (for \"Spice the Movie\" — \"spice\" the condiment vs. Spice the pop group) and hair polish described in \"apple red\" (a shade name, not the fruit)."
       ]
     },
     "sustainingWins": {
@@ -361,13 +362,12 @@
         ["Electronics (AV)", "22", "6.1%"],
         ["Beverages", "18", "5.0%"],
         ["Fruit", "16", "4.5%"],
+        ["Clothing", "14", "3.9%"],
         ["Vegetables", "13", "3.6%"],
         ["Electronics (IT)", "13", "3.6%"],
-        ["Vehicles", "12", "3.4%"],
         ["Accessories", "12", "3.4%"],
         ["Seafood", "12", "3.4%"],
         ["Personal Care", "11", "3.1%"],
-        ["Clothing", "9", "2.5%"],
         ["Condiments", "9", "2.5%"],
         ["Travel", "9", "2.5%"],
         ["Kitchenware", "9", "2.5%"],
@@ -378,8 +378,9 @@
         ["Prepared Food", "6", "1.7%"],
         ["Noodles", "4", "1.1%"],
         ["Furniture", "3", "0.8%"],
+        ["Vehicles", "3", "0.8%"],
         ["Musical Instruments", "1", "0.3%"],
-        ["Other", "81", "22.6%"]
+        ["Other", "85", "23.7%"]
       ]
     },
     "comparison": {
