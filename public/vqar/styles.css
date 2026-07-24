@@ -164,8 +164,16 @@ article:hover {
   color: var(--color-title);
 }
 
+/* Deliberately not var(--font-heading): every theme's heading font (Reactor7,
+ * Impact, Comic Sans, Times New Roman, Courier New, Raleway) is Latin-only,
+ * so Japanese text in it falls through to the browser's own CJK fallback -
+ * and since none of those declared fonts cover CJK, that fallback can be
+ * resolved per-character rather than once for the whole string, letting
+ * individual kanji render a visibly different size/weight than the kana
+ * around them. Pinning an explicit CJK stack keeps the whole line on one
+ * font, avoiding that mismatch regardless of theme. */
 .entry-title-jp {
-  font-family: var(--font-heading);
+  font-family: 'Hiragino Kaku Gothic Pro', 'Hiragino Sans', 'Yu Gothic Medium', Meiryo, 'Noto Sans CJK JP', 'MS Gothic', sans-serif;
   font-size: 1.3rem;
   font-weight: 700;
   margin-bottom: 0.75rem;
