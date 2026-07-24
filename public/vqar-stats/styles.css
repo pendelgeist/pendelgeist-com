@@ -262,7 +262,8 @@
   color: var(--color-nav-link);
 }
 
-.filters input {
+.filters input,
+.filters select {
   height: 2.75rem;
   padding: 0.5rem;
   font: inherit;
@@ -273,7 +274,8 @@
   color: var(--color-text);
 }
 
-.filters input:focus {
+.filters input:focus,
+.filters select:focus {
   border-color: var(--color-input-focus);
   box-shadow: var(--shadow-focus);
   outline: none;

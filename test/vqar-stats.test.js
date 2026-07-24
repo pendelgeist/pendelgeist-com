@@ -191,3 +191,33 @@ test('shows an error message if the manifest fails to load', async () => {
   assert.ok(err, 'expected an error message in the stats-glance container');
   assert.match(err.textContent, /ERROR/);
 });
+
+test('season filter is populated from the manifest and defaults to "All Seasons"', async () => {
+  const { document } = await loadApp();
+
+  const options = [...document.querySelectorAll('#seasonFilter option')].map(o => ({ value: o.value, text: o.textContent }));
+  assert.deepEqual(options, [
+    { value: 'all', text: 'All Seasons' },
+    { value: 'summer-2026', text: 'Summer 2026' },
+    { value: 'spring-2026', text: 'Spring 2026' },
+  ]);
+  assert.equal(document.getElementById('seasonFilter').value, 'all');
+});
+
+test('picking a season in the filter scopes every stat, the browse table, and the glance grid to just that season', async () => {
+  const { document } = await loadApp();
+
+  const select = /** @type {any} */ (document.getElementById('seasonFilter'));
+  select.value = 'spring-2026';
+  select.dispatchEvent(new document.defaultView.Event('change', { bubbles: true }));
+
+  const tiles = [...document.querySelectorAll('#statsGlance .stat-tile')];
+  const totalReviewsTile = tiles.find(t => t.querySelector('.stat-label').textContent === 'Total Reviews');
+  assert.equal(totalReviewsTile.querySelector('.stat-value').textContent, '3'); // only Spring 2026's reviews
+
+  const rowsText = () => [...document.querySelectorAll('#dataTableWrap tbody tr')].map(tr => tr.children[1].textContent);
+  assert.deepEqual(new Set(rowsText()), new Set(['Spring 2026']));
+
+  const bestRows = [...document.querySelectorAll('#hallOfFameBest tbody tr')].map(tr => tr.children[0].textContent);
+  assert.equal(bestRows[0], 'Great Show'); // Peak Show (Summer 2026) is out of scope now
+});

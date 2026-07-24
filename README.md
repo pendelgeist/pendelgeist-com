@@ -293,6 +293,11 @@ a most-used-words list, and a searchable/sortable table of every review (mirrori
 "Browse the Raw Data"). Only reviews with a numeric `ratingNumber` count toward
 averages/rankings — a `ratingText`-only entry is still valid, just excluded from those.
 
+A Season filter above those sections (defaults to "All Seasons") re-slices the loaded
+seasons/reviews and re-runs every `compute*`/render call against just the one picked —
+`applySeasonFilter()` in `app.js` does the slicing, off the same in-memory `allSeasons`/
+`allReviews` fetched once at load, so switching seasons never re-fetches.
+
 Adding a new stat means adding a `compute*` function to `stats.js` (plus a test) and a
 render function in `app.js` that calls it — no committed data to regenerate, unlike Nasubi.
 

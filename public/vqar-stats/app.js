@@ -11,6 +11,8 @@ import {
   computeHallOfFame, computeSecondImpressions, computeOpEdHighlights, computeWordChoice,
 } from './stats.js';
 
+/** @typedef {import('../vqar/app.js').SeasonData} SeasonData */
+
 // Shares its cache key prefix with /vqar/app.js on purpose - a season fetched
 // from either page warms the cache for the other.
 const CACHE_PREFIX = 'vqar:v1:season:';
@@ -18,6 +20,7 @@ const CACHE_PREFIX = 'vqar:v1:season:';
 const dom = {
   infoToggle: document.getElementById('infoToggle'),
   guidelines: document.getElementById('guidelines'),
+  seasonFilter: /** @type {HTMLSelectElement} */ (document.getElementById('seasonFilter')),
   statsGlance: document.getElementById('statsGlance'),
   ratingDistributionChart: document.getElementById('ratingDistributionChart'),
   ratingDistributionBlurb: document.getElementById('ratingDistributionBlurb'),
@@ -290,14 +293,18 @@ function renderWordChoice(reviews) {
   }));
 }
 
+/** @type {SeasonData[]} */
+let allSeasons = [];
 /** @type {ReturnType<typeof flattenReviews>} */
 let allReviews = [];
+/** The review set currently in view - all seasons, or just the one picked in seasonFilter. */
+let currentReviews = [];
 
 function renderBrowseTable() {
   const term = dom.dataSearch.value.trim().toLowerCase();
   const filtered = term
-    ? allReviews.filter(r => (r.titleEN ?? '').toLowerCase().includes(term) || (r.review ?? '').toLowerCase().includes(term))
-    : allReviews;
+    ? currentReviews.filter(r => (r.titleEN ?? '').toLowerCase().includes(term) || (r.review ?? '').toLowerCase().includes(term))
+    : currentReviews;
 
   const sorted = [...filtered].sort((a, b) => b._timestamp - a._timestamp);
   renderDataTable(
@@ -305,6 +312,51 @@ function renderBrowseTable() {
     ['Title', 'Season', 'Rating', 'Date Reviewed'],
     sorted.map(r => [r.titleEN ?? 'Untitled', r.seasonName, r.ratingText ?? formatRating(r.ratingNumber), r.dateReviewed ?? '—'])
   );
+}
+
+/** @param {SeasonData[]} seasons */
+function populateSeasonFilter(seasons) {
+  const allOption = document.createElement('option');
+  allOption.value = 'all';
+  allOption.textContent = 'All Seasons';
+
+  const fragment = document.createDocumentFragment();
+  for (const season of seasons) {
+    const option = document.createElement('option');
+    option.value = String(season.id);
+    option.textContent = season.name;
+    fragment.appendChild(option);
+  }
+
+  dom.seasonFilter.replaceChildren(allOption, fragment);
+}
+
+/**
+ * Renders every section from a given seasons/reviews slice - the full
+ * dataset, or just the one season picked in seasonFilter.
+ * @param {SeasonData[]} seasons
+ * @param {ReturnType<typeof flattenReviews>} reviews
+ */
+function renderAll(seasons, reviews) {
+  currentReviews = reviews;
+
+  renderGlanceStats(seasons, reviews);
+  renderRatingDistribution(reviews);
+  renderRatingsOverTime(reviews);
+  renderHallOfFame(reviews);
+  renderSecondImpressions(reviews);
+  renderOpEd(reviews);
+  renderWordChoice(reviews);
+  renderBrowseTable();
+}
+
+function applySeasonFilter() {
+  const value = dom.seasonFilter.value;
+  if (value === 'all') {
+    renderAll(allSeasons, allReviews);
+  } else {
+    renderAll(allSeasons.filter(s => String(s.id) === value), allReviews.filter(r => r.season === value));
+  }
 }
 
 async function init() {
@@ -331,17 +383,13 @@ async function init() {
     }
     if (seasons.length === 0) throw new Error('No season data could be loaded');
 
+    allSeasons = seasons;
     allReviews = flattenReviews(seasons);
 
-    renderGlanceStats(seasons, allReviews);
-    renderRatingDistribution(allReviews);
-    renderRatingsOverTime(allReviews);
-    renderHallOfFame(allReviews);
-    renderSecondImpressions(allReviews);
-    renderOpEd(allReviews);
-    renderWordChoice(allReviews);
-    renderBrowseTable();
+    populateSeasonFilter(seasons);
+    applySeasonFilter();
 
+    dom.seasonFilter.addEventListener('change', applySeasonFilter);
     dom.dataSearch.addEventListener('input', renderBrowseTable);
   } catch (error) {
     console.error('Error loading VQAR stats:', error);

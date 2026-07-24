@@ -47,7 +47,8 @@
       <h3>How to read it</h3>
       <p>Numbers at a glance up top, then a handful of curated angles on the data (rating distribution, ratings
         over time, best/worst rated, how "Finish Ep" shows held up on a full re-review, OP/ED favorites, most-used
-        words). Jump to <a href="#browse-data">Browse Data</a> at the bottom to search every review directly.</p>
+        words). The Season filter scopes every section below it to one season instead of the full history. Jump to
+        <a href="#browse-data">Browse Data</a> at the bottom to search every review directly.</p>
       <h3>A note on the numbers</h3>
       <p>Only entries with a numeric rating count toward averages/rankings - a review can have just a
         <code>ratingText</code> and still be perfectly valid. Data is fetched fresh on every visit, so this page
@@ -58,6 +59,15 @@
       <h1>VQAR By The Numbers</h1>
       <p class="vs-subtitle">A fun data analysis of Very Quick Anime Reviews</p>
     </header>
+
+    <div class="filters">
+      <div class="filter-group">
+        <label for="seasonFilter">Season</label>
+        <select id="seasonFilter">
+          <option value="all">All Seasons</option>
+        </select>
+      </div>
+    </div>
 
     <section class="section">
       <h2>Numbers at a Glance</h2>
