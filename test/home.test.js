@@ -8,7 +8,7 @@ import { JSDOM } from 'jsdom';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const html = fs.readFileSync(path.join(__dirname, '../public/index.html'), 'utf-8');
 
-test('homepage links to VQAR, the GraphQL API, and amokenzoku.com', () => {
+test('homepage links to VQAR, the GraphQL API, and the AMO Kenzoku Podcast', () => {
   const { document } = new JSDOM(html).window;
 
   const links = [...document.querySelectorAll('.show-list a')].map((a) => a.getAttribute('href'));
@@ -17,8 +17,8 @@ test('homepage links to VQAR, the GraphQL API, and amokenzoku.com', () => {
   assert.ok(links.includes('/nasubi'), 'expected a link to /nasubi');
   assert.ok(links.includes('/graphql'), 'expected a link to /graphql');
   assert.ok(
-    links.some((href) => href === 'https://www.amokenzoku.com' || href === 'https://www.amokenzoku.com/'),
-    'expected a link to amokenzoku.com'
+    links.includes('https://amokenzoku.com/podcast/'),
+    'expected a link to the AMO Kenzoku podcast page'
   );
 });
 
