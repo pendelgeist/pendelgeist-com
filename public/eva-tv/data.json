@@ -91,7 +91,8 @@
     "ann-eoe-trivia": { "lang": "en", "title": "The End of Evangelion — Trivia — Anime News Network", "url": "https://www.animenewsnetwork.com/encyclopedia/anime.php?id=419&page=22" },
     "ann-death-rebirth-trivia": { "lang": "en", "title": "Neon Genesis Evangelion: Death & Rebirth — Trivia — Anime News Network", "url": "https://www.animenewsnetwork.com/encyclopedia/anime.php?id=418&page=22" },
     "en-wiki-death-rebirth": { "lang": "en", "title": "Neon Genesis Evangelion: Death & Rebirth — Wikipedia", "url": "https://en.wikipedia.org/wiki/Neon_Genesis_Evangelion:_Death_%26_Rebirth" },
-    "ja-wiki-death-rebirth": { "lang": "ja", "title": "新世紀エヴァンゲリオン劇場版 シト新生 — Wikipedia (Japanese)", "url": "https://ja.wikipedia.org/wiki/新世紀エヴァンゲリオン劇場版_シト新生" }
+    "ja-wiki-death-rebirth": { "lang": "ja", "title": "新世紀エヴァンゲリオン劇場版 シト新生 — Wikipedia (Japanese)", "url": "https://ja.wikipedia.org/wiki/新世紀エヴァンゲリオン劇場版_シト新生" },
+    "stojnic-boy-with-machine": { "lang": "en", "title": "Boy with Machine: A Deleuzo-Guattarian Critique of Neon Genesis Evangelion — Betty Stojnic (Journal of Anime and Manga Studies)", "url": "https://hdl.handle.net/2142/113396" }
   },
   "episodes": [
     { "number": 1, "title": "Angel Attack", "subtitle": "JP: 使徒、襲来 — lit. \"Angel, Attack\" · aired 1995-10-04, 6.8%" },
@@ -370,8 +371,11 @@
       "type": "theory",
       "title": "Eva-01 staged as the mother in the room",
       "body": "Scholars (Betty Stojnic, Claudio Cordella) read this episode's hangar scene as staging a full Freudian family triad on-screen: Shinji dwarfed between his distant, authoritative father above him and a maternal Eva-01 beside him — Eva-01 later raises its arm to shield Shinji, read as a maternal gesture rather than a mechanical reflex. It's the earliest visual argument for the idea that Yui's presence is somehow in the machine itself.",
-      "links": [ { "id": "yuis-soul-in-unit-01", "label": "The theory this staging feeds" } ],
-      "sourceRefs": ["en-wiki-ep1"]
+      "links": [
+        { "id": "yuis-soul-in-unit-01", "label": "The theory this staging feeds" },
+        { "id": "stojnic-boy-with-machine-comparison", "label": "Stojnic's own, much larger argument this scene sets up" }
+      ],
+      "sourceRefs": ["en-wiki-ep1", "stojnic-boy-with-machine"]
     },
     {
       "id": "gendo-visual-motif",
@@ -3090,6 +3094,45 @@
         { "id": "phantom-full-new-film", "label": "The all-new film this pressure competed with" }
       ],
       "sourceRefs": ["ja-wiki-death-rebirth"]
+    },
+    {
+      "id": "deleuze-guattari-instrumentality-deterritorialization",
+      "episode": "eoe",
+      "type": "theory",
+      "title": "Instrumentality read as Deleuze and Guattari's \"absolute deterritorialization\" — and why Shinji rejects it",
+      "body": "Scholar Betty Stojnic reads the Human Instrumentality Project through Gilles Deleuze and Félix Guattari's concept of absolute deterritorialization — the (necessarily hypothetical) total dissolution of the fixed, separate boundaries between things, described in A Thousand Plateaus as \"the creation of a new earth.\" On this reading, erasing every person's AT Field does exactly that: it doesn't destroy individuality so much as remove the artificial partitions holding individuals apart in the first place, collapsing humanity into a single, still-differentiated continuum rather than a featureless soup. Stojnic argues Evangelion depicts this with unusual formal precision for the medium — Shinji's body breaking into shifting, minimal line art as his sense of a fixed self dissolves is, in her reading, animation itself doing philosophical work dialogue alone couldn't.\n\nWhere Stojnic's argument turns critical is in what happens next: Shinji ultimately rejects Instrumentality and returns to individuated, embodied life, a choice the show frames as a triumph of self-actualization. Stojnic reads it instead as a retreat into what Deleuze and Guattari call the oedipal — the reduction of a person's whole psychology to the nuclear family triangle of \"mommy-daddy-me,\" which the two philosophers spend Anti-Oedipus arguing against as an artificial, restrictive frame rather than the natural bedrock of identity. Shinji's stated reason for rejecting the dissolution of boundaries is that it would mean losing his loved ones as separate, encounterable people — which, per Stojnic, makes his \"growth\" at the story's end really a recommitment to the same familial determinism the show spends its whole runtime interrogating, with Shinji and Asuka left standing in, by the final scene, as a new primal father and mother.",
+      "links": [
+        { "id": "shinji-mirror-stage-rejection", "label": "A Lacanian reading of the same rejection" },
+        { "id": "eoe-reis-silence-as-intervention", "label": "A related psychoanalytic reading of the scene just before this" },
+        { "id": "two-shinjis-scene", "label": "An earlier scene already read through Freud's ego and superego" },
+        { "id": "stojnic-boy-with-machine-comparison", "label": "The image Stojnic uses to sum up this argument" }
+      ],
+      "sourceRefs": ["stojnic-boy-with-machine"]
+    },
+    {
+      "id": "stojnic-boy-with-machine-comparison",
+      "episode": "eoe",
+      "type": "theory",
+      "title": "\"Boy with Machine\": the painting on Anti-Oedipus's cover, and Shinji's inverted version of it",
+      "body": "Deleuze and Guattari's Anti-Oedipus is fronted by Richard Lindner's painting Boy with Machine, which the authors read as a boy plugging his own desire directly into the wider social world via a machine of his own, bypassing his parents entirely — the two of them can only intervene afterward, as producers rather than gatekeepers. Stojnic argues Evangelion stages the exact inverse: Shinji's \"machine,\" Unit-01, isn't something he operates as an extension of his own desire — it's literally his mother's body, and it's only from inside her that he's permitted to act at all. Where Lindner's boy escapes the family to reach the world, Shinji re-enters it every time he climbs into the cockpit, making the Eva itself the site where the show forecloses on any independence from the parental relationship rather than a path around it.",
+      "links": [
+        { "id": "family-triad-imagery", "label": "The scene that first stages Eva-01 as Shinji's mother" },
+        { "id": "yuis-soul-in-unit-01", "label": "The theory this reading depends on" },
+        { "id": "deleuze-guattari-instrumentality-deterritorialization", "label": "The larger Deleuzo-Guattarian reading this image supports" }
+      ],
+      "sourceRefs": ["stojnic-boy-with-machine"]
+    },
+    {
+      "id": "lamarre-ep26-exploded-psyche-animation",
+      "episode": 26,
+      "type": "theory",
+      "title": "Ep. 26's stripped-down animation as an \"exploded view\" of Shinji's psyche",
+      "body": "Media theorist Thomas Lamarre reads the finale's collapse from full animation into storyboards and bare line art not as a budget shortcut dressed up as an artistic choice, but as the show putting the viewer \"inside animation\" itself: existential crisis becomes technical crisis. He compares the effect to an exploded diagram, the kind that lays a mechanism's parts out in the order they'd be assembled — Shinji's psyche pulled apart into its bare components rather than shown as a single unified point of view. Lamarre ties this to Anno's limited-animation technique generally, which favors sliding flat layers of cel over redrawing characters frame by frame, flattening depth and movement onto the surface of the image; in the finale, that same flatness makes the editing itself feel like contemplation rather than action, which Lamarre likens to the \"time-image\" Gilles Deleuze describes in his two Cinema books.",
+      "links": [
+        { "id": "ep26-duck-amuck-comparison", "label": "A different critic's reading of the same visual collapse" },
+        { "id": "deleuze-guattari-instrumentality-deterritorialization", "label": "The philosopher this technique is also compared to elsewhere" }
+      ],
+      "sourceRefs": ["stojnic-boy-with-machine"]
     }
   ]
 }
