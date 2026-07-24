@@ -12,6 +12,7 @@ The Worker (`src/worker.js`) also backs a small GraphQL API over the same anime 
 - `public/vqar/` — Very Quick Anime Reviews, a small vanilla-JS app.
 - `public/eva-tv/` — Neon Genesis Evangelion episode timeline, a small vanilla-JS app.
 - `public/nasubi/` — a data analysis of Nasubi's *Susunu! Denpa Shonen* sweepstakes ordeal.
+- `public/vqar-stats/` — "VQAR By The Numbers", a fun stats page over the VQAR review data.
 - `public/graphql/` — a GraphQL query explorer for the API described below.
 - `public/styles.css` — shared site styles. `public/vqar/styles.css` and `public/graphql/styles.css`
   layer page-specific styles on top.
@@ -266,6 +267,34 @@ against fresh output. Run `node scripts/nasubi/generate-data.js` after editing a
 `scripts/nasubi/source/` or the categorization logic. `content.json`'s prose isn't
 regenerated — it's hand-maintained and needs updating manually if a script change shifts a
 number it quotes.
+
+## VQAR stats page
+
+`public/vqar-stats/` is a standalone page at `/vqar-stats`, "VQAR By The Numbers" — a fun,
+freer-format data analysis of the VQAR review data, in the spirit of the Nasubi page above
+but computed live instead of from committed JSON, since VQAR's data (unlike Nasubi's) keeps
+growing every season.
+
+`app.js` fetches the same manifest + every season gist documented under "VQAR data" above
+(sharing `/vqar/app.js`'s `localStorage` cache key prefix, so a season cached from either
+page warms the cache for the other), flattens every season's `reviewed` array into one list,
+and hands it to `stats.js` — a set of pure, DOM-free functions (`computeGlanceStats`,
+`computeRatingDistribution`, `computeRatingsOverTime`, `computeHallOfFame`,
+`computeSecondImpressions`, `computeOpEdHighlights`, `computeWordChoice`) that each derive
+one stat/section from the flattened review list. Keeping these pure and separate from
+`app.js`'s fetch/render code is what makes them unit-testable without a DOM or a live gist
+fetch — see `test/vqar-stats.test.js`.
+
+Sections rendered from those functions: a numbers-at-a-glance stat grid, a rating
+distribution bar chart, average rating per season over time, best/worst-rated shows,
+"Second Impressions" (how a `fullReview` re-review's rating compares to the original
+episode-1 rating — a swing metric unique to VQAR's data shape), top-rated OP/ED callouts,
+a most-used-words list, and a searchable/sortable table of every review (mirroring Nasubi's
+"Browse the Raw Data"). Only reviews with a numeric `ratingNumber` count toward
+averages/rankings — a `ratingText`-only entry is still valid, just excluded from those.
+
+Adding a new stat means adding a `compute*` function to `stats.js` (plus a test) and a
+render function in `app.js` that calls it — no committed data to regenerate, unlike Nasubi.
 
 ## GraphQL API
 
