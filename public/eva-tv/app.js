@@ -220,6 +220,18 @@ function createJumpButton(link) {
   return button;
 }
 
+/** @param {string} body - entry.body; blank-line-separated paragraphs become separate <p>s */
+function createBodyElement(body) {
+  const container = document.createElement('div');
+  container.className = 'detail-body';
+  for (const paragraph of body.split(/\n{2,}/)) {
+    const p = document.createElement('p');
+    p.textContent = paragraph;
+    container.appendChild(p);
+  }
+  return container;
+}
+
 /** @param {Quote} quote */
 function createQuoteBlock(quote) {
   const block = document.createElement('blockquote');
@@ -302,9 +314,7 @@ function openDetail(id, { scroll }) {
   episodeTag.textContent = entry.scene ? `${episodeLabel} — ${entry.scene}` : episodeLabel;
   meta.appendChild(episodeTag);
 
-  const body = document.createElement('div');
-  body.className = 'detail-body';
-  body.textContent = entry.body;
+  const body = createBodyElement(entry.body);
 
   const nodes = [title, meta, body];
 
@@ -347,6 +357,28 @@ function closeDetail() {
   }
 }
 
+// The detail panel is only user-resizable (via the CSS `resize` handle on
+// .detail-panel) at the >=701px side-panel breakpoint - see styles.css. Below
+// that it's a fixed-width bottom sheet, so there's nothing to persist.
+const DETAIL_WIDTH_KEY = 'pendelgeist:eva-tv:detail-width';
+const sidePanelQuery = document.defaultView?.matchMedia?.('(min-width: 701px)');
+
+function restoreDetailWidth() {
+  const saved = localStorage.getItem(DETAIL_WIDTH_KEY);
+  if (saved && dom.detailPanel) {
+    dom.detailPanel.style.width = saved;
+  }
+}
+
+function watchDetailWidth() {
+  if (!dom.detailPanel || typeof ResizeObserver === 'undefined') return;
+  new ResizeObserver(() => {
+    if (sidePanelQuery?.matches) {
+      localStorage.setItem(DETAIL_WIDTH_KEY, `${dom.detailPanel.offsetWidth}px`);
+    }
+  }).observe(dom.detailPanel);
+}
+
 async function loadData() {
   try {
     const response = await fetch('/eva-tv/data.json');
@@ -364,6 +396,8 @@ async function loadData() {
 }
 
 showDetailPlaceholder();
+restoreDetailWidth();
+watchDetailWidth();
 
 dom.detailClose?.addEventListener('click', closeDetail);
 dom.detailBackdrop?.addEventListener('click', closeDetail);

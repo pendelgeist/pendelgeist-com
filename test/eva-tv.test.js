@@ -4,6 +4,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { JSDOM } from 'jsdom';
+import { createLocalStorageStub } from './helpers.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const INDEX_HTML_PATH = path.join(__dirname, '../public/eva-tv/index.html');
@@ -48,21 +49,30 @@ const sampleData = {
       body: 'Never fully explained.',
       links: [],
     },
+    {
+      id: 'multi-paragraph-entry',
+      episode: 1,
+      type: 'theory',
+      title: 'An entry with several readings',
+      body: 'First reading.\n\nSecond reading.\n\nThird reading.',
+      links: [],
+    },
   ],
 };
 
 let importCounter = 0;
 
-async function loadApp({ data = sampleData, ok = true, status = 200 } = {}) {
+async function loadApp({ data = sampleData, ok = true, status = 200, localStorage = createLocalStorageStub() } = {}) {
   const html = fs.readFileSync(INDEX_HTML_PATH, 'utf-8');
   const dom = new JSDOM(html, { url: 'http://localhost/eva-tv/index.html', runScripts: 'outside-only' });
 
   global.document = dom.window.document;
   global.fetch = async () => ({ ok, status, json: async () => data });
+  global.localStorage = localStorage;
   dom.window.HTMLElement.prototype.scrollIntoView = () => {};
 
   await import(`${pathToFileURL(APP_JS_PATH)}?t=${importCounter++}`);
-  return { document: dom.window.document };
+  return { document: dom.window.document, localStorage };
 }
 
 function nodeIds(document) {
@@ -78,7 +88,13 @@ test('renders one episode column per episode, each with its entries', async () =
 
   const columns = [...document.querySelectorAll('.episode-column')];
   assert.deepEqual(columns.map((c) => c.dataset.episode), ['1', '19', 'eoe']);
-  assert.deepEqual(nodeIds(document), ['shinji-ikari', 'eva-01-berserk', 'yuis-soul-in-unit-01', 'post-eoe-world']);
+  assert.deepEqual(nodeIds(document), [
+    'shinji-ikari',
+    'multi-paragraph-entry',
+    'eva-01-berserk',
+    'yuis-soul-in-unit-01',
+    'post-eoe-world',
+  ]);
 });
 
 test('clicking an entry opens the detail panel with its title, meta, and body', async () => {
@@ -143,6 +159,33 @@ test('an entry with no quote renders no quote block, only its sources', async ()
 
   assert.equal(document.querySelector('.detail-quote'), null);
   assert.equal(document.querySelectorAll('.source-link').length, 1);
+});
+
+test('a blank-line-separated body renders as one <p> per paragraph', async () => {
+  const { document } = await loadApp();
+
+  clickNode(document, 'multi-paragraph-entry');
+
+  const paragraphs = [...document.querySelectorAll('.detail-body p')];
+  assert.deepEqual(paragraphs.map((p) => p.textContent), ['First reading.', 'Second reading.', 'Third reading.']);
+});
+
+test('a single-paragraph body still renders inside a <p>, unchanged', async () => {
+  const { document } = await loadApp();
+
+  clickNode(document, 'shinji-ikari');
+
+  const paragraphs = [...document.querySelectorAll('.detail-body p')];
+  assert.deepEqual(paragraphs.map((p) => p.textContent), ['Pilots Unit-01.']);
+});
+
+test('a previously-saved detail panel width is restored on load', async () => {
+  const localStorage = createLocalStorageStub();
+  localStorage.setItem('pendelgeist:eva-tv:detail-width', '42rem');
+
+  const { document } = await loadApp({ localStorage });
+
+  assert.equal(document.getElementById('detailPanel').style.width, '42rem');
 });
 
 test('a failed fetch shows an error in the timeline track', async () => {

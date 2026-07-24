@@ -333,8 +333,17 @@ body {
 
   .detail-panel {
     position: static;
-    flex: 0 0 30%;
+    /* flex-basis: auto (rather than a percentage) is what lets the explicit
+     * width below act as the basis - and lets a user drag-resize (via the
+     * `resize` handle in the bottom-right corner) actually stick, since a
+     * percentage/fixed flex-basis would otherwise override it back every
+     * layout pass. */
+    flex: 0 0 auto;
+    width: 30%;
     min-width: 20rem;
+    max-width: 70%;
+    resize: horizontal;
+    overflow: auto;
     max-height: none;
     height: var(--timeline-height);
     border-radius: var(--radius-card);
@@ -416,6 +425,14 @@ body {
   line-height: 1.8;
   font-size: 0.9rem;
   margin-bottom: 0.75rem;
+}
+
+.detail-body p {
+  margin: 0;
+}
+
+.detail-body p + p {
+  margin-top: 0.9rem;
 }
 
 .detail-links {
