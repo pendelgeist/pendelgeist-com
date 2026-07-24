@@ -56,7 +56,7 @@
     "monthlyWinnings": {
       "heading": "Cumulative Winnings (by Prize Month)",
       "body": [
-        "The progress curve was anything but smooth. June was the breakout month — a single 99,800 JPY desk-and-chair set nearly doubled his running total. July and September were devastating dry spells in terms of value. Then October through December delivered the final push, with big-ticket items like a VCR (85,000), tires (84,000), and a tent (78,000) closing the gap."
+        "The progress curve was anything but smooth. June was the breakout month — a single 99,800 JPY desk-and-chair set made up nearly two-thirds of that month's haul and pushed the cumulative total up more than 50% on its own. July and September were devastating dry spells in terms of value. Then October through December delivered the final push, with big-ticket items like a VCR (85,000), tires (84,000), and a tent (78,000) closing the gap."
       ],
       "columns": ["Prize Month", "Items", "Value (JPY)", "Cumulative (JPY)"],
       "rows": [
@@ -78,7 +78,7 @@
       "heading": "The Biggest Wins",
       "body": [
         "The top 10 wins alone account for 535,400 JPY — more than half his total. This is a power-law distribution: a handful of lucky high-value wins carried the entire enterprise. Without the Kokuyo desk (コクヨの机とイス) or the VCR (ビデオデッキ), he might still be in that apartment.",
-        "Notably, most of these \"jackpot\" items were things Nasubi had absolutely no personal use for — a man sitting naked in an empty room does not need golf shoes (ゴルフシューズ), a cosmetics set (化粧品セット), or an attaché case. But value is value."
+        "Notably, most of these \"jackpot\" items were things Nasubi had absolutely no personal use for — a man sitting naked in an empty room with no car does not need a set of tires (タイヤ), a cosmetics set (化粧品セット), or an attaché case. But value is value."
       ],
       "columns": ["Value (JPY)", "Item", "Japanese", "Month"],
       "rows": [
@@ -98,7 +98,7 @@
       "heading": "The Zero-Value Wins (Promotional Junk)",
       "body": [
         "Eleven of his 103 wins were worth nothing — pamphlets, promotional posters, movie discount coupons, and school admissions guides. These are the cruelest wins: the excitement of receiving a package, followed by the crushing realization that it's a car navigation pamphlet you received while living naked in a room with no car.",
-        "Particularly poignant: he won three Hirosue Ryoko posters marked \"not for sale\" and a driving school admissions guide. The universe has a dark sense of humor."
+        "Particularly poignant: three of these were Hirosue Ryoko keepsakes — two posters and a calendar, all functionally worthless — and one was a driving school admissions guide. The universe has a dark sense of humor."
       ]
     },
     "bestROI": {
@@ -123,7 +123,7 @@
     "worstROI": {
       "heading": "Worst ROI (JPY returned per postcard sent)",
       "body": [
-        "At the bottom: 250 postcards for 3,000 JPY worth of ice cream. That's 12 JPY per postcard, on postcards that cost 50 JPY each. A net loss of 9,500 JPY to win ice cream.",
+        "Near the bottom: 250 postcards for 3,000 JPY worth of ice cream. That's 12 JPY per postcard, on postcards that cost 50 JPY each. A net loss of 9,500 JPY to win ice cream.",
         "The furikake (ふりかけ) is the crown jewel of futility: 160 postcards (8,000 JPY in postage) to win 500 JPY of rice seasoning. A 94% loss on investment."
       ],
       "columns": ["JPY/card", "Item", "Japanese", "Cards Sent", "Value (JPY)"],
@@ -214,7 +214,7 @@
       "heading": "The Hirosue Ryoko Obsession",
       "body": [
         "Nasubi entered 62 separate Hirosue Ryoko (広末涼子)-related contests — posters, phone cards, novelty bags, clear files, autographed items, CDs, figures, videos, and calendars. He sent 405 postcards for Hirosue items.",
-        "He won 3 of them, all valued at 0 JPY (\"not for sale\"): a poster (8 cards, May), a poster (10 cards, September), and a 99 Calendar (39 cards, November).",
+        "He won 3 of them, all valued at 0 JPY (\"not for sale\"): a poster (8 cards sent in May), a poster (10 cards sent in September), and a 99 Calendar (39 cards sent in November).",
         "Total value from 405 postcards of Hirosue devotion: 0 JPY. His Hirosue obsession contributed nothing to his escape and cost roughly 20,250 JPY in postage."
       ]
     },
@@ -235,7 +235,7 @@
     "foodSubcategory": {
       "heading": "Food Subcategory Breakdown",
       "body": [
-        "The pattern here mirrors the overall dataset: the unglamorous categories win. Pickles & fermented foods had a 16.7% win rate. Rice hit 14.8%. Meanwhile, the things you'd actually crave — noodles, prepared meals, beverages — came in under 2%. Nobody else was competing for natto (納豆). Everyone was competing for cup ramen.",
+        "The pattern here mirrors the overall dataset: the unglamorous categories win. Pickles & fermented foods had a 16.7% win rate. Rice hit 14.8%. Meanwhile, the things you'd actually crave — noodles, prepared meals, beverages — came in at 2% or lower. Nobody else was competing for natto (納豆). Everyone was competing for cup ramen.",
         "Meat and seafood tell an interesting story: respectable win rates (8.6% and 7.8%) and real value — a 15,800 JPY lobster, 15,000 JPY sirloin steak, hairy crab, duck meat. When Nasubi won protein, it mattered.",
         "The pet food line is darkly funny. At 28.6%, it had the highest win rate of any food subcategory. Nobody wants to win dog food. Nasubi won two batches — raw and dry — worth a combined 10,100 JPY. And infamously, he ate it."
       ],
@@ -352,7 +352,7 @@
     "categoryBreakdown": {
       "heading": "Category Breakdown",
       "body": [
-        "Food made up 36.3% of entries (130 of 358), a notable drop from the 51% in Japan. Nasubi seems to have diversified his strategy — or perhaps the Korean magazine landscape offered different contest categories.",
+        "Food made up 36.3% of entries (130 of 358) in Korea — actually a touch higher than Japan's 32.9% of entries. What differs isn't how often Nasubi went for food, but how hard: in Japan, food entries pulled in 51% of every postcard sent, since he mailed far more copies per food item than his average entry. Korea's data can't be checked the same way, since individual entry counts weren't recorded there.",
         "Meat dominated the food entries with 40 items — bone-in short ribs, seasoned kalbi, bulgogi, pork belly, beef brisket, steak, and whole chicken. Korea's sweepstakes scene clearly leaned into the country's BBQ culture, a stark contrast to Japan where meat was a relatively small category."
       ],
       "columns": ["Category", "Items", "% of Total"],
@@ -394,7 +394,7 @@
         ["Total entries", "1,891", "358"],
         ["Goal", "1,000,000 JPY", "1,000,000 KRW"],
         ["Goal in USD", "~$7,700", "~$770"],
-        ["Food % of entries", "51%", "36.3%"],
+        ["Food % of entries", "32.9%", "36.3%"],
         ["Entry counts tracked", "Yes (60,911 postcards)", "No (all marked \"x\")"],
         ["Language barrier", "None", "Severe"]
       ]
