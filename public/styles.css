@@ -601,6 +601,221 @@
   border-color: #800080;
 }
 
+/* Eva-00: Rei's prototype unit - pale blue-grey armor plating with an orange
+ * accent, calm and clinical next to the other two units' loud color schemes. */
+:root[data-theme="eva-00"] {
+  color-scheme: light;
+  --color-bg: #dbe3e8;
+  --color-text: #1b232c;
+  --color-accent: #e2720a;
+  --color-surface: #f6f8fa;
+  --color-chrome: #232f3b;
+  --color-muted: #4c5964;
+  --color-nav-link: #fff;
+  --color-input-border: #e2720a;
+  --color-input-focus: #e2720a;
+  --color-title: #c85a00;
+  --color-guideline-border: #c3ccd3;
+  --color-article-border: #c3ccd3;
+  --color-section-border: #e2720a;
+  --shadow-heading: 0 0 10px rgba(226, 114, 10, 0.35);
+  --shadow-focus: 0 0 8px rgba(226, 114, 10, 0.45);
+  --font-heading: 'Arial Narrow', 'Helvetica Neue', sans-serif;
+  --font-body: Verdana, Geneva, sans-serif;
+  --border-width: 2px;
+  --border-style: solid;
+  --radius-card: 2px;
+  --spacing-section: 2rem;
+}
+
+/* Faint blueprint grid, like the seams between armor plates on the unit's
+ * own schematics - subtle enough not to fight with body text. */
+:root[data-theme="eva-00"] body {
+  background-image:
+    repeating-linear-gradient(0deg, rgba(35, 47, 59, 0.05) 0 1px, transparent 1px 48px),
+    repeating-linear-gradient(90deg, rgba(35, 47, 59, 0.05) 0 1px, transparent 1px 48px);
+}
+
+:root[data-theme="eva-00"] nav {
+  border-bottom: 2px solid var(--color-accent);
+}
+
+/* A slow, calm glow pulse on headings - Rei's low-key temperament next to
+ * Eva-01's frantic heartbeat and Eva-02's flicker below. */
+:root[data-theme="eva-00"] .section h2 {
+  animation: eva00-pulse 4s ease-in-out infinite;
+}
+
+@keyframes eva00-pulse {
+  0%, 100% {
+    text-shadow: 0 0 4px rgba(226, 114, 10, 0.25);
+  }
+  50% {
+    text-shadow: 0 0 12px rgba(226, 114, 10, 0.55);
+  }
+}
+
+:root[data-theme="eva-00"] .section,
+:root[data-theme="eva-00"] article,
+:root[data-theme="eva-00"] .guidelines {
+  border: var(--border-width) var(--border-style) var(--color-guideline-border);
+}
+
+:root[data-theme="eva-00"] .section {
+  padding: 0.75rem;
+}
+
+/* .entry-node-badge (eva-tv's timeline nodes) uses --color-bg for its text,
+ * readable against --color-accent/--color-muted everywhere else because
+ * those are dark or saturated enough. Eva-00's accent is a mid-tone orange
+ * calibrated for borders and glows against a light surface, not as a small
+ * badge's own background - scoped down to just the badge, without touching
+ * the shared --color-accent used everywhere else. */
+:root[data-theme="eva-00"] .entry-node-badge {
+  background-color: #8f4100;
+}
+
+/* Eva-01: Shinji's unit - deep violet body with an acid-green accent, in the
+ * MAGI-terminal monospace the franchise's own computer displays use. */
+:root[data-theme="eva-01"] {
+  color-scheme: dark;
+  --color-bg: #170b28;
+  --color-text: #eafbe0;
+  --color-accent: #39ff14;
+  --color-surface: #241340;
+  --color-chrome: #0d0619;
+  --color-muted: #b9a8d6;
+  --color-nav-link: #eafbe0;
+  --color-input-border: #39ff14;
+  --color-input-focus: #7cffb3;
+  --color-title: #39ff14;
+  --color-guideline-border: rgba(57, 255, 20, 0.35);
+  --color-article-border: rgba(57, 255, 20, 0.2);
+  --color-section-border: #39ff14;
+  --shadow-heading: 0 0 14px rgba(57, 255, 20, 0.65);
+  --shadow-focus: 0 0 10px rgba(57, 255, 20, 0.6);
+  --font-heading: 'Courier New', monospace;
+  --font-body: 'Courier New', monospace;
+  --border-width: 2px;
+  --border-style: solid;
+  --radius-card: 2px;
+  --spacing-section: 2rem;
+}
+
+:root[data-theme="eva-01"] body {
+  background: radial-gradient(ellipse at top, #241340 0%, #170b28 70%);
+  position: relative;
+}
+
+/* Faint horizontal scanlines, echoing a MAGI console readout. */
+:root[data-theme="eva-01"] body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background: repeating-linear-gradient(to bottom, rgba(0, 0, 0, 0.15) 0 1px, transparent 1px 3px);
+}
+
+/* A quick, tense pulse on headings - the Eva's own heartbeat during battle,
+ * faster than Eva-00's calm glow or Eva-02's irregular flicker. */
+:root[data-theme="eva-01"] .section h2 {
+  animation: eva01-pulse 1.2s ease-in-out infinite;
+}
+
+@keyframes eva01-pulse {
+  0%, 100% {
+    text-shadow: 0 0 4px rgba(57, 255, 20, 0.4);
+  }
+  50% {
+    text-shadow: 0 0 16px rgba(57, 255, 20, 0.9);
+  }
+}
+
+:root[data-theme="eva-01"] .section,
+:root[data-theme="eva-01"] article,
+:root[data-theme="eva-01"] .guidelines {
+  border: var(--border-width) var(--border-style) rgba(57, 255, 20, 0.3);
+}
+
+:root[data-theme="eva-01"] .section {
+  padding: 0.75rem;
+}
+
+/* Eva-02: Asuka's unit - red-and-black body with an orange-yellow accent and
+ * a hazard-stripe nav border for its aggressive, high-strung character. */
+:root[data-theme="eva-02"] {
+  color-scheme: dark;
+  --color-bg: #2b0a0a;
+  --color-text: #fff3e0;
+  --color-accent: #ff8c00;
+  --color-surface: #4a1010;
+  --color-chrome: #180404;
+  --color-muted: #e0a97a;
+  --color-nav-link: #fff;
+  --color-input-border: #ff8c00;
+  --color-input-focus: #ffd23f;
+  --color-title: #ff8c00;
+  --color-guideline-border: rgba(255, 140, 0, 0.35);
+  --color-article-border: rgba(255, 140, 0, 0.2);
+  --color-section-border: #ff6a00;
+  --shadow-heading: 0 0 14px rgba(255, 140, 0, 0.6);
+  --shadow-focus: 0 0 10px rgba(255, 210, 63, 0.6);
+  --font-heading: 'Arial Black', 'Arial Bold', sans-serif;
+  --font-body: Verdana, Geneva, sans-serif;
+  --border-width: 3px;
+  --border-style: solid;
+  --radius-card: 2px;
+  --spacing-section: 2rem;
+}
+
+:root[data-theme="eva-02"] body {
+  background: radial-gradient(ellipse at top, #4a1010 0%, #2b0a0a 70%);
+}
+
+/* Hazard-stripe trim along the nav bar, like the unit's own warning markings. */
+:root[data-theme="eva-02"] nav {
+  border-bottom: 4px solid transparent;
+  background-image:
+    linear-gradient(var(--color-chrome), var(--color-chrome)),
+    repeating-linear-gradient(-45deg, #ff8c00 0 12px, #180404 12px 24px);
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+}
+
+/* An irregular, fiery flicker on headings instead of a steady pulse - Asuka
+ * runs hot, not calm. */
+:root[data-theme="eva-02"] .section h2 {
+  animation: eva02-flicker 2.6s linear infinite;
+}
+
+@keyframes eva02-flicker {
+  0%, 100% {
+    text-shadow: 0 0 6px rgba(255, 140, 0, 0.5);
+  }
+  20% {
+    text-shadow: 0 0 16px rgba(255, 140, 0, 0.9);
+  }
+  45% {
+    text-shadow: 0 0 8px rgba(255, 140, 0, 0.55);
+  }
+  70% {
+    text-shadow: 0 0 18px rgba(255, 210, 63, 0.85);
+  }
+  85% {
+    text-shadow: 0 0 7px rgba(255, 140, 0, 0.5);
+  }
+}
+
+:root[data-theme="eva-02"] .section,
+:root[data-theme="eva-02"] article,
+:root[data-theme="eva-02"] .guidelines {
+  border: var(--border-width) var(--border-style) rgba(255, 140, 0, 0.35);
+}
+
+:root[data-theme="eva-02"] .section {
+  padding: 0.75rem;
+}
+
 :root[data-theme="random-light"] {
   color-scheme: light;
 }
