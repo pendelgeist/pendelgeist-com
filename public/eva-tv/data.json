@@ -121,6 +121,7 @@
     { "number": 24, "title": "The Beginning and the End, or \"Knockin' on Heaven's Door\"", "subtitle": "JP: 最後のシ者 — lit. \"The Last Shisha\" (pun: 使者 messenger / 死者 the dead) · aired 1996-03-13, 6.0%" },
     { "number": 25, "title": "Do You Love Me?", "subtitle": "JP: 終わる世界 — lit. \"A World That Is Ending\" · aired 1996-03-20, 7.7%" },
     { "number": 26, "title": "Take Care of Yourself", "subtitle": "JP: 世界の中心でアイを叫んだけもの (after Harlan Ellison's \"The Beast that Shouted Love at the Heart of the World\") · aired 1996-03-27, 10.3% (highest rating of the series)" },
+    { "number": "d&r", "title": "Death & Rebirth", "subtitle": "Theatrical clip-show-plus-preview, March 1997 — precursor to The End of Evangelion" },
     { "number": "eoe", "title": "The End of Evangelion", "subtitle": "Theatrical alternate ending to episodes 25–26" },
     { "number": "extra", "title": "Potpourri", "subtitle": "Merchandise, legacy, and other odds and ends that don't belong to any single episode" }
   ],
@@ -1894,7 +1895,7 @@
     },
     {
       "id": "eoe-death-rebirth-precursor",
-      "episode": "eoe",
+      "episode": "d&r",
       "type": "fact",
       "title": "Death & Rebirth, the precursor film",
       "body": "Before The End of Evangelion released, Gainax put out Neon Genesis Evangelion: Death & Rebirth (March 1997) as the first stage of what release paperwork called the \"New Era Evangelion: The Movie\" project. Its first half, Death, is a clip-show recap of the TV series' first 24 episodes, wrapped in an original framing story and new footage; some of that new/redrawn material was later folded into the extended \"Director's Cut\" home-video versions of episodes 21–24. A further re-edit, Death(True), aired on WOWOW satellite TV before eventually reaching home video in 2015; a third edit, Death(True)², is the version most commonly paired with the finished film in later releases. Rebirth, the second half, is roughly 24 minutes of genuinely new animation — a preview of what became The End of Evangelion, cutting off as the Mass Production Evangelions arrive — and differs from the equivalent stretch of the finished film in editing, redrawn shots, and soundtrack cues, since it was assembled while the ending was still in production. The full alternate ending released four months later, in July 1997; the following March, Death(True)² was paired with that finished film plus a four-minute intermission for a theatrical re-release, Revival of Evangelion — the combined form most commonly distributed in the West since, including by Netflix and GKIDS.",
@@ -3041,7 +3042,7 @@
     },
     {
       "id": "death-rebirth-na-footage-swap",
-      "episode": "eoe",
+      "episode": "d&r",
       "type": "fact",
       "title": "Rebirth's messy home-video history, in Japan and the West",
       "body": "In Japan, VHS/LD and the first pressing of the DVD included Rebirth, but because its content overlapped with the finished \"Air\" (episode 25's remake) released a few months later, Rebirth was dropped from Japanese DVD reissues starting with the 2003 renewal edition — leaving old VHS/LD copies or the first-run DVD as the only way to watch it until it was finally restored for the 2015 Blu-ray and DVD box sets. Manga Entertainment's 2002 North American DVD and VHS release took a different, still-unexplained shortcut: instead of using the actual Japanese Rebirth cut, it substituted the finished Air footage from The End of Evangelion itself — which has its own redrawn shots and re-edited soundtrack cues that the original Rebirth preview never had.",
@@ -3052,7 +3053,7 @@
     },
     {
       "id": "death-rebirth-title-pun",
-      "episode": "eoe",
+      "episode": "d&r",
       "type": "fact",
       "title": "The Japanese title is a bilingual pun: \"death and rebirth\" and \"Angel rebirth\" at once",
       "body": "The Japanese title, シト新生 (Shito Shinsei), puns on two different readings at once: 死と新生 (\"death and rebirth,\" a literal gloss of the English title) and 使徒新生 (\"Angel Rebirth,\" or \"Angel Regenesis\"). Fans shortened it to \"Shito Shinsei,\" \"Haru Eva\" (\"Spring Eva,\" for its spring 1997 release), or \"DesuRiba\" (a portmanteau of \"Death\" and \"Rebirth\"); once the Rebuild films existed to contrast it with, it also picked up the retroactive label \"the old theatrical version.\"",
@@ -3063,7 +3064,7 @@
     },
     {
       "id": "death-rebirth-quartet-framing-and-mahler-structure",
-      "episode": "eoe",
+      "episode": "d&r",
       "type": "fact",
       "title": "Death's framing device, and the symphony it's secretly structured like",
       "body": "Death doesn't just splice together clips from the first 24 episodes — it wraps them in an original frame story: four Tokyo-3 middle schoolers who resemble Shinji, Asuka, Rei, and Kaworu meet in a school gymnasium to rehearse Pachelbel's Canon as a string quartet, with fragments of the TV series cut in between rehearsal scenes.\n\nAccording to composition writer Akio Satsukawa, the whole two-part project was consciously modeled on the structure of Mahler's Symphony No. 8: Death maps onto the symphony's first part, \"Veni Creator Spiritus\" (\"Come, Creator Spirit\"), and Rebirth onto its second, the closing scene of Goethe's Faust Part Two — with motifs introduced in Death recurring, transformed, in Rebirth, the two parts contradicting and interweaving with each other the way the symphony's two movements do.",
@@ -3074,7 +3075,7 @@
     },
     {
       "id": "death-rebirth-satsukawa-directorial-philosophy",
-      "episode": "eoe",
+      "episode": "d&r",
       "type": "fact",
       "title": "Why Death's writer refused the director's chair, and how he avoided making \"just a digest\"",
       "body": "Akio Satsukawa, who wrote and structured Death, reportedly turned down directing it himself: with a general director (Anno) already in place, he worried that if he directed it, it would stop being \"a movie of Eva\" and become \"a movie about Eva\" — a separate film that merely used Eva's footage as raw material, drifting away from the show's own essence. Anno's brief to him was to avoid anything easy-to-follow-but-boring in favor of something disorienting but visceral, shot documentary-style, built around Pachelbel's Canon for the ending. Satsukawa rewatched the entire TV series repeatedly before drafting it, deliberately keeping the structure tangled rather than a clean, linear digest — citing Godard, Orson Welles, Shūji Terayama, and Shōichirō Sasaki as reference points, on the reasoning that \"a plain digest is loved by no one, but also hated by no one.\" One specific homage — a Godard Breathless-trailer-style device of a woman murmuring stiff, formal lines over battle footage — was vetoed by Death's director Masayuki, who felt it only worked in French; it became on-screen text instead.",
@@ -3085,7 +3086,7 @@
     },
     {
       "id": "death-rebirth-box-office-pressure",
-      "episode": "eoe",
+      "episode": "d&r",
       "type": "fact",
       "title": "An unexpected box-office hit pressured Gainax into finishing the story",
       "body": "Death & Rebirth was expected to be a modest release — Toei chairman Shigeru Okada later said Eva and the live-action Lost Paradise were both projected to earn an ordinary ¥500–600 million at most, which is why Toei handed distribution entirely to Kadokawa's unusually enthusiastic film division. Instead it opened in only 20–30 theaters and expanded past 150 as demand grew, eventually pulling in roughly ¥1.1 billion in distributor rental income; per Okada, support groups began pressuring Gainax directly — \"you haven't even finished the story yet, what are you doing, hurry up and make the conclusion\" — which is what pushed the rushed production of the true ending. Advance tickets alone sold over 200,000 before release, reportedly a Japanese record at the time.",
