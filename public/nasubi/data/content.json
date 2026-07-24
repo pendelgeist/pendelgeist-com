@@ -1,0 +1,459 @@
+{
+  "meta": {
+    "title": "Nasubi's Sweepstakes Survival",
+    "subtitle": "A data analysis of Susunu! Denpa Shonen's cruelest segment",
+    "intro": [
+      "In 1998, a Japanese comedian named Nasubi (real name: Tomoaki Hamatsu) was placed naked in an empty apartment as part of a segment on the variety show *Susunu! Denpa Shonen*. His challenge: survive entirely on contest winnings obtained by filling out mail-in entry postcards from magazines. He couldn't leave until his winnings reached 1,000,000 JPY (roughly $7,700 USD at 1998 rates).",
+      "What follows is a data-driven look at his 11-month ordeal, and the subsequent sequel challenge he was sprung into in South Korea.",
+      "In 2023, the documentary [The Contestant](https://www.hulu.com/movie/the-contestant-4a768bab-31b1-437c-821c-3b050ede1ab6) (dir. Clair Titley) brought Nasubi's story to an international audience, premiering at TIFF before releasing on Hulu in May 2024."
+    ],
+    "dataNote": "Source: transcribed and translated from the broadcast of *Susunu! Denpa Shonen* (1998-1999). JPY values are as declared/estimated at the time. Entry Month is when postcards were sent; Prize Month is when a prize arrived."
+  },
+  "japan": {
+    "statsGlance": [
+      { "label": "Unique contests entered", "value": "1,891" },
+      { "label": "Total postcards sent", "value": "60,911" },
+      { "label": "Total items won", "value": "103" },
+      { "label": "Total value won", "value": "991,164 JPY" },
+      { "label": "Win rate (by item)", "value": "5.0%" },
+      { "label": "Win rate (by postcard)", "value": "8.2%" },
+      { "label": "Postcards sent for winning items", "value": "5,000" },
+      { "label": "Average value per win", "value": "10,774 JPY (~$83 USD)" }
+    ],
+    "statsBlurb": [
+      "Nasubi entered 1,891 different contests and mailed a staggering 60,911 postcards over roughly 11 months. That's an average of ~185 postcards per day — which, given that each one had to be hand-addressed with the contest details, is a genuinely insane amount of manual labor.",
+      "He won 103 items with a combined declared value of 991,164 JPY — just shy of his 1 million yen goal. Of every 100 contests he entered, about 5 resulted in a win."
+    ],
+    "economics": {
+      "heading": "The Economics: Nasubi Was Running at a Loss",
+      "body": [
+        "At 50 JPY per postcard (the standard rate in 1998), the cost of his 60,911 postcards was 3,045,550 JPY — over three times the value of what he won. His effective ROI was -67%.",
+        "Of course, the show was paying for the postcards and magazines, not Nasubi. But it puts the enterprise in perspective: this was never a viable business model. The house always wins. Nasubi was essentially a human random number generator, grinding through terrible odds with brute force."
+      ]
+    },
+    "monthlyEntries": {
+      "heading": "Entries Sent (by Entry Month)",
+      "body": [
+        "The pattern is striking. Nasubi had beginner's luck in the first few months — an 11.7% win rate in Jan-Feb that slowly cratered to the 3% range from May through August. October saw a resurgence (7.7%), possibly because contest operators release big prizes for year-end campaigns.",
+        "November and December were brutal: despite sending nearly 7,000 postcards, he won just 3 items. By December he was clearly winding down (only 87 items entered, 2,535 postcards)."
+      ],
+      "columns": ["Entry Month", "Items", "Postcards", "Wins", "Win Rate"],
+      "rows": [
+        ["Jan-Feb", "120", "5,848", "14", "11.7%"],
+        ["Mar", "181", "6,867", "14", "7.7%"],
+        ["Apr", "131", "5,506", "12", "9.2%"],
+        ["May", "214", "7,368", "8", "3.7%"],
+        ["Jun", "223", "5,550", "7", "3.1%"],
+        ["Jul", "207", "5,735", "7", "3.4%"],
+        ["Aug", "187", "6,303", "6", "3.2%"],
+        ["Sep", "170", "4,703", "8", "4.7%"],
+        ["Oct", "196", "6,113", "15", "7.7%"],
+        ["Nov", "174", "4,380", "2", "1.1%"],
+        ["Dec", "87", "2,535", "1", "1.1%"]
+      ],
+      "chart": { "valueKey": "Postcards", "labelKey": "Entry Month" }
+    },
+    "monthlyWinnings": {
+      "heading": "Cumulative Winnings (by Prize Month)",
+      "body": [
+        "The progress curve was anything but smooth. June was the breakout month — a single 99,800 JPY desk-and-chair set nearly doubled his running total. July and September were devastating dry spells in terms of value. Then October through December delivered the final push, with big-ticket items like a VCR (85,000), tires (84,000), and a tent (78,000) closing the gap."
+      ],
+      "columns": ["Prize Month", "Items", "Value (JPY)", "Cumulative (JPY)"],
+      "rows": [
+        ["Feb", "5", "14,860", "14,860"],
+        ["Mar", "12", "75,340", "90,200"],
+        ["Apr", "9", "75,100", "165,300"],
+        ["May", "14", "126,760", "292,060"],
+        ["Jun", "9", "157,500", "449,560"],
+        ["Jul", "5", "24,400", "473,960"],
+        ["Aug", "11", "64,114", "538,074"],
+        ["Sep", "8", "21,300", "559,374"],
+        ["Oct", "7", "122,500", "681,874"],
+        ["Nov", "12", "147,240", "829,114"],
+        ["Dec", "11", "162,050", "991,164"]
+      ],
+      "chart": { "type": "cumulative", "valueKey": "Cumulative (JPY)", "labelKey": "Prize Month" }
+    },
+    "biggestWins": {
+      "heading": "The Biggest Wins",
+      "body": [
+        "The top 10 wins alone account for 535,400 JPY — more than half his total. This is a power-law distribution: a handful of lucky high-value wins carried the entire enterprise. Without the Kokuyo desk (コクヨの机とイス) or the VCR (ビデオデッキ), he might still be in that apartment.",
+        "Notably, most of these \"jackpot\" items were things Nasubi had absolutely no personal use for — a man sitting naked in an empty room does not need golf shoes (ゴルフシューズ), a cosmetics set (化粧品セット), or an attaché case. But value is value."
+      ],
+      "columns": ["Value (JPY)", "Item", "Japanese", "Month"],
+      "rows": [
+        ["99,800", "Kokuyo desk and chair", "コクヨの机とイス", "Jun"],
+        ["85,000", "VCR (video deck)", "ビデオデッキ", "Oct"],
+        ["84,000", "Tires (4)", "タイヤ (4本)", "Dec"],
+        ["78,000", "Tent (3-5 person)", "テント", "Nov"],
+        ["41,800", "Folding bicycle", "折りたたみ自転車", "Mar"],
+        ["36,000", "Attaché case", "ノートパソコン用ケースー", "Dec"],
+        ["35,000", "Automatic translation machine", "自動翻訳機", "Jun"],
+        ["28,000", "High-end lighter", "ライター", "Aug"],
+        ["25,000", "Cosmetics set", "化粧品セット(マニキュア他)", "May"],
+        ["22,000", "Victor 14-inch color TV", "ワイドテレビ", "Apr"]
+      ]
+    },
+    "zeroValueWins": {
+      "heading": "The Zero-Value Wins (Promotional Junk)",
+      "body": [
+        "Eleven of his 103 wins were worth nothing — pamphlets, promotional posters, movie discount coupons, and school admissions guides. These are the cruelest wins: the excitement of receiving a package, followed by the crushing realization that it's a car navigation pamphlet you received while living naked in a room with no car.",
+        "Particularly poignant: he won three Hirosue Ryoko posters marked \"not for sale\" and a driving school admissions guide. The universe has a dark sense of humor."
+      ]
+    },
+    "bestROI": {
+      "heading": "Best ROI (JPY returned per postcard sent)",
+      "body": [
+        "The single best return: 1 postcard yielded 84,000 JPY in tires. Several other single-card wins delivered excellent value. The lesson: lottery-style low-entry wins vastly outperformed his volume strategy."
+      ],
+      "columns": ["JPY/card", "Item", "Japanese", "Cards Sent", "Value (JPY)"],
+      "rows": [
+        ["84,000", "Tires (4)", "タイヤ (4本)", "1", "84,000"],
+        ["12,800", "Docomo Pocket Board", "ドコモ 「ポケットボード」", "1", "12,800"],
+        ["10,000", "English lesson ticket", "英会話レッスンチケット", "1", "10,000"],
+        ["10,000", "CD-ROM encyclopedia", "CD-ROM版 マルチメディア百科辞典", "1", "10,000"],
+        ["9,800", "Globe", "地球儀", "1", "9,800"],
+        ["8,500", "VCR", "ビデオデッキ", "10", "85,000"],
+        ["8,000", "Feather pillow", "羽毛枕", "1", "8,000"],
+        ["7,800", "Tent", "テント", "10", "78,000"],
+        ["4,990", "Kokuyo desk and chair", "コクヨの机とイス", "20", "99,800"],
+        ["4,800", "Keirin Championship video", "競輪日本選手権ビデオ", "1", "4,800"]
+      ]
+    },
+    "worstROI": {
+      "heading": "Worst ROI (JPY returned per postcard sent)",
+      "body": [
+        "At the bottom: 250 postcards for 3,000 JPY worth of ice cream. That's 12 JPY per postcard, on postcards that cost 50 JPY each. A net loss of 9,500 JPY to win ice cream.",
+        "The furikake (ふりかけ) is the crown jewel of futility: 160 postcards (8,000 JPY in postage) to win 500 JPY of rice seasoning. A 94% loss on investment."
+      ],
+      "columns": ["JPY/card", "Item", "Japanese", "Cards Sent", "Value (JPY)"],
+      "rows": [
+        ["12", "Ice cream (24 cups)", "アイスクリーム", "250", "3,000"],
+        ["12", "Potato snacks", "ポテトスナック", "250", "3,000"],
+        ["11", "Mayonnaise (3)", "マヨネーズ", "50", "540"],
+        ["10", "Chocolate", "チョコレート", "210", "2,000"],
+        ["9", "Weider in Jelly (21)", "ウィダーinゼリー(ポーチ付き)", "201", "1,820"],
+        ["8", "Toothbrush set", "歯みがきセット", "50", "400"],
+        ["7", "Mandarin liquor (6 cans)", "温州みかん酒(6缶)", "162", "1,200"],
+        ["7", "Salmon backbone snack", "鮭の中骨スナック", "50", "350"],
+        ["3", "Furikake", "ふりかけ", "160", "500"]
+      ]
+    },
+    "mostPostcards": {
+      "heading": "The Brute Force Strategy: Most Postcards Sent",
+      "body": [
+        "Nasubi's approach was simple: drown the odds in volume. The top 10 highest-volume entries all lost. 480 postcards for miso and soy sauce — nothing. 450 for a tableware set — nothing. 440 for assorted pickles — nothing. The two 250-card items that did win returned some of the worst ROI in the entire dataset.",
+        "More postcards did not meaningfully improve his chances. His best wins came from single-digit entries."
+      ],
+      "columns": ["Cards", "Item", "Won?"],
+      "rows": [
+        ["480", "Miso and soy sauce", "No"],
+        ["450", "Luxury Western tableware set", "No"],
+        ["450", "Japanese sweets", "No"],
+        ["440", "Assorted pickles", "No"],
+        ["420", "Snacks", "No"],
+        ["405", "Watches (Seiko/Citizen/Casio)", "No"],
+        ["360", "Tochigi Koshihikari rice 5kg", "No"],
+        ["351", "Cup ramen", "No"],
+        ["300", "Chinese buns", "No"],
+        ["253", "Watch", "No"],
+        ["250", "Ice cream", "Yes"],
+        ["250", "Potato snacks", "Yes"]
+      ]
+    },
+    "categoryBreakdown": {
+      "heading": "Category Breakdown",
+      "body": [
+        "Rice had the best win rate at 13.3% — probably because fewer people enter rice contests. Nasubi was smart to target these.",
+        "Personal Care/Beauty delivered a 10% win rate and the highest total value (141,590 JPY) despite not being a high-volume category. Cosmetics sets and hair products have good prize value.",
+        "Travel contests were a total shutout: 105 entries, 2,720 postcards, zero wins. Everyone wants a free trip to Hawaii.",
+        "Noodles/Pasta: 3,355 postcards for a single 3,800 JPY spaghetti set win. Brutal.",
+        "Vehicles had a terrible win rate (2.7%) but delivered 125,800 JPY on just 2 wins (the bicycle and tires)."
+      ],
+      "columns": ["Category", "Items", "Postcards", "Wins", "Win Rate", "Value Won (JPY)"],
+      "rows": [
+        ["Food (fresh/specialty)", "175", "8,703", "17", "9.7%", "86,630"],
+        ["Snacks/Sweets", "123", "9,090", "9", "7.3%", "21,804"],
+        ["Home/Appliances", "70", "2,346", "6", "8.6%", "127,000"],
+        ["Rice", "30", "1,547", "4", "13.3%", "15,800"],
+        ["Personal Care/Beauty", "70", "1,991", "7", "10.0%", "141,590"],
+        ["Electronics (IT/Tech)", "134", "2,751", "7", "5.2%", "95,300"],
+        ["Electronics (AV)", "125", "2,470", "5", "4.0%", "111,300"],
+        ["Vehicles/Transport", "74", "2,812", "2", "2.7%", "125,800"],
+        ["Travel", "105", "2,720", "0", "0.0%", "0"],
+        ["Cash/Vouchers/Tickets", "90", "2,148", "3", "3.3%", "20,000"],
+        ["Noodles/Pasta", "66", "3,355", "1", "1.5%", "3,800"],
+        ["Beverages", "64", "2,056", "1", "1.6%", "1,200"]
+      ]
+    },
+    "persistenceIndex": {
+      "heading": "The Persistence Index: Items Entered Month After Month",
+      "body": [
+        "Nasubi entered chocolate contests for 9 consecutive months (1,265 postcards). He eventually won — 2,000 JPY of chocolate. He tried for 1 million yen in cash for 5 months (261 postcards). Never won.",
+        "The man wanted sunglasses badly — 8 months, 460 postcards, never got them."
+      ],
+      "columns": ["Months", "Total Cards", "Item", "Won?"],
+      "rows": [
+        ["9", "1,265", "Chocolate", "Yes"],
+        ["8", "460", "Sunglasses", "No"],
+        ["7", "807", "Ice cream", "Yes"],
+        ["7", "277", "Electric shaver", "No"],
+        ["6", "701", "Hotel accommodation voucher", "Yes"],
+        ["6", "555", "Jelly", "Yes"],
+        ["6", "431", "Cookies", "No"],
+        ["6", "350", "Accessories", "No"],
+        ["6", "285", "Bag", "No"],
+        ["6", "257", "MD player", "No"],
+        ["5", "933", "Potato snacks", "Yes"],
+        ["5", "585", "Watch", "No"],
+        ["5", "261", "1 million yen cash", "No"]
+      ]
+    },
+    "hirosue": {
+      "heading": "The Hirosue Ryoko Obsession",
+      "body": [
+        "Nasubi entered 62 separate Hirosue Ryoko (広末涼子)-related contests — posters, phone cards, novelty bags, clear files, autographed items, CDs, figures, videos, and calendars. He sent 405 postcards for Hirosue items.",
+        "He won 3 of them, all valued at 0 JPY (\"not for sale\"): a poster (8 cards, May), a poster (10 cards, September), and a 99 Calendar (39 cards, November).",
+        "Total value from 405 postcards of Hirosue devotion: 0 JPY. His Hirosue obsession contributed nothing to his escape and cost roughly 20,250 JPY in postage."
+      ]
+    },
+    "panties": {
+      "heading": "The Used Panties",
+      "body": [
+        "Yes, this was a thing in 1990s Japanese magazine contests. Nasubi entered 10 different \"model's used panties\" (モデルさん使用済パンティ) contests across multiple months, with names like Mai-chan, Arare-chan, Hitomi-chan, Emi-chan, Yumiko-chan, Saki-chan, Haruka-chan, and Kairi-chan.",
+        "He won one: Hitomi-chan's used panties, valued at 1,800 JPY. He sent 1 postcard for it — one of his best ROI wins."
+      ]
+    },
+    "foodDeepDive": {
+      "heading": "Food Deep Dive: Eating (or Not) by Sweepstakes",
+      "body": [
+        "For a man whose primary crisis was starvation, Nasubi devoted an enormous share of his effort to food contests. Over half of all postcards — 31,081 out of 60,911 (51%) — went toward food-related prizes. A third of all unique contest entries (631 of 1,891) were food items. Yet the return was disproportionately poor: food wins totaled just 162,514 JPY, about 16% of his overall haul.",
+        "The math is bleak. Nasubi won 41 food items out of 631 entries — a 6.5% win rate, slightly above his overall average. But 590 food entries returned nothing. He sent 480 postcards for miso and soy sauce, 450 for Japanese sweets, 440 for assorted pickles, 351 for cup ramen. All zeroes."
+      ]
+    },
+    "foodSubcategory": {
+      "heading": "Food Subcategory Breakdown",
+      "body": [
+        "The pattern here mirrors the overall dataset: the unglamorous categories win. Pickles & fermented foods had a 16.7% win rate. Rice hit 14.8%. Meanwhile, the things you'd actually crave — noodles, prepared meals, beverages — came in under 2%. Nobody else was competing for natto (納豆). Everyone was competing for cup ramen.",
+        "Meat and seafood tell an interesting story: respectable win rates (9.3% and 8.0%) and real value — a 15,800 JPY lobster, 15,000 JPY sirloin steak, hairy crab, duck meat. When Nasubi won protein, it mattered.",
+        "The pet food line is darkly funny. At 28.6%, it had the highest win rate of any food subcategory. Nobody wants to win dog food. Nasubi won two batches — raw and dry — worth a combined 10,100 JPY. And infamously, he ate it."
+      ],
+      "columns": ["Subcategory", "Items", "Postcards", "Wins", "Win Rate", "Value Won (JPY)"],
+      "rows": [
+        ["Snacks & Sweets", "113", "8,629", "7", "6.2%", "18,454"],
+        ["Vegetables & Mushrooms", "65", "2,877", "3", "4.6%", "18,500"],
+        ["Noodles & Pasta", "50", "2,619", "1", "2.0%", "3,800"],
+        ["Prepared & Convenience", "53", "2,435", "1", "1.9%", "3,000"],
+        ["Beverages", "73", "2,419", "1", "1.4%", "15,000"],
+        ["Seafood & Seaweed", "50", "2,287", "4", "8.0%", "26,150"],
+        ["Pickles & Fermented", "24", "2,113", "4", "16.7%", "11,400"],
+        ["Fruit", "39", "1,781", "4", "10.3%", "7,300"],
+        ["Meat", "43", "1,464", "4", "9.3%", "26,300"],
+        ["Rice", "27", "1,437", "4", "14.8%", "15,800"],
+        ["Condiments & Pantry", "58", "1,360", "4", "6.9%", "2,540"],
+        ["Diet & Health Food", "17", "799", "1", "5.9%", "2,640"],
+        ["Dairy & Soy", "12", "541", "1", "8.3%", "1,530"],
+        ["Pet Food", "7", "320", "2", "28.6%", "10,100"]
+      ]
+    },
+    "survivalTimeline": {
+      "heading": "The Survival Timeline: When Did Food Actually Arrive?",
+      "body": [
+        "July was a total food blackout — not a single edible item arrived. This aligns with the broader mid-year drought visible in the overall data.",
+        "The early months (Feb–May) were relatively generous. March alone delivered 7 food wins — natto, strawberries, beef, beans. May brought his first major rice haul (10 kg). These months likely kept him from total collapse.",
+        "The late surge is notable too. October through November delivered crab, steak, matsutake mushrooms, and 10 kg of premium Koshihikari rice — the most calorically significant stretch of the entire ordeal. By then he'd been starving for nearly a year."
+      ],
+      "columns": ["Prize Month", "Food Wins", "Notable Items"],
+      "rows": [
+        ["Feb", "2", "Fiber jelly, spaghetti set"],
+        ["Mar", "7", "Natto, strawberries, beef, pickled konjiri"],
+        ["Apr", "4", "Lobster, tomatoes, chocolate, dim sum"],
+        ["May", "6", "Rice (10kg), dog food (x2), natto, diet foods"],
+        ["Jun", "4", "Duck meat, seaweed, ice cream"],
+        ["Jul", "0", "—"],
+        ["Aug", "4", "Jelly, rice (2kg), pickled eggplant, watermelon"],
+        ["Sep", "1", "(non-food item miscategorized)"],
+        ["Oct", "4", "Hairy crab, anmitsu, potato snacks, vegetable juice"],
+        ["Nov", "5", "Sirloin steak, matsutake, rice (10kg), mayonnaise"],
+        ["Dec", "2", "Furikake, rice (2kg + 2kg)"]
+      ]
+    },
+    "edibleBreakdown": {
+      "heading": "What He Could Actually Eat",
+      "body": [
+        "Not all food wins were equal. Of his 41 food-related wins: ~30 were genuinely edible (rice, meat, seafood, noodles, fruit, sweets, natto), 4 were condiments only (mayonnaise, furikake, pickled eggplant, konjiri), 2 were pet food (which he ate out of desperation), and ~5 were miscategorized non-food items (movie tickets, video, toilet paper, hair products)."
+      ]
+    },
+    "sustainingWins": {
+      "heading": "The High-Survival Wins",
+      "body": [
+        "The two 10 kg rice deliveries (May and November) were probably the most important wins of the entire challenge — not by declared value, but by survival value. Rice keeps you alive. Lobster is one dinner."
+      ],
+      "columns": ["Item", "Month", "Survival Value"],
+      "rows": [
+        ["Rice (10kg)", "May", "Staple calories for weeks"],
+        ["Barley beef steak (850g)", "Mar", "Real protein"],
+        ["Spaghetti gift set", "Feb", "Carbs + bulk"],
+        ["Lobster", "Apr", "Luxury protein, one meal"],
+        ["Duck meat", "Jun", "Protein"],
+        ["Koshihikari rice (10kg)", "Nov", "Staple calories for weeks"],
+        ["Sirloin steak", "Nov", "High-quality protein, one meal"],
+        ["Matsutake mushroom", "Nov", "Nutritionally minimal, symbolically enormous"],
+        ["Ice cream (24 cups)", "Jun", "Calories, morale"],
+        ["Natto (x2)", "Mar, May", "Protein, fermented nutrition"]
+      ]
+    },
+    "foodNeverCame": {
+      "heading": "The Food That Never Came",
+      "body": [
+        "480 postcards for miso and soy sauce — the most basic Japanese pantry staples. 351 for cup ramen — the cheapest, most ubiquitous food in Japan. Nothing. These are items that cost a few hundred yen at any convenience store, and he couldn't win them despite hundreds of attempts.",
+        "The volume strategy failed catastrophically for food. His best food wins came from modest entries: 1 postcard for spaghetti, 50 cards for lobster, 50 for rice. His 250-card ice cream win returned one of the worst food ROIs in the dataset."
+      ],
+      "columns": ["Postcards", "Item"],
+      "rows": [
+        ["480", "Miso and soy sauce"],
+        ["450", "Japanese sweets"],
+        ["440", "Assorted pickles"],
+        ["420", "Snacks"],
+        ["351", "Cup ramen"],
+        ["300", "Chinese buns"],
+        ["225", "Jelly"],
+        ["221", "Potato snacks"],
+        ["220", "Chocolate"],
+        ["220", "Snacks"]
+      ]
+    },
+    "keyTakeaways": [
+      "Volume doesn't win sweepstakes. Nasubi's biggest wins came from single-digit postcard entries. His highest-volume entries almost universally lost.",
+      "The hit rate was roughly 1 in 20. For every 20 different contests entered, about 1 paid off. This held remarkably steady across most months.",
+      "A few big wins carry everything. The top 10 items (10% of wins) represented over 54% of total value. This is a classic power-law distribution.",
+      "Nobody wins travel contests. 105 entries, 2,720 postcards, zero wins. The dream of a free Hawaii trip was always a mirage.",
+      "Food contests have the best odds. Rice, specialty food, and snacks consistently had the highest win rates — probably because the prizes aren't glamorous enough to attract mass entries.",
+      "The emotional toll is invisible in the data. What the numbers don't show is that Nasubi was naked, alone, eating dog food and natto, for months. The gap between \"Items Won\" and \"Items Useful for Survival\" is enormous — he won golf shoes, cosmetics sets, an attaché case, and model panties while starving.",
+      "He fell just short. At 991,164 JPY, Nasubi ended ~9,000 JPY short of his 1 million yen goal based on the item valuations in the data. The show's actual accounting may have differed slightly (and he did eventually hit the target in the broadcast)."
+    ]
+  },
+  "korea": {
+    "heading": "Nasubi In Korea: The Sequel Nobody Asked For",
+    "intro": [
+      "After Nasubi (なすび) finally reached 1,000,000 JPY and was released from his apartment on Susunu! Denpa Shonen, the producers pulled one of the cruelest twists in television history: they immediately transported him — still naked — to South Korea and told him to do it all over again. This time the goal was 1,000,000 KRW (Korean Won), roughly 100,000 JPY or ~$770 USD at the time.",
+      "He was placed in another empty apartment. He didn't speak Korean. He couldn't read the magazines. He had no idea what most of the contests were even for. And yet he filled out postcards."
+    ],
+    "stats": [
+      { "label": "Total contests entered", "value": "358" },
+      { "label": "Month 1 entries", "value": "120" },
+      { "label": "Month 2-3 entries", "value": "238" },
+      { "label": "Entry counts per item", "value": "Unknown" }
+    ],
+    "statsBlurb": [
+      "Unlike the original Japanese challenge, the Korea data lacks precise postcard counts — each entry is marked \"x\" rather than a specific number. This makes ROI analysis impossible, but the category distribution and item selection still tell a story."
+    ],
+    "categoryBreakdown": {
+      "heading": "Category Breakdown",
+      "body": [
+        "Food made up 36.3% of entries (130 of 358), a notable drop from the 51% in Japan. Nasubi seems to have diversified his strategy — or perhaps the Korean magazine landscape offered different contest categories.",
+        "Meat dominated the food entries with 40 items — bone-in short ribs, seasoned kalbi, bulgogi, pork belly, beef brisket, steak, and whole chicken. Korea's sweepstakes scene clearly leaned into the country's BBQ culture, a stark contrast to Japan where meat was a relatively small category."
+      ],
+      "columns": ["Category", "Items", "% of Total"],
+      "rows": [
+        ["Meat", "40", "11.2%"],
+        ["Appliances", "34", "9.5%"],
+        ["Electronics (AV)", "22", "6.1%"],
+        ["Beverages", "18", "5.0%"],
+        ["Fruit", "16", "4.5%"],
+        ["Vegetables", "13", "3.6%"],
+        ["Electronics (IT)", "13", "3.6%"],
+        ["Vehicles", "12", "3.4%"],
+        ["Accessories", "12", "3.4%"],
+        ["Seafood", "12", "3.4%"],
+        ["Personal Care", "11", "3.1%"],
+        ["Clothing", "9", "2.5%"],
+        ["Condiments", "9", "2.5%"],
+        ["Travel", "9", "2.5%"],
+        ["Kitchenware", "9", "2.5%"],
+        ["Cash & Vouchers", "6", "1.7%"],
+        ["Rice", "6", "1.7%"],
+        ["Bedding", "6", "1.7%"],
+        ["Snacks & Sweets", "6", "1.7%"],
+        ["Prepared Food", "6", "1.7%"],
+        ["Noodles", "4", "1.1%"],
+        ["Furniture", "3", "0.8%"],
+        ["Musical Instruments", "1", "0.3%"],
+        ["Other", "81", "22.6%"]
+      ]
+    },
+    "comparison": {
+      "heading": "Japan vs. Korea: A Comparison",
+      "body": [
+        "The Korea challenge was fundamentally different in scale. The goal was roughly one-tenth the value of the Japanese target. The time frame was compressed. But the psychological cruelty was arguably greater — Nasubi had just finished an 11-month ordeal, believed he was free, and was immediately thrust into the same nightmare in a country where he couldn't even read."
+      ],
+      "columns": ["Dimension", "Japan", "Korea"],
+      "rows": [
+        ["Duration", "~11 months", "~3 months"],
+        ["Total entries", "1,891", "358"],
+        ["Goal", "1,000,000 JPY", "1,000,000 KRW"],
+        ["Goal in USD", "~$7,700", "~$770"],
+        ["Food % of entries", "51%", "36.3%"],
+        ["Entry counts tracked", "Yes (60,911 postcards)", "No (all marked \"x\")"],
+        ["Language barrier", "None", "Severe"]
+      ]
+    },
+    "highValueTargets": {
+      "heading": "Notable High-Value Targets",
+      "body": [
+        "Just as in Japan, Nasubi targeted travel and high-value prizes. And just as in Japan, these are the contests everyone enters and nobody wins."
+      ],
+      "columns": ["Item", "Japanese", "Month"],
+      "rows": [
+        ["3 million won bankbook", "3百万ウォン預金通帳", "01"],
+        ["Samsung car or hotel accommodation voucher", "SAMSUNGの自動車 OR ホテル宿泊券", "02-03"],
+        ["Round-trip ticket from Seoul to Cairns", "ソウル・ケアンズ往復航空券", "01"],
+        ["Round-trip air ticket to the US", "アメリカ往復航空券", "02-03"],
+        ["2 million won cash honeymoon support", "新婚出発支援金現金200万ウォン", "02-03"],
+        ["Travel voucher (worth 1 million won)", "旅行商品券(100万ウォン分)", "02-03"],
+        ["Round-trip air ticket for overseas travel", "外国旅行往復航空券", "02-03"],
+        ["Round-trip plane ticket for domestic travel in Korea", "韓国国内旅行用往復航空券", "02-03"],
+        ["Nail art lesson ticket (worth 600,000 won)", "ネイルアートレッスンチケット(600,000ウォン相当)", "01"]
+      ]
+    },
+    "oddities": {
+      "heading": "The Korean Oddities",
+      "body": [
+        "The Korea entries reveal some uniquely Korean contest prizes, as well as some entries that highlight Nasubi's bewilderment at Korean magazine culture. The \"probably\" and \"apparently\" entries are heartbreaking. In Japan, Nasubi could at least read the contest rules and know what he was entering. In Korea, he was filling out postcards for prizes he could only identify from packaging photos."
+      ],
+      "items": [
+        { "jp": "たぶん牛肉(100g)", "en": "\"Probably beef (100g)\" — he literally couldn't read what the contest was for" },
+        { "jp": "おそらくポラロイドカメラ", "en": "\"Probably a Polaroid camera\" — best guess from the pictures" },
+        { "jp": "どう見てもテレビ", "en": "\"Apparently a TV\" — \"No matter how you look at it, it's a TV\"" },
+        { "jp": "たぶん電子手帳", "en": "\"Probably an electronic organizer\" — guessing from the product photo" },
+        { "jp": "たぶんポケベル", "en": "\"Probably a pager\" — 1999 technology identification challenge" },
+        { "jp": "ミニ四駆とラジコンの中間みたいな感じの物", "en": "\"Something like a cross between a mini 4WD and a radio-controlled car\"" },
+        { "jp": "パンに塗って食べる。バターのような物(プルコギ味)", "en": "\"Spread it on bread and eat it. Butter-like substance (bulgogi flavor)\" — this one speaks for itself" },
+        { "jp": "金剛山へ親孝行旅行", "en": "\"Filthy trip to Mount Kumgang\" — an unfortunate translation of a North Korean mountain resort trip" },
+        { "jp": "韓国伝統の古典楽器", "en": "\"Traditional Korean classical musical instrument\" — what would a naked man in an empty apartment do with a gayageum?" },
+        { "jp": "整形手術無しで鼻が3cm高くなるギブスー", "en": "\"3cm nose without plastic surgery\" — a cosmetic device of unclear purpose" },
+        { "jp": "音声認識人形「それ(orへた)ちゃん」", "en": "\"Voice recognition doll 'Sore (or Heta)-chan'\" — even the transcriber wasn't sure of the name" }
+      ]
+    },
+    "meatObsession": {
+      "heading": "The Meat Obsession",
+      "body": [
+        "With 40 meat entries, Nasubi was clearly fixated on protein in Korea — perhaps informed by his Japanese experience of near-starvation. The meat entries read like a Korean BBQ menu: bone-in short rib, kalbi, seasoned kalbi, bulgogi, pork belly (100g, 1kg, 2kg variants), beef brisket, beef loin, beef rib meat, pork rib meat, steak meat, beef tail, whole chicken, bulgogi ham, canned meat of unknown origin, and flavored pork cutlet.",
+        "The progression from 100g entries in Month 1 to kilogram-scale entries in Months 2-3 suggests either growing ambition or growing hunger."
+      ]
+    },
+    "appliances": {
+      "heading": "Appliances: Building a Home He'd Never Live In",
+      "body": [
+        "Nasubi entered 34 appliance contests — refrigerators, washing machines, microwaves, pressure cookers, rice cookers, vacuum cleaners, humidifiers, toasters, and even an air purifier. This mirrors his Japanese experience, where he won a desk and chair he didn't need and a VCR he couldn't use. The absurdity of a naked man in an empty room entering contests for a fully automatic washing machine needs no commentary."
+      ]
+    },
+    "keyDifferences": [
+      "The language barrier changed everything. In Japan, Nasubi's problem was odds. In Korea, his problem was comprehension. The \"probably\" entries show he was gambling blind.",
+      "Food strategy shifted toward meat. In Japan, he spread entries across rice, noodles, snacks, and produce. In Korea, he went hard on BBQ meat — possibly because it was the one thing he could clearly identify in Korean magazines.",
+      "The goal was 10x easier — 1,000,000 KRW vs 1,000,000 JPY — but the barriers were higher. A lower target in a foreign language may have been equally or more difficult in practice.",
+      "No postcard counts survive. We can't analyze volume strategy, ROI, or brute-force patterns the way we can with the Japanese data. The Korea segment exists as a catalog of what he tried, not how hard he tried.",
+      "The cruelty was the point. The Japan challenge could be framed as a quirky endurance test. The Korea sequel — sprung on an exhausted, psychologically broken man who thought he was finally free — was pure exploitation."
+    ]
+  }
+}

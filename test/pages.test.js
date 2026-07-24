@@ -12,6 +12,7 @@ const PAGES = {
   eva: path.join(__dirname, '../public/eva-tv/index.html'),
   'eva-sources': path.join(__dirname, '../public/eva-tv/sources/index.html'),
   graphql: path.join(__dirname, '../public/graphql/index.html'),
+  nasubi: path.join(__dirname, '../public/nasubi/index.html'),
 };
 
 for (const [name, htmlPath] of Object.entries(PAGES)) {
