@@ -24,6 +24,7 @@ const dom = {
   statsGlance: document.getElementById('statsGlance'),
   ratingDistributionChart: document.getElementById('ratingDistributionChart'),
   ratingDistributionBlurb: document.getElementById('ratingDistributionBlurb'),
+  ratingsOverTimeSection: document.getElementById('ratingsOverTimeSection'),
   ratingsOverTimeChart: document.getElementById('ratingsOverTimeChart'),
   hallOfFameBest: document.getElementById('hallOfFameBest'),
   hallOfFameWorst: document.getElementById('hallOfFameWorst'),
@@ -248,6 +249,11 @@ function renderRatingDistribution(reviews) {
 
 function renderRatingsOverTime(reviews) {
   const overTime = computeRatingsOverTime(reviews);
+  // A trend needs more than one point on it - skip the section entirely
+  // when the current view (e.g. the season filter) only covers one season.
+  dom.ratingsOverTimeSection.hidden = overTime.length <= 1;
+  if (dom.ratingsOverTimeSection.hidden) return;
+
   renderBarChart(
     dom.ratingsOverTimeChart,
     overTime.filter(s => s.avgRating != null).map(s => ({ label: s.seasonName, value: s.avgRating, display: formatRating(s.avgRating) }))

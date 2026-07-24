@@ -249,6 +249,12 @@
   background-color: var(--color-chrome);
 }
 
+/* A lone filter (the top-of-page season picker) shouldn't stretch to fill
+   the whole row the way .filters does when it holds several fields. */
+.vs-season-filters {
+  grid-template-columns: minmax(200px, 320px);
+}
+
 .filter-group {
   display: flex;
   flex-direction: column;

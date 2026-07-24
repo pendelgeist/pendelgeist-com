@@ -18,9 +18,9 @@ const seasons = [
   {
     id: 'summer-2026', name: 'Summer 2026',
     reviewed: [
-      { titleEN: 'Peak Show', ratingNumber: 5, ratingText: 'Peak', review: 'An absolutely incredible episode with great animation', dateReviewed: '2026-07-01', anilistId: 111, op: { ratingNumber: 5, ratingText: 'Peak' } },
-      { titleEN: 'Meh Show', ratingNumber: 3, ratingText: 'Meh', review: 'Just fine, nothing special here', dateReviewed: '2026-07-05', fullReview: { ratingNumber: 5, ratingText: 'Peak', review: 'Turned out great after all' } },
-      { titleEN: 'Trash Show', ratingNumber: 1, ratingText: 'Trash', review: 'Rough episode, animation was bad', dateReviewed: '2026-07-10', ed: { ratingNumber: 2, ratingText: 'Trash' } },
+      { titleEN: 'Peak Show', ratingNumber: 5, ratingText: 'Peak', review: 'Total kino, certified banger episode', dateReviewed: '2026-07-01', anilistId: 111, op: { ratingNumber: 5, ratingText: 'Peak' } },
+      { titleEN: 'Meh Show', ratingNumber: 3, ratingText: 'Meh', review: 'Pretty mid, nothing special here', dateReviewed: '2026-07-05', fullReview: { ratingNumber: 5, ratingText: 'Peak', review: 'Turned out goated after all' } },
+      { titleEN: 'Trash Show', ratingNumber: 1, ratingText: 'Trash', review: 'Isekai harem trash, total waifu bait', dateReviewed: '2026-07-10', ed: { ratingNumber: 2, ratingText: 'Trash' } },
     ],
     pending: ['Pending Show'],
     skipped: [],
@@ -28,8 +28,8 @@ const seasons = [
   {
     id: 'spring-2026', name: 'Spring 2026',
     reviewed: [
-      { titleEN: 'Fine Show', ratingNumber: 3, ratingText: 'Meh', review: 'Perfectly fine, nothing special', dateReviewed: '2026-04-01' },
-      { titleEN: 'Great Show', ratingNumber: 4, ratingText: 'Yeah', review: 'Great animation and great story', dateReviewed: '2026-04-15', fullReview: { ratingNumber: 2, ratingText: 'Trash', review: 'It fell apart badly' } },
+      { titleEN: 'Fine Show', ratingNumber: 3, ratingText: 'Meh', review: 'Filler arc, plot armor nonsense', dateReviewed: '2026-04-01' },
+      { titleEN: 'Great Show', ratingNumber: 4, ratingText: 'Yeah', review: 'Best girl carried, certified banger OP', dateReviewed: '2026-04-15', fullReview: { ratingNumber: 2, ratingText: 'Trash', review: 'It got cooked badly' } },
       { titleEN: 'No Rating Show', ratingText: 'Custom Rating', review: 'Unrated but noted', dateReviewed: '2026-04-20' },
     ],
     pending: [],
@@ -67,9 +67,9 @@ test('computeGlanceStats handles an empty dataset without dividing by zero', () 
   assert.equal(s.anilistCoveragePct, null);
 });
 
-test('computeRatingDistribution counts by ratingText, ordered by rating number descending', () => {
+test('computeRatingDistribution counts by ratingText, ordered by rating number ascending (low to high)', () => {
   const dist = computeRatingDistribution(reviews);
-  assert.deepEqual(dist.map(d => d.ratingText), ['Peak', 'Yeah', 'Meh', 'Trash', 'Custom Rating']);
+  assert.deepEqual(dist.map(d => d.ratingText), ['Custom Rating', 'Trash', 'Meh', 'Yeah', 'Peak']);
   assert.equal(dist.find(d => d.ratingText === 'Meh').count, 2);
 });
 
@@ -111,12 +111,30 @@ test('computeOpEdHighlights ranks OP/ED callouts that carry their own rating', (
   assert.equal(s.topEds[0].titleEN, 'Trash Show');
 });
 
-test('computeWordChoice counts words across review/fullReview/op/ed text, skipping stopwords', () => {
-  const words = computeWordChoice(reviews, 5);
-  const great = words.find(w => w.word === 'great');
-  assert.ok(great, 'expected "great" to be counted');
-  assert.ok(great.count >= 3); // "Great Show" review (x2) + fullReview swap text elsewhere
-  assert.ok(!words.some(w => w.word === 'and' || w.word === 'the'), 'stopwords should be filtered out');
+test('computeWordChoice only counts curated otaku/anime-slang terms, never plain English', () => {
+  const words = computeWordChoice(reviews, 20);
+  const byWord = Object.fromEntries(words.map(w => [w.word, w.count]));
+
+  assert.equal(byWord.banger, 2); // "Peak Show" + "Great Show" reviews
+  assert.equal(byWord.kino, 1);
+  assert.equal(byWord.mid, 1);
+  assert.equal(byWord.goated, 1);
+  assert.equal(byWord.isekai, 1);
+  assert.equal(byWord.harem, 1);
+  assert.equal(byWord.waifu, 1);
+  assert.equal(byWord.filler, 1);
+  assert.equal(byWord['plot armor'], 1);
+  assert.equal(byWord['best girl'], 1);
+  assert.equal(byWord.cooked, 1);
+
+  assert.ok(!('great' in byWord) && !('nothing' in byWord) && !('special' in byWord), 'plain English should never appear, even if repeated');
+  // Highest count sorts first.
+  assert.equal(words[0].word, 'banger');
+});
+
+test('computeWordChoice returns nothing when no review text contains a curated term', () => {
+  const plainReviews = flattenReviews([{ id: 'x', name: 'X', reviewed: [{ titleEN: 'A', ratingText: 'Meh', review: 'This was a fine and normal episode with nothing notable', dateReviewed: '2026-01-01' }] }]);
+  assert.deepEqual(computeWordChoice(plainReviews), []);
 });
 
 // --- Rendered page ---
@@ -224,6 +242,21 @@ test('picking a season in the filter scopes every stat, the browse table, and th
 
   const bestRows = [...document.querySelectorAll('#hallOfFameBest tbody tr')].map(tr => tr.children[0].textContent);
   assert.equal(bestRows[0], 'Great Show'); // Peak Show (Summer 2026) is out of scope now
+});
+
+test('Ratings Over Time is shown for All Seasons but hides once the filter narrows to a single season', async () => {
+  const { document } = await loadApp();
+
+  assert.equal(document.getElementById('ratingsOverTimeSection').hidden, false);
+
+  const select = /** @type {any} */ (document.getElementById('seasonFilter'));
+  select.value = 'spring-2026';
+  select.dispatchEvent(new document.defaultView.Event('change', { bubbles: true }));
+  assert.equal(document.getElementById('ratingsOverTimeSection').hidden, true);
+
+  select.value = 'all';
+  select.dispatchEvent(new document.defaultView.Event('change', { bubbles: true }));
+  assert.equal(document.getElementById('ratingsOverTimeSection').hidden, false);
 });
 
 test('a "?season=" URL pre-selects that season on load', async () => {
