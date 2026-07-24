@@ -11,6 +11,7 @@ The Worker (`src/worker.js`) also backs a small GraphQL API over the same anime 
 - `public/index.html` — homepage, links out to the other sites.
 - `public/vqar/` — Very Quick Anime Reviews, a small vanilla-JS app.
 - `public/eva-tv/` — Neon Genesis Evangelion episode timeline, a small vanilla-JS app.
+- `public/nasubi/` — a data analysis of Nasubi's *Susunu! Denpa Shonen* sweepstakes ordeal.
 - `public/graphql/` — a GraphQL query explorer for the API described below.
 - `public/styles.css` — shared site styles. `public/vqar/styles.css` and `public/graphql/styles.css`
   layer page-specific styles on top.
@@ -226,6 +227,35 @@ layout (`columns` on `.episode-entries`, sized against a viewport-derived height
 height is actually available in portrait or landscape. Editing the content means editing
 `data.json` and redeploying — there's no live external data source to keep in sync here,
 unlike VQAR.
+
+## Nasubi page
+
+`public/nasubi/` is a standalone page at `/nasubi`: a data analysis of Nasubi's 11-month
+sweepstakes ordeal on *Susunu! Denpa Shonen* (1998-99) and the Korea sequel that followed.
+Like the Evangelion page, all its content is committed JSON rather than a gist, under
+`public/nasubi/data/`:
+
+- `content.json` — the curated narrative: a `meta` block (title/subtitle/intro) plus a
+  `japan` and `korea` object. Each of those is a flat map of named sections (e.g.
+  `economics`, `categoryBreakdown`), rendered in the order listed in `JAPAN_SECTION_ORDER` /
+  `KOREA_SECTION_ORDER` in `app.js` — reordering the narrative means editing those arrays,
+  not the JSON. A section is `{ heading, body, columns?, rows?, chart?, items? }`: `body` is
+  an array of paragraphs (supports `**bold**`, `*italic*`, `[text](url)` links via a small
+  inline parser in `app.js`, not real Markdown); `columns`/`rows` render a sortable table;
+  `chart` (`{ labelKey, valueKey }`, both matching entries in `columns`) adds a bar chart
+  above it for a single numeric column; `items` (`[{ jp, en }]`) renders a bilingual list
+  instead of a table, used for the Korea "oddities". `japan.keyTakeaways` and
+  `korea.keyDifferences` are plain string arrays, rendered as a numbered list.
+- `entries-japan.json` / `winnings-japan.json` / `entries-korea.json` — the full raw
+  datasets behind the analysis (every postcard batch, every prize, every Korea entry),
+  parsed from the original transcribed/translated tables. These back the "Browse the Raw
+  Data" section at the bottom of the page (search by Japanese or English name, sort any
+  column), independent of the curated `content.json` narrative above it.
+
+Adding more analysis later means extending `content.json` (new section keys need adding to
+the order arrays in `app.js` too) or dropping in a new dataset JSON file plus a matching
+`<option>`/`DATASETS` entry for the data browser. There's no live external data source here,
+same as the Evangelion page.
 
 ## GraphQL API
 
