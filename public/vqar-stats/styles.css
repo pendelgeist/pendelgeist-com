@@ -1,0 +1,278 @@
+/* VQAR stats page styles; shared site styles live in /styles.css. Several
+   class names here intentionally mirror /nasubi/styles.css (stat-grid,
+   data-table, bar-chart, guidelines, filters) - same visual language for the
+   same kind of "curated data analysis" page, just computed live instead of
+   from committed JSON. */
+
+.guidelines {
+  box-shadow: var(--shadow-card);
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+  display: none;
+  background-color: var(--color-surface);
+  border: var(--border-width) var(--border-style) var(--color-guideline-border);
+  border-radius: var(--radius-card);
+}
+
+.guidelines.show {
+  display: block;
+}
+
+.guidelines h3 {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  margin-top: 1rem;
+  color: var(--color-accent);
+}
+
+.guidelines h3:first-child {
+  margin-top: 0;
+}
+
+.guidelines p {
+  margin: 0.25rem 0;
+}
+
+/* Hero */
+
+.vs-hero {
+  box-shadow: var(--shadow-card);
+  padding: 1.5rem;
+  background-color: var(--color-surface);
+  border-radius: var(--radius-card);
+}
+
+.vs-hero h1 {
+  font-family: var(--font-heading);
+  font-size: 2.2rem;
+  font-weight: 900;
+  margin-bottom: 0.25rem;
+  color: var(--color-title);
+  text-shadow: var(--shadow-heading);
+}
+
+.vs-subtitle {
+  color: var(--color-muted);
+  font-style: italic;
+}
+
+.vs-prose {
+  margin: 0.6rem 0;
+  font-size: 0.95rem;
+}
+
+.vs-prose a {
+  color: var(--color-accent);
+}
+
+/* Two-column layout for paired sections (best/worst, top OP/ED) */
+
+.vs-two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+.vs-two-col h3 {
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: var(--color-accent);
+}
+
+@media (max-width: 768px) {
+  .vs-two-col {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Stat tiles */
+
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.stat-tile {
+  box-shadow: var(--shadow-card);
+  padding: 0.85rem 0.75rem;
+  text-align: center;
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-article-border);
+  border-radius: var(--radius-card);
+}
+
+.stat-value {
+  font-family: var(--font-heading);
+  font-size: 1.4rem;
+  font-weight: 900;
+  color: var(--color-accent);
+  line-height: 1.2;
+}
+
+.stat-label {
+  margin-top: 0.25rem;
+  font-size: 0.7rem;
+  letter-spacing: 0.03rem;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+
+/* Data tables */
+
+.table-scroll {
+  overflow-x: auto;
+  margin-top: 0.5rem;
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.82rem;
+}
+
+.data-table th,
+.data-table td {
+  padding: 0.4rem 0.6rem;
+  text-align: left;
+  border-bottom: 1px solid var(--color-article-border);
+  white-space: nowrap;
+}
+
+.data-table td:first-child {
+  white-space: normal;
+  min-width: 10rem;
+}
+
+.data-table thead th {
+  cursor: pointer;
+  user-select: none;
+  background-color: var(--color-chrome);
+  color: var(--color-nav-link);
+  position: sticky;
+  top: 0;
+}
+
+.data-table thead th:hover {
+  opacity: 0.85;
+}
+
+.data-table thead th.sorted-asc::after {
+  content: ' \25B2';
+}
+
+.data-table thead th.sorted-desc::after {
+  content: ' \25BC';
+}
+
+.data-table tbody tr:nth-child(even) {
+  background-color: color-mix(in srgb, var(--color-bg) 50%, transparent);
+}
+
+/* Bar charts: single-hue magnitude bars, direct-labeled */
+
+.bar-chart {
+  display: flex;
+  align-items: flex-end;
+  gap: 0.4rem;
+  height: 12rem;
+  margin: 1rem 0 0.5rem;
+  padding: 0.5rem 0.25rem 0;
+  border-bottom: 2px solid var(--color-section-border);
+}
+
+.bar-col {
+  display: flex;
+  flex: 1 1 0;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  height: 100%;
+  min-width: 0;
+}
+
+.bar-value {
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: var(--color-text);
+  margin-bottom: 0.2rem;
+  white-space: nowrap;
+}
+
+.bar-fill {
+  width: 100%;
+  max-width: 2.5rem;
+  background-color: var(--color-accent);
+  border-radius: var(--radius-card) var(--radius-card) 0 0;
+  min-height: 2px;
+}
+
+.bar-label {
+  margin-top: 0.35rem;
+  font-size: 0.68rem;
+  color: var(--color-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+
+/* Browse Data filters (mirrors /vqar's and /nasubi's filter bar) */
+
+.filters {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin: 1rem 0;
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--color-input-border);
+  background-color: var(--color-chrome);
+}
+
+/* A lone filter (the top-of-page season picker) shouldn't stretch to fill
+   the whole row the way .filters does when it holds several fields. */
+.vs-season-filters {
+  grid-template-columns: minmax(200px, 320px);
+}
+
+.filter-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.filter-group label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--color-nav-link);
+}
+
+.filters input,
+.filters select {
+  height: 2.75rem;
+  padding: 0.5rem;
+  font: inherit;
+  border: 2px solid var(--color-input-border);
+  width: 100%;
+  box-sizing: border-box;
+  background-color: var(--color-surface);
+  color: var(--color-text);
+}
+
+.filters input:focus,
+.filters select:focus {
+  border-color: var(--color-input-focus);
+  box-shadow: var(--shadow-focus);
+  outline: none;
+}
+
+@media (max-width: 768px) {
+  .vs-hero h1 {
+    font-size: 1.6rem;
+  }
+}
