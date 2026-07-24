@@ -142,16 +142,20 @@ function routes() {
 
 let importCounter = 0;
 
-async function loadApp({ fetch = createFetchStub(routes()), localStorage = createLocalStorageStub() } = {}) {
+async function loadApp({ fetch = createFetchStub(routes()), localStorage = createLocalStorageStub(), url = 'http://localhost/vqar-stats/index.html' } = {}) {
   const html = fs.readFileSync(INDEX_HTML_PATH, 'utf-8');
-  const dom = new JSDOM(html, { url: 'http://localhost/vqar-stats/index.html', runScripts: 'outside-only' });
+  const dom = new JSDOM(html, { url, runScripts: 'outside-only' });
 
   global.document = dom.window.document;
   global.localStorage = localStorage;
   global.fetch = fetch;
+  global.location = dom.window.location;
+  global.history = dom.window.history;
+  global.URL = dom.window.URL;
+  global.URLSearchParams = dom.window.URLSearchParams;
 
   await import(`${pathToFileURL(APP_JS_PATH)}?t=${importCounter++}`);
-  return { document: dom.window.document };
+  return { document: dom.window.document, window: dom.window };
 }
 
 test('renders the glance stat grid from live-fetched season data', async () => {
@@ -220,4 +224,32 @@ test('picking a season in the filter scopes every stat, the browse table, and th
 
   const bestRows = [...document.querySelectorAll('#hallOfFameBest tbody tr')].map(tr => tr.children[0].textContent);
   assert.equal(bestRows[0], 'Great Show'); // Peak Show (Summer 2026) is out of scope now
+});
+
+test('a "?season=" URL pre-selects that season on load', async () => {
+  const { document } = await loadApp({ url: 'http://localhost/vqar-stats/index.html?season=spring-2026' });
+
+  assert.equal(document.getElementById('seasonFilter').value, 'spring-2026');
+  const tiles = [...document.querySelectorAll('#statsGlance .stat-tile')];
+  const totalReviewsTile = tiles.find(t => t.querySelector('.stat-label').textContent === 'Total Reviews');
+  assert.equal(totalReviewsTile.querySelector('.stat-value').textContent, '3');
+});
+
+test('an unknown "?season=" value is ignored, falling back to "All Seasons"', async () => {
+  const { document } = await loadApp({ url: 'http://localhost/vqar-stats/index.html?season=nonexistent-season' });
+
+  assert.equal(document.getElementById('seasonFilter').value, 'all');
+});
+
+test('changing the season filter updates the "?season=" URL param, without adding history entries', async () => {
+  const { document, window } = await loadApp();
+
+  const select = /** @type {any} */ (document.getElementById('seasonFilter'));
+  select.value = 'spring-2026';
+  select.dispatchEvent(new document.defaultView.Event('change', { bubbles: true }));
+  assert.equal(new URL(window.location.href).searchParams.get('season'), 'spring-2026');
+
+  select.value = 'all';
+  select.dispatchEvent(new document.defaultView.Event('change', { bubbles: true }));
+  assert.equal(new URL(window.location.href).searchParams.get('season'), null);
 });

@@ -314,6 +314,24 @@ function renderBrowseTable() {
   );
 }
 
+/** Reads the `?season=` query param, so a specific season's view is a shareable link. */
+function seasonFromUrl() {
+  return new URLSearchParams(location.search).get('season');
+}
+
+/**
+ * Keeps `?season=` in sync with the current filter, via replaceState so
+ * changing seasons doesn't spam browser history. Omits the param entirely
+ * for "All Seasons" (the default), so the plain URL still means "all".
+ * @param {string} value
+ */
+function updateUrlForSeason(value) {
+  const url = new URL(location.href);
+  if (value === 'all') url.searchParams.delete('season');
+  else url.searchParams.set('season', value);
+  history.replaceState(null, '', url);
+}
+
 /** @param {SeasonData[]} seasons */
 function populateSeasonFilter(seasons) {
   const allOption = document.createElement('option');
@@ -352,6 +370,7 @@ function renderAll(seasons, reviews) {
 
 function applySeasonFilter() {
   const value = dom.seasonFilter.value;
+  updateUrlForSeason(value);
   if (value === 'all') {
     renderAll(allSeasons, allReviews);
   } else {
@@ -387,6 +406,11 @@ async function init() {
     allReviews = flattenReviews(seasons);
 
     populateSeasonFilter(seasons);
+
+    const requestedSeason = seasonFromUrl();
+    if (requestedSeason && seasons.some(s => String(s.id) === requestedSeason)) {
+      dom.seasonFilter.value = requestedSeason;
+    }
     applySeasonFilter();
 
     dom.seasonFilter.addEventListener('change', applySeasonFilter);
