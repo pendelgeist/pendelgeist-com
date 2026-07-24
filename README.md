@@ -41,12 +41,20 @@ the colors), plus theme-specific flourishes layered on top: Rainbow adds an anim
 background wash, a gradient "frame" around every card and the nav bar, gradient text on
 every heading, and confetti-colored list bullets; Vaporwave adds a hazy sunset glow, a
 drifting neon grid floor, and glowing card/nav borders; FFVII Menu keeps it to a radial
-background glow with a pulsing "materia" glow on section headings; Eva-01 (Neon Genesis
-Evangelion's Unit-01, in purple/acid-green with a MAGI-terminal monospace font) adds faint
-scanlines and a quick heartbeat-style pulse on section headings. All per-theme motion is
-neutralized by a blanket `prefers-reduced-motion: reduce` rule at the bottom of
-`styles.css`, so it never overrides that OS/browser preference. A new theme along these
-lines just needs a CSS block like those and an entry in the `THEMES` list in `theme.js`.
+background glow, a diagonal gradient/bevel on every card echoing the game's own dialog
+boxes, and a pulsing "materia" glow on section headings; Eva-01 (Neon Genesis Evangelion's
+Unit-01, in purple/acid-green with a MAGI-terminal monospace font) adds faint scanlines and
+a quick heartbeat-style pulse on section headings. All per-theme motion is neutralized by a
+blanket `prefers-reduced-motion: reduce` rule at the bottom of `styles.css`, so it never
+overrides that OS/browser preference. A new theme along these lines just needs a CSS block
+like those and an entry in the `THEMES` list in `theme.js`.
+
+FFVII Menu's headings also use Reactor7, a pixel font by Caveras modeled on the original
+PlayStation release's actual in-game font, self-hosted at `public/fonts/reactor7/` and
+loaded via `@font-face` at the top of `styles.css`. It's licensed CC BY-NC-SA 3.0 (see
+`public/fonts/reactor7/license.txt`) — non-commercial use only, with attribution — and is
+deliberately only ever set at 16px multiples (`.section h2` is 2rem, `.nav-title` is 1rem),
+since it's a pixel font that blurs at any other size.
 
 ### Random (Light) / Random (Dark)
 
