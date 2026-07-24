@@ -27,11 +27,11 @@ test('renders a theme picker into the nav with every theme option', async () => 
   assert.ok(select, 'expected a #themePicker select in the nav');
   assert.deepEqual(
     [...select.options].map(o => o.value),
-    ['system', 'light', 'dark', 'rainbow', 'vaporwave', 'ffvii', 'ffxiv', 'geocities', 'eva-00', 'eva-01', 'eva-02', 'random-light', 'random-dark']
+    ['system', 'light', 'dark', 'rainbow', 'vaporwave', 'ffvii', 'eva-01', 'random-light', 'random-dark']
   );
   assert.deepEqual(
     [...select.options].map(o => o.textContent),
-    ['Auto', 'AMO - L', 'AMO - Kira', 'Rainbow', 'Vaporwave', 'FFVII Menu', 'FFXIV Eorzea', "GeoCities '99", 'Eva-00', 'Eva-01', 'Eva-02', 'Random (Light)', 'Random (Dark)']
+    ['Auto', 'AMO - L', 'AMO - Kira', 'Rainbow', 'Vaporwave', 'FFVII Menu', 'Eva-01', 'Random (Light)', 'Random (Dark)']
   );
 });
 
