@@ -1,3 +1,18 @@
+/* Reactor7 by Caveras (http://fontstruct.com/fontstructors/caveras), based on
+ * the main text font from Final Fantasy VII (Squaresoft, 1997). Licensed
+ * CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/) - see
+ * public/fonts/reactor7/license.txt. Used only by the FFVII Menu theme's
+ * headings, and only at 16px multiples (1rem, 2rem, ...), since it's a pixel
+ * font that gets blurry scaled to anything else. */
+@font-face {
+  font-family: 'Reactor7';
+  src: url('/fonts/reactor7/Reactor7.woff') format('woff'),
+    url('/fonts/reactor7/Reactor7.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   color-scheme: light dark;
 
@@ -295,11 +310,11 @@
   --color-section-border: #6ecfff;
   --shadow-heading: 0 0 12px rgba(110, 207, 255, 0.6);
   --shadow-focus: 0 0 10px rgba(110, 207, 255, 0.6);
-  --font-heading: Impact, 'Arial Narrow Bold', sans-serif;
+  --font-heading: 'Reactor7', Impact, 'Arial Narrow Bold', sans-serif;
   --font-body: Verdana, Geneva, sans-serif;
   --border-width: 2px;
   --border-style: solid;
-  --radius-card: 2px;
+  --radius-card: 6px;
   --spacing-section: 1.5rem;
 }
 
@@ -323,10 +338,18 @@
   }
 }
 
+/* Diagonal panel fill plus a light-top/dark-bottom inset bevel, echoing the
+ * game's own dialog boxes rather than the flat --color-surface fill used
+ * elsewhere on the site. */
 :root[data-theme="ffvii"] .section,
 :root[data-theme="ffvii"] article,
 :root[data-theme="ffvii"] .guidelines {
   border: var(--border-width) var(--border-style) rgba(110, 207, 255, 0.35);
+  background: linear-gradient(135deg, #1c3f8f 0%, #0a1030 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.3),
+    inset 0 -2px 4px rgba(0, 0, 0, 0.4),
+    0 2px 10px rgba(0, 0, 0, 0.5);
 }
 
 :root[data-theme="ffvii"] .section {
