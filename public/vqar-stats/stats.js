@@ -8,31 +8,6 @@
 /** @typedef {import('../vqar/app.js').SeasonData} SeasonData */
 
 /**
- * A curated whitelist of anime-fandom/internet slang, not a generic word
- * frequency count - plain English filler ("really", "great", "episode")
- * never shows up in Word Choice, only these. Multi-word phrases are fine
- * (matched as literal, word-bounded phrases). Extend this list as new terms
- * show up in actual reviews.
- */
-const OTAKU_TERMS = [
-  // rating-adjacent slang (echoes the site's own rating vocabulary)
-  'peak', 'mid', 'goated', 'based', 'cringe', 'kino', 'banger', 'dogshit', 'cooked',
-  'sigma', 'aura', 'rizz', 'npc', 'mogged', 'broh', 'ass',
-  // anime-fandom terms
-  'waifu', 'husbando', 'isekai', 'senpai', 'kouhai', 'sensei', 'baka', 'nakama',
-  'tsundere', 'yandere', 'kuudere', 'dandere', 'moe', 'kawaii', 'chibi', 'harem',
-  'ecchi', 'shounen', 'shonen', 'shoujo', 'seinen', 'josei', 'filler', 'canon',
-  'fanservice', 'protag', 'isekai\'d',
-  'best girl', 'best boy', 'power creep', 'plot armor', 'villain arc',
-  'self-insert', 'power fantasy', 'slow burn', 'info dump', 'cold open',
-];
-
-/** @param {string} s */
-function escapeRegExp(s) {
-  return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-}
-
-/**
  * Flattens every season's `reviewed` list into one array, tagging each
  * review with its season id/name and a parsed timestamp - the same shape
  * /vqar/app.js builds client-side for its "All Seasons" view.
@@ -175,25 +150,4 @@ export function computeOpEdHighlights(reviews) {
     topOps: rank('op'),
     topEds: rank('ed'),
   };
-}
-
-/**
- * Counts occurrences of OTAKU_TERMS across every review body (main +
- * fullReview/op/ed) - a curated whitelist, not a general word-frequency
- * count, so ordinary English never crowds out the actually-fun result.
- * @param {ReturnType<typeof flattenReviews>} reviews
- * @param {number} n
- */
-export function computeWordChoice(reviews, n = 20) {
-  const texts = reviews.flatMap(r => [r.review, r.fullReview?.review, r.op?.review, r.ed?.review]).filter(Boolean);
-
-  return OTAKU_TERMS
-    .map(term => {
-      const pattern = new RegExp(`\\b${escapeRegExp(term)}\\b`, 'gi');
-      const count = texts.reduce((sum, text) => sum + (text.match(pattern) ?? []).length, 0);
-      return { word: term, count };
-    })
-    .filter(({ count }) => count > 0)
-    .sort((a, b) => b.count - a.count || a.word.localeCompare(b.word))
-    .slice(0, n);
 }

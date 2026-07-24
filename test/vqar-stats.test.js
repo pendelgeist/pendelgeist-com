@@ -6,7 +6,7 @@ import { fileURLToPath, pathToFileURL } from 'node:url';
 import { JSDOM } from 'jsdom';
 import {
   flattenReviews, computeGlanceStats, computeRatingDistribution, computeRatingsOverTime,
-  computeHallOfFame, computeSecondImpressions, computeOpEdHighlights, computeWordChoice,
+  computeHallOfFame, computeSecondImpressions, computeOpEdHighlights,
 } from '../public/vqar-stats/stats.js';
 import { createFetchStub, createLocalStorageStub } from './helpers.js';
 
@@ -18,9 +18,9 @@ const seasons = [
   {
     id: 'summer-2026', name: 'Summer 2026',
     reviewed: [
-      { titleEN: 'Peak Show', ratingNumber: 5, ratingText: 'Peak', review: 'Total kino, certified banger episode', dateReviewed: '2026-07-01', anilistId: 111, op: { ratingNumber: 5, ratingText: 'Peak' } },
-      { titleEN: 'Meh Show', ratingNumber: 3, ratingText: 'Meh', review: 'Pretty mid, nothing special here', dateReviewed: '2026-07-05', fullReview: { ratingNumber: 5, ratingText: 'Peak', review: 'Turned out goated after all' } },
-      { titleEN: 'Trash Show', ratingNumber: 1, ratingText: 'Trash', review: 'Isekai harem trash, total waifu bait', dateReviewed: '2026-07-10', ed: { ratingNumber: 2, ratingText: 'Trash' } },
+      { titleEN: 'Peak Show', ratingNumber: 5, ratingText: 'Peak', review: 'An excellent episode all around', dateReviewed: '2026-07-01', anilistId: 111, op: { ratingNumber: 5, ratingText: 'Peak' } },
+      { titleEN: 'Meh Show', ratingNumber: 3, ratingText: 'Meh', review: 'Just fine, nothing special here', dateReviewed: '2026-07-05', fullReview: { ratingNumber: 5, ratingText: 'Peak', review: 'Turned out great after all' } },
+      { titleEN: 'Trash Show', ratingNumber: 1, ratingText: 'Trash', review: 'Rough episode, animation was bad', dateReviewed: '2026-07-10', ed: { ratingNumber: 2, ratingText: 'Trash' } },
     ],
     pending: ['Pending Show'],
     skipped: [],
@@ -28,8 +28,8 @@ const seasons = [
   {
     id: 'spring-2026', name: 'Spring 2026',
     reviewed: [
-      { titleEN: 'Fine Show', ratingNumber: 3, ratingText: 'Meh', review: 'Filler arc, plot armor nonsense', dateReviewed: '2026-04-01' },
-      { titleEN: 'Great Show', ratingNumber: 4, ratingText: 'Yeah', review: 'Best girl carried, certified banger OP', dateReviewed: '2026-04-15', fullReview: { ratingNumber: 2, ratingText: 'Trash', review: 'It got cooked badly' } },
+      { titleEN: 'Fine Show', ratingNumber: 3, ratingText: 'Meh', review: 'Perfectly fine, nothing special', dateReviewed: '2026-04-01' },
+      { titleEN: 'Great Show', ratingNumber: 4, ratingText: 'Yeah', review: 'Great animation and great story', dateReviewed: '2026-04-15', fullReview: { ratingNumber: 2, ratingText: 'Trash', review: 'It fell apart badly' } },
       { titleEN: 'No Rating Show', ratingText: 'Custom Rating', review: 'Unrated but noted', dateReviewed: '2026-04-20' },
     ],
     pending: [],
@@ -111,31 +111,6 @@ test('computeOpEdHighlights ranks OP/ED callouts that carry their own rating', (
   assert.equal(s.topEds[0].titleEN, 'Trash Show');
 });
 
-test('computeWordChoice only counts curated otaku/anime-slang terms, never plain English', () => {
-  const words = computeWordChoice(reviews, 20);
-  const byWord = Object.fromEntries(words.map(w => [w.word, w.count]));
-
-  assert.equal(byWord.banger, 2); // "Peak Show" + "Great Show" reviews
-  assert.equal(byWord.kino, 1);
-  assert.equal(byWord.mid, 1);
-  assert.equal(byWord.goated, 1);
-  assert.equal(byWord.isekai, 1);
-  assert.equal(byWord.harem, 1);
-  assert.equal(byWord.waifu, 1);
-  assert.equal(byWord.filler, 1);
-  assert.equal(byWord['plot armor'], 1);
-  assert.equal(byWord['best girl'], 1);
-  assert.equal(byWord.cooked, 1);
-
-  assert.ok(!('great' in byWord) && !('nothing' in byWord) && !('special' in byWord), 'plain English should never appear, even if repeated');
-  // Highest count sorts first.
-  assert.equal(words[0].word, 'banger');
-});
-
-test('computeWordChoice returns nothing when no review text contains a curated term', () => {
-  const plainReviews = flattenReviews([{ id: 'x', name: 'X', reviewed: [{ titleEN: 'A', ratingText: 'Meh', review: 'This was a fine and normal episode with nothing notable', dateReviewed: '2026-01-01' }] }]);
-  assert.deepEqual(computeWordChoice(plainReviews), []);
-});
 
 // --- Rendered page ---
 

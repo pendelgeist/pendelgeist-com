@@ -8,7 +8,7 @@
 import { MANIFEST_URL } from '../manifest-url.js';
 import {
   flattenReviews, computeGlanceStats, computeRatingDistribution, computeRatingsOverTime,
-  computeHallOfFame, computeSecondImpressions, computeOpEdHighlights, computeWordChoice,
+  computeHallOfFame, computeSecondImpressions, computeOpEdHighlights,
 } from './stats.js';
 
 /** @typedef {import('../vqar/app.js').SeasonData} SeasonData */
@@ -32,7 +32,6 @@ const dom = {
   secondImpressionsTable: document.getElementById('secondImpressionsTable'),
   topOps: document.getElementById('topOps'),
   topEds: document.getElementById('topEds'),
-  wordChoiceList: document.getElementById('wordChoiceList'),
   dataSearch: /** @type {HTMLInputElement} */ (document.getElementById('dataSearch')),
   dataTableWrap: document.getElementById('dataTableWrap'),
 };
@@ -289,16 +288,6 @@ function renderOpEd(reviews) {
   renderDataTable(dom.topEds, cols, s.topEds.map(r => [r.titleEN ?? 'Untitled', r.seasonName, formatRating(r.ratingNumber)]));
 }
 
-function renderWordChoice(reviews) {
-  const words = computeWordChoice(reviews, 25);
-  dom.wordChoiceList.replaceChildren(...words.map(({ word, count }) => {
-    const chip = document.createElement('span');
-    chip.className = 'vs-word-chip';
-    chip.textContent = `${word} (${count})`;
-    return chip;
-  }));
-}
-
 /** @type {SeasonData[]} */
 let allSeasons = [];
 /** @type {ReturnType<typeof flattenReviews>} */
@@ -370,7 +359,6 @@ function renderAll(seasons, reviews) {
   renderHallOfFame(reviews);
   renderSecondImpressions(reviews);
   renderOpEd(reviews);
-  renderWordChoice(reviews);
   renderBrowseTable();
 }
 

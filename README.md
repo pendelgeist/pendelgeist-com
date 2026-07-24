@@ -280,26 +280,20 @@ growing every season.
 page warms the cache for the other), flattens every season's `reviewed` array into one list,
 and hands it to `stats.js` — a set of pure, DOM-free functions (`computeGlanceStats`,
 `computeRatingDistribution`, `computeRatingsOverTime`, `computeHallOfFame`,
-`computeSecondImpressions`, `computeOpEdHighlights`, `computeWordChoice`) that each derive
-one stat/section from the flattened review list. Keeping these pure and separate from
-`app.js`'s fetch/render code is what makes them unit-testable without a DOM or a live gist
-fetch — see `test/vqar-stats.test.js`.
+`computeSecondImpressions`, `computeOpEdHighlights`) that each derive one stat/section from
+the flattened review list. Keeping these pure and separate from `app.js`'s fetch/render code
+is what makes them unit-testable without a DOM or a live gist fetch — see
+`test/vqar-stats.test.js`.
 
 Sections rendered from those functions: a numbers-at-a-glance stat grid, a rating
 distribution bar chart (ordered low to high), average rating per season over time,
 best/worst-rated shows, "Second Impressions" (how a `fullReview` re-review's rating compares
 to the original episode-1 rating — a swing metric unique to VQAR's data shape), top-rated
-OP/ED callouts, a Word Choice list, and a searchable/sortable table of every review
-(mirroring Nasubi's "Browse the Raw Data"). Only reviews with a numeric `ratingNumber` count
-toward averages/rankings — a `ratingText`-only entry is still valid, just excluded from
-those. "Ratings Over Time" hides itself whenever the current view (e.g. the season filter)
-covers just one season, since a trend needs more than one point on it.
-
-Word Choice isn't a general word-frequency count — `OTAKU_TERMS` in `stats.js` is a curated
-whitelist of anime-fandom/internet slang (`kino`, `isekai`, `waifu`, `plot armor`, `best
-girl`, and the like, including multi-word phrases), and `computeWordChoice` only counts
-occurrences of those, so plain English filler never crowds out the actually-fun result.
-Extend the list as new terms show up in real reviews.
+OP/ED callouts, and a searchable/sortable table of every review (mirroring Nasubi's "Browse
+the Raw Data"). Only reviews with a numeric `ratingNumber` count toward averages/rankings —
+a `ratingText`-only entry is still valid, just excluded from those. "Ratings Over Time" hides
+itself whenever the current view (e.g. the season filter) covers just one season, since a
+trend needs more than one point on it.
 
 A Season filter above those sections (defaults to "All Seasons") re-slices the loaded
 seasons/reviews and re-runs every `compute*`/render call against just the one picked —

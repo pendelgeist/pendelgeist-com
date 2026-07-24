@@ -88,22 +88,6 @@
   }
 }
 
-/* Word choice chips */
-
-.vs-word-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-}
-
-.vs-word-chip {
-  padding: 0.35rem 0.7rem;
-  font-size: 0.85rem;
-  background-color: var(--color-chrome);
-  color: var(--color-nav-link);
-  border-radius: var(--radius-card);
-}
-
 /* Stat tiles */
 
 .stat-grid {
