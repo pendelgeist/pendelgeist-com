@@ -15,6 +15,9 @@ const THEMES = [
   { id: 'ffvii', label: 'FFVII Menu' },
   { id: 'ffxiv', label: 'FFXIV Eorzea' },
   { id: 'geocities', label: "GeoCities '99" },
+  { id: 'eva-00', label: 'Eva-00' },
+  { id: 'eva-01', label: 'Eva-01' },
+  { id: 'eva-02', label: 'Eva-02' },
   { id: 'random-light', label: 'Random (Light)' },
   { id: 'random-dark', label: 'Random (Dark)' },
 ];
