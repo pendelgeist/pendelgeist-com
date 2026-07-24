@@ -87,7 +87,11 @@
     "stevegilham-blood-and-fire": { "lang": "en", "title": "Blood and Fire — Soryu Asuka Langley — stevegilham.com", "url": "https://stevegilham.com/nge/bloodandfire.html" },
     "stevegilham-second-thoughts": { "lang": "en", "title": "Second Thoughts — stevegilham.com", "url": "https://stevegilham.com/nge/second.html" },
     "stevegilham-many-worlds": { "lang": "en", "title": "The Many Worlds of Neon Genesis Evangelion — stevegilham.com", "url": "https://stevegilham.com/nge/manyworlds.html" },
-    "stevegilham-eschaton": { "lang": "en", "title": "Neon Genesis Eschaton — stevegilham.com", "url": "https://stevegilham.com/nge/eschaton.html" }
+    "stevegilham-eschaton": { "lang": "en", "title": "Neon Genesis Eschaton — stevegilham.com", "url": "https://stevegilham.com/nge/eschaton.html" },
+    "ann-eoe-trivia": { "lang": "en", "title": "The End of Evangelion — Trivia — Anime News Network", "url": "https://www.animenewsnetwork.com/encyclopedia/anime.php?id=419&page=22" },
+    "ann-death-rebirth-trivia": { "lang": "en", "title": "Neon Genesis Evangelion: Death & Rebirth — Trivia — Anime News Network", "url": "https://www.animenewsnetwork.com/encyclopedia/anime.php?id=418&page=22" },
+    "en-wiki-death-rebirth": { "lang": "en", "title": "Neon Genesis Evangelion: Death & Rebirth — Wikipedia", "url": "https://en.wikipedia.org/wiki/Neon_Genesis_Evangelion:_Death_%26_Rebirth" },
+    "ja-wiki-death-rebirth": { "lang": "ja", "title": "新世紀エヴァンゲリオン劇場版 シト新生 — Wikipedia (Japanese)", "url": "https://ja.wikipedia.org/wiki/新世紀エヴァンゲリオン劇場版_シト新生" }
   },
   "episodes": [
     { "number": 1, "title": "Angel Attack", "subtitle": "JP: 使徒、襲来 — lit. \"Angel, Attack\" · aired 1995-10-04, 6.8%" },
@@ -1889,9 +1893,13 @@
       "episode": "eoe",
       "type": "fact",
       "title": "Death & Rebirth, the precursor film",
-      "body": "Before The End of Evangelion released, Gainax put out Neon Genesis Evangelion: Death & Rebirth (March 1997): its first half, Death, recaps the TV series' first 24 episodes; its second, Rebirth, is a 25-minute preview of what became The End of Evangelion, cutting off right as the Eva Series begins its assault on Unit-02. The full alternate ending only released four months later, in July 1997.",
-      "links": [ { "id": "two-endings", "label": "Why an alternate ending exists at all" }, { "id": "phantom-full-new-film", "label": "The wholly-new film this was originally meant to replace" } ],
-      "sourceRefs": ["en-wiki-eoe"]
+      "body": "Before The End of Evangelion released, Gainax put out Neon Genesis Evangelion: Death & Rebirth (March 1997) as the first stage of what release paperwork called the \"New Era Evangelion: The Movie\" project. Its first half, Death, is a clip-show recap of the TV series' first 24 episodes, wrapped in an original framing story and new footage; some of that new/redrawn material was later folded into the extended \"Director's Cut\" home-video versions of episodes 21–24. A further re-edit, Death(True), aired on WOWOW satellite TV before eventually reaching home video in 2015; a third edit, Death(True)², is the version most commonly paired with the finished film in later releases. Rebirth, the second half, is roughly 24 minutes of genuinely new animation — a preview of what became The End of Evangelion, cutting off as the Mass Production Evangelions arrive — and differs from the equivalent stretch of the finished film in editing, redrawn shots, and soundtrack cues, since it was assembled while the ending was still in production. The full alternate ending released four months later, in July 1997; the following March, Death(True)² was paired with that finished film plus a four-minute intermission for a theatrical re-release, Revival of Evangelion — the combined form most commonly distributed in the West since, including by Netflix and GKIDS.",
+      "links": [
+        { "id": "two-endings", "label": "Why an alternate ending exists at all" },
+        { "id": "phantom-full-new-film", "label": "The wholly-new film this was originally meant to replace" },
+        { "id": "death-rebirth-quartet-framing-and-mahler-structure", "label": "The original framing story wrapped around Death's clip-show" }
+      ],
+      "sourceRefs": ["en-wiki-eoe", "en-wiki-death-rebirth", "ja-wiki-death-rebirth"]
     },
     {
       "id": "eoe-titles-meaning",
@@ -2928,6 +2936,160 @@
         { "id": "anno-backlash-breakdown", "label": "The exhaustion this stretch of work followed" }
       ],
       "sourceRefs": ["ann-anno-after-evangelion"]
+    },
+    {
+      "id": "eoe-live-action-character-lookalikes",
+      "episode": "eoe",
+      "scene": "The live-action street/crowd footage intercut into Shinji's Instrumentality sequence",
+      "type": "fact",
+      "title": "Look closely: three passersby in the live-action footage are dressed as Rei, Asuka, and Misato",
+      "body": "One shot deep in the live-action footage shows three women from behind, walking through a crowd — their hairstyles and outfits match Rei, Asuka, and Misato closely enough to read as a deliberate cameo rather than coincidence, buried in footage otherwise presented as unstaged documentary reality.",
+      "links": [
+        { "id": "eoe-otaku-critique-live-action", "label": "The live-action sequence this cameo hides inside" }
+      ],
+      "sourceRefs": ["ann-eoe-trivia"]
+    },
+    {
+      "id": "eoe-backlash-artifacts-onscreen",
+      "episode": "eoe",
+      "type": "fact",
+      "title": "The actual hate mail and vandalism appear on screen, not just as later anecdote",
+      "body": "Two separate flurries of fast-cut images embed the real-world backlash directly into the film. Just before Unit-01 breaks free of Lilith, a rapid series of kanji-covered images flashes by — genuine hate mail sent to Anno by fans angry at the TV finale, including one shot of the Gainax company store defaced with graffiti. A second batch, dropped into the barrage of images near the end of the film, includes a screenshot of a death-threat email and a photograph of Gainax's actual vandalized office building.",
+      "links": [
+        { "id": "anno-backlash-breakdown", "label": "The backlash these images are drawn from" },
+        { "id": "eoe-otaku-critique-live-action", "label": "The broader live-action-as-mirror technique this is part of" }
+      ],
+      "sourceRefs": ["ann-eoe-trivia"]
+    },
+    {
+      "id": "eoe-strangling-recording-incident",
+      "episode": "eoe",
+      "scene": "Recording the strangling scene",
+      "type": "fact",
+      "title": "Recording the strangling scene got physical, for real",
+      "body": "Voice actress Megumi Ogata (Shinji) reportedly became so frustrated and worked up recording the strangling scene that she pushed Yūko Miyamura (Asuka) to the floor and strangled her for real; Miyamura is said to have had difficulty speaking her lines for a while afterward.",
+      "links": [
+        { "id": "eoe-strangling-competing-readings", "label": "The many readings of the scene this happened while recording" },
+        { "id": "asuka-kimochi-warui-origin", "label": "How Miyamura's closing line was actually written" }
+      ],
+      "sourceRefs": ["ann-eoe-trivia"]
+    },
+    {
+      "id": "eoe-misato-screen-fake-second-impact-file",
+      "episode": "eoe",
+      "scene": "Misato reviews a computer file early in the film",
+      "type": "fact",
+      "title": "The file Misato reads isn't actually about Second Impact",
+      "body": "Early in the film, Misato is shown reading a classified computer file implied to reveal the truth behind Second Impact — but the on-screen text, where legible, is nothing of the sort: it's a short company bio of Gainax and its films, a production in-joke rather than an in-story document.",
+      "links": [
+        { "id": "second-impact", "label": "The disaster the file is implied to explain" }
+      ],
+      "sourceRefs": ["ann-eoe-trivia"]
+    },
+    {
+      "id": "eoe-gendo-muted-final-words-mystery",
+      "episode": "eoe",
+      "scene": "Gendo's final exchange with Ritsuko, moments before her death",
+      "type": "fact",
+      "title": "What Gendo actually says to Ritsuko before she dies was never scripted",
+      "body": "Gendo's muted final words to Ritsuko were never written into the script at all. An explosion was originally meant to drown the line out in the background; even after that explosion was cut, Anno still wanted the line left inaudible. That left Yuriko Yamaguchi, Ritsuko's voice actress, struggling to deliver the line that follows — \"Liar\" — without knowing what she was supposedly responding to, until Anno gave her one small hint. She instantly knew how to play it. To this day, only Anno and Yamaguchi know what that hint was.",
+      "links": [
+        { "id": "nerv-jssdf-assault", "label": "The scene this exchange happens during" }
+      ],
+      "sourceRefs": ["ann-eoe-trivia"]
+    },
+    {
+      "id": "eoe-alternate-live-action-dream-sequence",
+      "episode": "eoe",
+      "type": "fact",
+      "title": "A scrapped alternate sequence: Shinji dreaming of a world without him",
+      "body": "An earlier planned version of the live-action sequence had Shinji dreaming of a world that exists without him — following live-action Asuka, Misato, and Rei through ordinary daily life with no NERV, Angels, or Evangelions, ending with an \"invisible\" Shinji trailing Asuka and realizing, in monologue, that none of it is real. Portions of this scrapped sequence survive in the film's original theatrical trailer (included before the movie on the Region 1 DVD); what actually made the final cut instead transitions from live-action back to animation with Rei and Shinji discussing dreams versus reality directly.",
+      "links": [
+        { "id": "eoe-otaku-critique-live-action", "label": "The live-action sequence that replaced this scrapped version" }
+      ],
+      "sourceRefs": ["ann-eoe-trivia"]
+    },
+    {
+      "id": "eoe-based-on-scrapped-ep25-scripts",
+      "episode": "eoe",
+      "type": "fact",
+      "title": "The film's second half draws on scripts Gainax originally wrote for TV episode 25",
+      "body": "Per this account, the film is built on scripts Gainax had originally intended to use for the TV series' own episode 25, before budget and production problems — plus TV Tokyo's refusal to broadcast the material as written — forced the drastically cheaper, psyche-bound episodes 25 and 26 that actually aired instead. The film's second half builds on that unused script to construct an ending that runs concurrent with the one shown on TV, rather than simply replacing it.",
+      "links": [
+        { "id": "two-endings", "label": "How the two resulting endings are usually described relative to each other" },
+        { "id": "eotv-ep25-eoe-concurrency-evidence", "label": "In-episode evidence the two are meant to run concurrently" },
+        { "id": "phantom-full-new-film", "label": "The separate, later plan for an all-new film that also fell through" }
+      ],
+      "sourceRefs": ["ann-eoe-trivia"]
+    },
+    {
+      "id": "eoe-mp-eva-dummy-plugs-kaworu-label",
+      "episode": "eoe",
+      "scene": "The nine Mass Production Evangelions are prepped for deployment",
+      "type": "fact",
+      "title": "The Mass Production Evas' red dummy plugs are labeled \"Kaworu\"",
+      "body": "Before the nine Mass Production Evangelions launch, the red dummy plugs injected into them are shown labeled with Kaworu's name — an on-screen confirmation, easy to miss at normal speed, of what the dummy plug system already implies: whatever fragment of him survives the process is driving all nine of them at once.",
+      "links": [
+        { "id": "dummy-plug", "label": "The system these plugs belong to" },
+        { "id": "asuka-eva02-revival-eoe", "label": "The battle these units fight and lose" }
+      ],
+      "sourceRefs": ["ann-eoe-trivia"]
+    },
+    {
+      "id": "death-rebirth-na-footage-swap",
+      "episode": "eoe",
+      "type": "fact",
+      "title": "Rebirth's messy home-video history, in Japan and the West",
+      "body": "In Japan, VHS/LD and the first pressing of the DVD included Rebirth, but because its content overlapped with the finished \"Air\" (episode 25's remake) released a few months later, Rebirth was dropped from Japanese DVD reissues starting with the 2003 renewal edition — leaving old VHS/LD copies or the first-run DVD as the only way to watch it until it was finally restored for the 2015 Blu-ray and DVD box sets. Manga Entertainment's 2002 North American DVD and VHS release took a different, still-unexplained shortcut: instead of using the actual Japanese Rebirth cut, it substituted the finished Air footage from The End of Evangelion itself — which has its own redrawn shots and re-edited soundtrack cues that the original Rebirth preview never had.",
+      "links": [
+        { "id": "eoe-death-rebirth-precursor", "label": "The film, and the two different endings this confusion is really about" }
+      ],
+      "sourceRefs": ["ann-death-rebirth-trivia", "ja-wiki-death-rebirth"]
+    },
+    {
+      "id": "death-rebirth-title-pun",
+      "episode": "eoe",
+      "type": "fact",
+      "title": "The Japanese title is a bilingual pun: \"death and rebirth\" and \"Angel rebirth\" at once",
+      "body": "The Japanese title, シト新生 (Shito Shinsei), puns on two different readings at once: 死と新生 (\"death and rebirth,\" a literal gloss of the English title) and 使徒新生 (\"Angel Rebirth,\" or \"Angel Regenesis\"). Fans shortened it to \"Shito Shinsei,\" \"Haru Eva\" (\"Spring Eva,\" for its spring 1997 release), or \"DesuRiba\" (a portmanteau of \"Death\" and \"Rebirth\"); once the Rebuild films existed to contrast it with, it also picked up the retroactive label \"the old theatrical version.\"",
+      "links": [
+        { "id": "eoe-titles-meaning", "label": "The same kind of title wordplay in The End of Evangelion itself" }
+      ],
+      "sourceRefs": ["ja-wiki-death-rebirth"]
+    },
+    {
+      "id": "death-rebirth-quartet-framing-and-mahler-structure",
+      "episode": "eoe",
+      "type": "fact",
+      "title": "Death's framing device, and the symphony it's secretly structured like",
+      "body": "Death doesn't just splice together clips from the first 24 episodes — it wraps them in an original frame story: four Tokyo-3 middle schoolers who resemble Shinji, Asuka, Rei, and Kaworu meet in a school gymnasium to rehearse Pachelbel's Canon as a string quartet, with fragments of the TV series cut in between rehearsal scenes.\n\nAccording to composition writer Akio Satsukawa, the whole two-part project was consciously modeled on the structure of Mahler's Symphony No. 8: Death maps onto the symphony's first part, \"Veni Creator Spiritus\" (\"Come, Creator Spirit\"), and Rebirth onto its second, the closing scene of Goethe's Faust Part Two — with motifs introduced in Death recurring, transformed, in Rebirth, the two parts contradicting and interweaving with each other the way the symphony's two movements do.",
+      "links": [
+        { "id": "eoe-death-rebirth-precursor", "label": "The film this framing device belongs to" }
+      ],
+      "sourceRefs": ["ja-wiki-death-rebirth"]
+    },
+    {
+      "id": "death-rebirth-satsukawa-directorial-philosophy",
+      "episode": "eoe",
+      "type": "fact",
+      "title": "Why Death's writer refused the director's chair, and how he avoided making \"just a digest\"",
+      "body": "Akio Satsukawa, who wrote and structured Death, reportedly turned down directing it himself: with a general director (Anno) already in place, he worried that if he directed it, it would stop being \"a movie of Eva\" and become \"a movie about Eva\" — a separate film that merely used Eva's footage as raw material, drifting away from the show's own essence. Anno's brief to him was to avoid anything easy-to-follow-but-boring in favor of something disorienting but visceral, shot documentary-style, built around Pachelbel's Canon for the ending. Satsukawa rewatched the entire TV series repeatedly before drafting it, deliberately keeping the structure tangled rather than a clean, linear digest — citing Godard, Orson Welles, Shūji Terayama, and Shōichirō Sasaki as reference points, on the reasoning that \"a plain digest is loved by no one, but also hated by no one.\" One specific homage — a Godard Breathless-trailer-style device of a woman murmuring stiff, formal lines over battle footage — was vetoed by Death's director Masayuki, who felt it only worked in French; it became on-screen text instead.",
+      "links": [
+        { "id": "death-rebirth-quartet-framing-and-mahler-structure", "label": "The framing device this philosophy produced" }
+      ],
+      "sourceRefs": ["ja-wiki-death-rebirth"]
+    },
+    {
+      "id": "death-rebirth-box-office-pressure",
+      "episode": "eoe",
+      "type": "fact",
+      "title": "An unexpected box-office hit pressured Gainax into finishing the story",
+      "body": "Death & Rebirth was expected to be a modest release — Toei chairman Shigeru Okada later said Eva and the live-action Lost Paradise were both projected to earn an ordinary ¥500–600 million at most, which is why Toei handed distribution entirely to Kadokawa's unusually enthusiastic film division. Instead it opened in only 20–30 theaters and expanded past 150 as demand grew, eventually pulling in roughly ¥1.1 billion in distributor rental income; per Okada, support groups began pressuring Gainax directly — \"you haven't even finished the story yet, what are you doing, hurry up and make the conclusion\" — which is what pushed the rushed production of the true ending. Advance tickets alone sold over 200,000 before release, reportedly a Japanese record at the time.",
+      "links": [
+        { "id": "anno-backlash-breakdown", "label": "The other, more personal pressure Anno was under at the same time" },
+        { "id": "phantom-full-new-film", "label": "The all-new film this pressure competed with" }
+      ],
+      "sourceRefs": ["ja-wiki-death-rebirth"]
     }
   ]
 }
