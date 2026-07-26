@@ -9,6 +9,7 @@ import { MANIFEST_URL } from '../manifest-url.js';
 import {
   flattenReviews, computeGlanceStats, computeRatingDistribution, computeRatingsOverTime,
   computeHallOfFame, computeSecondImpressions, computeOpEdHighlights,
+  computeRevisitCandidates, computeContinuationWatch,
 } from './stats.js';
 
 /** @typedef {import('../vqar/app.js').SeasonData} SeasonData */
@@ -21,6 +22,9 @@ const dom = {
   infoToggle: document.getElementById('infoToggle'),
   guidelines: document.getElementById('guidelines'),
   seasonFilter: /** @type {HTMLSelectElement} */ (document.getElementById('seasonFilter')),
+  currentSeasonName: document.getElementById('currentSeasonName'),
+  revisitList: document.getElementById('revisitList'),
+  continuationList: document.getElementById('continuationList'),
   statsGlance: document.getElementById('statsGlance'),
   ratingDistributionChart: document.getElementById('ratingDistributionChart'),
   ratingDistributionBlurb: document.getElementById('ratingDistributionBlurb'),
@@ -281,6 +285,47 @@ function renderSecondImpressions(reviews) {
   );
 }
 
+/**
+ * Renders the two current-season-only sections. Unlike the rest of the page,
+ * these are always scoped to the current season regardless of the Season
+ * filter (which is about "which season's aggregate stats to view", not about
+ * this season's actionable to-do list), so this is called once at load
+ * rather than on every `applySeasonFilter()`.
+ * @param {SeasonData[]} seasons
+ * @param {ReturnType<typeof flattenReviews>} reviews
+ * @param {string} currentSeasonId
+ */
+function renderCurrentSeasonSpotlight(seasons, reviews, currentSeasonId) {
+  const revisitCandidates = computeRevisitCandidates(reviews, currentSeasonId);
+  if (revisitCandidates.length === 0) {
+    const div = document.createElement('div');
+    div.className = 'loading';
+    div.textContent = 'No 4/5s awaiting a revisit this season.';
+    dom.revisitList.replaceChildren(div);
+  } else {
+    renderDataTable(
+      dom.revisitList,
+      ['Title', 'Rating', 'Reviewed'],
+      revisitCandidates.map(r => [r.titleEN ?? 'Untitled', r.ratingText ?? formatRating(r.ratingNumber), r.dateReviewed ?? '—'])
+    );
+  }
+
+  const continuationMatches = computeContinuationWatch(seasons, currentSeasonId);
+  if (continuationMatches.length === 0) {
+    const div = document.createElement('div');
+    div.className = 'loading';
+    div.textContent = "No returning favorites spotted in this season's lineup.";
+    dom.continuationList.replaceChildren(div);
+  } else {
+    const statusLabel = { pending: 'To Be Reviewed', skipped: 'Skipped', reviewed: 'Reviewed' };
+    renderDataTable(
+      dom.continuationList,
+      ['This Season', 'Status', 'Because You Loved', 'Their Rating'],
+      continuationMatches.map(m => [m.title, statusLabel[m.status] ?? m.status, `${m.matchedTitle} (${m.seasonName})`, formatRating(m.rating)])
+    );
+  }
+}
+
 function renderOpEd(reviews) {
   const s = computeOpEdHighlights(reviews);
   const cols = ['Title', 'Season', 'Rating'];
@@ -398,6 +443,10 @@ async function init() {
 
     allSeasons = seasons;
     allReviews = flattenReviews(seasons);
+
+    const currentSeason = seasons.find(s => String(s.id) === currentSeasonId);
+    if (dom.currentSeasonName) dom.currentSeasonName.textContent = currentSeason?.name ?? '';
+    renderCurrentSeasonSpotlight(allSeasons, allReviews, currentSeasonId);
 
     populateSeasonFilter(seasons);
 

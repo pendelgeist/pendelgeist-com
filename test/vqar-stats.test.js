@@ -7,6 +7,7 @@ import { JSDOM } from 'jsdom';
 import {
   flattenReviews, computeGlanceStats, computeRatingDistribution, computeRatingsOverTime,
   computeHallOfFame, computeSecondImpressions, computeOpEdHighlights,
+  computeRevisitCandidates, computeContinuationWatch,
 } from '../public/vqar-stats/stats.js';
 import { createFetchStub, createLocalStorageStub } from './helpers.js';
 
@@ -109,6 +110,66 @@ test('computeOpEdHighlights ranks OP/ED callouts that carry their own rating', (
   assert.equal(s.edCount, 1);
   assert.equal(s.topOps[0].titleEN, 'Peak Show');
   assert.equal(s.topEds[0].titleEN, 'Trash Show');
+});
+
+test('computeRevisitCandidates finds current-season 4/5s without a fullReview, excluding 5/5s and already-revisited ones', () => {
+  const currentSeasonReviews = flattenReviews([
+    {
+      id: 'current-season', name: 'Current Season',
+      reviewed: [
+        { titleEN: 'Worth Revisiting', ratingNumber: 4, ratingText: 'Yeah', dateReviewed: '2026-07-01' },
+        { titleEN: 'Already Revisited', ratingNumber: 4, ratingText: 'Yeah', dateReviewed: '2026-07-02', fullReview: { ratingNumber: 5, ratingText: 'Peak', dateReviewed: '2026-08-01' } },
+        { titleEN: 'Already Peak', ratingNumber: 5, ratingText: 'Peak', dateReviewed: '2026-07-03' },
+        { titleEN: 'Just Meh', ratingNumber: 3, ratingText: 'Meh', dateReviewed: '2026-07-04' },
+      ],
+    },
+    {
+      id: 'other-season', name: 'Other Season',
+      reviewed: [{ titleEN: 'Other Season 4/5', ratingNumber: 4, ratingText: 'Yeah', dateReviewed: '2026-01-01' }],
+    },
+  ]);
+
+  const candidates = computeRevisitCandidates(currentSeasonReviews, 'current-season');
+  assert.deepEqual(candidates.map(r => r.titleEN), ['Worth Revisiting']);
+});
+
+test('computeContinuationWatch matches sequel-marker titles in the current season against highly-rated past shows', () => {
+  const seasonsWithSequels = [
+    {
+      id: 'past-season', name: 'Past Season',
+      reviewed: [
+        { titleEN: 'Great Show', ratingNumber: 5, ratingText: 'Peak', dateReviewed: '2026-01-01' },
+        { titleEN: 'Fine Show', ratingNumber: 3, ratingText: 'Meh', dateReviewed: '2026-01-02' },
+      ],
+    },
+    {
+      id: 'current-season', name: 'Current Season',
+      pending: ['Great Show Season 2', 'Unrelated New Show'],
+      skipped: ['Fine Show 2nd Season'],
+      reviewed: [{ titleEN: 'Great Show II', ratingNumber: 4, ratingText: 'Yeah', dateReviewed: '2026-07-01' }],
+    },
+  ];
+
+  const matches = computeContinuationWatch(seasonsWithSequels, 'current-season');
+  // Both matched "Great Show" at the same rating, so tiebreaker is alphabetical title.
+  assert.deepEqual(
+    matches.map(m => ({ title: m.title, status: m.status, matchedTitle: m.matchedTitle })),
+    [
+      { title: 'Great Show II', status: 'reviewed', matchedTitle: 'Great Show' },
+      { title: 'Great Show Season 2', status: 'pending', matchedTitle: 'Great Show' },
+    ]
+  );
+  assert.ok(matches.every(m => m.seasonName === 'Past Season' && m.rating === 5));
+});
+
+test('computeContinuationWatch returns nothing when the current season id is unknown or nothing clears minRating', () => {
+  assert.deepEqual(computeContinuationWatch(seasons, 'no-such-season'), []);
+
+  const lowRatedPast = [
+    { id: 'past', name: 'Past', reviewed: [{ titleEN: 'Fine Show', ratingNumber: 3, ratingText: 'Meh', dateReviewed: '2026-01-01' }] },
+    { id: 'current', name: 'Current', pending: ['Fine Show Season 2'], skipped: [], reviewed: [] },
+  ];
+  assert.deepEqual(computeContinuationWatch(lowRatedPast, 'current'), []);
 });
 
 
@@ -247,6 +308,57 @@ test('an unknown "?season=" value is ignored, falling back to "All Seasons"', as
   const { document } = await loadApp({ url: 'http://localhost/vqar-stats/index.html?season=nonexistent-season' });
 
   assert.equal(document.getElementById('seasonFilter').value, 'all');
+});
+
+test('renders "This Season So Far" empty-state messages when the current season has nothing to flag', async () => {
+  const { document } = await loadApp();
+
+  assert.equal(document.getElementById('currentSeasonName').textContent, 'Summer 2026');
+  assert.match(document.getElementById('revisitList').textContent, /No 4\/5s awaiting a revisit/);
+  assert.match(document.getElementById('continuationList').textContent, /No returning favorites/);
+});
+
+test('renders revisit candidates and continuation-watch matches for the current season, ignoring the season filter', async () => {
+  const spotlightSeasons = {
+    currentSeason: 'summer-2026',
+    seasons: [
+      { id: 'summer-2026', name: 'Summer 2026', file: 'https://gist.githubusercontent.com/pendelgeist/aaa/raw/vqar-season-summer-2026.json' },
+      { id: 'spring-2026', name: 'Spring 2026', file: 'https://gist.githubusercontent.com/pendelgeist/bbb/raw/vqar-season-spring-2026.json' },
+    ],
+  };
+  const summer = {
+    id: 'summer-2026', name: 'Summer 2026',
+    reviewed: [{ titleEN: 'Worth Revisiting', ratingNumber: 4, ratingText: 'Yeah', dateReviewed: '2026-07-01' }],
+    pending: ['Great Show Season 2'],
+    skipped: [],
+  };
+  const spring = {
+    id: 'spring-2026', name: 'Spring 2026',
+    reviewed: [{ titleEN: 'Great Show', ratingNumber: 5, ratingText: 'Peak', dateReviewed: '2026-04-01' }],
+    pending: [],
+    skipped: [],
+  };
+  const fetch = createFetchStub({
+    'vqar-manifest.json': spotlightSeasons,
+    'vqar-season-summer-2026.json': summer,
+    'vqar-season-spring-2026.json': spring,
+  });
+
+  const { document } = await loadApp({ fetch });
+
+  const revisitRows = [...document.querySelectorAll('#revisitList tbody tr')].map(tr => tr.children[0].textContent);
+  assert.deepEqual(revisitRows, ['Worth Revisiting']);
+
+  const continuationRows = [...document.querySelectorAll('#continuationList tbody tr')].map(tr => [...tr.children].map(td => td.textContent));
+  assert.deepEqual(continuationRows, [['Great Show Season 2', 'To Be Reviewed', 'Great Show (Spring 2026)', '5.0']]);
+
+  // Switching the season filter re-slices every section below it, but "This Season So Far" stays put.
+  const select = /** @type {any} */ (document.getElementById('seasonFilter'));
+  select.value = 'spring-2026';
+  select.dispatchEvent(new document.defaultView.Event('change', { bubbles: true }));
+
+  assert.deepEqual([...document.querySelectorAll('#revisitList tbody tr')].map(tr => tr.children[0].textContent), ['Worth Revisiting']);
+  assert.deepEqual([...document.querySelectorAll('#continuationList tbody tr')].map(tr => tr.children[0].textContent), ['Great Show Season 2']);
 });
 
 test('changing the season filter updates the "?season=" URL param, without adding history entries', async () => {

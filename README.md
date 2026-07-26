@@ -280,10 +280,10 @@ growing every season.
 page warms the cache for the other), flattens every season's `reviewed` array into one list,
 and hands it to `stats.js` — a set of pure, DOM-free functions (`computeGlanceStats`,
 `computeRatingDistribution`, `computeRatingsOverTime`, `computeHallOfFame`,
-`computeSecondImpressions`, `computeOpEdHighlights`) that each derive one stat/section from
-the flattened review list. Keeping these pure and separate from `app.js`'s fetch/render code
-is what makes them unit-testable without a DOM or a live gist fetch — see
-`test/vqar-stats.test.js`.
+`computeSecondImpressions`, `computeOpEdHighlights`, `computeRevisitCandidates`,
+`computeContinuationWatch`) that each derive one stat/section from the flattened review
+list. Keeping these pure and separate from `app.js`'s fetch/render code is what makes them
+unit-testable without a DOM or a live gist fetch — see `test/vqar-stats.test.js`.
 
 Sections rendered from those functions: a numbers-at-a-glance stat grid, a rating
 distribution bar chart (ordered low to high), average rating per season over time,
@@ -294,6 +294,21 @@ the Raw Data"). Only reviews with a numeric `ratingNumber` count toward averages
 a `ratingText`-only entry is still valid, just excluded from those. "Ratings Over Time" hides
 itself whenever the current view (e.g. the season filter) covers just one season, since a
 trend needs more than one point on it.
+
+"This Season So Far" is a pair of sections at the top of the page that are always scoped to
+the manifest's `currentSeason` — unlike everything below it, they ignore the Season filter,
+since they're a current-season to-do list rather than a historical stat:
+
+- **Revisit Candidates** (`computeRevisitCandidates`) — current-season 4/5s ("Yeah") that
+  haven't gotten a `fullReview` yet, i.e. shows liked enough on episode 1 to be worth
+  actually going back and finishing/re-reviewing.
+- **Continuing Seasons Worth Watching** (`computeContinuationWatch`) — the current season's
+  full lineup (pending, skipped, and reviewed titles alike) cross-checked by title against
+  shows rated 4+ in an earlier season, surfacing exceptions to VQAR's usual "skip
+  continuing/returning seasons" guidance. Matching is a best-effort text heuristic
+  (`normalizeBaseTitle` strips common sequel markers — "Season 2", "2nd Season", "Part 2",
+  "Cour 2", roman numerals — before comparing), not a real season-relation lookup, so an
+  unconventionally-named sequel can slip through.
 
 A Season filter above those sections (defaults to "All Seasons") re-slices the loaded
 seasons/reviews and re-runs every `compute*`/render call against just the one picked —
