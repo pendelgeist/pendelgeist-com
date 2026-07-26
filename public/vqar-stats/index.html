@@ -34,7 +34,6 @@
       <a href="/">Home</a>
       <span class="nav-title">VQAR By The Numbers</span>
       <a href="#" id="infoToggle">Guide</a>
-      <a href="#browse-data">Browse Data</a>
     </div>
   </nav>
   <script type="module" src="/theme.js"></script>
@@ -45,12 +44,14 @@
         every rating, every season, crunched into stats. Separate page, freer format, no build step: this is
         all computed live from the same review data VQAR itself reads.</p>
       <h3>How to read it</h3>
-      <p>"This Season So Far" up top is always about the current season specifically (it ignores the Season
-        filter below it): 4/5s worth a revisit, and this season's lineup cross-checked against shows you loved in
-        the past. Below that, numbers at a glance, then a handful of curated angles on the data (rating
-        distribution, ratings over time, best/worst rated, how "Finish Ep" shows held up on a full re-review,
-        OP/ED favorites) &mdash; the Season filter scopes those sections to one season instead of the full history.
-        Jump to <a href="#browse-data">Browse Data</a> at the bottom to search every review directly.</p>
+      <p>"Season Spotlight" up top tracks whichever season is picked in the Season filter below it &mdash;
+        defaulting to the current season for "All Seasons": 4/5s worth a revisit, and that season's lineup
+        cross-checked against shows you loved in earlier seasons. Pick a past season in the filter and the
+        spotlight switches to that season instead. Below that, numbers at a glance, then a handful of curated
+        angles on the data (rating distribution, ratings over time, best/worst rated, how "Finish Ep" shows held
+        up on a full re-review, OP/ED favorites) &mdash; the Season filter scopes those sections to one season
+        instead of the full history. Looking for a specific review? Head back to <a href="/vqar">VQAR</a> for
+        that season, or query the data directly via <a href="/graphql">GraphQL</a>.</p>
       <h3>Linking to a season</h3>
       <p>Picking a season updates the URL's <code>?season=</code> query param, so the link in your address bar
         always points at whatever's currently on screen &mdash; copy it to share that season's stats directly, or
@@ -78,8 +79,8 @@
       </div>
     </div>
 
-    <section class="section" id="currentSeasonSection">
-      <h2>This Season So Far <span id="currentSeasonName"></span></h2>
+    <section class="section" id="seasonSpotlightSection">
+      <h2>Season Spotlight: <span id="spotlightSeasonName"></span></h2>
       <div class="vs-two-col">
         <div>
           <h3>Revisit Candidates</h3>
@@ -88,7 +89,7 @@
         </div>
         <div>
           <h3>Continuing Seasons Worth Watching</h3>
-          <p class="vs-prose">This season's lineup, cross-checked against shows you rated highly in past seasons &mdash; worth an exception to "skip returning seasons."</p>
+          <p class="vs-prose">This season's lineup, cross-checked against shows you rated highly in earlier seasons &mdash; worth an exception to "skip returning seasons."</p>
           <div id="continuationList"><div class="loading">LOADING&hellip;</div></div>
         </div>
       </div>
@@ -143,17 +144,6 @@
           <div id="topEds"></div>
         </div>
       </div>
-    </section>
-
-    <section class="section" id="browse-data">
-      <h2>Browse All Reviews</h2>
-      <div class="filters">
-        <div class="filter-group">
-          <label for="dataSearch">Search</label>
-          <input type="text" id="dataSearch" placeholder="Search titles or reviews...">
-        </div>
-      </div>
-      <div id="dataTableWrap"><div class="loading">LOADING&hellip;</div></div>
     </section>
   </div>
 

@@ -134,17 +134,27 @@ export function computeSecondImpressions(reviews) {
 }
 
 /**
- * Current-season 4/5s ("Yeah") that haven't been given a `fullReview` yet -
- * the "I liked episode 1, I should go back and actually finish/revisit this"
+ * A season's 4/5s ("Yeah") that haven't been given a `fullReview` yet - the
+ * "I liked episode 1, I should go back and actually finish/revisit this"
  * pile. Excludes 5/5s (nothing to reconsider there) and anything already
  * re-reviewed (already revisited).
  * @param {ReturnType<typeof flattenReviews>} reviews
- * @param {string|number} currentSeasonId
+ * @param {string|number} seasonId
  */
-export function computeRevisitCandidates(reviews, currentSeasonId) {
+export function computeRevisitCandidates(reviews, seasonId) {
   return reviews
-    .filter(r => r.season === String(currentSeasonId) && r.ratingNumber === 4 && !r.fullReview)
+    .filter(r => r.season === String(seasonId) && r.ratingNumber === 4 && !r.fullReview)
     .sort((a, b) => b._timestamp - a._timestamp || (a.titleEN ?? '').localeCompare(b.titleEN ?? ''));
+}
+
+/** Earliest parseable `dateReviewed` across a season's reviewed list, or Infinity if none. */
+function seasonEarliestTimestamp(season) {
+  let earliest = Infinity;
+  for (const r of season.reviewed ?? []) {
+    const ts = Date.parse(r.dateReviewed);
+    if (!Number.isNaN(ts) && ts < earliest) earliest = ts;
+  }
+  return earliest;
 }
 
 /**
@@ -172,23 +182,29 @@ function normalizeBaseTitle(title) {
 }
 
 /**
- * Shows in the current season's lineup (pending, skipped, or already
- * reviewed) that look like a continuing/returning season of something rated
- * highly in an earlier season - worth bumping up the queue even though
- * VQAR's usual guidance is to skip returning seasons. Matches by
+ * Shows in the given season's lineup (pending, skipped, or already reviewed)
+ * that look like a continuing/returning season of something rated highly in
+ * an *earlier* season - worth bumping up the queue even though VQAR's usual
+ * guidance is to skip returning seasons. "Earlier" is judged by each
+ * season's earliest `dateReviewed` (manifest order isn't guaranteed to be
+ * chronological), so picking an older season only checks it against
+ * seasons that came before it, not ones that came after. Matches by
  * `normalizeBaseTitle`, so it's necessarily heuristic rather than exact.
  * @param {SeasonData[]} seasons
- * @param {string|number} currentSeasonId
+ * @param {string|number} seasonId
  * @param {{minRating?: number}} [options]
  */
-export function computeContinuationWatch(seasons, currentSeasonId, { minRating = 4 } = {}) {
-  const currentSeason = seasons.find(s => String(s.id) === String(currentSeasonId));
-  if (!currentSeason) return [];
+export function computeContinuationWatch(seasons, seasonId, { minRating = 4 } = {}) {
+  const targetSeason = seasons.find(s => String(s.id) === String(seasonId));
+  if (!targetSeason) return [];
+
+  const targetEarliest = seasonEarliestTimestamp(targetSeason);
 
   /** @type {Map<string, {title: string, seasonName: string, rating: number}>} */
   const bestPastByBase = new Map();
   for (const season of seasons) {
-    if (String(season.id) === String(currentSeasonId)) continue;
+    if (String(season.id) === String(seasonId)) continue;
+    if (seasonEarliestTimestamp(season) >= targetEarliest) continue; // only seasons that actually came before this one count as "the past"
     for (const r of season.reviewed ?? []) {
       const rating = Math.max(
         typeof r.ratingNumber === 'number' ? r.ratingNumber : -Infinity,
@@ -206,9 +222,9 @@ export function computeContinuationWatch(seasons, currentSeasonId, { minRating =
   if (bestPastByBase.size === 0) return [];
 
   const candidates = [
-    ...(currentSeason.pending ?? []).map(title => ({ title, status: 'pending' })),
-    ...(currentSeason.skipped ?? []).map(title => ({ title, status: 'skipped' })),
-    ...(currentSeason.reviewed ?? []).map(r => ({ title: r.titleEN, status: 'reviewed' })),
+    ...(targetSeason.pending ?? []).map(title => ({ title, status: 'pending' })),
+    ...(targetSeason.skipped ?? []).map(title => ({ title, status: 'skipped' })),
+    ...(targetSeason.reviewed ?? []).map(r => ({ title: r.titleEN, status: 'reviewed' })),
   ];
 
   const seen = new Set();

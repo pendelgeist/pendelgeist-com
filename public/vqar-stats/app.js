@@ -22,7 +22,7 @@ const dom = {
   infoToggle: document.getElementById('infoToggle'),
   guidelines: document.getElementById('guidelines'),
   seasonFilter: /** @type {HTMLSelectElement} */ (document.getElementById('seasonFilter')),
-  currentSeasonName: document.getElementById('currentSeasonName'),
+  spotlightSeasonName: document.getElementById('spotlightSeasonName'),
   revisitList: document.getElementById('revisitList'),
   continuationList: document.getElementById('continuationList'),
   statsGlance: document.getElementById('statsGlance'),
@@ -36,8 +36,6 @@ const dom = {
   secondImpressionsTable: document.getElementById('secondImpressionsTable'),
   topOps: document.getElementById('topOps'),
   topEds: document.getElementById('topEds'),
-  dataSearch: /** @type {HTMLInputElement} */ (document.getElementById('dataSearch')),
-  dataTableWrap: document.getElementById('dataTableWrap'),
 };
 
 dom.infoToggle?.addEventListener('click', (e) => {
@@ -286,17 +284,20 @@ function renderSecondImpressions(reviews) {
 }
 
 /**
- * Renders the two current-season-only sections. Unlike the rest of the page,
- * these are always scoped to the current season regardless of the Season
- * filter (which is about "which season's aggregate stats to view", not about
- * this season's actionable to-do list), so this is called once at load
- * rather than on every `applySeasonFilter()`.
+ * Renders the "Season Spotlight" sections for whichever season is currently
+ * in view: the current season when the filter is "All Seasons" (or the
+ * current season itself), or the picked season when a past one is selected -
+ * see the `seasonId` passed in from `applySeasonFilter()`.
  * @param {SeasonData[]} seasons
  * @param {ReturnType<typeof flattenReviews>} reviews
- * @param {string} currentSeasonId
+ * @param {string} seasonId
  */
-function renderCurrentSeasonSpotlight(seasons, reviews, currentSeasonId) {
-  const revisitCandidates = computeRevisitCandidates(reviews, currentSeasonId);
+function renderSeasonSpotlight(seasons, reviews, seasonId) {
+  if (dom.spotlightSeasonName) {
+    dom.spotlightSeasonName.textContent = seasons.find(s => String(s.id) === seasonId)?.name ?? '';
+  }
+
+  const revisitCandidates = computeRevisitCandidates(reviews, seasonId);
   if (revisitCandidates.length === 0) {
     const div = document.createElement('div');
     div.className = 'loading';
@@ -310,7 +311,7 @@ function renderCurrentSeasonSpotlight(seasons, reviews, currentSeasonId) {
     );
   }
 
-  const continuationMatches = computeContinuationWatch(seasons, currentSeasonId);
+  const continuationMatches = computeContinuationWatch(seasons, seasonId);
   if (continuationMatches.length === 0) {
     const div = document.createElement('div');
     div.className = 'loading';
@@ -337,22 +338,8 @@ function renderOpEd(reviews) {
 let allSeasons = [];
 /** @type {ReturnType<typeof flattenReviews>} */
 let allReviews = [];
-/** The review set currently in view - all seasons, or just the one picked in seasonFilter. */
-let currentReviews = [];
-
-function renderBrowseTable() {
-  const term = dom.dataSearch.value.trim().toLowerCase();
-  const filtered = term
-    ? currentReviews.filter(r => (r.titleEN ?? '').toLowerCase().includes(term) || (r.review ?? '').toLowerCase().includes(term))
-    : currentReviews;
-
-  const sorted = [...filtered].sort((a, b) => b._timestamp - a._timestamp);
-  renderDataTable(
-    dom.dataTableWrap,
-    ['Title', 'Season', 'Rating', 'Date Reviewed'],
-    sorted.map(r => [r.titleEN ?? 'Untitled', r.seasonName, r.ratingText ?? formatRating(r.ratingNumber), r.dateReviewed ?? '—'])
-  );
-}
+/** The manifest's current season id, used as the Season Spotlight's default when the filter is "All Seasons". */
+let currentSeasonId = '';
 
 /** Reads the `?season=` query param, so a specific season's view is a shareable link. */
 function seasonFromUrl() {
@@ -396,20 +383,22 @@ function populateSeasonFilter(seasons) {
  * @param {ReturnType<typeof flattenReviews>} reviews
  */
 function renderAll(seasons, reviews) {
-  currentReviews = reviews;
-
   renderGlanceStats(seasons, reviews);
   renderRatingDistribution(reviews);
   renderRatingsOverTime(reviews);
   renderHallOfFame(reviews);
   renderSecondImpressions(reviews);
   renderOpEd(reviews);
-  renderBrowseTable();
 }
 
 function applySeasonFilter() {
   const value = dom.seasonFilter.value;
   updateUrlForSeason(value);
+
+  // The Season Spotlight follows the filter too, defaulting to the current
+  // season for "All Seasons" rather than showing nothing.
+  renderSeasonSpotlight(allSeasons, allReviews, value === 'all' ? currentSeasonId : value);
+
   if (value === 'all') {
     renderAll(allSeasons, allReviews);
   } else {
@@ -424,7 +413,7 @@ async function init() {
     const manifest = await response.json();
     if (!Array.isArray(manifest?.seasons)) throw new Error('Invalid manifest format');
 
-    const currentSeasonId = String(manifest.currentSeason);
+    currentSeasonId = String(manifest.currentSeason);
     const results = await Promise.allSettled(
       manifest.seasons.map(meta => getSeasonData(meta, String(meta.id) === currentSeasonId))
     );
@@ -444,10 +433,6 @@ async function init() {
     allSeasons = seasons;
     allReviews = flattenReviews(seasons);
 
-    const currentSeason = seasons.find(s => String(s.id) === currentSeasonId);
-    if (dom.currentSeasonName) dom.currentSeasonName.textContent = currentSeason?.name ?? '';
-    renderCurrentSeasonSpotlight(allSeasons, allReviews, currentSeasonId);
-
     populateSeasonFilter(seasons);
 
     const requestedSeason = seasonFromUrl();
@@ -457,7 +442,6 @@ async function init() {
     applySeasonFilter();
 
     dom.seasonFilter.addEventListener('change', applySeasonFilter);
-    dom.dataSearch.addEventListener('input', renderBrowseTable);
   } catch (error) {
     console.error('Error loading VQAR stats:', error);
     const err = document.createElement('div');

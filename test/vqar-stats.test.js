@@ -229,18 +229,6 @@ test('renders a rating distribution bar chart and a hall of fame table', async (
   assert.equal(bestRows[0], 'Peak Show');
 });
 
-test('renders the browse table and filters it by search', async () => {
-  const { document } = await loadApp();
-
-  const rowsText = () => [...document.querySelectorAll('#dataTableWrap tbody tr')].map(tr => tr.children[0].textContent);
-  assert.equal(rowsText().length, 6);
-
-  const search = document.getElementById('dataSearch');
-  search.value = 'peak show';
-  search.dispatchEvent(new document.defaultView.Event('input', { bubbles: true }));
-  assert.deepEqual(rowsText(), ['Peak Show']);
-});
-
 test('shows an error message if the manifest fails to load', async () => {
   const fetch = async () => ({ ok: false, status: 500 });
   const { document } = await loadApp({ fetch });
@@ -262,7 +250,7 @@ test('season filter is populated from the manifest and defaults to "All Seasons"
   assert.equal(document.getElementById('seasonFilter').value, 'all');
 });
 
-test('picking a season in the filter scopes every stat, the browse table, and the glance grid to just that season', async () => {
+test('picking a season in the filter scopes every stat and the glance grid to just that season', async () => {
   const { document } = await loadApp();
 
   const select = /** @type {any} */ (document.getElementById('seasonFilter'));
@@ -272,9 +260,6 @@ test('picking a season in the filter scopes every stat, the browse table, and th
   const tiles = [...document.querySelectorAll('#statsGlance .stat-tile')];
   const totalReviewsTile = tiles.find(t => t.querySelector('.stat-label').textContent === 'Total Reviews');
   assert.equal(totalReviewsTile.querySelector('.stat-value').textContent, '3'); // only Spring 2026's reviews
-
-  const rowsText = () => [...document.querySelectorAll('#dataTableWrap tbody tr')].map(tr => tr.children[1].textContent);
-  assert.deepEqual(new Set(rowsText()), new Set(['Spring 2026']));
 
   const bestRows = [...document.querySelectorAll('#hallOfFameBest tbody tr')].map(tr => tr.children[0].textContent);
   assert.equal(bestRows[0], 'Great Show'); // Peak Show (Summer 2026) is out of scope now
@@ -310,55 +295,68 @@ test('an unknown "?season=" value is ignored, falling back to "All Seasons"', as
   assert.equal(document.getElementById('seasonFilter').value, 'all');
 });
 
-test('renders "This Season So Far" empty-state messages when the current season has nothing to flag', async () => {
+test('renders Season Spotlight empty-state messages when the current season has nothing to flag', async () => {
   const { document } = await loadApp();
 
-  assert.equal(document.getElementById('currentSeasonName').textContent, 'Summer 2026');
+  assert.equal(document.getElementById('spotlightSeasonName').textContent, 'Summer 2026');
   assert.match(document.getElementById('revisitList').textContent, /No 4\/5s awaiting a revisit/);
   assert.match(document.getElementById('continuationList').textContent, /No returning favorites/);
 });
 
-test('renders revisit candidates and continuation-watch matches for the current season, ignoring the season filter', async () => {
+test('Season Spotlight defaults to the current season for "All Seasons", then follows the filter to a picked past season', async () => {
   const spotlightSeasons = {
     currentSeason: 'summer-2026',
     seasons: [
-      { id: 'summer-2026', name: 'Summer 2026', file: 'https://gist.githubusercontent.com/pendelgeist/aaa/raw/vqar-season-summer-2026.json' },
+      { id: 'fall-2025', name: 'Fall 2025', file: 'https://gist.githubusercontent.com/pendelgeist/ccc/raw/vqar-season-fall-2025.json' },
       { id: 'spring-2026', name: 'Spring 2026', file: 'https://gist.githubusercontent.com/pendelgeist/bbb/raw/vqar-season-spring-2026.json' },
+      { id: 'summer-2026', name: 'Summer 2026', file: 'https://gist.githubusercontent.com/pendelgeist/aaa/raw/vqar-season-summer-2026.json' },
     ],
   };
-  const summer = {
-    id: 'summer-2026', name: 'Summer 2026',
-    reviewed: [{ titleEN: 'Worth Revisiting', ratingNumber: 4, ratingText: 'Yeah', dateReviewed: '2026-07-01' }],
-    pending: ['Great Show Season 2'],
-    skipped: [],
+  // Fall 2025 rated "Great Show" highly; Spring 2026 has its own 4/5 ("Spring
+  // Revisit") and a returning season of Fall's "Great Show"; Summer 2026 (the
+  // current season) has its own 4/5 ("Summer Revisit") and a returning season
+  // of Spring's "Spring Revisit". This lets the test tell apart "spotlight
+  // always shows the current season" from "spotlight follows the filter,
+  // re-anchoring what counts as 'the past' to whichever season is picked".
+  const fall = {
+    id: 'fall-2025', name: 'Fall 2025',
+    reviewed: [{ titleEN: 'Great Show', ratingNumber: 5, ratingText: 'Peak', dateReviewed: '2025-10-01' }],
+    pending: [], skipped: [],
   };
   const spring = {
     id: 'spring-2026', name: 'Spring 2026',
-    reviewed: [{ titleEN: 'Great Show', ratingNumber: 5, ratingText: 'Peak', dateReviewed: '2026-04-01' }],
-    pending: [],
-    skipped: [],
+    reviewed: [{ titleEN: 'Spring Revisit', ratingNumber: 4, ratingText: 'Yeah', dateReviewed: '2026-04-01' }],
+    pending: ['Great Show Season 2'], skipped: [],
+  };
+  const summer = {
+    id: 'summer-2026', name: 'Summer 2026',
+    reviewed: [{ titleEN: 'Summer Revisit', ratingNumber: 4, ratingText: 'Yeah', dateReviewed: '2026-07-01' }],
+    pending: ['Spring Revisit Season 2'], skipped: [],
   };
   const fetch = createFetchStub({
     'vqar-manifest.json': spotlightSeasons,
-    'vqar-season-summer-2026.json': summer,
+    'vqar-season-fall-2025.json': fall,
     'vqar-season-spring-2026.json': spring,
+    'vqar-season-summer-2026.json': summer,
   });
 
   const { document } = await loadApp({ fetch });
+  const revisitTitles = () => [...document.querySelectorAll('#revisitList tbody tr')].map(tr => tr.children[0].textContent);
+  const continuationRows = () => [...document.querySelectorAll('#continuationList tbody tr')].map(tr => [...tr.children].map(td => td.textContent));
 
-  const revisitRows = [...document.querySelectorAll('#revisitList tbody tr')].map(tr => tr.children[0].textContent);
-  assert.deepEqual(revisitRows, ['Worth Revisiting']);
+  // "All Seasons" (the default) shows the current season, Summer 2026.
+  assert.equal(document.getElementById('spotlightSeasonName').textContent, 'Summer 2026');
+  assert.deepEqual(revisitTitles(), ['Summer Revisit']);
+  assert.deepEqual(continuationRows(), [['Spring Revisit Season 2', 'To Be Reviewed', 'Spring Revisit (Spring 2026)', '4.0']]);
 
-  const continuationRows = [...document.querySelectorAll('#continuationList tbody tr')].map(tr => [...tr.children].map(td => td.textContent));
-  assert.deepEqual(continuationRows, [['Great Show Season 2', 'To Be Reviewed', 'Great Show (Spring 2026)', '5.0']]);
-
-  // Switching the season filter re-slices every section below it, but "This Season So Far" stays put.
+  // Picking a past season re-anchors the spotlight to it, and to whatever came before *it*.
   const select = /** @type {any} */ (document.getElementById('seasonFilter'));
   select.value = 'spring-2026';
   select.dispatchEvent(new document.defaultView.Event('change', { bubbles: true }));
 
-  assert.deepEqual([...document.querySelectorAll('#revisitList tbody tr')].map(tr => tr.children[0].textContent), ['Worth Revisiting']);
-  assert.deepEqual([...document.querySelectorAll('#continuationList tbody tr')].map(tr => tr.children[0].textContent), ['Great Show Season 2']);
+  assert.equal(document.getElementById('spotlightSeasonName').textContent, 'Spring 2026');
+  assert.deepEqual(revisitTitles(), ['Spring Revisit']);
+  assert.deepEqual(continuationRows(), [['Great Show Season 2', 'To Be Reviewed', 'Great Show (Fall 2025)', '5.0']]);
 });
 
 test('changing the season filter updates the "?season=" URL param, without adding history entries', async () => {
