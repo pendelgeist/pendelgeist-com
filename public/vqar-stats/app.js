@@ -9,6 +9,7 @@ import { MANIFEST_URL } from '../manifest-url.js';
 import {
   flattenReviews, computeGlanceStats, computeRatingDistribution, computeRatingsOverTime,
   computeHallOfFame, computeSecondImpressions, computeOpEdHighlights,
+  computeRevisitCandidates, computeContinuationWatch,
 } from './stats.js';
 
 /** @typedef {import('../vqar/app.js').SeasonData} SeasonData */
@@ -21,6 +22,9 @@ const dom = {
   infoToggle: document.getElementById('infoToggle'),
   guidelines: document.getElementById('guidelines'),
   seasonFilter: /** @type {HTMLSelectElement} */ (document.getElementById('seasonFilter')),
+  spotlightSeasonName: document.getElementById('spotlightSeasonName'),
+  revisitList: document.getElementById('revisitList'),
+  continuationList: document.getElementById('continuationList'),
   statsGlance: document.getElementById('statsGlance'),
   ratingDistributionChart: document.getElementById('ratingDistributionChart'),
   ratingDistributionBlurb: document.getElementById('ratingDistributionBlurb'),
@@ -32,8 +36,6 @@ const dom = {
   secondImpressionsTable: document.getElementById('secondImpressionsTable'),
   topOps: document.getElementById('topOps'),
   topEds: document.getElementById('topEds'),
-  dataSearch: /** @type {HTMLInputElement} */ (document.getElementById('dataSearch')),
-  dataTableWrap: document.getElementById('dataTableWrap'),
 };
 
 dom.infoToggle?.addEventListener('click', (e) => {
@@ -281,6 +283,50 @@ function renderSecondImpressions(reviews) {
   );
 }
 
+/**
+ * Renders the "Season Spotlight" sections for whichever season is currently
+ * in view: the current season when the filter is "All Seasons" (or the
+ * current season itself), or the picked season when a past one is selected -
+ * see the `seasonId` passed in from `applySeasonFilter()`.
+ * @param {SeasonData[]} seasons
+ * @param {ReturnType<typeof flattenReviews>} reviews
+ * @param {string} seasonId
+ */
+function renderSeasonSpotlight(seasons, reviews, seasonId) {
+  if (dom.spotlightSeasonName) {
+    dom.spotlightSeasonName.textContent = seasons.find(s => String(s.id) === seasonId)?.name ?? '';
+  }
+
+  const revisitCandidates = computeRevisitCandidates(reviews, seasonId);
+  if (revisitCandidates.length === 0) {
+    const div = document.createElement('div');
+    div.className = 'loading';
+    div.textContent = 'No 4/5s awaiting a revisit this season.';
+    dom.revisitList.replaceChildren(div);
+  } else {
+    renderDataTable(
+      dom.revisitList,
+      ['Title', 'Rating', 'Reviewed'],
+      revisitCandidates.map(r => [r.titleEN ?? 'Untitled', r.ratingText ?? formatRating(r.ratingNumber), r.dateReviewed ?? '—'])
+    );
+  }
+
+  const continuationMatches = computeContinuationWatch(seasons, seasonId);
+  if (continuationMatches.length === 0) {
+    const div = document.createElement('div');
+    div.className = 'loading';
+    div.textContent = "No returning favorites spotted in this season's lineup.";
+    dom.continuationList.replaceChildren(div);
+  } else {
+    const statusLabel = { pending: 'To Be Reviewed', skipped: 'Skipped', reviewed: 'Reviewed' };
+    renderDataTable(
+      dom.continuationList,
+      ['This Season', 'Status', 'Because You Loved', 'Their Rating'],
+      continuationMatches.map(m => [m.title, statusLabel[m.status] ?? m.status, `${m.matchedTitle} (${m.seasonName})`, formatRating(m.rating)])
+    );
+  }
+}
+
 function renderOpEd(reviews) {
   const s = computeOpEdHighlights(reviews);
   const cols = ['Title', 'Season', 'Rating'];
@@ -292,22 +338,8 @@ function renderOpEd(reviews) {
 let allSeasons = [];
 /** @type {ReturnType<typeof flattenReviews>} */
 let allReviews = [];
-/** The review set currently in view - all seasons, or just the one picked in seasonFilter. */
-let currentReviews = [];
-
-function renderBrowseTable() {
-  const term = dom.dataSearch.value.trim().toLowerCase();
-  const filtered = term
-    ? currentReviews.filter(r => (r.titleEN ?? '').toLowerCase().includes(term) || (r.review ?? '').toLowerCase().includes(term))
-    : currentReviews;
-
-  const sorted = [...filtered].sort((a, b) => b._timestamp - a._timestamp);
-  renderDataTable(
-    dom.dataTableWrap,
-    ['Title', 'Season', 'Rating', 'Date Reviewed'],
-    sorted.map(r => [r.titleEN ?? 'Untitled', r.seasonName, r.ratingText ?? formatRating(r.ratingNumber), r.dateReviewed ?? '—'])
-  );
-}
+/** The manifest's current season id, used as the Season Spotlight's default when the filter is "All Seasons". */
+let currentSeasonId = '';
 
 /** Reads the `?season=` query param, so a specific season's view is a shareable link. */
 function seasonFromUrl() {
@@ -351,20 +383,22 @@ function populateSeasonFilter(seasons) {
  * @param {ReturnType<typeof flattenReviews>} reviews
  */
 function renderAll(seasons, reviews) {
-  currentReviews = reviews;
-
   renderGlanceStats(seasons, reviews);
   renderRatingDistribution(reviews);
   renderRatingsOverTime(reviews);
   renderHallOfFame(reviews);
   renderSecondImpressions(reviews);
   renderOpEd(reviews);
-  renderBrowseTable();
 }
 
 function applySeasonFilter() {
   const value = dom.seasonFilter.value;
   updateUrlForSeason(value);
+
+  // The Season Spotlight follows the filter too, defaulting to the current
+  // season for "All Seasons" rather than showing nothing.
+  renderSeasonSpotlight(allSeasons, allReviews, value === 'all' ? currentSeasonId : value);
+
   if (value === 'all') {
     renderAll(allSeasons, allReviews);
   } else {
@@ -379,7 +413,7 @@ async function init() {
     const manifest = await response.json();
     if (!Array.isArray(manifest?.seasons)) throw new Error('Invalid manifest format');
 
-    const currentSeasonId = String(manifest.currentSeason);
+    currentSeasonId = String(manifest.currentSeason);
     const results = await Promise.allSettled(
       manifest.seasons.map(meta => getSeasonData(meta, String(meta.id) === currentSeasonId))
     );
@@ -408,7 +442,6 @@ async function init() {
     applySeasonFilter();
 
     dom.seasonFilter.addEventListener('change', applySeasonFilter);
-    dom.dataSearch.addEventListener('input', renderBrowseTable);
   } catch (error) {
     console.error('Error loading VQAR stats:', error);
     const err = document.createElement('div');

@@ -280,29 +280,47 @@ growing every season.
 page warms the cache for the other), flattens every season's `reviewed` array into one list,
 and hands it to `stats.js` — a set of pure, DOM-free functions (`computeGlanceStats`,
 `computeRatingDistribution`, `computeRatingsOverTime`, `computeHallOfFame`,
-`computeSecondImpressions`, `computeOpEdHighlights`) that each derive one stat/section from
-the flattened review list. Keeping these pure and separate from `app.js`'s fetch/render code
-is what makes them unit-testable without a DOM or a live gist fetch — see
-`test/vqar-stats.test.js`.
+`computeSecondImpressions`, `computeOpEdHighlights`, `computeRevisitCandidates`,
+`computeContinuationWatch`) that each derive one stat/section from the flattened review
+list. Keeping these pure and separate from `app.js`'s fetch/render code is what makes them
+unit-testable without a DOM or a live gist fetch — see `test/vqar-stats.test.js`.
 
 Sections rendered from those functions: a numbers-at-a-glance stat grid, a rating
 distribution bar chart (ordered low to high), average rating per season over time,
 best/worst-rated shows, "Second Impressions" (how a `fullReview` re-review's rating compares
-to the original episode-1 rating — a swing metric unique to VQAR's data shape), top-rated
-OP/ED callouts, and a searchable/sortable table of every review (mirroring Nasubi's "Browse
-the Raw Data"). Only reviews with a numeric `ratingNumber` count toward averages/rankings —
+to the original episode-1 rating — a swing metric unique to VQAR's data shape), and top-rated
+OP/ED callouts. Only reviews with a numeric `ratingNumber` count toward averages/rankings —
 a `ratingText`-only entry is still valid, just excluded from those. "Ratings Over Time" hides
 itself whenever the current view (e.g. the season filter) covers just one season, since a
-trend needs more than one point on it.
+trend needs more than one point on it. There's no raw review browser/search on this page —
+that's what `/vqar` (per-season) and `/graphql` (query anything) are for.
+
+"Season Spotlight" is a pair of sections at the top of the page that track whichever season
+is currently in view — the current season when the filter is "All Seasons" or the current
+season itself, or the picked season when a past one is selected (`spotlightSeasonId` in
+`applySeasonFilter()`):
+
+- **Revisit Candidates** (`computeRevisitCandidates`) — that season's 4/5s ("Yeah") that
+  haven't gotten a `fullReview` yet, i.e. shows liked enough on episode 1 to be worth
+  actually going back and finishing/re-reviewing.
+- **Continuing Seasons Worth Watching** (`computeContinuationWatch`) — that season's full
+  lineup (pending, skipped, and reviewed titles alike) cross-checked by title against shows
+  rated 4+ in an *earlier* season (judged by each season's earliest `dateReviewed`, since
+  manifest order isn't guaranteed to be chronological — see `seasonEarliestTimestamp`),
+  surfacing exceptions to VQAR's usual "skip continuing/returning seasons" guidance.
+  Matching is a best-effort text heuristic (`normalizeBaseTitle` strips common sequel
+  markers — "Season 2", "2nd Season", "Part 2", "Cour 2", roman numerals — before
+  comparing), not a real season-relation lookup, so an unconventionally-named sequel can
+  slip through.
 
 A Season filter above those sections (defaults to "All Seasons") re-slices the loaded
-seasons/reviews and re-runs every `compute*`/render call against just the one picked —
-`applySeasonFilter()` in `app.js` does the slicing, off the same in-memory `allSeasons`/
-`allReviews` fetched once at load, so switching seasons never re-fetches. The selection is
-linkable: it's kept in sync with the URL's `?season=` query param via `history.replaceState`
-(so it doesn't spam browser history), and read back out on load (`seasonFromUrl()`) to
-pre-select a season from a shared link — an unrecognized id falls back to "All Seasons"
-rather than erroring.
+seasons/reviews and re-runs every `compute*`/render call — including Season Spotlight's —
+against just the one picked. `applySeasonFilter()` in `app.js` does the slicing, off the same
+in-memory `allSeasons`/`allReviews` fetched once at load, so switching seasons never
+re-fetches. The selection is linkable: it's kept in sync with the URL's `?season=` query
+param via `history.replaceState` (so it doesn't spam browser history), and read back out on
+load (`seasonFromUrl()`) to pre-select a season from a shared link — an unrecognized id
+falls back to "All Seasons" rather than erroring.
 
 Adding a new stat means adding a `compute*` function to `stats.js` (plus a test) and a
 render function in `app.js` that calls it — no committed data to regenerate, unlike Nasubi.

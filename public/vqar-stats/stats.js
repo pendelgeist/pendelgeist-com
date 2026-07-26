@@ -134,6 +134,117 @@ export function computeSecondImpressions(reviews) {
 }
 
 /**
+ * A season's 4/5s ("Yeah") that haven't been given a `fullReview` yet - the
+ * "I liked episode 1, I should go back and actually finish/revisit this"
+ * pile. Excludes 5/5s (nothing to reconsider there) and anything already
+ * re-reviewed (already revisited).
+ * @param {ReturnType<typeof flattenReviews>} reviews
+ * @param {string|number} seasonId
+ */
+export function computeRevisitCandidates(reviews, seasonId) {
+  return reviews
+    .filter(r => r.season === String(seasonId) && r.ratingNumber === 4 && !r.fullReview)
+    .sort((a, b) => b._timestamp - a._timestamp || (a.titleEN ?? '').localeCompare(b.titleEN ?? ''));
+}
+
+/** Earliest parseable `dateReviewed` across a season's reviewed list, or Infinity if none. */
+function seasonEarliestTimestamp(season) {
+  let earliest = Infinity;
+  for (const r of season.reviewed ?? []) {
+    const ts = Date.parse(r.dateReviewed);
+    if (!Number.isNaN(ts) && ts < earliest) earliest = ts;
+  }
+  return earliest;
+}
+
+/**
+ * Strips common "this is a continuing/returning season" markers (2nd Season,
+ * Season 2, Part 2, Cour 2, roman numerals) so e.g. "Show Name Season 2" and
+ * "Show Name" reduce to the same base title. Best-effort text heuristic only
+ * - there's no structured season-relation data (like AniList's) to match on
+ * instead, so an unconventionally-named sequel can still slip through.
+ * @param {string} [title]
+ */
+function normalizeBaseTitle(title) {
+  let base = (title ?? '').toLowerCase();
+  const markers = [
+    /\b(?:\d+(?:st|nd|rd|th)|second|third|fourth|fifth|sixth|final|last)\s+season\b/g,
+    /\bseason\s*\d+\b/g,
+    /\bs\d+\b/g,
+    /\bpart\s*\d+\b/g,
+    /\bcour\s*\d+\b/g,
+    /\b(?:ii|iii|iv|vi|vii|viii)\b/g,
+  ];
+  for (const marker of markers) base = base.replace(marker, ' ');
+  base = base.replace(/\b\d+$/, ' '); // a bare trailing number, e.g. "Show Name 2"
+  base = base.replace(/[^\p{L}\p{N} ]+/gu, ' ');
+  return base.replace(/\s+/g, ' ').trim();
+}
+
+/**
+ * Shows in the given season's lineup (pending, skipped, or already reviewed)
+ * that look like a continuing/returning season of something rated highly in
+ * an *earlier* season - worth bumping up the queue even though VQAR's usual
+ * guidance is to skip returning seasons. "Earlier" is judged by each
+ * season's earliest `dateReviewed` (manifest order isn't guaranteed to be
+ * chronological), so picking an older season only checks it against
+ * seasons that came before it, not ones that came after. Matches by
+ * `normalizeBaseTitle`, so it's necessarily heuristic rather than exact.
+ * @param {SeasonData[]} seasons
+ * @param {string|number} seasonId
+ * @param {{minRating?: number}} [options]
+ */
+export function computeContinuationWatch(seasons, seasonId, { minRating = 4 } = {}) {
+  const targetSeason = seasons.find(s => String(s.id) === String(seasonId));
+  if (!targetSeason) return [];
+
+  const targetEarliest = seasonEarliestTimestamp(targetSeason);
+
+  /** @type {Map<string, {title: string, seasonName: string, rating: number}>} */
+  const bestPastByBase = new Map();
+  for (const season of seasons) {
+    if (String(season.id) === String(seasonId)) continue;
+    if (seasonEarliestTimestamp(season) >= targetEarliest) continue; // only seasons that actually came before this one count as "the past"
+    for (const r of season.reviewed ?? []) {
+      const rating = Math.max(
+        typeof r.ratingNumber === 'number' ? r.ratingNumber : -Infinity,
+        typeof r.fullReview?.ratingNumber === 'number' ? r.fullReview.ratingNumber : -Infinity,
+      );
+      if (rating < minRating) continue;
+      const base = normalizeBaseTitle(r.titleEN);
+      if (!base) continue;
+      const existing = bestPastByBase.get(base);
+      if (!existing || rating > existing.rating) {
+        bestPastByBase.set(base, { title: r.titleEN, seasonName: season.name, rating });
+      }
+    }
+  }
+  if (bestPastByBase.size === 0) return [];
+
+  const candidates = [
+    ...(targetSeason.pending ?? []).map(title => ({ title, status: 'pending' })),
+    ...(targetSeason.skipped ?? []).map(title => ({ title, status: 'skipped' })),
+    ...(targetSeason.reviewed ?? []).map(r => ({ title: r.titleEN, status: 'reviewed' })),
+  ];
+
+  const seen = new Set();
+  const results = [];
+  for (const { title, status } of candidates) {
+    if (!title) continue;
+    const base = normalizeBaseTitle(title);
+    if (!base) continue;
+    const match = bestPastByBase.get(base);
+    if (!match) continue;
+    const key = `${status}::${title}`;
+    if (seen.has(key)) continue;
+    seen.add(key);
+    results.push({ title, status, matchedTitle: match.title, seasonName: match.seasonName, rating: match.rating });
+  }
+
+  return results.sort((a, b) => b.rating - a.rating || a.title.localeCompare(b.title));
+}
+
+/**
  * Best-rated OP and ED callouts (those that carry their own `ratingNumber`).
  * @param {ReturnType<typeof flattenReviews>} reviews
  */
