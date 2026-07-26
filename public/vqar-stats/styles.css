@@ -70,7 +70,14 @@
 
 .vs-two-col {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  /* minmax(0, 1fr), not a bare 1fr: a grid item's default min-width is
+     "auto", which for a column holding a wide nowrap .data-table means the
+     item won't shrink below the table's full intrinsic width even though
+     .table-scroll can scroll it - it just blows out the column (and the
+     page) instead. Clamping the track's minimum to 0 lets the column
+     actually shrink to the layout width, pushing the overflow down into
+     .table-scroll where it belongs. */
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   gap: 1.5rem;
 }
 
@@ -84,7 +91,7 @@
 
 @media (max-width: 768px) {
   .vs-two-col {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
 }
 
