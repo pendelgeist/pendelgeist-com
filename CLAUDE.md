@@ -74,3 +74,9 @@ Tests run against the real browser-facing files (`public/vqar/app.js`, `*.html`)
 `node --test` + jsdom, with `fetch`/`localStorage` mocked (see `test/helpers.js`,
 `createFetchStub`/`createLocalStorageStub`). No separate test build — same ES modules
 that ship to the browser are imported directly into the test process.
+
+## Workflow
+
+After pushing commits to a feature branch in this repo, open a pull request for it
+automatically — no need to ask first each time. Skip this if a PR for that branch
+already exists (update the existing one instead) or if the user asks otherwise.
