@@ -97,6 +97,28 @@ test('anilistId passes through when set on a review, and is null when absent', a
   assert.deepEqual(result2.data.season.reviewed, []);
 });
 
+test('watchProgress passes through when set on a review, and is null when absent', async () => {
+  const fetchStub = createFetchStub({
+    'vqar-manifest.json': manifest,
+    'vqar-season-summer-2026.json': {
+      id: 'summer-2026',
+      name: 'Summer 2026',
+      reviewed: [{ titleEN: 'Revisited Show', ratingText: 'Yeah', dateReviewed: '2026-07-01', watchProgress: 'Ep 3' }],
+      pending: [],
+      skipped: [],
+    },
+    'vqar-season-spring-2026.json': seasons['vqar-season-spring-2026.json'],
+  });
+
+  const result = await run('{ currentSeason { reviewed { titleEN watchProgress } } }', fetchStub);
+  assert.equal(result.errors, undefined);
+  assert.deepEqual(result.data.currentSeason.reviewed, [{ titleEN: 'Revisited Show', watchProgress: 'Ep 3' }]);
+
+  const result2 = await run('{ season(id: "spring-2026") { reviewed { watchProgress } } }');
+  assert.equal(result2.errors, undefined);
+  assert.deepEqual(result2.data.season.reviewed, []);
+});
+
 test('a failed gist fetch surfaces as a GraphQL error instead of throwing', async () => {
   const failingFetch = async () => ({ ok: false, status: 500 });
   const result = await run('{ currentSeason { name } }', failingFetch);

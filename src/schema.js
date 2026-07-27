@@ -34,6 +34,8 @@ type Review {
   seasonName: String!
   "Optional AniList media id, for linking out to the show's AniList page."
   anilistId: Int
+  "Optional, free-text note on how far a revisit actually got (e.g. Ep 3)."
+  watchProgress: String
 }
 
 """One anime season: its reviewed shows, plus titles still pending or skipped."""

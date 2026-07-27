@@ -136,6 +136,12 @@ show metadata (synopsis, episode counts, community scores) intentionally lives o
 rather than being duplicated into these gists; see "Validating against AniList" below for
 finding the right id.
 
+A review may also carry an optional `watchProgress` (a free-text string, e.g. `"Ep 3"`) —
+a silly personal tracker for how far a 4/5 ("Yeah") revisit candidate actually got before
+either finishing (graduating to a `fullReview`) or stalling out again. Purely for your own
+amusement; not required, and `/vqar-stats`' Revisit Candidates list stays title-only
+regardless - it only shows up alongside the rest of a review on `/vqar` itself.
+
 ### Updating gist data
 
 `scripts/update-gist.js` pushes a locally-edited season (or the manifest) straight to its

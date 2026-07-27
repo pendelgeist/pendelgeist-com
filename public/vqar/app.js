@@ -25,6 +25,7 @@ import { MANIFEST_URL } from '../manifest-url.js';
  * @property {string} seasonName
  * @property {number} _timestamp
  * @property {number} [anilistId] - optional AniList media id, links out to the show's AniList page
+ * @property {string} [watchProgress] - optional, free-text note on how far a revisit actually got (e.g. "Ep 3")
  */
 
 /**
@@ -367,6 +368,14 @@ function createReviewArticle(r) {
   published.textContent = `Reviewed: ${r.dateReviewed ?? 'Unknown'}`;
 
   meta.append(rating, published);
+
+  if (r.watchProgress) {
+    const progress = document.createElement('span');
+    progress.className = 'entry-progress';
+    progress.textContent = `Progress: ${r.watchProgress}`;
+    meta.appendChild(progress);
+  }
+
   body.append(title, titleJp, desc, meta);
 
   if (r.fullReview) {

@@ -172,6 +172,21 @@ function renderDataTable(container, columns, rows) {
 }
 
 /**
+ * @param {HTMLElement} container
+ * @param {string[]} titles
+ */
+function renderShowList(container, titles) {
+  const ul = document.createElement('ul');
+  ul.className = 'show-list';
+  ul.append(...titles.map(title => {
+    const li = document.createElement('li');
+    li.textContent = title;
+    return li;
+  }));
+  container.replaceChildren(ul);
+}
+
+/**
  * A single-series magnitude bar chart, direct-labeled.
  * @param {HTMLElement} container
  * @param {{label: string, value: number, display: string}[]} items
@@ -262,7 +277,7 @@ function renderRatingsOverTime(reviews) {
 }
 
 function renderHallOfFame(reviews) {
-  const { best, worst } = computeHallOfFame(reviews, 5);
+  const { best, worst } = computeHallOfFame(reviews, 10);
   const cols = ['Title', 'Season', 'Rating'];
   renderDataTable(dom.hallOfFameBest, cols, best.map(r => [r.titleEN ?? 'Untitled', r.seasonName, formatRating(r.ratingNumber)]));
   renderDataTable(dom.hallOfFameWorst, cols, worst.map(r => [r.titleEN ?? 'Untitled', r.seasonName, formatRating(r.ratingNumber)]));
@@ -304,11 +319,7 @@ function renderSeasonSpotlight(seasons, reviews, seasonId) {
     div.textContent = 'No 4/5s awaiting a revisit this season.';
     dom.revisitList.replaceChildren(div);
   } else {
-    renderDataTable(
-      dom.revisitList,
-      ['Title', 'Rating', 'Reviewed'],
-      revisitCandidates.map(r => [r.titleEN ?? 'Untitled', r.ratingText ?? formatRating(r.ratingNumber), r.dateReviewed ?? '—'])
-    );
+    renderShowList(dom.revisitList, revisitCandidates.map(r => r.titleEN ?? 'Untitled'));
   }
 
   const continuationMatches = computeContinuationWatch(seasons, seasonId);
@@ -318,12 +329,7 @@ function renderSeasonSpotlight(seasons, reviews, seasonId) {
     div.textContent = "No returning favorites spotted in this season's lineup.";
     dom.continuationList.replaceChildren(div);
   } else {
-    const statusLabel = { pending: 'To Be Reviewed', skipped: 'Skipped', reviewed: 'Reviewed' };
-    renderDataTable(
-      dom.continuationList,
-      ['This Season', 'Status', 'Because You Loved', 'Their Rating'],
-      continuationMatches.map(m => [m.title, statusLabel[m.status] ?? m.status, `${m.matchedTitle} (${m.seasonName})`, formatRating(m.rating)])
-    );
+    renderShowList(dom.continuationList, continuationMatches.map(m => m.title));
   }
 }
 
