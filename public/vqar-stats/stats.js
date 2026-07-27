@@ -64,21 +64,41 @@ export function computeGlanceStats(seasons, reviews) {
 }
 
 /**
- * Counts reviews per `ratingText`, ordered by the highest `ratingNumber`
- * seen for that text (ascending, low to high) so e.g. "Trash" sorts below
- * "Peak" even though the underlying numbers aren't part of the label.
+ * Default flavor text for each `ratingNumber`, taken from the "Suggested
+ * Ratings" list in /vqar's guidelines. Individual reviews often customize
+ * `ratingText` per-show (e.g. "I'd rather watch El-Hazard again") while
+ * still sharing the same underlying `ratingNumber` tier, so the distribution
+ * chart labels bars with this canonical text rather than whatever a given
+ * review actually wrote.
+ */
+export const RATING_NUMBER_LABELS = {
+  0: 'Dead, El-Hazard 2 Over This',
+  1: 'Never, Please No More Like This Ever',
+  2: 'Trash, for Second Screen Only',
+  3: 'Meh, Finishing the Ep',
+  4: "Yeah, Here's Hoping",
+  5: 'Peak, Nice Ep Broh',
+};
+
+/**
+ * Counts reviews per `ratingNumber`, ordered ascending (low to high) and
+ * labeled with that number's default rating text (see RATING_NUMBER_LABELS)
+ * rather than each review's own possibly-customized `ratingText`. Reviews
+ * without a numeric `ratingNumber` are excluded - there's no tier to bucket
+ * them into.
  * @param {ReturnType<typeof flattenReviews>} reviews
  */
 export function computeRatingDistribution(reviews) {
-  const byText = new Map();
+  const byNumber = new Map();
   for (const r of reviews) {
-    if (!r.ratingText) continue;
-    const entry = byText.get(r.ratingText) ?? { ratingText: r.ratingText, count: 0, maxNumber: -Infinity };
+    if (typeof r.ratingNumber !== 'number' || Number.isNaN(r.ratingNumber)) continue;
+    const entry = byNumber.get(r.ratingNumber) ?? { ratingNumber: r.ratingNumber, count: 0 };
     entry.count += 1;
-    if (typeof r.ratingNumber === 'number' && r.ratingNumber > entry.maxNumber) entry.maxNumber = r.ratingNumber;
-    byText.set(r.ratingText, entry);
+    byNumber.set(r.ratingNumber, entry);
   }
-  return [...byText.values()].sort((a, b) => a.maxNumber - b.maxNumber || b.count - a.count);
+  return [...byNumber.values()]
+    .sort((a, b) => a.ratingNumber - b.ratingNumber)
+    .map(entry => ({ ...entry, ratingText: RATING_NUMBER_LABELS[entry.ratingNumber] ?? String(entry.ratingNumber) }));
 }
 
 /**
