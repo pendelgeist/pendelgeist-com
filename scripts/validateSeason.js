@@ -50,6 +50,9 @@ export function validateSeason(season) {
     if (r.anilistId !== undefined && !Number.isInteger(r.anilistId)) {
       issues.push(`"${label}" has a malformed anilistId (expected an integer)`);
     }
+    if (r.watchProgress !== undefined && typeof r.watchProgress !== 'string') {
+      issues.push(`"${label}" has a malformed watchProgress (expected a string)`);
+    }
     for (const key of ['fullReview', 'op', 'ed']) {
       if (r[key] !== undefined && (typeof r[key] !== 'object' || r[key] === null || Array.isArray(r[key]))) {
         issues.push(`"${label}" has a malformed ${key} (expected an object)`);

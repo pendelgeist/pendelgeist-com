@@ -257,6 +257,27 @@ test('a review with an anilistId renders an AniList link; one without does not',
   assert.equal(links[0].getAttribute('href'), 'https://anilist.co/anime/154587');
 });
 
+test('a review with watchProgress renders it in the entry meta; one without does not', async () => {
+  const fetch = createFetchStub({
+    'vqar-manifest.json': manifest,
+    'vqar-season-summer-2026.json': {
+      id: 'summer-2026',
+      name: 'Summer 2026',
+      reviewed: [
+        { titleEN: 'Revisited Show', ratingText: 'Yeah', dateReviewed: '2026-07-01', watchProgress: 'Ep 3' },
+        { titleEN: 'Untouched Show', ratingText: 'Yeah', dateReviewed: '2026-07-02' },
+      ],
+      pending: [],
+      skipped: [],
+    },
+  });
+  const { document } = await loadApp({ fetch });
+
+  const badges = [...document.querySelectorAll('.entry-progress')];
+  assert.equal(badges.length, 1);
+  assert.equal(badges[0].textContent, 'Progress: Ep 3');
+});
+
 test('search matches text inside a full-series re-review or OP/ED note, not just the main review', async () => {
   const fetch = createFetchStub({
     'vqar-manifest.json': manifest,

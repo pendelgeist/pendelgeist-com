@@ -106,6 +106,31 @@ test('a well-formed anilistId does not trigger a false positive', () => {
   assert.deepEqual(validateSeason(season), []);
 });
 
+test('flags a malformed watchProgress (not a string)', () => {
+  const season = cleanSeason();
+  season.reviewed.push({
+    titleEN: 'Bad Progress Show',
+    ratingText: 'Yeah',
+    dateReviewed: '2026-04-02',
+    watchProgress: 3,
+  });
+
+  const issues = validateSeason(season);
+  assert.ok(issues.some(i => i.includes('"Bad Progress Show"') && i.includes('watchProgress')));
+});
+
+test('a well-formed watchProgress does not trigger a false positive', () => {
+  const season = cleanSeason();
+  season.reviewed.push({
+    titleEN: 'In-Progress Show',
+    ratingText: 'Yeah',
+    dateReviewed: '2026-04-02',
+    watchProgress: 'Ep 3',
+  });
+
+  assert.deepEqual(validateSeason(season), []);
+});
+
 test('a well-formed fullReview/op/ed does not trigger a false positive', () => {
   const season = cleanSeason();
   season.reviewed.push({

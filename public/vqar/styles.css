@@ -215,6 +215,19 @@ article:hover {
   color: var(--color-muted);
 }
 
+/* A little badge for the "made it to ep X" revisit tracker - deliberately
+ * playful (pill shape, accent-colored) rather than matching the plain-text
+ * rating/date fields either side of it, since it's just a fun personal note,
+ * not part of the review itself. */
+.entry-progress {
+  padding: 0.1rem 0.5rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  border: 1px solid var(--color-accent);
+  border-radius: 999px;
+  color: var(--color-accent);
+}
+
 /* Follow-up notes: full-series re-reviews, OP/ED callouts */
 
 .entry-addendum {

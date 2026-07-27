@@ -341,13 +341,13 @@ test('Season Spotlight defaults to the current season for "All Seasons", then fo
   });
 
   const { document } = await loadApp({ fetch });
-  const revisitTitles = () => [...document.querySelectorAll('#revisitList tbody tr')].map(tr => tr.children[0].textContent);
-  const continuationRows = () => [...document.querySelectorAll('#continuationList tbody tr')].map(tr => [...tr.children].map(td => td.textContent));
+  const revisitTitles = () => [...document.querySelectorAll('#revisitList .show-list li')].map(li => li.textContent);
+  const continuationTitles = () => [...document.querySelectorAll('#continuationList .show-list li')].map(li => li.textContent);
 
   // "All Seasons" (the default) shows the current season, Summer 2026.
   assert.equal(document.getElementById('spotlightSeasonName').textContent, 'Summer 2026');
   assert.deepEqual(revisitTitles(), ['Summer Revisit']);
-  assert.deepEqual(continuationRows(), [['Spring Revisit Season 2', 'To Be Reviewed', 'Spring Revisit (Spring 2026)', '4.0']]);
+  assert.deepEqual(continuationTitles(), ['Spring Revisit Season 2']);
 
   // Picking a past season re-anchors the spotlight to it, and to whatever came before *it*.
   const select = /** @type {any} */ (document.getElementById('seasonFilter'));
@@ -356,7 +356,7 @@ test('Season Spotlight defaults to the current season for "All Seasons", then fo
 
   assert.equal(document.getElementById('spotlightSeasonName').textContent, 'Spring 2026');
   assert.deepEqual(revisitTitles(), ['Spring Revisit']);
-  assert.deepEqual(continuationRows(), [['Great Show Season 2', 'To Be Reviewed', 'Great Show (Fall 2025)', '5.0']]);
+  assert.deepEqual(continuationTitles(), ['Great Show Season 2']);
 });
 
 test('changing the season filter updates the "?season=" URL param, without adding history entries', async () => {
