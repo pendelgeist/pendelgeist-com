@@ -68,10 +68,14 @@ test('computeGlanceStats handles an empty dataset without dividing by zero', () 
   assert.equal(s.anilistCoveragePct, null);
 });
 
-test('computeRatingDistribution counts by ratingText, ordered by rating number ascending (low to high)', () => {
+test('computeRatingDistribution counts by ratingNumber, ordered ascending and labeled with the default rating text', () => {
   const dist = computeRatingDistribution(reviews);
-  assert.deepEqual(dist.map(d => d.ratingText), ['Custom Rating', 'Trash', 'Meh', 'Yeah', 'Peak']);
-  assert.equal(dist.find(d => d.ratingText === 'Meh').count, 2);
+  assert.deepEqual(dist.map(d => d.ratingNumber), [1, 3, 4, 5]); // "No Rating Show" excluded - no ratingNumber
+  assert.deepEqual(
+    dist.map(d => d.ratingText),
+    ['Never, Please No More Like This Ever', 'Meh, Finishing the Ep', "Yeah, Here's Hoping", 'Peak, Nice Ep Broh']
+  );
+  assert.equal(dist.find(d => d.ratingNumber === 3).count, 2);
 });
 
 test('computeRatingsOverTime averages rating per season, ordered by earliest review date', () => {
