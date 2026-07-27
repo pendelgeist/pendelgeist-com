@@ -74,6 +74,14 @@
   gap: 1.5rem;
 }
 
+/* Without this, a grid item's automatic minimum width is its content's
+ * min-content size - and a wide .data-table (nowrap columns) inside pushes
+ * that past the viewport, blowing out the whole column (and every plain-text
+ * sibling in it) instead of just scrolling within .table-scroll. */
+.vs-two-col > * {
+  min-width: 0;
+}
+
 .vs-two-col h3 {
   font-family: var(--font-heading);
   font-size: 1rem;
