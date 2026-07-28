@@ -91,6 +91,9 @@
     "ann-eoe-trivia": { "lang": "en", "title": "The End of Evangelion — Trivia — Anime News Network", "url": "https://www.animenewsnetwork.com/encyclopedia/anime.php?id=419&page=22" },
     "ann-death-rebirth-trivia": { "lang": "en", "title": "Neon Genesis Evangelion: Death & Rebirth — Trivia — Anime News Network", "url": "https://www.animenewsnetwork.com/encyclopedia/anime.php?id=418&page=22" },
     "en-wiki-death-rebirth": { "lang": "en", "title": "Neon Genesis Evangelion: Death & Rebirth — Wikipedia", "url": "https://en.wikipedia.org/wiki/Neon_Genesis_Evangelion:_Death_%26_Rebirth" },
+    "evageeks-forum-live-action-locations": { "lang": "en", "title": "Where was the live action footage in End of Evangelion filmed (and who is in it)? — EvaGeeks Forum", "url": "https://forum.evageeks.org/thread/21438/where-was-the-live-action-footage-in-End-of-Evangelion-filmed-and-who-is-in-it/" },
+    "youtube-eoe-live-action-bts": { "lang": "en", "title": "End of Evangelion: Behind the Scenes of the Live Action Sequence [English Subtitles] — YouTube", "url": "https://www.youtube.com/watch?v=uLyPNje8oiw" },
+    "x-schley-milano-screening": { "lang": "en", "title": "Matt Schley (@rhymeswithguy) on watching EoE in the theater where its audience footage was filmed — X (Twitter)", "url": "https://x.com/rhymeswithguy/status/1357480243078991872" },
     "ja-wiki-death-rebirth": { "lang": "ja", "title": "新世紀エヴァンゲリオン劇場版 シト新生 — Wikipedia (Japanese)", "url": "https://ja.wikipedia.org/wiki/新世紀エヴァンゲリオン劇場版_シト新生" },
     "stojnic-boy-with-machine": { "lang": "en", "title": "Boy with Machine: A Deleuzo-Guattarian Critique of Neon Genesis Evangelion — Betty Stojnic (Journal of Anime and Manga Studies)", "url": "https://hdl.handle.net/2142/113396" }
   },
@@ -2953,6 +2956,18 @@
         { "id": "eoe-otaku-critique-live-action", "label": "The live-action sequence this cameo hides inside" }
       ],
       "sourceRefs": ["ann-eoe-trivia"]
+    },
+    {
+      "id": "eoe-live-action-filming-locations",
+      "episode": "eoe",
+      "scene": "Live-action footage of real streets, cinema audiences, and fan graffiti is intercut into Shinji's Instrumentality sequence",
+      "type": "fact",
+      "title": "Fans have traced the live-action footage to a real Shinjuku theater and a Setagaya train station",
+      "body": "The audience shown watching a film in the live-action footage was reportedly filmed during an early Death and Rebirth screening on March 14, 1997, at the Shinjuku Milano — and one filmgoer, critic Matt Schley, has written about later catching End of Evangelion in that same theater. Separately, the live-action street and crowd scene has been traced to Chitose-Karasuyama Station in Setagaya, Tokyo, matched by train-line signage and shopfronts visible in the shots. Behind-the-scenes footage of Anno shooting the live-action sequences corroborates that this was filmed on location rather than staged elsewhere. None of this location work comes from Anno, Gainax, or Khara themselves — it's fan identification, built by dating the footage and cross-referencing what's visible on screen against real-world landmarks.",
+      "links": [
+        { "id": "eoe-otaku-critique-live-action", "label": "The live-action sequence these locations belong to" }
+      ],
+      "sourceRefs": ["evageeks-forum-live-action-locations", "youtube-eoe-live-action-bts", "x-schley-milano-screening"]
     },
     {
       "id": "eoe-backlash-artifacts-onscreen",
