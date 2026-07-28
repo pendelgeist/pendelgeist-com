@@ -24,6 +24,8 @@ const SITE_LABELS = {
   'tvtropes.org': 'TV Tropes',
   'mihaigolanul.neocities.org': 'mihaigolanul (blog)',
   'skapbadoa.com': 'skapbadoa (blog)',
+  'youtube.com': 'YouTube',
+  'x.com': 'X (Twitter)',
 };
 
 const listEl = document.getElementById('sourcesList');
