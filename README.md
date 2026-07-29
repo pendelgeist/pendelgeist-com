@@ -136,6 +136,15 @@ show metadata (synopsis, episode counts, community scores) intentionally lives o
 rather than being duplicated into these gists; see "Validating against AniList" below for
 finding the right id.
 
+A review may also carry an optional `annId` (an Anime News Network encyclopedia id, e.g.
+`22622`) — same idea as `anilistId`, but links out to the show's ANN encyclopedia page
+instead. Add it by hand; there's no automated lookup for it like `validate-against-anilist.js`.
+
+A review may also carry an optional `streaming` array of service keys (`crunchyroll`,
+`hidive`, `youtube`, `netflix`, `hulu`, `prime`) the show is available on, e.g.
+`["crunchyroll", "hulu"]` — renders as small badges on the entry. Purely informational and
+hand-maintained; there's no live lookup, so it'll drift if a show leaves a service.
+
 A review may also carry an optional `watchProgress` (a free-text string, e.g. `"Ep 3"`) —
 a silly personal tracker for how far a 4/5 ("Yeah") revisit candidate actually got before
 either finishing (graduating to a `fullReview`) or stalling out again. Purely for your own

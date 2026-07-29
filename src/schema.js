@@ -34,6 +34,10 @@ type Review {
   seasonName: String!
   "Optional AniList media id, for linking out to the show's AniList page."
   anilistId: Int
+  "Optional Anime News Network encyclopedia id, for linking out to the show's ANN page."
+  annId: Int
+  "Optional list of streaming service keys the show is available on (e.g. crunchyroll, netflix)."
+  streaming: [String!]
   "Optional, free-text note on how far a revisit actually got (e.g. Ep 3)."
   watchProgress: String
 }

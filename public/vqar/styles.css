@@ -179,7 +179,8 @@ article:hover {
   margin-bottom: 0.75rem;
 }
 
-.entry-anilist-link {
+.entry-anilist-link,
+.entry-ann-link {
   font-family: var(--font-body);
   font-size: 0.75rem;
   font-weight: 500;
@@ -227,6 +228,30 @@ article:hover {
   border-radius: 999px;
   color: var(--color-accent);
 }
+
+/* Streaming service badges - deliberately fixed brand colors rather than
+ * theme custom properties, since the point is at-a-glance recognition of the
+ * actual service regardless of which site theme is active. */
+.entry-streaming {
+  display: inline-flex;
+  gap: 0.3rem;
+}
+
+.entry-streaming-badge {
+  padding: 0.1rem 0.4rem;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.02rem;
+  border-radius: 0.25rem;
+  color: #fff;
+}
+
+.entry-streaming-crunchyroll { background-color: #f47521; }
+.entry-streaming-hidive { background-color: #006c84; }
+.entry-streaming-youtube { background-color: #ff0000; }
+.entry-streaming-netflix { background-color: #e50914; }
+.entry-streaming-hulu { background-color: #1ce783; color: #000; }
+.entry-streaming-prime { background-color: #1f2e45; }
 
 /* Follow-up notes: full-series re-reviews, OP/ED callouts */
 
