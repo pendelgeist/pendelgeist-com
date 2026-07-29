@@ -40,6 +40,10 @@ type Review {
   streaming: [String!]
   "Optional direct link to the show's Crunchyroll page; makes the CR streaming badge clickable."
   crunchyrollUrl: String
+  "Optional direct link to the show's HIDIVE page; makes the HD streaming badge clickable."
+  hidiveUrl: String
+  "Optional direct link to the show's Netflix page; makes the NF streaming badge clickable."
+  netflixUrl: String
   "Optional, free-text note on how far a revisit actually got (e.g. Ep 3)."
   watchProgress: String
 }

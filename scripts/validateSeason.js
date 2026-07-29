@@ -67,8 +67,10 @@ export function validateSeason(season) {
         }
       }
     }
-    if (r.crunchyrollUrl !== undefined && typeof r.crunchyrollUrl !== 'string') {
-      issues.push(`"${label}" has a malformed crunchyrollUrl (expected a string)`);
+    for (const key of ['crunchyrollUrl', 'hidiveUrl', 'netflixUrl']) {
+      if (r[key] !== undefined && typeof r[key] !== 'string') {
+        issues.push(`"${label}" has a malformed ${key} (expected a string)`);
+      }
     }
     if (r.watchProgress !== undefined && typeof r.watchProgress !== 'string') {
       issues.push(`"${label}" has a malformed watchProgress (expected a string)`);

@@ -195,6 +195,40 @@ test('a well-formed crunchyrollUrl does not trigger a false positive', () => {
   assert.deepEqual(validateSeason(season), []);
 });
 
+test('flags a malformed hidiveUrl or netflixUrl (not a string)', () => {
+  const season = cleanSeason();
+  season.reviewed.push({
+    titleEN: 'Bad HD Url Show',
+    ratingText: 'Meh',
+    dateReviewed: '2026-04-02',
+    hidiveUrl: 12345,
+  });
+  season.reviewed.push({
+    titleEN: 'Bad NF Url Show',
+    ratingText: 'Meh',
+    dateReviewed: '2026-04-03',
+    netflixUrl: 67890,
+  });
+
+  const issues = validateSeason(season);
+  assert.ok(issues.some(i => i.includes('"Bad HD Url Show"') && i.includes('hidiveUrl')));
+  assert.ok(issues.some(i => i.includes('"Bad NF Url Show"') && i.includes('netflixUrl')));
+});
+
+test('a well-formed hidiveUrl and netflixUrl do not trigger a false positive', () => {
+  const season = cleanSeason();
+  season.reviewed.push({
+    titleEN: 'Streamed Show',
+    ratingText: 'Meh',
+    dateReviewed: '2026-04-02',
+    streaming: ['hidive', 'netflix'],
+    hidiveUrl: 'https://www.hidive.com/season/streamed-show',
+    netflixUrl: 'https://www.netflix.com/title/12345',
+  });
+
+  assert.deepEqual(validateSeason(season), []);
+});
+
 test('flags a malformed watchProgress (not a string)', () => {
   const season = cleanSeason();
   season.reviewed.push({

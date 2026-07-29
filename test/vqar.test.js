@@ -343,6 +343,37 @@ test('a crunchyroll streaming badge without crunchyrollUrl stays a non-clickable
   assert.equal(cr.tagName, 'SPAN');
 });
 
+test('hidiveUrl and netflixUrl make their badges clickable links, same as crunchyrollUrl', async () => {
+  const fetch = createFetchStub({
+    'vqar-manifest.json': manifest,
+    'vqar-season-summer-2026.json': {
+      id: 'summer-2026',
+      name: 'Summer 2026',
+      reviewed: [{
+        titleEN: 'Streamed Show',
+        ratingText: 'Meh',
+        dateReviewed: '2026-07-01',
+        streaming: ['hidive', 'netflix', 'hulu'],
+        hidiveUrl: 'https://www.hidive.com/season/streamed-show',
+        netflixUrl: 'https://www.netflix.com/title/12345',
+      }],
+      pending: [],
+      skipped: [],
+    },
+  });
+  const { document } = await loadApp({ fetch });
+
+  const badges = [...document.querySelectorAll('.entry-streaming-badge')];
+  const hd = badges.find((b) => b.textContent === 'HD');
+  const nf = badges.find((b) => b.textContent === 'NF');
+  const hu = badges.find((b) => b.textContent === 'HU');
+  assert.equal(hd.tagName, 'A');
+  assert.equal(hd.getAttribute('href'), 'https://www.hidive.com/season/streamed-show');
+  assert.equal(nf.tagName, 'A');
+  assert.equal(nf.getAttribute('href'), 'https://www.netflix.com/title/12345');
+  assert.equal(hu.tagName, 'SPAN');
+});
+
 test('a review with watchProgress renders it in the entry meta; one without does not', async () => {
   const fetch = createFetchStub({
     'vqar-manifest.json': manifest,
