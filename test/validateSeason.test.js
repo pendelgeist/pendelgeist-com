@@ -169,6 +169,32 @@ test('a well-formed streaming list does not trigger a false positive', () => {
   assert.deepEqual(validateSeason(season), []);
 });
 
+test('flags a malformed crunchyrollUrl (not a string)', () => {
+  const season = cleanSeason();
+  season.reviewed.push({
+    titleEN: 'Bad CR Url Show',
+    ratingText: 'Meh',
+    dateReviewed: '2026-04-02',
+    crunchyrollUrl: 12345,
+  });
+
+  const issues = validateSeason(season);
+  assert.ok(issues.some(i => i.includes('"Bad CR Url Show"') && i.includes('crunchyrollUrl')));
+});
+
+test('a well-formed crunchyrollUrl does not trigger a false positive', () => {
+  const season = cleanSeason();
+  season.reviewed.push({
+    titleEN: 'Streamed Show',
+    ratingText: 'Meh',
+    dateReviewed: '2026-04-02',
+    streaming: ['crunchyroll'],
+    crunchyrollUrl: 'https://www.crunchyroll.com/series/ABC123/streamed-show',
+  });
+
+  assert.deepEqual(validateSeason(season), []);
+});
+
 test('flags a malformed watchProgress (not a string)', () => {
   const season = cleanSeason();
   season.reviewed.push({

@@ -244,6 +244,7 @@ article:hover {
   letter-spacing: 0.02rem;
   border-radius: 0.25rem;
   color: #fff;
+  text-decoration: none;
 }
 
 .entry-streaming-crunchyroll { background-color: #f47521; }

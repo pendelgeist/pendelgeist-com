@@ -38,6 +38,8 @@ type Review {
   annId: Int
   "Optional list of streaming service keys the show is available on (e.g. crunchyroll, netflix)."
   streaming: [String!]
+  "Optional direct link to the show's Crunchyroll page; makes the CR streaming badge clickable."
+  crunchyrollUrl: String
   "Optional, free-text note on how far a revisit actually got (e.g. Ep 3)."
   watchProgress: String
 }

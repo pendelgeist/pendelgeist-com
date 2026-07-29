@@ -27,6 +27,7 @@ import { MANIFEST_URL } from '../manifest-url.js';
  * @property {number} [anilistId] - optional AniList media id, links out to the show's AniList page
  * @property {number} [annId] - optional Anime News Network encyclopedia id, links out to the show's ANN page
  * @property {string[]} [streaming] - optional list of streaming service keys (see STREAMING_SERVICES) the show is available on
+ * @property {string} [crunchyrollUrl] - optional direct link to the show's Crunchyroll page; makes the "CR" streaming badge clickable
  * @property {string} [watchProgress] - optional, free-text note on how far a revisit actually got (e.g. "Ep 3")
  */
 
@@ -407,10 +408,16 @@ function createReviewArticle(r) {
     for (const key of Object.keys(STREAMING_SERVICES)) {
       if (!r.streaming.includes(key)) continue;
       const service = STREAMING_SERVICES[key];
-      const badge = document.createElement('span');
+      const isLinkable = key === 'crunchyroll' && r.crunchyrollUrl;
+      const badge = document.createElement(isLinkable ? 'a' : 'span');
       badge.className = `entry-streaming-badge entry-streaming-${key}`;
       badge.title = service.name;
       badge.textContent = service.label;
+      if (isLinkable) {
+        /** @type {HTMLAnchorElement} */ (badge).href = r.crunchyrollUrl;
+        /** @type {HTMLAnchorElement} */ (badge).target = '_blank';
+        /** @type {HTMLAnchorElement} */ (badge).rel = 'noopener noreferrer';
+      }
       streaming.appendChild(badge);
     }
     meta.appendChild(streaming);

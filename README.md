@@ -145,6 +145,11 @@ A review may also carry an optional `streaming` array of service keys (`crunchyr
 `["crunchyroll", "hulu"]` — renders as small badges on the entry. Purely informational and
 hand-maintained; there's no live lookup, so it'll drift if a show leaves a service.
 
+Since Crunchyroll carries the large majority of what gets reviewed here, a review may also
+carry an optional `crunchyrollUrl` (a direct link to the show's Crunchyroll page) — when
+present, it makes the "CR" badge itself clickable. The other streaming badges stay
+non-clickable; there's no equivalent field for them.
+
 A review may also carry an optional `watchProgress` (a free-text string, e.g. `"Ep 3"`) —
 a silly personal tracker for how far a 4/5 ("Yeah") revisit candidate actually got before
 either finishing (graduating to a `fullReview`) or stalling out again. Purely for your own

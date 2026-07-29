@@ -67,6 +67,9 @@ export function validateSeason(season) {
         }
       }
     }
+    if (r.crunchyrollUrl !== undefined && typeof r.crunchyrollUrl !== 'string') {
+      issues.push(`"${label}" has a malformed crunchyrollUrl (expected a string)`);
+    }
     if (r.watchProgress !== undefined && typeof r.watchProgress !== 'string') {
       issues.push(`"${label}" has a malformed watchProgress (expected a string)`);
     }

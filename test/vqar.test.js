@@ -299,6 +299,50 @@ test('a review with streaming services renders a badge per service, in a fixed o
   assert.deepEqual(badges.map((b) => b.title), ['Crunchyroll', 'Netflix']);
 });
 
+test('a crunchyrollUrl makes the CR badge a clickable link; other badges stay non-clickable spans', async () => {
+  const fetch = createFetchStub({
+    'vqar-manifest.json': manifest,
+    'vqar-season-summer-2026.json': {
+      id: 'summer-2026',
+      name: 'Summer 2026',
+      reviewed: [{
+        titleEN: 'Streamed Show',
+        ratingText: 'Meh',
+        dateReviewed: '2026-07-01',
+        streaming: ['crunchyroll', 'netflix'],
+        crunchyrollUrl: 'https://www.crunchyroll.com/series/ABC123/streamed-show',
+      }],
+      pending: [],
+      skipped: [],
+    },
+  });
+  const { document } = await loadApp({ fetch });
+
+  const badges = [...document.querySelectorAll('.entry-streaming-badge')];
+  const cr = badges.find((b) => b.textContent === 'CR');
+  const nf = badges.find((b) => b.textContent === 'NF');
+  assert.equal(cr.tagName, 'A');
+  assert.equal(cr.getAttribute('href'), 'https://www.crunchyroll.com/series/ABC123/streamed-show');
+  assert.equal(nf.tagName, 'SPAN');
+});
+
+test('a crunchyroll streaming badge without crunchyrollUrl stays a non-clickable span', async () => {
+  const fetch = createFetchStub({
+    'vqar-manifest.json': manifest,
+    'vqar-season-summer-2026.json': {
+      id: 'summer-2026',
+      name: 'Summer 2026',
+      reviewed: [{ titleEN: 'Streamed Show', ratingText: 'Meh', dateReviewed: '2026-07-01', streaming: ['crunchyroll'] }],
+      pending: [],
+      skipped: [],
+    },
+  });
+  const { document } = await loadApp({ fetch });
+
+  const cr = document.querySelector('.entry-streaming-badge');
+  assert.equal(cr.tagName, 'SPAN');
+});
+
 test('a review with watchProgress renders it in the entry meta; one without does not', async () => {
   const fetch = createFetchStub({
     'vqar-manifest.json': manifest,
