@@ -28,6 +28,8 @@ import { MANIFEST_URL } from '../manifest-url.js';
  * @property {number} [annId] - optional Anime News Network encyclopedia id, links out to the show's ANN page
  * @property {string[]} [streaming] - optional list of streaming service keys (see STREAMING_SERVICES) the show is available on
  * @property {string} [crunchyrollUrl] - optional direct link to the show's Crunchyroll page; makes the "CR" streaming badge clickable
+ * @property {string} [hidiveUrl] - optional direct link to the show's HIDIVE page; makes the "HD" streaming badge clickable
+ * @property {string} [netflixUrl] - optional direct link to the show's Netflix page; makes the "NF" streaming badge clickable
  * @property {string} [watchProgress] - optional, free-text note on how far a revisit actually got (e.g. "Ep 3")
  */
 
@@ -78,6 +80,18 @@ const STREAMING_SERVICES = {
   netflix: { label: 'NF', name: 'Netflix' },
   hulu: { label: 'HU', name: 'Hulu' },
   prime: { label: 'PV', name: 'Prime Video' },
+};
+
+/**
+ * Maps a streaming service key to the Review field holding its direct show
+ * URL, for services where a per-show link is hand-curated. Services absent
+ * here (youtube, hulu, prime) render as non-clickable badges.
+ * @type {Record<string, string>}
+ */
+const STREAMING_URL_FIELDS = {
+  crunchyroll: 'crunchyrollUrl',
+  hidive: 'hidiveUrl',
+  netflix: 'netflixUrl',
 };
 
 /** @type {Record<string, (a: Review, b: Review) => number>} */
@@ -408,13 +422,13 @@ function createReviewArticle(r) {
     for (const key of Object.keys(STREAMING_SERVICES)) {
       if (!r.streaming.includes(key)) continue;
       const service = STREAMING_SERVICES[key];
-      const isLinkable = key === 'crunchyroll' && r.crunchyrollUrl;
-      const badge = document.createElement(isLinkable ? 'a' : 'span');
+      const url = STREAMING_URL_FIELDS[key] && r[STREAMING_URL_FIELDS[key]];
+      const badge = document.createElement(url ? 'a' : 'span');
       badge.className = `entry-streaming-badge entry-streaming-${key}`;
       badge.title = service.name;
       badge.textContent = service.label;
-      if (isLinkable) {
-        /** @type {HTMLAnchorElement} */ (badge).href = r.crunchyrollUrl;
+      if (url) {
+        /** @type {HTMLAnchorElement} */ (badge).href = url;
         /** @type {HTMLAnchorElement} */ (badge).target = '_blank';
         /** @type {HTMLAnchorElement} */ (badge).rel = 'noopener noreferrer';
       }
