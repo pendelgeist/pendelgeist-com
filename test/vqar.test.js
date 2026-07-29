@@ -257,6 +257,92 @@ test('a review with an anilistId renders an AniList link; one without does not',
   assert.equal(links[0].getAttribute('href'), 'https://anilist.co/anime/154587');
 });
 
+test('a review with an annId renders an ANN link; one without does not', async () => {
+  const fetch = createFetchStub({
+    'vqar-manifest.json': manifest,
+    'vqar-season-summer-2026.json': {
+      id: 'summer-2026',
+      name: 'Summer 2026',
+      reviewed: [
+        { titleEN: 'Linked Show', ratingText: 'Meh', dateReviewed: '2026-07-01', annId: 22622 },
+        { titleEN: 'Unlinked Show', ratingText: 'Meh', dateReviewed: '2026-07-02' },
+      ],
+      pending: [],
+      skipped: [],
+    },
+  });
+  const { document } = await loadApp({ fetch });
+
+  const links = [...document.querySelectorAll('.entry-ann-link')];
+  assert.equal(links.length, 1);
+  assert.equal(links[0].getAttribute('href'), 'https://www.animenewsnetwork.com/encyclopedia/anime.php?id=22622');
+});
+
+test('a review with streaming services renders a badge per service, in a fixed order; one without renders none', async () => {
+  const fetch = createFetchStub({
+    'vqar-manifest.json': manifest,
+    'vqar-season-summer-2026.json': {
+      id: 'summer-2026',
+      name: 'Summer 2026',
+      reviewed: [
+        { titleEN: 'Streamed Show', ratingText: 'Meh', dateReviewed: '2026-07-01', streaming: ['netflix', 'crunchyroll'] },
+        { titleEN: 'Unstreamed Show', ratingText: 'Meh', dateReviewed: '2026-07-02' },
+      ],
+      pending: [],
+      skipped: [],
+    },
+  });
+  const { document } = await loadApp({ fetch });
+
+  const badges = [...document.querySelectorAll('.entry-streaming-badge')];
+  assert.deepEqual(badges.map((b) => b.textContent), ['CR', 'NF']);
+  assert.deepEqual(badges.map((b) => b.title), ['Crunchyroll', 'Netflix']);
+});
+
+test('a crunchyrollUrl makes the CR badge a clickable link; other badges stay non-clickable spans', async () => {
+  const fetch = createFetchStub({
+    'vqar-manifest.json': manifest,
+    'vqar-season-summer-2026.json': {
+      id: 'summer-2026',
+      name: 'Summer 2026',
+      reviewed: [{
+        titleEN: 'Streamed Show',
+        ratingText: 'Meh',
+        dateReviewed: '2026-07-01',
+        streaming: ['crunchyroll', 'netflix'],
+        crunchyrollUrl: 'https://www.crunchyroll.com/series/ABC123/streamed-show',
+      }],
+      pending: [],
+      skipped: [],
+    },
+  });
+  const { document } = await loadApp({ fetch });
+
+  const badges = [...document.querySelectorAll('.entry-streaming-badge')];
+  const cr = badges.find((b) => b.textContent === 'CR');
+  const nf = badges.find((b) => b.textContent === 'NF');
+  assert.equal(cr.tagName, 'A');
+  assert.equal(cr.getAttribute('href'), 'https://www.crunchyroll.com/series/ABC123/streamed-show');
+  assert.equal(nf.tagName, 'SPAN');
+});
+
+test('a crunchyroll streaming badge without crunchyrollUrl stays a non-clickable span', async () => {
+  const fetch = createFetchStub({
+    'vqar-manifest.json': manifest,
+    'vqar-season-summer-2026.json': {
+      id: 'summer-2026',
+      name: 'Summer 2026',
+      reviewed: [{ titleEN: 'Streamed Show', ratingText: 'Meh', dateReviewed: '2026-07-01', streaming: ['crunchyroll'] }],
+      pending: [],
+      skipped: [],
+    },
+  });
+  const { document } = await loadApp({ fetch });
+
+  const cr = document.querySelector('.entry-streaming-badge');
+  assert.equal(cr.tagName, 'SPAN');
+});
+
 test('a review with watchProgress renders it in the entry meta; one without does not', async () => {
   const fetch = createFetchStub({
     'vqar-manifest.json': manifest,

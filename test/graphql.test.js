@@ -97,6 +97,61 @@ test('anilistId passes through when set on a review, and is null when absent', a
   assert.deepEqual(result2.data.season.reviewed, []);
 });
 
+test('annId and streaming pass through when set on a review', async () => {
+  const fetchStub = createFetchStub({
+    'vqar-manifest.json': manifest,
+    'vqar-season-summer-2026.json': {
+      id: 'summer-2026',
+      name: 'Summer 2026',
+      reviewed: [{
+        titleEN: 'Linked Show',
+        ratingText: 'Meh',
+        dateReviewed: '2026-07-01',
+        annId: 22622,
+        streaming: ['crunchyroll', 'netflix'],
+      }],
+      pending: [],
+      skipped: [],
+    },
+    'vqar-season-spring-2026.json': seasons['vqar-season-spring-2026.json'],
+  });
+
+  const result = await run('{ currentSeason { reviewed { titleEN annId streaming } } }', fetchStub);
+  assert.equal(result.errors, undefined);
+  assert.deepEqual(result.data.currentSeason.reviewed, [
+    { titleEN: 'Linked Show', annId: 22622, streaming: ['crunchyroll', 'netflix'] },
+  ]);
+});
+
+test('crunchyrollUrl passes through when set on a review, and is null when absent', async () => {
+  const fetchStub = createFetchStub({
+    'vqar-manifest.json': manifest,
+    'vqar-season-summer-2026.json': {
+      id: 'summer-2026',
+      name: 'Summer 2026',
+      reviewed: [{
+        titleEN: 'Streamed Show',
+        ratingText: 'Meh',
+        dateReviewed: '2026-07-01',
+        crunchyrollUrl: 'https://www.crunchyroll.com/series/ABC123/streamed-show',
+      }],
+      pending: [],
+      skipped: [],
+    },
+    'vqar-season-spring-2026.json': seasons['vqar-season-spring-2026.json'],
+  });
+
+  const result = await run('{ currentSeason { reviewed { titleEN crunchyrollUrl } } }', fetchStub);
+  assert.equal(result.errors, undefined);
+  assert.deepEqual(result.data.currentSeason.reviewed, [
+    { titleEN: 'Streamed Show', crunchyrollUrl: 'https://www.crunchyroll.com/series/ABC123/streamed-show' },
+  ]);
+
+  const result2 = await run('{ season(id: "spring-2026") { reviewed { crunchyrollUrl } } }');
+  assert.equal(result2.errors, undefined);
+  assert.deepEqual(result2.data.season.reviewed, []);
+});
+
 test('watchProgress passes through when set on a review, and is null when absent', async () => {
   const fetchStub = createFetchStub({
     'vqar-manifest.json': manifest,

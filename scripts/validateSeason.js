@@ -1,3 +1,6 @@
+// Keep in sync with STREAMING_SERVICES in public/vqar/app.js.
+const STREAMING_KEYS = new Set(['crunchyroll', 'hidive', 'youtube', 'netflix', 'hulu', 'prime']);
+
 /** @param {string[]} list */
 function findDuplicates(list) {
   const seen = new Set();
@@ -49,6 +52,23 @@ export function validateSeason(season) {
     }
     if (r.anilistId !== undefined && !Number.isInteger(r.anilistId)) {
       issues.push(`"${label}" has a malformed anilistId (expected an integer)`);
+    }
+    if (r.annId !== undefined && !Number.isInteger(r.annId)) {
+      issues.push(`"${label}" has a malformed annId (expected an integer)`);
+    }
+    if (r.streaming !== undefined) {
+      if (!Array.isArray(r.streaming)) {
+        issues.push(`"${label}" has a malformed streaming (expected an array)`);
+      } else {
+        for (const service of r.streaming) {
+          if (!STREAMING_KEYS.has(service)) {
+            issues.push(`"${label}" has an unknown streaming service "${service}" (expected one of ${[...STREAMING_KEYS].join(', ')})`);
+          }
+        }
+      }
+    }
+    if (r.crunchyrollUrl !== undefined && typeof r.crunchyrollUrl !== 'string') {
+      issues.push(`"${label}" has a malformed crunchyrollUrl (expected a string)`);
     }
     if (r.watchProgress !== undefined && typeof r.watchProgress !== 'string') {
       issues.push(`"${label}" has a malformed watchProgress (expected a string)`);

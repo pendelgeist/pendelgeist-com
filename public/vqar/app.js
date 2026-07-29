@@ -25,6 +25,9 @@ import { MANIFEST_URL } from '../manifest-url.js';
  * @property {string} seasonName
  * @property {number} _timestamp
  * @property {number} [anilistId] - optional AniList media id, links out to the show's AniList page
+ * @property {number} [annId] - optional Anime News Network encyclopedia id, links out to the show's ANN page
+ * @property {string[]} [streaming] - optional list of streaming service keys (see STREAMING_SERVICES) the show is available on
+ * @property {string} [crunchyrollUrl] - optional direct link to the show's Crunchyroll page; makes the "CR" streaming badge clickable
  * @property {string} [watchProgress] - optional, free-text note on how far a revisit actually got (e.g. "Ep 3")
  */
 
@@ -62,6 +65,20 @@ const CACHE_PREFIX = 'vqar:v1:season:';
 function anichartUrlForSeason(seasonId) {
   return `https://anichart.net/${seasonId.replace(/^[a-z]/, (c) => c.toUpperCase())}`;
 }
+
+/**
+ * Maps a review's `streaming` keys to a short badge label + accessible name.
+ * Order here is also the display order of the badges.
+ * @type {Record<string, { label: string, name: string }>}
+ */
+const STREAMING_SERVICES = {
+  crunchyroll: { label: 'CR', name: 'Crunchyroll' },
+  hidive: { label: 'HD', name: 'HIDIVE' },
+  youtube: { label: 'YT', name: 'YouTube' },
+  netflix: { label: 'NF', name: 'Netflix' },
+  hulu: { label: 'HU', name: 'Hulu' },
+  prime: { label: 'PV', name: 'Prime Video' },
+};
 
 /** @type {Record<string, (a: Review, b: Review) => number>} */
 const SORTERS = {
@@ -347,6 +364,15 @@ function createReviewArticle(r) {
     anilistLink.textContent = 'AniList';
     title.appendChild(anilistLink);
   }
+  if (r.annId) {
+    const annLink = document.createElement('a');
+    annLink.className = 'entry-ann-link';
+    annLink.href = `https://www.animenewsnetwork.com/encyclopedia/anime.php?id=${r.annId}`;
+    annLink.target = '_blank';
+    annLink.rel = 'noopener noreferrer';
+    annLink.textContent = 'ANN';
+    title.appendChild(annLink);
+  }
 
   const titleJp = document.createElement('div');
   titleJp.className = 'entry-title-jp';
@@ -374,6 +400,27 @@ function createReviewArticle(r) {
     progress.className = 'entry-progress';
     progress.textContent = `Progress: ${r.watchProgress}`;
     meta.appendChild(progress);
+  }
+
+  if (Array.isArray(r.streaming) && r.streaming.length > 0) {
+    const streaming = document.createElement('span');
+    streaming.className = 'entry-streaming';
+    for (const key of Object.keys(STREAMING_SERVICES)) {
+      if (!r.streaming.includes(key)) continue;
+      const service = STREAMING_SERVICES[key];
+      const isLinkable = key === 'crunchyroll' && r.crunchyrollUrl;
+      const badge = document.createElement(isLinkable ? 'a' : 'span');
+      badge.className = `entry-streaming-badge entry-streaming-${key}`;
+      badge.title = service.name;
+      badge.textContent = service.label;
+      if (isLinkable) {
+        /** @type {HTMLAnchorElement} */ (badge).href = r.crunchyrollUrl;
+        /** @type {HTMLAnchorElement} */ (badge).target = '_blank';
+        /** @type {HTMLAnchorElement} */ (badge).rel = 'noopener noreferrer';
+      }
+      streaming.appendChild(badge);
+    }
+    meta.appendChild(streaming);
   }
 
   body.append(title, titleJp, desc, meta);
