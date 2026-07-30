@@ -119,8 +119,20 @@ export function rollPalette(mode) {
   const accentLightness = findContrastingLightness(bg.rgb, accentHue, accentSat, toward, MIN_CONTRAST);
   const accent = color(accentHue, accentSat, accentLightness);
 
+  // Dark mode's chrome matches the built-in Dark theme's near-black nav
+  // (#000); light mode's matches the built-in Light theme's navy one
+  // (#315979, ~33% lightness) rather than reusing dark mode's near-black
+  // range, which read as a jarring near-black bar on an otherwise light page.
+  // Some hues (yellow, green) carry much more relative luminance than others
+  // at the same lightness/saturation, so a fixed target isn't safe for every
+  // hue - back off toward the old, always-safe range until even white text
+  // (the lightest a nav-link can go) would clear AA contrast against it.
   const chromeSat = randomInt(20, 50);
-  const chromeLightness = randomInt(8, 16);
+  const white = { r: 255, g: 255, b: 255 };
+  let chromeLightness = isDark ? randomInt(8, 16) : randomInt(26, 36);
+  while (!isDark && chromeLightness > 8 && contrastRatio(white, hslToRgb(bgHue, chromeSat, chromeLightness)) < MIN_CONTRAST) {
+    chromeLightness -= 1;
+  }
   const chrome = color(bgHue, chromeSat, chromeLightness);
 
   const navLinkSat = randomInt(40, 70);
