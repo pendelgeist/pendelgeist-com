@@ -484,11 +484,25 @@ nav {
   width: auto;
   height: auto;
   margin-inline: 0.75rem;
-  padding: 0.3rem 0.5rem;
+  padding: 0.3rem 1.75rem 0.3rem 0.5rem;
   font: inherit;
   font-size: 0.85rem;
   border: 1px solid var(--color-nav-link);
+  border-radius: 0;
   background-color: transparent;
+  /* Safari draws its own rounded "menulist" chrome around a <select>, padding
+   * it out well beyond what's set above - appearance: none strips that so
+   * its box matches the flat, sharp-cornered border every other theme
+   * control uses. That drops the native dropdown arrow too, so it's redrawn
+   * by hand in currentColor (which tracks --color-nav-link) below. */
+  appearance: none;
+  -webkit-appearance: none;
+  background-image:
+    linear-gradient(45deg, transparent 50%, currentColor 50%),
+    linear-gradient(135deg, currentColor 50%, transparent 50%);
+  background-position: calc(100% - 1.1rem) center, calc(100% - 0.75rem) center;
+  background-size: 5px 5px, 5px 5px;
+  background-repeat: no-repeat;
   color: var(--color-nav-link);
 }
 
@@ -508,6 +522,11 @@ nav {
   line-height: 1;
   cursor: pointer;
   border: 1px solid var(--color-nav-link);
+  border-radius: 0;
+  /* Same Safari native-chrome reset as .theme-picker above - without it
+   * <button> also picks up rounded corners and extra padding on iOS. */
+  appearance: none;
+  -webkit-appearance: none;
   background-color: transparent;
   color: var(--color-nav-link);
 }
