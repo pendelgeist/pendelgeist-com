@@ -420,7 +420,7 @@ function createReviewArticle(r) {
   body.append(title, titleJp, desc, meta);
 
   if (r.fullReview) {
-    body.appendChild(createSubReviewBlock('Full Series', r.fullReview));
+    body.appendChild(createSubReviewBlock('Revisit', r.fullReview));
   }
   if (r.op) {
     body.appendChild(createSubReviewBlock('OP', r.op));

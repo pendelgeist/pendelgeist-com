@@ -210,7 +210,7 @@ test('a full-series re-review and OP/ED notes render as addenda below the main r
   const { document } = await loadApp({ fetch });
 
   const labels = [...document.querySelectorAll('.entry-addendum-label')].map((el) => el.textContent);
-  assert.deepEqual(labels, ['Full Series', 'OP', 'ED']);
+  assert.deepEqual(labels, ['Revisit', 'OP', 'ED']);
   assert.match(document.getElementById('reviewedShows').textContent, /stuck the landing/);
   assert.match(document.getElementById('reviewedShows').textContent, /incredible guitar riff/);
   assert.match(document.getElementById('reviewedShows').textContent, /still stuck in my head/);
