@@ -1,0 +1,58 @@
+/* Homepage-only styles; shared site styles live in /styles.css. Replaces the
+   old flat .show-list bullet list with clickable cards - same "card" visual
+   language as .article (box-shadow: var(--shadow-card), --color-surface,
+   hover translateX), just applied to whole-row links instead of review
+   entries, so each item is easier to scan and has a bigger hit target. */
+
+.link-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1rem;
+}
+
+.link-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  padding: 1rem 1.1rem;
+  color: inherit;
+  text-decoration: none;
+  background-color: var(--color-surface);
+  border: var(--border-width) var(--border-style) var(--color-article-border);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+  transition: transform 0.2s ease;
+}
+
+.link-card:hover,
+.link-card:focus-visible {
+  transform: translateX(5px);
+}
+
+.link-card:focus-visible {
+  outline: none;
+  border-color: var(--color-input-focus);
+  box-shadow: var(--shadow-focus);
+}
+
+.link-card-title {
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--color-title);
+}
+
+/* Marks a card as leaving the site, without relying on an emoji icon - a
+   plain arrow glyph in the same spirit as the ▸ bullets/▲▼ sort indicators
+   used elsewhere on the site. */
+.link-card-external .link-card-title::after {
+  content: ' \2197';
+  font-weight: 400;
+  color: var(--color-muted);
+}
+
+.link-card-note {
+  font-size: 0.85rem;
+  font-style: italic;
+  color: var(--color-muted);
+}
