@@ -51,7 +51,7 @@ test('computeGlanceStats totals reviews, averages numeric ratings, and finds the
   const s = computeGlanceStats(seasons, reviews);
   assert.equal(s.totalReviews, 6);
   assert.equal(s.seasonsCovered, 2);
-  assert.equal(s.avgRating, (5 + 3 + 1 + 3 + 4) / 5); // "No Rating Show" excluded
+  assert.equal(s.avgRating, (5 + 5 + 1 + 3 + 2) / 5); // "No Rating Show" excluded; Meh Show/Great Show use their fullReview rating
   assert.equal(s.fullReReviews, 2);
   assert.equal(s.opCallouts, 1);
   assert.equal(s.edCallouts, 1);
@@ -70,26 +70,30 @@ test('computeGlanceStats handles an empty dataset without dividing by zero', () 
 
 test('computeRatingDistribution counts by ratingNumber, ordered ascending and labeled with the default rating text', () => {
   const dist = computeRatingDistribution(reviews);
-  assert.deepEqual(dist.map(d => d.ratingNumber), [1, 3, 4, 5]); // "No Rating Show" excluded - no ratingNumber
+  // "No Rating Show" excluded - no ratingNumber. Meh Show/Great Show bucket under
+  // their fullReview rating (5 and 2) rather than their original ratingNumber.
+  assert.deepEqual(dist.map(d => d.ratingNumber), [1, 2, 3, 5]);
   assert.deepEqual(
     dist.map(d => d.ratingText),
-    ['Never, Please No More Like This Ever', 'Meh, Finishing the Ep', "Yeah, Here's Hoping", 'Peak, Nice Ep Broh']
+    ['Never, Please No More Like This Ever', 'Trash, for Second Screen Only', 'Meh, Finishing the Ep', 'Peak, Nice Ep Broh']
   );
-  assert.equal(dist.find(d => d.ratingNumber === 3).count, 2);
+  assert.equal(dist.find(d => d.ratingNumber === 5).count, 2); // Peak Show + Meh Show's fullReview
 });
 
 test('computeRatingsOverTime averages rating per season, ordered by earliest review date', () => {
   const overTime = computeRatingsOverTime(reviews);
   assert.deepEqual(overTime.map(s => s.seasonName), ['Spring 2026', 'Summer 2026']);
   const spring = overTime.find(s => s.seasonName === 'Spring 2026');
-  assert.equal(spring.avgRating, (3 + 4) / 2); // "No Rating Show" excluded
+  assert.equal(spring.avgRating, (3 + 2) / 2); // "No Rating Show" excluded; Great Show uses its fullReview rating (2)
   assert.equal(spring.count, 2);
 });
 
-test('computeHallOfFame ranks numerically-rated shows best and worst', () => {
+test('computeHallOfFame ranks numerically-rated shows best and worst, by their fullReview rating once they have one', () => {
   const { best, worst } = computeHallOfFame(reviews, 2);
-  assert.deepEqual(best.map(r => r.titleEN), ['Peak Show', 'Great Show']);
-  assert.deepEqual(worst.map(r => r.titleEN), ['Trash Show', 'Meh Show']);
+  // Meh Show's fullReview (5) ties it with Peak Show for best; alphabetical tiebreak puts it first.
+  assert.deepEqual(best.map(r => r.titleEN), ['Meh Show', 'Peak Show']);
+  // Great Show's fullReview (2) drops it out of the top ranks and into the bottom two.
+  assert.deepEqual(worst.map(r => r.titleEN), ['Trash Show', 'Great Show']);
 });
 
 test('computeSecondImpressions compares episode-1 rating to full-series re-review', () => {
@@ -230,7 +234,7 @@ test('renders a rating distribution bar chart and a hall of fame table', async (
 
   assert.ok(document.querySelectorAll('#ratingDistributionChart .bar-fill').length > 0);
   const bestRows = [...document.querySelectorAll('#hallOfFameBest tbody tr')].map(tr => tr.children[0].textContent);
-  assert.equal(bestRows[0], 'Peak Show');
+  assert.equal(bestRows[0], 'Meh Show'); // ties Peak Show at 5 via its fullReview; alphabetical tiebreak puts it first
 });
 
 test('shows an error message if the manifest fails to load', async () => {
@@ -266,7 +270,9 @@ test('picking a season in the filter scopes every stat and the glance grid to ju
   assert.equal(totalReviewsTile.querySelector('.stat-value').textContent, '3'); // only Spring 2026's reviews
 
   const bestRows = [...document.querySelectorAll('#hallOfFameBest tbody tr')].map(tr => tr.children[0].textContent);
-  assert.equal(bestRows[0], 'Great Show'); // Peak Show (Summer 2026) is out of scope now
+  // Peak Show (Summer 2026) is out of scope now. Great Show's fullReview rating (2) ranks
+  // it below Fine Show (3) within Spring 2026.
+  assert.equal(bestRows[0], 'Fine Show');
 });
 
 test('Ratings Over Time is shown for All Seasons but hides once the filter narrows to a single season', async () => {
