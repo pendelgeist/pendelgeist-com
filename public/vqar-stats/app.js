@@ -8,7 +8,7 @@
 import { MANIFEST_URL } from '../manifest-url.js';
 import {
   flattenReviews, computeGlanceStats, computeRatingDistribution, computeRatingsOverTime,
-  computeHallOfFame, computeSecondImpressions, computeOpEdHighlights,
+  computeHallOfFame, computeSecondImpressions, computeOpEdHighlights, computeMalComparison,
   computeRevisitCandidates, computeContinuationWatch,
 } from './stats.js';
 
@@ -34,6 +34,8 @@ const dom = {
   hallOfFameWorst: document.getElementById('hallOfFameWorst'),
   secondImpressionsStats: document.getElementById('secondImpressionsStats'),
   secondImpressionsTable: document.getElementById('secondImpressionsTable'),
+  malComparisonStats: document.getElementById('malComparisonStats'),
+  malComparisonTable: document.getElementById('malComparisonTable'),
   topOps: document.getElementById('topOps'),
   topEds: document.getElementById('topEds'),
 };
@@ -298,6 +300,21 @@ function renderSecondImpressions(reviews) {
   );
 }
 
+function renderMalComparison(reviews) {
+  const s = computeMalComparison(reviews);
+  renderStatGrid(dom.malComparisonStats, [
+    { label: 'Shows Compared', value: String(s.total) },
+    { label: 'Average Shift', value: formatDelta(s.avgDelta) },
+    { label: 'You Rated Higher', value: String(s.higherThanMal) },
+    { label: 'MAL Rated Higher', value: String(s.lowerThanMal) },
+  ]);
+  renderDataTable(
+    dom.malComparisonTable,
+    ['Title', 'Your Rating', 'MAL Score', 'Shift'],
+    s.disagreements.map(r => [r.titleEN ?? 'Untitled', formatRating(r.vqarScaled), formatRating(r.malScore), formatDelta(r.delta)])
+  );
+}
+
 /**
  * Renders the "Season Spotlight" sections for whichever season is currently
  * in view: the current season when the filter is "All Seasons" (or the
@@ -394,6 +411,7 @@ function renderAll(seasons, reviews) {
   renderRatingsOverTime(reviews);
   renderHallOfFame(reviews);
   renderSecondImpressions(reviews);
+  renderMalComparison(reviews);
   renderOpEd(reviews);
 }
 

@@ -131,6 +131,63 @@ test('a well-formed annId does not trigger a false positive', () => {
   assert.deepEqual(validateSeason(season), []);
 });
 
+test('flags a malformed malId (not an integer)', () => {
+  const season = cleanSeason();
+  season.reviewed.push({
+    titleEN: 'Bad MalId Show',
+    ratingText: 'Meh',
+    dateReviewed: '2026-04-02',
+    malId: 'not-a-number',
+  });
+
+  const issues = validateSeason(season);
+  assert.ok(issues.some(i => i.includes('"Bad MalId Show"') && i.includes('malId')));
+});
+
+test('a well-formed malId does not trigger a false positive', () => {
+  const season = cleanSeason();
+  season.reviewed.push({
+    titleEN: 'Linked Show',
+    ratingText: 'Meh',
+    dateReviewed: '2026-04-02',
+    malId: 52741,
+  });
+
+  assert.deepEqual(validateSeason(season), []);
+});
+
+test('flags a malformed malScore (not a number, or out of the 0-10 range)', () => {
+  const season = cleanSeason();
+  season.reviewed.push({
+    titleEN: 'Bad MalScore Show',
+    ratingText: 'Meh',
+    dateReviewed: '2026-04-02',
+    malScore: 'not-a-number',
+  });
+  season.reviewed.push({
+    titleEN: 'Out Of Range MalScore Show',
+    ratingText: 'Meh',
+    dateReviewed: '2026-04-03',
+    malScore: 11,
+  });
+
+  const issues = validateSeason(season);
+  assert.ok(issues.some(i => i.includes('"Bad MalScore Show"') && i.includes('malScore')));
+  assert.ok(issues.some(i => i.includes('"Out Of Range MalScore Show"') && i.includes('malScore')));
+});
+
+test('a well-formed malScore does not trigger a false positive', () => {
+  const season = cleanSeason();
+  season.reviewed.push({
+    titleEN: 'Compared Show',
+    ratingText: 'Meh',
+    dateReviewed: '2026-04-02',
+    malScore: 7.82,
+  });
+
+  assert.deepEqual(validateSeason(season), []);
+});
+
 test('flags a malformed streaming (not an array)', () => {
   const season = cleanSeason();
   season.reviewed.push({

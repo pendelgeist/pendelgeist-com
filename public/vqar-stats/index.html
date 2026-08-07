@@ -49,7 +49,8 @@
         cross-checked against shows you loved in earlier seasons. Pick a past season in the filter and the
         spotlight switches to that season instead. Below that, numbers at a glance, then a handful of curated
         angles on the data (rating distribution, ratings over time, best/worst rated, how "Finish Ep" shows held
-        up on a full re-review, OP/ED favorites) &mdash; the Season filter scopes those sections to one season
+        up on a full re-review, how your ratings compare to MyAnimeList's, OP/ED favorites) &mdash; the Season
+        filter scopes those sections to one season
         instead of the full history. Looking for a specific review? Head back to <a href="/vqar">VQAR</a> for
         that season, or query the data directly via <a href="/graphql">GraphQL</a>.</p>
       <h3>Linking to a season</h3>
@@ -130,6 +131,13 @@
       <p class="vs-prose">How the episode-1 verdict compares to the eventual full-series re-review.</p>
       <div id="secondImpressionsStats" class="stat-grid"></div>
       <div id="secondImpressionsTable"></div>
+    </section>
+
+    <section class="section" id="malComparisonSection">
+      <h2>VQAR vs. MAL</h2>
+      <p class="vs-prose">How your rating compares to MyAnimeList's community score, for shows with a hand-entered <code>malScore</code>. Positive shift means you rated it higher than MAL did.</p>
+      <div id="malComparisonStats" class="stat-grid"></div>
+      <div id="malComparisonTable"></div>
     </section>
 
     <section class="section" id="opEdSection">

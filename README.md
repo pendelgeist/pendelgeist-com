@@ -156,6 +156,13 @@ either finishing (graduating to a `fullReview`) or stalling out again. Purely fo
 amusement; not required, and `/vqar-stats`' Revisit Candidates list stays title-only
 regardless - it only shows up alongside the rest of a review on `/vqar` itself.
 
+A review may also carry an optional `malId` (a MyAnimeList anime id, e.g. `52741`) — same
+idea as `anilistId`/`annId`, but links out to the show's MAL page instead. It may also carry
+an optional `malScore` (MAL's community score, 0-10, e.g. `7.82`) — hand-copy it from
+[MAL's seasonal chart](https://myanimelist.net/anime/season) whenever you get around to it;
+there's no automated lookup for either field. `malScore` powers `/vqar-stats`' "VQAR vs. MAL"
+section (see below); `ratingNumber` is scaled onto MAL's 0-10 range for the comparison.
+
 ### Updating gist data
 
 `scripts/update-gist.js` pushes a locally-edited season (or the manifest) straight to its
@@ -300,16 +307,19 @@ growing every season.
 page warms the cache for the other), flattens every season's `reviewed` array into one list,
 and hands it to `stats.js` — a set of pure, DOM-free functions (`computeGlanceStats`,
 `computeRatingDistribution`, `computeRatingsOverTime`, `computeHallOfFame`,
-`computeSecondImpressions`, `computeOpEdHighlights`, `computeRevisitCandidates`,
-`computeContinuationWatch`) that each derive one stat/section from the flattened review
-list. Keeping these pure and separate from `app.js`'s fetch/render code is what makes them
-unit-testable without a DOM or a live gist fetch — see `test/vqar-stats.test.js`.
+`computeSecondImpressions`, `computeMalComparison`, `computeOpEdHighlights`,
+`computeRevisitCandidates`, `computeContinuationWatch`) that each derive one stat/section
+from the flattened review list. Keeping these pure and separate from `app.js`'s fetch/render
+code is what makes them unit-testable without a DOM or a live gist fetch — see
+`test/vqar-stats.test.js`.
 
 Sections rendered from those functions: a numbers-at-a-glance stat grid, a rating
 distribution bar chart (ordered low to high), average rating per season over time,
 best/worst-rated shows, "Second Impressions" (how a `fullReview` re-review's rating compares
-to the original episode-1 rating — a swing metric unique to VQAR's data shape), and top-rated
-OP/ED callouts. Only reviews with a numeric `ratingNumber` count toward averages/rankings —
+to the original episode-1 rating — a swing metric unique to VQAR's data shape), "VQAR vs. MAL"
+(how your rating compares to MyAnimeList's community score, for shows with a hand-entered
+`malScore` — see "Review shape" above), and top-rated OP/ED callouts. Only reviews with a
+numeric `ratingNumber` count toward averages/rankings —
 a `ratingText`-only entry is still valid, just excluded from those. Once a review has a
 `fullReview`, its rating supersedes the original episode-1 `ratingNumber` everywhere ratings
 get aggregated or ranked (averages, the distribution chart, Hall of Fame, Continuing Seasons
