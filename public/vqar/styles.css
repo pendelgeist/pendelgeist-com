@@ -180,7 +180,8 @@ article:hover {
 }
 
 .entry-anilist-link,
-.entry-ann-link {
+.entry-ann-link,
+.entry-mal-link {
   font-family: var(--font-body);
   font-size: 0.75rem;
   font-weight: 500;
@@ -211,6 +212,12 @@ article:hover {
 }
 
 .entry-published {
+  font-size: 0.72rem;
+  font-weight: lighter;
+  color: var(--color-muted);
+}
+
+.entry-mal-score {
   font-size: 0.72rem;
   font-weight: lighter;
   color: var(--color-muted);

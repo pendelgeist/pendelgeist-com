@@ -6,7 +6,7 @@ import { fileURLToPath, pathToFileURL } from 'node:url';
 import { JSDOM } from 'jsdom';
 import {
   flattenReviews, computeGlanceStats, computeRatingDistribution, computeRatingsOverTime,
-  computeHallOfFame, computeSecondImpressions, computeOpEdHighlights,
+  computeHallOfFame, computeSecondImpressions, computeOpEdHighlights, computeMalComparison,
   computeRevisitCandidates, computeContinuationWatch,
 } from '../public/vqar-stats/stats.js';
 import { createFetchStub, createLocalStorageStub } from './helpers.js';
@@ -19,7 +19,7 @@ const seasons = [
   {
     id: 'summer-2026', name: 'Summer 2026',
     reviewed: [
-      { titleEN: 'Peak Show', ratingNumber: 5, ratingText: 'Peak', review: 'An excellent episode all around', dateReviewed: '2026-07-01', anilistId: 111, op: { ratingNumber: 5, ratingText: 'Peak' } },
+      { titleEN: 'Peak Show', ratingNumber: 5, ratingText: 'Peak', review: 'An excellent episode all around', dateReviewed: '2026-07-01', anilistId: 111, malScore: 8.5, op: { ratingNumber: 5, ratingText: 'Peak' } },
       { titleEN: 'Meh Show', ratingNumber: 3, ratingText: 'Meh', review: 'Just fine, nothing special here', dateReviewed: '2026-07-05', fullReview: { ratingNumber: 5, ratingText: 'Peak', review: 'Turned out great after all' } },
       { titleEN: 'Trash Show', ratingNumber: 1, ratingText: 'Trash', review: 'Rough episode, animation was bad', dateReviewed: '2026-07-10', ed: { ratingNumber: 2, ratingText: 'Trash' } },
     ],
@@ -30,7 +30,7 @@ const seasons = [
     id: 'spring-2026', name: 'Spring 2026',
     reviewed: [
       { titleEN: 'Fine Show', ratingNumber: 3, ratingText: 'Meh', review: 'Perfectly fine, nothing special', dateReviewed: '2026-04-01' },
-      { titleEN: 'Great Show', ratingNumber: 4, ratingText: 'Yeah', review: 'Great animation and great story', dateReviewed: '2026-04-15', fullReview: { ratingNumber: 2, ratingText: 'Trash', review: 'It fell apart badly' } },
+      { titleEN: 'Great Show', ratingNumber: 4, ratingText: 'Yeah', review: 'Great animation and great story', dateReviewed: '2026-04-15', malScore: 6, fullReview: { ratingNumber: 2, ratingText: 'Trash', review: 'It fell apart badly' } },
       { titleEN: 'No Rating Show', ratingText: 'Custom Rating', review: 'Unrated but noted', dateReviewed: '2026-04-20' },
     ],
     pending: [],
@@ -110,6 +110,24 @@ test('computeSecondImpressions is empty when nothing has a full re-review', () =
   assert.equal(s.total, 0);
   assert.equal(s.avgDelta, null);
   assert.deepEqual(s.swings, []);
+});
+
+test('computeMalComparison scales ratingNumber onto MAL\'s 0-10 range and compares against malScore', () => {
+  const s = computeMalComparison(reviews);
+  assert.equal(s.total, 2);
+  // Peak Show: ratingNumber 5 -> scaled 10, vs malScore 8.5 -> +1.5 (rated higher than MAL)
+  // Great Show: fullReview rating 2 -> scaled 4, vs malScore 6 -> -2 (MAL rated it higher)
+  assert.equal(s.higherThanMal, 1);
+  assert.equal(s.lowerThanMal, 1);
+  assert.equal(s.avgDelta, (1.5 + -2) / 2);
+  assert.equal(s.disagreements.length, 2);
+});
+
+test('computeMalComparison is empty when nothing has a malScore', () => {
+  const s = computeMalComparison(flattenReviews([{ id: 'x', name: 'X', reviewed: [{ titleEN: 'A', ratingNumber: 3, ratingText: 'Meh', dateReviewed: '2026-01-01' }] }]));
+  assert.equal(s.total, 0);
+  assert.equal(s.avgDelta, null);
+  assert.deepEqual(s.disagreements, []);
 });
 
 test('computeOpEdHighlights ranks OP/ED callouts that carry their own rating', () => {
@@ -235,6 +253,17 @@ test('renders a rating distribution bar chart and a hall of fame table', async (
   assert.ok(document.querySelectorAll('#ratingDistributionChart .bar-fill').length > 0);
   const bestRows = [...document.querySelectorAll('#hallOfFameBest tbody tr')].map(tr => tr.children[0].textContent);
   assert.equal(bestRows[0], 'Meh Show'); // ties Peak Show at 5 via its fullReview; alphabetical tiebreak puts it first
+});
+
+test('renders the VQAR vs. MAL comparison stat grid and table', async () => {
+  const { document } = await loadApp();
+
+  const tiles = [...document.querySelectorAll('#malComparisonStats .stat-tile')];
+  const comparedTile = tiles.find(t => t.querySelector('.stat-label').textContent === 'Shows Compared');
+  assert.equal(comparedTile.querySelector('.stat-value').textContent, '2');
+
+  const rows = [...document.querySelectorAll('#malComparisonTable tbody tr')].map(tr => tr.children[0].textContent);
+  assert.deepEqual(rows.sort(), ['Great Show', 'Peak Show']);
 });
 
 test('shows an error message if the manifest fails to load', async () => {

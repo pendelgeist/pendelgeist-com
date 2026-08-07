@@ -46,6 +46,10 @@ type Review {
   netflixUrl: String
   "Optional, free-text note on how far a revisit actually got (e.g. Ep 3)."
   watchProgress: String
+  "Optional MyAnimeList anime id, for linking out to the show's MAL page."
+  malId: Int
+  "Optional, hand-entered MyAnimeList community score (0-10), for comparing against ratingNumber."
+  malScore: Float
 }
 
 """One anime season: its reviewed shows, plus titles still pending or skipped."""

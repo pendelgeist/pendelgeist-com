@@ -56,6 +56,12 @@ export function validateSeason(season) {
     if (r.annId !== undefined && !Number.isInteger(r.annId)) {
       issues.push(`"${label}" has a malformed annId (expected an integer)`);
     }
+    if (r.malId !== undefined && !Number.isInteger(r.malId)) {
+      issues.push(`"${label}" has a malformed malId (expected an integer)`);
+    }
+    if (r.malScore !== undefined && (typeof r.malScore !== 'number' || Number.isNaN(r.malScore) || r.malScore < 0 || r.malScore > 10)) {
+      issues.push(`"${label}" has a malformed malScore (expected a number between 0 and 10)`);
+    }
     if (r.streaming !== undefined) {
       if (!Array.isArray(r.streaming)) {
         issues.push(`"${label}" has a malformed streaming (expected an array)`);

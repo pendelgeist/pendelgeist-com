@@ -171,6 +171,33 @@ export function computeSecondImpressions(reviews) {
 }
 
 /**
+ * How your rating compares to MyAnimeList's community score, for shows with
+ * a hand-entered `malScore`. `ratingNumber` (0-5, using the fullReview rating
+ * once a show has one - see `effectiveRatingNumber`) is scaled onto MAL's
+ * 0-10 scale so the two are comparable; `delta` is your scaled rating minus
+ * MAL's score, so positive means you rated it higher than MAL did.
+ * @param {ReturnType<typeof flattenReviews>} reviews
+ */
+export function computeMalComparison(reviews) {
+  const withMal = reviews
+    .map(r => ({ ...r, vqarScore: effectiveRatingNumber(r) }))
+    .filter(r => typeof r.vqarScore === 'number' && typeof r.malScore === 'number')
+    .map(r => ({ ...r, vqarScaled: r.vqarScore * 2, delta: r.vqarScore * 2 - r.malScore }));
+
+  const deltas = withMal.map(r => r.delta);
+  const disagreements = [...withMal].sort((a, b) => Math.abs(b.delta) - Math.abs(a.delta)).slice(0, 5);
+
+  return {
+    total: withMal.length,
+    avgDelta: mean(deltas),
+    higherThanMal: deltas.filter(d => d > 0).length,
+    lowerThanMal: deltas.filter(d => d < 0).length,
+    matched: deltas.filter(d => d === 0).length,
+    disagreements,
+  };
+}
+
+/**
  * A season's 4/5s ("Yeah") that haven't been given a `fullReview` yet - the
  * "I liked episode 1, I should go back and actually finish/revisit this"
  * pile. Excludes 5/5s (nothing to reconsider there) and anything already

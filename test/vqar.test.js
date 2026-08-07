@@ -258,6 +258,48 @@ test('a review with an annId renders an ANN link; one without does not', async (
   assert.equal(links[0].getAttribute('href'), 'https://www.animenewsnetwork.com/encyclopedia/anime.php?id=22622');
 });
 
+test('a review with a malId renders a MAL link; one without does not', async () => {
+  const fetch = createFetchStub({
+    'vqar-manifest.json': manifest,
+    'vqar-season-summer-2026.json': {
+      id: 'summer-2026',
+      name: 'Summer 2026',
+      reviewed: [
+        { titleEN: 'Linked Show', ratingText: 'Meh', dateReviewed: '2026-07-01', malId: 52741 },
+        { titleEN: 'Unlinked Show', ratingText: 'Meh', dateReviewed: '2026-07-02' },
+      ],
+      pending: [],
+      skipped: [],
+    },
+  });
+  const { document } = await loadApp({ fetch });
+
+  const links = [...document.querySelectorAll('.entry-mal-link')];
+  assert.equal(links.length, 1);
+  assert.equal(links[0].getAttribute('href'), 'https://myanimelist.net/anime/52741');
+});
+
+test('a review with a malScore renders it in the entry meta; one without does not', async () => {
+  const fetch = createFetchStub({
+    'vqar-manifest.json': manifest,
+    'vqar-season-summer-2026.json': {
+      id: 'summer-2026',
+      name: 'Summer 2026',
+      reviewed: [
+        { titleEN: 'Compared Show', ratingText: 'Meh', dateReviewed: '2026-07-01', malScore: 7.82 },
+        { titleEN: 'Uncompared Show', ratingText: 'Meh', dateReviewed: '2026-07-02' },
+      ],
+      pending: [],
+      skipped: [],
+    },
+  });
+  const { document } = await loadApp({ fetch });
+
+  const scores = [...document.querySelectorAll('.entry-mal-score')];
+  assert.equal(scores.length, 1);
+  assert.equal(scores[0].textContent, 'MAL: 7.8');
+});
+
 test('a review with streaming services renders a badge per service, in a fixed order; one without renders none', async () => {
   const fetch = createFetchStub({
     'vqar-manifest.json': manifest,

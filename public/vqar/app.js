@@ -26,6 +26,8 @@ import { MANIFEST_URL } from '../manifest-url.js';
  * @property {number} _timestamp
  * @property {number} [anilistId] - optional AniList media id, links out to the show's AniList page
  * @property {number} [annId] - optional Anime News Network encyclopedia id, links out to the show's ANN page
+ * @property {number} [malId] - optional MyAnimeList anime id, links out to the show's MAL page
+ * @property {number} [malScore] - optional, hand-entered MyAnimeList community score (0-10), for comparing against ratingNumber
  * @property {string[]} [streaming] - optional list of streaming service keys (see STREAMING_SERVICES) the show is available on
  * @property {string} [crunchyrollUrl] - optional direct link to the show's Crunchyroll page; makes the "CR" streaming badge clickable
  * @property {string} [hidiveUrl] - optional direct link to the show's HIDIVE page; makes the "HD" streaming badge clickable
@@ -377,6 +379,15 @@ function createReviewArticle(r) {
     annLink.textContent = 'ANN';
     title.appendChild(annLink);
   }
+  if (r.malId) {
+    const malLink = document.createElement('a');
+    malLink.className = 'entry-mal-link';
+    malLink.href = `https://myanimelist.net/anime/${r.malId}`;
+    malLink.target = '_blank';
+    malLink.rel = 'noopener noreferrer';
+    malLink.textContent = 'MAL';
+    title.appendChild(malLink);
+  }
 
   const titleJp = document.createElement('div');
   titleJp.className = 'entry-title-jp';
@@ -404,6 +415,13 @@ function createReviewArticle(r) {
     progress.className = 'entry-progress';
     progress.textContent = `Progress: ${r.watchProgress}`;
     meta.appendChild(progress);
+  }
+
+  if (typeof r.malScore === 'number') {
+    const malScore = document.createElement('span');
+    malScore.className = 'entry-mal-score';
+    malScore.textContent = `MAL: ${r.malScore.toFixed(1)}`;
+    meta.appendChild(malScore);
   }
 
   if (Array.isArray(r.streaming) && r.streaming.length > 0) {
