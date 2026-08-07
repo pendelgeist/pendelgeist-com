@@ -27,8 +27,21 @@ function mean(nums) {
   return nums.length ? nums.reduce((sum, n) => sum + n, 0) / nums.length : null;
 }
 
+/**
+ * A review's rating for calculation purposes: once a full-series `fullReview`
+ * exists, its rating supersedes the original episode-1 `ratingNumber`
+ * everywhere ratings get aggregated/ranked, since it reflects the more
+ * informed verdict. `computeSecondImpressions` is the one exception - it
+ * exists specifically to compare the two, so it reads both fields directly
+ * instead of going through this.
+ * @param {{ratingNumber?: number, fullReview?: {ratingNumber?: number}}} review
+ */
+function effectiveRatingNumber(review) {
+  return typeof review.fullReview?.ratingNumber === 'number' ? review.fullReview.ratingNumber : review.ratingNumber;
+}
+
 function numericRatings(reviews) {
-  return reviews.map(r => r.ratingNumber).filter(n => typeof n === 'number' && !Number.isNaN(n));
+  return reviews.map(effectiveRatingNumber).filter(n => typeof n === 'number' && !Number.isNaN(n));
 }
 
 /**
@@ -91,10 +104,11 @@ export const RATING_NUMBER_LABELS = {
 export function computeRatingDistribution(reviews) {
   const byNumber = new Map();
   for (const r of reviews) {
-    if (typeof r.ratingNumber !== 'number' || Number.isNaN(r.ratingNumber)) continue;
-    const entry = byNumber.get(r.ratingNumber) ?? { ratingNumber: r.ratingNumber, count: 0 };
+    const rating = effectiveRatingNumber(r);
+    if (typeof rating !== 'number' || Number.isNaN(rating)) continue;
+    const entry = byNumber.get(rating) ?? { ratingNumber: rating, count: 0 };
     entry.count += 1;
-    byNumber.set(r.ratingNumber, entry);
+    byNumber.set(rating, entry);
   }
   return [...byNumber.values()]
     .sort((a, b) => a.ratingNumber - b.ratingNumber)
@@ -110,7 +124,8 @@ export function computeRatingsOverTime(reviews) {
   const bySeason = new Map();
   for (const r of reviews) {
     const entry = bySeason.get(r.season) ?? { season: r.season, seasonName: r.seasonName, ratings: [], earliest: Infinity };
-    if (typeof r.ratingNumber === 'number') entry.ratings.push(r.ratingNumber);
+    const rating = effectiveRatingNumber(r);
+    if (typeof rating === 'number') entry.ratings.push(rating);
     if (r._timestamp && r._timestamp < entry.earliest) entry.earliest = r._timestamp;
     bySeason.set(r.season, entry);
   }
@@ -125,7 +140,9 @@ export function computeRatingsOverTime(reviews) {
  * @param {number} n
  */
 export function computeHallOfFame(reviews, n = 5) {
-  const rated = reviews.filter(r => typeof r.ratingNumber === 'number');
+  const rated = reviews
+    .map(r => ({ ...r, ratingNumber: effectiveRatingNumber(r) }))
+    .filter(r => typeof r.ratingNumber === 'number');
   const sorted = [...rated].sort((a, b) => b.ratingNumber - a.ratingNumber || (a.titleEN ?? '').localeCompare(b.titleEN ?? ''));
   return { best: sorted.slice(0, n), worst: sorted.slice(-n).reverse() };
 }
@@ -226,11 +243,8 @@ export function computeContinuationWatch(seasons, seasonId, { minRating = 4 } = 
     if (String(season.id) === String(seasonId)) continue;
     if (seasonEarliestTimestamp(season) >= targetEarliest) continue; // only seasons that actually came before this one count as "the past"
     for (const r of season.reviewed ?? []) {
-      const rating = Math.max(
-        typeof r.ratingNumber === 'number' ? r.ratingNumber : -Infinity,
-        typeof r.fullReview?.ratingNumber === 'number' ? r.fullReview.ratingNumber : -Infinity,
-      );
-      if (rating < minRating) continue;
+      const rating = effectiveRatingNumber(r);
+      if (typeof rating !== 'number' || rating < minRating) continue;
       const base = normalizeBaseTitle(r.titleEN);
       if (!base) continue;
       const existing = bestPastByBase.get(base);

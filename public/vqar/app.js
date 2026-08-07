@@ -84,11 +84,21 @@ const STREAMING_URL_FIELDS = {
   netflix: 'netflixUrl',
 };
 
+/**
+ * A review's rating for sorting purposes: once a full-series `fullReview`
+ * exists, its rating supersedes the original episode-1 `ratingNumber`, since
+ * it reflects the more informed verdict.
+ * @param {Review} r
+ */
+function effectiveRatingNumber(r) {
+  return typeof r.fullReview?.ratingNumber === 'number' ? r.fullReview.ratingNumber : r.ratingNumber;
+}
+
 /** @type {Record<string, (a: Review, b: Review) => number>} */
 const SORTERS = {
   recent: (a, b) => b._timestamp - a._timestamp,
-  'rating-high': (a, b) => (b.ratingNumber ?? 0) - (a.ratingNumber ?? 0),
-  'rating-low': (a, b) => (a.ratingNumber ?? 0) - (b.ratingNumber ?? 0),
+  'rating-high': (a, b) => (effectiveRatingNumber(b) ?? 0) - (effectiveRatingNumber(a) ?? 0),
+  'rating-low': (a, b) => (effectiveRatingNumber(a) ?? 0) - (effectiveRatingNumber(b) ?? 0),
   title: (a, b) => (a.titleEN ?? '').localeCompare(b.titleEN ?? ''),
 };
 

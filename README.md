@@ -310,10 +310,14 @@ distribution bar chart (ordered low to high), average rating per season over tim
 best/worst-rated shows, "Second Impressions" (how a `fullReview` re-review's rating compares
 to the original episode-1 rating — a swing metric unique to VQAR's data shape), and top-rated
 OP/ED callouts. Only reviews with a numeric `ratingNumber` count toward averages/rankings —
-a `ratingText`-only entry is still valid, just excluded from those. "Ratings Over Time" hides
-itself whenever the current view (e.g. the season filter) covers just one season, since a
-trend needs more than one point on it. There's no raw review browser/search on this page —
-that's what `/vqar` (per-season) and `/graphql` (query anything) are for.
+a `ratingText`-only entry is still valid, just excluded from those. Once a review has a
+`fullReview`, its rating supersedes the original episode-1 `ratingNumber` everywhere ratings
+get aggregated or ranked (averages, the distribution chart, Hall of Fame, Continuing Seasons
+Worth Watching) — `computeSecondImpressions` is the one exception, since it exists specifically
+to compare the two. `/vqar`'s own "Highest/Lowest Rating" sort follows the same rule. "Ratings
+Over Time" hides itself whenever the current view (e.g. the season filter) covers just one
+season, since a trend needs more than one point on it. There's no raw review browser/search on
+this page — that's what `/vqar` (per-season) and `/graphql` (query anything) are for.
 
 "Season Spotlight" is a pair of sections at the top of the page that track whichever season
 is currently in view — the current season when the filter is "All Seasons" or the current
