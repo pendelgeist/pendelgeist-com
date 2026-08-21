@@ -1,0 +1,28 @@
+{
+  "reviews": [
+    {
+      "id": "ruri-rocks",
+      "status": "wip",
+      "titleEN": "Ruri Rocks",
+      "titleJP": "瑠璃の宝石",
+      "format": "TV",
+      "year": 2025,
+      "airedLabel": "Summer 2025",
+      "episodeCount": null,
+      "episodesWatched": null,
+      "dateReviewed": "2026-08-21",
+      "tags": [
+        "slice-of-life",
+        "hobby",
+        "science"
+      ],
+      "verdict": {
+        "ratingNumber": null,
+        "ratingText": "",
+        "oneLiner": ""
+      },
+      "recommendedFor": [],
+      "notFor": []
+    }
+  ]
+}

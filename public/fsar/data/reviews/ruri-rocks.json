@@ -1,0 +1,57 @@
+{
+  "id": "ruri-rocks",
+  "status": "wip",
+  "titleEN": "Ruri Rocks",
+  "titleJP": "瑠璃の宝石",
+  "format": "TV",
+  "year": 2025,
+  "airedLabel": "Summer 2025",
+  "episodeCount": null,
+  "episodesWatched": null,
+  "dateReviewed": "2026-08-21",
+  "tags": ["slice-of-life", "hobby", "science"],
+  "verdict": {
+    "ratingNumber": null,
+    "ratingText": "",
+    "oneLiner": ""
+  },
+  "recommendedFor": [],
+  "notFor": [],
+  "sections": {
+    "story": [
+      "**Draft.** What the season is actually about, and whether its shape works — where it starts, where it lands, and whether the middle earns the distance between them.",
+      "Anything the story does that's unusual for its era or its genre goes here too."
+    ],
+    "production": [
+      "**Draft.** Animation, direction, color, sound design, voice work — whatever actually stood out, in either direction. Not a studio credits dump."
+    ],
+    "op": {
+      "ratingText": "",
+      "body": [
+        "**Draft.** The opening: song, sequence, and whether it sets up the show it's attached to."
+      ]
+    },
+    "ed": {
+      "ratingText": "",
+      "body": [
+        "**Draft.** The ending: same treatment."
+      ]
+    },
+    "notes": [
+      {
+        "heading": "Draft placeholder",
+        "body": [
+          "Free-form section for anything that doesn't fit the fixed headings — a recurring gag, a production detail worth knowing, how it compares to something else. Add as many of these as the show earns."
+        ]
+      }
+    ],
+    "spoilers": [
+      {
+        "heading": "Draft placeholder",
+        "body": [
+          "Everything spoiler-y lives down here, collapsed by default, so the rest of the page stays safe to hand to someone who hasn't watched it."
+        ]
+      }
+    ]
+  }
+}

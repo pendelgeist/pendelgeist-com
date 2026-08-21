@@ -68,3 +68,49 @@ export async function waitFor(conditionFn, { timeout = 2000, interval = 5 } = {}
     await new Promise((resolve) => setTimeout(resolve, interval));
   }
 }
+
+const FSAR_INDEX_HTML_PATH = path.join(__dirname, '../public/fsar/index.html');
+const FSAR_APP_JS_PATH = path.join(__dirname, '../public/fsar/app.js');
+
+/**
+ * Like createFetchStub, but keyed on the full pathname rather than just the
+ * filename - /fsar fetches same-origin relative paths ('/fsar/data/index.json',
+ * '/fsar/data/reviews/<id>.json'), so a bare filename isn't enough to tell an
+ * index request from a review request.
+ */
+export function createPathFetchStub(routes, { base = 'http://localhost' } = {}) {
+  const calls = [];
+  const fetchStub = async (url) => {
+    const { pathname } = new URL(url, base);
+    calls.push(pathname);
+    if (!(pathname in routes)) {
+      return { ok: false, status: 404 };
+    }
+    return { ok: true, status: 200, json: async () => routes[pathname] };
+  };
+  fetchStub.calls = calls;
+  return fetchStub;
+}
+
+/**
+ * Loads the FSAR page DOM and (re-)imports its app.js against it. `search`
+ * seeds the query string, which is how the page routes between the list view
+ * and a single review.
+ */
+export async function loadFsarApp({ fetch, localStorage = createLocalStorageStub(), search = '' } = {}) {
+  const html = fs.readFileSync(FSAR_INDEX_HTML_PATH, 'utf-8');
+  const dom = new JSDOM(html, { url: `http://localhost/fsar/${search}`, runScripts: 'outside-only' });
+
+  // jsdom reports window.scrollTo as "not implemented" on the virtual console;
+  // the page calls it after rendering a review, so stub it out to keep the
+  // test output clean.
+  dom.window.scrollTo = () => {};
+
+  global.window = dom.window;
+  global.document = dom.window.document;
+  global.localStorage = localStorage;
+  global.fetch = fetch;
+
+  await import(`${pathToFileURL(FSAR_APP_JS_PATH)}?t=${importCounter++}`);
+  return { window: dom.window, document: dom.window.document, localStorage };
+}
