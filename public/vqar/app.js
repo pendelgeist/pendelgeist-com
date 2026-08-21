@@ -1,4 +1,5 @@
 import { MANIFEST_URL } from '../manifest-url.js';
+import { createStreamingBadges } from '../streaming.js';
 
 /**
  * A follow-up note attached to a Review: a full-series re-review once a
@@ -57,32 +58,6 @@ import { MANIFEST_URL } from '../manifest-url.js';
 
 // Bump this if SeasonData's shape ever changes, to invalidate everything cached under the old shape.
 const CACHE_PREFIX = 'vqar:v1:season:';
-
-/**
- * Maps a review's `streaming` keys to a short badge label + accessible name.
- * Order here is also the display order of the badges.
- * @type {Record<string, { label: string, name: string }>}
- */
-const STREAMING_SERVICES = {
-  crunchyroll: { label: 'CR', name: 'Crunchyroll' },
-  hidive: { label: 'HD', name: 'HIDIVE' },
-  youtube: { label: 'YT', name: 'YouTube' },
-  netflix: { label: 'NF', name: 'Netflix' },
-  hulu: { label: 'HU', name: 'Hulu' },
-  prime: { label: 'PV', name: 'Prime Video' },
-};
-
-/**
- * Maps a streaming service key to the Review field holding its direct show
- * URL, for services where a per-show link is hand-curated. Services absent
- * here (youtube, hulu, prime) render as non-clickable badges.
- * @type {Record<string, string>}
- */
-const STREAMING_URL_FIELDS = {
-  crunchyroll: 'crunchyrollUrl',
-  hidive: 'hidiveUrl',
-  netflix: 'netflixUrl',
-};
 
 /**
  * A review's rating for sorting purposes: once a full-series `fullReview`
@@ -406,24 +381,11 @@ function createReviewArticle(r) {
     meta.appendChild(progress);
   }
 
-  if (Array.isArray(r.streaming) && r.streaming.length > 0) {
+  const badges = createStreamingBadges(r);
+  if (badges.length > 0) {
     const streaming = document.createElement('span');
     streaming.className = 'entry-streaming';
-    for (const key of Object.keys(STREAMING_SERVICES)) {
-      if (!r.streaming.includes(key)) continue;
-      const service = STREAMING_SERVICES[key];
-      const url = STREAMING_URL_FIELDS[key] && r[STREAMING_URL_FIELDS[key]];
-      const badge = document.createElement(url ? 'a' : 'span');
-      badge.className = `entry-streaming-badge entry-streaming-${key}`;
-      badge.title = service.name;
-      badge.textContent = service.label;
-      if (url) {
-        /** @type {HTMLAnchorElement} */ (badge).href = url;
-        /** @type {HTMLAnchorElement} */ (badge).target = '_blank';
-        /** @type {HTMLAnchorElement} */ (badge).rel = 'noopener noreferrer';
-      }
-      streaming.appendChild(badge);
-    }
+    streaming.append(...badges);
     meta.appendChild(streaming);
   }
 

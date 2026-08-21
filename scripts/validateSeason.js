@@ -1,5 +1,6 @@
-// Keep in sync with STREAMING_SERVICES in public/vqar/app.js.
-const STREAMING_KEYS = new Set(['crunchyroll', 'hidive', 'youtube', 'netflix', 'hulu', 'prime']);
+import { STREAMING_SERVICES } from '../public/streaming.js';
+
+const STREAMING_KEYS = new Set(Object.keys(STREAMING_SERVICES));
 
 /** @param {string[]} list */
 function findDuplicates(list) {
