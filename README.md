@@ -10,6 +10,7 @@ The Worker (`src/worker.js`) also backs a small GraphQL API over the same anime 
 
 - `public/index.html` — homepage, links out to the other sites.
 - `public/vqar/` — Very Quick Anime Reviews, a small vanilla-JS app.
+- `public/fsar/` — Full Season Anime Reviews, the long-form counterpart to VQAR.
 - `public/eva-tv/` — Neon Genesis Evangelion episode timeline, a small vanilla-JS app.
 - `public/nasubi/` — a data analysis of Nasubi's *Susunu! Denpa Shonen* sweepstakes ordeal.
 - `public/vqar-stats/` — "VQAR By The Numbers", a fun stats page over the VQAR review data.
@@ -18,6 +19,10 @@ The Worker (`src/worker.js`) also backs a small GraphQL API over the same anime 
   layer page-specific styles on top.
 - `public/theme.js` / `public/theme-palette.js` — the theme picker (see below) and the
   color-math behind the two random themes, loaded by every page.
+- `public/inline-markdown.js` — the tiny `**bold**`/`*italic*`/`[text](url)` parser the
+  pages that render committed prose (`/nasubi`, `/fsar`) share.
+- `public/streaming.js` — streaming service metadata + badge rendering, shared by `/vqar`,
+  `/fsar`, and `scripts/validateSeason.js`.
 - `public/manifest-url.js` — the manifest gist URL, the one thing `public/vqar/app.js`,
   `src/schema.js`, and `scripts/validate-gists.js` all need to agree on.
 - `src/worker.js` / `src/schema.js` — the Worker's fetch handler and GraphQL schema/resolvers.
@@ -348,6 +353,111 @@ falls back to "All Seasons" rather than erroring.
 
 Adding a new stat means adding a `compute*` function to `stats.js` (plus a test) and a
 render function in `app.js` that calls it — no committed data to regenerate, unlike Nasubi.
+
+## Full Season Anime Reviews page
+
+`public/fsar/` is a standalone page at `/fsar`, "Full Season Anime Reviews" — the long-form
+counterpart to VQAR. VQAR is five to ten minutes of a first episode and a one-liner on
+everything in a season; FSAR is a full writeup of a show actually watched to the end, which
+in practice means shows that were worth finishing. Plenty of them are decades old rather
+than current-season.
+
+Like the Evangelion and Nasubi pages (and unlike VQAR), the data is committed to this repo
+rather than living in gists, under `public/fsar/data/`:
+
+- `reviews/<id>.json` — one file per review, the full writeup. One file each so a new review
+  never touches an existing one, and so a long writeup only gets downloaded when it's opened.
+- `index.json` — **generated**, not hand-written: every review's card-level metadata (i.e.
+  everything except its `sections`), which is all the list view needs. Rebuild it with
+  `npm run build-fsar-index` after adding or editing a review; `test/fsar-data.test.js`
+  fails if the committed index is stale.
+
+### Review shape
+
+`public/fsar/schema.js` is the authoritative description of the shape (and is imported by
+the page, the index builder, and the validator so the three can't drift). A review is:
+
+```json
+{
+  "id": "gunbuster",
+  "status": "done",
+  "titleEN": "Gunbuster",
+  "titleJP": "トップをねらえ！",
+  "format": "OVA",
+  "year": 1988,
+  "airedLabel": "1988-89",
+  "episodeCount": 6,
+  "episodesWatched": 6,
+  "dateReviewed": "2026-03-02",
+  "dateUpdated": "2026-03-09",
+  "verdict": { "ratingNumber": 5, "ratingText": "Peak", "oneLiner": "..." },
+  "recommendedFor": ["..."],
+  "notFor": ["..."],
+  "tags": ["mecha", "sci-fi"],
+  "availabilityNote": "Out of print in the US; secondhand disc or bust.",
+  "sections": {
+    "story": ["paragraph", "paragraph"],
+    "production": ["paragraph"],
+    "op": { "ratingText": "Peak", "body": ["paragraph"] },
+    "ed": { "ratingText": "Nice", "body": ["paragraph"] },
+    "notes": [{ "heading": "...", "body": ["paragraph"] }],
+    "spoilers": [{ "heading": "...", "body": ["paragraph"] }]
+  }
+}
+```
+
+- **`status`** is `wip` or `done`. A `wip` review is a draft still being revised — it renders
+  and stays linkable, it just wears an "In Progress" badge, since these take several passes
+  before they settle. It's also the one thing validation keys off: a `wip` review may be
+  completely empty, while a `done` one must have a `verdict.oneLiner` and at least one
+  written section.
+- **`sections`** is a fixed set, all optional. `story`/`production` are arrays of paragraphs;
+  `op`/`ed` add a `ratingText` alongside their body. New section names are rejected rather
+  than silently dropped — anything that doesn't fit goes in `notes` (free-form
+  `{ heading, body }` blocks) or `spoilers`. Keeping the layout identical across every
+  writeup is the point: a link handed to someone lands them somewhere familiar.
+- **`spoilers`** render collapsed, in their own section at the bottom, behind a "Reveal all
+  spoilers" toggle whose state is remembered per reader (`pendelgeist:fsar:spoilers` in
+  `localStorage`). Nothing spoiler-y belongs in the other sections — that separation is what
+  makes a review safe to link to someone who hasn't watched the show.
+- **`recommendedFor`/`notFor`** are structured rather than prose because pointing a specific
+  person at a specific show is the main thing these get used for.
+- **`year`/`format`/`airedLabel`** carry the release info, since these aren't organized by
+  season the way VQAR is and aren't all TV: `format` is one of TV/OVA/ONA/Movie/Special, and
+  `airedLabel` is free text (`"Summer 2025"`, `"1988-89"`) shown in place of the bare year.
+  The page's Decade filter is derived from `year`. `episodeCount`/`episodesWatched` are
+  optional and may be `null`, which older shows often want.
+- **`streaming`** (plus the matching `crunchyrollUrl`/`hidiveUrl`/`netflixUrl`), `anilistId`,
+  and `annId` work exactly as they do in VQAR — same keys, same badges, shared code. For a
+  show no service carries, `availabilityNote` is free text saying where it actually lives.
+- Prose supports `**bold**`, `*italic*`, and `[text](url)` via `public/inline-markdown.js`,
+  same as the Nasubi page. It is not real Markdown.
+
+### The page
+
+One page, two views, switched on the `?show=` query param, so there's no build step or
+server routing involved:
+
+- `/fsar` — the card list, with Search / Decade / Tag / Status / Sort filters. The Decade and
+  Tag options are built from the data rather than hardcoded. Decade, tag, and status
+  selections are mirrored into the URL (via `history.replaceState`, so they don't spam
+  browser history), making a filtered list linkable too.
+- `/fsar?show=<id>` — one full review, which is the link to hand someone. Cards are real
+  `<a href>` elements, so open-in-new-tab and copy-link work; a plain left click is
+  intercepted and handled with `history.pushState` instead. Back/forward re-render the right
+  view, and a review body is fetched at most once per session.
+
+### Validating and rebuilding
+
+`scripts/validateFsarReview.js` checks one review's shape; `scripts/build-fsar-index.js`
+runs it over every file and refuses to write the index if anything is wrong. Both are
+exercised by `test/fsar-data.test.js`, which runs in CI — unlike the VQAR gist validators,
+this data is in-repo, so every PR checks it automatically.
+
+```
+npm run build-fsar-index              # regenerate index.json from the review files
+node scripts/build-fsar-index.js --check   # exit 1 if it's stale, write nothing
+```
 
 ## GraphQL API
 

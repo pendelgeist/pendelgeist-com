@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>
+    // Applied before first paint to avoid a flash of the wrong theme; must
+    // match the storage key/values theme.js uses.
+    try {
+      var savedTheme = localStorage.getItem('pendelgeist:theme');
+      if (savedTheme && savedTheme !== 'system') {
+        document.documentElement.setAttribute('data-theme', savedTheme);
+        var savedPalette = localStorage.getItem('pendelgeist:theme:palette:' + savedTheme);
+        if (savedPalette) {
+          var palette = JSON.parse(savedPalette);
+          for (var prop in palette) {
+            document.documentElement.style.setProperty(prop, palette[prop]);
+          }
+        }
+      }
+    } catch (e) {}
+  </script>
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/fsar/styles.css">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <title>Full Season Anime Reviews</title>
+</head>
+<body>
+  <nav>
+    <div class="nav-left">
+      <a href="/">Home</a>
+      <span class="nav-title">Full Season Anime Reviews</span>
+      <a href="#" id="infoToggle">Guide</a>
+      <a href="/vqar">Very Quick Reviews</a>
+    </div>
+  </nav>
+  <script type="module" src="/theme.js"></script>
+  <div class="container">
+    <div class="guidelines" id="guidelines">
+      <h3>What This Is</h3>
+      <p>Long-form reviews of shows I actually watched all the way through. If something was
+        garbage I stopped early and it never got one of these &mdash; that's what
+        <a href="/vqar">Very Quick Anime Reviews</a> is for, where every new show gets five
+        to ten minutes and a one-liner.</p>
+
+      <h3>What's In One</h3>
+      <p>Overall story &bull; overall production &bull; the opening &bull; the ending &bull;
+        anything else of particular note &bull; spoilers, kept separate</p>
+
+      <h3>Spoilers</h3>
+      <p>Spoilers live in their own collapsed section at the bottom of every review and stay
+        shut until you open them, so a link to a review is safe to follow before you've
+        watched the show.</p>
+
+      <h3>Not Just New Shows</h3>
+      <p>Plenty of these are decades old. Use the Decade filter, and check the availability
+        note on a review before assuming you can stream it.</p>
+
+      <h3>In Progress</h3>
+      <p>A review tagged <span class="status-badge status-badge-wip">In Progress</span> is a
+        draft I'm still revising. It'll change. Once it's settled it loses the badge.</p>
+    </div>
+
+    <div id="listView">
+      <div class="filters">
+        <div class="filter-group">
+          <label for="searchInput">Search</label>
+          <input type="text" id="searchInput" placeholder="Search titles, tags, verdicts...">
+        </div>
+        <div class="filter-group">
+          <label for="decadeFilter">Decade</label>
+          <select id="decadeFilter">
+            <option value="all">All Decades</option>
+          </select>
+        </div>
+        <div class="filter-group">
+          <label for="tagFilter">Tag</label>
+          <select id="tagFilter">
+            <option value="all">All Tags</option>
+          </select>
+        </div>
+        <div class="filter-group">
+          <label for="statusFilter">Status</label>
+          <select id="statusFilter">
+            <option value="all">All</option>
+            <option value="done">Finished</option>
+            <option value="wip">In Progress</option>
+          </select>
+        </div>
+        <div class="filter-group">
+          <label for="sortBy">Sort By</label>
+          <select id="sortBy">
+            <option value="recent">Most Recent</option>
+            <option value="year-new">Year (Newest)</option>
+            <option value="year-old">Year (Oldest)</option>
+            <option value="rating-high">Highest Rated</option>
+            <option value="title">Title (A-Z)</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="section">
+        <h2>Reviews</h2>
+        <div id="reviewCards"><div class="loading">LOADING DATA...</div></div>
+      </div>
+    </div>
+
+    <div id="showView" hidden>
+      <a href="/fsar" class="back-link" id="backLink">&larr; All reviews</a>
+      <div id="showContent"><div class="loading">LOADING REVIEW...</div></div>
+    </div>
+  </div>
+
+  <script type="module" src="/fsar/app.js"></script>
+</body>
+</html>

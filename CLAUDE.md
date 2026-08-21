@@ -12,6 +12,7 @@ npm run dev                                # wrangler dev - exercises the Worker
 npm run deploy                             # wrangler deploy
 npm run validate-gists                     # checks the live manifest + every season gist for consistency
 npm run validate-gists -- ./draft.json     # or check a local file/URL directly
+npm run build-fsar-index                   # regenerate public/fsar/data/index.json from the review files
 ```
 
 There is no build/lint step. `public/` is served as-is (no bundler, no framework, no
@@ -24,7 +25,12 @@ Static site (`public/`) served from a Cloudflare Worker, plus a small GraphQL AP
 
 - **Static assets** (`public/`): everything is plain HTML/CSS/vanilla-JS ES modules,
   no build step. Each page (`index.html`, `vqar/index.html`, `graphql/index.html`) loads
-  shared `/styles.css` + `/theme.js`, then its own page-specific styles/script.
+  shared `/styles.css` + `/theme.js`, then its own page-specific styles/script. Two small
+  modules are shared across pages rather than copy-pasted: `public/inline-markdown.js` (the
+  `**bold**`/`*italic*`/`[text](url)` parser `/nasubi` and `/fsar` render prose with) and
+  `public/streaming.js` (streaming service keys + badge rendering, used by `/vqar`, `/fsar`,
+  and `scripts/validateSeason.js`). Page-specific CSS is deliberately *not* shared — every
+  page carries its own copy of `.filters`/`.guidelines`, matching what's already there.
 - **The Worker** (`src/worker.js`): only actually runs for non-GET/HEAD requests to
   `/graphql` — see `assets.run_worker_first` in `wrangler.jsonc`. Everything else,
   including `GET /graphql` (which serves `public/graphql/index.html`, the query
@@ -46,6 +52,30 @@ independent consumers all read the *same* manifest URL, exported once from
   `season`/`seasonName` per review, mirroring what `app.js` does on the client.
 - `scripts/validate-gists.js` — a standalone consistency checker, not part of the
   deployed site.
+
+### FSAR data flow
+
+`/fsar` (Full Season Anime Reviews) is the long-form counterpart to VQAR, and unlike VQAR its
+data is committed to this repo, under `public/fsar/data/`: one file per review in `reviews/`,
+plus a **generated** `index.json` holding every review's card-level metadata (everything
+except `sections`). The list view loads only the index; a review body is fetched when that
+review is opened. Regenerate the index with `npm run build-fsar-index` after touching a
+review file — `test/fsar-data.test.js` fails if the committed one is stale.
+
+Four pieces have to agree on the review shape, so the shape lives in exactly one place:
+- `public/fsar/schema.js` — statuses, formats, the fixed section list and order, and the
+  small display helpers. Imported by all three of the below.
+- `public/fsar/app.js` — the page. One page, two views, routed on `?show=`.
+- `scripts/validateFsarReview.js` — shape validation, in the same spirit as
+  `scripts/validateSeason.js`. Rejects unknown section names rather than letting the page
+  silently drop them.
+- `scripts/build-fsar-index.js` — runs the validator over every review, then writes the index.
+
+A review's `status` is `wip` or `done`, and it's the only thing validation branches on: a
+`wip` draft may be empty (it renders with an "In Progress" badge), a `done` one must have a
+verdict one-liner and at least one written section. Reviews are not all recent shows — `year`,
+`format` (TV/OVA/ONA/Movie/Special) and free-text `airedLabel` carry release info instead of
+a VQAR-style season id, and episode counts are optional.
 
 ### Theme system
 
@@ -72,7 +102,10 @@ if it ever changes.
 
 Tests run against the real browser-facing files (`public/vqar/app.js`, `*.html`) via
 `node --test` + jsdom, with `fetch`/`localStorage` mocked (see `test/helpers.js`,
-`createFetchStub`/`createLocalStorageStub`). No separate test build — same ES modules
+`createFetchStub`/`createLocalStorageStub`; `/fsar` uses `loadFsarApp` +
+`createPathFetchStub`, keyed on pathname rather than filename since it fetches
+same-origin relative paths). Committed data (`public/fsar/data/`, `public/nasubi/data/`)
+is validated by its own test rather than a manually-run script, since CI can check it. No separate test build — same ES modules
 that ship to the browser are imported directly into the test process.
 
 ## Workflow

@@ -1,0 +1,483 @@
+/* FSAR-specific styles; shared site styles live in /styles.css.
+ *
+ * Contrast conventions (see the README): anything sitting on --color-chrome
+ * uses --color-nav-link, never --color-text/--color-accent, and nothing is
+ * dimmed with opacity - --color-muted is the de-emphasized tone. */
+
+/* Guidelines (same collapsible "Guide" panel as /vqar) */
+
+.guidelines {
+  box-shadow: var(--shadow-card);
+  margin-bottom: 2rem;
+  padding: 1rem;
+  display: none;
+  background-color: var(--color-surface);
+  border: var(--border-width) var(--border-style) var(--color-guideline-border);
+  border-radius: var(--radius-card);
+}
+
+.guidelines.show {
+  display: block;
+}
+
+.guidelines h3 {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  margin-top: 1rem;
+  color: var(--color-accent);
+}
+
+.guidelines h3:first-child {
+  margin-top: 0;
+}
+
+.guidelines p {
+  margin: 0.25rem 0;
+}
+
+.guidelines a {
+  color: var(--color-accent);
+}
+
+/* Filters */
+
+.filters {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: 1rem;
+  margin-bottom: 0.5rem;
+  padding: 0.5rem 1rem;
+  /* A border, not just the chrome fill, since --color-chrome equals
+   * --color-bg in some themes - this bar would otherwise vanish. */
+  border: 1px solid var(--color-input-border);
+  background-color: var(--color-chrome);
+}
+
+.filter-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+/* color:nav-link, not the inherited text color: this label sits on the
+ * chrome background (see /vqar/styles.css for the same note). */
+.filter-group label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--color-nav-link);
+}
+
+.filters input,
+.filters select {
+  height: 2.75rem;
+  padding: 0.5rem;
+  font: inherit;
+  border: 2px solid var(--color-input-border);
+  width: 100%;
+  box-sizing: border-box;
+  background-color: var(--color-surface);
+  color: var(--color-text);
+}
+
+.filters input:focus,
+.filters select:focus {
+  border-color: var(--color-input-focus);
+  box-shadow: var(--shadow-focus);
+}
+
+/* Shared bits: status badges and tags */
+
+.status-badge {
+  display: inline-block;
+  margin-left: 0.6rem;
+  padding: 0.1rem 0.5rem;
+  font-family: var(--font-body);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.08rem;
+  text-transform: uppercase;
+  vertical-align: middle;
+  border: 1px solid var(--color-accent);
+  border-radius: 999px;
+  color: var(--color-accent);
+}
+
+.tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+}
+
+.tag {
+  padding: 0.1rem 0.5rem;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.03rem;
+  border: 1px solid var(--color-muted);
+  border-radius: 999px;
+  color: var(--color-muted);
+}
+
+/* Card grid */
+
+#reviewCards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1rem;
+}
+
+.review-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  padding: 1rem;
+  box-shadow: var(--shadow-card);
+  background-color: var(--color-surface);
+  border-bottom: var(--border-width) var(--border-style) var(--color-article-border);
+  border-radius: var(--radius-card);
+  transition: transform 0.3s ease;
+}
+
+.review-card:hover {
+  transform: translateY(-3px);
+}
+
+.card-link {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  color: inherit;
+  text-decoration: none;
+}
+
+.card-title {
+  font-family: var(--font-heading);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--color-title);
+}
+
+.card-link:hover .card-title,
+.card-link:focus-visible .card-title {
+  text-decoration: underline;
+}
+
+.card-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  font-size: 0.72rem;
+  color: var(--color-muted);
+}
+
+.card-meta span:not(:last-child)::after {
+  content: ' •';
+}
+
+.card-verdict {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  margin-top: 0.2rem;
+}
+
+.card-rating {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--color-accent);
+}
+
+.card-oneliner {
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.card-oneliner-empty {
+  font-style: italic;
+  color: var(--color-muted);
+}
+
+.card-audience {
+  font-size: 0.8rem;
+  line-height: 1.5;
+}
+
+.card-audience-label {
+  margin-right: 0.4rem;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.08rem;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+
+.card-footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-top: auto;
+  padding-top: 0.6rem;
+  border-top: 1px dashed var(--color-article-border);
+}
+
+/* Single review */
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 1rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--color-accent);
+}
+
+.review-full {
+  padding: 1.5rem 1.25rem;
+  box-shadow: var(--shadow-card);
+  background-color: var(--color-surface);
+  border-radius: var(--radius-card);
+}
+
+.review-header {
+  padding-bottom: 1rem;
+  margin-bottom: 1.5rem;
+  border-bottom: 3px solid var(--color-section-border);
+}
+
+.review-title {
+  font-family: var(--font-heading);
+  font-size: 2rem;
+  font-weight: 900;
+  line-height: 1.2;
+  color: var(--color-title);
+}
+
+/* Deliberately not var(--font-heading): every theme's heading font is
+ * Latin-only, so CJK falls through to a per-character browser fallback and
+ * kanji can render at a visibly different weight than the kana around them.
+ * Pinning an explicit CJK stack keeps the line on one font in every theme
+ * (same reasoning as .entry-title-jp in /vqar/styles.css). */
+.review-title-jp {
+  font-family: 'Hiragino Kaku Gothic Pro', 'Hiragino Sans', 'Yu Gothic Medium', Meiryo, 'Noto Sans CJK JP', 'MS Gothic', sans-serif;
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin-top: 0.25rem;
+}
+
+.review-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 0.75rem;
+  font-size: 0.8rem;
+  color: var(--color-muted);
+}
+
+/* Bullet separators between the plain facts (year, format, episode count),
+ * but not after the streaming badge group, which reads as its own unit. */
+.review-meta > span:not(.entry-streaming):not(:last-child)::after {
+  content: ' •';
+}
+
+.review-meta a {
+  color: var(--color-accent);
+  text-decoration: underline;
+}
+
+.availability-note {
+  margin-top: 0.6rem;
+  font-size: 0.82rem;
+  font-style: italic;
+  color: var(--color-muted);
+}
+
+.review-verdict {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  margin-top: 1rem;
+}
+
+.review-rating {
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: 0.05rem;
+  color: var(--color-accent);
+}
+
+.review-oneliner {
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+
+.review-dates {
+  margin-top: 0.75rem;
+  font-size: 0.72rem;
+  color: var(--color-muted);
+}
+
+.review-header .tag-list {
+  margin-top: 0.75rem;
+}
+
+/* Audience callouts */
+
+.audiences {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.audience {
+  padding: 0.75rem 1rem;
+  border: var(--border-width) var(--border-style) var(--color-guideline-border);
+  border-left: 4px solid var(--color-accent);
+  border-radius: var(--radius-card);
+}
+
+.audience-bad {
+  border-left-color: var(--color-muted);
+}
+
+.audience h4 {
+  margin-bottom: 0.4rem;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1rem;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+
+.audience ul {
+  margin: 0;
+  padding-left: 1.1rem;
+}
+
+.audience li {
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+/* Sections */
+
+.review-section {
+  margin-bottom: 1.75rem;
+}
+
+.review-section h3 {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.75rem;
+  margin-bottom: 0.6rem;
+  padding-bottom: 0.3rem;
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: 0.1rem;
+  text-transform: uppercase;
+  border-bottom: 1px solid var(--color-guideline-border);
+  color: var(--color-accent);
+}
+
+.review-section h4 {
+  margin: 1rem 0 0.4rem;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--color-title);
+}
+
+.section-rating {
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.02rem;
+  text-transform: none;
+  color: var(--color-text);
+}
+
+.review-section p {
+  max-width: 72ch;
+  margin-bottom: 0.8rem;
+  font-size: 0.95rem;
+  line-height: 1.8;
+}
+
+.review-section a {
+  color: var(--color-accent);
+}
+
+/* Spoilers */
+
+.spoiler-note {
+  font-size: 0.8rem;
+  font-style: italic;
+  color: var(--color-muted);
+}
+
+.spoiler-toggle {
+  margin-bottom: 0.75rem;
+  padding: 0.4rem 0.9rem;
+  font: inherit;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08rem;
+  text-transform: uppercase;
+  cursor: pointer;
+  background-color: var(--color-surface);
+  border: 2px solid var(--color-accent);
+  border-radius: 999px;
+  color: var(--color-accent);
+}
+
+/* Inverted rather than dimmed: opacity would stack with whatever color the
+ * theme already picked and can drop the pairing below AA. */
+.spoiler-toggle:hover,
+.spoiler-toggle:focus-visible {
+  background-color: var(--color-accent);
+  color: var(--color-surface);
+}
+
+.spoiler {
+  margin-bottom: 0.6rem;
+  padding: 0.6rem 0.9rem;
+  border: 1px dashed var(--color-accent);
+  border-radius: var(--radius-card);
+}
+
+.spoiler summary {
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: var(--color-accent);
+}
+
+.spoiler p {
+  margin-top: 0.6rem;
+}
+
+.loading-error {
+  color: var(--color-accent);
+  font-weight: 700;
+}
+
+/* Responsive */
+
+@media (max-width: 768px) {
+  .filters {
+    grid-template-columns: 1fr;
+  }
+
+  #reviewCards {
+    grid-template-columns: 1fr;
+  }
+
+  .review-title {
+    font-size: 1.5rem;
+  }
+}

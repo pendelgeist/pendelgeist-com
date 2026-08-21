@@ -11,6 +11,8 @@
  * dataset JSON file and a <option> + entry in DATASETS.
  */
 
+import { parseInline, createParagraph, renderProse } from '../inline-markdown.js';
+
 const DATA_BASE = '/nasubi/data';
 
 const dom = {
@@ -68,57 +70,6 @@ const MAX_ROWS_SHOWN = 300;
 
 /** @type {Record<string, unknown[]>} */
 const datasetCache = {};
-
-/**
- * Tiny inline-markdown parser: supports **bold**, *italic*, and [text](url)
- * links. Returns DOM nodes rather than using innerHTML.
- * @param {string} text
- * @returns {(Node)[]}
- */
-function parseInline(text) {
-  const nodes = [];
-  const pattern = /\*\*(.+?)\*\*|\*(.+?)\*|\[(.+?)\]\((.+?)\)/g;
-  let lastIndex = 0;
-  let match;
-  while ((match = pattern.exec(text))) {
-    if (match.index > lastIndex) {
-      nodes.push(document.createTextNode(text.slice(lastIndex, match.index)));
-    }
-    if (match[1] !== undefined) {
-      const strong = document.createElement('strong');
-      strong.textContent = match[1];
-      nodes.push(strong);
-    } else if (match[2] !== undefined) {
-      const em = document.createElement('em');
-      em.textContent = match[2];
-      nodes.push(em);
-    } else {
-      const a = document.createElement('a');
-      a.href = match[4];
-      a.textContent = match[3];
-      a.target = '_blank';
-      a.rel = 'noopener noreferrer';
-      nodes.push(a);
-    }
-    lastIndex = pattern.lastIndex;
-  }
-  if (lastIndex < text.length) {
-    nodes.push(document.createTextNode(text.slice(lastIndex)));
-  }
-  return nodes;
-}
-
-/** @param {string} text */
-function createParagraph(text) {
-  const p = document.createElement('p');
-  p.append(...parseInline(text));
-  return p;
-}
-
-/** @param {string[]} paragraphs */
-function renderProse(container, paragraphs) {
-  container.replaceChildren(...(paragraphs ?? []).map(createParagraph));
-}
 
 /** @param {{label: string, value: string}[]} stats */
 function renderStatGrid(container, stats) {
