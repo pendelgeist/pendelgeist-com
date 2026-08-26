@@ -68,7 +68,7 @@ export function validateSeason(season) {
         }
       }
     }
-    for (const key of ['crunchyrollUrl', 'hidiveUrl', 'netflixUrl']) {
+    for (const key of ['crunchyrollUrl', 'hidiveUrl', 'netflixUrl', 'wikipediaUrl', 'wikipediaJaUrl']) {
       if (r[key] !== undefined && typeof r[key] !== 'string') {
         issues.push(`"${label}" has a malformed ${key} (expected a string)`);
       }

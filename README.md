@@ -145,6 +145,13 @@ A review may also carry an optional `annId` (an Anime News Network encyclopedia 
 `22622`) — same idea as `anilistId`, but links out to the show's ANN encyclopedia page
 instead. Add it by hand; there's no automated lookup for it like `validate-against-anilist.js`.
 
+A review may also carry optional `wikipediaUrl` and `wikipediaJaUrl` — the full article
+URLs, rather than ids the way `anilistId`/`annId` work, because Wikipedia keys on the
+article title and the two language editions rarely agree about what it is. Both render as
+outbound links next to AniList and ANN. The Japanese article is worth carrying separately:
+it is routinely far more detailed on staff and broadcast history. Hand-maintained, no
+automated lookup.
+
 A review may also carry an optional `streaming` array of service keys (`crunchyroll`,
 `hidive`, `youtube`, `netflix`, `hulu`, `prime`) the show is available on, e.g.
 `["crunchyroll", "hulu"]` — renders as small badges on the entry. Purely informational and
@@ -430,10 +437,9 @@ the page, the index builder, and the validator so the three can't drift). A revi
 - **`streaming`** (plus the matching `crunchyrollUrl`/`hidiveUrl`/`netflixUrl`), `anilistId`,
   and `annId` work exactly as they do in VQAR — same keys, same badges, shared code. For a
   show no service carries, `availabilityNote` is free text saying where it actually lives.
-- **`wikipediaUrl`/`wikipediaJaUrl`** are full article URLs rather than ids, since Wikipedia
-  is keyed on the article title and the two language editions disagree about it. Both render
-  as outbound links in the review header alongside AniList/ANN. The Japanese article is worth
-  carrying separately — it is routinely far more detailed on staff and broadcast history.
+- **`wikipediaUrl`/`wikipediaJaUrl`** work as they do in VQAR: full article URLs rather than
+  ids, since Wikipedia is keyed on the article title and the two language editions disagree
+  about it. Both render as outbound links in the review header alongside AniList/ANN.
 - Prose supports `**bold**`, `*italic*`, and `[text](url)` via `public/inline-markdown.js`,
   same as the Nasubi page. It is not real Markdown.
 

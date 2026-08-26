@@ -216,14 +216,22 @@ test('a full-series re-review and OP/ED notes render as addenda below the main r
   assert.match(document.getElementById('reviewedShows').textContent, /still stuck in my head/);
 });
 
-test('a review with an anilistId renders an AniList link; one without does not', async () => {
+test('a review renders a link per reference site it has, in a fixed order', async () => {
   const fetch = createFetchStub({
     'vqar-manifest.json': manifest,
     'vqar-season-summer-2026.json': {
       id: 'summer-2026',
       name: 'Summer 2026',
       reviewed: [
-        { titleEN: 'Linked Show', ratingText: 'Meh', dateReviewed: '2026-07-01', anilistId: 154587 },
+        {
+          titleEN: 'Linked Show',
+          ratingText: 'Meh',
+          dateReviewed: '2026-07-01',
+          anilistId: 154587,
+          annId: 22622,
+          wikipediaUrl: 'https://en.wikipedia.org/wiki/Linked_Show',
+          wikipediaJaUrl: 'https://ja.wikipedia.org/wiki/\u745E\u9E97',
+        },
         { titleEN: 'Unlinked Show', ratingText: 'Meh', dateReviewed: '2026-07-02' },
       ],
       pending: [],
@@ -232,19 +240,31 @@ test('a review with an anilistId renders an AniList link; one without does not',
   });
   const { document } = await loadApp({ fetch });
 
-  const links = [...document.querySelectorAll('.entry-anilist-link')];
-  assert.equal(links.length, 1);
-  assert.equal(links[0].getAttribute('href'), 'https://anilist.co/anime/154587');
+  const links = [...document.querySelectorAll('.entry-external-link')];
+  assert.deepEqual(links.map((a) => a.textContent), ['AniList', 'ANN', 'Wikipedia', 'Wikipedia (JP)']);
+  // getAttribute, not .href - the DOM percent-encodes the Japanese article title.
+  assert.deepEqual(links.map((a) => a.getAttribute('href')), [
+    'https://anilist.co/anime/154587',
+    'https://www.animenewsnetwork.com/encyclopedia/anime.php?id=22622',
+    'https://en.wikipedia.org/wiki/Linked_Show',
+    'https://ja.wikipedia.org/wiki/\u745E\u9E97',
+  ]);
+  assert.ok(links.every((a) => a.rel === 'noopener noreferrer'), 'external links need rel=noopener');
 });
 
-test('a review with an annId renders an ANN link; one without does not', async () => {
+test('a review with only some reference sites renders only those links', async () => {
   const fetch = createFetchStub({
     'vqar-manifest.json': manifest,
     'vqar-season-summer-2026.json': {
       id: 'summer-2026',
       name: 'Summer 2026',
       reviewed: [
-        { titleEN: 'Linked Show', ratingText: 'Meh', dateReviewed: '2026-07-01', annId: 22622 },
+        {
+          titleEN: 'Half-Linked Show',
+          ratingText: 'Meh',
+          dateReviewed: '2026-07-01',
+          wikipediaUrl: 'https://en.wikipedia.org/wiki/Half_Linked_Show',
+        },
         { titleEN: 'Unlinked Show', ratingText: 'Meh', dateReviewed: '2026-07-02' },
       ],
       pending: [],
@@ -253,9 +273,8 @@ test('a review with an annId renders an ANN link; one without does not', async (
   });
   const { document } = await loadApp({ fetch });
 
-  const links = [...document.querySelectorAll('.entry-ann-link')];
-  assert.equal(links.length, 1);
-  assert.equal(links[0].getAttribute('href'), 'https://www.animenewsnetwork.com/encyclopedia/anime.php?id=22622');
+  const links = [...document.querySelectorAll('.entry-external-link')];
+  assert.deepEqual(links.map((a) => a.textContent), ['Wikipedia']);
 });
 
 test('a review with streaming services renders a badge per service, in a fixed order; one without renders none', async () => {

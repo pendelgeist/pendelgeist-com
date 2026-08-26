@@ -36,6 +36,10 @@ type Review {
   anilistId: Int
   "Optional Anime News Network encyclopedia id, for linking out to the show's ANN page."
   annId: Int
+  "Optional English Wikipedia article URL. Stored as a URL rather than an id, since Wikipedia keys on the article title."
+  wikipediaUrl: String
+  "Optional Japanese Wikipedia article URL, usually the more detailed of the two on staff and broadcast history."
+  wikipediaJaUrl: String
   "Optional list of streaming service keys the show is available on (e.g. crunchyroll, netflix)."
   streaming: [String!]
   "Optional direct link to the show's Crunchyroll page; makes the CR streaming badge clickable."

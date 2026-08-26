@@ -97,6 +97,34 @@ test('anilistId passes through when set on a review, and is null when absent', a
   assert.deepEqual(result2.data.season.reviewed, []);
 });
 
+test('Wikipedia URLs pass through when set on a review', async () => {
+  const fetchStub = createFetchStub({
+    'vqar-manifest.json': manifest,
+    'vqar-season-summer-2026.json': {
+      id: 'summer-2026',
+      name: 'Summer 2026',
+      reviewed: [{
+        titleEN: 'Documented Show',
+        ratingText: 'Meh',
+        dateReviewed: '2026-07-01',
+        wikipediaUrl: 'https://en.wikipedia.org/wiki/Documented_Show',
+        wikipediaJaUrl: 'https://ja.wikipedia.org/wiki/\u745E\u9E97',
+      }],
+      pending: [],
+      skipped: [],
+    },
+    'vqar-season-spring-2026.json': seasons['vqar-season-spring-2026.json'],
+  });
+
+  const result = await run('{ currentSeason { reviewed { titleEN wikipediaUrl wikipediaJaUrl } } }', fetchStub);
+  assert.equal(result.errors, undefined);
+  assert.deepEqual(result.data.currentSeason.reviewed, [{
+    titleEN: 'Documented Show',
+    wikipediaUrl: 'https://en.wikipedia.org/wiki/Documented_Show',
+    wikipediaJaUrl: 'https://ja.wikipedia.org/wiki/\u745E\u9E97',
+  }]);
+});
+
 test('annId and streaming pass through when set on a review', async () => {
   const fetchStub = createFetchStub({
     'vqar-manifest.json': manifest,
