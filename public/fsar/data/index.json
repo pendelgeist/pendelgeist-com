@@ -2,24 +2,34 @@
   "reviews": [
     {
       "id": "ruri-rocks",
-      "status": "wip",
+      "status": "done",
       "titleEN": "Ruri Rocks",
       "titleJP": "瑠璃の宝石",
       "format": "TV",
       "year": 2025,
       "airedLabel": "Summer 2025",
-      "episodeCount": null,
-      "episodesWatched": null,
+      "episodeCount": 13,
+      "episodesWatched": 13,
       "dateReviewed": "2026-08-21",
+      "dateUpdated": "2026-08-26",
       "tags": [
         "slice-of-life",
         "hobby",
-        "science"
+        "science",
+        "geology",
+        "educational",
+        "manga-adaptation"
+      ],
+      "annId": 33495,
+      "wikipediaUrl": "https://en.wikipedia.org/wiki/Ruri_Rocks",
+      "wikipediaJaUrl": "https://ja.wikipedia.org/wiki/瑠璃の宝石",
+      "streaming": [
+        "crunchyroll"
       ],
       "verdict": {
         "ratingNumber": null,
         "ratingText": "",
-        "oneLiner": ""
+        "oneLiner": "I've never learned so much about rocks in my life."
       },
       "recommendedFor": [],
       "notFor": []

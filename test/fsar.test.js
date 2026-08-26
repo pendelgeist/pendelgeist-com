@@ -23,6 +23,10 @@ const GUNBUSTER = {
   recommendedFor: ['anyone curious where a lot of Gainax started'],
   notFor: ['you need every episode to look the same'],
   availabilityNote: 'Out of print in the US; secondhand disc or bust.',
+  anilistId: 1119,
+  annId: 619,
+  wikipediaUrl: 'https://en.wikipedia.org/wiki/Gunbuster',
+  wikipediaJaUrl: 'https://ja.wikipedia.org/wiki/トップをねらえ！',
   sections: {
     story: ['It starts as a sports show and does not stay one.'],
     production: ['The last episode changes technique entirely.'],
@@ -234,6 +238,29 @@ test('a review renders its audience callouts and availability note', async () =>
   assert.match(document.querySelector('.audience-good').textContent, /where a lot of Gainax started/);
   assert.match(document.querySelector('.audience-bad').textContent, /every episode to look the same/);
   assert.match(document.querySelector('.availability-note').textContent, /Out of print/);
+});
+
+test('a review links out to every reference site it has an id or URL for', async () => {
+  const { document } = await loadFsarApp({ fetch: createPathFetchStub(routes()), search: '?show=gunbuster' });
+  await waitFor(() => document.querySelector('.review-full'));
+
+  const links = [...document.querySelectorAll('.review-meta a')];
+  assert.deepEqual(links.map((a) => a.textContent), ['AniList', 'ANN', 'Wikipedia', 'Wikipedia (JP)']);
+  // getAttribute, not .href - the DOM percent-encodes the Japanese article title.
+  assert.deepEqual(links.map((a) => a.getAttribute('href')), [
+    'https://anilist.co/anime/1119',
+    'https://www.animenewsnetwork.com/encyclopedia/anime.php?id=619',
+    'https://en.wikipedia.org/wiki/Gunbuster',
+    'https://ja.wikipedia.org/wiki/\u30C8\u30C3\u30D7\u3092\u306D\u3089\u3048\uFF01',
+  ]);
+  assert.ok(links.every((a) => a.rel === 'noopener noreferrer'), 'external links need rel=noopener');
+});
+
+test('a review with no reference ids or URLs renders no outbound links', async () => {
+  const { document } = await loadFsarApp({ fetch: createPathFetchStub(routes()), search: '?show=ruri-rocks' });
+  await waitFor(() => document.querySelector('.review-full'));
+
+  assert.equal(document.querySelector('.review-meta a'), null);
 });
 
 test('a draft review skips the sections it has nothing in yet', async () => {

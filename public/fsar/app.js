@@ -46,6 +46,9 @@ import {
  * @property {string[]} [tags]
  * @property {number} [anilistId]
  * @property {number} [annId]
+ * @property {string} [wikipediaUrl] - English Wikipedia article
+ * @property {string} [wikipediaJaUrl] - Japanese Wikipedia article, which is
+ *   routinely far more detailed on staff and broadcast history
  * @property {string[]} [streaming]
  * @property {string} [availabilityNote] - for shows no service carries (most older ones)
  */
@@ -473,20 +476,20 @@ function createReviewHeader(review) {
     span.textContent = text;
     meta.appendChild(span);
   }
-  if (review.anilistId) {
+  const externalLinks = [
+    review.anilistId && ['AniList', `https://anilist.co/anime/${review.anilistId}`],
+    review.annId && ['ANN', `https://www.animenewsnetwork.com/encyclopedia/anime.php?id=${review.annId}`],
+    review.wikipediaUrl && ['Wikipedia', review.wikipediaUrl],
+    review.wikipediaJaUrl && ['Wikipedia (JP)', review.wikipediaJaUrl],
+  ];
+  for (const link of externalLinks) {
+    if (!link) continue;
+    const [label, href] = link;
     const a = document.createElement('a');
-    a.href = `https://anilist.co/anime/${review.anilistId}`;
+    a.href = href;
     a.target = '_blank';
     a.rel = 'noopener noreferrer';
-    a.textContent = 'AniList';
-    meta.appendChild(a);
-  }
-  if (review.annId) {
-    const a = document.createElement('a');
-    a.href = `https://www.animenewsnetwork.com/encyclopedia/anime.php?id=${review.annId}`;
-    a.target = '_blank';
-    a.rel = 'noopener noreferrer';
-    a.textContent = 'ANN';
+    a.textContent = label;
     meta.appendChild(a);
   }
   const badges = createStreamingBadges(review);

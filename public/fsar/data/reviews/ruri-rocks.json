@@ -1,55 +1,57 @@
 {
   "id": "ruri-rocks",
-  "status": "wip",
+  "status": "done",
   "titleEN": "Ruri Rocks",
   "titleJP": "瑠璃の宝石",
   "format": "TV",
   "year": 2025,
   "airedLabel": "Summer 2025",
-  "episodeCount": null,
-  "episodesWatched": null,
+  "episodeCount": 13,
+  "episodesWatched": 13,
   "dateReviewed": "2026-08-21",
-  "tags": ["slice-of-life", "hobby", "science"],
+  "dateUpdated": "2026-08-26",
+  "tags": ["slice-of-life", "hobby", "science", "geology", "educational", "manga-adaptation"],
+  "annId": 33495,
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/Ruri_Rocks",
+  "wikipediaJaUrl": "https://ja.wikipedia.org/wiki/瑠璃の宝石",
+  "streaming": ["crunchyroll"],
   "verdict": {
     "ratingNumber": null,
     "ratingText": "",
-    "oneLiner": ""
+    "oneLiner": "I've never learned so much about rocks in my life."
   },
   "recommendedFor": [],
   "notFor": [],
   "sections": {
     "story": [
-      "**Draft.** What the season is actually about, and whether its shape works — where it starts, where it lands, and whether the middle earns the distance between them.",
-      "Anything the story does that's unusual for its era or its genre goes here too."
+      "Honestly, I've never learned so much about rocks in my life — their formation, creation, destruction, how they get places, how they are ever changing. Really just so lovingly done and entertainingly well done.",
+      "This show should have been a junk barrel over the top fan-service show, but it managed to keep everything together and have a lot of really great characters that all grew, learned, and became more interested in the things they started getting into as the show went on. I really think that Ruri went through such an interesting character arc, where she really was a much more interesting character by the end of the show than she was at the beginning.",
+      "For a show largely set in nature and about mining, it doesn't get environmentally preachy. It takes a much more interesting perspective of just saying \"okay that's all there, now what's happening now? what can we figure out?\"",
+      "Given the level of technical detail in all the adorably drawn charts and graphs, I think if you could learn and repeat back what was in the eye-catches and in the charts and graphs you would have learned more about mineralogy than 99.99999% of people, and could actually have a well informed conversation with anyone who was interested in that. So that definitely checks off the repeat viewing, and wanting to pause and read all the details."
     ],
     "production": [
-      "**Draft.** Animation, direction, color, sound design, voice work — whatever actually stood out, in either direction. Not a studio credits dump."
+      "The production values for the show definitely stayed consistent throughout — they made the things they wanted to be pretty look pretty, and they kept the rest of the things looking consistent. Nothing was out of sync stylistically.",
+      "A good reason for this is scripts. I cannot comment on the original manga, but the main scenario writer Michiko Yokote is literally my favorite script writer, and I didn't realize she was involved in this until ep ~2. It's hard to spot one of her works, because she does so much and has over the years, but it always has one through-line: exceedingly high quality."
     ],
     "op": {
-      "ratingText": "",
+      "ratingText": "Top tier",
       "body": [
-        "**Draft.** The opening: song, sequence, and whether it sets up the show it's attached to."
+        "「光のすみか」 (\"Hikari no Sumika\") by Rei Yasuda.",
+        "The OP is top tier; it really sets the vibes for the show up to maximum: it's going to be casually relaxing and you are going to learn about rocks."
       ]
     },
     "ed": {
-      "ratingText": "",
       "body": [
-        "**Draft.** The ending: same treatment."
+        "「サファイア」 (\"Sapphire\") by Hana Hope."
       ]
     },
     "notes": [
       {
-        "heading": "Draft placeholder",
+        "heading": "By the numbers",
         "body": [
-          "Free-form section for anything that doesn't fit the fixed headings — a recurring gag, a production detail worth knowing, how it compares to something else. Add as many of these as the show earns."
-        ]
-      }
-    ],
-    "spoilers": [
-      {
-        "heading": "Draft placeholder",
-        "body": [
-          "Everything spoiler-y lives down here, collapsed by default, so the rest of the page stays safe to hand to someone who hasn't watched it."
+          "**MAL:** 7.98, ranked #786, popularity #2516, ~95,000 members.",
+          "**ANN:** genres adventure, comedy, slice of life; themes CGDCT, educational, geology, mineralogy, school. Objectionable content: mild.",
+          "Studio Bind, 13 episodes, 23 minutes each, 6 July – 28 September 2025. Adapted from Keiichirō Shibuya's manga in KADOKAWA's *Harta*."
         ]
       }
     ]

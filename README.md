@@ -430,6 +430,10 @@ the page, the index builder, and the validator so the three can't drift). A revi
 - **`streaming`** (plus the matching `crunchyrollUrl`/`hidiveUrl`/`netflixUrl`), `anilistId`,
   and `annId` work exactly as they do in VQAR — same keys, same badges, shared code. For a
   show no service carries, `availabilityNote` is free text saying where it actually lives.
+- **`wikipediaUrl`/`wikipediaJaUrl`** are full article URLs rather than ids, since Wikipedia
+  is keyed on the article title and the two language editions disagree about it. Both render
+  as outbound links in the review header alongside AniList/ANN. The Japanese article is worth
+  carrying separately — it is routinely far more detailed on staff and broadcast history.
 - Prose supports `**bold**`, `*italic*`, and `[text](url)` via `public/inline-markdown.js`,
   same as the Nasubi page. It is not real Markdown.
 

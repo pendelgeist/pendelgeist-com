@@ -118,7 +118,10 @@ export function validateFsarReview(review, { filename } = {}) {
       }
     }
   }
-  for (const key of ['crunchyrollUrl', 'hidiveUrl', 'netflixUrl', 'availabilityNote']) {
+  for (const key of [
+    'crunchyrollUrl', 'hidiveUrl', 'netflixUrl', 'availabilityNote',
+    'wikipediaUrl', 'wikipediaJaUrl',
+  ]) {
     if (review[key] !== undefined && typeof review[key] !== 'string') {
       push(`malformed ${key} (expected a string)`);
     }
