@@ -21,27 +21,18 @@
         "manga-adaptation"
       ],
       "annId": 33495,
+      "wikipediaUrl": "https://en.wikipedia.org/wiki/Ruri_Rocks",
+      "wikipediaJaUrl": "https://ja.wikipedia.org/wiki/瑠璃の宝石",
       "streaming": [
         "crunchyroll"
       ],
       "verdict": {
-        "ratingNumber": 5,
-        "ratingText": "Peak",
-        "oneLiner": "I have never learned this much about rocks in my life — how they form, how they get destroyed, and above all how they *get places* — and it is all delivered by a show that never once stops being relaxing to sit with."
+        "ratingNumber": null,
+        "ratingText": "",
+        "oneLiner": "I've never learned so much about rocks in my life."
       },
-      "recommendedFor": [
-        "Anyone who liked the competence-and-gear register of Yuru Camp but wants the hobby to have an actual research question attached to it",
-        "People who want to be genuinely taught something — streak tests, panning, thin sections, UV fluorescence, all shown as procedure you could go and repeat this weekend",
-        "Anyone who pauses anime to read the diagrams, because the charts and eye-catches here are running denser than the narration and they reward it",
-        "Rock, mineral and fossil people, obviously, but also anyone who has ever kept a field notebook about anything at all",
-        "Viewers who want a show about choosing what to study with your life, told without a single raised voice"
-      ],
-      "notFor": [
-        "Anyone who needs a plot engine — the stakes never rise above \"is the deposit up this valley or the next one\"",
-        "Viewers who bounce off exposition, because a solid chunk of every episode is somebody explaining something",
-        "People looking for romance, or for a school-club ensemble comedy — that is simply not the register, and the show never once pretends otherwise",
-        "Anyone who wants a mystery solved by a flash of intuition rather than by sorting river sand under a microscope for hours"
-      ]
+      "recommendedFor": [],
+      "notFor": []
     }
   ]
 }
