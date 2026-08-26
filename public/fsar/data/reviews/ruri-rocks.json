@@ -10,11 +10,21 @@
   "episodesWatched": 13,
   "dateReviewed": "2026-08-21",
   "dateUpdated": "2026-08-26",
-  "tags": ["slice-of-life", "hobby", "science", "geology", "educational", "manga-adaptation"],
+  "tags": [
+    "slice-of-life",
+    "hobby",
+    "science",
+    "geology",
+    "educational",
+    "manga-adaptation"
+  ],
   "annId": 33495,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/Ruri_Rocks",
   "wikipediaJaUrl": "https://ja.wikipedia.org/wiki/瑠璃の宝石",
-  "streaming": ["crunchyroll"],
+  "streaming": [
+    "crunchyroll"
+  ],
+  "crunchyrollUrl": "https://www.crunchyroll.com/series/G4PH0WJ2V/ruri-rocks",
   "verdict": {
     "ratingNumber": null,
     "ratingText": "",
