@@ -195,6 +195,39 @@ test('a well-formed crunchyrollUrl does not trigger a false positive', () => {
   assert.deepEqual(validateSeason(season), []);
 });
 
+test('flags a malformed wikipediaUrl or wikipediaJaUrl (not a string)', () => {
+  const season = cleanSeason();
+  season.reviewed.push({
+    titleEN: 'Bad Wiki Show',
+    ratingText: 'Meh',
+    dateReviewed: '2026-04-02',
+    wikipediaUrl: 12345,
+  });
+  season.reviewed.push({
+    titleEN: 'Bad JP Wiki Show',
+    ratingText: 'Meh',
+    dateReviewed: '2026-04-03',
+    wikipediaJaUrl: 67890,
+  });
+
+  const issues = validateSeason(season);
+  assert.ok(issues.some(i => i.includes('"Bad Wiki Show"') && i.includes('wikipediaUrl')));
+  assert.ok(issues.some(i => i.includes('"Bad JP Wiki Show"') && i.includes('wikipediaJaUrl')));
+});
+
+test('well-formed Wikipedia URLs do not trigger a false positive', () => {
+  const season = cleanSeason();
+  season.reviewed.push({
+    titleEN: 'Documented Show',
+    ratingText: 'Meh',
+    dateReviewed: '2026-04-02',
+    wikipediaUrl: 'https://en.wikipedia.org/wiki/Documented_Show',
+    wikipediaJaUrl: 'https://ja.wikipedia.org/wiki/\u745E\u9E97',
+  });
+
+  assert.deepEqual(validateSeason(season), []);
+});
+
 test('flags a malformed hidiveUrl or netflixUrl (not a string)', () => {
   const season = cleanSeason();
   season.reviewed.push({

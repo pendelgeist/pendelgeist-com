@@ -179,8 +179,7 @@ article:hover {
   margin-bottom: 0.75rem;
 }
 
-.entry-anilist-link,
-.entry-ann-link {
+.entry-external-link {
   font-family: var(--font-body);
   font-size: 0.75rem;
   font-weight: 500;

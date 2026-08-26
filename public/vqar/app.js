@@ -27,6 +27,9 @@ import { createStreamingBadges } from '../streaming.js';
  * @property {number} _timestamp
  * @property {number} [anilistId] - optional AniList media id, links out to the show's AniList page
  * @property {number} [annId] - optional Anime News Network encyclopedia id, links out to the show's ANN page
+ * @property {string} [wikipediaUrl] - optional English Wikipedia article URL
+ * @property {string} [wikipediaJaUrl] - optional Japanese Wikipedia article URL, usually
+ *   far more detailed on staff and broadcast history than the English one
  * @property {string[]} [streaming] - optional list of streaming service keys (see STREAMING_SERVICES) the show is available on
  * @property {string} [crunchyrollUrl] - optional direct link to the show's Crunchyroll page; makes the "CR" streaming badge clickable
  * @property {string} [hidiveUrl] - optional direct link to the show's HIDIVE page; makes the "HD" streaming badge clickable
@@ -334,23 +337,25 @@ function createReviewArticle(r) {
   const title = document.createElement('div');
   title.className = 'entry-title';
   title.textContent = r.titleEN ?? 'Untitled';
-  if (r.anilistId) {
-    const anilistLink = document.createElement('a');
-    anilistLink.className = 'entry-anilist-link';
-    anilistLink.href = `https://anilist.co/anime/${r.anilistId}`;
-    anilistLink.target = '_blank';
-    anilistLink.rel = 'noopener noreferrer';
-    anilistLink.textContent = 'AniList';
-    title.appendChild(anilistLink);
-  }
-  if (r.annId) {
-    const annLink = document.createElement('a');
-    annLink.className = 'entry-ann-link';
-    annLink.href = `https://www.animenewsnetwork.com/encyclopedia/anime.php?id=${r.annId}`;
-    annLink.target = '_blank';
-    annLink.rel = 'noopener noreferrer';
-    annLink.textContent = 'ANN';
-    title.appendChild(annLink);
+  // AniList and ANN are ids we expand into URLs; Wikipedia is stored as the URL
+  // itself, since it keys on the article title and the two language editions
+  // disagree about what that is.
+  const externalLinks = [
+    r.anilistId && ['AniList', `https://anilist.co/anime/${r.anilistId}`],
+    r.annId && ['ANN', `https://www.animenewsnetwork.com/encyclopedia/anime.php?id=${r.annId}`],
+    r.wikipediaUrl && ['Wikipedia', r.wikipediaUrl],
+    r.wikipediaJaUrl && ['Wikipedia (JP)', r.wikipediaJaUrl],
+  ];
+  for (const link of externalLinks) {
+    if (!link) continue;
+    const [label, href] = link;
+    const a = document.createElement('a');
+    a.className = 'entry-external-link';
+    a.href = href;
+    a.target = '_blank';
+    a.rel = 'noopener noreferrer';
+    a.textContent = label;
+    title.appendChild(a);
   }
 
   const titleJp = document.createElement('div');
