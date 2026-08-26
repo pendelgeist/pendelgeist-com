@@ -2,27 +2,45 @@
   "reviews": [
     {
       "id": "ruri-rocks",
-      "status": "wip",
+      "status": "done",
       "titleEN": "Ruri Rocks",
       "titleJP": "瑠璃の宝石",
       "format": "TV",
       "year": 2025,
       "airedLabel": "Summer 2025",
-      "episodeCount": null,
-      "episodesWatched": null,
+      "episodeCount": 13,
+      "episodesWatched": 13,
       "dateReviewed": "2026-08-21",
+      "dateUpdated": "2026-08-26",
       "tags": [
         "slice-of-life",
         "hobby",
-        "science"
+        "science",
+        "geology",
+        "educational",
+        "manga-adaptation"
+      ],
+      "annId": 33495,
+      "streaming": [
+        "crunchyroll"
       ],
       "verdict": {
-        "ratingNumber": null,
-        "ratingText": "",
-        "oneLiner": ""
+        "ratingNumber": 5,
+        "ratingText": "Peak",
+        "oneLiner": "I have never learned this much about rocks in my life — how they form, how they get destroyed, and above all how they *get places* — and it is all delivered by a show that never once stops being relaxing to sit with."
       },
-      "recommendedFor": [],
-      "notFor": []
+      "recommendedFor": [
+        "Anyone who liked the competence-and-gear register of Yuru Camp but wants the hobby to have an actual research question attached to it",
+        "People who want to be genuinely taught something — streak tests, panning, thin sections, UV fluorescence, all shown as procedure you could go and repeat this weekend",
+        "Rock, mineral and fossil people, obviously, but also anyone who has ever kept a field notebook about anything at all",
+        "Viewers who want a show about choosing what to study with your life, told without a single raised voice"
+      ],
+      "notFor": [
+        "Anyone who needs a plot engine — the stakes never rise above \"is the deposit up this valley or the next one\"",
+        "Viewers who bounce off exposition, because a solid chunk of every episode is somebody explaining something",
+        "People looking for romance, or for a school-club ensemble comedy; the classroom material is the thinnest thing here",
+        "Anyone who wants a mystery solved by a flash of intuition rather than by sorting river sand under a microscope for hours"
+      ]
     }
   ]
 }
