@@ -54,6 +54,19 @@ Two fields exist only so that index can be generated rather than hand-maintained
 are ordered newest-first by parsing `<season>-<year>` out of the id, with an explicit
 numeric `sortKey` as the escape hatch for an id that doesn't fit.
 
+**Editing a season**: edit `public/vqar/data/seasons/<id>.json`, run
+`npm run build-vqar-index`, run `npm test`. Adding a review = appending to that season's
+`reviewed` array (only `titleEN`, `ratingText`, `dateReviewed` are required) and removing
+the title from `pending`/`skipped` if it was there.
+
+**Starting a season**: add `seasons/<season>-<year>.json` with a matching `id`, a `name`,
+`"current": true`, and empty `reviewed`/`pending`/`skipped` — then **remove `current` from
+the previous season**, since exactly one may carry it. Rebuild the index and run the tests.
+Full runbook, with the shape of each field, is in the README under "Starting a new season".
+
+Never hand-edit `public/vqar/data/index.json`; it's generated, and `build-vqar-index`
+refuses to write it at all if any season fails validation.
+
 Three independent consumers read that index, whose path is exported once from
 `public/vqar/data-paths.js` so it can't drift:
 - `public/vqar/app.js` — the display page, fetches client-side, is otherwise
@@ -63,7 +76,10 @@ Three independent consumers read that index, whose path is exported once from
   `src/worker.js`) rather than over the network, and reshape them to add
   `season`/`seasonName` per review, mirroring what `app.js` does on the client.
 - `scripts/validate-vqar.js` — a standalone consistency checker, not part of the deployed
-  site; the committed data is checked by `test/vqar-data.test.js` in CI regardless.
+  site; the committed data is checked by `test/vqar-data.test.js` in CI regardless. With no
+  arguments it checks the committed set (`scripts/loadTargets.js` reports `committed: true`,
+  which is what makes the whole-set checks meaningful); a path passed on the CLI is treated
+  as a draft, so it's exempt from the id-matches-filename and exactly-one-current rules.
 
 `public/vqar-stats/app.js` is a fourth reader, but unlike `/vqar` it always loads every
 season, since every stat on it is an aggregate.

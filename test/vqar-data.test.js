@@ -1,8 +1,12 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
+import os from 'node:os';
+import path from 'node:path';
 import { validateSeason, validateSeasonCollection, parseSeasonId, seasonSortKey } from '../scripts/validateSeason.js';
 import { readSeasons, buildIndex, serializeIndex, seasonPath, INDEX_PATH } from '../scripts/build-vqar-index.js';
+import { resolveTargets } from '../scripts/loadTargets.js';
+import { readJsonFiles } from '../scripts/indexFile.js';
 
 // --- The committed data ---
 
@@ -71,6 +75,15 @@ test('an explicit sortKey places a season whose id does not parse', () => {
   assert.equal(seasonSortKey({ id: 'the-lost-year', sortKey: 20255 }), 20255);
 });
 
+test('buildIndex refuses to order a season it has no key for, rather than guessing', () => {
+  // A null sort key would make the comparator return NaN and leave the order to
+  // the sort implementation, which is a quietly wrong index rather than an error.
+  assert.throws(
+    () => buildIndex([{ id: 'summer-2026', name: 'Summer 2026' }, { id: 'the-lost-year', name: 'Lost' }]),
+    /Cannot order season "the-lost-year"/
+  );
+});
+
 test('parseSeasonId rejects ids it cannot order', () => {
   assert.equal(typeof parseSeasonId('winter-2026'), 'number');
   assert.equal(parseSeasonId('midsummer-2026'), null, 'unknown season name');
@@ -124,4 +137,46 @@ test('the current-season flag has to be on exactly one season', () => {
 test('flags two seasons sharing an id', () => {
   const issues = validateSeasonCollection([validSeason({ current: true }), validSeason()]);
   assert.match(issues.join('\n'), /more than one season has the id "spring-2026"/);
+});
+
+// --- What the validation script is pointed at ---
+
+test('the committed set is resolved with filenames, so the id/filename check applies', async () => {
+  const { targets, committed } = await resolveTargets([]);
+
+  assert.equal(committed, true);
+  assert.ok(targets.length > 0);
+  for (const target of targets) {
+    assert.equal(target.filename, `${target.season.id}.json`);
+  }
+});
+
+test('a draft passed on the CLI carries no filename, so it can be called anything', async () => {
+  // `npm run validate-vqar -- ./draft.json` is a documented workflow: a draft
+  // is not yet named after its season id, and must not be failed for that.
+  const path = 'public/vqar/data/seasons/winter-2026.json';
+  const { targets, committed } = await resolveTargets([path]);
+
+  assert.equal(committed, false, 'a hand-picked file is not the committed set');
+  assert.equal(targets[0].filename, undefined);
+  assert.deepEqual(validateSeason(targets[0].season, { filename: targets[0].filename }), []);
+});
+
+test('a draft is not failed for missing the current-season flag', () => {
+  // The flag belongs to exactly one season across the whole set; a lone draft
+  // has no way to satisfy that, which is why the collection check is scoped to
+  // the committed set in validate-vqar.js.
+  const draft = { id: 'fall-2026', name: 'Fall 2026', reviewed: [], pending: [], skipped: [] };
+
+  assert.deepEqual(validateSeason(draft), []);
+  assert.match(validateSeasonCollection([draft]).join('\n'), /no season is marked/);
+});
+
+test('a malformed season file says which file it is', () => {
+  // These are hand-edited, so a stray comma is a routine outcome; a bare
+  // "Unexpected token" with no filename means hunting through every season.
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'vqar-'));
+  fs.writeFileSync(path.join(dir, 'fall-2026.json'), '{ "id": "fall-2026", }');
+
+  assert.throws(() => readJsonFiles(dir), /fall-2026\.json is not valid JSON/);
 });

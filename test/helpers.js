@@ -26,18 +26,19 @@ export function createLocalStorageStub() {
 /**
  * Loads the VQAR page DOM and (re-)imports app.js against it. Each call gets
  * a fresh module instance (via a cache-busting query string) so module-level
- * state like `seasonDataById` never leaks between tests.
+ * state like `seasonDataById` never leaks between tests. No `localStorage`
+ * stub: the page keeps nothing of its own, so a season is loaded once per page
+ * load and held in memory for that page's lifetime.
  */
-export async function loadApp({ fetch, localStorage = createLocalStorageStub() } = {}) {
+export async function loadApp({ fetch } = {}) {
   const html = fs.readFileSync(INDEX_HTML_PATH, 'utf-8');
   const dom = new JSDOM(html, { url: 'http://localhost/vqar/index.html', runScripts: 'outside-only' });
 
   global.document = dom.window.document;
-  global.localStorage = localStorage;
   global.fetch = fetch;
 
   await import(`${pathToFileURL(APP_JS_PATH)}?t=${importCounter++}`);
-  return { window: dom.window, document: dom.window.document, localStorage };
+  return { window: dom.window, document: dom.window.document };
 }
 
 export async function waitFor(conditionFn, { timeout = 2000, interval = 5 } = {}) {

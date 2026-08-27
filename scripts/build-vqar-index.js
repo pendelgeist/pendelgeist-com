@@ -4,9 +4,8 @@
  * public/vqar/data/seasons/.
  *
  * The index is what /vqar and /vqar-stats load first: it lists every season and
- * where to find it, and names the one currently being reviewed. It replaces the
- * manifest gist the season data used to live behind, and it's generated rather
- * than hand-maintained for the same reason /fsar's index is - keeping a
+ * where to find it, and names the one currently being reviewed. It's generated
+ * rather than hand-maintained for the same reason /fsar's index is - keeping a
  * hand-written list in sync with the files beside it is a bug waiting to happen.
  * test/vqar-data.test.js fails if the committed index doesn't match a fresh build.
  *
@@ -14,9 +13,9 @@
  *   node scripts/build-vqar-index.js --check    # exits 1 if it's stale, writes nothing
  */
 
-import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { readJsonFiles, serializeIndex, syncIndexFile } from './indexFile.js';
 import { validateSeason, validateSeasonCollection, seasonSortKey } from './validateSeason.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -24,20 +23,16 @@ export const DATA_DIR = path.join(__dirname, '../public/vqar/data');
 export const SEASONS_DIR = path.join(DATA_DIR, 'seasons');
 export const INDEX_PATH = path.join(DATA_DIR, 'index.json');
 
+export { serializeIndex };
+
 /** The public path a season file is served from, which is what the index stores. */
 export function seasonPath(id) {
   return `/vqar/data/seasons/${id}.json`;
 }
 
-/** Reads every season file, sorted by filename so the output is deterministic. */
+/** @returns {{ filename: string, season: object }[]} */
 export function readSeasons(dir = SEASONS_DIR) {
-  return fs.readdirSync(dir)
-    .filter((f) => f.endsWith('.json'))
-    .sort()
-    .map((filename) => ({
-      filename,
-      season: JSON.parse(fs.readFileSync(path.join(dir, filename), 'utf-8')),
-    }));
+  return readJsonFiles(dir).map(({ filename, data }) => ({ filename, season: data }));
 }
 
 /**
@@ -47,6 +42,16 @@ export function readSeasons(dir = SEASONS_DIR) {
  * @param {object[]} seasons
  */
 export function buildIndex(seasons) {
+  // A season with no sort key would make the comparator return NaN, which
+  // leaves the order up to the sort implementation. validateSeason catches this
+  // first in normal use; throwing keeps a direct caller from getting a quietly
+  // mis-ordered index instead of an error.
+  for (const season of seasons) {
+    if (seasonSortKey(season) === null) {
+      throw new Error(`Cannot order season "${season.id}": its id isn't "<season>-<year>" and it has no numeric sortKey`);
+    }
+  }
+
   const ordered = [...seasons].sort((a, b) => seasonSortKey(b) - seasonSortKey(a));
   return {
     currentSeason: ordered.find((s) => s.current === true)?.id ?? null,
@@ -54,42 +59,26 @@ export function buildIndex(seasons) {
   };
 }
 
-export function serializeIndex(index) {
-  return `${JSON.stringify(index, null, 2)}\n`;
-}
-
 function main() {
-  const check = process.argv.includes('--check');
   const entries = readSeasons();
+  const seasons = entries.map((e) => e.season);
 
   const issues = [
     ...entries.flatMap(({ filename, season }) => validateSeason(season, { filename })),
-    ...validateSeasonCollection(entries.map((e) => e.season)),
+    ...validateSeasonCollection(seasons),
   ];
-  if (issues.length > 0) {
-    console.error(`${issues.length} issue(s) found; index not written:\n`);
-    for (const issue of issues) console.error(`  - ${issue}`);
-    process.exit(1);
-  }
 
-  const next = serializeIndex(buildIndex(entries.map((e) => e.season)));
-  const current = fs.existsSync(INDEX_PATH) ? fs.readFileSync(INDEX_PATH, 'utf-8') : '';
-
-  if (check) {
-    if (next !== current) {
-      console.error('index.json is out of date - run: npm run build-vqar-index');
-      process.exit(1);
-    }
-    console.log(`index.json is up to date (${entries.length} season(s)).`);
-    return;
-  }
-
-  fs.writeFileSync(INDEX_PATH, next);
-  console.log(
-    current === next
-      ? `index.json unchanged (${entries.length} season(s)).`
-      : `Wrote index.json (${entries.length} season(s)).`
-  );
+  process.exitCode = syncIndexFile({
+    issues,
+    indexPath: INDEX_PATH,
+    // A thunk: buildIndex throws on a season it can't order, so it must not
+    // run unless validation passed.
+    next: () => serializeIndex(buildIndex(seasons)),
+    count: entries.length,
+    noun: 'season',
+    rebuildCommand: 'npm run build-vqar-index',
+    check: process.argv.includes('--check'),
+  });
 }
 
 if (import.meta.url === `file://${process.argv[1]}`) {

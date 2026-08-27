@@ -133,7 +133,7 @@ async function main() {
   const rawArgs = process.argv.slice(2);
   const delayArg = rawArgs.find(a => a.startsWith('--delay='));
   const delayMs = delayArg ? Number(delayArg.split('=')[1]) : DEFAULT_DELAY_MS;
-  const targets = await resolveTargets(rawArgs.filter(a => !a.startsWith('--')));
+  const { targets } = await resolveTargets(rawArgs.filter(a => !a.startsWith('--')));
 
   let anyIssues = false;
   for (const { label, season } of targets) {

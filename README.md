@@ -118,8 +118,9 @@ forgotten rebuild.
 
 Each season file has `id`, `name`, `reviewed`, `pending`, and `skipped`. It may also carry
 a `number` (e.g. a MAL season id like `2603`) — optional, informational metadata for your
-own reference that nothing reads. Adding a season means dropping a new file in `seasons/`
-and rebuilding the index; editing an old season never touches the others.
+own reference; neither page reads it, though the GraphQL API exposes it as `Season.number`.
+Adding a season means dropping a new file in `seasons/` and rebuilding the index; editing an
+old season never touches the others.
 
 Two fields exist purely so the index can be generated rather than hand-maintained:
 
@@ -183,16 +184,65 @@ regardless - it only shows up alongside the rest of a review on `/vqar` itself.
 
 ### Editing a season
 
-Edit the season's file under `public/vqar/data/seasons/`, rebuild the index, and commit:
+Edit the season's file under `public/vqar/data/seasons/`, then rebuild and check:
 
 ```
 $EDITOR public/vqar/data/seasons/summer-2026.json
-npm run build-vqar-index
+npm run build-vqar-index    # a no-op unless id/name/current changed, and it validates either way
 npm test
+git commit -am "Add <show> to Summer 2026"
 ```
 
-That's the whole loop — `git` is the update mechanism, so there's no push-to-gist step and
-no token to keep around.
+Adding a review means appending an object to that season's `reviewed` array — see "Review
+shape" above for every field it can carry, of which only `titleEN`, `ratingText` and
+`dateReviewed` are required. If the show was sitting in `pending` or `skipped`, remove it
+from there in the same edit; validation flags a title that's in both.
+
+`git` is the update mechanism now, so there's no push step and no token to keep around.
+
+### Starting a new season
+
+Four steps, and only the third is easy to forget:
+
+1. **Create the file**, named after the season id, which must be `<season>-<year>`
+   (`winter`, `spring`, `summer`, `fall`) so the index can order it. The `id` inside has to
+   match the filename:
+
+   ```
+   cat > public/vqar/data/seasons/fall-2026.json <<'JSON'
+   {
+     "id": "fall-2026",
+     "name": "Fall 2026",
+     "current": true,
+     "reviewed": [],
+     "pending": [],
+     "skipped": []
+   }
+   JSON
+   ```
+
+2. **Fill in `pending` and `skipped`** as you triage the season's lineup — plain strings,
+   no shape to them. `reviewed` fills in as you go.
+
+3. **Take `"current": true` off the previous season** (`summer-2026.json` here). Exactly one
+   season may carry it, and it's what the index's `currentSeason` — the page's default
+   filter and "Currently Reviewing" heading — is built from. Forgetting fails the build with
+   `2 seasons are marked "current": true`, so this can't silently ship wrong.
+
+4. **Rebuild and check:**
+
+   ```
+   npm run build-vqar-index
+   npm test
+   ```
+
+`npm run build-vqar-index` refuses to write the index at all if anything doesn't validate,
+so a passing rebuild means the new season is well-formed, uniquely named, orderable, and the
+only current one.
+
+A season id that can't be `<season>-<year>` (a one-off, a special) needs an explicit numeric
+`sortKey` instead, higher meaning more recent — the committed seasons sort at
+`year * 10 + season`, so `20263` sits where a fall-2026 would.
 
 ### Validating season data
 
