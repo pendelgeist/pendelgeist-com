@@ -63,3 +63,20 @@ export function createStreamingBadges(entry) {
   }
   return badges;
 }
+
+/**
+ * The badges wrapped in the `.entry-streaming` row every page puts them in, or
+ * null when the entry names no services - so a caller can append the row
+ * unconditionally without leaving an empty element behind on entries with no
+ * streaming info.
+ * @param {{ streaming?: string[] } & Record<string, unknown>} entry
+ * @returns {HTMLElement|null}
+ */
+export function createStreamingRow(entry) {
+  const badges = createStreamingBadges(entry);
+  if (badges.length === 0) return null;
+  const row = document.createElement('span');
+  row.className = 'entry-streaming';
+  row.append(...badges);
+  return row;
+}

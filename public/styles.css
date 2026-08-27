@@ -531,8 +531,12 @@ nav {
   color: var(--color-nav-link);
 }
 
+/* Inverted rather than dimmed: opacity would stack on top of --color-nav-link
+ * over --color-chrome and can drop that pairing below AA in some themes. See
+ * "Contrast conventions for the fixed themes" in the README. */
 .theme-reroll:hover {
-  opacity: 0.8;
+  background-color: var(--color-nav-link);
+  color: var(--color-chrome);
 }
 
 /* Full title text stays intact at every width (an abbreviated swap-in read

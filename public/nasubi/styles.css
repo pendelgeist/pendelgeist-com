@@ -146,7 +146,7 @@
 }
 
 .data-table thead th {
-  cursor: pointer;
+  padding: 0;
   user-select: none;
   background-color: var(--color-chrome);
   color: var(--color-nav-link);
@@ -154,15 +154,30 @@
   top: 0;
 }
 
-.data-table thead th:hover {
-  opacity: 0.85;
+/* The sort control is a real button inside the header cell, so it's reachable
+ * and activatable by keyboard; it's styled to look like the cell it fills. */
+.data-table thead th .sort-button {
+  width: 100%;
+  padding: 0.4rem 0.6rem;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
 }
 
-.data-table thead th.sorted-asc::after {
+/* Underlined rather than dimmed: opacity would stack on top of --color-nav-link
+ * over --color-chrome and can drop that pairing below AA in some themes. */
+.data-table thead th .sort-button:hover {
+  text-decoration: underline;
+}
+
+.data-table thead th.sorted-asc .sort-button::after {
   content: ' \25B2';
 }
 
-.data-table thead th.sorted-desc::after {
+.data-table thead th.sorted-desc .sort-button::after {
   content: ' \25BC';
 }
 

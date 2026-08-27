@@ -3,9 +3,9 @@
  * them (/fsar/app.js), the index builder (scripts/build-fsar-index.js), and
  * the validator (scripts/validateFsarReview.js) so the three can't drift.
  *
- * Unlike VQAR - which is organized around the current season and lives in
- * gists - these are individual, long-form writeups of shows from any era,
- * committed to this repo under public/fsar/data/reviews/.
+ * Unlike VQAR - which is organized around the season a show aired in - these
+ * are individual, long-form writeups of shows from any era, one file each
+ * under public/fsar/data/reviews/.
  */
 
 /**

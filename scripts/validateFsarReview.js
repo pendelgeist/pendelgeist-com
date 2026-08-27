@@ -126,10 +126,6 @@ export function validateFsarReview(review, { filename } = {}) {
       push(`malformed ${key} (expected a string)`);
     }
   }
-  if (review.vqar !== undefined && !isPlainObject(review.vqar)) {
-    push('malformed vqar (expected an object)');
-  }
-
   if (!isPlainObject(review.sections)) {
     push('missing sections');
     return issues;

@@ -363,8 +363,17 @@ function closeDetail() {
 const DETAIL_WIDTH_KEY = 'pendelgeist:eva-tv:detail-width';
 const sidePanelQuery = document.defaultView?.matchMedia?.('(min-width: 701px)');
 
+// Storage is best-effort throughout: in private browsing (or with site data
+// blocked) even reading localStorage throws, and this runs at module scope -
+// an unguarded read would take the whole timeline down with it, not just the
+// remembered panel width.
 function restoreDetailWidth() {
-  const saved = localStorage.getItem(DETAIL_WIDTH_KEY);
+  let saved = null;
+  try {
+    saved = localStorage.getItem(DETAIL_WIDTH_KEY);
+  } catch {
+    // Blocked storage: fall back to the CSS default width.
+  }
   if (saved && dom.detailPanel) {
     dom.detailPanel.style.width = saved;
   }
@@ -373,15 +382,18 @@ function restoreDetailWidth() {
 function watchDetailWidth() {
   if (!dom.detailPanel || typeof ResizeObserver === 'undefined') return;
   new ResizeObserver(() => {
-    if (sidePanelQuery?.matches) {
+    if (!sidePanelQuery?.matches) return;
+    try {
       localStorage.setItem(DETAIL_WIDTH_KEY, `${dom.detailPanel.offsetWidth}px`);
+    } catch {
+      // Best-effort only; the drag still works, the width just won't persist.
     }
   }).observe(dom.detailPanel);
 }
 
 async function loadData() {
   try {
-    const response = await fetch('/eva-tv/data.json');
+    const response = await fetch('/eva-tv/data.json', { cache: 'no-cache' });
     if (!response.ok) {
       showError(`HTTP ${response.status}`);
       return;

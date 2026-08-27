@@ -3,8 +3,8 @@ import { STREAMING_SERVICES } from '../public/streaming.js';
 const STREAMING_KEYS = new Set(Object.keys(STREAMING_SERVICES));
 
 // Season ids are `<season>-<year>` ("spring-2026"), which is what
-// scripts/build-vqar-index.js sorts the generated index by - the gist manifest
-// used to carry that order by hand. A season whose id doesn't follow the
+// scripts/build-vqar-index.js sorts the generated index by - a directory
+// listing would put spring before winter. A season whose id doesn't follow the
 // pattern has to say where it goes with an explicit numeric `sortKey`.
 const SEASON_ORDER = { winter: 0, spring: 1, summer: 2, fall: 3, autumn: 3 };
 

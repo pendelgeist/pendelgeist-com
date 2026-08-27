@@ -188,6 +188,21 @@ test('a previously-saved detail panel width is restored on load', async () => {
   assert.equal(document.getElementById('detailPanel').style.width, '42rem');
 });
 
+// Blocked site data (private browsing, or a browser set to refuse it) makes
+// even reading localStorage throw. That read happens at module scope, so an
+// unguarded one would take the whole timeline down, not just the saved width.
+test('the timeline still renders when localStorage is blocked outright', async () => {
+  const blocked = {
+    getItem: () => { throw new Error('The operation is insecure.'); },
+    setItem: () => { throw new Error('The operation is insecure.'); },
+  };
+
+  const { document } = await loadApp({ localStorage: blocked });
+
+  assert.ok(document.querySelectorAll('.episode-column').length > 0, 'expected the timeline to render anyway');
+  assert.equal(document.getElementById('detailPanel').style.width, '');
+});
+
 test('a failed fetch shows an error in the timeline track', async () => {
   const { document } = await loadApp({ ok: false, status: 500 });
 
