@@ -1,11 +1,11 @@
 {
-  "id": "you-dont-know-gunma-yet",
+  "id": "you-dont-know-gunma-yet-reiwa",
   "status": "wip",
-  "titleEN": "You Don't Know Gunma Yet",
-  "titleJP": "お前はまだグンマを知らない",
+  "titleEN": "You Don't Know Gunma Yet: Reiwa Version",
+  "titleJP": "お前はまだグンマを知らない～令和版～",
   "format": "TV",
-  "year": 2018,
-  "airedLabel": "Spring 2018",
+  "year": 2026,
+  "airedLabel": "Winter 2026",
   "episodeCount": 12,
   "episodesWatched": null,
   "dateReviewed": "2026-08-27",
@@ -15,9 +15,10 @@
     "short-form",
     "manga-adaptation"
   ],
-  "annId": 20616,
+  "annId": 37944,
   "wikipediaUrl": "https://en.wikipedia.org/wiki/You_Don't_Know_Gunma_Yet",
   "wikipediaJaUrl": "https://ja.wikipedia.org/wiki/お前はまだグンマを知らない",
+  "availabilityNote": "Japan-only so far. Broadcast on SKY PerfecTV!'s Tetsudō Channel, and streamed there on dAnime Store, Bandai Channel and DMM TV. No English-language release announced.",
   "verdict": {
     "ratingNumber": null,
     "ratingText": "",
