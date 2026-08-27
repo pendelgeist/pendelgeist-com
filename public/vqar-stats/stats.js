@@ -1,7 +1,7 @@
 /**
  * Pure data-crunching over VQAR season data - no DOM, no fetch, so it's
  * testable directly and reusable if the rendering ever changes. app.js
- * fetches the manifest + every season (mirroring /vqar's own fetch logic)
+ * fetches the index + every season (mirroring /vqar's own fetch logic)
  * and hands the resulting season array to these functions.
  */
 
@@ -117,7 +117,7 @@ export function computeRatingDistribution(reviews) {
 
 /**
  * Average rating per season, ordered chronologically by each season's
- * earliest review date (manifest order isn't guaranteed to be chronological).
+ * earliest review date (the flattened review list carries no season order).
  * @param {ReturnType<typeof flattenReviews>} reviews
  */
 export function computeRatingsOverTime(reviews) {
@@ -223,7 +223,7 @@ function normalizeBaseTitle(title) {
  * that look like a continuing/returning season of something rated highly in
  * an *earlier* season - worth bumping up the queue even though VQAR's usual
  * guidance is to skip returning seasons. "Earlier" is judged by each
- * season's earliest `dateReviewed` (manifest order isn't guaranteed to be
+ * season's earliest `dateReviewed` (the flattened review list carries no
  * chronological), so picking an older season only checks it against
  * seasons that came before it, not ones that came after. Matches by
  * `normalizeBaseTitle`, so it's necessarily heuristic rather than exact.

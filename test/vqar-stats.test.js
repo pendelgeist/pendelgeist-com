@@ -9,7 +9,7 @@ import {
   computeHallOfFame, computeSecondImpressions, computeOpEdHighlights,
   computeRevisitCandidates, computeContinuationWatch,
 } from '../public/vqar-stats/stats.js';
-import { createFetchStub, createLocalStorageStub } from './helpers.js';
+import { createPathFetchStub, createLocalStorageStub } from './helpers.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -186,25 +186,25 @@ test('computeContinuationWatch returns nothing when the current season id is unk
 const INDEX_HTML_PATH = path.join(__dirname, '../public/vqar-stats/index.html');
 const APP_JS_PATH = path.join(__dirname, '../public/vqar-stats/app.js');
 
-const manifest = {
+const seasonIndex = {
   currentSeason: 'summer-2026',
   seasons: [
-    { id: 'summer-2026', name: 'Summer 2026', file: 'https://gist.githubusercontent.com/pendelgeist/aaa/raw/vqar-season-summer-2026.json' },
-    { id: 'spring-2026', name: 'Spring 2026', file: 'https://gist.githubusercontent.com/pendelgeist/bbb/raw/vqar-season-spring-2026.json' },
+    { id: 'summer-2026', name: 'Summer 2026', file: '/vqar/data/seasons/summer-2026.json' },
+    { id: 'spring-2026', name: 'Spring 2026', file: '/vqar/data/seasons/spring-2026.json' },
   ],
 };
 
 function routes() {
   return {
-    'vqar-manifest.json': manifest,
-    'vqar-season-summer-2026.json': seasons[0],
-    'vqar-season-spring-2026.json': seasons[1],
+    '/vqar/data/index.json': seasonIndex,
+    '/vqar/data/seasons/summer-2026.json': seasons[0],
+    '/vqar/data/seasons/spring-2026.json': seasons[1],
   };
 }
 
 let importCounter = 0;
 
-async function loadApp({ fetch = createFetchStub(routes()), localStorage = createLocalStorageStub(), url = 'http://localhost/vqar-stats/index.html' } = {}) {
+async function loadApp({ fetch = createPathFetchStub(routes()), localStorage = createLocalStorageStub(), url = 'http://localhost/vqar-stats/index.html' } = {}) {
   const html = fs.readFileSync(INDEX_HTML_PATH, 'utf-8');
   const dom = new JSDOM(html, { url, runScripts: 'outside-only' });
 
@@ -237,7 +237,7 @@ test('renders a rating distribution bar chart and a hall of fame table', async (
   assert.equal(bestRows[0], 'Meh Show'); // ties Peak Show at 5 via its fullReview; alphabetical tiebreak puts it first
 });
 
-test('shows an error message if the manifest fails to load', async () => {
+test('shows an error message if the season index fails to load', async () => {
   const fetch = async () => ({ ok: false, status: 500 });
   const { document } = await loadApp({ fetch });
 
@@ -246,7 +246,7 @@ test('shows an error message if the manifest fails to load', async () => {
   assert.match(err.textContent, /ERROR/);
 });
 
-test('season filter is populated from the manifest and defaults to "All Seasons"', async () => {
+test('season filter is populated from the index and defaults to "All Seasons"', async () => {
   const { document } = await loadApp();
 
   const options = [...document.querySelectorAll('#seasonFilter option')].map(o => ({ value: o.value, text: o.textContent }));
@@ -317,9 +317,9 @@ test('Season Spotlight defaults to the current season for "All Seasons", then fo
   const spotlightSeasons = {
     currentSeason: 'summer-2026',
     seasons: [
-      { id: 'fall-2025', name: 'Fall 2025', file: 'https://gist.githubusercontent.com/pendelgeist/ccc/raw/vqar-season-fall-2025.json' },
-      { id: 'spring-2026', name: 'Spring 2026', file: 'https://gist.githubusercontent.com/pendelgeist/bbb/raw/vqar-season-spring-2026.json' },
-      { id: 'summer-2026', name: 'Summer 2026', file: 'https://gist.githubusercontent.com/pendelgeist/aaa/raw/vqar-season-summer-2026.json' },
+      { id: 'fall-2025', name: 'Fall 2025', file: '/vqar/data/seasons/fall-2025.json' },
+      { id: 'spring-2026', name: 'Spring 2026', file: '/vqar/data/seasons/spring-2026.json' },
+      { id: 'summer-2026', name: 'Summer 2026', file: '/vqar/data/seasons/summer-2026.json' },
     ],
   };
   // Fall 2025 rated "Great Show" highly; Spring 2026 has its own 4/5 ("Spring
@@ -343,11 +343,11 @@ test('Season Spotlight defaults to the current season for "All Seasons", then fo
     reviewed: [{ titleEN: 'Summer Revisit', ratingNumber: 4, ratingText: 'Yeah', dateReviewed: '2026-07-01' }],
     pending: ['Spring Revisit Season 2'], skipped: [],
   };
-  const fetch = createFetchStub({
-    'vqar-manifest.json': spotlightSeasons,
-    'vqar-season-fall-2025.json': fall,
-    'vqar-season-spring-2026.json': spring,
-    'vqar-season-summer-2026.json': summer,
+  const fetch = createPathFetchStub({
+    '/vqar/data/index.json': spotlightSeasons,
+    '/vqar/data/seasons/fall-2025.json': fall,
+    '/vqar/data/seasons/spring-2026.json': spring,
+    '/vqar/data/seasons/summer-2026.json': summer,
   });
 
   const { document } = await loadApp({ fetch });

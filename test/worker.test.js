@@ -1,29 +1,36 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import worker from '../src/worker.js';
-import { createFetchStub } from './helpers.js';
 
-const manifest = {
-  currentSeason: 'summer-2026',
-  seasons: [{ id: 'summer-2026', name: 'Summer 2026', file: 'https://gist.githubusercontent.com/pendelgeist/aaa/raw/vqar-season-summer-2026.json' }],
+const DATA = {
+  '/vqar/data/index.json': {
+    currentSeason: 'summer-2026',
+    seasons: [{ id: 'summer-2026', name: 'Summer 2026', file: '/vqar/data/seasons/summer-2026.json' }],
+  },
+  '/vqar/data/seasons/summer-2026.json': {
+    id: 'summer-2026',
+    name: 'Summer 2026',
+    reviewed: [],
+    pending: [],
+    skipped: [],
+  },
 };
 
-const seasonFile = {
-  id: 'summer-2026',
-  name: 'Summer 2026',
-  reviewed: [],
-  pending: [],
-  skipped: [],
-};
-
-function routes() {
-  return { 'vqar-manifest.json': manifest, 'vqar-season-summer-2026.json': seasonFile };
-}
-
+/**
+ * Stands in for the assets binding, which now serves two jobs: the static
+ * passthrough for ordinary requests, and the VQAR data the GraphQL resolvers
+ * read. `input` is a Request on the passthrough path and a URL from the
+ * resolvers, so accept either.
+ */
 function fakeEnv() {
   return {
     ASSETS: {
-      fetch: async (request) => new Response(`asset:${new URL(request.url).pathname}`),
+      fetch: async (input) => {
+        const { pathname } = new URL(input.url ?? input);
+        return pathname in DATA
+          ? Response.json(DATA[pathname])
+          : new Response(`asset:${pathname}`);
+      },
     },
   };
 }
@@ -39,7 +46,6 @@ test('GET /graphql serves the explorer page as a static asset', async () => {
 });
 
 test('POST /graphql executes a query and returns JSON', async () => {
-  global.fetch = createFetchStub(routes());
   const response = await worker.fetch(
     new Request('https://pendelgeist.com/graphql', {
       method: 'POST',

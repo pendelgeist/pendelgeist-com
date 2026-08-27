@@ -22,14 +22,14 @@ export default {
     // GET/HEAD on /graphql serves the explorer page (public/graphql/index.html)
     // as a plain static asset; only POST is routed into the GraphQL executor.
     if (url.pathname === '/graphql' && request.method !== 'GET' && request.method !== 'HEAD') {
-      return handleGraphQL(request);
+      return handleGraphQL(request, env, url.origin);
     }
 
     return env.ASSETS.fetch(request);
   },
 };
 
-async function handleGraphQL(request) {
+async function handleGraphQL(request, env, origin) {
   if (request.method === 'OPTIONS') {
     return new Response(null, { status: 204, headers: CORS_HEADERS });
   }
@@ -57,7 +57,7 @@ async function handleGraphQL(request) {
   const result = await graphql({
     schema: getSchema(),
     source: query,
-    rootValue: makeRootValue(),
+    rootValue: makeRootValue({ assets: env.ASSETS, origin }),
     variableValues: variables,
     operationName,
   });

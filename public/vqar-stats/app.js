@@ -1,11 +1,11 @@
 /**
- * Renders "VQAR By The Numbers" - a stats page over the same VQAR gist data
- * /vqar/app.js reads, fetched live (manifest + every season) and crunched by
+ * Renders "VQAR By The Numbers" - a stats page over the same committed VQAR
+ * data /vqar/app.js reads (the season index + every season) and crunched by
  * stats.js. Unlike /vqar, this page always needs every season loaded since
  * every stat here is an aggregate, so there's no per-season lazy fetch.
  */
 
-import { MANIFEST_URL } from '../manifest-url.js';
+import { VQAR_INDEX_PATH } from '../vqar/data-paths.js';
 import {
   flattenReviews, computeGlanceStats, computeRatingDistribution, computeRatingsOverTime,
   computeHallOfFame, computeSecondImpressions, computeOpEdHighlights,
@@ -13,10 +13,6 @@ import {
 } from './stats.js';
 
 /** @typedef {import('../vqar/app.js').SeasonData} SeasonData */
-
-// Shares its cache key prefix with /vqar/app.js on purpose - a season fetched
-// from either page warms the cache for the other.
-const CACHE_PREFIX = 'vqar:v1:season:';
 
 const dom = {
   infoToggle: document.getElementById('infoToggle'),
@@ -43,45 +39,16 @@ dom.infoToggle?.addEventListener('click', (e) => {
   dom.guidelines?.classList.toggle('show');
 });
 
-/** @param {string} key */
-function readCache(key) {
-  try {
-    const raw = localStorage.getItem(key);
-    return raw ? JSON.parse(raw) : null;
-  } catch {
-    return null;
-  }
-}
-
 /**
- * @param {string} key
- * @param {unknown} value
- */
-function writeCache(key, value) {
-  try {
-    localStorage.setItem(key, JSON.stringify(value));
-  } catch {
-    // Best-effort only (private browsing / quota); a cache miss just means we re-fetch.
-  }
-}
-
-/**
+ * `no-cache` revalidates rather than refetching, so an unchanged season comes
+ * back as a 304 - the seasons are same-origin assets now, so there's no cache
+ * of our own to go stale on an edit.
  * @param {{id: string|number, name: string, file: string}} meta
- * @param {boolean} isCurrent
  */
-async function getSeasonData(meta, isCurrent) {
-  const cacheKey = CACHE_PREFIX + String(meta.id);
-  if (!isCurrent) {
-    const cached = readCache(cacheKey);
-    if (cached) return cached;
-  }
-
-  const response = await fetch(`${meta.file}?t=${Date.now()}`, { cache: 'no-cache' });
+async function getSeasonData(meta) {
+  const response = await fetch(meta.file, { cache: 'no-cache' });
   if (!response.ok) throw new Error(`HTTP ${response.status} loading season "${meta.name}"`);
-  const data = await response.json();
-
-  if (!isCurrent) writeCache(cacheKey, data);
-  return data;
+  return response.json();
 }
 
 /** @param {{label: string, value: string}[]} stats */
@@ -344,7 +311,7 @@ function renderOpEd(reviews) {
 let allSeasons = [];
 /** @type {ReturnType<typeof flattenReviews>} */
 let allReviews = [];
-/** The manifest's current season id, used as the Season Spotlight's default when the filter is "All Seasons". */
+/** The index's current season id, used as the Season Spotlight's default when the filter is "All Seasons". */
 let currentSeasonId = '';
 
 /** Reads the `?season=` query param, so a specific season's view is a shareable link. */
@@ -414,21 +381,21 @@ function applySeasonFilter() {
 
 async function init() {
   try {
-    const response = await fetch(`${MANIFEST_URL}?t=${Date.now()}`, { cache: 'no-cache' });
-    if (!response.ok) throw new Error(`HTTP ${response.status} loading manifest`);
-    const manifest = await response.json();
-    if (!Array.isArray(manifest?.seasons)) throw new Error('Invalid manifest format');
+    const response = await fetch(VQAR_INDEX_PATH, { cache: 'no-cache' });
+    if (!response.ok) throw new Error(`HTTP ${response.status} loading season index`);
+    const seasonIndex = await response.json();
+    if (!Array.isArray(seasonIndex?.seasons)) throw new Error('Invalid season index format');
 
-    currentSeasonId = String(manifest.currentSeason);
+    currentSeasonId = String(seasonIndex.currentSeason);
     const results = await Promise.allSettled(
-      manifest.seasons.map(meta => getSeasonData(meta, String(meta.id) === currentSeasonId))
+      seasonIndex.seasons.map(meta => getSeasonData(meta))
     );
 
     const seasons = [];
     const failed = [];
     results.forEach((result, i) => {
       if (result.status === 'fulfilled') seasons.push(result.value);
-      else failed.push(manifest.seasons[i]);
+      else failed.push(seasonIndex.seasons[i]);
     });
 
     if (failed.length) {

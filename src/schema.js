@@ -1,11 +1,14 @@
 /**
  * GraphQL schema and resolvers for the seasonal anime data. This mirrors the
- * manifest + per-season gist shapes documented in the README and consumed by
- * public/vqar/app.js, but fetches and reshapes them server-side instead.
+ * index + per-season file shapes documented in the README and consumed by
+ * public/vqar/app.js, but reads and reshapes them server-side instead.
+ *
+ * The data is committed to this repo and served as a static asset, so the
+ * resolvers read it through the Worker's ASSETS binding rather than fetching it
+ * over the network - no round trip, and no cache to lag behind a deploy.
  */
 
-import { cachedFetch } from './cache.js';
-import { MANIFEST_URL } from '../public/manifest-url.js';
+import { VQAR_INDEX_PATH } from '../public/vqar/data-paths.js';
 
 export const typeDefs = `#graphql
 """A follow-up note attached to a review: a full-series re-review once a
@@ -63,65 +66,72 @@ type Season {
   skipped: [String!]!
 }
 
-"""A season as listed in the manifest, without its full review data."""
+"""A season as listed in the index, without its full review data."""
 type SeasonSummary {
   id: ID!
   name: String!
 }
 
 type Query {
-  "Every season in the manifest (id + name only); use season(id:) or currentSeason for full data."
+  "Every season in the index (id + name only); use season(id:) or currentSeason for full data."
   seasons: [SeasonSummary!]!
-  "The season currently marked as in-progress in the manifest."
+  "The season currently marked as in-progress in the index."
   currentSeason: Season
   "A specific season's full data, by id (e.g. \\"spring-2026\\")."
   season(id: ID!): Season
 }
 `;
 
-async function fetchManifest() {
-  const response = await cachedFetch(MANIFEST_URL);
-  if (!response.ok) {
-    throw new Error(`HTTP ${response.status} loading manifest`);
+/**
+ * Root value whose fields graphql-js uses as the Query type's default resolvers.
+ * @param {{ assets: { fetch: (url: URL) => Promise<Response> }, origin: string }} env
+ *   `assets` is the Worker's ASSETS binding; `origin` is what the relative data
+ *   paths get resolved against, since the binding needs an absolute URL.
+ */
+export function makeRootValue({ assets, origin }) {
+  /**
+   * @param {string} path
+   * @param {string} label - what to name in the error if the read fails
+   */
+  async function loadJson(path, label) {
+    const response = await assets.fetch(new URL(path, origin));
+    if (!response.ok) {
+      throw new Error(`HTTP ${response.status} loading ${label}`);
+    }
+    return response.json();
   }
-  return response.json();
-}
 
-/** @param {{ id: string|number, name: string, file: string }} meta */
-async function fetchSeason(meta) {
-  const response = await cachedFetch(meta.file);
-  if (!response.ok) {
-    throw new Error(`HTTP ${response.status} loading season "${meta.name}"`);
+  const loadIndex = () => loadJson(VQAR_INDEX_PATH, 'the season index');
+
+  /** @param {{ id: string|number, name: string, file: string }} meta */
+  async function loadSeason(meta) {
+    const data = await loadJson(meta.file, `season "${meta.name}"`);
+    const id = String(data.id ?? meta.id);
+    const name = data.name ?? meta.name;
+    return {
+      id,
+      name,
+      number: data.number ?? null,
+      reviewed: (data.reviewed ?? []).map((r) => ({ ...r, season: id, seasonName: name })),
+      pending: data.pending ?? [],
+      skipped: data.skipped ?? [],
+    };
   }
-  const data = await response.json();
-  const id = String(data.id ?? meta.id);
-  const name = data.name ?? meta.name;
-  return {
-    id,
-    name,
-    number: data.number ?? null,
-    reviewed: (data.reviewed ?? []).map((r) => ({ ...r, season: id, seasonName: name })),
-    pending: data.pending ?? [],
-    skipped: data.skipped ?? [],
-  };
-}
 
-/** Root value whose fields graphql-js uses as the Query type's default resolvers. */
-export function makeRootValue() {
   return {
     async seasons() {
-      const manifest = await fetchManifest();
-      return manifest.seasons.map((s) => ({ id: String(s.id), name: s.name }));
+      const index = await loadIndex();
+      return index.seasons.map((s) => ({ id: String(s.id), name: s.name }));
     },
     async currentSeason() {
-      const manifest = await fetchManifest();
-      const meta = manifest.seasons.find((s) => String(s.id) === String(manifest.currentSeason));
-      return meta ? fetchSeason(meta) : null;
+      const index = await loadIndex();
+      const meta = index.seasons.find((s) => String(s.id) === String(index.currentSeason));
+      return meta ? loadSeason(meta) : null;
     },
     async season({ id }) {
-      const manifest = await fetchManifest();
-      const meta = manifest.seasons.find((s) => String(s.id) === String(id));
-      return meta ? fetchSeason(meta) : null;
+      const index = await loadIndex();
+      const meta = index.seasons.find((s) => String(s.id) === String(id));
+      return meta ? loadSeason(meta) : null;
     },
   };
 }

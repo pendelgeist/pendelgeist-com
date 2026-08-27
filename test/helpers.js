@@ -24,25 +24,6 @@ export function createLocalStorageStub() {
 }
 
 /**
- * Builds a fetch mock over a table of { filename: jsonBody }. Requests for
- * unlisted filenames resolve as a 404, matching real gist behavior for a
- * missing file.
- */
-export function createFetchStub(routes) {
-  const calls = [];
-  const fetchStub = async (url) => {
-    const file = new URL(url).pathname.split('/').pop();
-    calls.push(file);
-    if (!(file in routes)) {
-      return { ok: false, status: 404 };
-    }
-    return { ok: true, status: 200, json: async () => routes[file] };
-  };
-  fetchStub.calls = calls;
-  return fetchStub;
-}
-
-/**
  * Loads the VQAR page DOM and (re-)imports app.js against it. Each call gets
  * a fresh module instance (via a cache-busting query string) so module-level
  * state like `seasonDataById` never leaks between tests.
@@ -73,10 +54,14 @@ const FSAR_INDEX_HTML_PATH = path.join(__dirname, '../public/fsar/index.html');
 const FSAR_APP_JS_PATH = path.join(__dirname, '../public/fsar/app.js');
 
 /**
- * Like createFetchStub, but keyed on the full pathname rather than just the
- * filename - /fsar fetches same-origin relative paths ('/fsar/data/index.json',
- * '/fsar/data/reviews/<id>.json'), so a bare filename isn't enough to tell an
- * index request from a review request.
+ * Builds a fetch mock over a table of { pathname: jsonBody }. Requests for
+ * unlisted paths resolve as a 404. Keyed on the full pathname rather than the
+ * filename, since the pages fetch same-origin paths where a bare filename
+ * isn't enough to tell an index request from a data request (compare
+ * '/fsar/data/index.json' with '/fsar/data/reviews/<id>.json').
+ *
+ * It stands in for the Worker's ASSETS binding in test/graphql.test.js too -
+ * same route table, and the binding takes a URL where fetch takes a string.
  */
 export function createPathFetchStub(routes, { base = 'http://localhost' } = {}) {
   const calls = [];
