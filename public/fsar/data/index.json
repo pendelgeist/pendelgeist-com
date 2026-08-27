@@ -1,6 +1,35 @@
 {
   "reviews": [
     {
+      "id": "niea-7",
+      "status": "wip",
+      "titleEN": "NieA_7",
+      "titleJP": "ニア アンダーセブン",
+      "format": "TV",
+      "year": 2000,
+      "airedLabel": "Spring 2000",
+      "episodeCount": 13,
+      "episodesWatched": null,
+      "dateReviewed": "2026-08-27",
+      "tags": [
+        "slice-of-life",
+        "comedy",
+        "sci-fi",
+        "manga-adaptation"
+      ],
+      "annId": 50,
+      "wikipediaUrl": "https://en.wikipedia.org/wiki/NieA_7",
+      "podcastUrl": "https://amokenzoku.com/podcast/#episode-045",
+      "podcastLabel": "AMO Kenzoku, episode 45",
+      "verdict": {
+        "ratingNumber": null,
+        "ratingText": "",
+        "oneLiner": ""
+      },
+      "recommendedFor": [],
+      "notFor": []
+    },
+    {
       "id": "ruri-rocks",
       "status": "done",
       "titleEN": "Ruri Rocks",
@@ -31,6 +60,35 @@
         "ratingNumber": null,
         "ratingText": "",
         "oneLiner": "I've never learned so much about rocks in my life."
+      },
+      "recommendedFor": [],
+      "notFor": []
+    },
+    {
+      "id": "you-dont-know-gunma-yet-reiwa",
+      "status": "wip",
+      "titleEN": "You Don't Know Gunma Yet: Reiwa Version",
+      "titleJP": "お前はまだグンマを知らない～令和版～",
+      "format": "TV",
+      "year": 2026,
+      "airedLabel": "Winter 2026",
+      "episodeCount": 12,
+      "episodesWatched": null,
+      "dateReviewed": "2026-08-27",
+      "tags": [
+        "comedy",
+        "gag",
+        "short-form",
+        "manga-adaptation"
+      ],
+      "annId": 37944,
+      "wikipediaUrl": "https://en.wikipedia.org/wiki/You_Don't_Know_Gunma_Yet",
+      "wikipediaJaUrl": "https://ja.wikipedia.org/wiki/お前はまだグンマを知らない",
+      "availabilityNote": "Japan-only so far. Broadcast on SKY PerfecTV!'s Tetsudō Channel, and streamed there on dAnime Store, Bandai Channel and DMM TV. No English-language release announced.",
+      "verdict": {
+        "ratingNumber": null,
+        "ratingText": "",
+        "oneLiner": ""
       },
       "recommendedFor": [],
       "notFor": []

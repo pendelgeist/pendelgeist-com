@@ -402,6 +402,8 @@ the page, the index builder, and the validator so the three can't drift). A revi
   "notFor": ["..."],
   "tags": ["mecha", "sci-fi"],
   "availabilityNote": "Out of print in the US; secondhand disc or bust.",
+  "podcastUrl": "https://amokenzoku.com/podcast/#episode-012",
+  "podcastLabel": "AMO Kenzoku, episode 12",
   "sections": {
     "story": ["paragraph", "paragraph"],
     "production": ["paragraph"],
@@ -439,7 +441,13 @@ the page, the index builder, and the validator so the three can't drift). A revi
   show no service carries, `availabilityNote` is free text saying where it actually lives.
 - **`wikipediaUrl`/`wikipediaJaUrl`** work as they do in VQAR: full article URLs rather than
   ids, since Wikipedia is keyed on the article title and the two language editions disagree
-  about it. Both render as outbound links in the review header alongside AniList/ANN.
+  about it. Both render as outbound links in the review's facts rail alongside AniList/ANN.
+- **`podcastUrl`** (plus optional `podcastLabel` for the link text, defaulting to "Listen to
+  the episode") links a review to the [AMO Kenzoku Podcast](https://amokenzoku.com/podcast/)
+  episode covering that show. It gets its own labelled block in the facts rail rather than
+  joining the reference links: our own coverage is a different kind of link from an ANN
+  lookup, and the two are kept apart by class (`.review-podcast` vs `.review-meta`) so they
+  stay distinguishable.
 - Prose supports `**bold**`, `*italic*`, and `[text](url)` via `public/inline-markdown.js`,
   same as the Nasubi page. It is not real Markdown.
 
