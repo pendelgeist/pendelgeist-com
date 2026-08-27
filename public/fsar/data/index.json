@@ -1,6 +1,33 @@
 {
   "reviews": [
     {
+      "id": "niea-7",
+      "status": "wip",
+      "titleEN": "NieA_7",
+      "titleJP": "ニア アンダーセブン",
+      "format": "TV",
+      "year": 2000,
+      "airedLabel": "Spring 2000",
+      "episodeCount": 13,
+      "episodesWatched": null,
+      "dateReviewed": "2026-08-27",
+      "tags": [
+        "slice-of-life",
+        "comedy",
+        "sci-fi",
+        "manga-adaptation"
+      ],
+      "annId": 50,
+      "wikipediaUrl": "https://en.wikipedia.org/wiki/NieA_7",
+      "verdict": {
+        "ratingNumber": null,
+        "ratingText": "",
+        "oneLiner": ""
+      },
+      "recommendedFor": [],
+      "notFor": []
+    },
+    {
       "id": "ruri-rocks",
       "status": "done",
       "titleEN": "Ruri Rocks",
@@ -31,6 +58,34 @@
         "ratingNumber": null,
         "ratingText": "",
         "oneLiner": "I've never learned so much about rocks in my life."
+      },
+      "recommendedFor": [],
+      "notFor": []
+    },
+    {
+      "id": "you-dont-know-gunma-yet",
+      "status": "wip",
+      "titleEN": "You Don't Know Gunma Yet",
+      "titleJP": "お前はまだグンマを知らない",
+      "format": "TV",
+      "year": 2018,
+      "airedLabel": "Spring 2018",
+      "episodeCount": 12,
+      "episodesWatched": null,
+      "dateReviewed": "2026-08-27",
+      "tags": [
+        "comedy",
+        "gag",
+        "short-form",
+        "manga-adaptation"
+      ],
+      "annId": 20616,
+      "wikipediaUrl": "https://en.wikipedia.org/wiki/You_Don't_Know_Gunma_Yet",
+      "wikipediaJaUrl": "https://ja.wikipedia.org/wiki/お前はまだグンマを知らない",
+      "verdict": {
+        "ratingNumber": null,
+        "ratingText": "",
+        "oneLiner": ""
       },
       "recommendedFor": [],
       "notFor": []

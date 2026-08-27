@@ -1,0 +1,39 @@
+{
+  "id": "niea-7",
+  "status": "wip",
+  "titleEN": "NieA_7",
+  "titleJP": "ニア アンダーセブン",
+  "format": "TV",
+  "year": 2000,
+  "airedLabel": "Spring 2000",
+  "episodeCount": 13,
+  "episodesWatched": null,
+  "dateReviewed": "2026-08-27",
+  "tags": [
+    "slice-of-life",
+    "comedy",
+    "sci-fi",
+    "manga-adaptation"
+  ],
+  "annId": 50,
+  "wikipediaUrl": "https://en.wikipedia.org/wiki/NieA_7",
+  "verdict": {
+    "ratingNumber": null,
+    "ratingText": "",
+    "oneLiner": ""
+  },
+  "recommendedFor": [],
+  "notFor": [],
+  "sections": {
+    "story": [],
+    "production": [],
+    "op": {
+      "ratingText": "",
+      "body": []
+    },
+    "ed": {
+      "ratingText": "",
+      "body": []
+    }
+  }
+}

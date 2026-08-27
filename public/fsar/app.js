@@ -640,6 +640,17 @@ function createReviewArticle(review) {
   const spoilers = createSpoilerBlock(review);
   if (spoilers) body.appendChild(spoilers);
 
+  // A stub - a review that exists so the show is on the list, but that hasn't
+  // been written into yet. Only a "wip" can get here (validation requires a
+  // "done" review to have written sections), and without this the prose
+  // column would just be a blank half-page next to a filled-in facts rail.
+  if (body.childElementCount === 0) {
+    const placeholder = document.createElement('p');
+    placeholder.className = 'review-unwritten';
+    placeholder.textContent = "Watched, not written up yet. The notes for this one are still in my head.";
+    body.appendChild(placeholder);
+  }
+
   article.appendChild(body);
   return article;
 }
