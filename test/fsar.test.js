@@ -27,6 +27,8 @@ const GUNBUSTER = {
   annId: 619,
   wikipediaUrl: 'https://en.wikipedia.org/wiki/Gunbuster',
   wikipediaJaUrl: 'https://ja.wikipedia.org/wiki/トップをねらえ！',
+  podcastUrl: 'https://amokenzoku.com/podcast/#episode-012',
+  podcastLabel: 'AMO Kenzoku, episode 12',
   sections: {
     story: ['It starts as a sports show and does not stay one.'],
     production: ['The last episode changes technique entirely.'],
@@ -254,6 +256,35 @@ test('a review links out to every reference site it has an id or URL for', async
     'https://ja.wikipedia.org/wiki/\u30C8\u30C3\u30D7\u3092\u306D\u3089\u3048\uFF01',
   ]);
   assert.ok(links.every((a) => a.rel === 'noopener noreferrer'), 'external links need rel=noopener');
+});
+
+test('a podcast episode gets its own labelled block, not a reference link', async () => {
+  const { document } = await loadFsarApp({ fetch: createPathFetchStub(routes()), search: '?show=gunbuster' });
+  await waitFor(() => document.querySelector('.review-full'));
+
+  const blocks = [...document.querySelectorAll('.fact-block')];
+  const podcast = blocks.find((b) => b.querySelector('h4').textContent === 'Podcast');
+  assert.ok(podcast, 'expected a Podcast block in the facts rail');
+
+  const link = podcast.querySelector('a');
+  assert.equal(link.textContent, 'AMO Kenzoku, episode 12');
+  assert.equal(link.getAttribute('href'), 'https://amokenzoku.com/podcast/#episode-012');
+  assert.equal(link.rel, 'noopener noreferrer');
+
+  // It must not have leaked into the reference row alongside ANN/Wikipedia.
+  const reference = blocks.find((b) => b.querySelector('h4').textContent === 'Reference');
+  assert.ok(
+    ![...reference.querySelectorAll('a')].some((a) => a.href.includes('amokenzoku')),
+    'the podcast link belongs in its own block, not among the reference sites',
+  );
+});
+
+test('a review with no podcast episode renders no podcast block', async () => {
+  const { document } = await loadFsarApp({ fetch: createPathFetchStub(routes()), search: '?show=ruri-rocks' });
+  await waitFor(() => document.querySelector('.review-full'));
+
+  const headings = [...document.querySelectorAll('.fact-block h4')].map((h) => h.textContent);
+  assert.ok(!headings.includes('Podcast'), `unexpected Podcast block in ${headings.join(', ')}`);
 });
 
 test('a review with no reference ids or URLs renders no outbound links', async () => {

@@ -567,6 +567,24 @@ function createReviewFacts(review) {
     aside.appendChild(createFactBlock('Streaming', [streaming]));
   }
 
+  // Our own coverage, so it gets its own block rather than sitting among the
+  // reference databases above - a listener link is a different kind of thing
+  // from an ANN lookup.
+  if (review.podcastUrl) {
+    // Its own class, not .review-meta: the reference row and the podcast link
+    // are different kinds of link and callers (tests included) need to tell
+    // them apart by selector.
+    const links = document.createElement('div');
+    links.className = 'review-podcast';
+    const a = document.createElement('a');
+    a.href = review.podcastUrl;
+    a.target = '_blank';
+    a.rel = 'noopener noreferrer';
+    a.textContent = review.podcastLabel || 'Listen to the episode';
+    links.appendChild(a);
+    aside.appendChild(createFactBlock('Podcast', [links]));
+  }
+
   if (review.availabilityNote) {
     const note = document.createElement('div');
     note.className = 'availability-note';

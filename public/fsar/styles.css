@@ -387,9 +387,15 @@
   gap: 0.4rem 0.9rem;
 }
 
-.review-meta a {
+.review-meta a,
+.review-podcast a {
   color: var(--color-accent);
   text-decoration: underline;
+}
+
+.review-podcast {
+  font-size: 0.85rem;
+  line-height: 1.5;
 }
 
 .availability-note {
