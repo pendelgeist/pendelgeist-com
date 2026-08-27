@@ -12,16 +12,31 @@ async function loadJson(source) {
 }
 
 /**
+ * @typedef {Object} Target
+ * @property {string} label - how to name this season in output
+ * @property {object} season
+ * @property {string} [filename] - set only for committed files, where the name
+ *   is expected to match the season id. A draft passed on the CLI can be called
+ *   anything, so it deliberately has none.
+ */
+
+/**
  * Resolves the season(s) a validation script should check: whatever file
  * paths/URLs were passed on the CLI, or every committed season under
  * public/vqar/data/seasons/ if none were.
  * @param {string[]} args
- * @returns {Promise<{ label: string, season: object }[]>}
+ * @returns {Promise<{ targets: Target[], committed: boolean }>} `committed` says
+ *   whether this is the full committed set, which is what makes the
+ *   whole-collection checks (unique ids, exactly one current season) meaningful.
  */
 export async function resolveTargets(args) {
   if (args.length > 0) {
-    return Promise.all(args.map(async source => ({ label: source, season: await loadJson(source) })));
+    const targets = await Promise.all(
+      args.map(async source => ({ label: source, season: await loadJson(source) }))
+    );
+    return { targets, committed: false };
   }
 
-  return readSeasons().map(({ filename, season }) => ({ label: filename, season }));
+  const targets = readSeasons().map(({ filename, season }) => ({ label: filename, filename, season }));
+  return { targets, committed: true };
 }

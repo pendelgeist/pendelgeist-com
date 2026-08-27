@@ -240,3 +240,54 @@ test('a failed asset read surfaces as a GraphQL error instead of throwing', asyn
   assert.ok(result.errors && result.errors.length > 0);
   assert.equal(result.data.currentSeason, null);
 });
+
+// --- Per-request read caching ---
+
+test('one query reads each file once, however many root fields name it', async () => {
+  const assetsStub = createPathFetchStub(routes());
+  await run(
+    '{ seasons { id } currentSeason { id } a: season(id: "spring-2026") { id } b: season(id: "spring-2026") { id } }',
+    assetsStub
+  );
+
+  assert.deepEqual(assetsStub.calls, [
+    '/vqar/data/index.json',
+    '/vqar/data/seasons/summer-2026.json',
+    '/vqar/data/seasons/spring-2026.json',
+  ], 'expected no repeated reads within a single query');
+});
+
+test('the read cache does not outlive a request', async () => {
+  const first = createPathFetchStub(routes());
+  await run('{ currentSeason { id } }', first);
+
+  const second = createPathFetchStub(routes());
+  await run('{ currentSeason { id } }', second);
+
+  // A fresh rootValue per request means a redeploy is never served stale data
+  // from a previous query's cache.
+  assert.deepEqual(second.calls, first.calls);
+  assert.ok(second.calls.includes('/vqar/data/index.json'));
+});
+
+test('a failed read errors its field and stops there, without reading further', async () => {
+  const assetsStub = createPathFetchStub({});  // every path 404s
+
+  const result = await run('{ currentSeason { id } }', assetsStub);
+
+  assert.ok(result.errors?.length, 'the failed index read should surface as an error');
+  assert.equal(result.data.currentSeason, null);
+  assert.deepEqual(assetsStub.calls, ['/vqar/data/index.json'], 'no season read once the index failed');
+});
+
+test('a request that failed leaves nothing behind for the next one', async () => {
+  const failing = createPathFetchStub({});
+  const failed = await run('{ currentSeason { id } }', failing);
+  assert.ok(failed.errors?.length);
+
+  // Each request builds its own rootValue, so a failure is never cached past it.
+  const working = createPathFetchStub(routes());
+  const result = await run('{ currentSeason { id } }', working);
+  assert.equal(result.errors, undefined);
+  assert.equal(result.data.currentSeason.id, 'summer-2026');
+});

@@ -9,7 +9,7 @@ import {
   computeHallOfFame, computeSecondImpressions, computeOpEdHighlights,
   computeRevisitCandidates, computeContinuationWatch,
 } from '../public/vqar-stats/stats.js';
-import { createPathFetchStub, createLocalStorageStub } from './helpers.js';
+import { createPathFetchStub } from './helpers.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -204,12 +204,11 @@ function routes() {
 
 let importCounter = 0;
 
-async function loadApp({ fetch = createPathFetchStub(routes()), localStorage = createLocalStorageStub(), url = 'http://localhost/vqar-stats/index.html' } = {}) {
+async function loadApp({ fetch = createPathFetchStub(routes()), url = 'http://localhost/vqar-stats/index.html' } = {}) {
   const html = fs.readFileSync(INDEX_HTML_PATH, 'utf-8');
   const dom = new JSDOM(html, { url, runScripts: 'outside-only' });
 
   global.document = dom.window.document;
-  global.localStorage = localStorage;
   global.fetch = fetch;
   global.location = dom.window.location;
   global.history = dom.window.history;

@@ -16,11 +16,13 @@ import { validateSeason, validateSeasonCollection } from './validateSeason.js';
 import { resolveTargets } from './loadTargets.js';
 
 async function main() {
-  const targets = await resolveTargets(process.argv.slice(2));
+  const { targets, committed } = await resolveTargets(process.argv.slice(2));
 
   let anyIssues = false;
-  for (const { label, season } of targets) {
-    const issues = validateSeason(season, { filename: label.split('/').pop() });
+  for (const { label, filename, season } of targets) {
+    // A draft has no expected filename - only a committed file is required to
+    // be named after its season id.
+    const issues = validateSeason(season, { filename });
     if (issues.length === 0) {
       console.log(`✔ ${label}: OK`);
       continue;
@@ -30,9 +32,9 @@ async function main() {
     for (const issue of issues) console.log(`  - ${issue}`);
   }
 
-  // Only meaningful over a full set - a single hand-picked draft is not
+  // Only meaningful over the whole committed set: a hand-picked draft isn't
   // expected to be the one season carrying `current: true`.
-  if (targets.length > 1) {
+  if (committed) {
     const issues = validateSeasonCollection(targets.map(t => t.season));
     if (issues.length > 0) {
       anyIssues = true;

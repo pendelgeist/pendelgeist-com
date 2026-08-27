@@ -13,9 +13,9 @@
  *   node scripts/build-fsar-index.js --check    # exits 1 if it's stale, writes nothing
  */
 
-import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { readJsonFiles, serializeIndex, syncIndexFile } from './indexFile.js';
 import { BODY_KEYS } from '../public/fsar/schema.js';
 import { validateFsarReview, validateFsarCollection } from './validateFsarReview.js';
 
@@ -24,15 +24,11 @@ export const DATA_DIR = path.join(__dirname, '../public/fsar/data');
 export const REVIEWS_DIR = path.join(DATA_DIR, 'reviews');
 export const INDEX_PATH = path.join(DATA_DIR, 'index.json');
 
-/** Reads every review file, sorted by filename so the output is deterministic. */
+export { serializeIndex };
+
+/** @returns {{ filename: string, review: object }[]} */
 export function readReviews(dir = REVIEWS_DIR) {
-  return fs.readdirSync(dir)
-    .filter((f) => f.endsWith('.json'))
-    .sort()
-    .map((filename) => ({
-      filename,
-      review: JSON.parse(fs.readFileSync(path.join(dir, filename), 'utf-8')),
-    }));
+  return readJsonFiles(dir).map(({ filename, data }) => ({ filename, review: data }));
 }
 
 /**
@@ -49,42 +45,24 @@ export function buildIndex(reviews) {
   return { reviews: cards };
 }
 
-export function serializeIndex(index) {
-  return `${JSON.stringify(index, null, 2)}\n`;
-}
-
 function main() {
-  const check = process.argv.includes('--check');
   const entries = readReviews();
+  const reviews = entries.map((e) => e.review);
 
   const issues = [
     ...entries.flatMap(({ filename, review }) => validateFsarReview(review, { filename })),
-    ...validateFsarCollection(entries.map((e) => e.review)),
+    ...validateFsarCollection(reviews),
   ];
-  if (issues.length > 0) {
-    console.error(`${issues.length} issue(s) found; index not written:\n`);
-    for (const issue of issues) console.error(`  - ${issue}`);
-    process.exit(1);
-  }
 
-  const next = serializeIndex(buildIndex(entries.map((e) => e.review)));
-  const current = fs.existsSync(INDEX_PATH) ? fs.readFileSync(INDEX_PATH, 'utf-8') : '';
-
-  if (check) {
-    if (next !== current) {
-      console.error('index.json is out of date - run: npm run build-fsar-index');
-      process.exit(1);
-    }
-    console.log(`index.json is up to date (${entries.length} review(s)).`);
-    return;
-  }
-
-  fs.writeFileSync(INDEX_PATH, next);
-  console.log(
-    current === next
-      ? `index.json unchanged (${entries.length} review(s)).`
-      : `Wrote index.json (${entries.length} review(s)).`
-  );
+  process.exitCode = syncIndexFile({
+    issues,
+    indexPath: INDEX_PATH,
+    next: () => serializeIndex(buildIndex(reviews)),
+    count: entries.length,
+    noun: 'review',
+    rebuildCommand: 'npm run build-fsar-index',
+    check: process.argv.includes('--check'),
+  });
 }
 
 if (import.meta.url === `file://${process.argv[1]}`) {

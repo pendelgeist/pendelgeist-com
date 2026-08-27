@@ -84,21 +84,43 @@ type Query {
 
 /**
  * Root value whose fields graphql-js uses as the Query type's default resolvers.
+ * Built fresh per request, so the read cache below lives exactly as long as one
+ * query: a query naming several root fields (or the same season twice under
+ * different aliases) reads each file once, and the next request still sees
+ * whatever the assets currently hold.
  * @param {{ assets: { fetch: (url: URL) => Promise<Response> }, origin: string }} env
  *   `assets` is the Worker's ASSETS binding; `origin` is what the relative data
  *   paths get resolved against, since the binding needs an absolute URL.
  */
 export function makeRootValue({ assets, origin }) {
+  /** @type {Map<string, Promise<object>>} in-flight and settled reads, keyed by path */
+  const reads = new Map();
+
   /**
    * @param {string} path
    * @param {string} label - what to name in the error if the read fails
    */
-  async function loadJson(path, label) {
-    const response = await assets.fetch(new URL(path, origin));
-    if (!response.ok) {
-      throw new Error(`HTTP ${response.status} loading ${label}`);
-    }
-    return response.json();
+  function loadJson(path, label) {
+    const cached = reads.get(path);
+    if (cached) return cached;
+
+    const read = (async () => {
+      const response = await assets.fetch(new URL(path, origin));
+      if (!response.ok) {
+        throw new Error(`HTTP ${response.status} loading ${label}`);
+      }
+      return response.json();
+    })();
+
+    // Don't leave a rejected promise in the cache for the rest of the request;
+    // a read starting after the failure should get a fresh attempt rather than
+    // the old error. (The .catch is also what keeps the cached rejection from
+    // counting as unhandled - the returned promise still carries the error to
+    // whichever field awaited it.)
+    read.catch(() => reads.delete(path));
+
+    reads.set(path, read);
+    return read;
   }
 
   const loadIndex = () => loadJson(VQAR_INDEX_PATH, 'the season index');
