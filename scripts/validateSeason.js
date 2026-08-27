@@ -2,6 +2,34 @@ import { STREAMING_SERVICES } from '../public/streaming.js';
 
 const STREAMING_KEYS = new Set(Object.keys(STREAMING_SERVICES));
 
+// Season ids are `<season>-<year>` ("spring-2026"), which is what
+// scripts/build-vqar-index.js sorts the generated index by - the gist manifest
+// used to carry that order by hand. A season whose id doesn't follow the
+// pattern has to say where it goes with an explicit numeric `sortKey`.
+const SEASON_ORDER = { winter: 0, spring: 1, summer: 2, fall: 3, autumn: 3 };
+
+/**
+ * @param {string} id
+ * @returns {number|null} a comparable rank (higher = more recent), or null if
+ *   the id doesn't parse as `<season>-<year>`
+ */
+export function parseSeasonId(id) {
+  const match = /^([a-z]+)-(\d{4})$/.exec(String(id));
+  if (!match) return null;
+  const [, season, year] = match;
+  const order = SEASON_ORDER[season];
+  return order === undefined ? null : Number(year) * 10 + order;
+}
+
+/**
+ * Where a season sorts, newest first. Prefers an explicit `sortKey` so a season
+ * whose id doesn't parse still has a home.
+ * @param {object} season
+ */
+export function seasonSortKey(season) {
+  return typeof season.sortKey === 'number' ? season.sortKey : parseSeasonId(season.id);
+}
+
 /** @param {string[]} list */
 function findDuplicates(list) {
   const seen = new Set();
@@ -17,12 +45,34 @@ function findDuplicates(list) {
  * Checks a single season's data for internal consistency: a show shouldn't be
  * reviewed and still sitting in pending/skipped, shouldn't be in both pending
  * and skipped, and shouldn't be listed twice in the same list. Also flags
- * reviews missing required fields or with an unparseable date.
- * @param {object} season - a SeasonData object ({ reviewed, pending, skipped })
+ * reviews missing required fields or with an unparseable date, and that the
+ * season can identify and order itself in the generated index.
+ * @param {object} season - a SeasonData object ({ id, name, reviewed, pending, skipped })
+ * @param {{ filename?: string }} [options] - `filename` cross-checks `id` against the file it came from
  * @returns {string[]} human-readable issues found; empty if the data is clean
  */
-export function validateSeason(season) {
+export function validateSeason(season, { filename } = {}) {
   const issues = [];
+
+  if (typeof season.id !== 'string' || season.id === '') {
+    issues.push('season is missing an id (expected a non-empty string like "spring-2026")');
+  } else {
+    if (filename && filename !== `${season.id}.json`) {
+      issues.push(`season id "${season.id}" doesn't match its filename "${filename}"`);
+    }
+    if (seasonSortKey(season) === null) {
+      issues.push(`season id "${season.id}" isn't a "<season>-<year>" id, so it needs an explicit numeric sortKey to order the index`);
+    }
+  }
+  if (typeof season.name !== 'string' || season.name === '') {
+    issues.push('season is missing a name (expected a non-empty string like "Spring 2026")');
+  }
+  if (season.current !== undefined && typeof season.current !== 'boolean') {
+    issues.push('season has a malformed current (expected a boolean)');
+  }
+  if (season.sortKey !== undefined && typeof season.sortKey !== 'number') {
+    issues.push('season has a malformed sortKey (expected a number)');
+  }
   const reviewed = Array.isArray(season.reviewed) ? season.reviewed : [];
   const pending = Array.isArray(season.pending) ? season.pending : [];
   const skipped = Array.isArray(season.skipped) ? season.skipped : [];
@@ -82,6 +132,31 @@ export function validateSeason(season) {
       }
     }
   });
+
+  return issues;
+}
+
+/**
+ * Checks the seasons as a set, the way build-vqar-index.js sees them: ids have
+ * to be unique, and exactly one season carries `current: true` - that flag is
+ * what the generated index's `currentSeason` comes from, so zero or two of them
+ * is a broken index rather than a cosmetic slip.
+ * @param {object[]} seasons
+ * @returns {string[]}
+ */
+export function validateSeasonCollection(seasons) {
+  const issues = [];
+
+  for (const dupe of findDuplicates(seasons.map(s => s.id).filter(Boolean))) {
+    issues.push(`more than one season has the id "${dupe}"`);
+  }
+
+  const current = seasons.filter(s => s.current === true);
+  if (current.length === 0) {
+    issues.push('no season is marked "current": true - exactly one has to be');
+  } else if (current.length > 1) {
+    issues.push(`${current.length} seasons are marked "current": true (${current.map(s => s.id).join(', ')}) - only one can be`);
+  }
 
   return issues;
 }

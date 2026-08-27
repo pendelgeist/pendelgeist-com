@@ -4,10 +4,10 @@
   "type": "module",
   "scripts": {
     "test": "node --test test/*.test.js",
-    "validate-gists": "node scripts/validate-gists.js",
+    "validate-vqar": "node scripts/validate-vqar.js",
     "validate-anilist": "node scripts/validate-against-anilist.js",
-    "update-gist": "node scripts/update-gist.js",
     "build-fsar-index": "node scripts/build-fsar-index.js",
+    "build-vqar-index": "node scripts/build-vqar-index.js",
     "dev": "wrangler dev",
     "deploy": "wrangler deploy"
   },

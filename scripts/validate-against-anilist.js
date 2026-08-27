@@ -2,7 +2,7 @@
 /**
  * Cross-checks VQAR season data against AniList's public GraphQL API
  * (https://anilist.co/graphiql) — the same one linked from the site for full
- * show metadata. This is a separate, slower check from validate-gists.js:
+ * show metadata. This is a separate, slower check from validate-vqar.js:
  * it makes one live AniList request per show, so it's meant to be run
  * occasionally rather than in CI.
  *
@@ -14,7 +14,7 @@
  * For pending/skipped titles (plain strings, nowhere to attach an id), it
  * just flags titles AniList has no confident match for, as a spelling check.
  *
- *   npm run validate-anilist
+ *   npm run validate-anilist                    # every committed season
  *   npm run validate-anilist -- ./draft-season.json
  *   npm run validate-anilist -- --delay=2000   # slower, if AniList starts rate-limiting
  */

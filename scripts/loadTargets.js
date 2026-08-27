@@ -1,5 +1,5 @@
 import { readFile } from 'node:fs/promises';
-import { MANIFEST_URL } from '../public/manifest-url.js';
+import { readSeasons } from './build-vqar-index.js';
 
 /** @param {string} source - a file path or an http(s) URL */
 async function loadJson(source) {
@@ -13,8 +13,8 @@ async function loadJson(source) {
 
 /**
  * Resolves the season(s) a validation script should check: whatever file
- * paths/URLs were passed on the CLI, or every season the live manifest lists
- * if none were.
+ * paths/URLs were passed on the CLI, or every committed season under
+ * public/vqar/data/seasons/ if none were.
  * @param {string[]} args
  * @returns {Promise<{ label: string, season: object }[]>}
  */
@@ -23,8 +23,5 @@ export async function resolveTargets(args) {
     return Promise.all(args.map(async source => ({ label: source, season: await loadJson(source) })));
   }
 
-  const manifest = await loadJson(MANIFEST_URL);
-  return Promise.all(
-    manifest.seasons.map(async meta => ({ label: meta.name, season: await loadJson(meta.file) }))
-  );
+  return readSeasons().map(({ filename, season }) => ({ label: filename, season }));
 }

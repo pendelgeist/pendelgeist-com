@@ -10,9 +10,10 @@ npm test                                   # runs test/*.test.js via node --test
 node --test test/theme.test.js             # run a single test file
 npm run dev                                # wrangler dev - exercises the Worker (incl. /graphql) locally
 npm run deploy                             # wrangler deploy
-npm run validate-gists                     # checks the live manifest + every season gist for consistency
-npm run validate-gists -- ./draft.json     # or check a local file/URL directly
+npm run validate-vqar                      # checks every committed VQAR season for consistency
+npm run validate-vqar -- ./draft.json      # or check a local file/URL directly
 npm run build-fsar-index                   # regenerate public/fsar/data/index.json from the review files
+npm run build-vqar-index                   # regenerate public/vqar/data/index.json from the season files
 ```
 
 There is no build/lint step. `public/` is served as-is (no bundler, no framework, no
@@ -41,17 +42,31 @@ Static site (`public/`) served from a Cloudflare Worker, plus a small GraphQL AP
 
 ### VQAR data flow
 
-Review data lives in GitHub Gists, not this repo: a manifest gist lists each season and
-a URL to that season's own gist (documented in the README under "VQAR data"). Three
-independent consumers all read the *same* manifest URL, exported once from
-`public/manifest-url.js` so it can't drift:
+Review data is committed to this repo, under `public/vqar/data/`: one file per season in
+`seasons/`, plus a **generated** `index.json` naming the current season and listing where
+each season lives (documented in the README under "VQAR data"). Regenerate it with
+`npm run build-vqar-index` after touching a season file — `test/vqar-data.test.js` fails if
+the committed one is stale.
+
+Two fields exist only so that index can be generated rather than hand-maintained, and
+`scripts/validateSeason.js` enforces both: exactly one season carries `"current": true`
+(that's where `currentSeason` comes from — move it when a season rolls over), and seasons
+are ordered newest-first by parsing `<season>-<year>` out of the id, with an explicit
+numeric `sortKey` as the escape hatch for an id that doesn't fit.
+
+Three independent consumers read that index, whose path is exported once from
+`public/vqar/data-paths.js` so it can't drift:
 - `public/vqar/app.js` — the display page, fetches client-side, is otherwise
-  independent of everything below.
-- `src/schema.js` — the GraphQL resolvers, fetch the same gists server-side (through
-  `src/cache.js`'s edge-cached `cachedFetch`, ~10 min TTL) and reshape them to add
+  independent of everything below. Loads one season at a time, on demand.
+- `src/schema.js` — the GraphQL resolvers, read the same files server-side through the
+  Worker's `ASSETS` binding (`makeRootValue({ assets, origin })`, wired up in
+  `src/worker.js`) rather than over the network, and reshape them to add
   `season`/`seasonName` per review, mirroring what `app.js` does on the client.
-- `scripts/validate-gists.js` — a standalone consistency checker, not part of the
-  deployed site.
+- `scripts/validate-vqar.js` — a standalone consistency checker, not part of the deployed
+  site; the committed data is checked by `test/vqar-data.test.js` in CI regardless.
+
+`public/vqar-stats/app.js` is a fourth reader, but unlike `/vqar` it always loads every
+season, since every stat on it is an aggregate.
 
 ### FSAR data flow
 
@@ -104,9 +119,13 @@ Tests run against the real browser-facing files (`public/vqar/app.js`, `*.html`)
 `node --test` + jsdom, with `fetch`/`localStorage` mocked (see `test/helpers.js`,
 `createFetchStub`/`createLocalStorageStub`; `/fsar` uses `loadFsarApp` +
 `createPathFetchStub`, keyed on pathname rather than filename since it fetches
-same-origin relative paths). Committed data (`public/fsar/data/`, `public/nasubi/data/`)
+same-origin relative paths). Committed data (`public/vqar/data/`, `public/fsar/data/`, `public/nasubi/data/`)
 is validated by its own test rather than a manually-run script, since CI can check it. No separate test build — same ES modules
 that ship to the browser are imported directly into the test process.
+
+`test/helpers.js`'s `createPathFetchStub` is keyed on pathname (every page fetches
+same-origin paths), and doubles as the stub for the Worker's `ASSETS` binding in
+`test/graphql.test.js`/`test/worker.test.js`.
 
 ## Workflow
 

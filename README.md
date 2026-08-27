@@ -23,8 +23,8 @@ The Worker (`src/worker.js`) also backs a small GraphQL API over the same anime 
   pages that render committed prose (`/nasubi`, `/fsar`) share.
 - `public/streaming.js` — streaming service metadata + badge rendering, shared by `/vqar`,
   `/fsar`, and `scripts/validateSeason.js`.
-- `public/manifest-url.js` — the manifest gist URL, the one thing `public/vqar/app.js`,
-  `src/schema.js`, and `scripts/validate-gists.js` all need to agree on.
+- `public/vqar/data-paths.js` — the path to the VQAR season index, the one thing
+  `public/vqar/app.js`, `public/vqar-stats/app.js`, and `src/schema.js` all need to agree on.
 - `src/worker.js` / `src/schema.js` — the Worker's fetch handler and GraphQL schema/resolvers.
 
 ## Theme
@@ -98,32 +98,45 @@ convention that keeps new components from breaking it:
 
 ## VQAR data
 
-Review data lives in gists, not in this repo. `public/vqar/app.js` fetches a manifest
-gist first (`MANIFEST_URL`), which lists each season and an absolute raw URL to that
-season's own gist:
+Review data is committed to this repo, under `public/vqar/data/`: one file per season in
+`seasons/`, plus a **generated** `index.json` listing every season and naming the one
+currently being reviewed. `public/vqar/app.js` loads the index first
+(`VQAR_INDEX_PATH`), then fetches whichever season(s) the filter needs:
 
 ```json
 {
   "currentSeason": "spring-2026",
   "seasons": [
-    { "id": "spring-2026", "name": "Spring 2026", "file": "https://gist.githubusercontent.com/.../raw/vqar-season-spring-2026.json" }
+    { "id": "spring-2026", "name": "Spring 2026", "file": "/vqar/data/seasons/spring-2026.json" }
   ]
 }
 ```
 
-Each season's `file` must be the full raw URL to its own gist — not a bare filename —
-since seasons are separate gists rather than multiple files in one. Adding a new season
-means creating a new gist and adding an entry to the manifest; editing an old season's
-gist never touches the others.
+Never hand-edit `index.json` — regenerate it with `npm run build-vqar-index` after touching
+a season file. `test/vqar-data.test.js` fails if the committed one is stale, so CI catches a
+forgotten rebuild.
 
-Each season's own gist has `id`, `name`, `reviewed`, `pending`, and `skipped`. It may also
-carry a `number` (e.g. a MAL season id like `2603`) — that's optional, informational
-metadata for your own reference and isn't read by the app or the manifest.
+Each season file has `id`, `name`, `reviewed`, `pending`, and `skipped`. It may also carry
+a `number` (e.g. a MAL season id like `2603`) — optional, informational metadata for your
+own reference that nothing reads. Adding a season means dropping a new file in `seasons/`
+and rebuilding the index; editing an old season never touches the others.
 
-The manifest and the *current* season are always fetched fresh. Past seasons are cached
-in `localStorage` after their first load, so switching between them is free after the
-first visit — clear site data to force a re-fetch. If a season's URL is wrong or its gist
-is unreachable, the page shows an error naming that season instead of failing silently.
+Two fields exist purely so the index can be generated rather than hand-maintained:
+
+- `"current": true` marks the season being reviewed right now, which is where the index's
+  `currentSeason` comes from. **Exactly one** season carries it — when a new season starts,
+  move the flag. Validation fails loudly on zero or two, so a forgotten move can't quietly
+  mis-render the page.
+- Seasons are ordered newest-first by parsing `<season>-<year>` out of the id, since the
+  directory listing would put spring before winter. A season id that doesn't follow that
+  pattern needs an explicit numeric `sortKey` instead; validation rejects one with neither.
+
+The index and the seasons are fetched with `cache: 'no-cache'`, which revalidates rather
+than refetching — an unchanged season comes back as a 304. There's no `localStorage` cache
+any more: same-origin assets behind a CDN don't need one, and a cache with no version key
+would have hidden an edit to a past season from returning visitors indefinitely. If a
+season's path is wrong or its file is missing, the page shows an error naming that season
+instead of failing silently.
 
 ### Review shape
 
@@ -138,7 +151,7 @@ All three are optional and independent — add whichever applies whenever you ge
 A review may also carry an optional `anilistId` (an AniList media id, e.g. `154587`) —
 purely for linking out to that show's AniList page from VQAR and the GraphQL API. Full
 show metadata (synopsis, episode counts, community scores) intentionally lives on AniList
-rather than being duplicated into these gists; see "Validating against AniList" below for
+rather than being duplicated into these files; see "Validating against AniList" below for
 finding the right id.
 
 A review may also carry an optional `annId` (an Anime News Network encyclopedia id, e.g.
@@ -168,55 +181,53 @@ either finishing (graduating to a `fullReview`) or stalling out again. Purely fo
 amusement; not required, and `/vqar-stats`' Revisit Candidates list stays title-only
 regardless - it only shows up alongside the rest of a review on `/vqar` itself.
 
-### Updating gist data
+### Editing a season
 
-`scripts/update-gist.js` pushes a locally-edited season (or the manifest) straight to its
-gist via the GitHub API, instead of hand-pasting JSON into the gist editor. It always runs
-a season through `validateSeason` first — a season with issues is never pushed — and
-prints a diff summary (titles added/removed/edited) against the live content. It's a dry
-run by default; pass `--write` to actually push, which requires a `GITHUB_TOKEN` env var
-(a PAT scoped to just `gist` write access).
+Edit the season's file under `public/vqar/data/seasons/`, rebuild the index, and commit:
 
 ```
-npm run update-gist -- spring-2026 ./draft-season.json           # dry run: prints the diff
-npm run update-gist -- spring-2026 ./draft-season.json --write   # pushes it
-npm run update-gist -- manifest ./draft-manifest.json --write    # or update the manifest itself
+$EDITOR public/vqar/data/seasons/summer-2026.json
+npm run build-vqar-index
+npm test
 ```
 
-### Validating gist data
+That's the whole loop — `git` is the update mechanism, so there's no push-to-gist step and
+no token to keep around.
 
-`scripts/validate-gists.js` is a standalone check — it's not part of the website, just
-something to run occasionally to make sure the underlying data is internally consistent.
-It flags a show that's marked reviewed but still left in pending/skipped, a show listed in
-both pending and skipped, duplicate entries within the same list, and reviews missing
-required fields or with an unparseable date.
+### Validating season data
+
+`scripts/validate-vqar.js` runs the same checks `npm test` does, on demand. It flags a show
+that's marked reviewed but still left in pending/skipped, a show listed in both pending and
+skipped, duplicate entries within the same list, reviews missing required fields or with an
+unparseable date, and a season that can't identify or order itself. Its one job the test
+can't do is checking a file that isn't committed yet.
 
 ```
-npm run validate-gists                  # fetches the live manifest and checks every season
-npm run validate-gists -- ./draft.json  # or check one or more local files/URLs directly
+npm run validate-vqar                  # checks every committed season
+npm run validate-vqar -- ./draft.json  # or check one or more local files/URLs directly
 ```
 
 ### Validating against AniList
 
-`scripts/validate-against-anilist.js` cross-checks the same gist data against
+`scripts/validate-against-anilist.js` cross-checks the same season data against
 [AniList's public GraphQL API](https://anilist.co/graphiql) — one live request per show, so
-it's meant to be run occasionally rather than in CI (unlike `validate-gists`, which is
-purely local). For each reviewed show it either confirms an existing `anilistId` still
-resolves to a matching title, or searches by title and suggests an `anilistId` to add when
-it finds a confident match; pending/skipped titles just get a lighter existence check as a
-spelling sanity check.
+it's meant to be run occasionally rather than in CI (unlike `validate-vqar`, which is purely
+local). For each reviewed show it either confirms an existing `anilistId` still resolves to
+a matching title, or searches by title and suggests an `anilistId` to add when it finds a
+confident match; pending/skipped titles just get a lighter existence check as a spelling
+sanity check.
 
 ```
-npm run validate-anilist                    # fetches the live manifest and checks every season
+npm run validate-anilist                    # checks every committed season
 npm run validate-anilist -- ./draft.json    # or check one or more local files/URLs directly
 npm run validate-anilist -- --delay=2500    # slow down if AniList starts rate-limiting
 ```
 
 ## Evangelion page
 
-`public/eva-tv/` is a small standalone page at `/eva-tv`, separate from the VQAR/gist data
-flow above — its content lives in `public/eva-tv/data.json`, committed to this repo rather
-than a gist, since it changes far less often than a season's reviews.
+`public/eva-tv/` is a small standalone page at `/eva-tv`, separate from the VQAR data flow
+above — its content lives in a single `public/eva-tv/data.json` rather than a file per
+season, since it changes far less often than a season's reviews.
 
 It's a horizontally-scrolling timeline anchored to the 26 TV episodes plus a final "EoE"
 (*The End of Evangelion*) column. The JSON has three top-level keys:
@@ -250,7 +261,7 @@ It's a horizontally-scrolling timeline anchored to the 26 TV episodes plus a fin
     their `sourceRefs` without a `quote`, since there's no original-language excerpt to
     pair against.
 
-`public/eva-tv/app.js` fetches `data.json` directly (no manifest indirection, since it's one
+`public/eva-tv/app.js` fetches `data.json` directly (no index indirection, since it's one
 file), lays out one column per episode with its entries as clickable nodes, and opens the
 selected entry in a fixed detail panel at the bottom — including its "jump to" links. A
 long episode's entries flow into extra side-by-side sub-columns via plain CSS multi-column
@@ -264,7 +275,7 @@ unlike VQAR.
 
 `public/nasubi/` is a standalone page at `/nasubi`: a data analysis of Nasubi's 11-month
 sweepstakes ordeal on *Susunu! Denpa Shonen* (1998-99) and the Korea sequel that followed.
-Like the Evangelion page, all its content is committed JSON rather than a gist, under
+Like the Evangelion page, all its content is committed JSON, under
 `public/nasubi/data/`:
 
 - `content.json` — the curated narrative: a `meta` block (title/subtitle/intro) plus a
@@ -307,15 +318,14 @@ freer-format data analysis of the VQAR review data, in the spirit of the Nasubi 
 but computed live instead of from committed JSON, since VQAR's data (unlike Nasubi's) keeps
 growing every season.
 
-`app.js` fetches the same manifest + every season gist documented under "VQAR data" above
-(sharing `/vqar/app.js`'s `localStorage` cache key prefix, so a season cached from either
-page warms the cache for the other), flattens every season's `reviewed` array into one list,
+`app.js` fetches the same index + every season file documented under "VQAR data" above,
+flattens every season's `reviewed` array into one list,
 and hands it to `stats.js` — a set of pure, DOM-free functions (`computeGlanceStats`,
 `computeRatingDistribution`, `computeRatingsOverTime`, `computeHallOfFame`,
 `computeSecondImpressions`, `computeOpEdHighlights`, `computeRevisitCandidates`,
 `computeContinuationWatch`) that each derive one stat/section from the flattened review
 list. Keeping these pure and separate from `app.js`'s fetch/render code is what makes them
-unit-testable without a DOM or a live gist fetch — see `test/vqar-stats.test.js`.
+unit-testable without a DOM or a live data fetch — see `test/vqar-stats.test.js`.
 
 Sections rendered from those functions: a numbers-at-a-glance stat grid, a rating
 distribution bar chart (ordered low to high), average rating per season over time,
@@ -342,7 +352,7 @@ season itself, or the picked season when a past one is selected (`spotlightSeaso
 - **Continuing Seasons Worth Watching** (`computeContinuationWatch`) — that season's full
   lineup (pending, skipped, and reviewed titles alike) cross-checked by title against shows
   rated 4+ in an *earlier* season (judged by each season's earliest `dateReviewed`, since
-  manifest order isn't guaranteed to be chronological — see `seasonEarliestTimestamp`),
+  the flattened review list carries no season order — see `seasonEarliestTimestamp`),
   surfacing exceptions to VQAR's usual "skip continuing/returning seasons" guidance.
   Matching is a best-effort text heuristic (`normalizeBaseTitle` strips common sequel
   markers — "Season 2", "2nd Season", "Part 2", "Cour 2", roman numerals — before
@@ -369,8 +379,8 @@ everything in a season; FSAR is a full writeup of a show actually watched to the
 in practice means shows that were worth finishing. Plenty of them are decades old rather
 than current-season.
 
-Like the Evangelion and Nasubi pages (and unlike VQAR), the data is committed to this repo
-rather than living in gists, under `public/fsar/data/`:
+Like VQAR and the Evangelion and Nasubi pages, the data is committed to this repo, under
+`public/fsar/data/`:
 
 - `reviews/<id>.json` — one file per review, the full writeup. One file each so a new review
   never touches an existing one, and so a long writeup only gets downloaded when it's opened.
@@ -469,8 +479,8 @@ server routing involved:
 
 `scripts/validateFsarReview.js` checks one review's shape; `scripts/build-fsar-index.js`
 runs it over every file and refuses to write the index if anything is wrong. Both are
-exercised by `test/fsar-data.test.js`, which runs in CI — unlike the VQAR gist validators,
-this data is in-repo, so every PR checks it automatically.
+exercised by `test/fsar-data.test.js`, which runs in CI — the same arrangement VQAR's data
+has in `test/vqar-data.test.js`, so every PR checks both automatically.
 
 ```
 npm run build-fsar-index              # regenerate index.json from the review files
@@ -483,22 +493,21 @@ node scripts/build-fsar-index.js --check   # exit 1 if it's stale, write nothing
 runs a query against a schema (`src/schema.js`) built with `graphql-js` and executed in the
 Worker. Both routes are handled by `src/worker.js`, which otherwise just forwards every
 other request to the static assets — the VQAR page itself is untouched and still fetches
-the gists directly, client-side.
+the same files directly, client-side.
 
-The API fetches the same manifest + per-season gists documented above, reshaping each
-review to add its `season`/`seasonName`, the way `public/vqar/app.js` does on the client.
+The API reads the same index + per-season files documented above, reshaping each review to
+add its `season`/`seasonName`, the way `public/vqar/app.js` does on the client.
 
-Gist fetches (manifest and each season) are cached at the edge via `src/cache.js`, keyed
-on URL, for 10 minutes — shows are added at most a few times a day, often zero, so a
-query lagging behind a fresh edit by up to that long is a reasonable trade for cutting
-nearly all repeat gist fetches. A failed fetch is never cached, so an outage isn't stuck.
-`caches.default` isn't available under `node --test`, so tests exercise it via a small
-in-memory stub (see `test/cache.test.js`) and otherwise just fall back to a plain fetch.
+Because that data is served from this Worker's own assets, the resolvers read it through
+the `ASSETS` binding (`makeRootValue({ assets, origin })`) rather than fetching it over the
+network. There's no round trip and no cache to keep — a deploy is immediately consistent,
+where the old gist-backed version could lag a fresh edit by up to a 10-minute edge-cache
+TTL. Tests pass a stub binding over the same route table the page tests use.
 
 ```
 type Query {
-  seasons: [SeasonSummary!]!    # every season in the manifest (id + name only)
-  currentSeason: Season         # the manifest's current season, with full review data
+  seasons: [SeasonSummary!]!    # every season in the index (id + name only)
+  currentSeason: Season         # the index's current season, with full review data
   season(id: ID!): Season       # a specific season's full data, by id
 }
 ```
@@ -529,5 +538,5 @@ npm run deploy  # wrangler deploy
 Tests (`test/`) run against the real `app.js` and `index.html` with a mocked
 `fetch`/`localStorage` via jsdom — see `test/helpers.js`. The GraphQL schema/resolvers
 (`test/graphql.test.js`) and the Worker's routing (`test/worker.test.js`) are tested the
-same way, with `fetch` mocked instead of hitting the real gists. CI runs them on every PR
-(`.github/workflows/test.yml`).
+same way — the Worker's `ASSETS` binding stubbed, rather than a mocked `fetch`. CI runs
+them on every PR (`.github/workflows/test.yml`).
