@@ -15,16 +15,26 @@ The Worker (`src/worker.js`) also backs a small GraphQL API over the same anime 
 - `public/nasubi/` — a data analysis of Nasubi's *Susunu! Denpa Shonen* sweepstakes ordeal.
 - `public/vqar-stats/` — "VQAR By The Numbers", a fun stats page over the VQAR review data.
 - `public/graphql/` — a GraphQL query explorer for the API described below.
-- `public/styles.css` — shared site styles. `public/vqar/styles.css` and `public/graphql/styles.css`
-  layer page-specific styles on top.
+- `public/styles.css` — shared site styles (nav, theme variables, cards, filters). Every
+  page then layers its own stylesheet on top — `public/vqar/styles.css`,
+  `public/fsar/styles.css`, and so on — deliberately holding its own copy of anything
+  page-specific rather than sharing it.
 - `public/theme.js` / `public/theme-palette.js` — the theme picker (see below) and the
   color-math behind the two random themes, loaded by every page.
 - `public/inline-markdown.js` — the tiny `**bold**`/`*italic*`/`[text](url)` parser the
   pages that render committed prose (`/nasubi`, `/fsar`) share.
 - `public/streaming.js` — streaming service metadata + badge rendering, shared by `/vqar`,
   `/fsar`, and `scripts/validateSeason.js`.
+- `public/external-links.js` — the AniList/ANN/Wikipedia reference links, shared by `/vqar`
+  and `/fsar`, which carry the same fields for them.
+- `public/data-table.js` — the sortable table, stat-tile grid, and bar chart the two
+  data-analysis pages (`/nasubi`, `/vqar-stats`) both render. Only the JS is shared: each
+  page keeps its own `.data-table`/`.stat-tile`/`.bar-chart` rules, like every other
+  page-specific style here.
 - `public/vqar/data-paths.js` — the path to the VQAR season index, the one thing
   `public/vqar/app.js`, `public/vqar-stats/app.js`, and `src/schema.js` all need to agree on.
+- `public/vqar/rating.js` — the other thing they have to agree on: which rating counts once
+  a show has both an episode-1 rating and a full-series re-review.
 - `src/worker.js` / `src/schema.js` — the Worker's fetch handler and GraphQL schema/resolvers.
 
 ## Theme
@@ -94,7 +104,8 @@ convention that keeps new components from breaking it:
   de-emphasized tone) and can push a previously-fine pairing below AA depending on the theme.
   Use `--color-muted` outright instead; if a distinct hover state is needed, prefer inverting
   foreground/background or changing `text-decoration` over dimming opacity, since those don't
-  put the contrast ratio at risk.
+  put the contrast ratio at risk. A `:disabled` control is the one exception — dimming is the
+  conventional affordance for it, and WCAG exempts disabled controls from the contrast bar.
 
 ## VQAR data
 
@@ -420,6 +431,8 @@ falls back to "All Seasons" rather than erroring.
 
 Adding a new stat means adding a `compute*` function to `stats.js` (plus a test) and a
 render function in `app.js` that calls it — no committed data to regenerate, unlike Nasubi.
+The tables, stat tiles and bar charts themselves come from `public/data-table.js`, shared
+with the Nasubi page (see "Shared page components" below).
 
 ## Full Season Anime Reviews page
 
@@ -537,6 +550,45 @@ npm run build-fsar-index              # regenerate index.json from the review fi
 node scripts/build-fsar-index.js --check   # exit 1 if it's stale, write nothing
 ```
 
+## Shared page components
+
+`public/data-table.js` holds the three things `/nasubi` and `/vqar-stats` both render, so
+they can't drift the way they had:
+
+- `createDataTable(columns, rows)` — a sortable table, returned as a `.table-scroll`
+  wrapper for the caller to place. Each header is a real `<button>` inside a
+  `<th scope="col">` carrying `aria-sort`, rather than a clickable `<th>`: that's what
+  makes the sort reachable *and* activatable by keyboard, and what lets a screen reader
+  announce the current order. A column sorts numerically only when every value in it
+  parses as a number, so a column mixing text and digits still sorts predictably.
+- `renderStatGrid(container, stats)` — the "big number over a label" tiles.
+- `createBarChart(items, { ariaLabel })` / `renderBarChart(...)` — a single-series
+  magnitude bar chart. It's one `role="img"` rather than a tree of nodes, since every
+  value is already readable as text on the bar and in the table beside it.
+
+Only the JS is shared. Each page keeps its own `.data-table`/`.stat-tile`/`.bar-chart`
+rules in its own stylesheet, so a page added later can restyle them without disturbing the
+others — the same convention as `.filters`/`.guidelines`.
+
+`public/external-links.js` (`createExternalLinks(entry)`) does the same job for the
+AniList/ANN/Wikipedia reference links `/vqar` and `/fsar` both render from the same fields.
+
+## Data fetching conventions
+
+Every page fetches its committed JSON with `cache: 'no-cache'` and nothing else. That
+revalidates rather than refetching, so an unchanged file comes back as a 304. Deliberately
+*not* used alongside it:
+
+- **No cache-busting query string.** A unique URL per load forces a full download every
+  time and throws away the 304 the `no-cache` above exists to get.
+- **No `localStorage` cache of fetched data.** These are same-origin assets behind a CDN,
+  and a cache with no version key would hide an edit from a returning visitor indefinitely.
+
+`localStorage` is used only for reader preferences (theme, spoiler state, panel width), and
+every read and write is wrapped in `try`/`catch`: with site data blocked, even *reading* it
+throws, and these reads happen at module scope where an unguarded one takes the whole page
+down with it.
+
 ## GraphQL API
 
 `GET /graphql` serves a small vanilla-JS query explorer (`public/graphql/`); `POST /graphql`
@@ -586,7 +638,10 @@ npm run deploy  # wrangler deploy
 ```
 
 Tests (`test/`) run against the real `app.js` and `index.html` with a mocked
-`fetch`/`localStorage` via jsdom — see `test/helpers.js`. The GraphQL schema/resolvers
+`fetch`/`localStorage` via jsdom — see `test/helpers.js` for the page loaders (`loadApp`,
+`loadFsarApp`) and stubs (`createPathFetchStub`, `createLocalStorageStub`). The shared
+modules under `public/` get plain unit tests of their own, since they need nothing but a
+jsdom `document`. The GraphQL schema/resolvers
 (`test/graphql.test.js`) and the Worker's routing (`test/worker.test.js`) are tested the
 same way — the Worker's `ASSETS` binding stubbed, rather than a mocked `fetch`. CI runs
 them on every PR (`.github/workflows/test.yml`).

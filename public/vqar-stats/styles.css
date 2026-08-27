@@ -176,6 +176,10 @@
   font: inherit;
   text-align: left;
   cursor: pointer;
+  /* Same Safari native-chrome reset as .theme-reroll in /styles.css - without
+   * it <button> picks up rounded corners and extra padding on iOS. */
+  appearance: none;
+  -webkit-appearance: none;
 }
 
 /* Underlined rather than dimmed: opacity would stack on top of --color-nav-link
