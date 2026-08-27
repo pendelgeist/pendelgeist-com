@@ -393,8 +393,8 @@ this page — that's what `/vqar` (per-season) and `/graphql` (query anything) a
 
 "Season Spotlight" is a pair of sections at the top of the page that track whichever season
 is currently in view — the current season when the filter is "All Seasons" or the current
-season itself, or the picked season when a past one is selected (`spotlightSeasonId` in
-`applySeasonFilter()`):
+season itself, or the picked season when a past one is selected (the season id
+`applySeasonFilter()` hands to `renderSeasonSpotlight()`):
 
 - **Revisit Candidates** (`computeRevisitCandidates`) — that season's 4/5s ("Yeah") that
   haven't gotten a `fullReview` yet, i.e. shows liked enough on episode 1 to be worth
@@ -509,7 +509,8 @@ the page, the index builder, and the validator so the three can't drift). A revi
   lookup, and the two are kept apart by class (`.review-podcast` vs `.review-meta`) so they
   stay distinguishable.
 - Prose supports `**bold**`, `*italic*`, and `[text](url)` via `public/inline-markdown.js`,
-  same as the Nasubi page. It is not real Markdown.
+  same as the Nasubi page. It is not real Markdown — see "Shared prose formatting" below for
+  what it deliberately doesn't do.
 
 ### The page
 
@@ -575,6 +576,43 @@ now has a `main` script (`src/worker.js`) instead of serving assets only, `/grap
 listed under `assets.run_worker_first` in `wrangler.jsonc` — otherwise Cloudflare would
 serve the static explorer page for every method, including `POST`, without ever running
 the Worker.
+
+## Shared prose formatting
+
+`/nasubi` and `/fsar` render curated prose out of committed JSON, and both run it through
+`public/inline-markdown.js` — `**bold**`, `*italic*`, `[text](url)`, and nothing else. It
+builds DOM nodes rather than assigning `innerHTML`, so a stray `<` in a review body is text
+rather than markup, and a link's href has to be `http(s)` — anything else (a `javascript:`
+URL, say) renders as its literal source text so the mistake is visible on the page instead
+of silently disappearing.
+
+It's a grammar, not a parser, and the limits are deliberate:
+
+- Markers don't nest: `***both***` is not bold *and* italic.
+- Markers don't span newlines.
+- Markers aren't word-boundary aware, so `a 2*3*4 grid` italicizes the `3`. Write around it.
+- An unclosed marker stays literal rather than eating the rest of the line.
+
+`test/inline-markdown.test.js` pins all of the above, including the cases it refuses to
+render.
+
+## Caching convention
+
+Every page fetches its data the same way, and it's worth knowing why:
+
+```js
+await fetch(url, { cache: 'no-cache' })
+```
+
+`no-cache` means *revalidate*, not *don't cache* — the browser still stores the response and
+asks the origin whether it changed, so an unchanged file comes back as a 304 with no body.
+That gets freshness immediately after a deploy without re-downloading anything that didn't
+change, which matters when `/nasubi` and `/eva-tv` are pulling ~300KB of data each.
+
+Deliberately *not* used: a `?t=${Date.now()}` cache-buster. A unique URL per request can
+never hit the cache, so it turns every visit into a full re-download for freshness that
+`no-cache` already provides. No page keeps a `localStorage` copy of its data either — see
+"VQAR data" for why that went away.
 
 ## Development
 
