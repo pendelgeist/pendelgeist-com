@@ -451,7 +451,34 @@ function createAudienceList(label, items, className) {
   return wrapper;
 }
 
-/** @param {Review} review */
+/**
+ * A labelled block in the review's side rail. The rail is narrow (and becomes
+ * a stacked strip on mobile), so the facts are grouped under short labels
+ * rather than run together as one long bullet-separated line.
+ *
+ * @param {string} label
+ * @param {Node[]} nodes
+ * @param {string} [className]
+ */
+function createFactBlock(label, nodes, className = '') {
+  if (nodes.length === 0) return null;
+  const block = document.createElement('div');
+  block.className = `fact-block ${className}`.trim();
+  const h = document.createElement('h4');
+  h.textContent = label;
+  const body = document.createElement('div');
+  body.className = 'fact-body';
+  body.append(...nodes);
+  block.append(h, body);
+  return block;
+}
+
+/**
+ * The masthead: title, original title and the verdict. Spans the full width of
+ * the article on a wide screen, above the prose/rail split.
+ *
+ * @param {Review} review
+ */
 function createReviewHeader(review) {
   const header = document.createElement('header');
   header.className = 'review-header';
@@ -469,45 +496,6 @@ function createReviewHeader(review) {
     header.appendChild(jp);
   }
 
-  const meta = document.createElement('div');
-  meta.className = 'review-meta';
-  for (const text of [airedText(review), review.format, episodesText(review)].filter(Boolean)) {
-    const span = document.createElement('span');
-    span.textContent = text;
-    meta.appendChild(span);
-  }
-  const externalLinks = [
-    review.anilistId && ['AniList', `https://anilist.co/anime/${review.anilistId}`],
-    review.annId && ['ANN', `https://www.animenewsnetwork.com/encyclopedia/anime.php?id=${review.annId}`],
-    review.wikipediaUrl && ['Wikipedia', review.wikipediaUrl],
-    review.wikipediaJaUrl && ['Wikipedia (JP)', review.wikipediaJaUrl],
-  ];
-  for (const link of externalLinks) {
-    if (!link) continue;
-    const [label, href] = link;
-    const a = document.createElement('a');
-    a.href = href;
-    a.target = '_blank';
-    a.rel = 'noopener noreferrer';
-    a.textContent = label;
-    meta.appendChild(a);
-  }
-  const badges = createStreamingBadges(review);
-  if (badges.length > 0) {
-    const streaming = document.createElement('span');
-    streaming.className = 'entry-streaming';
-    streaming.append(...badges);
-    meta.appendChild(streaming);
-  }
-  header.appendChild(meta);
-
-  if (review.availabilityNote) {
-    const note = document.createElement('div');
-    note.className = 'availability-note';
-    note.append(...createParagraph(review.availabilityNote).childNodes);
-    header.appendChild(note);
-  }
-
   const verdict = document.createElement('div');
   verdict.className = 'review-verdict';
   if (review.verdict?.ratingText) {
@@ -517,30 +505,74 @@ function createReviewHeader(review) {
     verdict.appendChild(rating);
   }
   if (review.verdict?.oneLiner) {
-    const oneLiner = document.createElement('span');
+    const oneLiner = document.createElement('p');
     oneLiner.className = 'review-oneliner';
     oneLiner.textContent = review.verdict.oneLiner;
     verdict.appendChild(oneLiner);
   }
   if (verdict.childElementCount > 0) header.appendChild(verdict);
 
-  const dates = document.createElement('div');
-  dates.className = 'review-dates';
-  dates.textContent = review.dateUpdated
-    ? `Reviewed: ${review.dateReviewed} • Updated: ${review.dateUpdated}`
-    : `Reviewed: ${review.dateReviewed}`;
-  header.appendChild(dates);
-
-  if (review.tags?.length) header.appendChild(createTagList(review.tags));
-
   return header;
 }
 
-/** @param {Review} review */
-function createReviewArticle(review) {
-  const article = document.createElement('article');
-  article.className = 'review-full';
-  article.appendChild(createReviewHeader(review));
+/**
+ * The side rail: everything about the show rather than the opinion of it -
+ * release facts, reference links, where to watch, who it is (and isn't) for,
+ * tags, and when the review was written.
+ *
+ * @param {Review} review
+ */
+function createReviewFacts(review) {
+  const aside = document.createElement('aside');
+  aside.className = 'review-facts';
+
+  const meta = document.createElement('div');
+  meta.className = 'review-meta';
+  for (const text of [airedText(review), review.format, episodesText(review)].filter(Boolean)) {
+    const span = document.createElement('span');
+    span.textContent = text;
+    meta.appendChild(span);
+  }
+  if (meta.childElementCount > 0) {
+    aside.appendChild(createFactBlock('Released', [meta]));
+  }
+
+  const externalLinks = [
+    review.anilistId && ['AniList', `https://anilist.co/anime/${review.anilistId}`],
+    review.annId && ['ANN', `https://www.animenewsnetwork.com/encyclopedia/anime.php?id=${review.annId}`],
+    review.wikipediaUrl && ['Wikipedia', review.wikipediaUrl],
+    review.wikipediaJaUrl && ['Wikipedia (JP)', review.wikipediaJaUrl],
+  ].filter(Boolean).map(([label, href]) => {
+    const a = document.createElement('a');
+    a.href = href;
+    a.target = '_blank';
+    a.rel = 'noopener noreferrer';
+    a.textContent = label;
+    return a;
+  });
+  // The links keep the .review-meta class the rest of the site styles link
+  // rows with, so a link here looks the same as one on a card.
+  if (externalLinks.length > 0) {
+    const links = document.createElement('div');
+    links.className = 'review-meta review-links';
+    links.append(...externalLinks);
+    aside.appendChild(createFactBlock('Reference', [links]));
+  }
+
+  const badges = createStreamingBadges(review);
+  if (badges.length > 0) {
+    const streaming = document.createElement('span');
+    streaming.className = 'entry-streaming';
+    streaming.append(...badges);
+    aside.appendChild(createFactBlock('Streaming', [streaming]));
+  }
+
+  if (review.availabilityNote) {
+    const note = document.createElement('div');
+    note.className = 'availability-note';
+    note.append(...createParagraph(review.availabilityNote).childNodes);
+    aside.appendChild(note);
+  }
 
   if (review.recommendedFor?.length || review.notFor?.length) {
     const audiences = document.createElement('div');
@@ -551,14 +583,43 @@ function createReviewArticle(review) {
     if (review.notFor?.length) {
       audiences.appendChild(createAudienceList('Skip it if', review.notFor, 'audience-bad'));
     }
-    article.appendChild(audiences);
+    aside.appendChild(audiences);
   }
+
+  if (review.tags?.length) aside.appendChild(createFactBlock('Tags', [createTagList(review.tags)]));
+
+  const dates = document.createElement('div');
+  dates.className = 'review-dates';
+  dates.textContent = review.dateUpdated
+    ? `Reviewed: ${review.dateReviewed} • Updated: ${review.dateUpdated}`
+    : `Reviewed: ${review.dateReviewed}`;
+  aside.appendChild(dates);
+
+  return aside;
+}
+
+/**
+ * The article is a three-part grid: a full-width masthead, then the prose and
+ * the facts rail side by side on a wide screen. Below the breakpoint the grid
+ * collapses to one column and the rail simply follows the masthead, so the
+ * reading order (title, verdict, facts, prose) is the same either way.
+ *
+ * @param {Review} review
+ */
+function createReviewArticle(review) {
+  const article = document.createElement('article');
+  article.className = 'review-full';
+  article.appendChild(createReviewHeader(review));
+  article.appendChild(createReviewFacts(review));
+
+  const body = document.createElement('div');
+  body.className = 'review-body';
 
   for (const { key, heading, kind } of SECTIONS) {
     const section = review.sections?.[key];
-    const body = kind === 'prose' ? section : section?.body;
-    if (!Array.isArray(body) || body.length === 0) continue;
-    article.appendChild(createSection(heading, body, kind === 'rated' ? section.ratingText : undefined));
+    const sectionBody = kind === 'prose' ? section : section?.body;
+    if (!Array.isArray(sectionBody) || sectionBody.length === 0) continue;
+    body.appendChild(createSection(heading, sectionBody, kind === 'rated' ? section.ratingText : undefined));
   }
 
   const notes = review.sections?.notes ?? [];
@@ -573,12 +634,13 @@ function createReviewArticle(review) {
       h4.textContent = note.heading;
       wrapper.append(h4, ...note.body.map(createParagraph));
     }
-    article.appendChild(wrapper);
+    body.appendChild(wrapper);
   }
 
   const spoilers = createSpoilerBlock(review);
-  if (spoilers) article.appendChild(spoilers);
+  if (spoilers) body.appendChild(spoilers);
 
+  article.appendChild(body);
   return article;
 }
 
