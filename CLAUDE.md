@@ -25,13 +25,18 @@ Static site (`public/`) served from a Cloudflare Worker, plus a small GraphQL AP
 (`src/`) backed by the same data. Two independent things share one Worker:
 
 - **Static assets** (`public/`): everything is plain HTML/CSS/vanilla-JS ES modules,
-  no build step. Each page (`index.html`, `vqar/index.html`, `graphql/index.html`) loads
-  shared `/styles.css` + `/theme.js`, then its own page-specific styles/script. Two small
-  modules are shared across pages rather than copy-pasted: `public/inline-markdown.js` (the
-  `**bold**`/`*italic*`/`[text](url)` parser `/nasubi` and `/fsar` render prose with) and
-  `public/streaming.js` (streaming service keys + badge rendering, used by `/vqar`, `/fsar`,
-  and `scripts/validateSeason.js`). Page-specific CSS is deliberately *not* shared — every
-  page carries its own copy of `.filters`/`.guidelines`, matching what's already there.
+  no build step. Every page loads shared `/styles.css` + `/theme.js`, then its own
+  page-specific styles/script. Three small modules are shared across pages rather than
+  copy-pasted: `public/inline-markdown.js` (the `**bold**`/`*italic*`/`[text](url)` parser
+  `/nasubi` and `/fsar` render prose with), `public/streaming.js` (streaming service keys +
+  badge rendering, used by `/vqar`, `/fsar`, and `scripts/validateSeason.js`), and
+  `public/vqar/data-paths.js` (the season index path, shared by `/vqar`, `/vqar-stats` and
+  `src/schema.js`). Page-specific CSS is deliberately *not* shared — every page carries its
+  own copy of `.filters`/`.guidelines`, matching what's already there.
+- **Fetching data**: every page uses `fetch(url, { cache: 'no-cache' })` — revalidate, so an
+  unchanged file costs a 304 rather than a re-download. Don't add a `?t=${Date.now()}`
+  buster (it defeats the cache entirely) and don't add a `localStorage` copy of the data
+  (it has no version key and goes stale on an edit). See "Caching convention" in the README.
 - **The Worker** (`src/worker.js`): only actually runs for non-GET/HEAD requests to
   `/graphql` — see `assets.run_worker_first` in `wrangler.jsonc`. Everything else,
   including `GET /graphql` (which serves `public/graphql/index.html`, the query
@@ -115,9 +120,10 @@ two Random themes) into every page's `<nav>`, and persists the choice to `localS
 Colors are `--color-*` custom properties in `public/styles.css`:
 - Auto/Light/Dark share one set of values via `light-dark()`; picking one just narrows
   `color-scheme`.
-- Rainbow/Vaporwave/FFVII Menu are fixed themes that override every `--color-*` for
+- Rainbow/Vaporwave/FFVII Menu/Eva-01 are fixed themes that override every `--color-*` for
   their own `[data-theme="..."]` selector, plus bespoke CSS flourishes. Adding a new one
-  this way = a CSS block + an entry in the `THEMES` array in `theme.js`.
+  this way = a CSS block + an entry in the `THEMES` array in `theme.js`;
+  `test/styles-contract.test.js` fails if you do one without the other.
 - Random (Light)/Random (Dark) have no fixed values — `public/theme-palette.js` rolls a
   random hue and *solves for* a lightness that clears WCAG AA contrast (4.5:1) against
   whatever it renders on, rather than picking blind. `PALETTE_PROPERTIES` in that file is
@@ -126,22 +132,26 @@ Colors are `--color-*` custom properties in `public/styles.css`:
 
 Each page's `<head>` has an inline pre-paint `<script>` (duplicated per page on purpose)
 that re-applies the saved theme/palette before first render, avoiding a flash of the
-wrong theme. Keep it in sync across `index.html`, `vqar/index.html`, and `graphql/index.html`
-if it ever changes.
+wrong theme. It has to be identical in **every** page — `test/pages.test.js` compares the
+copies character for character, so changing one and not the rest fails the suite.
 
 ### Testing conventions
 
 Tests run against the real browser-facing files (`public/vqar/app.js`, `*.html`) via
-`node --test` + jsdom, with `fetch`/`localStorage` mocked (see `test/helpers.js`,
-`createFetchStub`/`createLocalStorageStub`; `/fsar` uses `loadFsarApp` +
-`createPathFetchStub`, keyed on pathname rather than filename since it fetches
-same-origin relative paths). Committed data (`public/vqar/data/`, `public/fsar/data/`, `public/nasubi/data/`)
-is validated by its own test rather than a manually-run script, since CI can check it. No separate test build — same ES modules
+`node --test` + jsdom, with `fetch` mocked by `test/helpers.js`'s `createPathFetchStub` —
+keyed on pathname, since every page fetches same-origin paths. It doubles as the stub for
+the Worker's `ASSETS` binding in `test/graphql.test.js`/`test/worker.test.js`.
+`createLocalStorageStub` is for the pages that still keep something per-reader (`/fsar`
+spoiler state, `/eva-tv` panel width, and `theme.js` everywhere) — the VQAR pages keep
+nothing, so their helpers don't wire it up. Committed data (`public/vqar/data/`,
+`public/fsar/data/`, `public/nasubi/data/`) is validated by its own test rather than a
+manually-run script, since CI can check it. No separate test build — the same ES modules
 that ship to the browser are imported directly into the test process.
 
-`test/helpers.js`'s `createPathFetchStub` is keyed on pathname (every page fetches
-same-origin paths), and doubles as the stub for the Worker's `ASSETS` binding in
-`test/graphql.test.js`/`test/worker.test.js`.
+Two suites exist to catch drift between files that have to agree but can't import each
+other: `test/pages.test.js` (every page's `<head>`: pre-paint script, meta description,
+unique title, `lang`) and `test/styles-contract.test.js` (every `THEMES` id and every
+`STREAMING_SERVICES` key has matching rules in `styles.css`, and vice versa).
 
 ## Workflow
 

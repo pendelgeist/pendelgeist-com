@@ -102,7 +102,7 @@ function render(sources) {
 
 async function loadData() {
   try {
-    const response = await fetch('/eva-tv/data.json');
+    const response = await fetch('/eva-tv/data.json', { cache: 'no-cache' });
     if (!response.ok) {
       showError(`HTTP ${response.status}`);
       return;

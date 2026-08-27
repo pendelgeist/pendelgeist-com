@@ -277,7 +277,7 @@ function renderTakeaways(parent, heading, items) {
 }
 
 async function loadContent() {
-  const response = await fetch(`${DATA_BASE}/content.json?t=${Date.now()}`, { cache: 'no-cache' });
+  const response = await fetch(`${DATA_BASE}/content.json`, { cache: 'no-cache' });
   if (!response.ok) throw new Error(`HTTP ${response.status} loading content.json`);
   return response.json();
 }
@@ -285,7 +285,7 @@ async function loadContent() {
 async function loadDataset(id) {
   if (datasetCache[id]) return datasetCache[id];
   const { file } = DATASETS[id];
-  const response = await fetch(`${DATA_BASE}/${file}?t=${Date.now()}`, { cache: 'no-cache' });
+  const response = await fetch(`${DATA_BASE}/${file}`, { cache: 'no-cache' });
   if (!response.ok) throw new Error(`HTTP ${response.status} loading ${file}`);
   const data = await response.json();
   datasetCache[id] = data;

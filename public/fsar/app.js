@@ -115,7 +115,7 @@ function showError(message) {
 }
 
 async function loadIndex() {
-  const response = await fetch(`${INDEX_URL}?t=${Date.now()}`, { cache: 'no-cache' });
+  const response = await fetch(INDEX_URL, { cache: 'no-cache' });
   if (!response.ok) throw new Error(`HTTP ${response.status} loading the review index`);
   const data = await response.json();
   if (!Array.isArray(data?.reviews)) throw new Error('Invalid review index format');
