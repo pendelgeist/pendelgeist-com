@@ -5,6 +5,8 @@
  * and hands the resulting season array to these functions.
  */
 
+import { effectiveRatingNumber } from '../vqar/rating.js';
+
 /** @typedef {import('../vqar/app.js').SeasonData} SeasonData */
 
 /**
@@ -25,19 +27,6 @@ export function flattenReviews(seasons) {
 /** @param {number[]} nums */
 function mean(nums) {
   return nums.length ? nums.reduce((sum, n) => sum + n, 0) / nums.length : null;
-}
-
-/**
- * A review's rating for calculation purposes: once a full-series `fullReview`
- * exists, its rating supersedes the original episode-1 `ratingNumber`
- * everywhere ratings get aggregated/ranked, since it reflects the more
- * informed verdict. `computeSecondImpressions` is the one exception - it
- * exists specifically to compare the two, so it reads both fields directly
- * instead of going through this.
- * @param {{ratingNumber?: number, fullReview?: {ratingNumber?: number}}} review
- */
-function effectiveRatingNumber(review) {
-  return typeof review.fullReview?.ratingNumber === 'number' ? review.fullReview.ratingNumber : review.ratingNumber;
 }
 
 function numericRatings(reviews) {

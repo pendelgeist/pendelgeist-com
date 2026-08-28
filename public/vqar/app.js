@@ -1,5 +1,7 @@
 import { VQAR_INDEX_PATH } from './data-paths.js';
-import { createStreamingBadges } from '../streaming.js';
+import { effectiveRatingNumber } from './rating.js';
+import { createStreamingRow } from '../streaming.js';
+import { createExternalLinks } from '../external-links.js';
 
 /**
  * A follow-up note attached to a Review: a full-series re-review once a
@@ -58,16 +60,6 @@ import { createStreamingBadges } from '../streaming.js';
  * @property {string|number} currentSeason
  * @property {SeasonMeta[]} seasons
  */
-
-/**
- * A review's rating for sorting purposes: once a full-series `fullReview`
- * exists, its rating supersedes the original episode-1 `ratingNumber`, since
- * it reflects the more informed verdict.
- * @param {Review} r
- */
-function effectiveRatingNumber(r) {
-  return typeof r.fullReview?.ratingNumber === 'number' ? r.fullReview.ratingNumber : r.ratingNumber;
-}
 
 /** @type {Record<string, (a: Review, b: Review) => number>} */
 const SORTERS = {
@@ -299,25 +291,9 @@ function createReviewArticle(r) {
   const title = document.createElement('div');
   title.className = 'entry-title';
   title.textContent = r.titleEN ?? 'Untitled';
-  // AniList and ANN are ids we expand into URLs; Wikipedia is stored as the URL
-  // itself, since it keys on the article title and the two language editions
-  // disagree about what that is.
-  const externalLinks = [
-    r.anilistId && ['AniList', `https://anilist.co/anime/${r.anilistId}`],
-    r.annId && ['ANN', `https://www.animenewsnetwork.com/encyclopedia/anime.php?id=${r.annId}`],
-    r.wikipediaUrl && ['Wikipedia', r.wikipediaUrl],
-    r.wikipediaJaUrl && ['Wikipedia (JP)', r.wikipediaJaUrl],
-  ];
-  for (const link of externalLinks) {
-    if (!link) continue;
-    const [label, href] = link;
-    const a = document.createElement('a');
-    a.className = 'entry-external-link';
-    a.href = href;
-    a.target = '_blank';
-    a.rel = 'noopener noreferrer';
-    a.textContent = label;
-    title.appendChild(a);
+  for (const link of createExternalLinks(r)) {
+    link.className = 'entry-external-link';
+    title.appendChild(link);
   }
 
   const titleJp = document.createElement('div');
@@ -348,13 +324,8 @@ function createReviewArticle(r) {
     meta.appendChild(progress);
   }
 
-  const badges = createStreamingBadges(r);
-  if (badges.length > 0) {
-    const streaming = document.createElement('span');
-    streaming.className = 'entry-streaming';
-    streaming.append(...badges);
-    meta.appendChild(streaming);
-  }
+  const streaming = createStreamingRow(r);
+  if (streaming) meta.appendChild(streaming);
 
   body.append(title, titleJp, desc, meta);
 

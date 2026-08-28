@@ -7,11 +7,13 @@
  *
  * Adding more later: extend content.json's japan/korea sections (each is
  * {heading, body, columns?, rows?} or, for the two "list of strings" sections,
- * a plain array - see SECTION_ORDER below for the render order), or add a new
- * dataset JSON file and a <option> + entry in DATASETS.
+ * a plain array - see JAPAN_SECTION_ORDER / KOREA_SECTION_ORDER below for the
+ * render order), or add a new dataset JSON file and a <option> + entry in
+ * DATASETS.
  */
 
 import { parseInline, createParagraph, renderProse } from '../inline-markdown.js';
+import { createDataTable, createBarChart, renderStatGrid, parseNumeric } from '../data-table.js';
 
 const DATA_BASE = '/nasubi/data';
 
@@ -71,138 +73,30 @@ const MAX_ROWS_SHOWN = 300;
 /** @type {Record<string, unknown[]>} */
 const datasetCache = {};
 
-/** @param {{label: string, value: string}[]} stats */
-function renderStatGrid(container, stats) {
-  container.replaceChildren(...stats.map(({ label, value }) => {
-    const tile = document.createElement('div');
-    tile.className = 'stat-tile';
-    const val = document.createElement('div');
-    val.className = 'stat-value';
-    val.textContent = value;
-    const lbl = document.createElement('div');
-    lbl.className = 'stat-label';
-    lbl.textContent = label;
-    tile.append(val, lbl);
-    return tile;
-  }));
-}
-
-/** Parses "84,000" / "13.3%" / "991,164" into a comparable number, or NaN. */
-function parseNumeric(cell) {
-  const cleaned = String(cell).replace(/,/g, '').replace(/%$/, '');
-  return Number(cleaned);
-}
-
 /**
- * Renders a sortable table from {columns, rows}. Clicking a header toggles
- * ascending/descending sort for that column (numeric-aware).
- * @param {HTMLElement} container
- * @param {string[]} columns
- * @param {string[][]} rows
- */
-function renderDataTable(container, columns, rows) {
-  const table = document.createElement('table');
-  table.className = 'data-table';
-
-  const thead = document.createElement('thead');
-  const headRow = document.createElement('tr');
-  let sortState = { col: -1, dir: 1 };
-
-  columns.forEach((col, i) => {
-    const th = document.createElement('th');
-    th.textContent = col;
-    th.tabIndex = 0;
-    th.addEventListener('click', () => {
-      sortState = { col: i, dir: sortState.col === i ? -sortState.dir : 1 };
-      applySort();
-    });
-    headRow.appendChild(th);
-  });
-  thead.appendChild(headRow);
-  table.appendChild(thead);
-
-  const tbody = document.createElement('tbody');
-  table.appendChild(tbody);
-
-  function renderRows(data) {
-    tbody.replaceChildren(...data.map(row => {
-      const tr = document.createElement('tr');
-      tr.append(...row.map(cell => {
-        const td = document.createElement('td');
-        td.textContent = cell;
-        return td;
-      }));
-      return tr;
-    }));
-  }
-
-  function applySort() {
-    const sorted = [...rows];
-    if (sortState.col >= 0) {
-      const { col, dir } = sortState;
-      const allNumeric = rows.every(r => !Number.isNaN(parseNumeric(r[col])));
-      sorted.sort((a, b) => {
-        if (allNumeric) return (parseNumeric(a[col]) - parseNumeric(b[col])) * dir;
-        return a[col].localeCompare(b[col]) * dir;
-      });
-    }
-    renderRows(sorted);
-    [...headRow.children].forEach((th, i) => {
-      th.classList.toggle('sorted-asc', sortState.col === i && sortState.dir === 1);
-      th.classList.toggle('sorted-desc', sortState.col === i && sortState.dir === -1);
-    });
-  }
-
-  renderRows(rows);
-  const wrap = document.createElement('div');
-  wrap.className = 'table-scroll';
-  wrap.appendChild(table);
-  container.appendChild(wrap);
-}
-
-/**
- * A single-series magnitude bar chart (one hue, direct-labeled) for a table's
- * numeric column - e.g. postcards sent or cumulative JPY by month.
+ * Plots one numeric column of a curated section's table, keyed by the section's
+ * `chart` hint ({ labelKey, valueKey }, both naming columns). Renders nothing
+ * if either name doesn't match a column - a typo in the content file shouldn't
+ * take the section down with it.
  * @param {HTMLElement} container
  * @param {string[]} columns
  * @param {string[][]} rows
  * @param {{labelKey: string, valueKey: string}} chartSpec
  */
-function renderBarChart(container, columns, rows, chartSpec) {
+function renderSectionChart(container, columns, rows, chartSpec) {
   const labelIdx = columns.indexOf(chartSpec.labelKey);
   const valueIdx = columns.indexOf(chartSpec.valueKey);
   if (labelIdx === -1 || valueIdx === -1) return;
 
-  const values = rows.map(r => parseNumeric(r[valueIdx]));
-  const max = Math.max(...values, 1);
-
-  const chart = document.createElement('div');
-  chart.className = 'bar-chart';
-  chart.setAttribute('role', 'img');
-  chart.setAttribute('aria-label', `Bar chart of ${chartSpec.valueKey} by ${chartSpec.labelKey}; see the table below for exact values.`);
-
-  rows.forEach((row, i) => {
-    const col = document.createElement('div');
-    col.className = 'bar-col';
-    col.title = `${row[labelIdx]}: ${row[valueIdx]}`;
-
-    const value = document.createElement('div');
-    value.className = 'bar-value';
-    value.textContent = row[valueIdx];
-
-    const bar = document.createElement('div');
-    bar.className = 'bar-fill';
-    bar.style.height = `${Math.max((values[i] / max) * 100, 2)}%`;
-
-    const label = document.createElement('div');
-    label.className = 'bar-label';
-    label.textContent = row[labelIdx];
-
-    col.append(value, bar, label);
-    chart.appendChild(col);
-  });
-
-  container.appendChild(chart);
+  const chart = createBarChart(
+    rows.map(row => ({
+      label: row[labelIdx],
+      value: parseNumeric(row[valueIdx]),
+      display: row[valueIdx],
+    })),
+    { ariaLabel: `Bar chart of ${chartSpec.valueKey} by ${chartSpec.labelKey}; see the table below for exact values.` }
+  );
+  if (chart) container.appendChild(chart);
 }
 
 /** @param {{jp: string, en: string}[]} items */
@@ -247,9 +141,9 @@ function renderSection(parent, section) {
 
   if (section.columns && section.rows) {
     if (section.chart) {
-      renderBarChart(el, section.columns, section.rows, section.chart);
+      renderSectionChart(el, section.columns, section.rows, section.chart);
     }
-    renderDataTable(el, section.columns, section.rows);
+    el.appendChild(createDataTable(section.columns, section.rows));
   }
 
   if (section.items) {
@@ -276,8 +170,13 @@ function renderTakeaways(parent, heading, items) {
   parent.appendChild(el);
 }
 
+/**
+ * `no-cache` revalidates rather than refetching, so unchanged content comes
+ * back as a 304 - same as every other page here. No cache-busting query
+ * string: a unique URL per load would force a full download every time.
+ */
 async function loadContent() {
-  const response = await fetch(`${DATA_BASE}/content.json?t=${Date.now()}`, { cache: 'no-cache' });
+  const response = await fetch(`${DATA_BASE}/content.json`, { cache: 'no-cache' });
   if (!response.ok) throw new Error(`HTTP ${response.status} loading content.json`);
   return response.json();
 }
@@ -285,7 +184,7 @@ async function loadContent() {
 async function loadDataset(id) {
   if (datasetCache[id]) return datasetCache[id];
   const { file } = DATASETS[id];
-  const response = await fetch(`${DATA_BASE}/${file}?t=${Date.now()}`, { cache: 'no-cache' });
+  const response = await fetch(`${DATA_BASE}/${file}`, { cache: 'no-cache' });
   if (!response.ok) throw new Error(`HTTP ${response.status} loading ${file}`);
   const data = await response.json();
   datasetCache[id] = data;
@@ -319,7 +218,7 @@ function renderDataset() {
     return c.numeric ? Number(v).toLocaleString() : String(v);
   }));
 
-  renderDataTable(dom.dataTableWrap, cols, rows);
+  dom.dataTableWrap.appendChild(createDataTable(cols, rows));
 }
 
 async function initBrowseData() {

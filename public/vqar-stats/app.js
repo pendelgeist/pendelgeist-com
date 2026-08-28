@@ -6,6 +6,7 @@
  */
 
 import { VQAR_INDEX_PATH } from '../vqar/data-paths.js';
+import { createDataTable, renderStatGrid, renderBarChart } from '../data-table.js';
 import {
   flattenReviews, computeGlanceStats, computeRatingDistribution, computeRatingsOverTime,
   computeHallOfFame, computeSecondImpressions, computeOpEdHighlights,
@@ -51,91 +52,15 @@ async function getSeasonData(meta) {
   return response.json();
 }
 
-/** @param {{label: string, value: string}[]} stats */
-function renderStatGrid(container, stats) {
-  container.replaceChildren(...stats.map(({ label, value }) => {
-    const tile = document.createElement('div');
-    tile.className = 'stat-tile';
-    const val = document.createElement('div');
-    val.className = 'stat-value';
-    val.textContent = value;
-    const lbl = document.createElement('div');
-    lbl.className = 'stat-label';
-    lbl.textContent = label;
-    tile.append(val, lbl);
-    return tile;
-  }));
-}
-
-/** Parses "84,000" / "13.3%" / "991,164" into a comparable number, or NaN. */
-function parseNumeric(cell) {
-  const cleaned = String(cell).replace(/,/g, '').replace(/%$/, '');
-  return Number(cleaned);
-}
-
 /**
+ * Every table on this page replaces its container's whole contents, so the
+ * shared builder's return value goes straight in.
  * @param {HTMLElement} container
  * @param {string[]} columns
  * @param {string[][]} rows
  */
 function renderDataTable(container, columns, rows) {
-  const table = document.createElement('table');
-  table.className = 'data-table';
-
-  const thead = document.createElement('thead');
-  const headRow = document.createElement('tr');
-  let sortState = { col: -1, dir: 1 };
-
-  columns.forEach((col, i) => {
-    const th = document.createElement('th');
-    th.textContent = col;
-    th.tabIndex = 0;
-    th.addEventListener('click', () => {
-      sortState = { col: i, dir: sortState.col === i ? -sortState.dir : 1 };
-      applySort();
-    });
-    headRow.appendChild(th);
-  });
-  thead.appendChild(headRow);
-  table.appendChild(thead);
-
-  const tbody = document.createElement('tbody');
-  table.appendChild(tbody);
-
-  function renderRows(data) {
-    tbody.replaceChildren(...data.map(row => {
-      const tr = document.createElement('tr');
-      tr.append(...row.map(cell => {
-        const td = document.createElement('td');
-        td.textContent = cell;
-        return td;
-      }));
-      return tr;
-    }));
-  }
-
-  function applySort() {
-    const sorted = [...rows];
-    if (sortState.col >= 0) {
-      const { col, dir } = sortState;
-      const allNumeric = rows.every(r => !Number.isNaN(parseNumeric(r[col])));
-      sorted.sort((a, b) => {
-        if (allNumeric) return (parseNumeric(a[col]) - parseNumeric(b[col])) * dir;
-        return a[col].localeCompare(b[col]) * dir;
-      });
-    }
-    renderRows(sorted);
-    [...headRow.children].forEach((th, i) => {
-      th.classList.toggle('sorted-asc', sortState.col === i && sortState.dir === 1);
-      th.classList.toggle('sorted-desc', sortState.col === i && sortState.dir === -1);
-    });
-  }
-
-  renderRows(rows);
-  const wrap = document.createElement('div');
-  wrap.className = 'table-scroll';
-  wrap.appendChild(table);
-  container.replaceChildren(wrap);
+  container.replaceChildren(createDataTable(columns, rows));
 }
 
 /**
@@ -151,47 +76,6 @@ function renderShowList(container, titles) {
     return li;
   }));
   container.replaceChildren(ul);
-}
-
-/**
- * A single-series magnitude bar chart, direct-labeled.
- * @param {HTMLElement} container
- * @param {{label: string, value: number, display: string}[]} items
- */
-function renderBarChart(container, items) {
-  if (!items.length) {
-    container.replaceChildren();
-    return;
-  }
-  const max = Math.max(...items.map(i => i.value), 1);
-
-  const chart = document.createElement('div');
-  chart.className = 'bar-chart';
-  chart.setAttribute('role', 'img');
-  chart.setAttribute('aria-label', 'Bar chart; see the values labeled on each bar.');
-
-  for (const item of items) {
-    const col = document.createElement('div');
-    col.className = 'bar-col';
-    col.title = `${item.label}: ${item.display}`;
-
-    const value = document.createElement('div');
-    value.className = 'bar-value';
-    value.textContent = item.display;
-
-    const bar = document.createElement('div');
-    bar.className = 'bar-fill';
-    bar.style.height = `${Math.max((item.value / max) * 100, 2)}%`;
-
-    const label = document.createElement('div');
-    label.className = 'bar-label';
-    label.textContent = item.label;
-
-    col.append(value, bar, label);
-    chart.appendChild(col);
-  }
-
-  container.replaceChildren(chart);
 }
 
 function formatRating(n) {

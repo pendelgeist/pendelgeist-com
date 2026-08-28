@@ -2,7 +2,7 @@
  * Full Season Anime Reviews (/fsar) - long-form writeups of shows watched all
  * the way through, the counterpart to VQAR's first-episode one-liners.
  *
- * Unlike VQAR, the data is committed to this repo rather than living in gists:
+ * Like VQAR's, the data is committed to this repo:
  * public/fsar/data/index.json holds every review's card-level metadata (built
  * by scripts/build-fsar-index.js), and each full writeup is its own file under
  * public/fsar/data/reviews/. The list view needs only the index; a review body
@@ -14,7 +14,8 @@
  */
 
 import { createParagraph } from '../inline-markdown.js';
-import { createStreamingBadges } from '../streaming.js';
+import { createStreamingRow } from '../streaming.js';
+import { createExternalLinks } from '../external-links.js';
 import {
   STATUSES, SECTIONS, NOTES_HEADING, SPOILERS_HEADING,
   decadeOf, decadeLabel, airedText, episodesText,
@@ -49,8 +50,13 @@ import {
  * @property {string} [wikipediaUrl] - English Wikipedia article
  * @property {string} [wikipediaJaUrl] - Japanese Wikipedia article, which is
  *   routinely far more detailed on staff and broadcast history
- * @property {string[]} [streaming]
+ * @property {string[]} [streaming] - service keys (see ../streaming.js)
+ * @property {string} [crunchyrollUrl] - makes the "CR" badge clickable
+ * @property {string} [hidiveUrl] - makes the "HD" badge clickable
+ * @property {string} [netflixUrl] - makes the "NF" badge clickable
  * @property {string} [availabilityNote] - for shows no service carries (most older ones)
+ * @property {string} [podcastUrl] - the AMO Kenzoku episode covering this show
+ * @property {string} [podcastLabel] - link text for podcastUrl, defaulting to "Listen to the episode"
  */
 
 /**
@@ -114,8 +120,14 @@ function showError(message) {
   (dom.showView?.hidden === false ? dom.showContent : dom.reviewCards)?.replaceChildren(div);
 }
 
+/**
+ * `no-cache` revalidates rather than refetching, so an unchanged index comes
+ * back as a 304. No cache-busting query string on top of it: these are
+ * same-origin assets behind a CDN, and a unique URL per load would force a
+ * full download every time for no benefit.
+ */
 async function loadIndex() {
-  const response = await fetch(`${INDEX_URL}?t=${Date.now()}`, { cache: 'no-cache' });
+  const response = await fetch(INDEX_URL, { cache: 'no-cache' });
   if (!response.ok) throw new Error(`HTTP ${response.status} loading the review index`);
   const data = await response.json();
   if (!Array.isArray(data?.reviews)) throw new Error('Invalid review index format');
@@ -316,13 +328,8 @@ function createCard(c) {
   const footer = document.createElement('div');
   footer.className = 'card-footer';
   if (c.tags?.length) footer.appendChild(createTagList(c.tags));
-  const badges = createStreamingBadges(c);
-  if (badges.length > 0) {
-    const streaming = document.createElement('span');
-    streaming.className = 'entry-streaming';
-    streaming.append(...badges);
-    footer.appendChild(streaming);
-  }
+  const streaming = createStreamingRow(c);
+  if (streaming) footer.appendChild(streaming);
   if (footer.childElementCount > 0) article.appendChild(footer);
 
   return article;
@@ -537,19 +544,7 @@ function createReviewFacts(review) {
     aside.appendChild(createFactBlock('Released', [meta]));
   }
 
-  const externalLinks = [
-    review.anilistId && ['AniList', `https://anilist.co/anime/${review.anilistId}`],
-    review.annId && ['ANN', `https://www.animenewsnetwork.com/encyclopedia/anime.php?id=${review.annId}`],
-    review.wikipediaUrl && ['Wikipedia', review.wikipediaUrl],
-    review.wikipediaJaUrl && ['Wikipedia (JP)', review.wikipediaJaUrl],
-  ].filter(Boolean).map(([label, href]) => {
-    const a = document.createElement('a');
-    a.href = href;
-    a.target = '_blank';
-    a.rel = 'noopener noreferrer';
-    a.textContent = label;
-    return a;
-  });
+  const externalLinks = createExternalLinks(review);
   // The links keep the .review-meta class the rest of the site styles link
   // rows with, so a link here looks the same as one on a card.
   if (externalLinks.length > 0) {
@@ -559,13 +554,8 @@ function createReviewFacts(review) {
     aside.appendChild(createFactBlock('Reference', [links]));
   }
 
-  const badges = createStreamingBadges(review);
-  if (badges.length > 0) {
-    const streaming = document.createElement('span');
-    streaming.className = 'entry-streaming';
-    streaming.append(...badges);
-    aside.appendChild(createFactBlock('Streaming', [streaming]));
-  }
+  const streaming = createStreamingRow(review);
+  if (streaming) aside.appendChild(createFactBlock('Streaming', [streaming]));
 
   // Our own coverage, so it gets its own block rather than sitting among the
   // reference databases above - a listener link is a different kind of thing
