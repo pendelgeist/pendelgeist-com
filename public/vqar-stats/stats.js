@@ -268,15 +268,17 @@ export function computeContinuationWatch(seasons, seasonId, { minRating = 4 } = 
 }
 
 /**
- * Best-rated OP and ED callouts (those that carry their own `ratingNumber`).
+ * Every OP and ED callout. A callout only gets written for one worth noting, so
+ * all of them make the list, uncapped: rated ones first, best to worst, then
+ * unrated ones (e.g. a bare "Honorable Mention") by title.
  * @param {ReturnType<typeof flattenReviews>} reviews
  */
 export function computeOpEdHighlights(reviews) {
   const rank = (key) => reviews
-    .filter(r => typeof r[key]?.ratingNumber === 'number')
+    .filter(r => r[key])
     .map(r => ({ titleEN: r.titleEN, seasonName: r.seasonName, ratingNumber: r[key].ratingNumber, ratingText: r[key].ratingText }))
-    .sort((a, b) => b.ratingNumber - a.ratingNumber)
-    .slice(0, 5);
+    .sort((a, b) => (b.ratingNumber ?? -Infinity) - (a.ratingNumber ?? -Infinity)
+      || (a.titleEN ?? '').localeCompare(b.titleEN ?? ''));
 
   return {
     opCount: reviews.filter(r => r.op).length,

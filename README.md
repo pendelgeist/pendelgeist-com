@@ -391,8 +391,10 @@ unit-testable without a DOM or a live data fetch — see `test/vqar-stats.test.j
 Sections rendered from those functions: a numbers-at-a-glance stat grid, a rating
 distribution bar chart (ordered low to high), average rating per season over time,
 best/worst-rated shows, "Second Impressions" (how a `fullReview` re-review's rating compares
-to the original episode-1 rating — a swing metric unique to VQAR's data shape), and top-rated
-OP/ED callouts. Only reviews with a numeric `ratingNumber` count toward averages/rankings —
+to the original episode-1 rating — a swing metric unique to VQAR's data shape), and every
+OP/ED callout (a callout is only written for one worth noting, so the list is uncapped and an
+unrated one, like a bare "Honorable Mention", still makes it — listed after the rated ones,
+showing its `ratingText`). Only reviews with a numeric `ratingNumber` count toward averages/rankings —
 a `ratingText`-only entry is still valid, just excluded from those. Once a review has a
 `fullReview`, its rating supersedes the original episode-1 `ratingNumber` everywhere ratings
 get aggregated or ranked (averages, the distribution chart, Hall of Fame, Continuing Seasons
