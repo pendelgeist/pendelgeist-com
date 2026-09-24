@@ -689,7 +689,11 @@
       "streaming": [
         "netflix"
       ],
-      "netflixUrl": "https://www.netflix.com/title/82760630"
+      "netflixUrl": "https://www.netflix.com/title/82760630",
+      "op": {
+        "ratingText": "Honorable Mention",
+        "dateReviewed": "2026-09-24"
+      }
     }
   ],
   "pending": [],
