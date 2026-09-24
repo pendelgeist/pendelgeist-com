@@ -1,6 +1,11 @@
 {
-  "currentSeason": "summer-2026",
+  "currentSeason": "fall-2026",
   "seasons": [
+    {
+      "id": "fall-2026",
+      "name": "Fall 2026",
+      "file": "/vqar/data/seasons/fall-2026.json"
+    },
     {
       "id": "summer-2026",
       "name": "Summer 2026",
