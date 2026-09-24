@@ -333,7 +333,11 @@
       "streaming": [
         "crunchyroll"
       ],
-      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00378018/the-exiled-heavy-knight-knows-how-to-game-the-system"
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00378018/the-exiled-heavy-knight-knows-how-to-game-the-system",
+      "ed": {
+        "ratingText": "Honorable Mention",
+        "dateReviewed": "2026-09-24"
+      }
     },
     {
       "titleEN": "BanG Dream! YUME∞MITA",
