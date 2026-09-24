@@ -187,8 +187,10 @@ function renderSeasonSpotlight(seasons, reviews, seasonId) {
 function renderOpEd(reviews) {
   const s = computeOpEdHighlights(reviews);
   const cols = ['Title', 'Season', 'Rating'];
-  renderDataTable(dom.topOps, cols, s.topOps.map(r => [r.titleEN ?? 'Untitled', r.seasonName, formatRating(r.ratingNumber)]));
-  renderDataTable(dom.topEds, cols, s.topEds.map(r => [r.titleEN ?? 'Untitled', r.seasonName, formatRating(r.ratingNumber)]));
+  // An unrated callout shows its label (e.g. "Honorable Mention") rather than a bare dash.
+  const row = r => [r.titleEN ?? 'Untitled', r.seasonName, typeof r.ratingNumber === 'number' ? formatRating(r.ratingNumber) : (r.ratingText ?? '—')];
+  renderDataTable(dom.topOps, cols, s.topOps.map(row));
+  renderDataTable(dom.topEds, cols, s.topEds.map(row));
 }
 
 /** @type {SeasonData[]} */

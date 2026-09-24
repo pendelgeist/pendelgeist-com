@@ -120,6 +120,23 @@ test('computeOpEdHighlights ranks OP/ED callouts that carry their own rating', (
   assert.equal(s.topEds[0].titleEN, 'Trash Show');
 });
 
+test('computeOpEdHighlights lists every OP/ED callout, unrated ones after rated, with no top-N cap', () => {
+  const callouts = flattenReviews([{
+    id: 'summer-2026', name: 'Summer 2026',
+    reviewed: [
+      { titleEN: 'Mention B', ratingText: 'Meh', review: '', dateReviewed: '2026-07-01', op: { ratingText: 'Honorable Mention' } },
+      { titleEN: 'Mention A', ratingText: 'Meh', review: '', dateReviewed: '2026-07-01', op: { ratingText: 'Honorable Mention' } },
+      ...[1, 2, 3, 4, 5, 6].map(n => ({ titleEN: `Rated ${n}`, ratingText: 'Meh', review: '', dateReviewed: '2026-07-01', op: { ratingNumber: n } })),
+    ],
+    pending: [], skipped: [],
+  }]);
+  const s = computeOpEdHighlights(callouts);
+  assert.deepEqual(s.topOps.map(r => r.titleEN), [
+    'Rated 6', 'Rated 5', 'Rated 4', 'Rated 3', 'Rated 2', 'Rated 1', 'Mention A', 'Mention B',
+  ]);
+  assert.equal(s.topOps.at(-1).ratingText, 'Honorable Mention');
+});
+
 test('computeRevisitCandidates finds current-season 4/5s without a fullReview, excluding 5/5s and already-revisited ones', () => {
   const currentSeasonReviews = flattenReviews([
     {
