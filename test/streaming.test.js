@@ -27,6 +27,19 @@ test('a service with a direct URL on the entry becomes a link; the rest stay pla
   assert.equal(yt.tagName, 'SPAN');
 });
 
+test('huluUrl and primeUrl make the HU and PV badges links', () => {
+  const [hu, pv] = createStreamingBadges({
+    streaming: ['hulu', 'prime'],
+    huluUrl: 'https://www.hulu.com/series/abc',
+    primeUrl: 'https://www.amazon.com/gp/video/detail/B0ABC',
+  });
+
+  assert.equal(hu.tagName, 'A');
+  assert.equal(hu.href, 'https://www.hulu.com/series/abc');
+  assert.equal(pv.tagName, 'A');
+  assert.equal(pv.href, 'https://www.amazon.com/gp/video/detail/B0ABC');
+});
+
 test('every URL field names a service that exists, and every badge is titled with its full name', () => {
   for (const key of Object.keys(STREAMING_URL_FIELDS)) {
     assert.ok(key in STREAMING_SERVICES, `${key} has a URL field but no service entry`);

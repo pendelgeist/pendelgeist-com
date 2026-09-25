@@ -182,10 +182,10 @@ A review may also carry an optional `streaming` array of service keys (`crunchyr
 `["crunchyroll", "hulu"]` — renders as small badges on the entry. Purely informational and
 hand-maintained; there's no live lookup, so it'll drift if a show leaves a service.
 
-A review may also carry an optional `crunchyrollUrl`, `hidiveUrl`, and/or `netflixUrl` (a
-direct link to the show's page on that service) — whichever of these are present makes the
-matching badge ("CR", "HD", "NF") itself clickable. The other streaming badges (YouTube,
-Hulu, Prime Video) stay non-clickable; there's no equivalent field for them.
+A review may also carry an optional `crunchyrollUrl`, `hidiveUrl`, `netflixUrl`, `huluUrl`,
+and/or `primeUrl` (a direct link to the show's page on that service) — whichever of these are
+present makes the matching badge ("CR", "HD", "NF", "HU", "PV") itself clickable. The YouTube
+badge stays non-clickable; there's no equivalent field for it.
 
 A review may also carry an optional `watchProgress` (a free-text string, e.g. `"Ep 3"`) —
 a silly personal tracker for how far a 4/5 ("Yeah") revisit candidate actually got before
@@ -511,7 +511,7 @@ the page, the index builder, and the validator so the three can't drift). A revi
   `airedLabel` is free text (`"Summer 2025"`, `"1988-89"`) shown in place of the bare year.
   The page's Decade filter is derived from `year`. `episodeCount`/`episodesWatched` are
   optional and may be `null`, which older shows often want.
-- **`streaming`** (plus the matching `crunchyrollUrl`/`hidiveUrl`/`netflixUrl`), `anilistId`,
+- **`streaming`** (plus the matching `crunchyrollUrl`/`hidiveUrl`/`netflixUrl`/`huluUrl`/`primeUrl`), `anilistId`,
   and `annId` work exactly as they do in VQAR — same keys, same badges, shared code. For a
   show no service carries, `availabilityNote` is free text saying where it actually lives.
 - **`wikipediaUrl`/`wikipediaJaUrl`** work as they do in VQAR: full article URLs rather than

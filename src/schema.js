@@ -51,6 +51,10 @@ type Review {
   hidiveUrl: String
   "Optional direct link to the show's Netflix page; makes the NF streaming badge clickable."
   netflixUrl: String
+  "Optional direct link to the show's Hulu page; makes the HU streaming badge clickable."
+  huluUrl: String
+  "Optional direct link to the show's Prime Video page; makes the PV streaming badge clickable."
+  primeUrl: String
   "Optional, free-text note on how far a revisit actually got (e.g. Ep 3)."
   watchProgress: String
 }
