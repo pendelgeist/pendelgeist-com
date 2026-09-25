@@ -347,7 +347,7 @@ test('hidiveUrl and netflixUrl make their badges clickable links, same as crunch
         titleEN: 'Streamed Show',
         ratingText: 'Meh',
         dateReviewed: '2026-07-01',
-        streaming: ['hidive', 'netflix', 'hulu'],
+        streaming: ['hidive', 'netflix', 'youtube'],
         hidiveUrl: 'https://www.hidive.com/season/streamed-show',
         netflixUrl: 'https://www.netflix.com/title/12345',
       }],
@@ -360,12 +360,12 @@ test('hidiveUrl and netflixUrl make their badges clickable links, same as crunch
   const badges = [...document.querySelectorAll('.entry-streaming-badge')];
   const hd = badges.find((b) => b.textContent === 'HD');
   const nf = badges.find((b) => b.textContent === 'NF');
-  const hu = badges.find((b) => b.textContent === 'HU');
+  const yt = badges.find((b) => b.textContent === 'YT');
   assert.equal(hd.tagName, 'A');
   assert.equal(hd.getAttribute('href'), 'https://www.hidive.com/season/streamed-show');
   assert.equal(nf.tagName, 'A');
   assert.equal(nf.getAttribute('href'), 'https://www.netflix.com/title/12345');
-  assert.equal(hu.tagName, 'SPAN');
+  assert.equal(yt.tagName, 'SPAN');
 });
 
 test('a review with watchProgress renders it in the entry meta; one without does not', async () => {

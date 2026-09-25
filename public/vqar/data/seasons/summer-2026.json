@@ -14,7 +14,8 @@
       "annId": 32762,
       "streaming": [
         "prime"
-      ]
+      ],
+      "primeUrl": "https://www.amazon.com/dp/B0GZD2WNFF"
     },
     {
       "titleEN": "My Stepmother and Stepsisters Aren't Wicked",
@@ -27,7 +28,8 @@
       "annId": 37123,
       "streaming": [
         "prime"
-      ]
+      ],
+      "primeUrl": "https://www.amazon.com/My-Stepmother-Stepsisters-Arent-Wicked/dp/B0GYPBM8WL"
     },
     {
       "titleEN": "Thunder 3",
@@ -278,7 +280,8 @@
         "crunchyroll",
         "hulu"
       ],
-      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00371881/though-i-am-an-inept-villainess"
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00371881/though-i-am-an-inept-villainess",
+      "huluUrl": "https://www.hulu.com/series/though-i-am-an-inept-villainess-8a91ef01-78f6-4c33-9566-841da5a9b053"
     },
     {
       "titleEN": "Let's Go Kaikigumi",
@@ -310,8 +313,7 @@
       "anilistId": 196218,
       "annId": 37095,
       "streaming": [
-        "crunchyroll",
-        "prime"
+        "crunchyroll"
       ],
       "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00378124/the-frontier-lord-begins-with-zero-subjects"
     },

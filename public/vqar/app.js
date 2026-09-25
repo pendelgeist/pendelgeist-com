@@ -36,6 +36,8 @@ import { createExternalLinks } from '../external-links.js';
  * @property {string} [crunchyrollUrl] - optional direct link to the show's Crunchyroll page; makes the "CR" streaming badge clickable
  * @property {string} [hidiveUrl] - optional direct link to the show's HIDIVE page; makes the "HD" streaming badge clickable
  * @property {string} [netflixUrl] - optional direct link to the show's Netflix page; makes the "NF" streaming badge clickable
+ * @property {string} [huluUrl] - optional direct link to the show's Hulu page; makes the "HU" streaming badge clickable
+ * @property {string} [primeUrl] - optional direct link to the show's Prime Video page; makes the "PV" streaming badge clickable
  * @property {string} [watchProgress] - optional, free-text note on how far a revisit actually got (e.g. "Ep 3")
  */
 

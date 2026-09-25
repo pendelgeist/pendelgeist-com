@@ -262,6 +262,26 @@ test('a well-formed hidiveUrl and netflixUrl do not trigger a false positive', (
   assert.deepEqual(validateSeason(season), []);
 });
 
+test('flags a malformed huluUrl or primeUrl (not a string)', () => {
+  const season = cleanSeason();
+  season.reviewed.push({
+    titleEN: 'Bad HU Url Show',
+    ratingText: 'Meh',
+    dateReviewed: '2026-04-02',
+    huluUrl: 12345,
+  });
+  season.reviewed.push({
+    titleEN: 'Bad PV Url Show',
+    ratingText: 'Meh',
+    dateReviewed: '2026-04-03',
+    primeUrl: 67890,
+  });
+
+  const issues = validateSeason(season);
+  assert.ok(issues.some(i => i.includes('"Bad HU Url Show"') && i.includes('huluUrl')));
+  assert.ok(issues.some(i => i.includes('"Bad PV Url Show"') && i.includes('primeUrl')));
+});
+
 test('flags a malformed watchProgress (not a string)', () => {
   const season = cleanSeason();
   season.reviewed.push({
