@@ -301,7 +301,11 @@
       "streaming": [
         "crunchyroll"
       ],
-      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00378084/lets-go-kaikigumi"
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00378084/lets-go-kaikigumi",
+      "ed": {
+        "ratingText": "Honorable Mention",
+        "dateReviewed": "2026-10-07"
+      }
     },
     {
       "titleEN": "The Frontier Lord Begins with Zero Subjects",
