@@ -3,14 +3,21 @@
   "name": "Fall 2026",
   "number": 2604,
   "current": true,
-  "reviewed": [],
+  "reviewed": [
+    {
+      "titleEN": "Overgeared",
+      "ratingNumber": 1,
+      "ratingText": "Never, Please No More Like This Ever",
+      "review": "All right, so we’ve gone from starting this season’s reviews, and the first one is a terrible VRMMORPG where you can’t log out, but then you can die and it matters, but it also seems like it doesn’t matter.",
+      "dateReviewed": "2026-10-07"
+    }
+  ],
   "pending": [
     "Cyberpunk: Edgerunners 2",
     "Firefly Wedding",
     "Fool Night",
     "Seitokai ni mo Ana wa Aru!",
     "Ranma1/2 (2024) Season 3",
-    "Overgeared",
     "Hello, I am a Witch and my Crush Wants me to Make a Love Potion!",
     "PSYREN",
     "Reborn as a Space Mercenary: I Woke Up Piloting the Strongest Starship!",
