@@ -27,6 +27,8 @@ import { createExternalLinks } from '../external-links.js';
  * @property {string} season
  * @property {string} seasonName
  * @property {number} _timestamp
+ * @property {number} _seasonRank - position of its season in the index (0 = newest)
+ * @property {number} _index - position within its season file
  * @property {number} [anilistId] - optional AniList media id, links out to the show's AniList page
  * @property {number} [annId] - optional Anime News Network encyclopedia id, links out to the show's ANN page
  * @property {string} [wikipediaUrl] - optional English Wikipedia article URL
@@ -65,7 +67,11 @@ import { createExternalLinks } from '../external-links.js';
 
 /** @type {Record<string, (a: Review, b: Review) => number>} */
 const SORTERS = {
-  recent: (a, b) => b._timestamp - a._timestamp,
+  // dateReviewed is a plain date, so same-day reviews tie. Break the tie by
+  // position: seasons are listed newest-first, and within a season reviews are
+  // appended as they're written, so a later entry is the more recent one.
+  recent: (a, b) =>
+    b._timestamp - a._timestamp || a._seasonRank - b._seasonRank || b._index - a._index,
   'rating-high': (a, b) => (effectiveRatingNumber(b) ?? 0) - (effectiveRatingNumber(a) ?? 0),
   'rating-low': (a, b) => (effectiveRatingNumber(a) ?? 0) - (effectiveRatingNumber(b) ?? 0),
   title: (a, b) => (a.titleEN ?? '').localeCompare(b.titleEN ?? ''),
@@ -166,11 +172,14 @@ function buildReviewsForLoadedSeasons(seasonIds) {
   return seasonIds.flatMap(id => {
     const season = seasonDataById.get(id);
     if (!season) return [];
-    return (season.reviewed ?? []).map(r => ({
+    const seasonRank = seasonIndex.seasons.findIndex(m => String(m.id) === id);
+    return (season.reviewed ?? []).map((r, index) => ({
       ...r,
       season: id,
       seasonName: season.name,
       _timestamp: Date.parse(r.dateReviewed) || 0,
+      _seasonRank: seasonRank,
+      _index: index,
     }));
   });
 }

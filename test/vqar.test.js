@@ -123,6 +123,23 @@ test('"All Seasons" loads whatever is missing and sorts by most recent', async (
   assert.deepEqual(titles(document), ['Summer Show', 'Spring Show', 'Winter Show']);
 });
 
+test('reviews sharing a date sort most recently added first', async () => {
+  const fetch = createPathFetchStub({
+    ...routes(),
+    '/vqar/data/seasons/summer-2026.json': {
+      ...seasons['/vqar/data/seasons/summer-2026.json'],
+      // Appended in the order they were reviewed, all on one day.
+      reviewed: ['First', 'Second', 'Third'].map(titleEN => ({
+        titleEN, ratingText: 'Meh', dateReviewed: '2026-10-08',
+      })),
+    },
+  });
+  const { document } = await loadApp({ fetch });
+  await waitFor(() => titles(document).length === 3);
+
+  assert.deepEqual(titles(document), ['Third', 'Second', 'First']);
+});
+
 test('search filters within "All Seasons" once all seasons are loaded', async () => {
   const fetch = createPathFetchStub(routes());
   const { document } = await loadApp({ fetch });
