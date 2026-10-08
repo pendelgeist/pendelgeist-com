@@ -140,6 +140,42 @@ test('reviews sharing a date sort most recently added first', async () => {
   assert.deepEqual(titles(document), ['Third', 'Second', 'First']);
 });
 
+test('"Most recent" orders by the time of day, whatever the order in the file', async () => {
+  const fetch = createPathFetchStub({
+    ...routes(),
+    '/vqar/data/seasons/summer-2026.json': {
+      ...seasons['/vqar/data/seasons/summer-2026.json'],
+      reviewed: [
+        { titleEN: 'Morning', ratingText: 'Meh', dateReviewed: '2026-10-08T09:00:00Z' },
+        { titleEN: 'Evening', ratingText: 'Meh', dateReviewed: '2026-10-08T21:00:00Z' },
+        { titleEN: 'Noon', ratingText: 'Meh', dateReviewed: '2026-10-08T12:00:00Z' },
+      ],
+    },
+  });
+  const { document } = await loadApp({ fetch });
+  await waitFor(() => titles(document).length === 3);
+
+  assert.deepEqual(titles(document), ['Evening', 'Noon', 'Morning']);
+});
+
+test('a timestamped dateReviewed is shown as just its date', async () => {
+  const fetch = createPathFetchStub({
+    ...routes(),
+    '/vqar/data/seasons/summer-2026.json': {
+      ...seasons['/vqar/data/seasons/summer-2026.json'],
+      reviewed: [{
+        titleEN: 'Stamped Show', ratingText: 'Meh', dateReviewed: '2026-10-08T23:30:00-07:00',
+        fullReview: { ratingText: 'Meh', dateReviewed: '2026-10-09T01:00:00Z' },
+      }],
+    },
+  });
+  const { document } = await loadApp({ fetch });
+  await waitFor(() => titles(document).length === 1);
+
+  const published = [...document.querySelectorAll('.entry-published')].map(el => el.textContent);
+  assert.deepEqual(published, ['Reviewed: 2026-10-08', 'Reviewed: 2026-10-09']);
+});
+
 test('search filters within "All Seasons" once all seasons are loaded', async () => {
   const fetch = createPathFetchStub(routes());
   const { document } = await loadApp({ fetch });

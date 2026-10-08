@@ -1,5 +1,8 @@
 import { STREAMING_SERVICES } from '../public/streaming.js';
 
+/** `dateReviewed` is a full ISO 8601 timestamp (UTC `Z` or a `±hh:mm` offset) so same-day reviews order by time. */
+const TIMESTAMP_PATTERN = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(\.\d+)?(Z|[+-]\d{2}:\d{2})$/;
+
 const STREAMING_KEYS = new Set(Object.keys(STREAMING_SERVICES));
 
 // Season ids are `<season>-<year>` ("spring-2026"), which is what
@@ -100,6 +103,8 @@ export function validateSeason(season, { filename } = {}) {
     if (!r.ratingText) issues.push(`"${label}" is missing ratingText`);
     if (!r.dateReviewed || Number.isNaN(Date.parse(r.dateReviewed))) {
       issues.push(`"${label}" has a missing or unparseable dateReviewed`);
+    } else if (!TIMESTAMP_PATTERN.test(r.dateReviewed)) {
+      issues.push(`"${label}" has a dateReviewed without a time (expected a timestamp like 2026-04-01T18:30:00Z)`);
     }
     if (r.anilistId !== undefined && !Number.isInteger(r.anilistId)) {
       issues.push(`"${label}" has a malformed anilistId (expected an integer)`);
