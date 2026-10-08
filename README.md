@@ -158,6 +158,13 @@ follow-up notes, each shaped like `{ ratingNumber, ratingText, review, dateRevie
 - `fullReview` — a full-series re-review once a "Finish Ep"-rated show actually gets finished.
 - `op` / `ed` — opening/ending callouts, handy for finding the year's best OP/ED later.
 
+`dateReviewed` on a top-level review is a full ISO 8601 **timestamp** — `2026-10-08T14:30:00Z`
+(UTC) or with an offset like `-07:00` — not just a date. "Most recent" sorts on it, and a
+bare date would tie every review written the same day. Validation rejects a date with no
+time. The page shows only the date part, exactly as written, so an offset keeps the
+reviewer's own day. When adding a review, stamp it with the current time
+(`date -u +%Y-%m-%dT%H:%M:%SZ`). Follow-up notes (`fullReview`/`op`/`ed`) may still use a plain date.
+
 All three are optional and independent — add whichever applies whenever you get to it.
 
 A review may also carry an optional `anilistId` (an AniList media id, e.g. `154587`) —
@@ -206,7 +213,7 @@ git commit -am "Add <show> to Summer 2026"
 
 Adding a review means appending an object to that season's `reviewed` array — see "Review
 shape" above for every field it can carry, of which only `titleEN`, `ratingText` and
-`dateReviewed` are required. If the show was sitting in `pending` or `skipped`, remove it
+`dateReviewed` (a timestamp) are required. If the show was sitting in `pending` or `skipped`, remove it
 from there in the same edit; validation flags a title that's in both.
 
 `git` is the update mechanism now, so there's no push step and no token to keep around.

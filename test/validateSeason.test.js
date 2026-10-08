@@ -7,7 +7,7 @@ function cleanSeason() {
     id: 'spring-2026',
     name: 'Spring 2026',
     reviewed: [
-      { titleEN: 'Cool Show', ratingText: 'Finish Ep', dateReviewed: '2026-04-01' },
+      { titleEN: 'Cool Show', ratingText: 'Finish Ep', dateReviewed: '2026-04-01T12:00:00Z' },
     ],
     pending: ['Pending Show'],
     skipped: ['Skipped Show'],
@@ -68,12 +68,30 @@ test('flags an unparseable dateReviewed', () => {
   assert.ok(issues.some(i => i.includes('"Bad Date Show"') && i.includes('dateReviewed')));
 });
 
+test('flags a dateReviewed that is only a date, with no time', () => {
+  const season = cleanSeason();
+  season.reviewed.push({ titleEN: 'Date Only Show', ratingText: 'Meh', dateReviewed: '2026-04-02' });
+
+  const issues = validateSeason(season);
+  assert.ok(issues.some(i => i.includes('"Date Only Show"') && i.includes('dateReviewed') && i.includes('timestamp')));
+});
+
+test('accepts a dateReviewed timestamp with a UTC or offset suffix', () => {
+  const season = cleanSeason();
+  season.reviewed.push(
+    { titleEN: 'Zulu Show', ratingText: 'Meh', dateReviewed: '2026-04-02T03:04:05Z' },
+    { titleEN: 'Offset Show', ratingText: 'Meh', dateReviewed: '2026-04-02T20:15:00-07:00' },
+  );
+
+  assert.deepEqual(validateSeason(season), []);
+});
+
 test('flags a malformed fullReview/op/ed (not an object)', () => {
   const season = cleanSeason();
   season.reviewed.push({
     titleEN: 'Malformed Addenda Show',
     ratingText: 'Meh',
-    dateReviewed: '2026-04-02',
+    dateReviewed: '2026-04-02T12:00:00Z',
     op: 'should be an object, not a string',
   });
 
@@ -86,7 +104,7 @@ test('flags a malformed anilistId (not an integer)', () => {
   season.reviewed.push({
     titleEN: 'Bad AnilistId Show',
     ratingText: 'Meh',
-    dateReviewed: '2026-04-02',
+    dateReviewed: '2026-04-02T12:00:00Z',
     anilistId: 'not-a-number',
   });
 
@@ -99,7 +117,7 @@ test('a well-formed anilistId does not trigger a false positive', () => {
   season.reviewed.push({
     titleEN: 'Linked Show',
     ratingText: 'Meh',
-    dateReviewed: '2026-04-02',
+    dateReviewed: '2026-04-02T12:00:00Z',
     anilistId: 154587,
   });
 
@@ -111,7 +129,7 @@ test('flags a malformed annId (not an integer)', () => {
   season.reviewed.push({
     titleEN: 'Bad AnnId Show',
     ratingText: 'Meh',
-    dateReviewed: '2026-04-02',
+    dateReviewed: '2026-04-02T12:00:00Z',
     annId: 'not-a-number',
   });
 
@@ -124,7 +142,7 @@ test('a well-formed annId does not trigger a false positive', () => {
   season.reviewed.push({
     titleEN: 'Linked Show',
     ratingText: 'Meh',
-    dateReviewed: '2026-04-02',
+    dateReviewed: '2026-04-02T12:00:00Z',
     annId: 22622,
   });
 
@@ -136,7 +154,7 @@ test('flags a malformed streaming (not an array)', () => {
   season.reviewed.push({
     titleEN: 'Bad Streaming Show',
     ratingText: 'Meh',
-    dateReviewed: '2026-04-02',
+    dateReviewed: '2026-04-02T12:00:00Z',
     streaming: 'netflix',
   });
 
@@ -149,7 +167,7 @@ test('flags an unknown streaming service key', () => {
   season.reviewed.push({
     titleEN: 'Typo Streaming Show',
     ratingText: 'Meh',
-    dateReviewed: '2026-04-02',
+    dateReviewed: '2026-04-02T12:00:00Z',
     streaming: ['netflex'],
   });
 
@@ -162,7 +180,7 @@ test('a well-formed streaming list does not trigger a false positive', () => {
   season.reviewed.push({
     titleEN: 'Streamed Show',
     ratingText: 'Meh',
-    dateReviewed: '2026-04-02',
+    dateReviewed: '2026-04-02T12:00:00Z',
     streaming: ['crunchyroll', 'hidive', 'youtube', 'netflix', 'hulu', 'prime'],
   });
 
@@ -174,7 +192,7 @@ test('flags a malformed crunchyrollUrl (not a string)', () => {
   season.reviewed.push({
     titleEN: 'Bad CR Url Show',
     ratingText: 'Meh',
-    dateReviewed: '2026-04-02',
+    dateReviewed: '2026-04-02T12:00:00Z',
     crunchyrollUrl: 12345,
   });
 
@@ -187,7 +205,7 @@ test('a well-formed crunchyrollUrl does not trigger a false positive', () => {
   season.reviewed.push({
     titleEN: 'Streamed Show',
     ratingText: 'Meh',
-    dateReviewed: '2026-04-02',
+    dateReviewed: '2026-04-02T12:00:00Z',
     streaming: ['crunchyroll'],
     crunchyrollUrl: 'https://www.crunchyroll.com/series/ABC123/streamed-show',
   });
@@ -200,13 +218,13 @@ test('flags a malformed wikipediaUrl or wikipediaJaUrl (not a string)', () => {
   season.reviewed.push({
     titleEN: 'Bad Wiki Show',
     ratingText: 'Meh',
-    dateReviewed: '2026-04-02',
+    dateReviewed: '2026-04-02T12:00:00Z',
     wikipediaUrl: 12345,
   });
   season.reviewed.push({
     titleEN: 'Bad JP Wiki Show',
     ratingText: 'Meh',
-    dateReviewed: '2026-04-03',
+    dateReviewed: '2026-04-03T12:00:00Z',
     wikipediaJaUrl: 67890,
   });
 
@@ -220,7 +238,7 @@ test('well-formed Wikipedia URLs do not trigger a false positive', () => {
   season.reviewed.push({
     titleEN: 'Documented Show',
     ratingText: 'Meh',
-    dateReviewed: '2026-04-02',
+    dateReviewed: '2026-04-02T12:00:00Z',
     wikipediaUrl: 'https://en.wikipedia.org/wiki/Documented_Show',
     wikipediaJaUrl: 'https://ja.wikipedia.org/wiki/\u745E\u9E97',
   });
@@ -233,13 +251,13 @@ test('flags a malformed hidiveUrl or netflixUrl (not a string)', () => {
   season.reviewed.push({
     titleEN: 'Bad HD Url Show',
     ratingText: 'Meh',
-    dateReviewed: '2026-04-02',
+    dateReviewed: '2026-04-02T12:00:00Z',
     hidiveUrl: 12345,
   });
   season.reviewed.push({
     titleEN: 'Bad NF Url Show',
     ratingText: 'Meh',
-    dateReviewed: '2026-04-03',
+    dateReviewed: '2026-04-03T12:00:00Z',
     netflixUrl: 67890,
   });
 
@@ -253,7 +271,7 @@ test('a well-formed hidiveUrl and netflixUrl do not trigger a false positive', (
   season.reviewed.push({
     titleEN: 'Streamed Show',
     ratingText: 'Meh',
-    dateReviewed: '2026-04-02',
+    dateReviewed: '2026-04-02T12:00:00Z',
     streaming: ['hidive', 'netflix'],
     hidiveUrl: 'https://www.hidive.com/season/streamed-show',
     netflixUrl: 'https://www.netflix.com/title/12345',
@@ -267,13 +285,13 @@ test('flags a malformed huluUrl or primeUrl (not a string)', () => {
   season.reviewed.push({
     titleEN: 'Bad HU Url Show',
     ratingText: 'Meh',
-    dateReviewed: '2026-04-02',
+    dateReviewed: '2026-04-02T12:00:00Z',
     huluUrl: 12345,
   });
   season.reviewed.push({
     titleEN: 'Bad PV Url Show',
     ratingText: 'Meh',
-    dateReviewed: '2026-04-03',
+    dateReviewed: '2026-04-03T12:00:00Z',
     primeUrl: 67890,
   });
 
@@ -287,7 +305,7 @@ test('flags a malformed watchProgress (not a string)', () => {
   season.reviewed.push({
     titleEN: 'Bad Progress Show',
     ratingText: 'Yeah',
-    dateReviewed: '2026-04-02',
+    dateReviewed: '2026-04-02T12:00:00Z',
     watchProgress: 3,
   });
 
@@ -300,7 +318,7 @@ test('a well-formed watchProgress does not trigger a false positive', () => {
   season.reviewed.push({
     titleEN: 'In-Progress Show',
     ratingText: 'Yeah',
-    dateReviewed: '2026-04-02',
+    dateReviewed: '2026-04-02T12:00:00Z',
     watchProgress: 'Ep 3',
   });
 
@@ -312,8 +330,8 @@ test('a well-formed fullReview/op/ed does not trigger a false positive', () => {
   season.reviewed.push({
     titleEN: 'Fully Reviewed Show',
     ratingText: 'Finish Ep',
-    dateReviewed: '2026-04-02',
-    fullReview: { ratingText: 'Nice Ep Broh', review: 'great', dateReviewed: '2026-06-01' },
+    dateReviewed: '2026-04-02T12:00:00Z',
+    fullReview: { ratingText: 'Nice Ep Broh', review: 'great', dateReviewed: '2026-06-01T12:00:00Z' },
     op: { ratingText: 'Bop of the Year' },
     ed: { ratingText: 'Catchy AF' },
   });

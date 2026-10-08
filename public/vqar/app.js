@@ -10,7 +10,7 @@ import { createExternalLinks } from '../external-links.js';
  * @property {number} [ratingNumber]
  * @property {string} [ratingText]
  * @property {string} [review]
- * @property {string} [dateReviewed]
+ * @property {string} [dateReviewed] - ISO 8601 date or timestamp
  */
 
 /**
@@ -67,15 +67,22 @@ import { createExternalLinks } from '../external-links.js';
 
 /** @type {Record<string, (a: Review, b: Review) => number>} */
 const SORTERS = {
-  // dateReviewed is a plain date, so same-day reviews tie. Break the tie by
-  // position: seasons are listed newest-first, and within a season reviews are
-  // appended as they're written, so a later entry is the more recent one.
+  // dateReviewed is a full timestamp, so ties are rare. Break any by position:
+  // seasons are listed newest-first, and within a season reviews are appended
+  // as they're written, so a later entry is the more recent one.
   recent: (a, b) =>
     b._timestamp - a._timestamp || a._seasonRank - b._seasonRank || b._index - a._index,
   'rating-high': (a, b) => (effectiveRatingNumber(b) ?? 0) - (effectiveRatingNumber(a) ?? 0),
   'rating-low': (a, b) => (effectiveRatingNumber(a) ?? 0) - (effectiveRatingNumber(b) ?? 0),
   title: (a, b) => (a.titleEN ?? '').localeCompare(b.titleEN ?? ''),
 };
+
+/**
+ * `dateReviewed` is a timestamp for ordering; readers just see the date, as
+ * written (so a `-07:00` offset shows the reviewer's own day, not UTC's).
+ * @param {string} value
+ */
+const displayDate = (value) => value.slice(0, 10);
 
 const dom = {
   infoToggle: document.getElementById('infoToggle'),
@@ -277,7 +284,7 @@ function createSubReviewBlock(label, sub) {
   if (sub.dateReviewed) {
     const published = document.createElement('span');
     published.className = 'entry-published';
-    published.textContent = `Reviewed: ${sub.dateReviewed}`;
+    published.textContent = `Reviewed: ${displayDate(sub.dateReviewed)}`;
     header.appendChild(published);
   }
 
@@ -324,7 +331,7 @@ function createReviewArticle(r) {
 
   const published = document.createElement('span');
   published.className = 'entry-published';
-  published.textContent = `Reviewed: ${r.dateReviewed ?? 'Unknown'}`;
+  published.textContent = `Reviewed: ${r.dateReviewed ? displayDate(r.dateReviewed) : 'Unknown'}`;
 
   meta.append(rating, published);
 
