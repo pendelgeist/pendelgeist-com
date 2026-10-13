@@ -158,17 +158,16 @@ test('computeRevisitCandidates finds current-season 4/5s without a fullReview, e
   assert.deepEqual(candidates.map(r => r.titleEN), ['Worth Revisiting']);
 });
 
-test('computeSeasonCoverage counts reviewed out of reviewed + pending, leaving skipped out of the total', () => {
-  assert.deepEqual(computeSeasonCoverage([seasons[0]]), { reviewed: 3, pending: 1, skipped: 0, total: 4, pct: 75 });
+test('computeSeasonCoverage counts reviewed out of reviewed + pending, ignoring skipped shows', () => {
+  assert.deepEqual(computeSeasonCoverage([seasons[0]]), { reviewed: 3, pending: 1, total: 4, pct: 75 });
   const all = computeSeasonCoverage(seasons);
   assert.equal(all.total, all.reviewed + all.pending);
-  assert.equal(all.skipped, 1);
   assert.equal(all.total, 7);
 });
 
 test('computeSeasonCoverage has no percentage when nothing is reviewed or pending', () => {
   assert.deepEqual(computeSeasonCoverage([{ id: 'x', name: 'X', reviewed: [], pending: [], skipped: [] }]),
-    { reviewed: 0, pending: 0, skipped: 0, total: 0, pct: null });
+    { reviewed: 0, pending: 0, total: 0, pct: null });
 });
 
 test('computeContinuationWatch matches sequel-marker titles in the current season against highly-rated past shows', () => {
@@ -311,6 +310,7 @@ test('Review Coverage shows reviewed out of reviewed + pending, and follows the 
 
   assert.equal(document.getElementById('coverageSeasonName').textContent, 'All Seasons');
   assert.match(text(), /^6 of 7 shows reviewed \(86%\)$/);
+  assert.equal(document.querySelector('#coverageBar .vs-prose').textContent, '6 reviewed · 1 pending');
   assert.equal(bar().getAttribute('aria-valuenow'), '6');
   assert.equal(bar().getAttribute('aria-valuemax'), '7');
 
@@ -319,6 +319,11 @@ test('Review Coverage shows reviewed out of reviewed + pending, and follows the 
   select.dispatchEvent(new document.defaultView.Event('change', { bubbles: true }));
   assert.equal(document.getElementById('coverageSeasonName').textContent, 'Summer 2026');
   assert.match(text(), /^3 of 4 shows reviewed \(75%\)$/);
+});
+
+test('the nav links back to VQAR', async () => {
+  const { document } = await loadApp();
+  assert.ok(document.querySelector('nav a[href="/vqar"]'));
 });
 
 test('Ratings Over Time is shown for All Seasons but hides once the filter narrows to a single season', async () => {

@@ -66,17 +66,15 @@ export function computeGlanceStats(seasons, reviews) {
 }
 
 /**
- * How much of the shows worth reviewing has been reviewed: `total` is
- * `reviewed` + `pending`. `skipped` shows were deliberately passed over, so
- * they're reported but never counted toward the total or the percentage.
+ * How much of the season's reviewable lineup has been reviewed: `total` is
+ * `reviewed` + `pending`. `skipped` shows are deliberately left out.
  * @param {SeasonData[]} seasons
  */
 export function computeSeasonCoverage(seasons) {
   const reviewed = seasons.reduce((sum, s) => sum + (s.reviewed ?? []).length, 0);
   const pending = seasons.reduce((sum, s) => sum + (s.pending ?? []).length, 0);
-  const skipped = seasons.reduce((sum, s) => sum + (s.skipped ?? []).length, 0);
   const total = reviewed + pending;
-  return { reviewed, pending, skipped, total, pct: total ? Math.round((reviewed / total) * 100) : null };
+  return { reviewed, pending, total, pct: total ? Math.round((reviewed / total) * 100) : null };
 }
 
 /**
