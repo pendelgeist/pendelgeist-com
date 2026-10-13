@@ -10,7 +10,7 @@ import { createDataTable, renderStatGrid, renderBarChart } from '../data-table.j
 import {
   flattenReviews, computeGlanceStats, computeRatingDistribution, computeRatingsOverTime,
   computeHallOfFame, computeSecondImpressions, computeOpEdHighlights,
-  computeRevisitCandidates, computeContinuationWatch,
+  computeRevisitCandidates, computeContinuationWatch, computeSeasonCoverage,
 } from './stats.js';
 
 /** @typedef {import('../vqar/app.js').SeasonData} SeasonData */
@@ -19,6 +19,8 @@ const dom = {
   infoToggle: document.getElementById('infoToggle'),
   guidelines: document.getElementById('guidelines'),
   seasonFilter: /** @type {HTMLSelectElement} */ (document.getElementById('seasonFilter')),
+  coverageSeasonName: document.getElementById('coverageSeasonName'),
+  coverageBar: document.getElementById('coverageBar'),
   spotlightSeasonName: document.getElementById('spotlightSeasonName'),
   revisitList: document.getElementById('revisitList'),
   continuationList: document.getElementById('continuationList'),
@@ -150,6 +152,46 @@ function renderSecondImpressions(reviews) {
 }
 
 /**
+ * A progress bar of reviewed shows out of reviewed + pending, with both counts
+ * labeled underneath.
+ * @param {SeasonData[]} seasons
+ * @param {string} label
+ */
+function renderCoverage(seasons, label) {
+  dom.coverageSeasonName.textContent = label;
+  const c = computeSeasonCoverage(seasons);
+  if (c.total === 0) {
+    const div = document.createElement('div');
+    div.className = 'loading';
+    div.textContent = 'No shows logged for review this season yet.';
+    dom.coverageBar.replaceChildren(div);
+    return;
+  }
+
+  const summary = document.createElement('p');
+  summary.className = 'coverage-summary';
+  summary.textContent = `${c.reviewed} of ${c.total} shows reviewed (${c.pct}%)`;
+
+  const track = document.createElement('div');
+  track.className = 'coverage-track';
+  track.setAttribute('role', 'progressbar');
+  track.setAttribute('aria-label', 'Shows reviewed');
+  track.setAttribute('aria-valuemin', '0');
+  track.setAttribute('aria-valuemax', String(c.total));
+  track.setAttribute('aria-valuenow', String(c.reviewed));
+  const fill = document.createElement('div');
+  fill.className = 'coverage-fill';
+  fill.style.width = `${(c.reviewed / c.total) * 100}%`;
+  track.append(fill);
+
+  const detail = document.createElement('p');
+  detail.className = 'vs-prose';
+  detail.textContent = `${c.reviewed} reviewed · ${c.pending} pending`;
+
+  dom.coverageBar.replaceChildren(summary, track, detail);
+}
+
+/**
  * Renders the "Season Spotlight" sections for whichever season is currently
  * in view: the current season when the filter is "All Seasons" (or the
  * current season itself), or the picked season when a past one is selected -
@@ -257,6 +299,9 @@ function applySeasonFilter() {
   // The Season Spotlight follows the filter too, defaulting to the current
   // season for "All Seasons" rather than showing nothing.
   renderSeasonSpotlight(allSeasons, allReviews, value === 'all' ? currentSeasonId : value);
+
+  const picked = value === 'all' ? allSeasons : allSeasons.filter(s => String(s.id) === value);
+  renderCoverage(picked, value === 'all' ? 'All Seasons' : picked[0]?.name ?? '');
 
   if (value === 'all') {
     renderAll(allSeasons, allReviews);

@@ -66,6 +66,18 @@ export function computeGlanceStats(seasons, reviews) {
 }
 
 /**
+ * How much of the season's reviewable lineup has been reviewed: `total` is
+ * `reviewed` + `pending`. `skipped` shows are deliberately left out.
+ * @param {SeasonData[]} seasons
+ */
+export function computeSeasonCoverage(seasons) {
+  const reviewed = seasons.reduce((sum, s) => sum + (s.reviewed ?? []).length, 0);
+  const pending = seasons.reduce((sum, s) => sum + (s.pending ?? []).length, 0);
+  const total = reviewed + pending;
+  return { reviewed, pending, total, pct: total ? Math.round((reviewed / total) * 100) : null };
+}
+
+/**
  * Default flavor text for each `ratingNumber`, taken from the "Suggested
  * Ratings" list in /vqar's guidelines. Individual reviews often customize
  * `ratingText` per-show (e.g. "I'd rather watch El-Hazard again") while
