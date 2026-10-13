@@ -158,14 +158,15 @@ test('computeRevisitCandidates finds current-season 4/5s without a fullReview, e
   assert.deepEqual(candidates.map(r => r.titleEN), ['Worth Revisiting']);
 });
 
-test('computeSeasonCoverage counts reviewed out of the whole lineup, skipped included', () => {
+test('computeSeasonCoverage counts reviewed out of reviewed + pending, leaving skipped out of the total', () => {
   assert.deepEqual(computeSeasonCoverage([seasons[0]]), { reviewed: 3, pending: 1, skipped: 0, total: 4, pct: 75 });
   const all = computeSeasonCoverage(seasons);
-  assert.equal(all.total, all.reviewed + all.pending + all.skipped);
+  assert.equal(all.total, all.reviewed + all.pending);
   assert.equal(all.skipped, 1);
+  assert.equal(all.total, 7);
 });
 
-test('computeSeasonCoverage has no percentage for an empty lineup', () => {
+test('computeSeasonCoverage has no percentage when nothing is reviewed or pending', () => {
   assert.deepEqual(computeSeasonCoverage([{ id: 'x', name: 'X', reviewed: [], pending: [], skipped: [] }]),
     { reviewed: 0, pending: 0, skipped: 0, total: 0, pct: null });
 });
@@ -303,15 +304,15 @@ test('picking a season in the filter scopes every stat and the glance grid to ju
   assert.equal(bestRows[0], 'Fine Show');
 });
 
-test('Review Coverage shows reviewed out of the lineup, and follows the season filter', async () => {
+test('Review Coverage shows reviewed out of reviewed + pending, and follows the season filter', async () => {
   const { document } = await loadApp();
   const text = () => document.querySelector('#coverageBar .coverage-summary').textContent;
   const bar = () => document.querySelector('#coverageBar [role="progressbar"]');
 
   assert.equal(document.getElementById('coverageSeasonName').textContent, 'All Seasons');
-  assert.match(text(), /^6 of 8 shows reviewed \(75%\)$/);
+  assert.match(text(), /^6 of 7 shows reviewed \(86%\)$/);
   assert.equal(bar().getAttribute('aria-valuenow'), '6');
-  assert.equal(bar().getAttribute('aria-valuemax'), '8');
+  assert.equal(bar().getAttribute('aria-valuemax'), '7');
 
   const select = /** @type {any} */ (document.getElementById('seasonFilter'));
   select.value = 'summer-2026';

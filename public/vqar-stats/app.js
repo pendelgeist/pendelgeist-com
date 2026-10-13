@@ -152,8 +152,8 @@ function renderSecondImpressions(reviews) {
 }
 
 /**
- * A progress bar of reviewed shows out of the season's whole lineup, with the
- * remaining pending/skipped counts spelled out beside it.
+ * A progress bar of reviewed shows out of reviewed + pending (skipped shows
+ * are excluded from the total), with the pending/skipped counts spelled out.
  * @param {SeasonData[]} seasons
  * @param {string} label
  */
@@ -163,7 +163,7 @@ function renderCoverage(seasons, label) {
   if (c.total === 0) {
     const div = document.createElement('div');
     div.className = 'loading';
-    div.textContent = 'No lineup logged for this season yet.';
+    div.textContent = 'No shows logged for review this season yet.';
     dom.coverageBar.replaceChildren(div);
     return;
   }
