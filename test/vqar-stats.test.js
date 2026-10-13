@@ -7,7 +7,7 @@ import { JSDOM } from 'jsdom';
 import {
   flattenReviews, computeGlanceStats, computeRatingDistribution, computeRatingsOverTime,
   computeHallOfFame, computeSecondImpressions, computeOpEdHighlights,
-  computeRevisitCandidates, computeContinuationWatch,
+  computeRevisitCandidates, computeContinuationWatch, computeSeasonCoverage,
 } from '../public/vqar-stats/stats.js';
 import { createPathFetchStub } from './helpers.js';
 
@@ -158,6 +158,18 @@ test('computeRevisitCandidates finds current-season 4/5s without a fullReview, e
   assert.deepEqual(candidates.map(r => r.titleEN), ['Worth Revisiting']);
 });
 
+test('computeSeasonCoverage counts reviewed out of the whole lineup, skipped included', () => {
+  assert.deepEqual(computeSeasonCoverage([seasons[0]]), { reviewed: 3, pending: 1, skipped: 0, total: 4, pct: 75 });
+  const all = computeSeasonCoverage(seasons);
+  assert.equal(all.total, all.reviewed + all.pending + all.skipped);
+  assert.equal(all.skipped, 1);
+});
+
+test('computeSeasonCoverage has no percentage for an empty lineup', () => {
+  assert.deepEqual(computeSeasonCoverage([{ id: 'x', name: 'X', reviewed: [], pending: [], skipped: [] }]),
+    { reviewed: 0, pending: 0, skipped: 0, total: 0, pct: null });
+});
+
 test('computeContinuationWatch matches sequel-marker titles in the current season against highly-rated past shows', () => {
   const seasonsWithSequels = [
     {
@@ -289,6 +301,23 @@ test('picking a season in the filter scopes every stat and the glance grid to ju
   // Peak Show (Summer 2026) is out of scope now. Great Show's fullReview rating (2) ranks
   // it below Fine Show (3) within Spring 2026.
   assert.equal(bestRows[0], 'Fine Show');
+});
+
+test('Review Coverage shows reviewed out of the lineup, and follows the season filter', async () => {
+  const { document } = await loadApp();
+  const text = () => document.querySelector('#coverageBar .coverage-summary').textContent;
+  const bar = () => document.querySelector('#coverageBar [role="progressbar"]');
+
+  assert.equal(document.getElementById('coverageSeasonName').textContent, 'All Seasons');
+  assert.match(text(), /^6 of 8 shows reviewed \(75%\)$/);
+  assert.equal(bar().getAttribute('aria-valuenow'), '6');
+  assert.equal(bar().getAttribute('aria-valuemax'), '8');
+
+  const select = /** @type {any} */ (document.getElementById('seasonFilter'));
+  select.value = 'summer-2026';
+  select.dispatchEvent(new document.defaultView.Event('change', { bubbles: true }));
+  assert.equal(document.getElementById('coverageSeasonName').textContent, 'Summer 2026');
+  assert.match(text(), /^3 of 4 shows reviewed \(75%\)$/);
 });
 
 test('Ratings Over Time is shown for All Seasons but hides once the filter narrows to a single season', async () => {
