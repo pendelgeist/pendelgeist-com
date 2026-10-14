@@ -162,8 +162,9 @@ follow-up notes, each shaped like `{ ratingNumber, ratingText, review, dateRevie
 (UTC) or with an offset like `-07:00` — not just a date. "Most recent" sorts on it, and a
 bare date would tie every review written the same day. Validation rejects a date with no
 time. The page shows only the date part, exactly as written, so an offset keeps the
-reviewer's own day. When adding a review, stamp it with the current time
-(`date -u +%Y-%m-%dT%H:%M:%SZ`). Follow-up notes (`fullReview`/`op`/`ed`) may still use a plain date.
+reviewer's own day. When adding a review, stamp it with the current time in the reviewer's
+timezone (`TZ=America/New_York date +%Y-%m-%dT%H:%M:%S%:z`) — not `date -u`, since a UTC stamp
+shows tomorrow's date for anything reviewed after 8pm Eastern. Follow-up notes (`fullReview`/`op`/`ed`) may still use a plain date.
 
 All three are optional and independent — add whichever applies whenever you get to it.
 
