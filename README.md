@@ -185,7 +185,7 @@ it is routinely far more detailed on staff and broadcast history. Hand-maintaine
 automated lookup.
 
 A review may also carry an optional `streaming` array of service keys (`crunchyroll`,
-`hidive`, `youtube`, `netflix`, `hulu`, `prime`) the show is available on, e.g.
+`hidive`, `youtube`, `netflix`, `hulu`, `prime`, `oceanveil`) the show is available on, e.g.
 `["crunchyroll", "hulu"]` — renders as small badges on the entry. Purely informational and
 hand-maintained; there's no live lookup, so it'll drift if a show leaves a service.
 
