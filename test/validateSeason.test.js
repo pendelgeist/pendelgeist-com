@@ -181,7 +181,7 @@ test('a well-formed streaming list does not trigger a false positive', () => {
     titleEN: 'Streamed Show',
     ratingText: 'Meh',
     dateReviewed: '2026-04-02T12:00:00Z',
-    streaming: ['crunchyroll', 'hidive', 'youtube', 'netflix', 'hulu', 'prime'],
+    streaming: ['crunchyroll', 'hidive', 'youtube', 'netflix', 'hulu', 'prime', 'oceanveil'],
   });
 
   assert.deepEqual(validateSeason(season), []);

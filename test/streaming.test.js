@@ -49,6 +49,15 @@ test('every URL field names a service that exists, and every badge is titled wit
   assert.equal(badge.className, 'entry-streaming-badge entry-streaming-hidive');
 });
 
+test('oceanveil renders an OV badge after prime, as a plain span since it has no URL field', () => {
+  const badges = createStreamingBadges({ streaming: ['oceanveil', 'prime'] });
+  assert.deepEqual(badges.map(b => b.textContent), ['PV', 'OV']);
+  const ov = badges[1];
+  assert.equal(ov.tagName, 'SPAN');
+  assert.equal(ov.title, 'OceanVeil');
+  assert.equal(ov.className, 'entry-streaming-badge entry-streaming-oceanveil');
+});
+
 test('an entry with no streaming list produces no badges', () => {
   assert.deepEqual(createStreamingBadges({ titleEN: 'Some Show' }), []);
 });

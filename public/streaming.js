@@ -22,6 +22,7 @@ export const STREAMING_SERVICES = {
   netflix: { label: 'NF', name: 'Netflix' },
   hulu: { label: 'HU', name: 'Hulu' },
   prime: { label: 'PV', name: 'Prime Video' },
+  oceanveil: { label: 'OV', name: 'OceanVeil' },
 };
 
 /**
