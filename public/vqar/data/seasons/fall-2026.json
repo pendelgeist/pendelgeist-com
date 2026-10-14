@@ -313,6 +313,16 @@
       "streaming": [
         "crunchyroll"
       ]
+    },
+    {
+      "titleEN": "Keroro Gunsou☆",
+      "ratingNumber": 3,
+      "ratingText": "Meh, Finishing the Ep",
+      "review": "So I didn't understand why they'd be doing a reboot on a series that ran for apparently 350 episodes. But this doesn't really look to be a reboot. It just looks to kind of be a continuation, and I guess they took some time off or came back or whatever, so it's fine. It's Keroro Gunsou, which is just a fun, easy time to watch something silly, but there's nothing here and it really is just more Keroro.",
+      "dateReviewed": "2026-10-14T08:50:56-04:00",
+      "streaming": [
+        "crunchyroll"
+      ]
     }
   ],
   "pending": [
@@ -324,8 +334,7 @@
     "Mahou Shoujo Ikusei Keikaku: restart",
     "Devils' Crest",
     "Gensou Suikoden",
-    "Now That I Can Control Reality With A Mouse Cursor, I'm Gonna Click Away On The Girls!",
-    "Keroro Gunsou☆"
+    "Now That I Can Control Reality With A Mouse Cursor, I'm Gonna Click Away On The Girls!"
   ],
   "skipped": [
     "The Apothecary Diaries Season 3",
