@@ -153,6 +153,8 @@ the lineup becomes known. The two forms can be mixed in one list:
 
 - **pending** takes `title`, `streaming` (the same service keys as a review's) and
   `firstEpisode` (a `YYYY-MM-DD` date, shown as written).
+- Both take the same per-service link fields as a review (`crunchyrollUrl`, `hidiveUrl`,
+  `netflixUrl`, `huluUrl`, `primeUrl`), which make that service's badge a link.
 - **skipped** takes `title`, `reason` (a short free-text string), `streaming`, and
   `noUSStreaming: true` for a show with no US stream (it can't be combined with a non-empty
   `streaming`).

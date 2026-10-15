@@ -345,7 +345,8 @@
     "Ranma1/2 (2024) Season 3",
     "Kanojo no Tomodachi",
     "Mahou Shoujo Ikusei Keikaku: restart",
-    "Devils' Crest"
+    "Devils' Crest",
+    { "title": "Jyuou Mujin Dandivine", "streaming": ["crunchyroll"], "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00385792/dandivine" }
   ],
   "skipped": [
     { "title": "The Apothecary Diaries Season 3", "reason": "Continuing series" },
@@ -373,9 +374,8 @@
     { "title": "Kizu darake Seijo yori Houfuku wo Komete Season2", "reason": "Continuing series" },
     { "title": "Mahou no Shimai LuluttoLilly Part 2", "reason": "Continuing series" },
     { "title": "The Prince of Tennis II U-17 WORLD CUP: Final Member Selection Match", "reason": "Continuing series" },
-    "Jyuou Mujin Dandivine",
     { "title": "CARDFIGHT!! VANGUARD Divinez: Parallactic Fate", "reason": "Continuing series" },
-    "Pan Dorobou",
+    { "title": "Pan Dorobou", "reason": "Kids show" },
     "Sirotan",
     "Yuruyuru Zukan",
     "Yuusanchi! from Yuuhachi",

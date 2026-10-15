@@ -324,3 +324,30 @@ test('pendingShows and skippedShows expose the optional notes; plain strings get
     { title: 'No US Stream', reason: null, streaming: [], noUSStreaming: true },
   ]);
 });
+
+test('pendingShows and skippedShows pass the per-service links through, null when absent', async () => {
+  const assetsStub = createPathFetchStub({
+    '/vqar/data/index.json': seasonIndex,
+    '/vqar/data/seasons/summer-2026.json': {
+      id: 'summer-2026',
+      name: 'Summer 2026',
+      reviewed: [],
+      pending: [{ title: 'Linked', streaming: ['crunchyroll'], crunchyrollUrl: 'https://www.crunchyroll.com/series/X/linked' }, 'Plain'],
+      skipped: [{ title: 'Skip Linked', netflixUrl: 'https://www.netflix.com/title/1' }],
+    },
+    '/vqar/data/seasons/spring-2026.json': seasons['/vqar/data/seasons/spring-2026.json'],
+  });
+
+  const result = await run(
+    '{ currentSeason { pendingShows { title crunchyrollUrl netflixUrl } skippedShows { title netflixUrl crunchyrollUrl } } }',
+    assetsStub
+  );
+  assert.equal(result.errors, undefined);
+  assert.deepEqual(result.data.currentSeason.pendingShows, [
+    { title: 'Linked', crunchyrollUrl: 'https://www.crunchyroll.com/series/X/linked', netflixUrl: null },
+    { title: 'Plain', crunchyrollUrl: null, netflixUrl: null },
+  ]);
+  assert.deepEqual(result.data.currentSeason.skippedShows, [
+    { title: 'Skip Linked', netflixUrl: 'https://www.netflix.com/title/1', crunchyrollUrl: null },
+  ]);
+});

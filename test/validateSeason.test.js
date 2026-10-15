@@ -411,3 +411,15 @@ test('flags malformed notes on a list entry', () => {
   assert.ok(issues.some(i => i.includes('"Bad Flag"') && i.includes('malformed noUSStreaming')));
   assert.ok(issues.some(i => i.includes('"Contradiction"') && i.includes('noUSStreaming but also lists streaming')));
 });
+
+test('list entries accept the per-service link fields, and flag a malformed one', () => {
+  const season = cleanSeason();
+  season.pending = [{ title: 'Linked Show', streaming: ['crunchyroll'], crunchyrollUrl: 'https://www.crunchyroll.com/series/X/linked' }];
+  season.skipped = [{ title: 'Linked Skip', netflixUrl: 'https://www.netflix.com/title/1' }];
+  assert.deepEqual(validateSeason(season), []);
+
+  season.pending = [{ title: 'Bad Link', crunchyrollUrl: 42 }, { title: 'Empty Link', huluUrl: ' ' }];
+  const issues = validateSeason(season);
+  assert.ok(issues.some(i => i.includes('"Bad Link"') && i.includes('malformed crunchyrollUrl')));
+  assert.ok(issues.some(i => i.includes('"Empty Link"') && i.includes('malformed huluUrl')));
+});

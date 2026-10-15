@@ -569,3 +569,14 @@ test('titles and reasons render as text, never markup', async () => {
   assert.equal(document.querySelector('#skippedShows i, #skippedShows script'), null);
   assert.equal(text(document.querySelector('.skip-card-why')), '<script>x</script>');
 });
+
+test('a pending show with a service link renders that badge as a link', async () => {
+  const { document } = await loadApp({
+    fetch: withLists([{ title: 'Linked Show', streaming: ['crunchyroll', 'netflix'], crunchyrollUrl: 'https://www.crunchyroll.com/series/X/linked' }], []),
+  });
+
+  const [cr, nf] = [...document.querySelectorAll('#pendingShows .entry-streaming-badge')];
+  assert.equal(cr.tagName, 'A');
+  assert.equal(cr.href, 'https://www.crunchyroll.com/series/X/linked');
+  assert.equal(nf.tagName, 'SPAN'); // no netflixUrl, so no link
+});
