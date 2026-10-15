@@ -340,7 +340,7 @@
     }
   ],
   "pending": [
-    { "title": "Cyberpunk: Edgerunners 2", "firstEpisode": "2026-10-20" },
+    { "title": "Cyberpunk: Edgerunners 2", "firstEpisode": "2026-10-20", "streaming": ["netflix"] },
     { "title": "Fool Night", "firstEpisode": "2026-11-26" },
     { "title": "Ranma1/2 (2024) Season 3", "availableNow": true, "streaming": ["netflix"] },
     "Kanojo no Tomodachi",
