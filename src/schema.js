@@ -89,8 +89,6 @@ type SkippedShow {
   reason: String
   "Streaming service keys the show is on (e.g. crunchyroll, netflix); empty when none are recorded."
   streaming: [String!]!
-  "True when the show has no US stream."
-  noUSStreaming: Boolean!
   "Optional direct link to the show's Crunchyroll page."
   crunchyrollUrl: String
   "Optional direct link to the show's HIDIVE page."
@@ -149,8 +147,8 @@ function toPendingShow(entry) {
 
 /** @param {import('../public/vqar/list-entries.js').ListEntry} entry */
 function toSkippedShow(entry) {
-  const { title, streaming, reason, noUSStreaming, ...rest } = normalizeEntry(entry);
-  return { title, reason: reason ?? null, streaming: streaming ?? [], noUSStreaming: noUSStreaming === true, ...urlFields(rest) };
+  const { title, streaming, reason, ...rest } = normalizeEntry(entry);
+  return { title, reason: reason ?? null, streaming: streaming ?? [], ...urlFields(rest) };
 }
 
 /**

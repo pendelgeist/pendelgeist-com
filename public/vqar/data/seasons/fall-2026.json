@@ -368,7 +368,7 @@
     { "title": "Mission: Yozakura Family Season 2 Part 2", "reason": "Continuing series" },
     { "title": "Ace of the Diamond act II -Second Season-", "reason": "Continuing series" },
     { "title": "HOTEL INHUMANS Season 2", "reason": "Continuing series" },
-    { "title": "Umayuru: Full Gate!", "noUSStreaming": true },
+    { "title": "Umayuru: Full Gate!", "reason": "Not streaming in the US" },
     { "title": "Kizu darake Seijo yori Houfuku wo Komete Season2", "reason": "Continuing series" },
     { "title": "Mahou no Shimai LuluttoLilly Part 2", "reason": "Continuing series" },
     { "title": "The Prince of Tennis II U-17 WORLD CUP: Final Member Selection Match", "reason": "Continuing series" },
@@ -379,7 +379,7 @@
     { "title": "Yuusanchi! from Yuuhachi", "reason": "Kids show" },
     { "title": "Nezumi-kun no Chokki (TV) 2nd Season", "reason": "Continuing series" },
     { "title": "Punirunes Puni 4", "reason": "Continuing series" },
-    { "title": "Aoki Denshou: Welsh & Shedar", "noUSStreaming": true },
+    { "title": "Aoki Denshou: Welsh & Shedar", "reason": "Not streaming in the US" },
     { "title": "Duel Masters LOST: Danzai no Shounen", "reason": "Continuing series" },
     {
       "title": "Seitokai ni mo Ana wa Aru!",
@@ -394,7 +394,8 @@
     { "title": "Mahou Shoujo Ikusei Keikaku: restart", "reason": "Continuing series", "streaming": ["oceanveil"] },
     {
       "title": "Now That I Can Control Reality With A Mouse Cursor, I'm Gonna Click Away On The Girls!",
-      "reason": "Porn"
+      "reason": "Not paying for another service ($13/mo)",
+      "streaming": ["oceanveil"]
     }
   ]
 }

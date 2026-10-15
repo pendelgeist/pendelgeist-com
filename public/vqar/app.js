@@ -465,6 +465,25 @@ function renderShowRow(show) {
 }
 
 /**
+ * A heading with its shows underneath, as one item of the To Be Reviewed / Not
+ * Reviewing list.
+ * @param {string} heading
+ * @param {HTMLElement[]} rows
+ */
+function renderGroup(heading, rows) {
+  const li = document.createElement('li');
+  li.className = 'show-group';
+  const headingEl = document.createElement('h3');
+  headingEl.className = 'show-group-heading';
+  headingEl.textContent = heading;
+  const list = document.createElement('ul');
+  list.className = 'show-list';
+  list.append(...rows);
+  li.append(headingEl, list);
+  return li;
+}
+
+/**
  * To Be Reviewed. Once any show has a first-episode date, or is marked
  * `availableNow`, the list is grouped: "Available now" first, then premiere
  * dates earliest first, then "Date TBD" for the rest. Until then (early in the
@@ -472,7 +491,7 @@ function renderShowRow(show) {
  * @param {import('./list-entries.js').ListEntryDetails[]} shows
  */
 function pendingItems(shows) {
-  if (!shows.some(show => show.firstEpisode || show.availableNow)) return shows.map(renderShowRow);
+  if (!shows.some(show => show.firstEpisode || show.availableNow)) return shows.map(show => renderShowRow(show));
 
   /** @type {Map<string, import('./list-entries.js').ListEntryDetails[]>} */
   const byDate = new Map();
@@ -487,78 +506,35 @@ function pendingItems(shows) {
     { heading: 'Date TBD', shows: shows.filter(show => !show.availableNow && !show.firstEpisode) },
   ].filter(group => group.shows.length > 0);
 
-  return groups.map((group) => {
-    const li = document.createElement('li');
-    li.className = 'show-group';
-    const heading = document.createElement('h3');
-    heading.className = 'show-group-heading';
-    heading.textContent = group.heading;
-    const list = document.createElement('ul');
-    list.className = 'show-list';
-    list.append(...group.shows.map(renderShowRow));
-    li.append(heading, list);
-    return li;
-  });
+  return groups.map(group => renderGroup(group.heading, group.shows.map(show => renderShowRow(show))));
+}
+
+/** The reason a show is skipped, as written. Empty when there isn't one. */
+function skipReason(show) {
+  return show.reason?.trim() ?? '';
 }
 
 /**
- * Not Reviewing. Shows with a note (a reason, streaming, or no US stream) come
- * first as cards; the ones with nothing to say fold into a collapsed run-in
- * list underneath, so the notes aren't buried at the bottom of a long list. A
- * season with no notes at all stays a flat list.
+ * Not Reviewing. Once any show has a reason the list is grouped by that reason,
+ * biggest group first, with the shows that have none last. Until then it stays
+ * a flat list.
  * @param {import('./list-entries.js').ListEntryDetails[]} shows
  */
 function skippedItems(shows) {
-  const hasNote = (show) => Boolean(show.reason || show.noUSStreaming || show.streaming?.length);
-  const annotated = shows.filter(hasNote);
-  if (annotated.length === 0) return shows.map(renderShowRow);
+  if (!shows.some(skipReason)) return shows.map(show => renderShowRow(show));
 
-  const items = annotated.map(renderSkipCard);
-  const rest = shows.filter(show => !hasNote(show));
-  if (rest.length > 0) {
-    const li = document.createElement('li');
-    li.className = 'skip-rest';
-    const details = document.createElement('details');
-    details.className = 'skip-fold';
-    const summary = document.createElement('summary');
-    summary.textContent = `Also not reviewing · ${rest.length}`;
-    const list = document.createElement('ul');
-    list.className = 'run-in';
-    list.append(...rest.map((show) => {
-      const item = document.createElement('li');
-      item.textContent = show.title;
-      return item;
-    }));
-    details.append(summary, list);
-    li.append(details);
-    items.push(li);
+  /** @type {Map<string, import('./list-entries.js').ListEntryDetails[]>} */
+  const byReason = new Map();
+  for (const show of shows) {
+    const key = skipReason(show);
+    byReason.set(key, [...(byReason.get(key) ?? []), show]);
   }
-  return items;
-}
 
-/** @param {import('./list-entries.js').ListEntryDetails} show */
-function renderSkipCard(show) {
-  const li = document.createElement('li');
-  li.className = 'skip-card';
+  // Array.prototype.sort is stable, so equally sized groups keep the order they first appear in.
+  const reasons = [...byReason.keys()].filter(Boolean).sort((a, b) => (byReason.get(b)?.length ?? 0) - (byReason.get(a)?.length ?? 0));
+  if (byReason.has('')) reasons.push('');
 
-  const top = document.createElement('div');
-  top.className = 'skip-card-top';
-  const title = document.createElement('span');
-  title.className = 'skip-card-title';
-  title.textContent = show.title;
-  top.append(title);
-  const badges = createStreamingRow(show);
-  if (badges) top.append(badges);
-  li.append(top);
-
-  const why = [show.noUSStreaming ? 'Not streaming in the US' : '', show.reason ?? ''].filter(Boolean);
-  if (why.length > 0) {
-    const note = document.createElement('p');
-    note.className = 'skip-card-why';
-    note.textContent = why.join(' · ');
-    li.append(note);
-  }
-  return li;
+  return reasons.map(reason => renderGroup(reason || 'No reason given', (byReason.get(reason) ?? []).map(show => renderShowRow(show))));
 }
 
 dom.searchInput?.addEventListener('input', renderReviews);

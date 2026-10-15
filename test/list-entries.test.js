@@ -22,6 +22,5 @@ test('pending and skipped each allow their own optional fields', () => {
   assert.ok(LIST_ENTRY_KEYS.pending.includes('firstEpisode'));
   assert.ok(!LIST_ENTRY_KEYS.pending.includes('reason'));
   assert.ok(LIST_ENTRY_KEYS.skipped.includes('reason'));
-  assert.ok(LIST_ENTRY_KEYS.skipped.includes('noUSStreaming'));
   assert.ok(!LIST_ENTRY_KEYS.skipped.includes('firstEpisode'));
 });
