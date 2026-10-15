@@ -88,6 +88,23 @@
         <li><code>reviewed: [Review!]!</code></li>
         <li><code>pending: [String!]!</code></li>
         <li><code>skipped: [String!]!</code></li>
+        <li><code>pendingShows: [PendingShow!]!</code> &mdash; the pending shows with their optional streaming and first-episode info</li>
+        <li><code>skippedShows: [SkippedShow!]!</code> &mdash; the skipped shows with their optional reason and streaming info</li>
+      </ul>
+
+      <h3>PendingShow</h3>
+      <ul class="show-list">
+        <li><code>title: String!</code></li>
+        <li><code>streaming: [String!]!</code> &mdash; service keys, empty when none are recorded</li>
+        <li><code>firstEpisode: String</code> &mdash; optional, <code>YYYY-MM-DD</code></li>
+      </ul>
+
+      <h3>SkippedShow</h3>
+      <ul class="show-list">
+        <li><code>title: String!</code></li>
+        <li><code>reason: String</code> &mdash; optional short reason it isn't being reviewed</li>
+        <li><code>streaming: [String!]!</code> &mdash; service keys, empty when none are recorded</li>
+        <li><code>noUSStreaming: Boolean!</code> &mdash; true when there's no US stream</li>
       </ul>
 
       <h3>Review</h3>

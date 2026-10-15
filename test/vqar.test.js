@@ -466,3 +466,36 @@ test('search matches text inside a full-series re-review or OP/ED note, not just
 
   assert.deepEqual(titles(document), ['Summer Show']);
 });
+
+test('detailed pending and skipped entries render their streaming badges and notes; plain strings stay plain', async () => {
+  const withDetails = {
+    ...seasons['/vqar/data/seasons/summer-2026.json'],
+    pending: [
+      'Plain Pending Show',
+      { title: 'Detailed Pending Show', streaming: ['crunchyroll', 'netflix'], firstEpisode: '2026-10-08' },
+    ],
+    skipped: [
+      { title: 'Paywalled Show', reason: 'Not paying for another service', streaming: ['oceanveil'] },
+      { title: 'Unlicensed Show', noUSStreaming: true },
+    ],
+  };
+  const fetch = createPathFetchStub({ ...routes(), '/vqar/data/seasons/summer-2026.json': withDetails });
+  const { document } = await loadApp({ fetch });
+
+  const pending = [...document.querySelectorAll('#pendingShows li')];
+  assert.equal(pending[0].textContent, 'Plain Pending Show');
+  assert.equal(pending[0].querySelector('.entry-streaming'), null);
+  assert.equal(pending[1].childNodes[0].textContent, 'Detailed Pending Show');
+  assert.deepEqual(
+    [...pending[1].querySelectorAll('.entry-streaming-badge')].map((b) => b.title),
+    ['Crunchyroll', 'Netflix']
+  );
+  assert.equal(pending[1].querySelector('.list-note').textContent, ' - Premieres 2026-10-08');
+
+  const skipped = [...document.querySelectorAll('#skippedShows li')];
+  assert.equal(skipped[0].childNodes[0].textContent, 'Paywalled Show');
+  assert.deepEqual([...skipped[0].querySelectorAll('.entry-streaming-badge')].map((b) => b.title), ['OceanVeil']);
+  assert.equal(skipped[0].querySelector('.list-note').textContent, ' - Not paying for another service');
+  assert.equal(skipped[1].querySelector('.list-note').textContent, ' - Not streaming in the US');
+  assert.equal(skipped[1].querySelector('.entry-streaming'), null);
+});

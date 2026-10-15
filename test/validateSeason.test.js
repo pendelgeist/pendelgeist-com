@@ -338,3 +338,76 @@ test('a well-formed fullReview/op/ed does not trigger a false positive', () => {
 
   assert.deepEqual(validateSeason(season), []);
 });
+
+test('pending and skipped entries may be objects carrying the optional notes', () => {
+  const season = cleanSeason();
+  season.pending = [
+    'Plain Pending Show',
+    { title: 'Dated Show', firstEpisode: '2026-10-08' },
+    { title: 'Streamed Show', streaming: ['crunchyroll', 'netflix'], firstEpisode: '2026-10-01' },
+  ];
+  season.skipped = [
+    'Plain Skipped Show',
+    { title: 'Paywalled Show', reason: 'Not paying for another service', streaming: ['oceanveil'] },
+    { title: 'Unlicensed Show', reason: 'No stream anywhere I can watch', noUSStreaming: true },
+  ];
+
+  assert.deepEqual(validateSeason(season), []);
+});
+
+test('an object entry still takes part in the duplicate and cross-list checks', () => {
+  const season = cleanSeason();
+  season.pending = [{ title: 'Cool Show' }, { title: 'Twice' }, 'Twice'];
+  season.skipped = [{ title: 'Twice', reason: 'x' }];
+
+  const issues = validateSeason(season);
+  assert.ok(issues.some(i => i.includes('"Cool Show"') && i.includes('reviewed but still listed in pending')));
+  assert.ok(issues.some(i => i.includes('"Twice"') && i.includes('more than once in pending')));
+  assert.ok(issues.some(i => i.includes('"Twice"') && i.includes('both pending and skipped')));
+});
+
+test('flags an entry with no usable title', () => {
+  const season = cleanSeason();
+  season.pending = [{ firstEpisode: '2026-10-08' }, ''];
+  season.skipped = [42];
+
+  const issues = validateSeason(season);
+  assert.ok(issues.some(i => i.includes('pending[0]') && i.includes('title')));
+  assert.ok(issues.some(i => i.includes('pending[1]') && i.includes('title')));
+  assert.ok(issues.some(i => i.includes('skipped[0]') && i.includes('title')));
+});
+
+test('flags unknown fields, including one that belongs to the other list', () => {
+  const season = cleanSeason();
+  season.pending = [{ title: 'Typo Show', reasn: 'oops' }, { title: 'Wrong List Show', reason: 'not for pending' }];
+  season.skipped = [{ title: 'Wrong List Skip', firstEpisode: '2026-10-08' }];
+
+  const issues = validateSeason(season);
+  assert.ok(issues.some(i => i.includes('"Typo Show"') && i.includes('unknown field "reasn"')));
+  assert.ok(issues.some(i => i.includes('"Wrong List Show"') && i.includes('unknown field "reason"')));
+  assert.ok(issues.some(i => i.includes('"Wrong List Skip"') && i.includes('unknown field "firstEpisode"')));
+});
+
+test('flags malformed notes on a list entry', () => {
+  const season = cleanSeason();
+  season.pending = [
+    { title: 'Bad Streaming', streaming: 'crunchyroll' },
+    { title: 'Unknown Service', streaming: ['nope'] },
+    { title: 'Not A Date', firstEpisode: '10/08/2026' },
+    { title: 'Impossible Date', firstEpisode: '2026-02-30' },
+  ];
+  season.skipped = [
+    { title: 'Empty Reason', reason: '  ' },
+    { title: 'Bad Flag', noUSStreaming: 'yes' },
+    { title: 'Contradiction', noUSStreaming: true, streaming: ['hulu'] },
+  ];
+
+  const issues = validateSeason(season);
+  assert.ok(issues.some(i => i.includes('"Bad Streaming"') && i.includes('malformed streaming')));
+  assert.ok(issues.some(i => i.includes('"Unknown Service"') && i.includes('unknown streaming service "nope"')));
+  assert.ok(issues.some(i => i.includes('"Not A Date"') && i.includes('malformed firstEpisode')));
+  assert.ok(issues.some(i => i.includes('"Impossible Date"') && i.includes('malformed firstEpisode')));
+  assert.ok(issues.some(i => i.includes('"Empty Reason"') && i.includes('malformed reason')));
+  assert.ok(issues.some(i => i.includes('"Bad Flag"') && i.includes('malformed noUSStreaming')));
+  assert.ok(issues.some(i => i.includes('"Contradiction"') && i.includes('noUSStreaming but also lists streaming')));
+});

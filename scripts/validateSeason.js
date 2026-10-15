@@ -1,9 +1,22 @@
 import { STREAMING_SERVICES } from '../public/streaming.js';
+import { LIST_ENTRY_KEYS, entryTitle } from '../public/vqar/list-entries.js';
 
 /** `dateReviewed` is a full ISO 8601 timestamp (UTC `Z` or a `±hh:mm` offset) so same-day reviews order by time. */
 const TIMESTAMP_PATTERN = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(\.\d+)?(Z|[+-]\d{2}:\d{2})$/;
 
 const STREAMING_KEYS = new Set(Object.keys(STREAMING_SERVICES));
+
+/** `firstEpisode` on a pending entry is a plain calendar date, shown exactly as written. */
+const DATE_PATTERN = /^(\d{4})-(\d{2})-(\d{2})$/;
+
+/** @param {string} value */
+function isCalendarDate(value) {
+  const match = DATE_PATTERN.exec(value);
+  if (!match) return false;
+  const [, year, month, day] = match.map(Number);
+  const date = new Date(Date.UTC(year, month - 1, day));
+  return date.getUTCFullYear() === year && date.getUTCMonth() === month - 1 && date.getUTCDate() === day;
+}
 
 // Season ids are `<season>-<year>` ("spring-2026"), which is what
 // scripts/build-vqar-index.js sorts the generated index by - a directory
@@ -45,6 +58,59 @@ function findDuplicates(list) {
 }
 
 /**
+ * Checks the entries of one `pending` or `skipped` list: each is a non-empty
+ * title string or an object with a title, only the keys that list allows, and
+ * well-formed optional notes. Titles are checked here too, since the duplicate
+ * and cross-list checks rely on them being strings.
+ * @param {unknown[]} list
+ * @param {'pending'|'skipped'} listName
+ * @returns {string[]}
+ */
+function validateListEntries(list, listName) {
+  const issues = [];
+  list.forEach((entry, i) => {
+    const title = entryTitle(entry);
+    const where = typeof title === 'string' && title !== '' ? `"${title}"` : `${listName}[${i}]`;
+    if (typeof title !== 'string' || title === '') {
+      issues.push(`${listName}[${i}] needs a title (a non-empty string, or an object with a "title")`);
+    }
+    if (typeof entry === 'string') return;
+    if (typeof entry !== 'object' || entry === null || Array.isArray(entry)) return; // already flagged above
+
+    const allowed = LIST_ENTRY_KEYS[listName];
+    for (const key of Object.keys(entry)) {
+      if (!allowed.includes(key)) {
+        issues.push(`${where} in ${listName} has an unknown field "${key}" (expected one of ${allowed.join(', ')})`);
+      }
+    }
+    if (entry.streaming !== undefined) {
+      if (!Array.isArray(entry.streaming)) {
+        issues.push(`${where} in ${listName} has a malformed streaming (expected an array)`);
+      } else {
+        for (const service of entry.streaming) {
+          if (!STREAMING_KEYS.has(service)) {
+            issues.push(`${where} in ${listName} has an unknown streaming service "${service}" (expected one of ${[...STREAMING_KEYS].join(', ')})`);
+          }
+        }
+      }
+    }
+    if (entry.firstEpisode !== undefined && (typeof entry.firstEpisode !== 'string' || !isCalendarDate(entry.firstEpisode))) {
+      issues.push(`${where} in ${listName} has a malformed firstEpisode (expected a date like 2026-10-08)`);
+    }
+    if (entry.reason !== undefined && (typeof entry.reason !== 'string' || entry.reason.trim() === '')) {
+      issues.push(`${where} in ${listName} has a malformed reason (expected a non-empty string)`);
+    }
+    if (entry.noUSStreaming !== undefined && typeof entry.noUSStreaming !== 'boolean') {
+      issues.push(`${where} in ${listName} has a malformed noUSStreaming (expected a boolean)`);
+    }
+    if (entry.noUSStreaming === true && Array.isArray(entry.streaming) && entry.streaming.length > 0) {
+      issues.push(`${where} in ${listName} is marked noUSStreaming but also lists streaming services`);
+    }
+  });
+  return issues;
+}
+
+/**
  * Checks a single season's data for internal consistency: a show shouldn't be
  * reviewed and still sitting in pending/skipped, shouldn't be in both pending
  * and skipped, and shouldn't be listed twice in the same list. Also flags
@@ -77,8 +143,12 @@ export function validateSeason(season, { filename } = {}) {
     issues.push('season has a malformed sortKey (expected a number)');
   }
   const reviewed = Array.isArray(season.reviewed) ? season.reviewed : [];
-  const pending = Array.isArray(season.pending) ? season.pending : [];
-  const skipped = Array.isArray(season.skipped) ? season.skipped : [];
+  const pendingEntries = Array.isArray(season.pending) ? season.pending : [];
+  const skippedEntries = Array.isArray(season.skipped) ? season.skipped : [];
+  issues.push(...validateListEntries(pendingEntries, 'pending'), ...validateListEntries(skippedEntries, 'skipped'));
+  // Entries may be strings or objects; everything below compares titles.
+  const pending = pendingEntries.map(entryTitle).filter(t => typeof t === 'string' && t !== '');
+  const skipped = skippedEntries.map(entryTitle).filter(t => typeof t === 'string' && t !== '');
 
   const reviewedTitles = reviewed.map(r => r.titleEN);
   const reviewedSet = new Set(reviewedTitles);

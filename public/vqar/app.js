@@ -1,6 +1,7 @@
 import { VQAR_INDEX_PATH } from './data-paths.js';
 import { effectiveRatingNumber } from './rating.js';
 import { createStreamingRow } from '../streaming.js';
+import { normalizeEntry } from './list-entries.js';
 import { createExternalLinks } from '../external-links.js';
 
 /**
@@ -48,8 +49,8 @@ import { createExternalLinks } from '../external-links.js';
  * @property {string|number} id
  * @property {string} name
  * @property {Review[]} reviewed
- * @property {string[]} pending
- * @property {string[]} skipped
+ * @property {import('./list-entries.js').ListEntry[]} pending
+ * @property {import('./list-entries.js').ListEntry[]} skipped
  */
 
 /**
@@ -423,11 +424,39 @@ function renderList(container, key) {
     return;
   }
 
-  container.replaceChildren(...season[key].map(show => {
-    const li = document.createElement('li');
-    li.textContent = show ?? 'Unknown';
+  container.replaceChildren(...season[key].map(renderListEntry));
+}
+
+/**
+ * One line of the To Be Reviewed / Not Reviewing lists. A plain string is just
+ * the title; an object entry adds streaming badges and a muted note after it
+ * (premiere date for pending, reason / "not streaming in the US" for skipped).
+ * @param {import('./list-entries.js').ListEntry|null} entry
+ */
+function renderListEntry(entry) {
+  const li = document.createElement('li');
+  if (typeof entry === 'string' || !entry) {
+    li.textContent = entry ?? 'Unknown';
     return li;
-  }));
+  }
+
+  const show = normalizeEntry(entry);
+  li.append(show.title ?? 'Unknown');
+
+  const badges = createStreamingRow(show);
+  if (badges) li.append(' ', badges);
+
+  const notes = [];
+  if (show.firstEpisode) notes.push(`Premieres ${show.firstEpisode}`);
+  if (show.noUSStreaming) notes.push('Not streaming in the US');
+  if (show.reason) notes.push(show.reason);
+  if (notes.length > 0) {
+    const note = document.createElement('span');
+    note.className = 'list-note';
+    note.textContent = ` - ${notes.join(' · ')}`;
+    li.append(note);
+  }
+  return li;
 }
 
 dom.searchInput?.addEventListener('input', renderReviews);

@@ -432,3 +432,21 @@ test('changing the season filter updates the "?season=" URL param, without addin
   select.dispatchEvent(new document.defaultView.Event('change', { bubbles: true }));
   assert.equal(new URL(window.location.href).searchParams.get('season'), null);
 });
+
+test('computeContinuationWatch reads titles from object-form pending and skipped entries', () => {
+  const past = {
+    id: 'past', name: 'Past', pending: [], skipped: [],
+    reviewed: [{ titleEN: 'Great Show', ratingNumber: 5, ratingText: 'Nice Ep Broh', dateReviewed: '2025-01-01T00:00:00Z' }],
+  };
+  const current = {
+    id: 'now', name: 'Now', reviewed: [],
+    pending: [{ title: 'Great Show Season 2', firstEpisode: '2026-10-08' }],
+    skipped: [{ title: 'Great Show 3rd Season', reason: 'no time' }],
+  };
+
+  const matches = computeContinuationWatch([past, current], 'now');
+  assert.deepEqual(matches.map(m => [m.title, m.status]).sort(), [
+    ['Great Show 3rd Season', 'skipped'],
+    ['Great Show Season 2', 'pending'],
+  ]);
+});

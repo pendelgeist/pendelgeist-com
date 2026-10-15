@@ -379,7 +379,14 @@
     "Punirunes Puni 4",
     "Aoki Denshou: Welsh & Shedar",
     "Duel Masters LOST: Danzai no Shounen",
-    "Seitokai ni mo Ana wa Aru!",
-    "Now That I Can Control Reality With A Mouse Cursor, I'm Gonna Click Away On The Girls!"
+    {
+      "title": "Seitokai ni mo Ana wa Aru!",
+      "reason": "Not paying for another service ($13/mo)",
+      "streaming": ["oceanveil"]
+    },
+    {
+      "title": "Now That I Can Control Reality With A Mouse Cursor, I'm Gonna Click Away On The Girls!",
+      "reason": "Porn"
+    }
   ]
 }

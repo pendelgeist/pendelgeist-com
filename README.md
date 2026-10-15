@@ -25,6 +25,9 @@ The Worker (`src/worker.js`) also backs a small GraphQL API over the same anime 
   pages that render committed prose (`/nasubi`, `/fsar`) share.
 - `public/streaming.js` — streaming service metadata + badge rendering, shared by `/vqar`,
   `/fsar`, and `scripts/validateSeason.js`.
+- `public/vqar/list-entries.js` — the shape of a `pending`/`skipped` list entry (a title string
+  or an object with optional notes) and the helpers that read either, shared by `/vqar`,
+  `/vqar-stats`, `src/schema.js` and the scripts.
 - `public/external-links.js` — the AniList/ANN/Wikipedia reference links, shared by `/vqar`
   and `/fsar`, which carry the same fields for them.
 - `public/data-table.js` — the sortable table, stat-tile grid, and bar chart the two
@@ -133,6 +136,34 @@ own reference; neither page reads it, though the GraphQL API exposes it as `Seas
 Adding a season means dropping a new file in `seasons/` and rebuilding the index; editing an
 old season never touches the others.
 
+`pending` ("To Be Reviewed") and `skipped` ("Not Reviewing") entries are each either a plain
+title string or an object that adds optional pre-season notes, so you can fill things in as
+the lineup becomes known. The two forms can be mixed in one list:
+
+```json
+"pending": [
+  "Show With Nothing Known Yet",
+  { "title": "Premiering Soon", "streaming": ["crunchyroll"], "firstEpisode": "2026-10-08" }
+],
+"skipped": [
+  { "title": "Paywalled Show", "reason": "Not paying for another service", "streaming": ["oceanveil"] },
+  { "title": "No US Stream", "noUSStreaming": true }
+]
+```
+
+- **pending** takes `title`, `streaming` (the same service keys as a review's) and
+  `firstEpisode` (a `YYYY-MM-DD` date, shown as written).
+- **skipped** takes `title`, `reason` (a short free-text string), `streaming`, and
+  `noUSStreaming: true` for a show with no US stream (it can't be combined with a non-empty
+  `streaming`).
+
+Everything but `title` is optional. Validation rejects an unknown field (so a typo like
+`reasn` can't silently vanish) and a field from the other list. On the page the streaming
+badges and a muted note (`Premieres 2026-10-08`, `Not streaming in the US`, the reason) follow
+the title. `/vqar-stats` and the AniList check only read the title. In GraphQL, `pending` and
+`skipped` are still lists of title strings; the extra fields are on `pendingShows` and
+`skippedShows`.
+
 Two fields exist purely so the index can be generated rather than hand-maintained:
 
 - `"current": true` marks the season being reviewed right now, which is where the index's
@@ -240,8 +271,8 @@ Four steps, and only the third is easy to forget:
    JSON
    ```
 
-2. **Fill in `pending` and `skipped`** as you triage the season's lineup — plain strings,
-   no shape to them. `reviewed` fills in as you go.
+2. **Fill in `pending` and `skipped`** as you triage the season's lineup — plain strings, or
+   objects when you know streaming, a premiere date or a reason (see above). `reviewed` fills in as you go.
 
 3. **Take `"current": true` off the previous season** (`summer-2026.json` here). Exactly one
    season may carry it, and it's what the index's `currentSeason` — the page's default
