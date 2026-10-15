@@ -381,7 +381,7 @@
     "Yuusanchi! from Yuuhachi",
     { "title": "Nezumi-kun no Chokki (TV) 2nd Season", "reason": "Continuing series" },
     { "title": "Punirunes Puni 4", "reason": "Continuing series" },
-    "Aoki Denshou: Welsh & Shedar",
+    { "title": "Aoki Denshou: Welsh & Shedar", "noUSStreaming": true },
     { "title": "Duel Masters LOST: Danzai no Shounen", "reason": "Continuing series" },
     {
       "title": "Seitokai ni mo Ana wa Aru!",
