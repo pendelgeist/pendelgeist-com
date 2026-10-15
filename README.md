@@ -158,11 +158,14 @@ the lineup becomes known. The two forms can be mixed in one list:
   `streaming`).
 
 Everything but `title` is optional. Validation rejects an unknown field (so a typo like
-`reasn` can't silently vanish) and a field from the other list. On the page the streaming
-badges and a muted note (`Premieres 2026-10-08`, `Not streaming in the US`, the reason) follow
-the title. `/vqar-stats` and the AniList check only read the title. In GraphQL, `pending` and
-`skipped` are still lists of title strings; the extra fields are on `pendingShows` and
-`skippedShows`.
+`reasn` can't silently vanish) and a field from the other list. On the page, To Be
+Reviewed groups shows under their premiere date (earliest first, undated shows under "Date
+TBD") with streaming badges at the end of each line; it stays a flat list until some show has a
+`firstEpisode`. Not Reviewing shows any entry that has a note as a card (title, badges, and
+"Not streaming in the US" / the reason underneath) and folds the rest into a collapsed "Also
+not reviewing" list; with no notes at all it stays flat. `/vqar-stats` and the AniList check
+only read the title. In GraphQL, `pending` and `skipped` are still lists of title strings; the
+extra fields are on `pendingShows` and `skippedShows`.
 
 Two fields exist purely so the index can be generated rather than hand-maintained:
 

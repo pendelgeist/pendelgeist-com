@@ -467,35 +467,105 @@ test('search matches text inside a full-series re-review or OP/ED note, not just
   assert.deepEqual(titles(document), ['Summer Show']);
 });
 
-test('detailed pending and skipped entries render their streaming badges and notes; plain strings stay plain', async () => {
-  const withDetails = {
-    ...seasons['/vqar/data/seasons/summer-2026.json'],
-    pending: [
-      'Plain Pending Show',
-      { title: 'Detailed Pending Show', streaming: ['crunchyroll', 'netflix'], firstEpisode: '2026-10-08' },
-    ],
-    skipped: [
+function withLists(pending, skipped) {
+  return createPathFetchStub({
+    ...routes(),
+    '/vqar/data/seasons/summer-2026.json': { ...seasons['/vqar/data/seasons/summer-2026.json'], pending, skipped },
+  });
+}
+
+const text = (el) => el.textContent.trim();
+const badgeTitles = (el) => [...el.querySelectorAll('.entry-streaming-badge')].map((b) => b.title);
+
+test('pending shows with premiere dates group under date headings, earliest first, undated last', async () => {
+  const { document } = await loadApp({
+    fetch: withLists([
+      'Undated Show',
+      { title: 'Late Show', firstEpisode: '2026-10-12', streaming: ['hidive', 'crunchyroll'] },
+      { title: 'Early Show', firstEpisode: '2026-10-04', streaming: ['netflix'] },
+      { title: 'Same Day Show', firstEpisode: '2026-10-12' },
+    ], []),
+  });
+
+  const groups = [...document.querySelectorAll('#pendingShows > .show-group')];
+  assert.deepEqual(groups.map((g) => text(g.querySelector('.show-group-heading'))), ['Oct 4', 'Oct 12', 'Date TBD']);
+  assert.deepEqual(
+    groups.map((g) => [...g.querySelectorAll('.show-row-title')].map(text)),
+    [['Early Show'], ['Late Show', 'Same Day Show'], ['Undated Show']]
+  );
+  // Badges follow STREAMING_SERVICES order, not the order they were written in.
+  assert.deepEqual(badgeTitles(groups[1]), ['Crunchyroll', 'HIDIVE']);
+  assert.deepEqual(badgeTitles(groups[0]), ['Netflix']);
+});
+
+test('pending stays a flat list, not one big "Date TBD" group, until some show has a date', async () => {
+  const { document } = await loadApp({
+    fetch: withLists(['Plain Show', { title: 'Streamed Show', streaming: ['hulu'] }], []),
+  });
+
+  assert.equal(document.querySelector('#pendingShows .show-group'), null);
+  const rows = [...document.querySelectorAll('#pendingShows > li')];
+  assert.deepEqual(rows.map(text), ['Plain Show', 'Streamed ShowHU']);
+  assert.deepEqual(badgeTitles(rows[1]), ['Hulu']);
+});
+
+test('an unparseable premiere date is shown as written rather than dropped', async () => {
+  const { document } = await loadApp({ fetch: withLists([{ title: 'Odd Show', firstEpisode: 'Fall' }], []) });
+  assert.equal(text(document.querySelector('.show-group-heading')), 'Fall');
+});
+
+test('skipped shows with a note become cards; the rest fold into a collapsed run-in list', async () => {
+  const { document } = await loadApp({
+    fetch: withLists([], [
+      'Plain Skip A',
       { title: 'Paywalled Show', reason: 'Not paying for another service', streaming: ['oceanveil'] },
       { title: 'Unlicensed Show', noUSStreaming: true },
-    ],
-  };
-  const fetch = createPathFetchStub({ ...routes(), '/vqar/data/seasons/summer-2026.json': withDetails });
-  const { document } = await loadApp({ fetch });
+      'Plain Skip B',
+      { title: 'Both Notes', noUSStreaming: true, reason: 'No subs' },
+    ]),
+  });
 
-  const pending = [...document.querySelectorAll('#pendingShows li')];
-  assert.equal(pending[0].textContent, 'Plain Pending Show');
-  assert.equal(pending[0].querySelector('.entry-streaming'), null);
-  assert.equal(pending[1].childNodes[0].textContent, 'Detailed Pending Show');
-  assert.deepEqual(
-    [...pending[1].querySelectorAll('.entry-streaming-badge')].map((b) => b.title),
-    ['Crunchyroll', 'Netflix']
-  );
-  assert.equal(pending[1].querySelector('.list-note').textContent, ' - Premieres 2026-10-08');
+  const cards = [...document.querySelectorAll('#skippedShows > .skip-card')];
+  assert.deepEqual(cards.map((c) => text(c.querySelector('.skip-card-title'))), ['Paywalled Show', 'Unlicensed Show', 'Both Notes']);
+  assert.deepEqual(badgeTitles(cards[0]), ['OceanVeil']);
+  assert.deepEqual(cards.map((c) => text(c.querySelector('.skip-card-why'))), [
+    'Not paying for another service',
+    'Not streaming in the US',
+    'Not streaming in the US · No subs',
+  ]);
 
-  const skipped = [...document.querySelectorAll('#skippedShows li')];
-  assert.equal(skipped[0].childNodes[0].textContent, 'Paywalled Show');
-  assert.deepEqual([...skipped[0].querySelectorAll('.entry-streaming-badge')].map((b) => b.title), ['OceanVeil']);
-  assert.equal(skipped[0].querySelector('.list-note').textContent, ' - Not paying for another service');
-  assert.equal(skipped[1].querySelector('.list-note').textContent, ' - Not streaming in the US');
-  assert.equal(skipped[1].querySelector('.entry-streaming'), null);
+  const fold = document.querySelector('#skippedShows > .skip-rest details');
+  assert.equal(fold.open, false);
+  assert.equal(text(fold.querySelector('summary')), 'Also not reviewing · 2');
+  assert.deepEqual([...fold.querySelectorAll('.run-in li')].map(text), ['Plain Skip A', 'Plain Skip B']);
+});
+
+test('a skipped card with only streaming has no reason line, and no fold when every show has a note', async () => {
+  const { document } = await loadApp({ fetch: withLists([], [{ title: 'Streamed Skip', streaming: ['prime'] }]) });
+
+  const card = document.querySelector('#skippedShows > .skip-card');
+  assert.deepEqual(badgeTitles(card), ['Prime Video']);
+  assert.equal(card.querySelector('.skip-card-why'), null);
+  assert.equal(document.querySelector('.skip-rest'), null);
+});
+
+test('skipped stays a flat list when no show has a note', async () => {
+  const { document } = await loadApp({ fetch: withLists([], ['Skip A', 'Skip B']) });
+
+  assert.deepEqual([...document.querySelectorAll('#skippedShows > li')].map(text), ['Skip A', 'Skip B']);
+  assert.equal(document.querySelector('.skip-fold'), null);
+});
+
+test('titles and reasons render as text, never markup', async () => {
+  const { document } = await loadApp({
+    fetch: withLists(
+      [{ title: '<b>Bold</b> Show', firstEpisode: '2026-10-01' }],
+      [{ title: 'Tag <i>Show</i>', reason: '<script>x</script>' }]
+    ),
+  });
+
+  assert.equal(document.querySelector('#pendingShows b'), null);
+  assert.equal(text(document.querySelector('.show-row-title')), '<b>Bold</b> Show');
+  assert.equal(document.querySelector('#skippedShows i, #skippedShows script'), null);
+  assert.equal(text(document.querySelector('.skip-card-why')), '<script>x</script>');
 });

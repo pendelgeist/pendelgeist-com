@@ -248,6 +248,115 @@ article:hover {
   color: var(--color-muted);
 }
 
+/* To Be Reviewed / Not Reviewing. Rows put the streaming badges at the far end;
+ * grouped pending shows sit under a date heading; skipped shows with a note are
+ * cards, and the rest fold into a run-in list. The bullet from .show-list is
+ * dropped wherever the structure already separates the items. Text here is
+ * --color-text/--color-muted on bg or surface only, the pairings the contrast
+ * test already covers. */
+
+.show-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.show-row-title {
+  flex: 1;
+  min-width: 0;
+}
+
+.show-list .show-group,
+.show-list .skip-card,
+.show-list .skip-rest {
+  padding: 0;
+}
+
+.show-list .show-group::before,
+.show-list .show-group li::before,
+.show-list .skip-card::before,
+.show-list .skip-rest::before {
+  content: none;
+}
+
+.show-list .show-group {
+  margin-bottom: 1rem;
+}
+
+.show-group-heading {
+  margin: 0 0 0.25rem;
+  padding: 0 0.5rem 0.2rem;
+  border-bottom: 1px solid var(--color-section-border);
+  font-size: 0.7rem;
+  letter-spacing: 0.1rem;
+  text-transform: uppercase;
+  color: var(--color-text);
+}
+
+.show-list .skip-card {
+  margin-bottom: 0.5rem;
+  padding: 0.6rem 0.75rem;
+  background-color: var(--color-surface);
+  box-shadow: var(--shadow-card);
+  border-radius: var(--radius-card);
+}
+
+.skip-card-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.75rem;
+  font-weight: 700;
+}
+
+.skip-card-why {
+  margin: 0.25rem 0 0;
+  font-weight: 500;
+  color: var(--color-muted);
+}
+
+.skip-fold summary {
+  cursor: pointer;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1rem;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+
+.skip-fold summary::before {
+  content: '\25B8';
+  display: inline-block;
+  margin-right: 0.4rem;
+}
+
+.skip-fold[open] summary::before {
+  transform: rotate(90deg);
+}
+
+.skip-fold .run-in {
+  margin: 0.5rem 0 0;
+  padding: 0;
+  line-height: 1.7;
+}
+
+.show-list .run-in li {
+  display: inline;
+  margin: 0;
+  padding: 0;
+}
+
+.show-list .run-in li::before {
+  content: '·';
+  margin: 0 0.4rem;
+  font-weight: 400;
+  color: var(--color-muted);
+}
+
+.show-list .run-in li:first-child::before {
+  content: none;
+}
+
 /* Responsive */
 
 @media (max-width: 768px) {
