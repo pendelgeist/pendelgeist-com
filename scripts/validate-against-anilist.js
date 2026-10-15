@@ -11,7 +11,7 @@
  *     with a matching title (catches typos/drift if the wrong id got pasted in)
  *   - if it doesn't, searches AniList by title and suggests an `anilistId`
  *     to add when a confident match is found
- * For pending/skipped titles (plain strings, nowhere to attach an id), it
+ * For pending/skipped titles (nowhere to attach an id), it
  * just flags titles AniList has no confident match for, as a spelling check.
  *
  *   npm run validate-anilist                    # every committed season
@@ -20,6 +20,7 @@
  */
 import { resolveTargets } from './loadTargets.js';
 import { titlesLikelyMatch } from './anilistMatch.js';
+import { entryTitle } from '../public/vqar/list-entries.js';
 
 const ANILIST_ENDPOINT = 'https://graphql.anilist.co';
 const DEFAULT_DELAY_MS = 1500;
@@ -144,7 +145,9 @@ async function main() {
       await checkReviewed(review, issues, suggestions);
       await delay(delayMs);
     }
-    for (const title of [...(season.pending ?? []), ...(season.skipped ?? [])]) {
+    for (const entry of [...(season.pending ?? []), ...(season.skipped ?? [])]) {
+      const title = entryTitle(entry);
+      if (!title) continue; // validate-vqar reports an entry with no title
       await checkTitleExists(title, issues);
       await delay(delayMs);
     }

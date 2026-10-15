@@ -6,6 +6,7 @@
  */
 
 import { effectiveRatingNumber } from '../vqar/rating.js';
+import { entryTitle } from '../vqar/list-entries.js';
 
 /** @typedef {import('../vqar/app.js').SeasonData} SeasonData */
 
@@ -257,8 +258,8 @@ export function computeContinuationWatch(seasons, seasonId, { minRating = 4 } = 
   if (bestPastByBase.size === 0) return [];
 
   const candidates = [
-    ...(targetSeason.pending ?? []).map(title => ({ title, status: 'pending' })),
-    ...(targetSeason.skipped ?? []).map(title => ({ title, status: 'skipped' })),
+    ...(targetSeason.pending ?? []).map(entry => ({ title: entryTitle(entry), status: 'pending' })),
+    ...(targetSeason.skipped ?? []).map(entry => ({ title: entryTitle(entry), status: 'skipped' })),
     ...(targetSeason.reviewed ?? []).map(r => ({ title: r.titleEN, status: 'reviewed' })),
   ];
 

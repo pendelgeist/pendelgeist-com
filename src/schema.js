@@ -9,6 +9,7 @@
  */
 
 import { VQAR_INDEX_PATH } from '../public/vqar/data-paths.js';
+import { entryTitle, normalizeEntry } from '../public/vqar/list-entries.js';
 
 export const typeDefs = `#graphql
 """A follow-up note attached to a review: a full-series re-review once a
@@ -59,6 +60,26 @@ type Review {
   watchProgress: String
 }
 
+"""A show still waiting to be reviewed, with whatever pre-season notes were committed for it."""
+type PendingShow {
+  title: String!
+  "Streaming service keys the show is on (e.g. crunchyroll, netflix); empty when none are recorded."
+  streaming: [String!]!
+  "Optional date of the first episode, YYYY-MM-DD."
+  firstEpisode: String
+}
+
+"""A show that won't be reviewed, with whatever notes were committed about why."""
+type SkippedShow {
+  title: String!
+  "Optional short reason it isn't being reviewed."
+  reason: String
+  "Streaming service keys the show is on (e.g. crunchyroll, netflix); empty when none are recorded."
+  streaming: [String!]!
+  "True when the show has no US stream."
+  noUSStreaming: Boolean!
+}
+
 """One anime season: its reviewed shows, plus titles still pending or skipped."""
 type Season {
   id: ID!
@@ -66,8 +87,14 @@ type Season {
   "Optional MAL season id, purely informational."
   number: Int
   reviewed: [Review!]!
+  "Titles still to be reviewed; see pendingShows for streaming and premiere info."
   pending: [String!]!
+  "Titles that won't be reviewed; see skippedShows for the reason and streaming info."
   skipped: [String!]!
+  "The same shows as pending, with the optional streaming service keys and first-episode date."
+  pendingShows: [PendingShow!]!
+  "The same shows as skipped, with the optional reason and streaming info."
+  skippedShows: [SkippedShow!]!
 }
 
 """A season as listed in the index, without its full review data."""
@@ -85,6 +112,18 @@ type Query {
   season(id: ID!): Season
 }
 `;
+
+/** @param {import('../public/vqar/list-entries.js').ListEntry} entry */
+function toPendingShow(entry) {
+  const { title, streaming, firstEpisode } = normalizeEntry(entry);
+  return { title, streaming: streaming ?? [], firstEpisode: firstEpisode ?? null };
+}
+
+/** @param {import('../public/vqar/list-entries.js').ListEntry} entry */
+function toSkippedShow(entry) {
+  const { title, streaming, reason, noUSStreaming } = normalizeEntry(entry);
+  return { title, reason: reason ?? null, streaming: streaming ?? [], noUSStreaming: noUSStreaming === true };
+}
 
 /**
  * Root value whose fields graphql-js uses as the Query type's default resolvers.
@@ -139,8 +178,10 @@ export function makeRootValue({ assets, origin }) {
       name,
       number: data.number ?? null,
       reviewed: (data.reviewed ?? []).map((r) => ({ ...r, season: id, seasonName: name })),
-      pending: data.pending ?? [],
-      skipped: data.skipped ?? [],
+      pending: (data.pending ?? []).map(entryTitle),
+      skipped: (data.skipped ?? []).map(entryTitle),
+      pendingShows: (data.pending ?? []).map(toPendingShow),
+      skippedShows: (data.skipped ?? []).map(toSkippedShow),
     };
   }
 

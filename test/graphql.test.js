@@ -291,3 +291,36 @@ test('a request that failed leaves nothing behind for the next one', async () =>
   assert.equal(result.errors, undefined);
   assert.equal(result.data.currentSeason.id, 'summer-2026');
 });
+
+test('pendingShows and skippedShows expose the optional notes; plain strings get empty defaults', async () => {
+  const assetsStub = createPathFetchStub({
+    '/vqar/data/index.json': seasonIndex,
+    '/vqar/data/seasons/summer-2026.json': {
+      id: 'summer-2026',
+      name: 'Summer 2026',
+      reviewed: [],
+      pending: ['Plain Pending', { title: 'Dated Pending', streaming: ['hulu'], firstEpisode: '2026-10-08' }],
+      skipped: ['Plain Skipped', { title: 'Paywalled', reason: 'Another $13/mo', streaming: ['oceanveil'] }, { title: 'No US Stream', noUSStreaming: true }],
+    },
+    '/vqar/data/seasons/spring-2026.json': seasons['/vqar/data/seasons/spring-2026.json'],
+  });
+
+  const result = await run(
+    '{ currentSeason { pending skipped pendingShows { title streaming firstEpisode } skippedShows { title reason streaming noUSStreaming } } }',
+    assetsStub
+  );
+  assert.equal(result.errors, undefined);
+  const season = result.data.currentSeason;
+  // The string lists keep their old shape whichever form an entry was committed in.
+  assert.deepEqual(season.pending, ['Plain Pending', 'Dated Pending']);
+  assert.deepEqual(season.skipped, ['Plain Skipped', 'Paywalled', 'No US Stream']);
+  assert.deepEqual(season.pendingShows, [
+    { title: 'Plain Pending', streaming: [], firstEpisode: null },
+    { title: 'Dated Pending', streaming: ['hulu'], firstEpisode: '2026-10-08' },
+  ]);
+  assert.deepEqual(season.skippedShows, [
+    { title: 'Plain Skipped', reason: null, streaming: [], noUSStreaming: false },
+    { title: 'Paywalled', reason: 'Another $13/mo', streaming: ['oceanveil'], noUSStreaming: false },
+    { title: 'No US Stream', reason: null, streaming: [], noUSStreaming: true },
+  ]);
+});

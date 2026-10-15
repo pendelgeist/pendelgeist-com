@@ -1,6 +1,7 @@
 import { VQAR_INDEX_PATH } from './data-paths.js';
 import { effectiveRatingNumber } from './rating.js';
 import { createStreamingRow } from '../streaming.js';
+import { normalizeEntry } from './list-entries.js';
 import { createExternalLinks } from '../external-links.js';
 
 /**
@@ -48,8 +49,8 @@ import { createExternalLinks } from '../external-links.js';
  * @property {string|number} id
  * @property {string} name
  * @property {Review[]} reviewed
- * @property {string[]} pending
- * @property {string[]} skipped
+ * @property {import('./list-entries.js').ListEntry[]} pending
+ * @property {import('./list-entries.js').ListEntry[]} skipped
  */
 
 /**
@@ -423,11 +424,135 @@ function renderList(container, key) {
     return;
   }
 
-  container.replaceChildren(...season[key].map(show => {
+  const shows = season[key].map(toShow);
+  container.replaceChildren(...(key === 'pending' ? pendingItems(shows) : skippedItems(shows)));
+}
+
+/**
+ * A list entry in its object form. An entry that's missing outright (null, or
+ * an object with no title) still gets a row rather than breaking the list.
+ * @param {import('./list-entries.js').ListEntry|null|undefined} entry
+ * @returns {import('./list-entries.js').ListEntryDetails}
+ */
+function toShow(entry) {
+  const show = normalizeEntry(entry ?? '');
+  return { ...show, title: show.title || 'Unknown' };
+}
+
+const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
+/** `2026-10-08` -> `Oct 8`; anything that isn't a plain date is shown as written. */
+function displayPremiere(value) {
+  const match = /^\d{4}-(\d{2})-(\d{2})$/.exec(value);
+  const month = match && MONTHS[Number(match[1]) - 1];
+  return month ? `${month} ${Number(match[2])}` : value;
+}
+
+/**
+ * One show as a line: the title, with its streaming badges pushed to the far end.
+ * @param {import('./list-entries.js').ListEntryDetails} show
+ */
+function renderShowRow(show) {
+  const li = document.createElement('li');
+  li.className = 'show-row';
+  const title = document.createElement('span');
+  title.className = 'show-row-title';
+  title.textContent = show.title;
+  li.append(title);
+  const badges = createStreamingRow(show);
+  if (badges) li.append(badges);
+  return li;
+}
+
+/**
+ * To Be Reviewed. Once any show has a first-episode date the list is grouped
+ * under premiere dates, earliest first, with the undated shows last; until then
+ * (early in the preseason) it stays a flat list rather than one big "TBD" group.
+ * @param {import('./list-entries.js').ListEntryDetails[]} shows
+ */
+function pendingItems(shows) {
+  if (!shows.some(show => show.firstEpisode)) return shows.map(renderShowRow);
+
+  /** @type {Map<string, import('./list-entries.js').ListEntryDetails[]>} */
+  const byDate = new Map();
+  for (const show of shows) {
+    const key = show.firstEpisode ?? '';
+    byDate.set(key, [...(byDate.get(key) ?? []), show]);
+  }
+  const dates = [...byDate.keys()].sort((a, b) => (a === '' ? 1 : b === '' ? -1 : a.localeCompare(b)));
+
+  return dates.map((date) => {
     const li = document.createElement('li');
-    li.textContent = show ?? 'Unknown';
+    li.className = 'show-group';
+    const heading = document.createElement('h3');
+    heading.className = 'show-group-heading';
+    heading.textContent = date === '' ? 'Date TBD' : displayPremiere(date);
+    const list = document.createElement('ul');
+    list.className = 'show-list';
+    list.append(...(byDate.get(date) ?? []).map(renderShowRow));
+    li.append(heading, list);
     return li;
-  }));
+  });
+}
+
+/**
+ * Not Reviewing. Shows with a note (a reason, streaming, or no US stream) come
+ * first as cards; the ones with nothing to say fold into a collapsed run-in
+ * list underneath, so the notes aren't buried at the bottom of a long list. A
+ * season with no notes at all stays a flat list.
+ * @param {import('./list-entries.js').ListEntryDetails[]} shows
+ */
+function skippedItems(shows) {
+  const hasNote = (show) => Boolean(show.reason || show.noUSStreaming || show.streaming?.length);
+  const annotated = shows.filter(hasNote);
+  if (annotated.length === 0) return shows.map(renderShowRow);
+
+  const items = annotated.map(renderSkipCard);
+  const rest = shows.filter(show => !hasNote(show));
+  if (rest.length > 0) {
+    const li = document.createElement('li');
+    li.className = 'skip-rest';
+    const details = document.createElement('details');
+    details.className = 'skip-fold';
+    const summary = document.createElement('summary');
+    summary.textContent = `Also not reviewing · ${rest.length}`;
+    const list = document.createElement('ul');
+    list.className = 'run-in';
+    list.append(...rest.map((show) => {
+      const item = document.createElement('li');
+      item.textContent = show.title;
+      return item;
+    }));
+    details.append(summary, list);
+    li.append(details);
+    items.push(li);
+  }
+  return items;
+}
+
+/** @param {import('./list-entries.js').ListEntryDetails} show */
+function renderSkipCard(show) {
+  const li = document.createElement('li');
+  li.className = 'skip-card';
+
+  const top = document.createElement('div');
+  top.className = 'skip-card-top';
+  const title = document.createElement('span');
+  title.className = 'skip-card-title';
+  title.textContent = show.title;
+  top.append(title);
+  const badges = createStreamingRow(show);
+  if (badges) top.append(badges);
+  li.append(top);
+
+  const why = [show.noUSStreaming ? 'Not streaming in the US' : '', show.reason ?? ''].filter(Boolean);
+  if (why.length > 0) {
+    const note = document.createElement('p');
+    note.className = 'skip-card-why';
+    note.textContent = why.join(' · ');
+    li.append(note);
+  }
+  return li;
 }
 
 dom.searchInput?.addEventListener('input', renderReviews);

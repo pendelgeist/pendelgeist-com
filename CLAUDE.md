@@ -59,6 +59,7 @@ behavior, it moves into a shared module at `public/` root rather than being copi
 | `public/external-links.js` | `/vqar`, `/fsar` | the AniList/ANN/Wikipedia reference links |
 | `public/data-table.js` | `/nasubi`, `/vqar-stats` | the sortable table, stat-tile grid, and bar chart |
 | `public/vqar/data-paths.js` | `/vqar`, `/vqar-stats`, `src/schema.js` | the path to the VQAR season index |
+| `public/vqar/list-entries.js` | `/vqar`, `/vqar-stats`, `src/schema.js`, `scripts/` | a `pending`/`skipped` entry is a title string *or* an object with optional notes; read titles through `entryTitle` |
 | `public/vqar/rating.js` | `/vqar`, `/vqar-stats` | which rating wins once a show has both an ep-1 rating and a re-review |
 
 Each has its own test file. Adding a shared module is the right move when a second page
