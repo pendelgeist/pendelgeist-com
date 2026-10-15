@@ -369,7 +369,7 @@
     "Kyoufu Collector",
     { "title": "Ace of the Diamond act II -Second Season-", "reason": "Continuing series" },
     { "title": "HOTEL INHUMANS Season 2", "reason": "Continuing series" },
-    "Umayuru: Full Gate!",
+    { "title": "Umayuru: Full Gate!", "noUSStreaming": true },
     { "title": "Kizu darake Seijo yori Houfuku wo Komete Season2", "reason": "Continuing series" },
     { "title": "Mahou no Shimai LuluttoLilly Part 2", "reason": "Continuing series" },
     { "title": "The Prince of Tennis II U-17 WORLD CUP: Final Member Selection Match", "reason": "Continuing series" },
