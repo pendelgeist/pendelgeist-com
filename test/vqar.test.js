@@ -531,11 +531,11 @@ test('skipped shows group by reason, biggest group first, ties in order of appea
 
   const groups = [...document.querySelectorAll('#skippedShows > .show-group')];
   assert.deepEqual(groups.map((g) => text(g.querySelector('.show-group-heading'))), [
-    'Continuing series · 3',
-    'Kids show · 2',
-    'Not paying for another service · 1',
-    'Not streaming in the US · 1',
-    'No reason given · 2',
+    'Continuing series',
+    'Kids show',
+    'Not paying for another service',
+    'Not streaming in the US',
+    'No reason given',
   ]);
   assert.deepEqual(groups.map((g) => [...g.querySelectorAll('.show-row-title')].map(text)), [
     ['Seq 1', 'Seq 2', 'Seq 3'],
@@ -586,7 +586,7 @@ test('titles and reasons render as text, never markup', async () => {
   assert.equal(document.querySelector('#pendingShows b'), null);
   assert.equal(text(document.querySelector('.show-row-title')), '<b>Bold</b> Show');
   assert.equal(document.querySelector('#skippedShows i, #skippedShows script'), null);
-  assert.equal(text(document.querySelector('#skippedShows .show-group-heading')), '<script>x</script> · 1');
+  assert.equal(text(document.querySelector('#skippedShows .show-group-heading')), '<script>x</script>');
 });
 
 test('a pending show with a service link renders that badge as a link', async () => {

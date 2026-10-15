@@ -165,7 +165,7 @@ Everything but `title` is optional. Validation rejects an unknown field (so a ty
 Reviewed groups shows under "Available now", then their premiere date (earliest first, undated
 shows under "Date TBD") with streaming badges at the end of each line; it stays a flat list until some show has a
 `firstEpisode` or is `availableNow`. Not Reviewing groups shows by their `reason` (a `noUSStreaming` show counts as "Not streaming in the
-US"), biggest group first with a count in the heading, and any show with no reason last under "No reason
+US"), biggest group first, and any show with no reason last under "No reason
 given"; until some show has a reason it stays flat. `/vqar-stats` and the AniList check
 only read the title. In GraphQL, `pending` and `skipped` are still lists of title strings; the
 extra fields are on `pendingShows` and `skippedShows`.

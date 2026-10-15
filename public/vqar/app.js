@@ -547,7 +547,7 @@ function skippedItems(shows) {
   return reasons.map((reason) => {
     const group = byReason.get(reason) ?? [];
     return renderGroup(
-      `${reason || 'No reason given'} · ${group.length}`,
+      reason || 'No reason given',
       // A show whose reason is something else still says when it also has no US stream.
       group.map(show => renderShowRow(show, show.noUSStreaming && reason !== NO_US_STREAMING ? NO_US_STREAMING : undefined))
     );
