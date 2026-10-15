@@ -78,3 +78,17 @@ test('createStreamingRow wraps the badges, and returns null rather than an empty
   assert.equal(createStreamingRow({ streaming: [] }), null);
   assert.equal(createStreamingRow({ titleEN: 'Some Show' }), null);
 });
+
+test('list link styles never reach the streaming badges', async () => {
+  // A badge with a URL is an <a>. The shared `.show-list a` rules (color: inherit, no underline
+  // until hover) would override the badge's own brand colors wherever one sits in a list, so
+  // they have to leave badges out.
+  const { readFile } = await import('node:fs/promises');
+  const css = await readFile(new URL('../public/styles.css', import.meta.url), 'utf8');
+  const selectors = [...css.matchAll(/([^{}]+)\{/g)].map(match => match[1].trim()).filter(selector => /\.show-list a/.test(selector));
+
+  assert.ok(selectors.length > 0, 'expected the .show-list a rules to exist');
+  for (const selector of selectors) {
+    assert.match(selector, /:not\(\.entry-streaming-badge\)/, `${selector} would restyle linked streaming badges`);
+  }
+});
