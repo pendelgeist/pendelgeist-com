@@ -514,38 +514,68 @@ test('an unparseable premiere date is shown as written rather than dropped', asy
   assert.equal(text(document.querySelector('.show-group-heading')), 'Fall');
 });
 
-test('skipped shows group by reason, biggest group first, ties in order of appearance, no-reason last', async () => {
+test('skipped shows group by reason in the fixed priority order, no-reason last', async () => {
   const { document } = await loadApp({
     fetch: withLists([], [
       'No Reason Show',
       { title: 'Kids A', reason: 'Kids show' },
-      { title: 'Paywalled', reason: 'Not paying for another service', streaming: ['oceanveil'] },
-      { title: 'Seq 1', reason: 'Continuing series' },
-      { title: 'Seq 2', reason: 'Continuing series' },
+      { title: 'Paywalled', reason: 'Not paying for another service ($13/mo)', streaming: ['oceanveil'] },
       { title: 'Unlicensed', reason: 'Not streaming in the US' },
+      { title: 'Seq 1', reason: 'Continuing series' },
       { title: 'Kids B', reason: 'Kids show' },
-      { title: 'Seq 3', reason: 'Continuing series' },
       { title: 'Streamed Only', streaming: ['prime'] },
     ]),
   });
 
   const groups = [...document.querySelectorAll('#skippedShows > .show-group')];
+  // Priority order wins over group size: the two kids shows come after the single-show groups above them.
   assert.deepEqual(groups.map((g) => text(g.querySelector('.show-group-heading'))), [
     'Continuing series',
-    'Kids show',
-    'Not paying for another service',
     'Not streaming in the US',
+    'Not paying for another service ($13/mo)',
+    'Kids show',
     'No reason given',
   ]);
   assert.deepEqual(groups.map((g) => [...g.querySelectorAll('.show-row-title')].map(text)), [
-    ['Seq 1', 'Seq 2', 'Seq 3'],
-    ['Kids A', 'Kids B'],
-    ['Paywalled'],
+    ['Seq 1'],
     ['Unlicensed'],
+    ['Paywalled'],
+    ['Kids A', 'Kids B'],
     ['No Reason Show', 'Streamed Only'],
   ]);
   assert.deepEqual(badgeTitles(groups[2]), ['OceanVeil']);
   assert.deepEqual(badgeTitles(groups[4]), ['Prime Video']);
+});
+
+test('a reason matches the priority list case-insensitively on its start', async () => {
+  const { document } = await loadApp({
+    fetch: withLists([], [
+      { title: 'Late', reason: 'NOT INTERESTED, honestly' },
+      { title: 'Early', reason: 'continuing series (S3)' },
+    ]),
+  });
+
+  assert.deepEqual(
+    [...document.querySelectorAll('#skippedShows .show-group-heading')].map(text),
+    ['continuing series (S3)', 'NOT INTERESTED, honestly']
+  );
+});
+
+test('reasons not on the priority list come after it, biggest group first, ties in order of appearance', async () => {
+  const { document } = await loadApp({
+    fetch: withLists([], [
+      { title: 'Odd 1', reason: 'Ran out of time' },
+      { title: 'Odd 2', reason: 'Dropped by studio' },
+      { title: 'Odd 3', reason: 'Dropped by studio' },
+      { title: 'Odd 4', reason: 'Another one' },
+      { title: 'Known', reason: 'Not interested' },
+    ]),
+  });
+
+  assert.deepEqual(
+    [...document.querySelectorAll('#skippedShows .show-group-heading')].map(text),
+    ['Not interested', 'Dropped by studio', 'Ran out of time', 'Another one']
+  );
 });
 
 test('skipped stays a flat list when no show has a reason', async () => {

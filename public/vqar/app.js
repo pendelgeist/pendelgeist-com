@@ -515,9 +515,32 @@ function skipReason(show) {
 }
 
 /**
- * Not Reviewing. Once any show has a reason the list is grouped by that reason,
- * biggest group first, with the shows that have none last. Until then it stays
- * a flat list.
+ * The order Not Reviewing groups appear in, and the order of precedence when
+ * more than one reason applies to a show: the standing rule first, then the
+ * factual blockers (hardest first), then taste. Matched case-insensitively on
+ * the start of the reason, so "Not paying for another service ($13/mo)" still
+ * counts. A reason that isn't listed goes after these, biggest group first.
+ */
+const SKIP_REASON_ORDER = [
+  'continuing series',
+  'not streaming in the us',
+  'not paying for another service',
+  'kids show',
+  'adult content',
+  'not interested',
+];
+
+/** @param {string} reason */
+function skipReasonRank(reason) {
+  const lower = reason.toLowerCase();
+  const rank = SKIP_REASON_ORDER.findIndex(known => lower.startsWith(known));
+  return rank === -1 ? SKIP_REASON_ORDER.length : rank;
+}
+
+/**
+ * Not Reviewing. Once any show has a reason the list is grouped by that reason in
+ * SKIP_REASON_ORDER, then any other reasons biggest group first, with the shows
+ * that have none last. Until then it stays a flat list.
  * @param {import('./list-entries.js').ListEntryDetails[]} shows
  */
 function skippedItems(shows) {
@@ -530,8 +553,9 @@ function skippedItems(shows) {
     byReason.set(key, [...(byReason.get(key) ?? []), show]);
   }
 
-  // Array.prototype.sort is stable, so equally sized groups keep the order they first appear in.
-  const reasons = [...byReason.keys()].filter(Boolean).sort((a, b) => (byReason.get(b)?.length ?? 0) - (byReason.get(a)?.length ?? 0));
+  // Array.prototype.sort is stable, so equally ranked, equally sized groups keep the order they first appear in.
+  const reasons = [...byReason.keys()].filter(Boolean).sort((a, b) =>
+    skipReasonRank(a) - skipReasonRank(b) || (byReason.get(b)?.length ?? 0) - (byReason.get(a)?.length ?? 0));
   if (byReason.has('')) reasons.push('');
 
   return reasons.map(reason => renderGroup(reason || 'No reason given', (byReason.get(reason) ?? []).map(show => renderShowRow(show))));
