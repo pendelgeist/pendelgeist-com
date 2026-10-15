@@ -465,31 +465,37 @@ function renderShowRow(show) {
 }
 
 /**
- * To Be Reviewed. Once any show has a first-episode date the list is grouped
- * under premiere dates, earliest first, with the undated shows last; until then
- * (early in the preseason) it stays a flat list rather than one big "TBD" group.
+ * To Be Reviewed. Once any show has a first-episode date, or is marked
+ * `availableNow`, the list is grouped: "Available now" first, then premiere
+ * dates earliest first, then "Date TBD" for the rest. Until then (early in the
+ * preseason) it stays a flat list rather than one big "TBD" group.
  * @param {import('./list-entries.js').ListEntryDetails[]} shows
  */
 function pendingItems(shows) {
-  if (!shows.some(show => show.firstEpisode)) return shows.map(renderShowRow);
+  if (!shows.some(show => show.firstEpisode || show.availableNow)) return shows.map(renderShowRow);
 
   /** @type {Map<string, import('./list-entries.js').ListEntryDetails[]>} */
   const byDate = new Map();
   for (const show of shows) {
-    const key = show.firstEpisode ?? '';
-    byDate.set(key, [...(byDate.get(key) ?? []), show]);
+    if (show.availableNow || !show.firstEpisode) continue;
+    byDate.set(show.firstEpisode, [...(byDate.get(show.firstEpisode) ?? []), show]);
   }
-  const dates = [...byDate.keys()].sort((a, b) => (a === '' ? 1 : b === '' ? -1 : a.localeCompare(b)));
 
-  return dates.map((date) => {
+  const groups = [
+    { heading: 'Available now', shows: shows.filter(show => show.availableNow) },
+    ...[...byDate.keys()].sort().map(date => ({ heading: displayPremiere(date), shows: byDate.get(date) ?? [] })),
+    { heading: 'Date TBD', shows: shows.filter(show => !show.availableNow && !show.firstEpisode) },
+  ].filter(group => group.shows.length > 0);
+
+  return groups.map((group) => {
     const li = document.createElement('li');
     li.className = 'show-group';
     const heading = document.createElement('h3');
     heading.className = 'show-group-heading';
-    heading.textContent = date === '' ? 'Date TBD' : displayPremiere(date);
+    heading.textContent = group.heading;
     const list = document.createElement('ul');
     list.className = 'show-list';
-    list.append(...(byDate.get(date) ?? []).map(renderShowRow));
+    list.append(...group.shows.map(renderShowRow));
     li.append(heading, list);
     return li;
   });

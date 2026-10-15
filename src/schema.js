@@ -9,6 +9,7 @@
  */
 
 import { VQAR_INDEX_PATH } from '../public/vqar/data-paths.js';
+import { STREAMING_URL_FIELDS } from '../public/streaming.js';
 import { entryTitle, normalizeEntry } from '../public/vqar/list-entries.js';
 
 export const typeDefs = `#graphql
@@ -67,6 +68,18 @@ type PendingShow {
   streaming: [String!]!
   "Optional date of the first episode, YYYY-MM-DD."
   firstEpisode: String
+  "True when the show is already out (used in place of firstEpisode)."
+  availableNow: Boolean!
+  "Optional direct link to the show's Crunchyroll page."
+  crunchyrollUrl: String
+  "Optional direct link to the show's HIDIVE page."
+  hidiveUrl: String
+  "Optional direct link to the show's Netflix page."
+  netflixUrl: String
+  "Optional direct link to the show's Hulu page."
+  huluUrl: String
+  "Optional direct link to the show's Prime Video page."
+  primeUrl: String
 }
 
 """A show that won't be reviewed, with whatever notes were committed about why."""
@@ -78,6 +91,16 @@ type SkippedShow {
   streaming: [String!]!
   "True when the show has no US stream."
   noUSStreaming: Boolean!
+  "Optional direct link to the show's Crunchyroll page."
+  crunchyrollUrl: String
+  "Optional direct link to the show's HIDIVE page."
+  hidiveUrl: String
+  "Optional direct link to the show's Netflix page."
+  netflixUrl: String
+  "Optional direct link to the show's Hulu page."
+  huluUrl: String
+  "Optional direct link to the show's Prime Video page."
+  primeUrl: String
 }
 
 """One anime season: its reviewed shows, plus titles still pending or skipped."""
@@ -113,16 +136,21 @@ type Query {
 }
 `;
 
+/** The per-service link fields of a list entry, null where absent. */
+function urlFields(entry) {
+  return Object.fromEntries(Object.values(STREAMING_URL_FIELDS).map((key) => [key, entry[key] ?? null]));
+}
+
 /** @param {import('../public/vqar/list-entries.js').ListEntry} entry */
 function toPendingShow(entry) {
-  const { title, streaming, firstEpisode } = normalizeEntry(entry);
-  return { title, streaming: streaming ?? [], firstEpisode: firstEpisode ?? null };
+  const { title, streaming, firstEpisode, availableNow, ...rest } = normalizeEntry(entry);
+  return { title, streaming: streaming ?? [], firstEpisode: firstEpisode ?? null, availableNow: availableNow === true, ...urlFields(rest) };
 }
 
 /** @param {import('../public/vqar/list-entries.js').ListEntry} entry */
 function toSkippedShow(entry) {
-  const { title, streaming, reason, noUSStreaming } = normalizeEntry(entry);
-  return { title, reason: reason ?? null, streaming: streaming ?? [], noUSStreaming: noUSStreaming === true };
+  const { title, streaming, reason, noUSStreaming, ...rest } = normalizeEntry(entry);
+  return { title, reason: reason ?? null, streaming: streaming ?? [], noUSStreaming: noUSStreaming === true, ...urlFields(rest) };
 }
 
 /**

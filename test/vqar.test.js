@@ -569,3 +569,36 @@ test('titles and reasons render as text, never markup', async () => {
   assert.equal(document.querySelector('#skippedShows i, #skippedShows script'), null);
   assert.equal(text(document.querySelector('.skip-card-why')), '<script>x</script>');
 });
+
+test('a pending show with a service link renders that badge as a link', async () => {
+  const { document } = await loadApp({
+    fetch: withLists([{ title: 'Linked Show', streaming: ['crunchyroll', 'netflix'], crunchyrollUrl: 'https://www.crunchyroll.com/series/X/linked' }], []),
+  });
+
+  const [cr, nf] = [...document.querySelectorAll('#pendingShows .entry-streaming-badge')];
+  assert.equal(cr.tagName, 'A');
+  assert.equal(cr.href, 'https://www.crunchyroll.com/series/X/linked');
+  assert.equal(nf.tagName, 'SPAN'); // no netflixUrl, so no link
+});
+
+test('available-now pending shows get their own group ahead of the dated ones', async () => {
+  const { document } = await loadApp({
+    fetch: withLists([
+      'Undated Show',
+      { title: 'Dated Show', firstEpisode: '2026-10-04' },
+      { title: 'Out Already', availableNow: true, streaming: ['netflix'] },
+    ], []),
+  });
+
+  const groups = [...document.querySelectorAll('#pendingShows > .show-group')];
+  assert.deepEqual(groups.map((g) => text(g.querySelector('.show-group-heading'))), ['Available now', 'Oct 4', 'Date TBD']);
+  assert.deepEqual(groups.map((g) => [...g.querySelectorAll('.show-row-title')].map(text)), [['Out Already'], ['Dated Show'], ['Undated Show']]);
+});
+
+test('a lone available-now show is enough to group the pending list', async () => {
+  const { document } = await loadApp({ fetch: withLists(['Undated Show', { title: 'Out Already', availableNow: true }], []) });
+  assert.deepEqual(
+    [...document.querySelectorAll('#pendingShows .show-group-heading')].map(text),
+    ['Available now', 'Date TBD']
+  );
+});
