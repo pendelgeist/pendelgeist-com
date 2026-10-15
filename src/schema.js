@@ -57,6 +57,8 @@ type Review {
   huluUrl: String
   "Optional direct link to the show's Prime Video page; makes the PV streaming badge clickable."
   primeUrl: String
+  "Optional direct link to the show's YouTube channel or playlist; makes the YT streaming badge clickable."
+  youtubeUrl: String
   "Optional, free-text note on how far a revisit actually got (e.g. Ep 3)."
   watchProgress: String
 }
@@ -80,6 +82,8 @@ type PendingShow {
   huluUrl: String
   "Optional direct link to the show's Prime Video page."
   primeUrl: String
+  "Optional direct link to the show's YouTube channel or playlist."
+  youtubeUrl: String
 }
 
 """A show that won't be reviewed, with whatever notes were committed about why."""
@@ -99,6 +103,8 @@ type SkippedShow {
   huluUrl: String
   "Optional direct link to the show's Prime Video page."
   primeUrl: String
+  "Optional direct link to the show's YouTube channel or playlist."
+  youtubeUrl: String
 }
 
 """One anime season: its reviewed shows, plus titles still pending or skipped."""

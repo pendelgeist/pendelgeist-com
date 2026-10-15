@@ -41,6 +41,7 @@ import { createExternalLinks } from '../external-links.js';
  * @property {string} [netflixUrl] - optional direct link to the show's Netflix page; makes the "NF" streaming badge clickable
  * @property {string} [huluUrl] - optional direct link to the show's Hulu page; makes the "HU" streaming badge clickable
  * @property {string} [primeUrl] - optional direct link to the show's Prime Video page; makes the "PV" streaming badge clickable
+ * @property {string} [youtubeUrl] - optional direct link to the show's YouTube channel or playlist; makes the "YT" streaming badge clickable
  * @property {string} [watchProgress] - optional, free-text note on how far a revisit actually got (e.g. "Ep 3")
  */
 

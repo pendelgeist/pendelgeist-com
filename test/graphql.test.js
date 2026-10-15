@@ -339,13 +339,13 @@ test('pendingShows and skippedShows pass the per-service links through, null whe
   });
 
   const result = await run(
-    '{ currentSeason { pendingShows { title crunchyrollUrl netflixUrl } skippedShows { title netflixUrl crunchyrollUrl } } }',
+    '{ currentSeason { pendingShows { title crunchyrollUrl netflixUrl youtubeUrl } skippedShows { title netflixUrl crunchyrollUrl } } }',
     assetsStub
   );
   assert.equal(result.errors, undefined);
   assert.deepEqual(result.data.currentSeason.pendingShows, [
-    { title: 'Linked', crunchyrollUrl: 'https://www.crunchyroll.com/series/X/linked', netflixUrl: null },
-    { title: 'Plain', crunchyrollUrl: null, netflixUrl: null },
+    { title: 'Linked', crunchyrollUrl: 'https://www.crunchyroll.com/series/X/linked', netflixUrl: null, youtubeUrl: null },
+    { title: 'Plain', crunchyrollUrl: null, netflixUrl: null, youtubeUrl: null },
   ]);
   assert.deepEqual(result.data.currentSeason.skippedShows, [
     { title: 'Skip Linked', netflixUrl: 'https://www.netflix.com/title/1', crunchyrollUrl: null },

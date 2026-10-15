@@ -56,6 +56,7 @@ import {
  * @property {string} [netflixUrl] - makes the "NF" badge clickable
  * @property {string} [huluUrl] - makes the "HU" badge clickable
  * @property {string} [primeUrl] - makes the "PV" badge clickable
+ * @property {string} [youtubeUrl] - makes the "YT" badge clickable
  * @property {string} [availabilityNote] - for shows no service carries (most older ones)
  * @property {string} [podcastUrl] - the AMO Kenzoku episode covering this show
  * @property {string} [podcastLabel] - link text for podcastUrl, defaulting to "Listen to the episode"

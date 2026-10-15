@@ -27,6 +27,14 @@ test('a service with a direct URL on the entry becomes a link; the rest stay pla
   assert.equal(yt.tagName, 'SPAN');
 });
 
+test('youtubeUrl makes the YT badge a link', () => {
+  const [yt] = createStreamingBadges({ streaming: ['youtube'], youtubeUrl: 'https://www.youtube.com/@SomeShow' });
+
+  assert.equal(yt.tagName, 'A');
+  assert.equal(yt.href, 'https://www.youtube.com/@SomeShow');
+  assert.equal(yt.rel, 'noopener noreferrer');
+});
+
 test('huluUrl and primeUrl make the HU and PV badges links', () => {
   const [hu, pv] = createStreamingBadges({
     streaming: ['hulu', 'prime'],
