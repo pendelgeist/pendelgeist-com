@@ -618,12 +618,13 @@ nav {
   margin-right: 0.5rem;
 }
 
-.show-list a {
+/* Not the linked streaming badges, which keep their own brand colors (see below). */
+.show-list a:not(.entry-streaming-badge) {
   color: inherit;
   text-decoration: none;
 }
 
-.show-list a:hover {
+.show-list a:not(.entry-streaming-badge):hover {
   text-decoration: underline;
 }
 
