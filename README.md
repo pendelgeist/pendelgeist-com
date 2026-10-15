@@ -147,7 +147,7 @@ the lineup becomes known. The two forms can be mixed in one list:
 ],
 "skipped": [
   { "title": "Paywalled Show", "reason": "Not paying for another service", "streaming": ["oceanveil"] },
-  { "title": "No US Stream", "noUSStreaming": true }
+  { "title": "No US Stream", "reason": "Not streaming in the US" }
 ]
 ```
 
@@ -156,17 +156,15 @@ the lineup becomes known. The two forms can be mixed in one list:
   that's already out (not together with a `firstEpisode`).
 - Both take the same per-service link fields as a review (`crunchyrollUrl`, `hidiveUrl`,
   `netflixUrl`, `huluUrl`, `primeUrl`), which make that service's badge a link.
-- **skipped** takes `title`, `reason` (a short free-text string), `streaming`, and
-  `noUSStreaming: true` for a show with no US stream (it can't be combined with a non-empty
-  `streaming`).
+- **skipped** takes `title`, `reason` (a short free-text string, e.g. `"Continuing series"`,
+  `"Kids show"` or `"Not streaming in the US"`) and `streaming`.
 
 Everything but `title` is optional. Validation rejects an unknown field (so a typo like
 `reasn` can't silently vanish) and a field from the other list. On the page, To Be
 Reviewed groups shows under "Available now", then their premiere date (earliest first, undated
 shows under "Date TBD") with streaming badges at the end of each line; it stays a flat list until some show has a
-`firstEpisode` or is `availableNow`. Not Reviewing groups shows by their `reason` (a `noUSStreaming` show counts as "Not streaming in the
-US"), biggest group first, and any show with no reason last under "No reason
-given"; until some show has a reason it stays flat. `/vqar-stats` and the AniList check
+`firstEpisode` or is `availableNow`. Not Reviewing groups shows by their `reason`, biggest group first and any show with no reason last under
+"No reason given"; until some show has a reason it stays flat. `/vqar-stats` and the AniList check
 only read the title. In GraphQL, `pending` and `skipped` are still lists of title strings; the
 extra fields are on `pendingShows` and `skippedShows`.
 

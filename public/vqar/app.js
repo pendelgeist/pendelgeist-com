@@ -449,24 +449,16 @@ function displayPremiere(value) {
 }
 
 /**
- * One show as a line: the title, an optional muted note, and its streaming
- * badges pushed to the far end.
+ * One show as a line: the title, with its streaming badges pushed to the far end.
  * @param {import('./list-entries.js').ListEntryDetails} show
- * @param {string} [note]
  */
-function renderShowRow(show, note) {
+function renderShowRow(show) {
   const li = document.createElement('li');
   li.className = 'show-row';
   const title = document.createElement('span');
   title.className = 'show-row-title';
   title.textContent = show.title;
   li.append(title);
-  if (note) {
-    const noteEl = document.createElement('span');
-    noteEl.className = 'show-row-note';
-    noteEl.textContent = note;
-    li.append(noteEl);
-  }
   const badges = createStreamingRow(show);
   if (badges) li.append(badges);
   return li;
@@ -517,17 +509,15 @@ function pendingItems(shows) {
   return groups.map(group => renderGroup(group.heading, group.shows.map(show => renderShowRow(show))));
 }
 
-const NO_US_STREAMING = 'Not streaming in the US';
-
-/** The reason a show is skipped, as written; `noUSStreaming` stands in as one. Empty when there isn't one. */
+/** The reason a show is skipped, as written. Empty when there isn't one. */
 function skipReason(show) {
-  return show.reason?.trim() || (show.noUSStreaming ? NO_US_STREAMING : '');
+  return show.reason?.trim() ?? '';
 }
 
 /**
- * Not Reviewing. Once any show has a reason (or is marked `noUSStreaming`) the
- * list is grouped by that reason, biggest group first, with the shows that have
- * none last. Until then it stays a flat list.
+ * Not Reviewing. Once any show has a reason the list is grouped by that reason,
+ * biggest group first, with the shows that have none last. Until then it stays
+ * a flat list.
  * @param {import('./list-entries.js').ListEntryDetails[]} shows
  */
 function skippedItems(shows) {
@@ -544,14 +534,7 @@ function skippedItems(shows) {
   const reasons = [...byReason.keys()].filter(Boolean).sort((a, b) => (byReason.get(b)?.length ?? 0) - (byReason.get(a)?.length ?? 0));
   if (byReason.has('')) reasons.push('');
 
-  return reasons.map((reason) => {
-    const group = byReason.get(reason) ?? [];
-    return renderGroup(
-      reason || 'No reason given',
-      // A show whose reason is something else still says when it also has no US stream.
-      group.map(show => renderShowRow(show, show.noUSStreaming && reason !== NO_US_STREAMING ? NO_US_STREAMING : undefined))
-    );
-  });
+  return reasons.map(reason => renderGroup(reason || 'No reason given', (byReason.get(reason) ?? []).map(show => renderShowRow(show))));
 }
 
 dom.searchInput?.addEventListener('input', renderReviews);

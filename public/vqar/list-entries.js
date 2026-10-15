@@ -6,14 +6,13 @@ import { STREAMING_URL_FIELDS } from '../streaming.js';
  * optional pre-season notes to the title:
  *
  *   pending: { title, streaming?, firstEpisode?, availableNow?, <service>Url? }
- *   skipped: { title, reason?, streaming?, noUSStreaming?, <service>Url? }
+ *   skipped: { title, reason?, streaming?, <service>Url? }
  *
  * Both shapes can sit side by side in one list, so every consumer goes through
  * the helpers here rather than assuming a string. `streaming` takes the same
  * service keys as a review's (see public/streaming.js), `firstEpisode` is a
  * `YYYY-MM-DD` date, `availableNow: true` says it's already out (instead of a date),
- * `noUSStreaming: true` says the show has no US stream, and a
- * `crunchyrollUrl`-style field (the same ones a review takes) makes that service's
+ * and a `crunchyrollUrl`-style field (the same ones a review takes) makes that service's
  * badge a link.
  * Shared by /vqar, /vqar-stats, src/schema.js and the scripts, so the shape
  * can't drift between them.
@@ -26,7 +25,6 @@ import { STREAMING_URL_FIELDS } from '../streaming.js';
  * @property {string} [firstEpisode] - pending only, `YYYY-MM-DD`
  * @property {boolean} [availableNow] - pending only, true when the show is already out; used instead of firstEpisode
  * @property {string} [reason] - skipped only, why it isn't being reviewed
- * @property {boolean} [noUSStreaming] - skipped only, true when there's no US stream
  * @property {string} [crunchyrollUrl] - and hidiveUrl, netflixUrl, huluUrl, primeUrl: direct link, makes that badge clickable
  */
 
@@ -37,7 +35,7 @@ const URL_KEYS = Object.values(STREAMING_URL_FIELDS);
 /** Keys an entry object may carry, per list. */
 export const LIST_ENTRY_KEYS = {
   pending: ['title', 'streaming', 'firstEpisode', 'availableNow', ...URL_KEYS],
-  skipped: ['title', 'reason', 'streaming', 'noUSStreaming', ...URL_KEYS],
+  skipped: ['title', 'reason', 'streaming', ...URL_KEYS],
 };
 
 /**

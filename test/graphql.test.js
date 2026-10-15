@@ -300,13 +300,13 @@ test('pendingShows and skippedShows expose the optional notes; plain strings get
       name: 'Summer 2026',
       reviewed: [],
       pending: ['Plain Pending', { title: 'Dated Pending', streaming: ['hulu'], firstEpisode: '2026-10-08' }],
-      skipped: ['Plain Skipped', { title: 'Paywalled', reason: 'Another $13/mo', streaming: ['oceanveil'] }, { title: 'No US Stream', noUSStreaming: true }],
+      skipped: ['Plain Skipped', { title: 'Paywalled', reason: 'Another $13/mo', streaming: ['oceanveil'] }, { title: 'No US Stream', reason: 'Not streaming in the US' }],
     },
     '/vqar/data/seasons/spring-2026.json': seasons['/vqar/data/seasons/spring-2026.json'],
   });
 
   const result = await run(
-    '{ currentSeason { pending skipped pendingShows { title streaming firstEpisode availableNow } skippedShows { title reason streaming noUSStreaming } } }',
+    '{ currentSeason { pending skipped pendingShows { title streaming firstEpisode availableNow } skippedShows { title reason streaming } } }',
     assetsStub
   );
   assert.equal(result.errors, undefined);
@@ -319,9 +319,9 @@ test('pendingShows and skippedShows expose the optional notes; plain strings get
     { title: 'Dated Pending', streaming: ['hulu'], firstEpisode: '2026-10-08', availableNow: false },
   ]);
   assert.deepEqual(season.skippedShows, [
-    { title: 'Plain Skipped', reason: null, streaming: [], noUSStreaming: false },
-    { title: 'Paywalled', reason: 'Another $13/mo', streaming: ['oceanveil'], noUSStreaming: false },
-    { title: 'No US Stream', reason: null, streaming: [], noUSStreaming: true },
+    { title: 'Plain Skipped', reason: null, streaming: [] },
+    { title: 'Paywalled', reason: 'Another $13/mo', streaming: ['oceanveil'] },
+    { title: 'No US Stream', reason: 'Not streaming in the US', streaming: [] },
   ]);
 });
 

@@ -111,12 +111,6 @@ function validateListEntries(list, listName) {
         issues.push(`${where} in ${listName} has a malformed ${key} (expected a URL string)`);
       }
     }
-    if (entry.noUSStreaming !== undefined && typeof entry.noUSStreaming !== 'boolean') {
-      issues.push(`${where} in ${listName} has a malformed noUSStreaming (expected a boolean)`);
-    }
-    if (entry.noUSStreaming === true && Array.isArray(entry.streaming) && entry.streaming.length > 0) {
-      issues.push(`${where} in ${listName} is marked noUSStreaming but also lists streaming services`);
-    }
   });
   return issues;
 }

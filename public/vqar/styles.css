@@ -265,12 +265,6 @@ article:hover {
   min-width: 0;
 }
 
-.show-row-note {
-  font-size: 0.7rem;
-  font-weight: 500;
-  color: var(--color-muted);
-}
-
 .show-list .show-group {
   margin-bottom: 1rem;
   padding: 0;

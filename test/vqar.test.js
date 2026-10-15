@@ -522,7 +522,7 @@ test('skipped shows group by reason, biggest group first, ties in order of appea
       { title: 'Paywalled', reason: 'Not paying for another service', streaming: ['oceanveil'] },
       { title: 'Seq 1', reason: 'Continuing series' },
       { title: 'Seq 2', reason: 'Continuing series' },
-      { title: 'Unlicensed', noUSStreaming: true },
+      { title: 'Unlicensed', reason: 'Not streaming in the US' },
       { title: 'Kids B', reason: 'Kids show' },
       { title: 'Seq 3', reason: 'Continuing series' },
       { title: 'Streamed Only', streaming: ['prime'] },
@@ -548,20 +548,6 @@ test('skipped shows group by reason, biggest group first, ties in order of appea
   assert.deepEqual(badgeTitles(groups[4]), ['Prime Video']);
 });
 
-test('a skipped show with its own reason and no US stream keeps a note about the stream', async () => {
-  const { document } = await loadApp({
-    fetch: withLists([], [
-      { title: 'Both', reason: 'Continuing series', noUSStreaming: true },
-      { title: 'Only No Stream', noUSStreaming: true },
-    ]),
-  });
-
-  const groups = [...document.querySelectorAll('#skippedShows > .show-group')];
-  assert.equal(text(groups[0].querySelector('.show-row-note')), 'Not streaming in the US');
-  // Already grouped under that reason, so the heading says it and the row doesn't repeat it.
-  assert.equal(groups[1].querySelector('.show-row-note'), null);
-});
-
 test('skipped stays a flat list when no show has a reason', async () => {
   const { document } = await loadApp({ fetch: withLists([], ['Skip A', { title: 'Skip B', streaming: ['hulu'] }]) });
 
@@ -569,10 +555,10 @@ test('skipped stays a flat list when no show has a reason', async () => {
   assert.deepEqual([...document.querySelectorAll('#skippedShows > li')].map(text), ['Skip A', 'Skip BHU']);
 });
 
-test('the flat pending and skipped lists never show a note, only title and badges', async () => {
+test('flat pending and skipped lists show just titles', async () => {
   const { document } = await loadApp({ fetch: withLists(['A', 'B', 'C'], ['D', 'E', 'F']) });
-  assert.equal(document.querySelector('.show-row-note'), null);
   assert.deepEqual([...document.querySelectorAll('#pendingShows > li')].map(text), ['A', 'B', 'C']);
+  assert.deepEqual([...document.querySelectorAll('#skippedShows > li')].map(text), ['D', 'E', 'F']);
 });
 
 test('titles and reasons render as text, never markup', async () => {

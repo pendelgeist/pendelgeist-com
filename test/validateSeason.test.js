@@ -349,7 +349,7 @@ test('pending and skipped entries may be objects carrying the optional notes', (
   season.skipped = [
     'Plain Skipped Show',
     { title: 'Paywalled Show', reason: 'Not paying for another service', streaming: ['oceanveil'] },
-    { title: 'Unlicensed Show', reason: 'No stream anywhere I can watch', noUSStreaming: true },
+    { title: 'Unlicensed Show', reason: 'Not streaming in the US' },
   ];
 
   assert.deepEqual(validateSeason(season), []);
@@ -398,8 +398,7 @@ test('flags malformed notes on a list entry', () => {
   ];
   season.skipped = [
     { title: 'Empty Reason', reason: '  ' },
-    { title: 'Bad Flag', noUSStreaming: 'yes' },
-    { title: 'Contradiction', noUSStreaming: true, streaming: ['hulu'] },
+    { title: 'Old Flag', noUSStreaming: true },
   ];
 
   const issues = validateSeason(season);
@@ -408,8 +407,8 @@ test('flags malformed notes on a list entry', () => {
   assert.ok(issues.some(i => i.includes('"Not A Date"') && i.includes('malformed firstEpisode')));
   assert.ok(issues.some(i => i.includes('"Impossible Date"') && i.includes('malformed firstEpisode')));
   assert.ok(issues.some(i => i.includes('"Empty Reason"') && i.includes('malformed reason')));
-  assert.ok(issues.some(i => i.includes('"Bad Flag"') && i.includes('malformed noUSStreaming')));
-  assert.ok(issues.some(i => i.includes('"Contradiction"') && i.includes('noUSStreaming but also lists streaming')));
+  // The flag this replaced is now just an unknown field, so old data fails loudly instead of being ignored.
+  assert.ok(issues.some(i => i.includes('"Old Flag"') && i.includes('unknown field "noUSStreaming"')));
 });
 
 test('list entries accept the per-service link fields, and flag a malformed one', () => {
