@@ -25,7 +25,7 @@ import { STREAMING_URL_FIELDS } from '../streaming.js';
  * @property {string} [firstEpisode] - pending only, `YYYY-MM-DD`
  * @property {boolean} [availableNow] - pending only, true when the show is already out; used instead of firstEpisode
  * @property {string} [reason] - skipped only, why it isn't being reviewed
- * @property {string} [crunchyrollUrl] - and hidiveUrl, netflixUrl, huluUrl, primeUrl: direct link, makes that badge clickable
+ * @property {string} [crunchyrollUrl] - and hidiveUrl, netflixUrl, huluUrl, primeUrl, youtubeUrl: direct link, makes that badge clickable
  */
 
 /** @typedef {string | ListEntryDetails} ListEntry */

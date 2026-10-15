@@ -27,7 +27,7 @@ export const STREAMING_SERVICES = {
 
 /**
  * Maps a service key to the field holding its direct per-show URL, for the
- * services where that link is hand-curated. Services absent here (youtube)
+ * services where that link is hand-curated. Services absent here (oceanveil)
  * render as non-clickable badges.
  * @type {Record<string, string>}
  */
@@ -37,6 +37,7 @@ export const STREAMING_URL_FIELDS = {
   netflix: 'netflixUrl',
   hulu: 'huluUrl',
   prime: 'primeUrl',
+  youtube: 'youtubeUrl',
 };
 
 /**

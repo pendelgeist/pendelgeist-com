@@ -438,3 +438,17 @@ test('availableNow is a boolean on a pending entry, and not combined with a firs
   assert.ok(issues.some(i => i.includes('"Both"') && i.includes('availableNow but also has a firstEpisode')));
   assert.ok(issues.some(i => i.includes('"Wrong List"') && i.includes('unknown field "availableNow"')));
 });
+
+test('youtubeUrl is accepted on a review and a list entry, and flagged when malformed', () => {
+  const season = cleanSeason();
+  season.reviewed[0].streaming = ['youtube'];
+  season.reviewed[0].youtubeUrl = 'https://www.youtube.com/@Show';
+  season.pending = [{ title: 'Linked Pending', streaming: ['youtube'], youtubeUrl: 'https://www.youtube.com/playlist?list=abc' }];
+  assert.deepEqual(validateSeason(season), []);
+
+  season.reviewed[0].youtubeUrl = 123;
+  season.skipped = [{ title: 'Bad Skip Link', youtubeUrl: ' ' }];
+  const issues = validateSeason(season);
+  assert.ok(issues.some(i => i.includes('Cool Show') && i.includes('youtubeUrl')));
+  assert.ok(issues.some(i => i.includes('"Bad Skip Link"') && i.includes('malformed youtubeUrl')));
+});

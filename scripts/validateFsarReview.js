@@ -119,7 +119,7 @@ export function validateFsarReview(review, { filename } = {}) {
     }
   }
   for (const key of [
-    'crunchyrollUrl', 'hidiveUrl', 'netflixUrl', 'huluUrl', 'primeUrl', 'availabilityNote',
+    'crunchyrollUrl', 'hidiveUrl', 'netflixUrl', 'huluUrl', 'primeUrl', 'youtubeUrl', 'availabilityNote',
     'wikipediaUrl', 'wikipediaJaUrl', 'podcastUrl', 'podcastLabel',
   ]) {
     if (review[key] !== undefined && typeof review[key] !== 'string') {
