@@ -514,46 +514,65 @@ test('an unparseable premiere date is shown as written rather than dropped', asy
   assert.equal(text(document.querySelector('.show-group-heading')), 'Fall');
 });
 
-test('skipped shows with a note become cards; the rest fold into a collapsed run-in list', async () => {
+test('skipped shows group by reason, biggest group first, ties in order of appearance, no-reason last', async () => {
   const { document } = await loadApp({
     fetch: withLists([], [
-      'Plain Skip A',
-      { title: 'Paywalled Show', reason: 'Not paying for another service', streaming: ['oceanveil'] },
-      { title: 'Unlicensed Show', noUSStreaming: true },
-      'Plain Skip B',
-      { title: 'Both Notes', noUSStreaming: true, reason: 'No subs' },
+      'No Reason Show',
+      { title: 'Kids A', reason: 'Kids show' },
+      { title: 'Paywalled', reason: 'Not paying for another service', streaming: ['oceanveil'] },
+      { title: 'Seq 1', reason: 'Continuing series' },
+      { title: 'Seq 2', reason: 'Continuing series' },
+      { title: 'Unlicensed', noUSStreaming: true },
+      { title: 'Kids B', reason: 'Kids show' },
+      { title: 'Seq 3', reason: 'Continuing series' },
+      { title: 'Streamed Only', streaming: ['prime'] },
     ]),
   });
 
-  const cards = [...document.querySelectorAll('#skippedShows > .skip-card')];
-  assert.deepEqual(cards.map((c) => text(c.querySelector('.skip-card-title'))), ['Paywalled Show', 'Unlicensed Show', 'Both Notes']);
-  assert.deepEqual(badgeTitles(cards[0]), ['OceanVeil']);
-  assert.deepEqual(cards.map((c) => text(c.querySelector('.skip-card-why'))), [
-    'Not paying for another service',
-    'Not streaming in the US',
-    'Not streaming in the US · No subs',
+  const groups = [...document.querySelectorAll('#skippedShows > .show-group')];
+  assert.deepEqual(groups.map((g) => text(g.querySelector('.show-group-heading'))), [
+    'Continuing series · 3',
+    'Kids show · 2',
+    'Not paying for another service · 1',
+    'Not streaming in the US · 1',
+    'No reason given · 2',
   ]);
-
-  const fold = document.querySelector('#skippedShows > .skip-rest details');
-  assert.equal(fold.open, false);
-  assert.equal(text(fold.querySelector('summary')), 'Also not reviewing · 2');
-  assert.deepEqual([...fold.querySelectorAll('.run-in li')].map(text), ['Plain Skip A', 'Plain Skip B']);
+  assert.deepEqual(groups.map((g) => [...g.querySelectorAll('.show-row-title')].map(text)), [
+    ['Seq 1', 'Seq 2', 'Seq 3'],
+    ['Kids A', 'Kids B'],
+    ['Paywalled'],
+    ['Unlicensed'],
+    ['No Reason Show', 'Streamed Only'],
+  ]);
+  assert.deepEqual(badgeTitles(groups[2]), ['OceanVeil']);
+  assert.deepEqual(badgeTitles(groups[4]), ['Prime Video']);
 });
 
-test('a skipped card with only streaming has no reason line, and no fold when every show has a note', async () => {
-  const { document } = await loadApp({ fetch: withLists([], [{ title: 'Streamed Skip', streaming: ['prime'] }]) });
+test('a skipped show with its own reason and no US stream keeps a note about the stream', async () => {
+  const { document } = await loadApp({
+    fetch: withLists([], [
+      { title: 'Both', reason: 'Continuing series', noUSStreaming: true },
+      { title: 'Only No Stream', noUSStreaming: true },
+    ]),
+  });
 
-  const card = document.querySelector('#skippedShows > .skip-card');
-  assert.deepEqual(badgeTitles(card), ['Prime Video']);
-  assert.equal(card.querySelector('.skip-card-why'), null);
-  assert.equal(document.querySelector('.skip-rest'), null);
+  const groups = [...document.querySelectorAll('#skippedShows > .show-group')];
+  assert.equal(text(groups[0].querySelector('.show-row-note')), 'Not streaming in the US');
+  // Already grouped under that reason, so the heading says it and the row doesn't repeat it.
+  assert.equal(groups[1].querySelector('.show-row-note'), null);
 });
 
-test('skipped stays a flat list when no show has a note', async () => {
-  const { document } = await loadApp({ fetch: withLists([], ['Skip A', 'Skip B']) });
+test('skipped stays a flat list when no show has a reason', async () => {
+  const { document } = await loadApp({ fetch: withLists([], ['Skip A', { title: 'Skip B', streaming: ['hulu'] }]) });
 
-  assert.deepEqual([...document.querySelectorAll('#skippedShows > li')].map(text), ['Skip A', 'Skip B']);
-  assert.equal(document.querySelector('.skip-fold'), null);
+  assert.equal(document.querySelector('#skippedShows .show-group'), null);
+  assert.deepEqual([...document.querySelectorAll('#skippedShows > li')].map(text), ['Skip A', 'Skip BHU']);
+});
+
+test('the flat pending and skipped lists never show a note, only title and badges', async () => {
+  const { document } = await loadApp({ fetch: withLists(['A', 'B', 'C'], ['D', 'E', 'F']) });
+  assert.equal(document.querySelector('.show-row-note'), null);
+  assert.deepEqual([...document.querySelectorAll('#pendingShows > li')].map(text), ['A', 'B', 'C']);
 });
 
 test('titles and reasons render as text, never markup', async () => {
@@ -567,7 +586,7 @@ test('titles and reasons render as text, never markup', async () => {
   assert.equal(document.querySelector('#pendingShows b'), null);
   assert.equal(text(document.querySelector('.show-row-title')), '<b>Bold</b> Show');
   assert.equal(document.querySelector('#skippedShows i, #skippedShows script'), null);
-  assert.equal(text(document.querySelector('.skip-card-why')), '<script>x</script>');
+  assert.equal(text(document.querySelector('#skippedShows .show-group-heading')), '<script>x</script> · 1');
 });
 
 test('a pending show with a service link renders that badge as a link', async () => {
