@@ -345,7 +345,7 @@
     { "title": "Ranma1/2 (2024) Season 3", "availableNow": true, "streaming": ["netflix"] },
     { "title": "Devils' Crest", "firstEpisode": "2026-11-06", "streaming": ["prime"] },
     { "title": "Jyuou Mujin Dandivine", "availableNow": true, "streaming": ["crunchyroll"], "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00385792/dandivine" },
-    { "title": "Kyoufu Collector", "streaming": ["crunchyroll"], "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00383993/horror-collector" }
+    { "title": "Kyoufu Collector", "availableNow": true, "streaming": ["crunchyroll"], "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00383993/horror-collector" }
   ],
   "skipped": [
     { "title": "The Apothecary Diaries Season 3", "reason": "Continuing series" },
