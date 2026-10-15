@@ -152,7 +152,8 @@ the lineup becomes known. The two forms can be mixed in one list:
 ```
 
 - **pending** takes `title`, `streaming` (the same service keys as a review's) and
-  `firstEpisode` (a `YYYY-MM-DD` date, shown as written).
+  `firstEpisode` (a `YYYY-MM-DD` date, shown as written), or `availableNow: true` for a show
+  that's already out (not together with a `firstEpisode`).
 - Both take the same per-service link fields as a review (`crunchyrollUrl`, `hidiveUrl`,
   `netflixUrl`, `huluUrl`, `primeUrl`), which make that service's badge a link.
 - **skipped** takes `title`, `reason` (a short free-text string), `streaming`, and
@@ -161,9 +162,9 @@ the lineup becomes known. The two forms can be mixed in one list:
 
 Everything but `title` is optional. Validation rejects an unknown field (so a typo like
 `reasn` can't silently vanish) and a field from the other list. On the page, To Be
-Reviewed groups shows under their premiere date (earliest first, undated shows under "Date
-TBD") with streaming badges at the end of each line; it stays a flat list until some show has a
-`firstEpisode`. Not Reviewing shows any entry that has a note as a card (title, badges, and
+Reviewed groups shows under "Available now", then their premiere date (earliest first, undated
+shows under "Date TBD") with streaming badges at the end of each line; it stays a flat list until some show has a
+`firstEpisode` or is `availableNow`. Not Reviewing shows any entry that has a note as a card (title, badges, and
 "Not streaming in the US" / the reason underneath) and folds the rest into a collapsed "Also
 not reviewing" list; with no notes at all it stays flat. `/vqar-stats` and the AniList check
 only read the title. In GraphQL, `pending` and `skipped` are still lists of title strings; the

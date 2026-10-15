@@ -423,3 +423,19 @@ test('list entries accept the per-service link fields, and flag a malformed one'
   assert.ok(issues.some(i => i.includes('"Bad Link"') && i.includes('malformed crunchyrollUrl')));
   assert.ok(issues.some(i => i.includes('"Empty Link"') && i.includes('malformed huluUrl')));
 });
+
+test('availableNow is a boolean on a pending entry, and not combined with a firstEpisode', () => {
+  const season = cleanSeason();
+  season.pending = [{ title: 'Out Already', availableNow: true }];
+  assert.deepEqual(validateSeason(season), []);
+
+  season.pending = [
+    { title: 'Bad Flag', availableNow: 'yes' },
+    { title: 'Both', availableNow: true, firstEpisode: '2026-10-01' },
+  ];
+  season.skipped = [{ title: 'Wrong List', availableNow: true }];
+  const issues = validateSeason(season);
+  assert.ok(issues.some(i => i.includes('"Bad Flag"') && i.includes('malformed availableNow')));
+  assert.ok(issues.some(i => i.includes('"Both"') && i.includes('availableNow but also has a firstEpisode')));
+  assert.ok(issues.some(i => i.includes('"Wrong List"') && i.includes('unknown field "availableNow"')));
+});

@@ -306,7 +306,7 @@ test('pendingShows and skippedShows expose the optional notes; plain strings get
   });
 
   const result = await run(
-    '{ currentSeason { pending skipped pendingShows { title streaming firstEpisode } skippedShows { title reason streaming noUSStreaming } } }',
+    '{ currentSeason { pending skipped pendingShows { title streaming firstEpisode availableNow } skippedShows { title reason streaming noUSStreaming } } }',
     assetsStub
   );
   assert.equal(result.errors, undefined);
@@ -315,8 +315,8 @@ test('pendingShows and skippedShows expose the optional notes; plain strings get
   assert.deepEqual(season.pending, ['Plain Pending', 'Dated Pending']);
   assert.deepEqual(season.skipped, ['Plain Skipped', 'Paywalled', 'No US Stream']);
   assert.deepEqual(season.pendingShows, [
-    { title: 'Plain Pending', streaming: [], firstEpisode: null },
-    { title: 'Dated Pending', streaming: ['hulu'], firstEpisode: '2026-10-08' },
+    { title: 'Plain Pending', streaming: [], firstEpisode: null, availableNow: false },
+    { title: 'Dated Pending', streaming: ['hulu'], firstEpisode: '2026-10-08', availableNow: false },
   ]);
   assert.deepEqual(season.skippedShows, [
     { title: 'Plain Skipped', reason: null, streaming: [], noUSStreaming: false },

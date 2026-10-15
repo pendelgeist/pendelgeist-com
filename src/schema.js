@@ -68,6 +68,8 @@ type PendingShow {
   streaming: [String!]!
   "Optional date of the first episode, YYYY-MM-DD."
   firstEpisode: String
+  "True when the show is already out (used in place of firstEpisode)."
+  availableNow: Boolean!
   "Optional direct link to the show's Crunchyroll page."
   crunchyrollUrl: String
   "Optional direct link to the show's HIDIVE page."
@@ -141,8 +143,8 @@ function urlFields(entry) {
 
 /** @param {import('../public/vqar/list-entries.js').ListEntry} entry */
 function toPendingShow(entry) {
-  const { title, streaming, firstEpisode, ...rest } = normalizeEntry(entry);
-  return { title, streaming: streaming ?? [], firstEpisode: firstEpisode ?? null, ...urlFields(rest) };
+  const { title, streaming, firstEpisode, availableNow, ...rest } = normalizeEntry(entry);
+  return { title, streaming: streaming ?? [], firstEpisode: firstEpisode ?? null, availableNow: availableNow === true, ...urlFields(rest) };
 }
 
 /** @param {import('../public/vqar/list-entries.js').ListEntry} entry */

@@ -97,6 +97,12 @@ function validateListEntries(list, listName) {
     if (entry.firstEpisode !== undefined && (typeof entry.firstEpisode !== 'string' || !isCalendarDate(entry.firstEpisode))) {
       issues.push(`${where} in ${listName} has a malformed firstEpisode (expected a date like 2026-10-08)`);
     }
+    if (entry.availableNow !== undefined && typeof entry.availableNow !== 'boolean') {
+      issues.push(`${where} in ${listName} has a malformed availableNow (expected a boolean)`);
+    }
+    if (entry.availableNow === true && entry.firstEpisode !== undefined) {
+      issues.push(`${where} in ${listName} is marked availableNow but also has a firstEpisode (use one or the other)`);
+    }
     if (entry.reason !== undefined && (typeof entry.reason !== 'string' || entry.reason.trim() === '')) {
       issues.push(`${where} in ${listName} has a malformed reason (expected a non-empty string)`);
     }
