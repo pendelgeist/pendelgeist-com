@@ -108,6 +108,8 @@ const dom = {
   formatChips: document.getElementById('formatChips'),
   genreChips: document.getElementById('genreChips'),
   tagFilter: /** @type {HTMLSelectElement|null} */ (document.getElementById('tagFilter')),
+  otakuToggle: document.getElementById('otakuToggle'),
+  otakuFilters: document.getElementById('otakuFilters'),
   studioFilter: /** @type {HTMLSelectElement|null} */ (document.getElementById('studioFilter')),
   resultCount: document.getElementById('resultCount'),
   clearFilters: document.getElementById('clearFilters'),
@@ -273,6 +275,7 @@ async function loadData() {
       dom.seasonFilter.replaceChildren(allOption, fragment);
     }
     applyStateFromUrl();
+    restoreOtakuOpen();
 
     await loadForCurrentFilter();
   } catch (error) {
@@ -367,10 +370,10 @@ function createReviewArticle(r) {
     meta.appendChild(progress);
   }
 
-  for (const [key, text] of [['finishedSeason', 'Finished season'], ['op', 'Liked OP'], ['ed', 'Liked ED']]) {
+  for (const [key, text, kind] of [['finishedSeason', 'Finished season', 'finished'], ['op', 'Liked OP', 'oped'], ['ed', 'Liked ED', 'oped']]) {
     if (!r[key]) continue;
     const mark = document.createElement('span');
-    mark.className = 'entry-mark';
+    mark.className = `entry-mark entry-mark-${kind}`;
     mark.textContent = text;
     meta.appendChild(mark);
   }
@@ -411,7 +414,13 @@ function createAnilistLine(r) {
   if (parts.length === 0) return null;
   const line = document.createElement('div');
   line.className = 'entry-anilist';
-  line.textContent = parts.join(' · ');
+  const label = document.createElement('span');
+  label.className = 'entry-anilist-label';
+  label.textContent = 'AniList';
+  const details = document.createElement('span');
+  details.className = 'entry-anilist-details';
+  details.textContent = parts.join(' · ');
+  line.append(label, details);
   return line;
 }
 
@@ -505,13 +514,19 @@ function renderChipRow(container, dimension, options, counts) {
 }
 
 /**
- * The values an open-ended row (genre, tag, studio) offers: whatever the
- * season's reviews carry, plus anything already selected, alphabetically.
+ * The values an open-ended row (genre, tag, studio) offers, alphabetically:
+ * the ones the other filters would still show something for, plus anything
+ * already selected. These rows run to dozens (hundreds, for tags), so a
+ * value that would show nothing is left out rather than listed at "(0)".
  * @param {Review[]} seasonReviews
  * @param {import('./filters.js').ChipDimension} dimension
+ * @param {Map<string, number>} counts - from chipCounts, for this row
  */
-function openValues(seasonReviews, dimension) {
-  const values = new Set([...seasonReviews.flatMap(r => reviewValues(dimension, r)), ...chipFilters[dimension]]);
+function openValues(seasonReviews, dimension, counts) {
+  const values = new Set([
+    ...seasonReviews.flatMap(r => reviewValues(dimension, r)).filter(value => (counts.get(value) ?? 0) > 0),
+    ...chipFilters[dimension],
+  ]);
   return [...values].sort((a, b) => a.localeCompare(b));
 }
 
@@ -529,7 +544,7 @@ function renderSelect(select, dimension, anyLabel, seasonReviews, counts) {
   const any = document.createElement('option');
   any.value = '';
   any.textContent = anyLabel;
-  const options = openValues(seasonReviews, dimension).map(value => {
+  const options = openValues(seasonReviews, dimension, counts).map(value => {
     const option = document.createElement('option');
     option.value = value;
     option.textContent = `${value} (${counts.get(value) ?? 0})`;
@@ -565,23 +580,59 @@ function renderChips(reviews, seasonReviews) {
   const hasAnilist = seasonReviews.some(r => r.anilist) || ['format', 'genre', 'tag', 'studio'].some(d => chipFilters[d].size > 0);
   document.querySelectorAll('.anilist-row').forEach(row => { /** @type {HTMLElement} */ (row).hidden = !hasAnilist; });
   if (hasAnilist) {
-    const formats = new Set(seasonReviews.flatMap(r => reviewValues('format', r)));
+    const formatCounts = chipCounts(reviews, chipFilters, 'format');
     renderChipRow(dom.formatChips, 'format',
       Object.entries(FORMAT_LABELS)
-        .filter(([key]) => formats.has(key) || chipFilters.format.has(key))
+        .filter(([key]) => (formatCounts.get(key) ?? 0) > 0 || chipFilters.format.has(key))
         .map(([value, label]) => ({ value, label })),
-      chipCounts(reviews, chipFilters, 'format'));
+      formatCounts);
+    const genreCounts = chipCounts(reviews, chipFilters, 'genre');
     renderChipRow(dom.genreChips, 'genre',
-      openValues(seasonReviews, 'genre').map(value => ({ value, label: value })),
-      chipCounts(reviews, chipFilters, 'genre'));
-    renderSelect(dom.tagFilter, 'tag', 'Any tag', seasonReviews, chipCounts(reviews, chipFilters, 'tag'));
+      openValues(seasonReviews, 'genre', genreCounts).map(value => ({ value, label: value })),
+      genreCounts);
     renderSelect(dom.studioFilter, 'studio', 'Any studio', seasonReviews, chipCounts(reviews, chipFilters, 'studio'));
+    renderSelect(dom.tagFilter, 'tag', 'Any tag', seasonReviews, chipCounts(reviews, chipFilters, 'tag'));
   }
 
   const active = activeChipCount(chipFilters);
   if (dom.filtersToggle) {
     dom.filtersToggle.textContent = active > 0 ? `More filters (${active})` : 'More filters';
   }
+  const otaku = otakuFilterCount();
+  if (dom.otakuToggle) {
+    dom.otakuToggle.textContent = otaku > 0 ? `Otaku filters (${otaku})` : 'Otaku filters';
+  }
+}
+
+/** The rows behind the Otaku toggle - everything but Rating and Streaming. */
+const OTAKU_DIMENSIONS = /** @type {const} */ (['has', 'format', 'genre', 'studio', 'tag']);
+
+function otakuFilterCount() {
+  return OTAKU_DIMENSIONS.reduce((total, dimension) => total + chipFilters[dimension].size, 0);
+}
+
+/** Where the Otaku section's open/closed state is kept between visits - a reader preference. */
+const OTAKU_STORAGE_KEY = 'pendelgeist:vqar:otaku';
+
+/** @param {boolean} open */
+function setOtakuOpen(open) {
+  if (dom.otakuFilters) dom.otakuFilters.hidden = !open;
+  dom.otakuToggle?.setAttribute('aria-expanded', String(open));
+}
+
+/**
+ * Opens the Otaku section if it was left open last time - or, whatever was
+ * left, if the URL already sets one of its filters, so no filter is ever on
+ * without its control in view.
+ */
+function restoreOtakuOpen() {
+  let saved = false;
+  try {
+    saved = localStorage.getItem(OTAKU_STORAGE_KEY) === 'open';
+  } catch {
+    // Site data blocked: start closed.
+  }
+  setOtakuOpen(saved || otakuFilterCount() > 0);
 }
 
 /**
@@ -847,6 +898,16 @@ function updateBackToTop() {
 window.addEventListener('scroll', updateBackToTop, { passive: true });
 updateBackToTop();
 dom.backToTop?.addEventListener('click', () => window.scrollTo(0, 0));
+
+dom.otakuToggle?.addEventListener('click', () => {
+  const open = dom.otakuFilters?.hidden ?? false;
+  setOtakuOpen(open);
+  try {
+    localStorage.setItem(OTAKU_STORAGE_KEY, open ? 'open' : 'closed');
+  } catch {
+    // Site data blocked: the toggle still works, it just won't be remembered.
+  }
+});
 
 // Only visible on narrow screens (see styles.css), where the chip rows start
 // collapsed so they don't push the reviews below the fold.
