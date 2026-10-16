@@ -798,3 +798,43 @@ test('keyboard focus stays on a chip after pressing it, though the row is rebuil
   chip(document, 'rating', '4').click();
   assert.equal(document.activeElement, chip(document, 'rating', '4'));
 });
+
+test('the jump links show each list\'s count for the current season', async () => {
+  const { document } = await loadApp({ fetch: createPathFetchStub(routes()) });
+  await waitFor(() => document.getElementById('pendingCount').textContent !== '');
+  assert.equal(document.getElementById('pendingCount').textContent, '(1)');
+  assert.equal(document.getElementById('skippedCount').textContent, '(1)');
+});
+
+test('a jump link opens its collapsed section, so the jump does not land on a closed badge', async () => {
+  const { document } = await loadApp({ fetch: createPathFetchStub(routes()) });
+  const section = document.getElementById('skippedSection');
+  assert.equal(section.open, false);
+  document.querySelector('.jump-link[href="#skippedSection"]').click();
+  assert.equal(section.open, true);
+  assert.equal(document.getElementById('pendingSection').open, false);
+});
+
+test('arriving on a #pendingSection link opens that section', async () => {
+  const { document } = await loadApp({
+    fetch: createPathFetchStub(routes()),
+    url: 'http://localhost/vqar/#pendingSection',
+  });
+  assert.equal(document.getElementById('pendingSection').open, true);
+});
+
+test('Back to top appears once scrolled a screen down, and scrolls to the top', async () => {
+  const { document, window } = await loadApp({ fetch: createPathFetchStub(routes()) });
+  const button = document.getElementById('backToTop');
+  assert.equal(button.hidden, true);
+
+  Object.defineProperty(window, 'innerHeight', { value: 800, configurable: true });
+  Object.defineProperty(window, 'scrollY', { value: 1200, configurable: true });
+  window.dispatchEvent(new window.Event('scroll'));
+  assert.equal(button.hidden, false);
+
+  const calls = [];
+  window.scrollTo = (...args) => calls.push(args);
+  button.click();
+  assert.deepEqual(calls, [[0, 0]]);
+});

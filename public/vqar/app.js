@@ -107,6 +107,9 @@ const dom = {
   reviewedShows: document.getElementById('reviewedShows'),
   pendingShows: document.getElementById('pendingShows'),
   skippedShows: document.getElementById('skippedShows'),
+  pendingCount: document.getElementById('pendingCount'),
+  skippedCount: document.getElementById('skippedCount'),
+  backToTop: document.getElementById('backToTop'),
 };
 
 /** @type {SeasonIndex|null} */
@@ -558,6 +561,9 @@ function renderList(container, key) {
   if (!container) return;
 
   const season = seasonDataById.get(currentSeasonId);
+  const countEl = key === 'pending' ? dom.pendingCount : dom.skippedCount;
+  if (countEl) countEl.textContent = Array.isArray(season?.[key]) ? `(${season[key].length})` : '';
+
   if (!season || !Array.isArray(season[key])) {
     const li = document.createElement('li');
     li.textContent = 'None';
@@ -722,6 +728,31 @@ dom.clearFilters?.addEventListener('click', () => {
   chipFilters = emptyChipFilters();
   renderReviews();
 });
+
+/**
+ * To Be Reviewed / Not Reviewing are collapsed <details>, so jumping to one
+ * has to open it too, or the jump lands on a closed badge. Covers the jump
+ * links, and a #pendingSection / #skippedSection link arriving from elsewhere.
+ * @param {string} id
+ */
+function openSection(id) {
+  const section = document.getElementById(id);
+  if (section instanceof HTMLDetailsElement) section.open = true;
+}
+
+document.querySelectorAll('.jump-link').forEach(link => {
+  link.addEventListener('click', () => openSection(/** @type {HTMLElement} */ (link).dataset.target ?? ''));
+});
+if (location.hash) openSection(location.hash.slice(1));
+
+// Back to top, once a screen's worth down. Smooth scrolling (and its
+// reduced-motion opt-out) is styles.css's `scroll-behavior`, not JS's.
+function updateBackToTop() {
+  if (dom.backToTop) dom.backToTop.hidden = window.scrollY < window.innerHeight;
+}
+window.addEventListener('scroll', updateBackToTop, { passive: true });
+updateBackToTop();
+dom.backToTop?.addEventListener('click', () => window.scrollTo(0, 0));
 
 // Only visible on narrow screens (see styles.css), where the chip rows start
 // collapsed so they don't push the reviews below the fold.

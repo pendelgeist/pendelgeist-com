@@ -11,6 +11,66 @@
   color: var(--color-accent);
 }
 
+/* Jump links (To Be Reviewed / Not Reviewing) and Back to top. Both are
+ * chrome-filled pills with --color-nav-link text, the pairing the contrast
+ * test covers - the same look as /eva-tv's .jump-link. */
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+.jump-links {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-left: 0.75rem;
+  vertical-align: middle;
+}
+
+.jump-link,
+.back-to-top {
+  padding: 0.2rem 0.7rem;
+  font: inherit;
+  font-size: 0.78rem;
+  font-weight: 700;
+  border: 1px solid var(--color-nav-link);
+  border-radius: 999px;
+  background-color: var(--color-chrome);
+  color: var(--color-nav-link);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.season-status a.jump-link {
+  color: var(--color-nav-link);
+}
+
+.jump-link:hover,
+.back-to-top:hover {
+  text-decoration: underline;
+}
+
+.jump-link:focus-visible,
+.back-to-top:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+.back-to-top {
+  position: fixed;
+  right: 1rem;
+  bottom: 1rem;
+  z-index: 10;
+  padding: 0.5rem 0.9rem;
+  box-shadow: var(--shadow-card);
+}
+
+.back-to-top[hidden] {
+  display: none;
+}
+
 /* Filters */
 
 .filters {

@@ -37,7 +37,10 @@ export async function loadApp({ fetch, url = 'http://localhost/vqar/index.html' 
 
   global.document = dom.window.document;
   global.fetch = fetch;
-  // The page reads its filters from, and mirrors them into, the query string.
+  // The page reads its filters from, and mirrors them into, the query string,
+  // and watches the window's scroll position for its Back to top button.
+  global.window = dom.window;
+  global.HTMLDetailsElement = dom.window.HTMLDetailsElement;
   global.location = dom.window.location;
   global.history = dom.window.history;
   global.URL = dom.window.URL;

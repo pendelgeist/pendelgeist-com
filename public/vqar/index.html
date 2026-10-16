@@ -41,6 +41,10 @@
   <script type="module" src="/theme.js"></script>
   <div class="container">
     <div class="season-status">Current Season: <span id="currentSeasonName">Loading...</span>
+      <div class="jump-links" role="navigation" aria-label="Jump to">
+        <a href="#pendingSection" class="jump-link" data-target="pendingSection">To Be Reviewed <span id="pendingCount"></span></a>
+        <a href="#skippedSection" class="jump-link" data-target="skippedSection">Not Reviewing <span id="skippedCount"></span></a>
+      </div>
     </div>
 
     <div class="filters">
@@ -110,14 +114,14 @@
     </div>
 
     <div class="section-grid">
-      <details class="section">
+      <details class="section" id="pendingSection">
         <summary><h2>To Be Reviewed</h2></summary>
         <ul id="pendingShows" class="show-list">
           <li class="loading">LOADING DATA...</li>
         </ul>
       </details>
 
-      <details class="section">
+      <details class="section" id="skippedSection">
         <summary><h2>Not Reviewing</h2></summary>
         <ul id="skippedShows" class="show-list">
           <li class="loading">LOADING DATA...</li>
@@ -125,6 +129,8 @@
       </details>
     </div>
   </div>
+
+  <button type="button" id="backToTop" class="back-to-top" aria-label="Back to top" hidden>&uarr; Top</button>
 
   <script type="module" src="/vqar/app.js"></script>
 </body>
