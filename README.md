@@ -204,6 +204,9 @@ Each entry in a season's `reviewed` array is a single-episode review plus three 
 follow-up notes, each shaped like `{ ratingNumber, ratingText, review, dateReviewed }`:
 
 - `fullReview` — a full-series re-review once a "Finish Ep"-rated show actually gets finished.
+  Unlike the others, it **requires** a `ratingNumber` (0–5) and `ratingText`. That rating
+  replaces the episode-1 one in sorting, filtering and every `/vqar-stats` number, so
+  validation rejects a revisit saved without one rather than let the old rating quietly stand.
 - `op` / `ed` — opening/ending callouts, handy for finding the year's best OP/ED later.
 
 `dateReviewed` on a top-level review is a full ISO 8601 **timestamp** — `2026-10-08T14:30:00Z`

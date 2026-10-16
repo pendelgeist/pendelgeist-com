@@ -211,6 +211,19 @@ export function validateSeason(season, { filename } = {}) {
         issues.push(`"${label}" has a malformed ${key} (expected an object)`);
       }
     }
+    // A revisit's rating replaces the episode-1 one everywhere ratings are
+    // sorted, filtered or counted (see effectiveRatingNumber in
+    // public/vqar/rating.js), so one saved without a rating would silently
+    // leave the old rating standing. op/ed ratings stay optional.
+    const revisit = r.fullReview;
+    if (revisit && typeof revisit === 'object' && !Array.isArray(revisit)) {
+      if (!Number.isInteger(revisit.ratingNumber) || revisit.ratingNumber < 0 || revisit.ratingNumber > 5) {
+        issues.push(`"${label}" has a fullReview without a ratingNumber from 0 to 5 - ask for the revisit rating, since it replaces the episode-1 rating in sorting and on /vqar-stats`);
+      }
+      if (!revisit.ratingText) {
+        issues.push(`"${label}" has a fullReview without a ratingText`);
+      }
+    }
   });
 
   return issues;

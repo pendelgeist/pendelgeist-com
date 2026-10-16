@@ -331,7 +331,7 @@ test('a well-formed fullReview/op/ed does not trigger a false positive', () => {
     titleEN: 'Fully Reviewed Show',
     ratingText: 'Finish Ep',
     dateReviewed: '2026-04-02T12:00:00Z',
-    fullReview: { ratingText: 'Nice Ep Broh', review: 'great', dateReviewed: '2026-06-01T12:00:00Z' },
+    fullReview: { ratingNumber: 5, ratingText: 'Nice Ep Broh', review: 'great', dateReviewed: '2026-06-01T12:00:00Z' },
     op: { ratingText: 'Bop of the Year' },
     ed: { ratingText: 'Catchy AF' },
   });
@@ -451,4 +451,36 @@ test('youtubeUrl is accepted on a review and a list entry, and flagged when malf
   const issues = validateSeason(season);
   assert.ok(issues.some(i => i.includes('Cool Show') && i.includes('youtubeUrl')));
   assert.ok(issues.some(i => i.includes('"Bad Skip Link"') && i.includes('malformed youtubeUrl')));
+});
+
+// A revisit's rating replaces the episode-1 one in sorting, filtering and every
+// /vqar-stats number, so saving a revisit without one silently keeps the old
+// rating in all of those. Validation is what makes that impossible to miss.
+test('flags a fullReview saved without a ratingNumber', () => {
+  const season = cleanSeason();
+  season.reviewed.push({
+    titleEN: 'Unrated Revisit Show',
+    ratingText: 'Finish Ep',
+    dateReviewed: '2026-04-02T12:00:00Z',
+    fullReview: { review: 'finished it, it was fine', dateReviewed: '2026-06-01' },
+  });
+
+  const issues = validateSeason(season);
+  assert.ok(issues.some(i => i.includes('"Unrated Revisit Show"') && i.includes('fullReview') && i.includes('ratingNumber')));
+  assert.ok(issues.some(i => i.includes('"Unrated Revisit Show"') && i.includes('fullReview') && i.includes('ratingText')));
+});
+
+test('flags a fullReview ratingNumber outside the 0-5 tiers', () => {
+  for (const ratingNumber of [6, -1, 2.5, '4']) {
+    const season = cleanSeason();
+    season.reviewed.push({
+      titleEN: 'Off-Scale Revisit Show',
+      ratingText: 'Finish Ep',
+      dateReviewed: '2026-04-02T12:00:00Z',
+      fullReview: { ratingNumber, ratingText: 'whatever', review: 'x' },
+    });
+
+    const issues = validateSeason(season);
+    assert.ok(issues.some(i => i.includes('"Off-Scale Revisit Show"') && i.includes('ratingNumber')), `accepted ${JSON.stringify(ratingNumber)}`);
+  }
 });
