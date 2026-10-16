@@ -381,14 +381,24 @@
         "crunchyroll"
       ],
       "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00385792/dandivine"
+    },
+    {
+      "titleEN": "Kyoufu Collector",
+      "ratingNumber": 2,
+      "ratingText": "Trash, for Second Screen Only",
+      "review": "So I really wanted to like this show because I love horror things. I think it can be great, but unfortunately this show is just not working for me. The production is not good, to be kind. The rest of the script and execution is not great, to be kind. And then they added some sort of main character guy who's out there collecting these urban legends and saving people from them, blah blah blah.",
+      "dateReviewed": "2026-10-16T08:55:47-04:00",
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00383993/horror-collector"
     }
   ],
   "pending": [
     { "title": "Cyberpunk: Edgerunners 2", "firstEpisode": "2026-10-20", "streaming": ["netflix"] },
     { "title": "Fool Night", "firstEpisode": "2026-11-26", "streaming": ["netflix"], "netflixUrl": "https://www.netflix.com/title/81991076" },
     { "title": "Ranma1/2 (2024) Season 3", "availableNow": true, "streaming": ["netflix"], "netflixUrl": "https://www.netflix.com/title/81171925" },
-    { "title": "Devils' Crest", "firstEpisode": "2026-11-06", "streaming": ["prime"] },
-    { "title": "Kyoufu Collector", "availableNow": true, "streaming": ["crunchyroll"], "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00383993/horror-collector" }
+    { "title": "Devils' Crest", "firstEpisode": "2026-11-06", "streaming": ["prime"] }
   ],
   "skipped": [
     { "title": "The Apothecary Diaries Season 3", "reason": "Continuing series", "streaming": ["crunchyroll"], "crunchyrollUrl": "https://www.crunchyroll.com/series/G3KHEVDJ7/the-apothecary-diaries" },
