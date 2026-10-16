@@ -59,6 +59,103 @@ input:focus, select:focus {
   box-shadow: var(--shadow-focus);
 }
 
+/* Chip rows (Rating / Streaming / Extras). They sit on .filters' chrome
+ * background, so every color here is --color-nav-link or --color-chrome -
+ * the one pairing the contrast test guarantees on chrome. A pressed chip
+ * inverts the two rather than changing opacity. */
+
+.filter-chips {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding-bottom: 0.25rem;
+}
+
+.chip-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.chip-row-label {
+  min-width: 5.5rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--color-nav-link);
+}
+
+.chip-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.filter-chip,
+.filters-toggle {
+  padding: 0.25rem 0.7rem;
+  font: inherit;
+  font-size: 0.8rem;
+  border: 1px solid var(--color-nav-link);
+  border-radius: 999px;
+  background-color: transparent;
+  color: var(--color-nav-link);
+  cursor: pointer;
+}
+
+.filter-chip[aria-pressed="true"] {
+  background-color: var(--color-nav-link);
+  color: var(--color-chrome);
+}
+
+.filter-chip:hover,
+.filters-toggle:hover {
+  text-decoration: underline;
+}
+
+.filter-chip:focus-visible,
+.filters-toggle:focus-visible {
+  outline: 2px solid var(--color-nav-link);
+  outline-offset: 2px;
+}
+
+.chip-count {
+  font-size: 0.7rem;
+  font-weight: 700;
+}
+
+/* Desktop shows every chip row; the toggle only exists on narrow screens. */
+.filters-toggle {
+  display: none;
+}
+
+/* Result count + Clear filters, on the page background under REVIEWED. */
+
+.filter-summary {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 0.75rem;
+  font-size: 0.85rem;
+  color: var(--color-muted);
+}
+
+.clear-filters {
+  padding: 0;
+  font: inherit;
+  border: none;
+  background: none;
+  color: var(--color-text);
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.clear-filters[hidden] {
+  display: none;
+}
+
 /* Guidelines */
 
 .guidelines {
@@ -294,5 +391,20 @@ article:hover {
 
   input, select {
     min-width: 100%;
+  }
+
+  /* Chip rows start collapsed so they don't push the reviews below the fold. */
+  .filters-toggle {
+    display: block;
+    justify-self: start;
+  }
+
+  .filter-chips:not(.open) {
+    display: none;
+  }
+
+  .chip-row {
+    flex-direction: column;
+    align-items: flex-start;
   }
 }

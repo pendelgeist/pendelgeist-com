@@ -28,14 +28,20 @@ export function createLocalStorageStub() {
  * a fresh module instance (via a cache-busting query string) so module-level
  * state like `seasonDataById` never leaks between tests. No `localStorage`
  * stub: the page keeps nothing of its own, so a season is loaded once per page
- * load and held in memory for that page's lifetime.
+ * load and held in memory for that page's lifetime. `url` sets the page's
+ * address, query string included, for the filters it restores from there.
  */
-export async function loadApp({ fetch } = {}) {
+export async function loadApp({ fetch, url = 'http://localhost/vqar/index.html' } = {}) {
   const html = fs.readFileSync(INDEX_HTML_PATH, 'utf-8');
-  const dom = new JSDOM(html, { url: 'http://localhost/vqar/index.html', runScripts: 'outside-only' });
+  const dom = new JSDOM(html, { url, runScripts: 'outside-only' });
 
   global.document = dom.window.document;
   global.fetch = fetch;
+  // The page reads its filters from, and mirrors them into, the query string.
+  global.location = dom.window.location;
+  global.history = dom.window.history;
+  global.URL = dom.window.URL;
+  global.URLSearchParams = dom.window.URLSearchParams;
 
   await import(`${pathToFileURL(APP_JS_PATH)}?t=${importCounter++}`);
   return { window: dom.window, document: dom.window.document };

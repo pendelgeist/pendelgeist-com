@@ -5,7 +5,7 @@
  * and hands the resulting season array to these functions.
  */
 
-import { effectiveRatingNumber } from '../vqar/rating.js';
+import { effectiveRatingNumber, RATING_NUMBER_LABELS } from '../vqar/rating.js';
 import { entryTitle } from '../vqar/list-entries.js';
 
 /** @typedef {import('../vqar/app.js').SeasonData} SeasonData */
@@ -78,22 +78,9 @@ export function computeSeasonCoverage(seasons) {
   return { reviewed, pending, total, pct: total ? Math.round((reviewed / total) * 100) : null };
 }
 
-/**
- * Default flavor text for each `ratingNumber`, taken from the "Suggested
- * Ratings" list in /vqar's guidelines. Individual reviews often customize
- * `ratingText` per-show (e.g. "I'd rather watch El-Hazard again") while
- * still sharing the same underlying `ratingNumber` tier, so the distribution
- * chart labels bars with this canonical text rather than whatever a given
- * review actually wrote.
- */
-export const RATING_NUMBER_LABELS = {
-  0: 'Dead, El-Hazard 2 Over This',
-  1: 'Never, Please No More Like This Ever',
-  2: 'Trash, for Second Screen Only',
-  3: 'Meh, Finishing the Ep',
-  4: "Yeah, Here's Hoping",
-  5: 'Peak, Nice Ep Broh',
-};
+// Re-exported so existing importers of stats.js keep working; the labels live
+// in rating.js now that /vqar's rating filter needs them too.
+export { RATING_NUMBER_LABELS };
 
 /**
  * Counts reviews per `ratingNumber`, ordered ascending (low to high) and
