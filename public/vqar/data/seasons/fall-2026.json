@@ -438,7 +438,27 @@
       "streaming": [
         "crunchyroll"
       ],
-      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00365562"
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00365562",
+      "anilistId": 200455,
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Comedy",
+          "Fantasy",
+          "Romance"
+        ],
+        "tags": [
+          "Female Protagonist",
+          "Isekai",
+          "Villainess",
+          "Heterosexual",
+          "Shoujo"
+        ],
+        "studios": [
+          "Jumondou"
+        ]
+      },
+      "titleJP": "弱気MAX令嬢なのに、辣腕婚約者様の賭けに乗ってしまった"
     },
     {
       "titleEN": "Shinja Zero no Megami-sama to Hajimeru Isekai Kouryaku",
@@ -924,7 +944,23 @@
       "streaming": [
         "crunchyroll"
       ],
-      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00384014/the-cold-sato-san-is-only-sweet-to-me"
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00384014/the-cold-sato-san-is-only-sweet-to-me",
+      "anilistId": 209502,
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Comedy",
+          "Romance"
+        ],
+        "tags": [
+          "Heterosexual",
+          "Photography"
+        ],
+        "studios": [
+          "Tezuka Productions"
+        ]
+      },
+      "titleJP": "塩対応の佐藤さんが俺にだけ甘い"
     },
     {
       "titleEN": "Super Psychic Policeman Chojo",
@@ -1017,7 +1053,29 @@
       "streaming": [
         "crunchyroll"
       ],
-      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00385792/dandivine"
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00385792/dandivine",
+      "anilistId": 213068,
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Action",
+          "Mecha"
+        ],
+        "tags": [
+          "Super Robot",
+          "Heterosexual",
+          "Kaiju",
+          "Male Protagonist",
+          "Meta",
+          "Primarily Teen Cast",
+          "Guns"
+        ],
+        "studios": [
+          "LIDENFILMS",
+          "Kayac Animation"
+        ]
+      },
+      "titleJP": "獣王武神ダンデヴァイン"
     },
     {
       "titleEN": "Kyoufu Collector",
