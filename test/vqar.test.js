@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { loadApp, createPathFetchStub, waitFor } from './helpers.js';
+import { loadApp, createPathFetchStub, waitFor, createLocalStorageStub } from './helpers.js';
 
 // Each season's "file" is the path to its own committed data file, mirroring
 // the index public/vqar/data/index.json is generated into.
@@ -892,9 +892,9 @@ const romcom = {
 test('the AniList rows stay hidden until something in the season has AniList data', async () => {
   const { document } = await loadApp({ fetch: anilistRoutes([{ titleEN: 'Plain', ratingNumber: 3, ratingText: 'Meh', review: '', dateReviewed: '2026-07-01T12:00:00Z' }]) });
   await waitFor(() => showTitles(document).length === 1);
-  const rows = [...document.querySelectorAll('.anilist-row')];
-  assert.equal(rows.length, 3);
-  assert.ok(rows.every((row) => row.hidden));
+  const sections = [...document.querySelectorAll('.anilist-row')];
+  assert.equal(sections.length, 1);
+  assert.ok(sections[0].hidden);
   assert.equal(document.querySelector('.entry-anilist'), null);
 });
 
@@ -902,7 +902,7 @@ test('a card lists format, studio, genres and its five most relevant tags', asyn
   const { document } = await loadApp({ fetch: anilistRoutes([isekaiTrash]) });
   await waitFor(() => showTitles(document).length === 1);
   assert.equal(
-    document.querySelector('.entry-anilist').textContent,
+    document.querySelector('.entry-anilist-details').textContent,
     'TV · GoHands · Action, Fantasy · Isekai, Male Protagonist, Magic, Swordplay, Dungeon',
   );
 });
@@ -940,4 +940,75 @@ test('a Studio in the URL is restored into its dropdown on load', async () => {
   await waitFor(() => showTitles(document).length === 2);
   assert.equal(document.getElementById('studioFilter').value, 'MAPPA');
   assert.deepEqual(showTitles(document), ['Isekai Good', 'Romcom']);
+});
+
+test('the AniList rows only offer what the current filters would actually show, plus anything selected', async () => {
+  const { document, window } = await loadApp({ fetch: anilistRoutes([isekaiTrash, isekaiGood, romcom]) });
+  await waitFor(() => showTitles(document).length === 3);
+  chip(document, 'rating', '5').click();
+
+  // Only Isekai Good is a 5: its studio stays, GoHands (rated 1 only) goes.
+  const studios = () => [...document.querySelectorAll('#studioFilter option')].map((o) => o.value).filter(Boolean);
+  assert.deepEqual(studios(), ['MAPPA']);
+  const genres = () => [...document.querySelectorAll('#genreChips .filter-chip')].map((b) => b.dataset.value);
+  assert.deepEqual(genres(), ['Fantasy']);
+
+  // A selection never disappears from its own control, even at zero.
+  const tag = document.getElementById('tagFilter');
+  tag.value = 'Isekai';
+  tag.dispatchEvent(new window.Event('change'));
+  chip(document, 'rating', '5').click();
+  chip(document, 'rating', '3').click();
+  assert.deepEqual(showTitles(document), []);
+  assert.equal(tag.value, 'Isekai');
+  assert.equal(tag.querySelector('option[value="Isekai"]').textContent, 'Isekai (0)');
+});
+
+test('the Otaku section starts closed, opens on its toggle, and remembers that', async () => {
+  global.localStorage = createLocalStorageStub();
+  try {
+    const first = await loadApp({ fetch: anilistRoutes([isekaiTrash]) });
+    await waitFor(() => showTitles(first.document).length === 1);
+    const section = first.document.getElementById('otakuFilters');
+    const toggle = first.document.getElementById('otakuToggle');
+    assert.equal(section.hidden, true);
+    assert.equal(toggle.getAttribute('aria-expanded'), 'false');
+
+    toggle.click();
+    assert.equal(section.hidden, false);
+    assert.equal(toggle.getAttribute('aria-expanded'), 'true');
+
+    const second = await loadApp({ fetch: anilistRoutes([isekaiTrash]) });
+    await waitFor(() => showTitles(second.document).length === 1);
+    assert.equal(second.document.getElementById('otakuFilters').hidden, false);
+  } finally {
+    delete global.localStorage;
+  }
+});
+
+test('a link that sets an Otaku filter opens the section, so no filter is on out of sight', async () => {
+  const { document } = await loadApp({ fetch: anilistRoutes([isekaiTrash, isekaiGood]), url: 'http://localhost/vqar/?studio=MAPPA' });
+  await waitFor(() => showTitles(document).length === 1);
+  assert.equal(document.getElementById('otakuFilters').hidden, false);
+  assert.equal(document.getElementById('otakuToggle').textContent, 'Otaku filters (1)');
+});
+
+test('with site data blocked, the Otaku toggle still works', async () => {
+  Object.defineProperty(global, 'localStorage', { get() { throw new Error('SecurityError'); }, configurable: true });
+  try {
+    const { document } = await loadApp({ fetch: anilistRoutes([isekaiTrash]) });
+    await waitFor(() => showTitles(document).length === 1);
+    document.getElementById('otakuToggle').click();
+    assert.equal(document.getElementById('otakuFilters').hidden, false);
+  } finally {
+    delete global.localStorage;
+  }
+});
+
+test('the reviewer\'s own markings and the AniList line are told apart by class', async () => {
+  const { document } = await loadApp({ fetch: anilistRoutes([{ ...isekaiTrash, op: true, finishedSeason: true }]) });
+  await waitFor(() => showTitles(document).length === 1);
+  const marks = [...document.querySelectorAll('.entry-mark')].map((el) => el.className);
+  assert.deepEqual(marks, ['entry-mark entry-mark-finished', 'entry-mark entry-mark-oped']);
+  assert.equal(document.querySelector('.entry-anilist-label').textContent, 'AniList');
 });

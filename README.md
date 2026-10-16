@@ -332,7 +332,13 @@ selected season is on), **Extras** (revisited, rated up/down on revisit, liked O
 a row any pressed chip matches; across rows every row with a selection must match. A show with a
 revisit is filed under its revisit rating, the same number "Highest Rating" sorts on. Each chip's
 count ignores its own row's selection, so it says how many reviews pressing it would bring in.
-On narrow screens the chip rows start collapsed behind a "More filters" button.
+Only **Rating** and **Streaming** are always shown. The rest sit behind an **Otaku filters** toggle, in
+two labelled groups: "Your notes" (Extras) and "From AniList" (Studio, Format, Genre, Tag). The
+toggle's open/closed state is a remembered reader preference (`localStorage`, like the theme).
+The section also opens on its own when the URL sets one of its filters, so a filter is never
+active out of sight. In the AniList rows, a value the other filters would leave with nothing
+isn't offered at all, rather than listed at "(0)", though a selected one always stays.
+On narrow screens all the chip rows start collapsed behind a "More filters" button.
 
 Next to "Current Season", jump links with counts go straight to To Be Reviewed / Not Reviewing,
 opening the collapsed section on the way (as does arriving on a `#pendingSection` /
@@ -423,7 +429,9 @@ npm run fetch-anilist-tags -- --print-search-queries --any-season    # retry wha
 `/vqar` turns these into Format and Genre chip rows and Tag and Studio dropdowns, under the same
 any-within-a-row, all-across-rows rule as the other filters. These rows stay hidden until
 something in the selected season has AniList data. Each card also gets a quiet line with the
-show's format, studio, genres and top five tags. GraphQL exposes the same object as
+show's format, studio, genres and top five tags, labelled "AniList" and set off by a left rule.
+That keeps it visibly apart from the reviewer's own markings (♪ Liked OP/ED, ✓ Finished season),
+which are accent-coloured pills. GraphQL exposes the same object as
 `Review.anilist`. `scripts/validateSeason.js` checks its shape. It also rejects `anilist` data
 on a review with no `anilistId` to have generated it from, and a comma in any value, since the
 filter URLs separate values with commas.
