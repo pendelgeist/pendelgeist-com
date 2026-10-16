@@ -375,3 +375,21 @@ test('finishedSeason comes through the API as a boolean', async () => {
   const result = await run('{ currentSeason { reviewed { titleEN finishedSeason } } }', assetsStub);
   assert.deepEqual(result.data.currentSeason.reviewed, [{ titleEN: 'Done Show', finishedSeason: true }]);
 });
+
+test('a review carries its generated AniList format, genres, tags and studios', async () => {
+  const assetsStub = createPathFetchStub({
+    '/vqar/data/index.json': seasonIndex,
+    '/vqar/data/seasons/summer-2026.json': {
+      ...seasons['/vqar/data/seasons/summer-2026.json'],
+      reviewed: [
+        { titleEN: 'Tagged', ratingText: 'Meh', dateReviewed: '2026-07-01T12:00:00Z', anilistId: 1, anilist: { format: 'TV', genres: ['Action'], tags: ['Isekai'], studios: ['GoHands'] } },
+        { titleEN: 'Untagged', ratingText: 'Meh', dateReviewed: '2026-07-02T12:00:00Z' },
+      ],
+    },
+  });
+  const result = await run('{ currentSeason { reviewed { titleEN anilist { format genres tags studios } } } }', assetsStub);
+  assert.deepEqual(result.data.currentSeason.reviewed, [
+    { titleEN: 'Tagged', anilist: { format: 'TV', genres: ['Action'], tags: ['Isekai'], studios: ['GoHands'] } },
+    { titleEN: 'Untagged', anilist: null },
+  ]);
+});
