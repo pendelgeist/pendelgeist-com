@@ -1,8 +1,12 @@
 import { VQAR_INDEX_PATH } from './data-paths.js';
 import { effectiveRatingNumber } from './rating.js';
-import { createStreamingRow } from '../streaming.js';
+import { createStreamingRow, STREAMING_SERVICES } from '../streaming.js';
 import { normalizeEntry } from './list-entries.js';
 import { createExternalLinks } from '../external-links.js';
+import {
+  RATING_VALUES, HAS_OPTIONS, emptyChipFilters, ratingChipLabel, reviewValues, matchesChipFilters,
+  chipCounts, activeChipCount, chipFiltersFromParams, writeChipFiltersToParams,
+} from './filters.js';
 
 /**
  * A follow-up note attached to a Review: a full-series re-review once a
@@ -93,6 +97,13 @@ const dom = {
   seasonFilter: /** @type {HTMLSelectElement|null} */ (document.getElementById('seasonFilter')),
   searchInput: /** @type {HTMLInputElement|null} */ (document.getElementById('searchInput')),
   sortBy: /** @type {HTMLSelectElement|null} */ (document.getElementById('sortBy')),
+  filtersToggle: document.getElementById('filtersToggle'),
+  filterChips: document.getElementById('filterChips'),
+  ratingChips: document.getElementById('ratingChips'),
+  onChips: document.getElementById('onChips'),
+  hasChips: document.getElementById('hasChips'),
+  resultCount: document.getElementById('resultCount'),
+  clearFilters: document.getElementById('clearFilters'),
   reviewedShows: document.getElementById('reviewedShows'),
   pendingShows: document.getElementById('pendingShows'),
   skippedShows: document.getElementById('skippedShows'),
@@ -108,6 +119,8 @@ let currentSeasonId = '';
 let loadToken = 0;
 /** @type {SeasonMeta[]} seasons that failed to load for the current filter, if any */
 let loadErrors = [];
+/** The Rating / Streaming / Extras chip selections; see filters.js. */
+let chipFilters = emptyChipFilters();
 
 dom.infoToggle?.addEventListener('click', (e) => {
   e.preventDefault();
@@ -244,12 +257,12 @@ async function loadData() {
         const option = document.createElement('option');
         option.value = String(season.id);
         option.textContent = season.name;
-        option.selected = String(season.id) === currentSeasonId;
         fragment.appendChild(option);
       }
 
       dom.seasonFilter.replaceChildren(allOption, fragment);
     }
+    applyStateFromUrl();
 
     await loadForCurrentFilter();
   } catch (error) {
@@ -373,6 +386,128 @@ function searchableFields(r) {
   ];
 }
 
+/**
+ * Restores every control from the query string, so a filtered view is a link
+ * you can hand someone. Anything missing or unrecognized falls back to the
+ * page's default: the current season, no search, Most Recent, no chips.
+ */
+function applyStateFromUrl() {
+  const params = new URLSearchParams(location.search);
+  if (dom.seasonFilter) {
+    const season = params.get('season');
+    const known = [...dom.seasonFilter.options].some(option => option.value === season);
+    dom.seasonFilter.value = known && season ? season : currentSeasonId;
+  }
+  if (dom.searchInput) dom.searchInput.value = params.get('q') ?? '';
+  if (dom.sortBy) {
+    const sort = params.get('sort') ?? '';
+    dom.sortBy.value = sort in SORTERS ? sort : 'recent';
+  }
+  chipFilters = chipFiltersFromParams(params);
+}
+
+/**
+ * Mirrors every control into the query string, leaving out whatever's at its
+ * default so the plain /vqar URL still means "this season, unfiltered". Uses
+ * replaceState, like /vqar-stats and /fsar do for their filters, so working
+ * through filters doesn't fill up browser history.
+ */
+function updateUrl() {
+  if (!dom.seasonFilter || !dom.searchInput || !dom.sortBy) return;
+  const url = new URL(location.href);
+  const setOrDelete = (key, value, defaultValue) => {
+    if (value && value !== defaultValue) url.searchParams.set(key, value);
+    else url.searchParams.delete(key);
+  };
+  setOrDelete('season', dom.seasonFilter.value, currentSeasonId);
+  setOrDelete('q', dom.searchInput.value.trim(), '');
+  setOrDelete('sort', dom.sortBy.value, 'recent');
+  writeChipFiltersToParams(url.searchParams, chipFilters);
+  // URLSearchParams escapes the commas between chip values; a comma is legal
+  // in a query string, and `rating=4,5` reads better in a shared link.
+  const href = url.href.replace(/%2C/gi, ',');
+  if (href !== location.href) history.replaceState(null, '', href);
+}
+
+/** Whether anything Clear Filters would reset is set. Season and sort aren't filters in that sense. */
+function hasActiveFilters() {
+  return Boolean(dom.searchInput?.value.trim()) || activeChipCount(chipFilters) > 0;
+}
+
+/**
+ * One row of toggle chips. Rebuilding the buttons would drop keyboard focus
+ * from the one just pressed, so focus is handed back to its replacement.
+ * @param {HTMLElement|null} container
+ * @param {import('./filters.js').ChipDimension} dimension
+ * @param {{ value: string, label: string }[]} options
+ * @param {Map<string, number>} counts
+ */
+function renderChipRow(container, dimension, options, counts) {
+  if (!container) return;
+  const focused = /** @type {HTMLElement|null} */ (document.activeElement);
+  const refocus = focused && container.contains(focused) ? focused.dataset.value : null;
+
+  const buttons = options.map(({ value, label }) => {
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.className = 'filter-chip';
+    button.dataset.dimension = dimension;
+    button.dataset.value = value;
+    button.setAttribute('aria-pressed', String(chipFilters[dimension].has(value)));
+    const count = document.createElement('span');
+    count.className = 'chip-count';
+    count.textContent = String(counts.get(value) ?? 0);
+    button.append(label, ' ', count);
+    return button;
+  });
+  container.replaceChildren(...buttons);
+
+  if (refocus !== null) {
+    buttons.find(button => button.dataset.value === refocus)?.focus();
+  }
+}
+
+/**
+ * All three chip rows, counted over `reviews` (season- and search-scoped).
+ * Streaming only offers the services something in scope is actually on, plus
+ * any already selected, so a selection is never stranded without its chip.
+ * @param {Review[]} reviews
+ * @param {Review[]} seasonReviews - season-scoped only, for which services to offer
+ */
+function renderChips(reviews, seasonReviews) {
+  const offered = new Set(seasonReviews.flatMap(r => reviewValues('on', r)));
+  renderChipRow(dom.ratingChips, 'rating',
+    RATING_VALUES.map(value => ({ value, label: ratingChipLabel(value) })),
+    chipCounts(reviews, chipFilters, 'rating'));
+  renderChipRow(dom.onChips, 'on',
+    Object.entries(STREAMING_SERVICES)
+      .filter(([key]) => offered.has(key) || chipFilters.on.has(key))
+      .map(([value, service]) => ({ value, label: service.name })),
+    chipCounts(reviews, chipFilters, 'on'));
+  renderChipRow(dom.hasChips, 'has',
+    Object.entries(HAS_OPTIONS).map(([value, label]) => ({ value, label })),
+    chipCounts(reviews, chipFilters, 'has'));
+
+  const active = activeChipCount(chipFilters);
+  if (dom.filtersToggle) {
+    dom.filtersToggle.textContent = active > 0 ? `More filters (${active})` : 'More filters';
+  }
+}
+
+/**
+ * @param {number} shown
+ * @param {number} total
+ */
+function renderSummary(shown, total) {
+  if (dom.resultCount) {
+    const noun = total === 1 ? 'review' : 'reviews';
+    dom.resultCount.textContent = hasActiveFilters()
+      ? `Showing ${shown} of ${total} ${noun}`
+      : `${total} ${noun}`;
+  }
+  if (dom.clearFilters) dom.clearFilters.hidden = !hasActiveFilters();
+}
+
 function renderReviews() {
   if (!dom.searchInput || !dom.seasonFilter || !dom.sortBy || !dom.reviewedShows) return;
 
@@ -383,11 +518,16 @@ function renderReviews() {
   const seasonIds = season === 'all' ? [...seasonDataById.keys()] : [season];
   const reviews = buildReviewsForLoadedSeasons(seasonIds);
 
-  const filtered = reviews.filter(r =>
+  const searched = reviews.filter(r =>
     !searchTerm || searchableFields(r).some(field => (field ?? '').toLowerCase().includes(searchTerm))
   );
+  const filtered = searched.filter(r => matchesChipFilters(r, chipFilters));
 
   filtered.sort(SORTERS[sortBy] ?? (() => 0));
+
+  renderChips(searched, reviews);
+  renderSummary(filtered.length, reviews.length);
+  updateUrl();
 
   const nodes = [];
   if (loadErrors.length > 0) {
@@ -565,5 +705,29 @@ function skippedItems(shows) {
 dom.searchInput?.addEventListener('input', renderReviews);
 dom.seasonFilter?.addEventListener('change', loadForCurrentFilter);
 dom.sortBy?.addEventListener('change', renderReviews);
+
+dom.filterChips?.addEventListener('click', (e) => {
+  const chip = /** @type {HTMLElement|null} */ (/** @type {Element} */ (e.target).closest('.filter-chip'));
+  if (!chip) return;
+  const selected = chipFilters[/** @type {import('./filters.js').ChipDimension} */ (chip.dataset.dimension)];
+  const value = chip.dataset.value ?? '';
+  if (!selected) return;
+  if (selected.has(value)) selected.delete(value);
+  else selected.add(value);
+  renderReviews();
+});
+
+dom.clearFilters?.addEventListener('click', () => {
+  if (dom.searchInput) dom.searchInput.value = '';
+  chipFilters = emptyChipFilters();
+  renderReviews();
+});
+
+// Only visible on narrow screens (see styles.css), where the chip rows start
+// collapsed so they don't push the reviews below the fold.
+dom.filtersToggle?.addEventListener('click', () => {
+  const open = dom.filterChips?.classList.toggle('open') ?? false;
+  dom.filtersToggle?.setAttribute('aria-expanded', String(open));
+});
 
 await loadData();

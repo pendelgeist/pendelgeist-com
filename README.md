@@ -37,7 +37,8 @@ The Worker (`src/worker.js`) also backs a small GraphQL API over the same anime 
 - `public/vqar/data-paths.js` — the path to the VQAR season index, the one thing
   `public/vqar/app.js`, `public/vqar-stats/app.js`, and `src/schema.js` all need to agree on.
 - `public/vqar/rating.js` — the other thing they have to agree on: which rating counts once
-  a show has both an episode-1 rating and a full-series re-review.
+  a show has both an episode-1 rating and a full-series re-review, and each tier's default
+  label (`RATING_NUMBER_LABELS`).
 - `src/worker.js` / `src/schema.js` — the Worker's fetch handler and GraphQL schema/resolvers.
 
 ## Theme
@@ -309,6 +310,22 @@ only current one.
 A season id that can't be `<season>-<year>` (a one-off, a special) needs an explicit numeric
 `sortKey` instead, higher meaning more recent — the committed seasons sort at
 `year * 10 + season`, so `20263` sits where a fall-2026 would.
+
+### Filtering and linking
+
+Besides Season / Search / Sort, `/vqar` has three rows of toggle chips: **Rating** (the 0–5
+tiers, labeled from `RATING_NUMBER_LABELS`), **Streaming** (only the services something in the
+selected season is on), and **Extras** (revisited, rated up/down on revisit, OP/ED notes). Within
+a row any pressed chip matches; across rows every row with a selection must match. A show with a
+revisit is filed under its revisit rating, the same number "Highest Rating" sorts on. Each chip's
+count ignores its own row's selection, so it says how many reviews pressing it would bring in.
+On narrow screens the chip rows start collapsed behind a "More filters" button.
+
+The matching and counting live in `public/vqar/filters.js`, DOM-free like `/vqar-stats`'
+`stats.js`, and tested in `test/vqar-filters.test.js`. Every control is mirrored into the URL
+(`/vqar?season=all&rating=4,5&on=hidive`) via `history.replaceState`, as on `/vqar-stats` and
+`/fsar`; anything at its default (the current season, Most Recent, nothing pressed) is left out,
+and an unrecognized value falls back to the default on load.
 
 ### Validating season data
 

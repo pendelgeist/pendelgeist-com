@@ -63,6 +63,21 @@
           <option value="title">Title (A-Z)</option>
         </select>
       </div>
+      <button type="button" id="filtersToggle" class="filters-toggle" aria-expanded="false" aria-controls="filterChips">More filters</button>
+      <div class="filter-chips" id="filterChips">
+        <div class="chip-row" role="group" aria-labelledby="ratingChipsLabel">
+          <span class="chip-row-label" id="ratingChipsLabel">Rating</span>
+          <div class="chip-list" id="ratingChips"></div>
+        </div>
+        <div class="chip-row" role="group" aria-labelledby="onChipsLabel">
+          <span class="chip-row-label" id="onChipsLabel">Streaming</span>
+          <div class="chip-list" id="onChips"></div>
+        </div>
+        <div class="chip-row" role="group" aria-labelledby="hasChipsLabel">
+          <span class="chip-row-label" id="hasChipsLabel">Extras</span>
+          <div class="chip-list" id="hasChips"></div>
+        </div>
+      </div>
     </div>
 
     <div class="guidelines" id="guidelines">
@@ -87,6 +102,10 @@
 
     <div class="section">
       <h2>Reviewed</h2>
+      <div class="filter-summary">
+        <span id="resultCount" aria-live="polite"></span>
+        <button type="button" id="clearFilters" class="clear-filters" hidden>Clear filters</button>
+      </div>
       <div id="reviewedShows"><div class="loading">LOADING DATA...</div></div>
     </div>
 

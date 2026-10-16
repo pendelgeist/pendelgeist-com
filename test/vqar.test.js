@@ -637,3 +637,164 @@ test('a lone available-now show is enough to group the pending list', async () =
     ['Available now', 'Date TBD']
   );
 });
+
+// A season with enough variety for the chip filters: ratings, services, a
+// revisit that moved the rating, OP notes.
+const filterIndex = {
+  currentSeason: 'fall-2026',
+  seasons: [
+    { id: 'fall-2026', name: 'Fall 2026', file: '/vqar/data/seasons/fall-2026.json' },
+    { id: 'summer-2026', name: 'Summer 2026', file: '/vqar/data/seasons/summer-2026.json' },
+  ],
+};
+
+const filterSeasons = {
+  '/vqar/data/seasons/fall-2026.json': {
+    id: 'fall-2026',
+    name: 'Fall 2026',
+    reviewed: [
+      { titleEN: 'Peak Show', ratingNumber: 5, ratingText: 'Peak', review: '', dateReviewed: '2026-10-04', streaming: ['crunchyroll'] },
+      { titleEN: 'Hidive Show', ratingNumber: 4, ratingText: 'Hoping', review: '', dateReviewed: '2026-10-03', streaming: ['hidive'] },
+      { titleEN: 'Grower', ratingNumber: 3, ratingText: 'Meh', review: '', dateReviewed: '2026-10-02', streaming: ['crunchyroll'], fullReview: { ratingNumber: 5, ratingText: 'Peak' } },
+      { titleEN: 'Trash Show', ratingNumber: 2, ratingText: 'Trash', review: 'bad OP', dateReviewed: '2026-10-01', streaming: ['crunchyroll'], op: { review: 'good OP though' } },
+    ],
+    pending: [],
+    skipped: [],
+  },
+  '/vqar/data/seasons/summer-2026.json': {
+    id: 'summer-2026',
+    name: 'Summer 2026',
+    reviewed: [
+      { titleEN: 'Summer Peak', ratingNumber: 5, ratingText: 'Peak', review: '', dateReviewed: '2026-07-01', streaming: ['netflix'] },
+    ],
+    pending: [],
+    skipped: [],
+  },
+};
+
+async function loadFiltered(query = '') {
+  const fetch = createPathFetchStub({ '/vqar/data/index.json': filterIndex, ...filterSeasons });
+  const page = await loadApp({ fetch, url: `http://localhost/vqar/${query}` });
+  await waitFor(() => page.document.querySelectorAll('.entry-title').length > 0);
+  return page;
+}
+
+function chip(document, dimension, value) {
+  return document.querySelector(`.filter-chip[data-dimension="${dimension}"][data-value="${value}"]`);
+}
+
+function chipCount(document, dimension, value) {
+  return chip(document, dimension, value)?.querySelector('.chip-count')?.textContent;
+}
+
+test('rating chips run 5 to 0 with counts, filing a revisited show under its revisit rating', async () => {
+  const { document } = await loadFiltered();
+  const labels = [...document.querySelectorAll('#ratingChips .filter-chip')].map((b) => b.firstChild.textContent);
+  assert.deepEqual(labels, ['5 Peak', '4 Yeah', '3 Meh', '2 Trash', '1 Never', '0 Dead']);
+  assert.equal(chipCount(document, 'rating', '5'), '2');
+  assert.equal(chipCount(document, 'rating', '3'), '0');
+});
+
+test('pressing a rating chip filters to it, marks it pressed, and puts it in the URL', async () => {
+  const { document, window } = await loadFiltered();
+  chip(document, 'rating', '5').click();
+  assert.deepEqual(titles(document), ['Peak Show', 'Grower']);
+  assert.equal(chip(document, 'rating', '5').getAttribute('aria-pressed'), 'true');
+  assert.equal(window.location.search, '?rating=5');
+
+  chip(document, 'rating', '5').click();
+  assert.equal(titles(document).length, 4);
+  assert.equal(window.location.search, '');
+});
+
+test('streaming only offers services something in the season is on', async () => {
+  const { document } = await loadFiltered();
+  const offered = [...document.querySelectorAll('#onChips .filter-chip')].map((b) => b.dataset.value);
+  assert.deepEqual(offered, ['crunchyroll', 'hidive']);
+});
+
+test('chips in a row are any-of, rows are all-of', async () => {
+  const { document, window } = await loadFiltered();
+  chip(document, 'on', 'crunchyroll').click();
+  chip(document, 'on', 'hidive').click();
+  assert.equal(titles(document).length, 4);
+  assert.equal(window.location.search, '?on=crunchyroll,hidive');
+  chip(document, 'rating', '4').click();
+  assert.deepEqual(titles(document), ['Hidive Show']);
+});
+
+test('Extras filters on revisits that moved the rating, and on OP/ED notes', async () => {
+  const { document } = await loadFiltered();
+  chip(document, 'has', 'up').click();
+  assert.deepEqual(titles(document), ['Grower']);
+  chip(document, 'has', 'up').click();
+  chip(document, 'has', 'oped').click();
+  assert.deepEqual(titles(document), ['Trash Show']);
+});
+
+test('a filtered URL restores season, search, sort and chips on load', async () => {
+  const { document } = await loadFiltered('?season=all&q=peak&sort=title&rating=5');
+  assert.equal(document.getElementById('seasonFilter').value, 'all');
+  assert.equal(document.getElementById('searchInput').value, 'peak');
+  assert.equal(document.getElementById('sortBy').value, 'title');
+  // Grower is found by its revisit's "Peak" rating text, and counts as a 5 by it.
+  await waitFor(() => titles(document).length === 3);
+  assert.deepEqual(titles(document), ['Grower', 'Peak Show', 'Summer Peak']);
+  assert.equal(chip(document, 'rating', '5').getAttribute('aria-pressed'), 'true');
+});
+
+test('unknown URL values fall back to the defaults and drop out of the URL', async () => {
+  const { document, window } = await loadFiltered('?season=fall-1999&sort=nope&rating=11');
+  assert.equal(document.getElementById('seasonFilter').value, 'fall-2026');
+  assert.equal(document.getElementById('sortBy').value, 'recent');
+  assert.equal(titles(document).length, 4);
+  assert.equal(window.location.search, '');
+});
+
+test('the URL leaves out the current season but names any other choice', async () => {
+  const { document, window } = await loadFiltered();
+  selectSeason(document, 'all');
+  await waitFor(() => titles(document).length === 5);
+  assert.equal(window.location.search, '?season=all');
+  search(document, 'show');
+  assert.equal(window.location.search, '?season=all&q=show');
+});
+
+test('the summary counts what is shown, and Clear filters resets search and chips but not the season', async () => {
+  const { document, window } = await loadFiltered('?season=all');
+  await waitFor(() => titles(document).length === 5);
+  const count = document.getElementById('resultCount');
+  const clear = document.getElementById('clearFilters');
+  assert.equal(count.textContent, '5 reviews');
+  assert.equal(clear.hidden, true);
+
+  chip(document, 'rating', '5').click();
+  search(document, 'peak');
+  assert.equal(count.textContent, 'Showing 3 of 5 reviews');
+  assert.equal(clear.hidden, false);
+
+  clear.click();
+  assert.equal(titles(document).length, 5);
+  assert.equal(document.getElementById('searchInput').value, '');
+  assert.equal(document.getElementById('seasonFilter').value, 'all');
+  assert.equal(window.location.search, '?season=all');
+});
+
+test('the mobile toggle shows how many chips are on and opens the chip rows', async () => {
+  const { document } = await loadFiltered();
+  const toggle = document.getElementById('filtersToggle');
+  chip(document, 'rating', '5').click();
+  chip(document, 'on', 'hidive').click();
+  assert.equal(toggle.textContent, 'More filters (2)');
+
+  toggle.click();
+  assert.equal(toggle.getAttribute('aria-expanded'), 'true');
+  assert.ok(document.getElementById('filterChips').classList.contains('open'));
+});
+
+test('keyboard focus stays on a chip after pressing it, though the row is rebuilt', async () => {
+  const { document } = await loadFiltered();
+  chip(document, 'rating', '4').focus();
+  chip(document, 'rating', '4').click();
+  assert.equal(document.activeElement, chip(document, 'rating', '4'));
+});
