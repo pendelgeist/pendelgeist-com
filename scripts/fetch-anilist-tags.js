@@ -18,14 +18,24 @@
  *   npm run fetch-anilist-tags -- --print-queries          # the queries to run in https://anilist.co/graphiql
  *   npm run fetch-anilist-tags -- --from=q1.json,q2.json   # then import the saved responses
  *
+ * Reviews with no `anilistId` yet are linked by searching for them instead -
+ * also by hand, the same way. A match whose titles don't resemble the
+ * review's is reported, not applied, until it's checked and --accept'ed:
+ *
+ *   npm run fetch-anilist-tags -- --print-search-queries
+ *   npm run fetch-anilist-tags -- --link-from=s1.json,s2.json [--accept=fall_2026__3,...]
+ *   npm run fetch-anilist-tags -- --print-search-queries --any-season   # retry what a season-narrowed search missed
+ *
  * Then `npm run build-vqar-index` and `npm test`, as with any season edit.
  */
 import fs from 'node:fs';
 import path from 'node:path';
 import { SEASONS_DIR } from './build-vqar-index.js';
 import { anilistRequest } from './anilistClient.js';
+import { titlesLikelyMatch } from './anilistMatch.js';
 import {
-  fetchMediaByIds, mediaFromResponses, applyAnilistFields, replaceReviewed, MEDIA_BY_IDS_QUERY, BATCH_SIZE,
+  fetchMediaByIds, mediaFromResponses, applyAnilistFields, replaceReviewed, searchQueries,
+  searchResultsFromResponses, applySearchResults, MEDIA_BY_IDS_QUERY, BATCH_SIZE,
 } from './anilistTags.js';
 
 const DEFAULT_DELAY_MS = 1500;
@@ -45,6 +55,40 @@ async function main() {
 
   const ids = [...new Set(seasons.flatMap(s => (s.season.reviewed ?? []).map(r => r.anilistId).filter(Boolean)))]
     .sort((a, b) => a - b);
+
+  if (args.includes('--print-search-queries')) {
+    const entries = seasons.flatMap(({ season }) => (season.reviewed ?? [])
+      .map((review, index) => ({ seasonId: season.id, index, title: review.titleEN, review }))
+      .filter(entry => !entry.review.anilistId && entry.title));
+    const queries = searchQueries(entries, { anySeason: args.includes('--any-season') });
+    queries.forEach((query, i) => {
+      console.log(`# Search ${i + 1} of ${queries.length}`);
+      console.log(query);
+      console.log('');
+    });
+    return;
+  }
+
+  const linkArg = args.find(a => a.startsWith('--link-from='));
+  if (linkArg) {
+    const sources = linkArg.slice('--link-from='.length).split(',').filter(Boolean);
+    const results = searchResultsFromResponses(sources.map(source => JSON.parse(fs.readFileSync(source, 'utf-8'))));
+    const acceptArg = args.find(a => a.startsWith('--accept='));
+    const accept = new Set(acceptArg ? acceptArg.slice('--accept='.length).split(',').filter(Boolean) : []);
+    for (const { filename, file, raw, season } of seasons) {
+      const result = applySearchResults(season, results, { accept, titlesLikelyMatch });
+      if (result.linked.length + result.unsure.length + result.notFound.length === 0) continue;
+      console.log(`${filename}: ${result.linked.length} linked`);
+      for (const title of result.linked) console.log(`  + ${title}`);
+      for (const u of result.unsure) {
+        console.log(`  ? ${u.title} -> AniList ${u.anilistId} (${u.anilistTitles.join(' / ')}) - check it; --accept=${u.alias} to take it`);
+      }
+      for (const n of result.notFound) console.log(`  - ${n.title}: AniList found nothing (${n.alias})`);
+      if (result.linked.length > 0 && !dryRun) fs.writeFileSync(file, replaceReviewed(raw, result.reviewed));
+    }
+    if (dryRun) console.log('\n--dry-run: nothing written.');
+    return;
+  }
 
   if (args.includes('--print-queries')) {
     for (let i = 0; i < ids.length; i += BATCH_SIZE) {

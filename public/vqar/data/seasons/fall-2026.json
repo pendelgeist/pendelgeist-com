@@ -13,7 +13,32 @@
       "streaming": [
         "crunchyroll"
       ],
-      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00384004"
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00384004",
+      "anilistId": 212888,
+      "anilist": {
+        "format": "ONA",
+        "genres": [
+          "Action",
+          "Adventure",
+          "Comedy",
+          "Fantasy"
+        ],
+        "tags": [
+          "Virtual World",
+          "Male Protagonist",
+          "Video Games",
+          "Slapstick",
+          "Shounen",
+          "Marriage",
+          "Magic",
+          "Primarily Adult Cast",
+          "Swordplay"
+        ],
+        "studios": [
+          "J.C.STAFF"
+        ]
+      },
+      "titleJP": "テムパル～アイテムの力～"
     },
     {
       "titleEN": "PSYREN",
@@ -24,7 +49,25 @@
       "streaming": [
         "crunchyroll"
       ],
-      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00371866/psyren"
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00371866/psyren",
+      "anilistId": 204011,
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Action",
+          "Adventure",
+          "Sci-Fi"
+        ],
+        "tags": [
+          "Shounen",
+          "Death Game",
+          "Dystopian"
+        ],
+        "studios": [
+          "Satelight"
+        ]
+      },
+      "titleJP": "PSYREN -サイレン-"
     },
     {
       "titleEN": "Hello, I am a Witch and my Crush Wants me to Make a Love Potion!",
@@ -35,7 +78,27 @@
       "streaming": [
         "crunchyroll"
       ],
-      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00378072/hello-i-am-a-witch-and-my-crush-wants-me-to-make-a-love-potion"
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00378072/hello-i-am-a-witch-and-my-crush-wants-me-to-make-a-love-potion",
+      "anilistId": 207191,
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Fantasy",
+          "Romance"
+        ],
+        "tags": [
+          "Witch",
+          "Female Protagonist",
+          "Josei",
+          "Heterosexual",
+          "Hikikomori",
+          "Medicine"
+        ],
+        "studios": [
+          "diomedéa"
+        ]
+      },
+      "titleJP": "どうも、好きな人に惚れ薬を依頼された魔女です。"
     },
     {
       "titleEN": "Reborn as a Space Mercenary: I Woke Up Piloting the Strongest Starship!",
@@ -46,7 +109,31 @@
       "streaming": [
         "crunchyroll"
       ],
-      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00384006/reborn-as-a-space-mercenary-i-woke-up-piloting-the-strongest-starship"
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00384006/reborn-as-a-space-mercenary-i-woke-up-piloting-the-strongest-starship",
+      "anilistId": 186541,
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Action",
+          "Comedy",
+          "Drama",
+          "Mecha",
+          "Romance",
+          "Sci-Fi"
+        ],
+        "tags": [
+          "Isekai",
+          "Female Harem",
+          "Space",
+          "Heterosexual",
+          "Space Opera",
+          "Elf"
+        ],
+        "studios": [
+          "studio A-CAT"
+        ]
+      },
+      "titleJP": "目覚めたら最強装備と宇宙船持ちだったので、一戸建て目指して傭兵として自由に生きたい"
     },
     {
       "titleEN": "Uncle's Obsession with Cute Things",
@@ -57,7 +144,31 @@
       "streaming": [
         "crunchyroll"
       ],
-      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00385445/uncles-obsession-with-cute-things"
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00385445/uncles-obsession-with-cute-things",
+      "anilistId": 202079,
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Comedy",
+          "Slice of Life"
+        ],
+        "tags": [
+          "Male Protagonist",
+          "Iyashikei",
+          "Shoujo",
+          "Work",
+          "Office",
+          "Cute Boys Doing Cute Things",
+          "LGBTQ+ Themes",
+          "Primarily Adult Cast",
+          "Urban",
+          "Animals"
+        ],
+        "studios": [
+          "LIDENFILMS"
+        ]
+      },
+      "titleJP": "おじさんはカワイイものがお好き。"
     },
     {
       "titleEN": "Magic Repo Man: Dumped by My Party, I'll Cash In With a Cute Support Fairy to Become the Strongest!",
@@ -68,7 +179,24 @@
       "streaming": [
         "crunchyroll"
       ],
-      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00385867/magic-repo-man-dumped-by-my-party-ill-cash-in-with-a-cute-support-fairy-to-become-the-strongest"
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00385867/magic-repo-man-dumped-by-my-party-ill-cash-in-with-a-cute-support-fairy-to-become-the-strongest",
+      "anilistId": 202250,
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Action",
+          "Adventure",
+          "Fantasy"
+        ],
+        "tags": [
+          "Revenge",
+          "Economics"
+        ],
+        "studios": [
+          "SynergySP"
+        ]
+      },
+      "titleJP": "貸した魔力は【リボ払い】で強制徴収"
     },
     {
       "titleEN": "Magical Explorer",
@@ -79,7 +207,31 @@
       "streaming": [
         "crunchyroll"
       ],
-      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00384003/magical-explorer"
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00384003/magical-explorer",
+      "anilistId": 169581,
+      "anilist": {
+        "format": "ONA",
+        "genres": [
+          "Action",
+          "Adventure",
+          "Ecchi",
+          "Fantasy",
+          "Romance"
+        ],
+        "tags": [
+          "Isekai",
+          "Magic",
+          "Heterosexual",
+          "Slapstick",
+          "Female Harem",
+          "Nudity",
+          "Male Protagonist"
+        ],
+        "studios": [
+          "WHITE FOX"
+        ]
+      },
+      "titleJP": "マジカル★エクスプローラー　エロゲの友人キャラに転生したけど、ゲーム知識使って自由に生きる"
     },
     {
       "titleEN": "Nia Liston: The Merciless Maiden",
@@ -90,7 +242,27 @@
       "streaming": [
         "hidive"
       ],
-      "hidiveUrl": "https://www.hidive.com/season/39540"
+      "hidiveUrl": "https://www.hidive.com/season/39540",
+      "anilistId": 206949,
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Action",
+          "Fantasy"
+        ],
+        "tags": [
+          "Female Protagonist",
+          "Age Regression",
+          "Magic",
+          "Maids",
+          "Cultivation",
+          "Ojou-sama"
+        ],
+        "studios": [
+          "KONAMI animation"
+        ]
+      },
+      "titleJP": "凶乱令嬢ニア・リストン"
     },
     {
       "titleEN": "I'm Dating a Dark Summoner",
@@ -101,7 +273,34 @@
       "streaming": [
         "hidive"
       ],
-      "hidiveUrl": "https://www.hidive.com/season/39541"
+      "hidiveUrl": "https://www.hidive.com/season/39541",
+      "anilistId": 208025,
+      "anilist": {
+        "format": "TV_SHORT",
+        "genres": [
+          "Comedy",
+          "Ecchi",
+          "Fantasy",
+          "Romance"
+        ],
+        "tags": [
+          "Heterosexual",
+          "Nudity",
+          "Magic",
+          "Slapstick",
+          "Primarily Female Cast",
+          "Interspecies",
+          "Monster Girl",
+          "Male Protagonist",
+          "Female Protagonist",
+          "Demons"
+        ],
+        "studios": [
+          "AtoriE",
+          "Nyan Pollution-ω-"
+        ]
+      },
+      "titleJP": "ダークサモナーとデキている"
     },
     {
       "titleEN": "TETSURYO! Meet With Tetsudou Musume",
@@ -112,7 +311,29 @@
       "streaming": [
         "hidive"
       ],
-      "hidiveUrl": "https://www.hidive.com/season/39542"
+      "hidiveUrl": "https://www.hidive.com/season/39542",
+      "anilistId": 199594,
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Slice of Life"
+        ],
+        "tags": [
+          "Trains",
+          "Female Protagonist",
+          "Cute Girls Doing Cute Things",
+          "School Club",
+          "Travel",
+          "Iyashikei",
+          "Primarily Female Cast",
+          "Primarily Adult Cast",
+          "College"
+        ],
+        "studios": [
+          "East Fish Studio"
+        ]
+      },
+      "titleJP": "てつりょー！meet with 鉄道むすめ"
     },
     {
       "titleEN": "TANK CHAIR: Sensha Isu",
@@ -123,7 +344,28 @@
       "streaming": [
         "prime"
       ],
-      "primeUrl": "https://www.primevideo.com/detail/0FYBTVJ1JB731K9U0XDE7U20F1"
+      "primeUrl": "https://www.primevideo.com/detail/0FYBTVJ1JB731K9U0XDE7U20F1",
+      "anilistId": 209499,
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Action",
+          "Sci-Fi"
+        ],
+        "tags": [
+          "Disability",
+          "Full CGI",
+          "Body Horror",
+          "Rehabilitation",
+          "Dystopian",
+          "Assassins",
+          "Super Power"
+        ],
+        "studios": [
+          "POLYGON PICTURES"
+        ]
+      },
+      "titleJP": "TANK CHAIR-戦車椅子-"
     },
     {
       "titleEN": "The Seven Knights of the Marronnier Kingdom",
@@ -134,7 +376,27 @@
       "streaming": [
         "prime"
       ],
-      "primeUrl": "https://www.amazon.com/dp/B0HG6N5R36"
+      "primeUrl": "https://www.amazon.com/dp/B0HG6N5R36",
+      "anilistId": 212799,
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Comedy",
+          "Fantasy",
+          "Romance"
+        ],
+        "tags": [
+          "Josei",
+          "Medieval",
+          "Male Protagonist",
+          "Cute Boys Doing Cute Things",
+          "Ensemble Cast"
+        ],
+        "studios": [
+          "J.C.STAFF"
+        ]
+      },
+      "titleJP": "マロニエ王国の七人の騎士"
     },
     {
       "titleEN": "Kanata Kara",
@@ -145,7 +407,27 @@
       "streaming": [
         "crunchyroll"
       ],
-      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00384000/from-far-away"
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00384000/from-far-away",
+      "anilistId": 209463,
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Adventure",
+          "Fantasy",
+          "Romance"
+        ],
+        "tags": [
+          "Shoujo",
+          "Isekai",
+          "Heterosexual",
+          "Language Barrier",
+          "Female Protagonist"
+        ],
+        "studios": [
+          "Studio DEEN"
+        ]
+      },
+      "titleJP": "彼方から"
     },
     {
       "titleEN": "Even Though I'm a Super Timid Noble Girl, I Accepted the Bet From My Cunning Fiancé",
@@ -156,7 +438,27 @@
       "streaming": [
         "crunchyroll"
       ],
-      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00365562"
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00365562",
+      "anilistId": 200455,
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Comedy",
+          "Fantasy",
+          "Romance"
+        ],
+        "tags": [
+          "Female Protagonist",
+          "Isekai",
+          "Villainess",
+          "Heterosexual",
+          "Shoujo"
+        ],
+        "studios": [
+          "Jumondou"
+        ]
+      },
+      "titleJP": "弱気MAX令嬢なのに、辣腕婚約者様の賭けに乗ってしまった"
     },
     {
       "titleEN": "Shinja Zero no Megami-sama to Hajimeru Isekai Kouryaku",
@@ -167,7 +469,20 @@
       "streaming": [
         "crunchyroll"
       ],
-      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00383992/full-clearing-another-world-under-a-goddess-with-zero-believers"
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00383992/full-clearing-another-world-under-a-goddess-with-zero-believers",
+      "anilistId": 205896,
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Adventure",
+          "Fantasy"
+        ],
+        "tags": [],
+        "studios": [
+          "HORNETS"
+        ]
+      },
+      "titleJP": "信者ゼロの女神サマと始める異世界攻略"
     },
     {
       "titleEN": "#I'm Looking For a Zombie",
@@ -178,7 +493,34 @@
       "streaming": [
         "crunchyroll"
       ],
-      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00383996/im-looking-for-a-zombie"
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00383996/im-looking-for-a-zombie",
+      "anilistId": 199007,
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Action",
+          "Comedy",
+          "Horror",
+          "Mystery",
+          "Supernatural"
+        ],
+        "tags": [
+          "Post-Apocalyptic",
+          "Zombie",
+          "Travel",
+          "Survival",
+          "Cute Girls Doing Cute Things",
+          "Female Protagonist",
+          "Urban",
+          "Primarily Female Cast",
+          "Shounen",
+          "Tomboy"
+        ],
+        "studios": [
+          "Studio Comet"
+        ]
+      },
+      "titleJP": "#ゾンビさがしてます"
     },
     {
       "titleEN": "VERTEX FORCE",
@@ -189,7 +531,29 @@
       "streaming": [
         "crunchyroll"
       ],
-      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00365619/vertex-force"
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00365619/vertex-force",
+      "anilistId": 209562,
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Action",
+          "Mecha"
+        ],
+        "tags": [
+          "Aliens",
+          "Robots",
+          "Super Robot",
+          "Male Protagonist",
+          "Female Protagonist",
+          "Full CGI",
+          "Primarily Female Cast",
+          "Urban Fantasy"
+        ],
+        "studios": [
+          "Shogakukan Music & Digital Entertainment"
+        ]
+      },
+      "titleJP": "バーテックスフォース"
     },
     {
       "titleEN": "Romelia War Chronicle",
@@ -200,7 +564,26 @@
       "streaming": [
         "crunchyroll"
       ],
-      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00384007/romelia-war-chronicle"
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00384007/romelia-war-chronicle",
+      "anilistId": 180894,
+      "anilist": {
+        "format": "ONA",
+        "genres": [
+          "Adventure",
+          "Drama",
+          "Fantasy"
+        ],
+        "tags": [
+          "Female Protagonist",
+          "Shounen",
+          "Villainess",
+          "Exiled"
+        ],
+        "studios": [
+          "Atra"
+        ]
+      },
+      "titleJP": "ロメリア戦記 〜魔王を倒した後も人類やばそうだから軍隊組織した〜"
     },
     {
       "titleEN": "The Vermilion Mask",
@@ -211,7 +594,24 @@
       "streaming": [
         "crunchyroll"
       ],
-      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00384015/the-vermilion-mask"
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00384015/the-vermilion-mask",
+      "anilistId": 195571,
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Action",
+          "Drama",
+          "Supernatural"
+        ],
+        "tags": [
+          "Seinen",
+          "Male Protagonist"
+        ],
+        "studios": [
+          "100studio"
+        ]
+      },
+      "titleJP": "朱色の仮面"
     },
     {
       "titleEN": "A Tale of the Secret Saint",
@@ -222,7 +622,26 @@
       "streaming": [
         "crunchyroll"
       ],
-      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00371633"
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00371633",
+      "anilistId": 187402,
+      "anilist": {
+        "format": "ONA",
+        "genres": [
+          "Action",
+          "Adventure",
+          "Fantasy"
+        ],
+        "tags": [
+          "Female Protagonist",
+          "Swordplay",
+          "Dragons",
+          "Magic"
+        ],
+        "studios": [
+          "Felix Film"
+        ]
+      },
+      "titleJP": "転生した大聖女は、聖女であることをひた隠す"
     },
     {
       "titleEN": "Firefly Wedding",
@@ -233,7 +652,26 @@
       "streaming": [
         "crunchyroll"
       ],
-      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00383999"
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00383999",
+      "anilistId": 205909,
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Drama",
+          "Romance"
+        ],
+        "tags": [
+          "Yandere",
+          "Josei",
+          "Assassins",
+          "Heterosexual",
+          "Historical"
+        ],
+        "studios": [
+          "david production"
+        ]
+      },
+      "titleJP": "ホタルの嫁入り"
     },
     {
       "titleEN": "Toaru Anbu no ITEM",
@@ -244,7 +682,24 @@
       "streaming": [
         "crunchyroll"
       ],
-      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00383991/a-certain-dark-item"
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00383991/a-certain-dark-item",
+      "anilistId": 186742,
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Action",
+          "Sci-Fi"
+        ],
+        "tags": [
+          "Primarily Female Cast",
+          "Urban Fantasy",
+          "Urban"
+        ],
+        "studios": [
+          "J.C.STAFF"
+        ]
+      },
+      "titleJP": "とある暗部の少女共棲"
     },
     {
       "titleEN": "Battle Spirits [Re] Zekkai No Ku",
@@ -255,7 +710,22 @@
       "streaming": [
         "crunchyroll"
       ],
-      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00385703/battle-spirits-re-zekkai-no-ku"
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00385703/battle-spirits-re-zekkai-no-ku",
+      "anilistId": 187990,
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Action",
+          "Fantasy"
+        ],
+        "tags": [
+          "Card Battle"
+        ],
+        "studios": [
+          "Bandai Namco Pictures"
+        ]
+      },
+      "titleJP": "Battle Spirits [Re] 絶界の空"
     },
     {
       "titleEN": "FX Fighter Kurumi-chan",
@@ -266,7 +736,30 @@
       "streaming": [
         "crunchyroll"
       ],
-      "crunchyrollUrl": "https://crunchyroll.com/series/GT00384001/fx-fighter-kurumi-chan"
+      "crunchyrollUrl": "https://crunchyroll.com/series/GT00384001/fx-fighter-kurumi-chan",
+      "anilistId": 206401,
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Drama",
+          "Slice of Life"
+        ],
+        "tags": [
+          "Female Protagonist",
+          "Economics",
+          "Gambling",
+          "Denpa",
+          "Primarily Female Cast",
+          "Seinen",
+          "Educational",
+          "Primarily Adult Cast",
+          "Work"
+        ],
+        "studios": [
+          "Passione"
+        ]
+      },
+      "titleJP": "FX戦士くるみちゃん"
     },
     {
       "titleEN": "DARK MACHINE THE ANIMATION",
@@ -283,7 +776,22 @@
         "ratingText": "Yeah, Here's Hoping",
         "review": "Finished watching the first episode. The production values are cool, and I quite like the part outside of the video game, which is the whole thing. The game itself is weird: you play as a mechanized soldier who then becomes a mecha, who gets into a larger mecha, and apparently you can also ditch that and get into an even larger mecha. It's a 3v3 duel set into five-minute rounds. That was probably my least favorite part, but the production values were nice throughout. I like the soundtrack. The song for the ending was annoying, but the segment itself was cool. I'll give this show another episode once it comes out and then decide if it's worth continuing.",
         "dateReviewed": "2026-10-15"
-      }
+      },
+      "anilistId": 179876,
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Mecha",
+          "Sci-Fi"
+        ],
+        "tags": [
+          "Video Games"
+        ],
+        "studios": [
+          "Production +h"
+        ]
+      },
+      "titleJP": "DARK MACHINE -The Animation-"
     },
     {
       "titleEN": "So What's Wrong with Getting Reborn as a Goblin?",
@@ -294,7 +802,27 @@
       "streaming": [
         "crunchyroll"
       ],
-      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00384010/so-whats-wrong-with-getting-reborn-as-a-goblin"
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00384010/so-whats-wrong-with-getting-reborn-as-a-goblin",
+      "anilistId": 209219,
+      "anilist": {
+        "format": "ONA",
+        "genres": [
+          "Action",
+          "Adventure",
+          "Comedy",
+          "Drama",
+          "Fantasy",
+          "Romance"
+        ],
+        "tags": [
+          "Goblin",
+          "Isekai"
+        ],
+        "studios": [
+          "BAKKKA"
+        ]
+      },
+      "titleJP": "転生ゴブリンだけど質問ある？"
     },
     {
       "titleEN": "The Laid-Off Cheat-Granting Mage Enjoys a Second Lease on Life",
@@ -305,7 +833,31 @@
       "streaming": [
         "crunchyroll"
       ],
-      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00384016/"
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00384016/",
+      "anilistId": 207329,
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Adventure",
+          "Comedy",
+          "Fantasy",
+          "Slice of Life"
+        ],
+        "tags": [
+          "Surreal Comedy",
+          "Urban Fantasy",
+          "Found Family",
+          "Magic",
+          "Chibi",
+          "Exiled",
+          "Male Protagonist",
+          "Slapstick"
+        ],
+        "studios": [
+          "P.A.WORKS"
+        ]
+      },
+      "titleJP": "追放されたチート付与魔術師は気ままなセカンドライフを謳歌する。　～俺は武器だけじゃなく、あらゆるものに『強化ポイント』を付与できるし、俺の意思でいつでも効果を解除できるけど、残った人たち大丈夫？～"
     },
     {
       "titleEN": "The World's Strongest Witch",
@@ -316,7 +868,31 @@
       "streaming": [
         "crunchyroll"
       ],
-      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00384009/the-worlds-strongest-witch"
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00384009/the-worlds-strongest-witch",
+      "anilistId": 211778,
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Action",
+          "Comedy",
+          "Fantasy"
+        ],
+        "tags": [
+          "Female Protagonist",
+          "Virtual World",
+          "Travel",
+          "Primarily Female Cast",
+          "Meta",
+          "Magic",
+          "Parody",
+          "Cute Girls Doing Cute Things"
+        ],
+        "studios": [
+          "Bridge",
+          "Aisle"
+        ]
+      },
+      "titleJP": "世界最強の魔女、始めました"
     },
     {
       "titleEN": "Magic Knight Rayearth (2026)",
@@ -327,7 +903,37 @@
       "streaming": [
         "crunchyroll"
       ],
-      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00383994/magic-knight-rayearth-2026"
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00383994/magic-knight-rayearth-2026",
+      "anilistId": 178868,
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Adventure",
+          "Fantasy",
+          "Mahou Shoujo",
+          "Mecha"
+        ],
+        "tags": [
+          "Female Protagonist",
+          "Shoujo",
+          "Isekai",
+          "Super Power",
+          "Tomboy",
+          "Magic",
+          "Super Robot",
+          "Henshin",
+          "Medieval",
+          "Chibi",
+          "Primarily Female Cast",
+          "Ojou-sama",
+          "Robots",
+          "Primarily Teen Cast"
+        ],
+        "studios": [
+          "E&H Production"
+        ]
+      },
+      "titleJP": "魔法騎士レイアース (2026)"
     },
     {
       "titleEN": "The Cold Satou-san Is Only Sweet to Me",
@@ -338,7 +944,23 @@
       "streaming": [
         "crunchyroll"
       ],
-      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00384014/the-cold-sato-san-is-only-sweet-to-me"
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00384014/the-cold-sato-san-is-only-sweet-to-me",
+      "anilistId": 209502,
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Comedy",
+          "Romance"
+        ],
+        "tags": [
+          "Heterosexual",
+          "Photography"
+        ],
+        "studios": [
+          "Tezuka Productions"
+        ]
+      },
+      "titleJP": "塩対応の佐藤さんが俺にだけ甘い"
     },
     {
       "titleEN": "Super Psychic Policeman Chojo",
@@ -349,7 +971,26 @@
       "streaming": [
         "crunchyroll"
       ],
-      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00384013/super-psychic-policeman-chojo"
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00384013/super-psychic-policeman-chojo",
+      "anilistId": 200294,
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Comedy",
+          "Slice of Life"
+        ],
+        "tags": [
+          "Police",
+          "Super Power",
+          "Primarily Adult Cast",
+          "Surreal Comedy",
+          "Shounen"
+        ],
+        "studios": [
+          "Arvo Animation"
+        ]
+      },
+      "titleJP": "超巡！超条先輩"
     },
     {
       "titleEN": "Keroro Gunsou☆",
@@ -360,7 +1001,20 @@
       "streaming": [
         "crunchyroll"
       ],
-      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00383995/"
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00383995/",
+      "anilistId": 216557,
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Comedy",
+          "Sci-Fi"
+        ],
+        "tags": [],
+        "studios": [
+          "Bandai Namco Pictures"
+        ]
+      },
+      "titleJP": "ケロロ軍曹☆"
     },
     {
       "titleEN": "Suikoden: The Anime",
@@ -371,7 +1025,24 @@
       "streaming": [
         "youtube"
       ],
-      "youtubeUrl": "https://www.youtube.com/@SuikodenTheAnime-EN"
+      "youtubeUrl": "https://www.youtube.com/@SuikodenTheAnime-EN",
+      "anilistId": 187316,
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Action",
+          "Adventure",
+          "Fantasy"
+        ],
+        "tags": [
+          "War",
+          "Shounen"
+        ],
+        "studios": [
+          "KONAMI animation"
+        ]
+      },
+      "titleJP": "幻想水滸伝"
     },
     {
       "titleEN": "Jyuou Mujin Dandivine",
@@ -382,7 +1053,29 @@
       "streaming": [
         "crunchyroll"
       ],
-      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00385792/dandivine"
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00385792/dandivine",
+      "anilistId": 213068,
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Action",
+          "Mecha"
+        ],
+        "tags": [
+          "Super Robot",
+          "Heterosexual",
+          "Kaiju",
+          "Male Protagonist",
+          "Meta",
+          "Primarily Teen Cast",
+          "Guns"
+        ],
+        "studios": [
+          "LIDENFILMS",
+          "Kayac Animation"
+        ]
+      },
+      "titleJP": "獣王武神ダンデヴァイン"
     },
     {
       "titleEN": "Kyoufu Collector",
@@ -393,7 +1086,24 @@
       "streaming": [
         "crunchyroll"
       ],
-      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00383993/horror-collector"
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00383993/horror-collector",
+      "anilistId": 203473,
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Horror",
+          "Mystery",
+          "Supernatural"
+        ],
+        "tags": [
+          "Youkai",
+          "Urban Fantasy"
+        ],
+        "studios": [
+          "Studio Palette"
+        ]
+      },
+      "titleJP": "恐怖コレクター"
     }
   ],
   "pending": [
