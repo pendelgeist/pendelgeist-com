@@ -298,12 +298,7 @@
         "crunchyroll"
       ],
       "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00374493/rilakkuma",
-      "ed": {
-        "ratingNumber": 4,
-        "ratingText": "Catchy AF",
-        "review": "This ending has stuck with me through thick and thin. The song is so catchy, it's literally a third of the episode length because they're in love with the ending, and I just wanna watch more just so I can hear the ending song, 'cause it's so damn catchy.",
-        "dateReviewed": "2026-05-17"
-      }
+      "ed": true
     },
     {
       "titleEN": "The Strongest Job is Apparently Not a Hero or a Sage, but an Appraiser (Provisional)!",
@@ -552,10 +547,7 @@
         "review": "I finished the first two episodes of this show, and it's great. It really delivers on everything I was hoping it would, which is that it's a charming, awkward romantic comedy that's very well executed, with a consistent art style and perspective throughout. I'm very much looking forward to seeing more, and I hope the story stays good and fun and interesting, because I like what they've started out with, and I'm really hoping it continues through the end of the season. I'm a sucker for Here Is Greenwood, and this is a show that reminds me of that in such a strong way, while not being a copy or anything related to it. It definitely gives me big vibes from that, in the best possible way.",
         "dateReviewed": "2026-07-04"
       },
-      "op": {
-        "ratingText": "Honorable Mention",
-        "dateReviewed": "2026-09-26"
-      }
+      "op": true
     },
     {
       "titleEN": "Reincarnated as a Dragon Hatchling",

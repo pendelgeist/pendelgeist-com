@@ -22,7 +22,7 @@ export const HAS_OPTIONS = {
   revisit: 'Revisited',
   up: 'Rated up on revisit',
   down: 'Rated down on revisit',
-  oped: 'OP/ED notes',
+  oped: 'Liked OP/ED',
 };
 
 /** @type {ChipDimension[]} */

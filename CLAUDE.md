@@ -97,6 +97,9 @@ every `/vqar-stats` number (`effectiveRatingNumber` in `public/vqar/rating.js`).
 saved without one would quietly leave the old rating standing, so `scripts/validateSeason.js`
 rejects it.
 
+**Liking an OP/ED**: set `"op": true` or `"ed": true` on the show's entry. That's the whole
+marking: no rating, note or date, and validation rejects anything but `true`.
+
 **Starting a season**: add `seasons/<season>-<year>.json` with a matching `id`, a `name`,
 `"current": true`, and empty `reviewed`/`pending`/`skipped` — then **remove `current` from the
 previous season**, since exactly one may carry it. Rebuild the index and run the tests. Full

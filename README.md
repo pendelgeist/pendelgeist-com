@@ -201,13 +201,16 @@ instead of failing silently.
 ### Review shape
 
 Each entry in a season's `reviewed` array is a single-episode review plus three optional
-follow-up notes, each shaped like `{ ratingNumber, ratingText, review, dateReviewed }`:
+extras:
 
-- `fullReview` — a full-series re-review once a "Finish Ep"-rated show actually gets finished.
-  Unlike the others, it **requires** a `ratingNumber` (0–5) and `ratingText`. That rating
-  replaces the episode-1 one in sorting, filtering and every `/vqar-stats` number, so
-  validation rejects a revisit saved without one rather than let the old rating quietly stand.
-- `op` / `ed` — opening/ending callouts, handy for finding the year's best OP/ED later.
+- `fullReview` — a full-series re-review once a "Finish Ep"-rated show actually gets finished,
+  shaped like `{ ratingNumber, ratingText, review, dateReviewed }`. It **requires** a
+  `ratingNumber` (0–5) and `ratingText`: that rating replaces the episode-1 one in sorting,
+  filtering and every `/vqar-stats` number, so validation rejects a revisit saved without one
+  rather than let the old rating quietly stand.
+- `op` / `ed` — `true` marks an opening/ending you liked, for finding it again later. It's a
+  bare marking, with no rating or note: anything but `true` is rejected, and an OP/ED you
+  didn't note is simply left out. `/vqar` shows it as a "Liked OP"/"Liked ED" pill.
 
 `dateReviewed` on a top-level review is a full ISO 8601 **timestamp** — `2026-10-08T14:30:00Z`
 (UTC) or with an offset like `-07:00` — not just a date. "Most recent" sorts on it, and a
@@ -215,7 +218,7 @@ bare date would tie every review written the same day. Validation rejects a date
 time. The page shows only the date part, exactly as written, so an offset keeps the
 reviewer's own day. When adding a review, stamp it with the current time in the reviewer's
 timezone (`TZ=America/New_York date +%Y-%m-%dT%H:%M:%S%:z`) — not `date -u`, since a UTC stamp
-shows tomorrow's date for anything reviewed after 8pm Eastern. Follow-up notes (`fullReview`/`op`/`ed`) may still use a plain date.
+shows tomorrow's date for anything reviewed after 8pm Eastern. A `fullReview` may still use a plain date.
 
 All three are optional and independent — add whichever applies whenever you get to it.
 
@@ -318,7 +321,7 @@ A season id that can't be `<season>-<year>` (a one-off, a special) needs an expl
 
 Besides Season / Search / Sort, `/vqar` has three rows of toggle chips: **Rating** (the 0–5
 tiers, labeled from `RATING_NUMBER_LABELS`), **Streaming** (only the services something in the
-selected season is on), and **Extras** (revisited, rated up/down on revisit, OP/ED notes). Within
+selected season is on), and **Extras** (revisited, rated up/down on revisit, liked OP/ED). Within
 a row any pressed chip matches; across rows every row with a selection must match. A show with a
 revisit is filed under its revisit rating, the same number "Highest Rating" sorts on. Each chip's
 count ignores its own row's selection, so it says how many reviews pressing it would bring in.
@@ -472,9 +475,7 @@ Sections rendered from those functions: a numbers-at-a-glance stat grid, a ratin
 distribution bar chart (ordered low to high), average rating per season over time,
 best/worst-rated shows, "Second Impressions" (how a `fullReview` re-review's rating compares
 to the original episode-1 rating — a swing metric unique to VQAR's data shape), and every
-OP/ED callout (a callout is only written for one worth noting, so the list is uncapped and an
-unrated one, like a bare "Honorable Mention", still makes it — listed after the rated ones,
-showing its `ratingText`). Only reviews with a numeric `ratingNumber` count toward averages/rankings —
+liked OP and ED (uncapped, by title, since a marking has no rating to rank by). Only reviews with a numeric `ratingNumber` count toward averages/rankings —
 a `ratingText`-only entry is still valid, just excluded from those. Once a review has a
 `fullReview`, its rating supersedes the original episode-1 `ratingNumber` everywhere ratings
 get aggregated or ranked (averages, the distribution chart, Hall of Fame, Continuing Seasons

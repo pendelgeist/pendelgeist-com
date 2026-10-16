@@ -13,8 +13,8 @@ import { STREAMING_URL_FIELDS } from '../public/streaming.js';
 import { entryTitle, normalizeEntry } from '../public/vqar/list-entries.js';
 
 export const typeDefs = `#graphql
-"""A follow-up note attached to a review: a full-series re-review once a
-"Finish Ep"-rated show is actually finished, or an opening/ending callout."""
+"""A full-series re-review attached to a review, once a "Finish Ep"-rated show
+is actually finished."""
 type SubReview {
   ratingNumber: Float
   ratingText: String
@@ -31,8 +31,10 @@ type Review {
   review: String
   dateReviewed: String
   fullReview: SubReview
-  op: SubReview
-  ed: SubReview
+  "True when the opening was marked as one worth remembering."
+  op: Boolean
+  "True when the ending was marked as one worth remembering."
+  ed: Boolean
   "The id of the season this review belongs to."
   season: ID!
   "The display name of the season this review belongs to."

@@ -97,8 +97,8 @@ function renderGlanceStats(seasons, reviews) {
     { label: 'Seasons Covered', value: String(s.seasonsCovered) },
     { label: 'Average Rating', value: s.avgRating != null ? `${s.avgRating.toFixed(1)} / 5` : '—' },
     { label: 'Full Re-Reviews', value: String(s.fullReReviews) },
-    { label: 'OP Callouts', value: String(s.opCallouts) },
-    { label: 'ED Callouts', value: String(s.edCallouts) },
+    { label: 'Liked OPs', value: String(s.likedOps) },
+    { label: 'Liked EDs', value: String(s.likedEds) },
     { label: 'AniList-Linked', value: s.anilistCoveragePct != null ? `${s.anilistCoveragePct}%` : '—' },
     { label: s.busiestSeasonName ? `Busiest Season: ${s.busiestSeasonName}` : 'Busiest Season', value: s.busiestSeasonCount != null ? String(s.busiestSeasonCount) : '—' },
   ]);
@@ -228,11 +228,10 @@ function renderSeasonSpotlight(seasons, reviews, seasonId) {
 
 function renderOpEd(reviews) {
   const s = computeOpEdHighlights(reviews);
-  const cols = ['Title', 'Season', 'Rating'];
-  // An unrated callout shows its label (e.g. "Honorable Mention") rather than a bare dash.
-  const row = r => [r.titleEN ?? 'Untitled', r.seasonName, typeof r.ratingNumber === 'number' ? formatRating(r.ratingNumber) : (r.ratingText ?? '—')];
-  renderDataTable(dom.topOps, cols, s.topOps.map(row));
-  renderDataTable(dom.topEds, cols, s.topEds.map(row));
+  const cols = ['Title', 'Season'];
+  const row = r => [r.titleEN ?? 'Untitled', r.seasonName];
+  renderDataTable(dom.topOps, cols, s.likedOps.map(row));
+  renderDataTable(dom.topEds, cols, s.likedEds.map(row));
 }
 
 /** @type {SeasonData[]} */

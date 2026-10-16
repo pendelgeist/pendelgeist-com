@@ -58,8 +58,8 @@ export function computeGlanceStats(seasons, reviews) {
     seasonsCovered: seasons.filter(s => (s.reviewed ?? []).length > 0).length,
     avgRating,
     fullReReviews: reviews.filter(r => r.fullReview).length,
-    opCallouts: reviews.filter(r => r.op).length,
-    edCallouts: reviews.filter(r => r.ed).length,
+    likedOps: reviews.filter(r => r.op === true).length,
+    likedEds: reviews.filter(r => r.ed === true).length,
     anilistCoveragePct: reviews.length ? Math.round((withAnilist / reviews.length) * 100) : null,
     busiestSeasonName: busiest?.seasonName ?? null,
     busiestSeasonCount: busiest?.count ?? null,
@@ -268,22 +268,18 @@ export function computeContinuationWatch(seasons, seasonId, { minRating = 4 } = 
 }
 
 /**
- * Every OP and ED callout. A callout only gets written for one worth noting, so
- * all of them make the list, uncapped: rated ones first, best to worst, then
- * unrated ones (e.g. a bare "Honorable Mention") by title.
+ * Every liked OP and ED. A liking is a bare `"op": true` / `"ed": true`
+ * marking with no rating to rank by, so it's every one of them, uncapped,
+ * by title.
  * @param {ReturnType<typeof flattenReviews>} reviews
  */
 export function computeOpEdHighlights(reviews) {
-  const rank = (key) => reviews
-    .filter(r => r[key])
-    .map(r => ({ titleEN: r.titleEN, seasonName: r.seasonName, ratingNumber: r[key].ratingNumber, ratingText: r[key].ratingText }))
-    .sort((a, b) => (b.ratingNumber ?? -Infinity) - (a.ratingNumber ?? -Infinity)
-      || (a.titleEN ?? '').localeCompare(b.titleEN ?? ''));
+  const liked = (key) => reviews
+    .filter(r => r[key] === true)
+    .map(r => ({ titleEN: r.titleEN, seasonName: r.seasonName }))
+    .sort((a, b) => (a.titleEN ?? '').localeCompare(b.titleEN ?? ''));
 
-  return {
-    opCount: reviews.filter(r => r.op).length,
-    edCount: reviews.filter(r => r.ed).length,
-    topOps: rank('op'),
-    topEds: rank('ed'),
-  };
+  const likedOps = liked('op');
+  const likedEds = liked('ed');
+  return { opCount: likedOps.length, edCount: likedEds.length, likedOps, likedEds };
 }

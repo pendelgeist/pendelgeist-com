@@ -325,15 +325,15 @@ test('a well-formed watchProgress does not trigger a false positive', () => {
   assert.deepEqual(validateSeason(season), []);
 });
 
-test('a well-formed fullReview/op/ed does not trigger a false positive', () => {
+test('a well-formed fullReview and liked op/ed do not trigger a false positive', () => {
   const season = cleanSeason();
   season.reviewed.push({
     titleEN: 'Fully Reviewed Show',
     ratingText: 'Finish Ep',
     dateReviewed: '2026-04-02T12:00:00Z',
     fullReview: { ratingNumber: 5, ratingText: 'Nice Ep Broh', review: 'great', dateReviewed: '2026-06-01T12:00:00Z' },
-    op: { ratingText: 'Bop of the Year' },
-    ed: { ratingText: 'Catchy AF' },
+    op: true,
+    ed: true,
   });
 
   assert.deepEqual(validateSeason(season), []);
@@ -482,5 +482,22 @@ test('flags a fullReview ratingNumber outside the 0-5 tiers', () => {
 
     const issues = validateSeason(season);
     assert.ok(issues.some(i => i.includes('"Off-Scale Revisit Show"') && i.includes('ratingNumber')), `accepted ${JSON.stringify(ratingNumber)}`);
+  }
+});
+
+// A liked OP/ED is a bare marking now - the old rated/annotated object shape
+// is rejected, so a session can't quietly reintroduce it.
+test('flags an op/ed that is anything but true', () => {
+  for (const value of [{ ratingText: 'Honorable Mention' }, false, 'yes', 1]) {
+    const season = cleanSeason();
+    season.reviewed.push({
+      titleEN: 'Old-Shape OP Show',
+      ratingText: 'Meh',
+      dateReviewed: '2026-04-02T12:00:00Z',
+      ed: value,
+    });
+
+    const issues = validateSeason(season);
+    assert.ok(issues.some(i => i.includes('"Old-Shape OP Show"') && i.includes('ed')), `accepted ${JSON.stringify(value)}`);
   }
 });

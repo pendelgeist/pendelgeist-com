@@ -7,7 +7,7 @@ import {
 
 const ep1Only = { titleEN: 'A', ratingNumber: 4, streaming: ['crunchyroll'] };
 const ratedUp = { titleEN: 'B', ratingNumber: 3, fullReview: { ratingNumber: 5 }, streaming: ['hidive', 'crunchyroll'] };
-const ratedDown = { titleEN: 'C', ratingNumber: 4, fullReview: { ratingNumber: 2 }, op: { review: 'banger' } };
+const ratedDown = { titleEN: 'C', ratingNumber: 4, fullReview: { ratingNumber: 2 }, op: true };
 const revisitNoRating = { titleEN: 'D', ratingNumber: 1, fullReview: { review: 'still bad' }, streaming: ['netflix'] };
 const reviews = [ep1Only, ratedUp, ratedDown, revisitNoRating];
 

@@ -19,9 +19,9 @@ const seasons = [
   {
     id: 'summer-2026', name: 'Summer 2026',
     reviewed: [
-      { titleEN: 'Peak Show', ratingNumber: 5, ratingText: 'Peak', review: 'An excellent episode all around', dateReviewed: '2026-07-01', anilistId: 111, op: { ratingNumber: 5, ratingText: 'Peak' } },
+      { titleEN: 'Peak Show', ratingNumber: 5, ratingText: 'Peak', review: 'An excellent episode all around', dateReviewed: '2026-07-01', anilistId: 111, op: true },
       { titleEN: 'Meh Show', ratingNumber: 3, ratingText: 'Meh', review: 'Just fine, nothing special here', dateReviewed: '2026-07-05', fullReview: { ratingNumber: 5, ratingText: 'Peak', review: 'Turned out great after all' } },
-      { titleEN: 'Trash Show', ratingNumber: 1, ratingText: 'Trash', review: 'Rough episode, animation was bad', dateReviewed: '2026-07-10', ed: { ratingNumber: 2, ratingText: 'Trash' } },
+      { titleEN: 'Trash Show', ratingNumber: 1, ratingText: 'Trash', review: 'Rough episode, animation was bad', dateReviewed: '2026-07-10', ed: true },
     ],
     pending: ['Pending Show'],
     skipped: [],
@@ -53,8 +53,8 @@ test('computeGlanceStats totals reviews, averages numeric ratings, and finds the
   assert.equal(s.seasonsCovered, 2);
   assert.equal(s.avgRating, (5 + 5 + 1 + 3 + 2) / 5); // "No Rating Show" excluded; Meh Show/Great Show use their fullReview rating
   assert.equal(s.fullReReviews, 2);
-  assert.equal(s.opCallouts, 1);
-  assert.equal(s.edCallouts, 1);
+  assert.equal(s.likedOps, 1);
+  assert.equal(s.likedEds, 1);
   assert.equal(s.busiestSeasonName, 'Summer 2026');
   assert.equal(s.busiestSeasonCount, 3);
   assert.equal(s.anilistCoveragePct, Math.round((1 / 6) * 100));
@@ -112,29 +112,22 @@ test('computeSecondImpressions is empty when nothing has a full re-review', () =
   assert.deepEqual(s.swings, []);
 });
 
-test('computeOpEdHighlights ranks OP/ED callouts that carry their own rating', () => {
+test('computeOpEdHighlights lists the liked OPs and EDs, with their season', () => {
   const s = computeOpEdHighlights(reviews);
   assert.equal(s.opCount, 1);
   assert.equal(s.edCount, 1);
-  assert.equal(s.topOps[0].titleEN, 'Peak Show');
-  assert.equal(s.topEds[0].titleEN, 'Trash Show');
+  assert.deepEqual(s.likedOps, [{ titleEN: 'Peak Show', seasonName: 'Summer 2026' }]);
+  assert.deepEqual(s.likedEds, [{ titleEN: 'Trash Show', seasonName: 'Summer 2026' }]);
 });
 
-test('computeOpEdHighlights lists every OP/ED callout, unrated ones after rated, with no top-N cap', () => {
-  const callouts = flattenReviews([{
+test('computeOpEdHighlights lists every liked OP by title, with no top-N cap', () => {
+  const liked = flattenReviews([{
     id: 'summer-2026', name: 'Summer 2026',
-    reviewed: [
-      { titleEN: 'Mention B', ratingText: 'Meh', review: '', dateReviewed: '2026-07-01', op: { ratingText: 'Honorable Mention' } },
-      { titleEN: 'Mention A', ratingText: 'Meh', review: '', dateReviewed: '2026-07-01', op: { ratingText: 'Honorable Mention' } },
-      ...[1, 2, 3, 4, 5, 6].map(n => ({ titleEN: `Rated ${n}`, ratingText: 'Meh', review: '', dateReviewed: '2026-07-01', op: { ratingNumber: n } })),
-    ],
+    reviewed: ['F', 'B', 'D', 'A', 'E', 'C', 'G'].map(t => ({ titleEN: `Show ${t}`, ratingText: 'Meh', review: '', dateReviewed: '2026-07-01', op: true })),
     pending: [], skipped: [],
   }]);
-  const s = computeOpEdHighlights(callouts);
-  assert.deepEqual(s.topOps.map(r => r.titleEN), [
-    'Rated 6', 'Rated 5', 'Rated 4', 'Rated 3', 'Rated 2', 'Rated 1', 'Mention A', 'Mention B',
-  ]);
-  assert.equal(s.topOps.at(-1).ratingText, 'Honorable Mention');
+  const s = computeOpEdHighlights(liked);
+  assert.deepEqual(s.likedOps.map(r => r.titleEN), ['A', 'B', 'C', 'D', 'E', 'F', 'G'].map(t => `Show ${t}`));
 });
 
 test('computeRevisitCandidates finds current-season 4/5s without a fullReview, excluding 5/5s and already-revisited ones', () => {
