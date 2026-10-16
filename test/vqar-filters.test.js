@@ -7,7 +7,7 @@ import {
 
 const ep1Only = { titleEN: 'A', ratingNumber: 4, streaming: ['crunchyroll'] };
 const ratedUp = { titleEN: 'B', ratingNumber: 3, fullReview: { ratingNumber: 5 }, streaming: ['hidive', 'crunchyroll'] };
-const ratedDown = { titleEN: 'C', ratingNumber: 4, fullReview: { ratingNumber: 2 }, op: { review: 'banger' } };
+const ratedDown = { titleEN: 'C', ratingNumber: 4, fullReview: { ratingNumber: 2 }, op: true };
 const revisitNoRating = { titleEN: 'D', ratingNumber: 1, fullReview: { review: 'still bad' }, streaming: ['netflix'] };
 const reviews = [ep1Only, ratedUp, ratedDown, revisitNoRating];
 
@@ -72,4 +72,10 @@ test('the query string round-trips, in a fixed order, dropping values that are n
   parsed.has.clear();
   writeChipFiltersToParams(params, parsed);
   assert.equal(params.toString(), 'season=all&rating=5%2C4&on=hidive%2Cnetflix');
+});
+
+test('Extras: finishing the season is its own chip, independent of having a revisit', () => {
+  assert.deepEqual(reviewValues('has', { titleEN: 'E', ratingNumber: 3, finishedSeason: true }), ['finished']);
+  assert.deepEqual(reviewValues('has', { ...ratedUp, finishedSeason: true }), ['revisit', 'up', 'finished']);
+  assert.deepEqual([...chipFiltersFromParams(new URLSearchParams('has=finished')).has], ['finished']);
 });

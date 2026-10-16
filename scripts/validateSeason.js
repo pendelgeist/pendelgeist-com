@@ -206,9 +206,32 @@ export function validateSeason(season, { filename } = {}) {
     if (r.watchProgress !== undefined && typeof r.watchProgress !== 'string') {
       issues.push(`"${label}" has a malformed watchProgress (expected a string)`);
     }
-    for (const key of ['fullReview', 'op', 'ed']) {
-      if (r[key] !== undefined && (typeof r[key] !== 'object' || r[key] === null || Array.isArray(r[key]))) {
-        issues.push(`"${label}" has a malformed ${key} (expected an object)`);
+    if (r.fullReview !== undefined && (typeof r.fullReview !== 'object' || r.fullReview === null || Array.isArray(r.fullReview))) {
+      issues.push(`"${label}" has a malformed fullReview (expected an object)`);
+    }
+    // A liked OP/ED is a bare marking - no rating, no note - so it's either
+    // `true` or left out entirely.
+    for (const key of ['op', 'ed']) {
+      if (r[key] !== undefined && r[key] !== true) {
+        issues.push(`"${label}" has a malformed ${key} (expected true - mark a liked ${key.toUpperCase()} with "${key}": true, or leave it out)`);
+      }
+    }
+    // Same for having watched the whole season - independent of a revisit
+    // or a rating, since a season of trash can get finished too.
+    if (r.finishedSeason !== undefined && r.finishedSeason !== true) {
+      issues.push(`"${label}" has a malformed finishedSeason (expected true - mark a finished season with "finishedSeason": true, or leave it out)`);
+    }
+    // A revisit's rating replaces the episode-1 one everywhere ratings are
+    // sorted, filtered or counted (see effectiveRatingNumber in
+    // public/vqar/rating.js), so one saved without a rating would silently
+    // leave the old rating standing.
+    const revisit = r.fullReview;
+    if (revisit && typeof revisit === 'object' && !Array.isArray(revisit)) {
+      if (!Number.isInteger(revisit.ratingNumber) || revisit.ratingNumber < 0 || revisit.ratingNumber > 5) {
+        issues.push(`"${label}" has a fullReview without a ratingNumber from 0 to 5 - ask for the revisit rating, since it replaces the episode-1 rating in sorting and on /vqar-stats`);
+      }
+      if (!revisit.ratingText) {
+        issues.push(`"${label}" has a fullReview without a ratingText`);
       }
     }
   });

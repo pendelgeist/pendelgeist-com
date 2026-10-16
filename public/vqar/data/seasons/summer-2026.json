@@ -302,10 +302,7 @@
         "crunchyroll"
       ],
       "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00378084/lets-go-kaikigumi",
-      "ed": {
-        "ratingText": "Honorable Mention",
-        "dateReviewed": "2026-10-07"
-      }
+      "ed": true
     },
     {
       "titleEN": "The Frontier Lord Begins with Zero Subjects",
@@ -340,10 +337,7 @@
         "crunchyroll"
       ],
       "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00378018/the-exiled-heavy-knight-knows-how-to-game-the-system",
-      "ed": {
-        "ratingText": "Honorable Mention",
-        "dateReviewed": "2026-09-24"
-      }
+      "ed": true
     },
     {
       "titleEN": "BanG Dream! YUME∞MITA",
@@ -696,14 +690,8 @@
         "netflix"
       ],
       "netflixUrl": "https://www.netflix.com/title/82760630",
-      "op": {
-        "ratingText": "Honorable Mention",
-        "dateReviewed": "2026-09-24"
-      },
-      "ed": {
-        "ratingText": "Honorable Mention",
-        "dateReviewed": "2026-10-14"
-      }
+      "op": true,
+      "ed": true
     }
   ],
   "pending": [],

@@ -86,6 +86,25 @@ run `npm test`. Adding a review = appending to that season's `reviewed` array (o
 tomorrow's date. "Most recent" sorts on it) and removing the title from `pending`/`skipped` if
 it was there.
 
+**Re-reviewing a show** (a revisit after watching more of it): add a `fullReview` object to
+that show's existing entry — `review`, `ratingNumber`, `ratingText`, `dateReviewed`. Don't
+start a new entry. **If the user hasn't given a rating, ask for one before saving.** Offer the
+six tiers (5 Peak, Nice Ep Broh / 4 Yeah, Here's Hoping / 3 Meh, Finishing the Ep / 2 Trash, for
+Second Screen Only / 1 Never, Please No More Like This Ever / 0 Dead, El-Hazard 2 Over This). A
+custom `ratingText` is fine, but it still needs the tier's `ratingNumber`. The revisit's
+`ratingNumber` replaces the episode-1 one in "Highest Rating" sorting, the rating filter, and
+every `/vqar-stats` number (`effectiveRatingNumber` in `public/vqar/rating.js`). A revisit
+saved without one would quietly leave the old rating standing, so `scripts/validateSeason.js`
+rejects it.
+
+**Liking an OP/ED**: set `"op": true` or `"ed": true` on the show's entry. That's the whole
+marking: no rating, note or date, and validation rejects anything but `true`.
+
+**Finishing a season**: set `"finishedSeason": true` on the show's entry when the user says they
+watched the whole season. It's a bare marking like op/ed, and it's independent of everything else.
+Don't infer it from a revisit, which may cover only an episode or two, or from a rating, since a
+season of trash can get finished too. Don't add it unless the user says so.
+
 **Starting a season**: add `seasons/<season>-<year>.json` with a matching `id`, a `name`,
 `"current": true`, and empty `reviewed`/`pending`/`skipped` — then **remove `current` from the
 previous season**, since exactly one may carry it. Rebuild the index and run the tests. Full

@@ -235,7 +235,7 @@ test('a season data load failure (e.g. a stale path in the index) is shown on th
   assert.match(document.getElementById('reviewedShows').textContent, /Summer 2026/);
 });
 
-test('a full-series re-review and OP/ED notes render as addenda below the main review', async () => {
+test('a full-series re-review renders as an addendum, and a liked OP/ED as a marking', async () => {
   const fetch = createPathFetchStub({
     '/vqar/data/index.json': seasonIndex,
     '/vqar/data/seasons/summer-2026.json': {
@@ -248,8 +248,8 @@ test('a full-series re-review and OP/ED notes render as addenda below the main r
         review: 'great start',
         dateReviewed: '2026-07-01',
         fullReview: { ratingNumber: 5, ratingText: 'Nice Ep Broh', review: 'stuck the landing', dateReviewed: '2026-09-20' },
-        op: { ratingText: 'Bop of the year', review: 'incredible guitar riff', dateReviewed: '2026-07-05' },
-        ed: { ratingText: 'Catchy AF', review: 'still stuck in my head', dateReviewed: '2026-07-06' },
+        op: true,
+        ed: true,
       }],
       pending: [],
       skipped: [],
@@ -258,10 +258,10 @@ test('a full-series re-review and OP/ED notes render as addenda below the main r
   const { document } = await loadApp({ fetch });
 
   const labels = [...document.querySelectorAll('.entry-addendum-label')].map((el) => el.textContent);
-  assert.deepEqual(labels, ['Revisit', 'OP', 'ED']);
+  assert.deepEqual(labels, ['Revisit']);
   assert.match(document.getElementById('reviewedShows').textContent, /stuck the landing/);
-  assert.match(document.getElementById('reviewedShows').textContent, /incredible guitar riff/);
-  assert.match(document.getElementById('reviewedShows').textContent, /still stuck in my head/);
+  const marks = [...document.querySelectorAll('.entry-mark')].map((el) => el.textContent);
+  assert.deepEqual(marks, ['Liked OP', 'Liked ED']);
 });
 
 test('a review renders a link per reference site it has, in a fixed order', async () => {
@@ -442,7 +442,7 @@ test('a review with watchProgress renders it in the entry meta; one without does
   assert.equal(badges[0].textContent, 'Progress: Ep 3');
 });
 
-test('search matches text inside a full-series re-review or OP/ED note, not just the main review', async () => {
+test('search matches text inside a full-series re-review, not just the main review', async () => {
   const fetch = createPathFetchStub({
     '/vqar/data/index.json': seasonIndex,
     '/vqar/data/seasons/summer-2026.json': {
@@ -454,7 +454,7 @@ test('search matches text inside a full-series re-review or OP/ED note, not just
         ratingText: 'Finish Ep',
         review: 'great start',
         dateReviewed: '2026-07-01',
-        ed: { ratingText: 'Catchy AF', review: 'best ending song of the year', dateReviewed: '2026-07-06' },
+        fullReview: { ratingNumber: 5, ratingText: 'Peak', review: 'best ending of the year', dateReviewed: '2026-09-06' },
       }],
       pending: [],
       skipped: [],
@@ -462,7 +462,7 @@ test('search matches text inside a full-series re-review or OP/ED note, not just
   });
   const { document } = await loadApp({ fetch });
 
-  search(document, 'best ending song');
+  search(document, 'best ending of the year');
 
   assert.deepEqual(titles(document), ['Summer Show']);
 });
@@ -656,7 +656,7 @@ const filterSeasons = {
       { titleEN: 'Peak Show', ratingNumber: 5, ratingText: 'Peak', review: '', dateReviewed: '2026-10-04', streaming: ['crunchyroll'] },
       { titleEN: 'Hidive Show', ratingNumber: 4, ratingText: 'Hoping', review: '', dateReviewed: '2026-10-03', streaming: ['hidive'] },
       { titleEN: 'Grower', ratingNumber: 3, ratingText: 'Meh', review: '', dateReviewed: '2026-10-02', streaming: ['crunchyroll'], fullReview: { ratingNumber: 5, ratingText: 'Peak' } },
-      { titleEN: 'Trash Show', ratingNumber: 2, ratingText: 'Trash', review: 'bad OP', dateReviewed: '2026-10-01', streaming: ['crunchyroll'], op: { review: 'good OP though' } },
+      { titleEN: 'Trash Show', ratingNumber: 2, ratingText: 'Trash', review: 'bad OP', dateReviewed: '2026-10-01', streaming: ['crunchyroll'], op: true },
     ],
     pending: [],
     skipped: [],
@@ -837,4 +837,28 @@ test('Back to top appears once scrolled a screen down, and scrolls to the top', 
   window.scrollTo = (...args) => calls.push(args);
   button.click();
   assert.deepEqual(calls, [[0, 0]]);
+});
+
+test('a show whose season was finished is marked, and the Extras chip filters to it', async () => {
+  const fetch = createPathFetchStub({
+    '/vqar/data/index.json': seasonIndex,
+    '/vqar/data/seasons/summer-2026.json': {
+      id: 'summer-2026',
+      name: 'Summer 2026',
+      reviewed: [
+        { titleEN: 'Finished Show', ratingNumber: 4, ratingText: 'Hoping', review: '', dateReviewed: '2026-07-02', finishedSeason: true },
+        { titleEN: 'Dropped Show', ratingNumber: 4, ratingText: 'Hoping', review: '', dateReviewed: '2026-07-01' },
+      ],
+      pending: [],
+      skipped: [],
+    },
+  });
+  const { document } = await loadApp({ fetch });
+  await waitFor(() => titles(document).length === 2);
+
+  const marks = [...document.querySelectorAll('.entry-mark')].map((el) => el.textContent);
+  assert.deepEqual(marks, ['Finished season']);
+
+  document.querySelector('.filter-chip[data-dimension="has"][data-value="finished"]').click();
+  assert.deepEqual(titles(document), ['Finished Show']);
 });

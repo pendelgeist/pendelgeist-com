@@ -351,3 +351,27 @@ test('pendingShows and skippedShows pass the per-service links through, null whe
     { title: 'Skip Linked', netflixUrl: 'https://www.netflix.com/title/1', crunchyrollUrl: null },
   ]);
 });
+
+test('a liked OP/ED comes through the API as a boolean', async () => {
+  const assetsStub = createPathFetchStub({
+    '/vqar/data/index.json': seasonIndex,
+    '/vqar/data/seasons/summer-2026.json': {
+      ...seasons['/vqar/data/seasons/summer-2026.json'],
+      reviewed: [{ titleEN: 'Bop Show', ratingText: 'Meh', dateReviewed: '2026-07-01T12:00:00Z', op: true }],
+    },
+  });
+  const result = await run('{ currentSeason { reviewed { titleEN op ed } } }', assetsStub);
+  assert.deepEqual(result.data.currentSeason.reviewed, [{ titleEN: 'Bop Show', op: true, ed: null }]);
+});
+
+test('finishedSeason comes through the API as a boolean', async () => {
+  const assetsStub = createPathFetchStub({
+    '/vqar/data/index.json': seasonIndex,
+    '/vqar/data/seasons/summer-2026.json': {
+      ...seasons['/vqar/data/seasons/summer-2026.json'],
+      reviewed: [{ titleEN: 'Done Show', ratingText: 'Meh', dateReviewed: '2026-07-01T12:00:00Z', finishedSeason: true }],
+    },
+  });
+  const result = await run('{ currentSeason { reviewed { titleEN finishedSeason } } }', assetsStub);
+  assert.deepEqual(result.data.currentSeason.reviewed, [{ titleEN: 'Done Show', finishedSeason: true }]);
+});

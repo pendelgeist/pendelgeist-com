@@ -9,8 +9,8 @@ import {
 } from './filters.js';
 
 /**
- * A follow-up note attached to a Review: a full-series re-review once a
- * "Finish Ep"-rated show is actually finished, or an OP/ED callout.
+ * A full-series re-review attached to a Review, once a "Finish Ep"-rated show
+ * is actually finished.
  * @typedef {Object} SubReview
  * @property {number} [ratingNumber]
  * @property {string} [ratingText]
@@ -27,8 +27,9 @@ import {
  * @property {string} review
  * @property {string} dateReviewed
  * @property {SubReview} [fullReview] - optional full-series re-review
- * @property {SubReview} [op] - optional opening notes/rating
- * @property {SubReview} [ed] - optional ending notes/rating
+ * @property {true} [op] - optional marking: an opening worth remembering
+ * @property {true} [ed] - optional marking: an ending worth remembering
+ * @property {true} [finishedSeason] - optional marking: the whole season got watched, whatever the rating
  * @property {string} season
  * @property {string} seasonName
  * @property {number} _timestamp
@@ -275,8 +276,8 @@ async function loadData() {
 }
 
 /**
- * Renders a follow-up note (full-series re-review, or an OP/ED callout) as a
- * small addendum block appended below the main review.
+ * Renders a full-series re-review as a small addendum block appended below
+ * the main review.
  * @param {string} label
  * @param {SubReview} sub
  */
@@ -360,6 +361,14 @@ function createReviewArticle(r) {
     meta.appendChild(progress);
   }
 
+  for (const [key, text] of [['finishedSeason', 'Finished season'], ['op', 'Liked OP'], ['ed', 'Liked ED']]) {
+    if (!r[key]) continue;
+    const mark = document.createElement('span');
+    mark.className = 'entry-mark';
+    mark.textContent = text;
+    meta.appendChild(mark);
+  }
+
   const streaming = createStreamingRow(r);
   if (streaming) meta.appendChild(streaming);
 
@@ -367,12 +376,6 @@ function createReviewArticle(r) {
 
   if (r.fullReview) {
     body.appendChild(createSubReviewBlock('Revisit', r.fullReview));
-  }
-  if (r.op) {
-    body.appendChild(createSubReviewBlock('OP', r.op));
-  }
-  if (r.ed) {
-    body.appendChild(createSubReviewBlock('ED', r.ed));
   }
 
   article.appendChild(body);
@@ -384,8 +387,6 @@ function searchableFields(r) {
   return [
     r.titleEN, r.titleJP, r.review, r.ratingText,
     r.fullReview?.review, r.fullReview?.ratingText,
-    r.op?.review, r.op?.ratingText,
-    r.ed?.review, r.ed?.ratingText,
   ];
 }
 
