@@ -21,7 +21,7 @@ const seasons = [
     reviewed: [
       { titleEN: 'Peak Show', ratingNumber: 5, ratingText: 'Peak', review: 'An excellent episode all around', dateReviewed: '2026-07-01', anilistId: 111, op: true },
       { titleEN: 'Meh Show', ratingNumber: 3, ratingText: 'Meh', review: 'Just fine, nothing special here', dateReviewed: '2026-07-05', fullReview: { ratingNumber: 5, ratingText: 'Peak', review: 'Turned out great after all' } },
-      { titleEN: 'Trash Show', ratingNumber: 1, ratingText: 'Trash', review: 'Rough episode, animation was bad', dateReviewed: '2026-07-10', ed: true },
+      { titleEN: 'Trash Show', ratingNumber: 1, ratingText: 'Trash', review: 'Rough episode, animation was bad', dateReviewed: '2026-07-10', ed: true, finishedSeason: true },
     ],
     pending: ['Pending Show'],
     skipped: [],
@@ -55,6 +55,7 @@ test('computeGlanceStats totals reviews, averages numeric ratings, and finds the
   assert.equal(s.fullReReviews, 2);
   assert.equal(s.likedOps, 1);
   assert.equal(s.likedEds, 1);
+  assert.equal(s.finishedSeasons, 1);
   assert.equal(s.busiestSeasonName, 'Summer 2026');
   assert.equal(s.busiestSeasonCount, 3);
   assert.equal(s.anilistCoveragePct, Math.round((1 / 6) * 100));
@@ -245,9 +246,10 @@ test('renders the glance stat grid from live-fetched season data', async () => {
   const { document } = await loadApp();
 
   const tiles = [...document.querySelectorAll('#statsGlance .stat-tile')];
-  assert.equal(tiles.length, 8);
-  const totalReviewsTile = tiles.find(t => t.querySelector('.stat-label').textContent === 'Total Reviews');
-  assert.equal(totalReviewsTile.querySelector('.stat-value').textContent, '6');
+  assert.equal(tiles.length, 9);
+  const tile = (label) => tiles.find(t => t.querySelector('.stat-label').textContent === label).querySelector('.stat-value').textContent;
+  assert.equal(tile('Total Reviews'), '6');
+  assert.equal(tile('Seasons Finished'), '1');
 });
 
 test('renders a rating distribution bar chart and a hall of fame table', async () => {

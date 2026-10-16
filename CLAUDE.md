@@ -100,6 +100,11 @@ rejects it.
 **Liking an OP/ED**: set `"op": true` or `"ed": true` on the show's entry. That's the whole
 marking: no rating, note or date, and validation rejects anything but `true`.
 
+**Finishing a season**: set `"finishedSeason": true` on the show's entry when the user says they
+watched the whole season. It's a bare marking like op/ed, and it's independent of everything else.
+Don't infer it from a revisit, which may cover only an episode or two, or from a rating, since a
+season of trash can get finished too. Don't add it unless the user says so.
+
 **Starting a season**: add `seasons/<season>-<year>.json` with a matching `id`, a `name`,
 `"current": true`, and empty `reviewed`/`pending`/`skipped` — then **remove `current` from the
 previous season**, since exactly one may carry it. Rebuild the index and run the tests. Full

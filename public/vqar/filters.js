@@ -23,6 +23,7 @@ export const HAS_OPTIONS = {
   up: 'Rated up on revisit',
   down: 'Rated down on revisit',
   oped: 'Liked OP/ED',
+  finished: 'Finished season',
 };
 
 /** @type {ChipDimension[]} */
@@ -75,6 +76,7 @@ export function reviewValues(dimension, review) {
     if (after < before) values.push('down');
   }
   if (review.op || review.ed) values.push('oped');
+  if (review.finishedSeason === true) values.push('finished');
   return values;
 }
 

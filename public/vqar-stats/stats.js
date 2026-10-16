@@ -60,6 +60,7 @@ export function computeGlanceStats(seasons, reviews) {
     fullReReviews: reviews.filter(r => r.fullReview).length,
     likedOps: reviews.filter(r => r.op === true).length,
     likedEds: reviews.filter(r => r.ed === true).length,
+    finishedSeasons: reviews.filter(r => r.finishedSeason === true).length,
     anilistCoveragePct: reviews.length ? Math.round((withAnilist / reviews.length) * 100) : null,
     busiestSeasonName: busiest?.seasonName ?? null,
     busiestSeasonCount: busiest?.count ?? null,

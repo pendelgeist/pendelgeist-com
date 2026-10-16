@@ -29,6 +29,7 @@ import {
  * @property {SubReview} [fullReview] - optional full-series re-review
  * @property {true} [op] - optional marking: an opening worth remembering
  * @property {true} [ed] - optional marking: an ending worth remembering
+ * @property {true} [finishedSeason] - optional marking: the whole season got watched, whatever the rating
  * @property {string} season
  * @property {string} seasonName
  * @property {number} _timestamp
@@ -360,7 +361,7 @@ function createReviewArticle(r) {
     meta.appendChild(progress);
   }
 
-  for (const [key, text] of [['op', 'Liked OP'], ['ed', 'Liked ED']]) {
+  for (const [key, text] of [['finishedSeason', 'Finished season'], ['op', 'Liked OP'], ['ed', 'Liked ED']]) {
     if (!r[key]) continue;
     const mark = document.createElement('span');
     mark.className = 'entry-mark';

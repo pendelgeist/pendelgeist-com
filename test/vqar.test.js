@@ -838,3 +838,27 @@ test('Back to top appears once scrolled a screen down, and scrolls to the top', 
   button.click();
   assert.deepEqual(calls, [[0, 0]]);
 });
+
+test('a show whose season was finished is marked, and the Extras chip filters to it', async () => {
+  const fetch = createPathFetchStub({
+    '/vqar/data/index.json': seasonIndex,
+    '/vqar/data/seasons/summer-2026.json': {
+      id: 'summer-2026',
+      name: 'Summer 2026',
+      reviewed: [
+        { titleEN: 'Finished Show', ratingNumber: 4, ratingText: 'Hoping', review: '', dateReviewed: '2026-07-02', finishedSeason: true },
+        { titleEN: 'Dropped Show', ratingNumber: 4, ratingText: 'Hoping', review: '', dateReviewed: '2026-07-01' },
+      ],
+      pending: [],
+      skipped: [],
+    },
+  });
+  const { document } = await loadApp({ fetch });
+  await waitFor(() => titles(document).length === 2);
+
+  const marks = [...document.querySelectorAll('.entry-mark')].map((el) => el.textContent);
+  assert.deepEqual(marks, ['Finished season']);
+
+  document.querySelector('.filter-chip[data-dimension="has"][data-value="finished"]').click();
+  assert.deepEqual(titles(document), ['Finished Show']);
+});

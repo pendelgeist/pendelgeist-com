@@ -212,6 +212,12 @@ extras:
   bare marking, with no rating or note: anything but `true` is rejected, and an OP/ED you
   didn't note is simply left out. `/vqar` shows it as a "Liked OP"/"Liked ED" pill.
 
+A review may also carry `finishedSeason: true` — you watched the whole season. It's the same
+kind of bare marking (anything but `true` is rejected), and it's **independent of everything
+else**: a revisit doesn't imply it (one may cover only an episode or two), and a low rating
+doesn't rule it out (a season of trash can get finished too). It shows as a "Finished season"
+pill, has its own Extras chip, and is counted on `/vqar-stats` as "Seasons Finished".
+
 `dateReviewed` on a top-level review is a full ISO 8601 **timestamp** — `2026-10-08T14:30:00Z`
 (UTC) or with an offset like `-07:00` — not just a date. "Most recent" sorts on it, and a
 bare date would tie every review written the same day. Validation rejects a date with no
@@ -321,7 +327,7 @@ A season id that can't be `<season>-<year>` (a one-off, a special) needs an expl
 
 Besides Season / Search / Sort, `/vqar` has three rows of toggle chips: **Rating** (the 0–5
 tiers, labeled from `RATING_NUMBER_LABELS`), **Streaming** (only the services something in the
-selected season is on), and **Extras** (revisited, rated up/down on revisit, liked OP/ED). Within
+selected season is on), and **Extras** (revisited, rated up/down on revisit, liked OP/ED, finished season). Within
 a row any pressed chip matches; across rows every row with a selection must match. A show with a
 revisit is filed under its revisit rating, the same number "Highest Rating" sorts on. Each chip's
 count ignores its own row's selection, so it says how many reviews pressing it would bring in.

@@ -216,6 +216,11 @@ export function validateSeason(season, { filename } = {}) {
         issues.push(`"${label}" has a malformed ${key} (expected true - mark a liked ${key.toUpperCase()} with "${key}": true, or leave it out)`);
       }
     }
+    // Same for having watched the whole season - independent of a revisit
+    // or a rating, since a season of trash can get finished too.
+    if (r.finishedSeason !== undefined && r.finishedSeason !== true) {
+      issues.push(`"${label}" has a malformed finishedSeason (expected true - mark a finished season with "finishedSeason": true, or leave it out)`);
+    }
     // A revisit's rating replaces the episode-1 one everywhere ratings are
     // sorted, filtered or counted (see effectiveRatingNumber in
     // public/vqar/rating.js), so one saved without a rating would silently

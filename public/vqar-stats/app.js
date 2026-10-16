@@ -97,6 +97,7 @@ function renderGlanceStats(seasons, reviews) {
     { label: 'Seasons Covered', value: String(s.seasonsCovered) },
     { label: 'Average Rating', value: s.avgRating != null ? `${s.avgRating.toFixed(1)} / 5` : '—' },
     { label: 'Full Re-Reviews', value: String(s.fullReReviews) },
+    { label: 'Seasons Finished', value: String(s.finishedSeasons) },
     { label: 'Liked OPs', value: String(s.likedOps) },
     { label: 'Liked EDs', value: String(s.likedEds) },
     { label: 'AniList-Linked', value: s.anilistCoveragePct != null ? `${s.anilistCoveragePct}%` : '—' },

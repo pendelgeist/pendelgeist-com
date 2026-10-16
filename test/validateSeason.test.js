@@ -501,3 +501,16 @@ test('flags an op/ed that is anything but true', () => {
     assert.ok(issues.some(i => i.includes('"Old-Shape OP Show"') && i.includes('ed')), `accepted ${JSON.stringify(value)}`);
   }
 });
+
+test('finishedSeason is a bare true marking, like op/ed', () => {
+  const ok = cleanSeason();
+  ok.reviewed[0].finishedSeason = true;
+  assert.deepEqual(validateSeason(ok), []);
+
+  for (const value of [false, 'yes', 1, { date: '2026-09-01' }]) {
+    const season = cleanSeason();
+    season.reviewed[0].finishedSeason = value;
+    const issues = validateSeason(season);
+    assert.ok(issues.some(i => i.includes('"Cool Show"') && i.includes('finishedSeason')), `accepted ${JSON.stringify(value)}`);
+  }
+});

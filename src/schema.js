@@ -35,6 +35,8 @@ type Review {
   op: Boolean
   "True when the ending was marked as one worth remembering."
   ed: Boolean
+  "True when the whole season was watched - independent of any re-review or rating."
+  finishedSeason: Boolean
   "The id of the season this review belongs to."
   season: ID!
   "The display name of the season this review belongs to."

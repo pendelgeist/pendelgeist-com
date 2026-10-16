@@ -73,3 +73,9 @@ test('the query string round-trips, in a fixed order, dropping values that are n
   writeChipFiltersToParams(params, parsed);
   assert.equal(params.toString(), 'season=all&rating=5%2C4&on=hidive%2Cnetflix');
 });
+
+test('Extras: finishing the season is its own chip, independent of having a revisit', () => {
+  assert.deepEqual(reviewValues('has', { titleEN: 'E', ratingNumber: 3, finishedSeason: true }), ['finished']);
+  assert.deepEqual(reviewValues('has', { ...ratedUp, finishedSeason: true }), ['revisit', 'up', 'finished']);
+  assert.deepEqual([...chipFiltersFromParams(new URLSearchParams('has=finished')).has], ['finished']);
+});
