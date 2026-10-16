@@ -22,6 +22,17 @@ type SubReview {
   dateReviewed: String
 }
 
+"""A show's AniList metadata, generated from its anilistId by scripts/fetch-anilist-tags.js."""
+type AniListInfo {
+  "AniList's format, e.g. TV, TV_SHORT, ONA, MOVIE."
+  format: String
+  genres: [String!]!
+  "Non-spoiler, non-adult tags AniList ranks at least 60% relevant, most relevant first."
+  tags: [String!]!
+  "Main animation studios."
+  studios: [String!]!
+}
+
 """A single-episode review of a show, plus optional follow-up notes."""
 type Review {
   titleEN: String!
@@ -43,6 +54,8 @@ type Review {
   seasonName: String!
   "Optional AniList media id, for linking out to the show's AniList page."
   anilistId: Int
+  "Format, genres, tags and studios from AniList; null when the review has no anilistId."
+  anilist: AniListInfo
   "Optional Anime News Network encyclopedia id, for linking out to the show's ANN page."
   annId: Int
   "Optional English Wikipedia article URL. Stored as a URL rather than an id, since Wikipedia keys on the article title."

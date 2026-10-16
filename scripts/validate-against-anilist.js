@@ -20,9 +20,9 @@
  */
 import { resolveTargets } from './loadTargets.js';
 import { titlesLikelyMatch } from './anilistMatch.js';
+import { anilistRequest } from './anilistClient.js';
 import { entryTitle } from '../public/vqar/list-entries.js';
 
-const ANILIST_ENDPOINT = 'https://graphql.anilist.co';
 const DEFAULT_DELAY_MS = 1500;
 
 const MEDIA_BY_ID_QUERY = `#graphql
@@ -44,20 +44,6 @@ const MEDIA_BY_SEARCH_QUERY = `#graphql
     }
   }
 `;
-
-async function anilistRequest(query, variables) {
-  const response = await fetch(ANILIST_ENDPOINT, {
-    method: 'POST',
-    headers: { 'content-type': 'application/json', accept: 'application/json' },
-    body: JSON.stringify({ query, variables }),
-  });
-  const body = await response.json();
-  if (!response.ok || body.errors) {
-    const message = body.errors?.map(e => e.message).join('; ') ?? `HTTP ${response.status}`;
-    throw new Error(message);
-  }
-  return body.data;
-}
 
 const lookupById = (id) => anilistRequest(MEDIA_BY_ID_QUERY, { id }).then(d => d.Media);
 const lookupBySearch = (search) => anilistRequest(MEDIA_BY_SEARCH_QUERY, { search }).then(d => d.Media);

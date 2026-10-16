@@ -79,3 +79,31 @@ test('Extras: finishing the season is its own chip, independent of having a revi
   assert.deepEqual(reviewValues('has', { ...ratedUp, finishedSeason: true }), ['revisit', 'up', 'finished']);
   assert.deepEqual([...chipFiltersFromParams(new URLSearchParams('has=finished')).has], ['finished']);
 });
+
+const tagged = {
+  titleEN: 'T', ratingNumber: 1,
+  anilist: { format: 'TV', genres: ['Action', 'Fantasy'], tags: ['Isekai', 'Male Protagonist'], studios: ['GoHands'] },
+};
+const untagged = { titleEN: 'U', ratingNumber: 1 };
+
+test('Format, Genre, Tag and Studio come from the generated anilist object', () => {
+  assert.deepEqual(reviewValues('format', tagged), ['TV']);
+  assert.deepEqual(reviewValues('genre', tagged), ['Action', 'Fantasy']);
+  assert.deepEqual(reviewValues('tag', tagged), ['Isekai', 'Male Protagonist']);
+  assert.deepEqual(reviewValues('studio', tagged), ['GoHands']);
+  for (const dimension of ['format', 'genre', 'tag', 'studio']) assert.deepEqual(reviewValues(dimension, untagged), []);
+});
+
+test('"all the isekai I hated": a tag and a rating combine like any two rows', () => {
+  const f = filters({ tag: ['Isekai'], rating: ['0', '1'] });
+  assert.deepEqual(titles([tagged, untagged, ep1Only].filter((r) => matchesChipFilters(r, f))), ['T']);
+});
+
+test('open-ended rows take any value from the URL and serialize alphabetically; Format stays fixed', () => {
+  const parsed = chipFiltersFromParams(new URLSearchParams('tag=Isekai&genre=Slice+of+Life,Action&format=TV,BOGUS'));
+  assert.deepEqual([...parsed.tag], ['Isekai']);
+  assert.deepEqual([...parsed.format], ['TV']);
+  const params = new URLSearchParams();
+  writeChipFiltersToParams(params, parsed);
+  assert.equal(params.get('genre'), 'Action,Slice of Life');
+});

@@ -9,7 +9,8 @@
     "build-fsar-index": "node scripts/build-fsar-index.js",
     "build-vqar-index": "node scripts/build-vqar-index.js",
     "dev": "wrangler dev",
-    "deploy": "wrangler deploy"
+    "deploy": "wrangler deploy",
+    "fetch-anilist-tags": "node scripts/fetch-anilist-tags.js"
   },
   "dependencies": {
     "graphql": "^17.0.2"

@@ -1,17 +1,20 @@
 /**
- * The chip filters on /vqar - Rating, Streaming, Extras - kept pure and
+ * The filters on /vqar - Rating, Streaming, Extras, plus Format, Genre, Tag
+ * and Studio from a review's generated `anilist` object - kept pure and
  * DOM-free the way /vqar-stats keeps its crunching in stats.js, so the
  * matching and counting rules are testable without a page.
  *
- * One rule throughout: within a row, any selected chip matches (HIDIVE *or*
+ * One rule throughout: within a row, any selected value matches (HIDIVE *or*
  * Netflix); across rows, every row with a selection has to match (a 5 *and*
- * on HIDIVE). A row with nothing selected doesn't filter at all.
+ * on HIDIVE). A row with nothing selected doesn't filter at all. Tag and
+ * Studio are dropdowns rather than chips - there are hundreds of them - but
+ * they're rows like any other here.
  */
 
 import { effectiveRatingNumber, RATING_NUMBER_LABELS } from './rating.js';
 import { STREAMING_SERVICES } from '../streaming.js';
 
-/** @typedef {'rating'|'on'|'has'} ChipDimension */
+/** @typedef {'rating'|'on'|'has'|'format'|'genre'|'tag'|'studio'} ChipDimension */
 /** @typedef {Record<ChipDimension, Set<string>>} ChipFilters */
 
 /** Highest first, matching "Highest Rating" being the more common sort. */
@@ -26,19 +29,36 @@ export const HAS_OPTIONS = {
   finished: 'Finished season',
 };
 
-/** @type {ChipDimension[]} */
-export const CHIP_DIMENSIONS = ['rating', 'on', 'has'];
+/** AniList's format enum, as the Format row labels it, in display order. */
+export const FORMAT_LABELS = {
+  TV: 'TV',
+  TV_SHORT: 'TV Short',
+  ONA: 'ONA',
+  OVA: 'OVA',
+  MOVIE: 'Movie',
+  SPECIAL: 'Special',
+  MUSIC: 'Music',
+};
 
-/** Every value each row can hold, in the order chips render and URLs serialize. */
+/** @type {ChipDimension[]} */
+export const CHIP_DIMENSIONS = ['rating', 'on', 'has', 'format', 'genre', 'tag', 'studio'];
+
+/**
+ * Every value each fixed row can hold, in the order chips render and URLs
+ * serialize. Genre, Tag and Studio are open-ended - whatever AniList calls
+ * them - so they take any value and serialize alphabetically.
+ * @type {Partial<Record<ChipDimension, string[]>>}
+ */
 const KNOWN_VALUES = {
   rating: RATING_VALUES,
   on: Object.keys(STREAMING_SERVICES),
   has: Object.keys(HAS_OPTIONS),
+  format: Object.keys(FORMAT_LABELS),
 };
 
 /** @returns {ChipFilters} */
 export function emptyChipFilters() {
-  return { rating: new Set(), on: new Set(), has: new Set() };
+  return Object.fromEntries(CHIP_DIMENSIONS.map(dimension => [dimension, new Set()]));
 }
 
 /**
@@ -67,6 +87,10 @@ export function reviewValues(dimension, review) {
   if (dimension === 'on') {
     return Array.isArray(review.streaming) ? review.streaming : [];
   }
+  if (dimension === 'format') return review.anilist?.format ? [review.anilist.format] : [];
+  if (dimension === 'genre') return review.anilist?.genres ?? [];
+  if (dimension === 'tag') return review.anilist?.tags ?? [];
+  if (dimension === 'studio') return review.anilist?.studios ?? [];
   const values = [];
   if (review.fullReview) values.push('revisit');
   const before = review.ratingNumber;
@@ -122,9 +146,9 @@ export function activeChipCount(filters) {
 }
 
 /**
- * Reads the chip rows out of a query string (`?rating=4,5&on=hidive`).
- * Values that aren't a known chip are dropped rather than kept as a filter
- * nothing could match.
+ * Reads the rows out of a query string (`?rating=4,5&on=hidive&tag=Isekai`).
+ * A value that isn't a known chip on a fixed row is dropped rather than kept
+ * as a filter nothing could match; an open row takes any non-empty value.
  * @param {URLSearchParams} params
  * @returns {ChipFilters}
  */
@@ -132,22 +156,28 @@ export function chipFiltersFromParams(params) {
   const filters = emptyChipFilters();
   for (const dimension of CHIP_DIMENSIONS) {
     for (const value of (params.get(dimension) ?? '').split(',')) {
-      if (KNOWN_VALUES[dimension].includes(value)) filters[dimension].add(value);
+      const known = KNOWN_VALUES[dimension];
+      if (known ? known.includes(value) : value !== '') filters[dimension].add(value);
     }
   }
   return filters;
 }
 
 /**
- * Writes the chip rows into `params`, in a fixed order so the same filters
- * always give the same URL; an empty row is removed.
+ * Writes the rows into `params`, in a fixed order so the same filters always
+ * give the same URL; an empty row is removed.
  * @param {URLSearchParams} params
  * @param {ChipFilters} filters
  */
 export function writeChipFiltersToParams(params, filters) {
+  // Cleared first and re-added in CHIP_DIMENSIONS order, so the URL doesn't
+  // depend on which order the filters were picked in.
+  for (const dimension of CHIP_DIMENSIONS) params.delete(dimension);
   for (const dimension of CHIP_DIMENSIONS) {
-    const values = KNOWN_VALUES[dimension].filter(value => filters[dimension].has(value));
+    const known = KNOWN_VALUES[dimension];
+    const values = known
+      ? known.filter(value => filters[dimension].has(value))
+      : [...filters[dimension]].sort((a, b) => a.localeCompare(b));
     if (values.length > 0) params.set(dimension, values.join(','));
-    else params.delete(dimension);
   }
 }

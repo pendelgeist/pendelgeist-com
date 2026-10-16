@@ -21,6 +21,34 @@
         "ratingText": "Meh, Finishing the Ep",
         "review": "The show definitely has a cool visual vibe to it and good production values, but the first episode is just too dark and brutal, and I don't need that right now, so I'm gonna pass on it. But it is a cool premise, and I think a lot of it is well done. There's a lot of rotoscoping-type work in it, well done, just not something I want to dedicate my time to right now.",
         "dateReviewed": "2026-07-04"
+      },
+      "anilist": {
+        "format": "ONA",
+        "genres": [
+          "Action",
+          "Drama",
+          "Sci-Fi"
+        ],
+        "tags": [
+          "Politics",
+          "War",
+          "Dystopian",
+          "Military",
+          "Philosophy",
+          "Post-Apocalyptic",
+          "Revenge",
+          "Class Struggle",
+          "Male Protagonist",
+          "Seinen",
+          "Gore",
+          "Ensemble Cast",
+          "Satire",
+          "Primarily Adult Cast",
+          "Primarily Male Cast"
+        ],
+        "studios": [
+          "Studio Kafka"
+        ]
       }
     },
     {
@@ -35,7 +63,26 @@
       "streaming": [
         "crunchyroll"
       ],
-      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00374360/kusunokis-garden-of-gods"
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00374360/kusunokis-garden-of-gods",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Comedy",
+          "Fantasy",
+          "Slice of Life"
+        ],
+        "tags": [
+          "Gods",
+          "Youkai",
+          "Iyashikei",
+          "Exorcism",
+          "Rural",
+          "Episodic"
+        ],
+        "studios": [
+          "JUVENAGE"
+        ]
+      }
     },
     {
       "titleEN": "Paranoia Agent",
@@ -49,7 +96,37 @@
       "streaming": [
         "crunchyroll"
       ],
-      "crunchyrollUrl": "https://www.crunchyroll.com/series/G5PHNMW8E/paranoia-agent"
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/G5PHNMW8E/paranoia-agent",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Drama",
+          "Mystery",
+          "Psychological",
+          "Supernatural",
+          "Thriller"
+        ],
+        "tags": [
+          "Denpa",
+          "Crime",
+          "Philosophy",
+          "Detective",
+          "Urban Fantasy",
+          "Ensemble Cast",
+          "Police",
+          "Urban",
+          "Male Protagonist",
+          "Episodic",
+          "Disability",
+          "Satire",
+          "Dissociative Identities",
+          "Bullying",
+          "Female Protagonist"
+        ],
+        "studios": [
+          "MADHOUSE"
+        ]
+      }
     },
     {
       "titleEN": "Hokuto no Ken: Fist of the North Star",
@@ -63,7 +140,28 @@
       "streaming": [
         "prime"
       ],
-      "primeUrl": "https://www.amazon.com/gp/video/detail/B0GPCSSMTB"
+      "primeUrl": "https://www.amazon.com/gp/video/detail/B0GPCSSMTB",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Action",
+          "Drama",
+          "Sci-Fi"
+        ],
+        "tags": [
+          "CGI",
+          "Full CGI",
+          "Post-Apocalyptic",
+          "Martial Arts",
+          "Shounen",
+          "Male Protagonist",
+          "Gore",
+          "Nudity"
+        ],
+        "studios": [
+          "TMS Entertainment"
+        ]
+      }
     },
     {
       "titleEN": "Snowball Earth",
@@ -85,6 +183,32 @@
         "ratingText": "Yeah, Here's Hoping",
         "review": "This is a pretty cool premise and well done. I've liked where it's continued to go from the first little bit that I watched. It definitely has an interesting mix of 2D and 3D stuff, leaning more into the 3D, which I can completely understand why they would've done. I'm curious where the story and all the work is gonna go, but it's pretty well done, and I like it — I find the characters genuinely engaging. It's got a cool world and idea of things there, and I feel like there's more to explore. Hopefully it continues to be good; I'm only a couple episodes in and it seems that way so far.",
         "dateReviewed": "2026-07-04"
+      },
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Action",
+          "Mecha",
+          "Sci-Fi"
+        ],
+        "tags": [
+          "Post-Apocalyptic",
+          "Kaiju",
+          "Robots",
+          "Artificial Intelligence",
+          "Male Protagonist",
+          "Snowscape",
+          "Seinen",
+          "Aliens",
+          "Full CGI",
+          "CGI",
+          "Space",
+          "Swordplay",
+          "Space Opera"
+        ],
+        "studios": [
+          "Studio KAI"
+        ]
       }
     },
     {
@@ -105,6 +229,29 @@
         "ratingText": "Trash, for Second Screen Only",
         "review": "This is another very well-done show. I think it's gonna be a compilation of stories about different girls at an artistic high school, focusing around one at a time. Very nice production, well done overall, so it's a good show. I just don't think it's something I'm super interested in watching right now, but I could be convinced otherwise, and I could see other people being really into the show, 'cause it looks like it could actually be pretty good.",
         "dateReviewed": "2026-07-04"
+      },
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Drama",
+          "Music",
+          "Romance"
+        ],
+        "tags": [
+          "Primarily Female Cast",
+          "Ensemble Cast",
+          "School",
+          "Josei",
+          "Boarding School",
+          "Episodic",
+          "Acting",
+          "Musical Theater",
+          "Bullying",
+          "Coming of Age"
+        ],
+        "studios": [
+          "MADHOUSE"
+        ]
       }
     },
     {
@@ -125,6 +272,25 @@
         "ratingText": "Peak, Nice Ep Broh",
         "review": "This has been one of my biggest surprise shows of the season. I started trying to read the manga a while ago, and I just didn't quite get into it. But this anime version is fabulous. They've done such a great job taking the story, and taking rakugo — which is such a weird, very Japanese thing, a subculture even over there — and made it into this really cool drama with interesting, good characters. The production values are just great throughout; clearly it's a show that's been done with a lot of care. So I'm very happy and surprised that it's been such a great show. I'm only a few eps in now, but I'm definitely gonna keep watching through the end of the season. It's really cool to see some of these things and learn a bit about another piece of Japanese culture — another art form that I've heard of but don't really know anything about. So in that way it's kind of like a sports anime, in that you really get to learn the details of this art form, which has kind of a competition but kind of not, and how that works. It's very well done.",
         "dateReviewed": "2026-07-04"
+      },
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Drama"
+        ],
+        "tags": [
+          "Rakugo",
+          "Female Protagonist",
+          "Shounen",
+          "Acting",
+          "Coming of Age",
+          "Revenge",
+          "Urban",
+          "Work"
+        ],
+        "studios": [
+          "ZEXCS"
+        ]
       }
     },
     {
@@ -144,6 +310,30 @@
         "ratingText": "Trash, for Second Screen Only",
         "review": "I never went back to the show, and I'm OK with that. I've got enough things to watch, and it's not the sort of thing that's called me back and forced me to check it out, particularly because I don't generally watch continuing longer-form stuff on YouTube. But it's better that it's on YouTube than on Amazon or HiDive.",
         "dateReviewed": "2026-07-04"
+      },
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Mahou Shoujo",
+          "Music"
+        ],
+        "tags": [
+          "Magic",
+          "Idol",
+          "Urban Fantasy",
+          "Aliens",
+          "Female Protagonist",
+          "Urban",
+          "Primarily Female Cast",
+          "Henshin",
+          "Primarily Teen Cast",
+          "Coming of Age",
+          "CGI",
+          "Kids"
+        ],
+        "studios": [
+          "Studio Pierrot"
+        ]
       }
     },
     {
@@ -158,7 +348,25 @@
       "streaming": [
         "crunchyroll"
       ],
-      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00371668/haibaras-teenage-new-game"
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00371668/haibaras-teenage-new-game",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Romance",
+          "Slice of Life"
+        ],
+        "tags": [
+          "Age Regression",
+          "Heterosexual",
+          "Rehabilitation",
+          "School",
+          "Male Protagonist",
+          "Primarily Teen Cast"
+        ],
+        "studios": [
+          "Studio Comet"
+        ]
+      }
     },
     {
       "titleEN": "Killed Again, Mr. Detective.",
@@ -172,7 +380,22 @@
       "streaming": [
         "crunchyroll"
       ],
-      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00371787/killed-again-mr-detective"
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00371787/killed-again-mr-detective",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Mystery",
+          "Psychological",
+          "Supernatural"
+        ],
+        "tags": [
+          "Heterosexual",
+          "Detective"
+        ],
+        "studios": [
+          "LIDENFILMS"
+        ]
+      }
     },
     {
       "titleEN": "The Drops of God",
@@ -186,7 +409,25 @@
       "streaming": [
         "crunchyroll"
       ],
-      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00371872/the-drops-of-god"
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00371872/the-drops-of-god",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Drama",
+          "Mystery",
+          "Slice of Life"
+        ],
+        "tags": [
+          "Bar",
+          "Seinen",
+          "Male Protagonist",
+          "Food",
+          "CGI"
+        ],
+        "studios": [
+          "Satelight"
+        ]
+      }
     },
     {
       "titleEN": "Kujima: Why Sing, When You Can Warble?",
@@ -200,7 +441,26 @@
       "streaming": [
         "crunchyroll"
       ],
-      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00371849/kujima-why-sing-when-you-can-warble"
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00371849/kujima-why-sing-when-you-can-warble",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Comedy",
+          "Fantasy",
+          "Slice of Life"
+        ],
+        "tags": [
+          "Iyashikei",
+          "Animals",
+          "Surreal Comedy",
+          "Anthropomorphism",
+          "Family Life",
+          "Male Protagonist"
+        ],
+        "studios": [
+          "Studio Hibari"
+        ]
+      }
     },
     {
       "titleEN": "Mao",
@@ -220,6 +480,27 @@
         "ratingText": "Peak, Nice Ep Broh",
         "review": "This ended up being a great Rumiko Takahashi show. I really like the setting, the characters, the animation style — it's just very well done. It definitely has some of the feel of Inuyasha, but done differently, with a different relationship between now and the main female lead. There's a lot of interesting scenarios and drama that happens, and some interesting stuff with the timeline, because it's going back to the Taisho era — so it's not going back to a time that's before anything recognizable now. I think that makes it very interesting, in that it's kind of historical fiction but adding in more fantastical elements, while also being a world you can recognize and comprehend even while being a while ago. So I've definitely enjoyed it and will keep watching the full season.",
         "dateReviewed": "2026-07-04"
+      },
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Drama",
+          "Mystery",
+          "Romance",
+          "Supernatural"
+        ],
+        "tags": [
+          "Historical",
+          "Demons",
+          "Youkai",
+          "Shounen",
+          "Male Protagonist",
+          "Isekai",
+          "Exorcism"
+        ],
+        "studios": [
+          "Sunrise"
+        ]
       }
     },
     {
@@ -233,7 +514,36 @@
       "annId": 38567,
       "streaming": [
         "netflix"
-      ]
+      ],
+      "anilist": {
+        "format": "ONA",
+        "genres": [
+          "Action",
+          "Comedy",
+          "Supernatural"
+        ],
+        "tags": [
+          "Surreal Comedy",
+          "Angels",
+          "Urban Fantasy",
+          "Mythology",
+          "Seinen",
+          "Meta",
+          "Slapstick",
+          "Male Protagonist",
+          "Female Protagonist",
+          "Ghost",
+          "Urban",
+          "Office",
+          "Guns",
+          "Episodic",
+          "Work",
+          "Cycling"
+        ],
+        "studios": [
+          "NAZ"
+        ]
+      }
     },
     {
       "titleEN": "The Food Diary of Miss Maid",
@@ -247,7 +557,29 @@
       "streaming": [
         "crunchyroll"
       ],
-      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00375170/the-food-diary-of-miss-maid"
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00375170/the-food-diary-of-miss-maid",
+      "anilist": {
+        "format": "ONA",
+        "genres": [
+          "Slice of Life"
+        ],
+        "tags": [
+          "Food",
+          "Iyashikei",
+          "Maids",
+          "Female Protagonist",
+          "Seinen",
+          "Episodic",
+          "Cute Girls Doing Cute Things",
+          "Urban",
+          "Primarily Female Cast",
+          "Educational"
+        ],
+        "studios": [
+          "EMT Squared",
+          "Magic Bus"
+        ]
+      }
     },
     {
       "titleEN": "The Classroom of a Black Cat and a Witch",
@@ -261,7 +593,32 @@
       "streaming": [
         "crunchyroll"
       ],
-      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00374357/the-classroom-of-a-black-cat-and-a-witch"
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00374357/the-classroom-of-a-black-cat-and-a-witch",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Action",
+          "Comedy",
+          "Fantasy"
+        ],
+        "tags": [
+          "Magic",
+          "Female Protagonist",
+          "Heterosexual",
+          "Animals",
+          "Witch",
+          "Teacher",
+          "Astronomy",
+          "Coming of Age",
+          "Curses",
+          "Shapeshifting",
+          "Primarily Teen Cast",
+          "Shounen"
+        ],
+        "studios": [
+          "LIDENFILMS"
+        ]
+      }
     },
     {
       "titleEN": "Ghost Concert: Missing Songs",
@@ -275,7 +632,33 @@
       "streaming": [
         "crunchyroll"
       ],
-      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00374796/ghost-concert--missing-songs"
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00374796/ghost-concert--missing-songs",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Action",
+          "Music",
+          "Sci-Fi",
+          "Supernatural"
+        ],
+        "tags": [
+          "Female Protagonist",
+          "Historical",
+          "Super Power",
+          "Dystopian",
+          "Exorcism",
+          "Urban",
+          "Ghost",
+          "Idol",
+          "Artificial Intelligence",
+          "Swordplay",
+          "Archery",
+          "Urban Fantasy"
+        ],
+        "studios": [
+          "ENGI"
+        ]
+      }
     },
     {
       "titleEN": "Botan Kamiina Fully Blossoms When Drunk",
@@ -289,7 +672,34 @@
       "streaming": [
         "crunchyroll"
       ],
-      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00371890/botan-kamiina-fully-blossoms-when-drunk"
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00371890/botan-kamiina-fully-blossoms-when-drunk",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Romance",
+          "Slice of Life"
+        ],
+        "tags": [
+          "Cohabitation",
+          "Female Protagonist",
+          "Primarily Female Cast",
+          "Yuri",
+          "Primarily Adult Cast",
+          "Iyashikei",
+          "LGBTQ+ Themes",
+          "Bar",
+          "College",
+          "Ensemble Cast",
+          "Outdoor Activities",
+          "Seinen",
+          "Food",
+          "Travel",
+          "Episodic"
+        ],
+        "studios": [
+          "Soigne"
+        ]
+      }
     },
     {
       "titleEN": "Rilakkuma",
@@ -304,7 +714,18 @@
         "crunchyroll"
       ],
       "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00374493/rilakkuma",
-      "ed": true
+      "ed": true,
+      "anilist": {
+        "format": "TV_SHORT",
+        "genres": [
+          "Fantasy",
+          "Slice of Life"
+        ],
+        "tags": [],
+        "studios": [
+          "Production I.G"
+        ]
+      }
     },
     {
       "titleEN": "The Strongest Job is Apparently Not a Hero or a Sage, but an Appraiser (Provisional)!",
@@ -318,7 +739,26 @@
       "streaming": [
         "crunchyroll"
       ],
-      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00371875/the-strongest-job-is-apparently-not-a-hero-or-a-sage-but-an-appraiser-provisional"
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00371875/the-strongest-job-is-apparently-not-a-hero-or-a-sage-but-an-appraiser-provisional",
+      "anilist": {
+        "format": "ONA",
+        "genres": [
+          "Action",
+          "Adventure",
+          "Comedy",
+          "Fantasy"
+        ],
+        "tags": [
+          "Slapstick",
+          "Isekai",
+          "Surreal Comedy",
+          "Maids",
+          "Seinen"
+        ],
+        "studios": [
+          "Studio Flad"
+        ]
+      }
     },
     {
       "titleEN": "An Observation Log of My Fiancée Who Calls Herself a Villainess",
@@ -332,7 +772,29 @@
       "streaming": [
         "crunchyroll"
       ],
-      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00371887/an-observation-log-of-my-fiance-who-calls-herself-a-villainess"
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00371887/an-observation-log-of-my-fiance-who-calls-herself-a-villainess",
+      "anilist": {
+        "format": "ONA",
+        "genres": [
+          "Comedy",
+          "Fantasy",
+          "Romance",
+          "Slice of Life"
+        ],
+        "tags": [
+          "Heterosexual",
+          "Villainess",
+          "Male Protagonist",
+          "Royal Affairs",
+          "Female Protagonist",
+          "Ojou-sama",
+          "Isekai",
+          "Shoujo"
+        ],
+        "studios": [
+          "Ashi Productions"
+        ]
+      }
     },
     {
       "titleEN": "Needy Girl Overdose",
@@ -352,6 +814,29 @@
         "ratingText": "Trash, for Second Screen Only",
         "review": "The show got really weird and stayed very weird. It has kind of a Bakemonogatari style to it, but much less dialogue-driven, and leans more into monologue, trying to make a million statements about modern social media culture. I'm very confused by it. Some of the art choices and stuff are cool, but it's so disjointed and out there that it's not clear to me what they're going for. There was more I thought about after this, but it wasn't boring, and the opening, which played at the end of the episode, is pretty cool, very well done.",
         "dateReviewed": "2026-07-04"
+      },
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Adventure",
+          "Drama",
+          "Psychological",
+          "Slice of Life"
+        ],
+        "tags": [
+          "Female Protagonist",
+          "Otaku Culture",
+          "Philosophy",
+          "Idol",
+          "VTuber",
+          "Mixed Media",
+          "Urban",
+          "Angels",
+          "Meta"
+        ],
+        "studios": [
+          "Yostar Pictures"
+        ]
       }
     },
     {
@@ -366,7 +851,43 @@
       "streaming": [
         "crunchyroll"
       ],
-      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00371860/mistress-kanan-is-devilishly-easy"
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00371860/mistress-kanan-is-devilishly-easy",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Comedy",
+          "Ecchi",
+          "Fantasy",
+          "Romance"
+        ],
+        "tags": [
+          "Demons",
+          "Tsundere",
+          "Heterosexual",
+          "School",
+          "Male Protagonist",
+          "Female Protagonist",
+          "Isekai",
+          "Slapstick",
+          "Shounen",
+          "Yandere",
+          "Urban Fantasy",
+          "Reverse Isekai",
+          "Female Harem",
+          "Gyaru",
+          "Episodic",
+          "Nudity",
+          "Urban",
+          "Primarily Female Cast",
+          "Ojou-sama",
+          "Parody",
+          "Interspecies",
+          "Bisexual"
+        ],
+        "studios": [
+          "Studio KAI"
+        ]
+      }
     },
     {
       "titleEN": "The Ramparts of Ice",
@@ -379,7 +900,32 @@
       "annId": 34506,
       "streaming": [
         "netflix"
-      ]
+      ],
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Comedy",
+          "Drama",
+          "Romance",
+          "Slice of Life"
+        ],
+        "tags": [
+          "Heterosexual",
+          "Primarily Teen Cast",
+          "Female Protagonist",
+          "Shoujo",
+          "Kuudere",
+          "Ensemble Cast",
+          "School",
+          "Urban",
+          "Coming of Age",
+          "Bullying",
+          "Chibi"
+        ],
+        "studios": [
+          "Studio KAI"
+        ]
+      }
     },
     {
       "titleEN": "Always a Catch!",
@@ -393,7 +939,28 @@
       "streaming": [
         "crunchyroll"
       ],
-      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00371642/always-a-catch"
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00371642/always-a-catch",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Comedy",
+          "Fantasy",
+          "Romance"
+        ],
+        "tags": [
+          "Heterosexual",
+          "Royal Affairs",
+          "Female Protagonist",
+          "Shoujo",
+          "Tomboy",
+          "Martial Arts",
+          "Parody",
+          "Ojou-sama"
+        ],
+        "studios": [
+          "TROYCA"
+        ]
+      }
     },
     {
       "titleEN": "Rooster Fighter",
@@ -413,6 +980,33 @@
         "ratingText": "Meh, Finishing the Ep",
         "review": "Overall, this was really fun. It's a pretty ridiculous mashup of demon fighting — almost Fist of the North Star meets Dragon Ball, but with a rooster. Looks like there's gonna be a rooster team that's the only one capable of stopping demons, and humans are completely worthless. It's a pretty funny premise. I'm not sure if I'm gonna keep watching it. I like the pacing. The animation is very CG-based; it looks pretty consistent at least, and well styled. I'm not sure I love everything about it, but I can see why they did that — it lets them do some cool stuff with the demons, I think, without breaking style. But it leads to some of the characters looking very weird, though that might also just be consistent with the original manga source.",
         "dateReviewed": "2026-07-04"
+      },
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Action",
+          "Adventure",
+          "Comedy",
+          "Supernatural"
+        ],
+        "tags": [
+          "Animals",
+          "Kaiju",
+          "Demons",
+          "CGI",
+          "Urban Fantasy",
+          "Male Protagonist",
+          "Urban",
+          "Super Power",
+          "Surreal Comedy",
+          "Primarily Animal Cast",
+          "Seinen",
+          "Body Horror",
+          "Parody"
+        ],
+        "studios": [
+          "SANZIGEN"
+        ]
       }
     },
     {
@@ -433,6 +1027,26 @@
         "ratingText": "Yeah, Here's Hoping",
         "review": "Liar Game is pretty fun. It's not my favorite thing ever, partially, I think, because the main character remains so clueless but keeps surviving anyway. But it's plainly done. It's got a Eurobeat-style opening, which always helps me, and it's a fun, ridiculous game of debt and betting and lying and everything — and it is the Liar Game. So if you're interested in any show that's called Liar Game and is a game about lying, then I definitely recommend it, it's pretty good.",
         "dateReviewed": "2026-07-04"
+      },
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Drama",
+          "Psychological"
+        ],
+        "tags": [
+          "Gambling",
+          "Female Protagonist",
+          "Primarily Adult Cast",
+          "Male Protagonist",
+          "Seinen",
+          "Coming of Age",
+          "Conspiracy",
+          "Ensemble Cast"
+        ],
+        "studios": [
+          "MADHOUSE"
+        ]
       }
     },
     {
@@ -447,7 +1061,27 @@
       "streaming": [
         "crunchyroll"
       ],
-      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00371673/i-made-friends-with-the-second-prettiest-girl-in-my-class"
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00371673/i-made-friends-with-the-second-prettiest-girl-in-my-class",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Comedy",
+          "Romance"
+        ],
+        "tags": [
+          "Heterosexual",
+          "School",
+          "Male Protagonist",
+          "Primarily Teen Cast",
+          "Female Protagonist",
+          "Primarily Female Cast",
+          "Otaku Culture",
+          "Seinen"
+        ],
+        "studios": [
+          "CONNECT"
+        ]
+      }
     },
     {
       "titleEN": "Pardon the Intrusion, I'm Home",
@@ -461,7 +1095,28 @@
       "streaming": [
         "crunchyroll"
       ],
-      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00371775/pardon-the-intrusion-im-home"
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00371775/pardon-the-intrusion-im-home",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Comedy",
+          "Romance",
+          "Slice of Life"
+        ],
+        "tags": [
+          "Love Triangle",
+          "Otaku Culture",
+          "Heterosexual",
+          "Shoujo",
+          "Male Harem",
+          "Cohabitation",
+          "Primarily Adult Cast",
+          "Fake Relationship"
+        ],
+        "studios": [
+          "Tatsunoko Production"
+        ]
+      }
     },
     {
       "titleEN": "I Want to End this Love Game",
@@ -475,7 +1130,29 @@
       "streaming": [
         "crunchyroll"
       ],
-      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00371779/i-want-to-end-this-love-game"
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00371779/i-want-to-end-this-love-game",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Comedy",
+          "Romance",
+          "Slice of Life"
+        ],
+        "tags": [
+          "Heterosexual",
+          "Female Protagonist",
+          "Male Protagonist",
+          "Primarily Teen Cast",
+          "Coming of Age",
+          "Shounen",
+          "Tsundere",
+          "School",
+          "CGI"
+        ],
+        "studios": [
+          "Felix Film"
+        ]
+      }
     },
     {
       "titleEN": "Even a Replica Can Fall in Love",
@@ -489,7 +1166,25 @@
       "streaming": [
         "crunchyroll"
       ],
-      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00374288/even-a-replica-can-fall-in-love"
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00374288/even-a-replica-can-fall-in-love",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Drama",
+          "Romance",
+          "Supernatural"
+        ],
+        "tags": [
+          "Clone",
+          "Female Protagonist",
+          "Heterosexual",
+          "School",
+          "Primarily Teen Cast"
+        ],
+        "studios": [
+          "Voil"
+        ]
+      }
     },
     {
       "titleEN": "The Klutzy Class Monitor and the Girl with the Short Skirt",
@@ -503,7 +1198,35 @@
       "streaming": [
         "crunchyroll"
       ],
-      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00371923/the-klutzy-class-monitor-and-the-girl-with-the-short-skirt"
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00371923/the-klutzy-class-monitor-and-the-girl-with-the-short-skirt",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Comedy",
+          "Romance",
+          "Slice of Life"
+        ],
+        "tags": [
+          "School",
+          "Slapstick",
+          "Tsundere",
+          "Heterosexual",
+          "Primarily Teen Cast",
+          "Ensemble Cast",
+          "Urban",
+          "Male Protagonist",
+          "Female Protagonist",
+          "Gyaru",
+          "Iyashikei",
+          "Surreal Comedy",
+          "Shounen",
+          "Coming of Age",
+          "Parody"
+        ],
+        "studios": [
+          "Zero-G"
+        ]
+      }
     },
     {
       "titleEN": "Kill Blue",
@@ -522,7 +1245,34 @@
       ],
       "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00371896/kill-blue",
       "netflixUrl": "https://www.netflix.com/title/82757009",
-      "primeUrl": "https://www.primevideo.com/detail/0OMVXGVSTM448QNDNEI9149350"
+      "primeUrl": "https://www.primevideo.com/detail/0OMVXGVSTM448QNDNEI9149350",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Action",
+          "Comedy"
+        ],
+        "tags": [
+          "Guns",
+          "Age Regression",
+          "School",
+          "Assassins",
+          "Shounen",
+          "School Club",
+          "Urban",
+          "Surreal Comedy",
+          "Rehabilitation",
+          "Crime",
+          "Kuudere",
+          "Primarily Child Cast",
+          "Ensemble Cast",
+          "Criminal Organization",
+          "Male Protagonist"
+        ],
+        "studios": [
+          "CUE"
+        ]
+      }
     },
     {
       "titleEN": "Agents of the Four Seasons: Dance of Spring",
@@ -536,7 +1286,35 @@
       "streaming": [
         "crunchyroll"
       ],
-      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00371636/agents-of-the-four-seasons-dance-of-spring"
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00371636/agents-of-the-four-seasons-dance-of-spring",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Drama",
+          "Fantasy",
+          "Romance"
+        ],
+        "tags": [
+          "Rehabilitation",
+          "Disability",
+          "Urban Fantasy",
+          "Ensemble Cast",
+          "Shoujo",
+          "Environmental",
+          "Mythology",
+          "Gods",
+          "Swordplay",
+          "Super Power",
+          "Heterosexual",
+          "Politics",
+          "Terrorism",
+          "Travel",
+          "Primarily Adult Cast"
+        ],
+        "studios": [
+          "WIT STUDIO"
+        ]
+      }
     },
     {
       "titleEN": "Go For It, Nakamura!",
@@ -557,7 +1335,30 @@
         "review": "I finished the first two episodes of this show, and it's great. It really delivers on everything I was hoping it would, which is that it's a charming, awkward romantic comedy that's very well executed, with a consistent art style and perspective throughout. I'm very much looking forward to seeing more, and I hope the story stays good and fun and interesting, because I like what they've started out with, and I'm really hoping it continues through the end of the season. I'm a sucker for Here Is Greenwood, and this is a show that reminds me of that in such a strong way, while not being a copy or anything related to it. It definitely gives me big vibes from that, in the best possible way.",
         "dateReviewed": "2026-07-04"
       },
-      "op": true
+      "op": true,
+      "anilist": {
+        "format": "ONA",
+        "genres": [
+          "Comedy",
+          "Romance",
+          "Slice of Life"
+        ],
+        "tags": [
+          "Boys' Love",
+          "Unrequited Love",
+          "LGBTQ+ Themes",
+          "School",
+          "Male Protagonist",
+          "Parody",
+          "Cute Boys Doing Cute Things",
+          "Primarily Teen Cast",
+          "Primarily Male Cast",
+          "Episodic"
+        ],
+        "studios": [
+          "Drive"
+        ]
+      }
     },
     {
       "titleEN": "Reincarnated as a Dragon Hatchling",
@@ -570,7 +1371,25 @@
       "annId": 35147,
       "streaming": [
         "hidive"
-      ]
+      ],
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Action",
+          "Adventure",
+          "Fantasy"
+        ],
+        "tags": [
+          "Dragons",
+          "Male Protagonist",
+          "Creature Taming",
+          "Isekai"
+        ],
+        "studios": [
+          "GA-CREW",
+          "Felix Film"
+        ]
+      }
     },
     {
       "titleEN": "Kirio Fanclub",
@@ -589,6 +1408,28 @@
         "ratingText": "Trash, for Second Screen Only",
         "review": "This episode was pretty good, and there's a little twist at the end of it, but this is a show I'm not gonna continue watching. It's fine, just not for me, so nothing here really changed my mind on that.",
         "dateReviewed": "2026-07-04"
+      },
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Comedy",
+          "Romance",
+          "Slice of Life"
+        ],
+        "tags": [
+          "Unrequited Love",
+          "Female Protagonist",
+          "Slapstick",
+          "Surreal Comedy",
+          "Josei",
+          "School",
+          "Primarily Teen Cast",
+          "Coming of Age",
+          "Love Triangle"
+        ],
+        "studios": [
+          "Satelight"
+        ]
       }
     },
     {
@@ -602,7 +1443,28 @@
       "annId": 36798,
       "streaming": [
         "hidive"
-      ]
+      ],
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Comedy",
+          "Fantasy",
+          "Romance"
+        ],
+        "tags": [
+          "Heterosexual",
+          "Medieval",
+          "Female Protagonist",
+          "Villainess",
+          "Ojou-sama",
+          "Super Power",
+          "Family Life",
+          "Ensemble Cast"
+        ],
+        "studios": [
+          "OLM"
+        ]
+      }
     },
     {
       "titleEN": "Yowayowa Teacher",
@@ -615,7 +1477,31 @@
       "annId": 34122,
       "streaming": [
         "hidive"
-      ]
+      ],
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Comedy",
+          "Ecchi",
+          "Romance"
+        ],
+        "tags": [
+          "Teacher",
+          "Nudity",
+          "Shounen",
+          "Heterosexual",
+          "School",
+          "Female Harem",
+          "Male Protagonist",
+          "Cosplay",
+          "Gyaru",
+          "Primarily Female Cast",
+          "School Club"
+        ],
+        "studios": [
+          "Brain's Base"
+        ]
+      }
     },
     {
       "titleEN": "Petals of Reincarnation",
@@ -628,7 +1514,26 @@
       "annId": 33056,
       "streaming": [
         "hidive"
-      ]
+      ],
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Action",
+          "Supernatural"
+        ],
+        "tags": [
+          "Super Power",
+          "Male Protagonist",
+          "Conspiracy",
+          "Shounen",
+          "Historical",
+          "Artificial Intelligence",
+          "Gender Bending"
+        ],
+        "studios": [
+          "BENTEN Film"
+        ]
+      }
     },
     {
       "titleEN": "My Ribdiculous Reincarnation",
@@ -648,6 +1553,31 @@
         "ratingText": "Peak, Nice Ep Broh",
         "review": "This was a show that I initially gave a \"Meh\" to, but it's actually pretty good. It's a whole bunch of differing, weird reincarnation stuff — however, the rules are pretty funny, in that, like, the main character says \"I wanna be reincarnated as a cute toe,\" and the goddess says, \"OK sure, you can do that, but there's a 500,000-year wait on getting reincarnated there.\" So then he negotiates and ends up with all these weird little things, like being reincarnated as the main heroine's rib, but somewhat sentient. It's very well done. It has a bunch of very cool, interesting animation, ranging from bits of straight-up 2D to very crayon-style to literally claymation, and some fun live-action stuff. I really like that at the end of the episode they show you how they made some of the cool segments, which I think adds to it, and it's pretty darn funny. They keep the various story jokes to two storylines per episode, so it's definitely been a very pleasantly pleasing show that I can recommend.",
         "dateReviewed": "2026-07-04"
+      },
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Comedy",
+          "Fantasy"
+        ],
+        "tags": [
+          "Mixed Media",
+          "Surreal Comedy",
+          "Isekai",
+          "Parody",
+          "Male Protagonist",
+          "Gods",
+          "Episodic",
+          "Anthropomorphism",
+          "Kuudere",
+          "Meta",
+          "Stop Motion",
+          "Anti-Hero"
+        ],
+        "studios": [
+          "Qzil.la",
+          "S.o.K"
+        ]
       }
     },
     {
@@ -668,6 +1598,23 @@
         "ratingText": "Never, Please No More Like This Ever",
         "review": "Finished the first episode; it's fine, better than most of the things out there, and worth watching, or so. The thing I find off about it is that the main guy in the show is just such a turd of a teenager — and by that I mean someone who thinks so highly of himself and doesn't realize he's just kind of a turd. Plus, he's got a not-quite-girlfriend girlfriend who's clearly a much better organized, put-together human being, and she's willing to sink her ship as part of his flotilla — I don't know, bad analogy, but she's trying to tie herself to him, and I'm just like, oh my God, ditch that loser. OK, anyways, I'm probably not gonna watch much more than this, but that's OK. Update: watched the second episode, and the main character got to be even more insufferable, and others were just hurting, and it was just completely insufferable teenage-dirtbag nonsense, so I don't need that.",
         "dateReviewed": "2026-07-04"
+      },
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Drama"
+        ],
+        "tags": [
+          "Drawing",
+          "Office",
+          "Primarily Adult Cast",
+          "Male Protagonist",
+          "Work"
+        ],
+        "studios": [
+          "Signal.MD",
+          "Production I.G"
+        ]
       }
     },
     {
@@ -682,7 +1629,35 @@
       "streaming": [
         "crunchyroll"
       ],
-      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00258001/witch-hat-atelier"
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00258001/witch-hat-atelier",
+      "anilist": {
+        "format": "ONA",
+        "genres": [
+          "Adventure",
+          "Drama",
+          "Fantasy"
+        ],
+        "tags": [
+          "Magic",
+          "Witch",
+          "Female Protagonist",
+          "Drawing",
+          "Primarily Female Cast",
+          "Coming of Age",
+          "Primarily Child Cast",
+          "Found Family",
+          "Medieval",
+          "Ensemble Cast",
+          "Philosophy",
+          "Teacher",
+          "Politics",
+          "Seinen",
+          "Travel"
+        ],
+        "studios": [
+          "BUG FILMS"
+        ]
+      }
     },
     {
       "titleEN": "Daemons of the Shadow Realm",
@@ -702,6 +1677,32 @@
         "ratingText": "Yeah, Here's Hoping",
         "review": "Watched the first several episodes of the show, and it's pretty well done. It's a cool take, kind of mixing old and new stuff in a fantastical, magical world that's also kind of grounded in reality. I'm sure it's a fun show, but for me, there was also nothing that particularly made me say \"oh man, I gotta watch the next episode.\" So I'll probably not watch the next episode.",
         "dateReviewed": "2026-07-04"
+      },
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Action",
+          "Adventure",
+          "Comedy",
+          "Fantasy",
+          "Supernatural"
+        ],
+        "tags": [
+          "Shounen",
+          "Youkai",
+          "Male Protagonist",
+          "Proxy Battle",
+          "Twins",
+          "Urban Fantasy",
+          "Creature Taming",
+          "Guns",
+          "Archery",
+          "Rural",
+          "Demons"
+        ],
+        "studios": [
+          "bones film"
+        ]
       }
     },
     {
@@ -715,7 +1716,36 @@
       "annId": 37882,
       "streaming": [
         "crunchyroll"
-      ]
+      ],
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Action",
+          "Comedy",
+          "Drama",
+          "Romance"
+        ],
+        "tags": [
+          "Assassins",
+          "Marriage",
+          "Crime",
+          "Super Power",
+          "Primarily Adult Cast",
+          "Urban",
+          "Surreal Comedy",
+          "Bisexual",
+          "Urban Fantasy",
+          "Male Protagonist",
+          "LGBTQ+ Themes",
+          "Shounen",
+          "Heterosexual",
+          "Educational",
+          "Martial Arts"
+        ],
+        "studios": [
+          "bones film"
+        ]
+      }
     }
   ],
   "pending": [],

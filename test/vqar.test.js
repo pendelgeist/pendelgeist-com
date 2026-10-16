@@ -862,3 +862,82 @@ test('a show whose season was finished is marked, and the Extras chip filters to
   document.querySelector('.filter-chip[data-dimension="has"][data-value="finished"]').click();
   assert.deepEqual(titles(document), ['Finished Show']);
 });
+
+// These reviews carry an anilistId, so their title element also holds the
+// AniList link; the show's name is the title's first text node.
+function showTitles(document) {
+  return [...document.querySelectorAll('.entry-title')].map((el) => el.firstChild.textContent);
+}
+
+function anilistRoutes(reviewed) {
+  return createPathFetchStub({
+    '/vqar/data/index.json': seasonIndex,
+    '/vqar/data/seasons/summer-2026.json': { id: 'summer-2026', name: 'Summer 2026', reviewed, pending: [], skipped: [] },
+  });
+}
+
+const isekaiTrash = {
+  titleEN: 'Isekai Trash', ratingNumber: 1, ratingText: 'Never', review: '', dateReviewed: '2026-07-03T12:00:00Z', anilistId: 1,
+  anilist: { format: 'TV', genres: ['Action', 'Fantasy'], tags: ['Isekai', 'Male Protagonist', 'Magic', 'Swordplay', 'Dungeon', 'Sixth Tag'], studios: ['GoHands'] },
+};
+const isekaiGood = {
+  titleEN: 'Isekai Good', ratingNumber: 5, ratingText: 'Peak', review: '', dateReviewed: '2026-07-02T12:00:00Z', anilistId: 2,
+  anilist: { format: 'ONA', genres: ['Fantasy'], tags: ['Isekai'], studios: ['MAPPA'] },
+};
+const romcom = {
+  titleEN: 'Romcom', ratingNumber: 3, ratingText: 'Meh', review: '', dateReviewed: '2026-07-01T12:00:00Z', anilistId: 3,
+  anilist: { format: 'TV', genres: ['Comedy', 'Romance'], tags: ['School'], studios: ['MAPPA'] },
+};
+
+test('the AniList rows stay hidden until something in the season has AniList data', async () => {
+  const { document } = await loadApp({ fetch: anilistRoutes([{ titleEN: 'Plain', ratingNumber: 3, ratingText: 'Meh', review: '', dateReviewed: '2026-07-01T12:00:00Z' }]) });
+  await waitFor(() => showTitles(document).length === 1);
+  const rows = [...document.querySelectorAll('.anilist-row')];
+  assert.equal(rows.length, 3);
+  assert.ok(rows.every((row) => row.hidden));
+  assert.equal(document.querySelector('.entry-anilist'), null);
+});
+
+test('a card lists format, studio, genres and its five most relevant tags', async () => {
+  const { document } = await loadApp({ fetch: anilistRoutes([isekaiTrash]) });
+  await waitFor(() => showTitles(document).length === 1);
+  assert.equal(
+    document.querySelector('.entry-anilist').textContent,
+    'TV · GoHands · Action, Fantasy · Isekai, Male Protagonist, Magic, Swordplay, Dungeon',
+  );
+});
+
+test('Genre and Format chips filter, offering only what the season has', async () => {
+  const { document } = await loadApp({ fetch: anilistRoutes([isekaiTrash, isekaiGood, romcom]) });
+  await waitFor(() => showTitles(document).length === 3);
+  const genres = [...document.querySelectorAll('#genreChips .filter-chip')].map((b) => b.dataset.value);
+  assert.deepEqual(genres, ['Action', 'Comedy', 'Fantasy', 'Romance']);
+  const formats = [...document.querySelectorAll('#formatChips .filter-chip')].map((b) => b.dataset.value);
+  assert.deepEqual(formats, ['TV', 'ONA']);
+
+  chip(document, 'genre', 'Fantasy').click();
+  assert.deepEqual(showTitles(document), ['Isekai Trash', 'Isekai Good']);
+  chip(document, 'format', 'ONA').click();
+  assert.deepEqual(showTitles(document), ['Isekai Good']);
+});
+
+test('"all the isekai I hated": the Tag dropdown plus a rating chip, kept in the URL', async () => {
+  const { document, window } = await loadApp({ fetch: anilistRoutes([isekaiTrash, isekaiGood, romcom]) });
+  await waitFor(() => showTitles(document).length === 3);
+  const tag = document.getElementById('tagFilter');
+  assert.equal(tag.querySelector('option[value="Isekai"]').textContent, 'Isekai (2)');
+
+  tag.value = 'Isekai';
+  tag.dispatchEvent(new window.Event('change'));
+  chip(document, 'rating', '1').click();
+  assert.deepEqual(showTitles(document), ['Isekai Trash']);
+  assert.equal(window.location.search, '?rating=1&tag=Isekai');
+});
+
+test('a Studio in the URL is restored into its dropdown on load', async () => {
+  const fetch = anilistRoutes([isekaiTrash, isekaiGood, romcom]);
+  const { document } = await loadApp({ fetch, url: 'http://localhost/vqar/?studio=MAPPA' });
+  await waitFor(() => showTitles(document).length === 2);
+  assert.equal(document.getElementById('studioFilter').value, 'MAPPA');
+  assert.deepEqual(showTitles(document), ['Isekai Good', 'Romcom']);
+});

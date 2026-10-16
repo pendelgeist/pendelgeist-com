@@ -327,7 +327,8 @@ A season id that can't be `<season>-<year>` (a one-off, a special) needs an expl
 
 Besides Season / Search / Sort, `/vqar` has three rows of toggle chips: **Rating** (the 0–5
 tiers, labeled from `RATING_NUMBER_LABELS`), **Streaming** (only the services something in the
-selected season is on), and **Extras** (revisited, rated up/down on revisit, liked OP/ED, finished season). Within
+selected season is on), **Extras** (revisited, rated up/down on revisit, liked OP/ED, finished season), and
+**Format**/**Genre**/**Tag**/**Studio** from AniList (see "AniList tags" below). Within
 a row any pressed chip matches; across rows every row with a selection must match. A show with a
 revisit is filed under its revisit rating, the same number "Highest Rating" sorts on. Each chip's
 count ignores its own row's selection, so it says how many reviews pressing it would bring in.
@@ -372,6 +373,43 @@ npm run validate-anilist                    # checks every committed season
 npm run validate-anilist -- ./draft.json    # or check one or more local files/URLs directly
 npm run validate-anilist -- --delay=2500    # slow down if AniList starts rate-limiting
 ```
+
+### AniList tags (format, genres, tags, studios)
+
+Each review with an `anilistId` can carry a **generated** `anilist` object:
+
+```json
+"anilist": { "format": "TV", "genres": ["Action", "Fantasy"], "tags": ["Isekai", "Male Protagonist"], "studios": ["GoHands"] }
+```
+
+`scripts/fetch-anilist-tags.js` fills it in, 50 shows per AniList request, and owns it outright:
+every run overwrites it, so never hand-edit it. It never touches the rest of a review, and it
+rewrites only a season file's `reviewed` block, so the other lists keep the formatting they were
+written in. AniList's genres are a fixed set of about 19; its **tags** are the fine-grained ones
+("Isekai" is a tag, not a genre). Only tags AniList ranks at least 60% relevant are kept, and
+spoiler and adult tags are dropped. The site never calls AniList: the data is committed like any
+other edit, and a review with no `anilistId` simply has no tags.
+
+```
+npm run fetch-anilist-tags                  # fetch from AniList and write
+npm run fetch-anilist-tags -- --dry-run     # report what would change, write nothing
+```
+
+Where AniList can't be reached (a sandbox whose network policy blocks it, say), run the same
+queries by hand in [AniList's GraphiQL](https://anilist.co/graphiql) and import the responses:
+
+```
+npm run fetch-anilist-tags -- --print-queries           # the queries, ids filled in
+npm run fetch-anilist-tags -- --from=q1.json,q2.json    # import the saved responses
+```
+
+`/vqar` turns these into Format and Genre chip rows and Tag and Studio dropdowns, under the same
+any-within-a-row, all-across-rows rule as the other filters. These rows stay hidden until
+something in the selected season has AniList data. Each card also gets a quiet line with the
+show's format, studio, genres and top five tags. GraphQL exposes the same object as
+`Review.anilist`. `scripts/validateSeason.js` checks its shape. It also rejects `anilist` data
+on a review with no `anilistId` to have generated it from, and a comma in any value, since the
+filter URLs separate values with commas.
 
 ## Evangelion page
 

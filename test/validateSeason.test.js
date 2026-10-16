@@ -514,3 +514,35 @@ test('finishedSeason is a bare true marking, like op/ed', () => {
     assert.ok(issues.some(i => i.includes('"Cool Show"') && i.includes('finishedSeason')), `accepted ${JSON.stringify(value)}`);
   }
 });
+
+test('a well-formed generated anilist object passes', () => {
+  const season = cleanSeason();
+  season.reviewed[0].anilistId = 154587;
+  season.reviewed[0].anilist = { format: 'TV', genres: ['Action'], tags: ['Isekai'], studios: ['MAPPA'] };
+  assert.deepEqual(validateSeason(season), []);
+});
+
+test('flags a malformed anilist object', () => {
+  const cases = [
+    'not an object',
+    { genres: 'Action', tags: [], studios: [] },
+    { genres: [], tags: [7], studios: [] },
+    { format: 3, genres: [], tags: [], studios: [] },
+    // The page's filter URLs separate values with commas, so a value can't contain one.
+    { genres: [], tags: ['Comedy, Romance'], studios: [] },
+  ];
+  for (const anilist of cases) {
+    const season = cleanSeason();
+    season.reviewed[0].anilistId = 154587;
+    season.reviewed[0].anilist = anilist;
+    const issues = validateSeason(season);
+    assert.ok(issues.some(i => i.includes('"Cool Show"') && i.includes('anilist')), `accepted ${JSON.stringify(anilist)}`);
+  }
+});
+
+test('flags anilist data on a review with no anilistId to have fetched it from', () => {
+  const season = cleanSeason();
+  season.reviewed[0].anilist = { genres: ['Action'], tags: [], studios: [] };
+  const issues = validateSeason(season);
+  assert.ok(issues.some(i => i.includes('"Cool Show"') && i.includes('anilistId')));
+});
