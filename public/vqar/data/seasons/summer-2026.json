@@ -15,7 +15,37 @@
       "streaming": [
         "prime"
       ],
-      "primeUrl": "https://www.amazon.com/dp/B0GZD2WNFF"
+      "primeUrl": "https://www.amazon.com/dp/B0GZD2WNFF",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Action",
+          "Ecchi",
+          "Psychological",
+          "Sci-Fi"
+        ],
+        "tags": [
+          "Philosophy",
+          "Cyberpunk",
+          "Cyborg",
+          "Artificial Intelligence",
+          "Robots",
+          "Female Protagonist",
+          "Primarily Adult Cast",
+          "Police",
+          "Urban",
+          "Conspiracy",
+          "Dystopian",
+          "Crime",
+          "Politics",
+          "Seinen",
+          "Guns",
+          "Anti-Hero"
+        ],
+        "studios": [
+          "Science SARU"
+        ]
+      }
     },
     {
       "titleEN": "My Stepmother and Stepsisters Aren't Wicked",
@@ -29,7 +59,30 @@
       "streaming": [
         "prime"
       ],
-      "primeUrl": "https://www.amazon.com/My-Stepmother-Stepsisters-Arent-Wicked/dp/B0GYPBM8WL"
+      "primeUrl": "https://www.amazon.com/My-Stepmother-Stepsisters-Arent-Wicked/dp/B0GYPBM8WL",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Comedy",
+          "Slice of Life"
+        ],
+        "tags": [
+          "Adoption",
+          "Family Life",
+          "Cute Girls Doing Cute Things",
+          "Female Protagonist",
+          "Primarily Female Cast",
+          "Iyashikei",
+          "Episodic",
+          "Ojou-sama",
+          "Parody",
+          "Josei",
+          "Historical"
+        ],
+        "studios": [
+          "NEWON"
+        ]
+      }
     },
     {
       "titleEN": "Thunder 3",
@@ -43,7 +96,23 @@
       "streaming": [
         "netflix"
       ],
-      "netflixUrl": "https://www.netflix.com/title/82736186"
+      "netflixUrl": "https://www.netflix.com/title/82736186",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Adventure",
+          "Drama",
+          "Sci-Fi"
+        ],
+        "tags": [
+          "CGI",
+          "Full CGI",
+          "Shounen"
+        ],
+        "studios": [
+          "UNEND"
+        ]
+      }
     },
     {
       "titleEN": "Sparks of Tomorrow",
@@ -63,7 +132,26 @@
       "streaming": [
         "netflix"
       ],
-      "netflixUrl": "https://www.netflix.com/title/81698957"
+      "netflixUrl": "https://www.netflix.com/title/81698957",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Adventure",
+          "Comedy",
+          "Romance"
+        ],
+        "tags": [
+          "Steampunk",
+          "Ensemble Cast",
+          "Male Protagonist",
+          "Female Protagonist",
+          "Primarily Teen Cast",
+          "Environmental"
+        ],
+        "studios": [
+          "Kyoto Animation"
+        ]
+      }
     },
     {
       "titleEN": "Red River",
@@ -77,7 +165,31 @@
       "streaming": [
         "crunchyroll"
       ],
-      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00378099/red-river"
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00378099/red-river",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Action",
+          "Adventure",
+          "Drama",
+          "Fantasy",
+          "Romance"
+        ],
+        "tags": [
+          "Female Protagonist",
+          "Shoujo",
+          "Politics",
+          "Royal Affairs",
+          "Historical",
+          "Magic",
+          "Isekai",
+          "Swordplay",
+          "Kingdom Management"
+        ],
+        "studios": [
+          "Tatsunoko Production"
+        ]
+      }
     },
     {
       "titleEN": "Oh Boy, Was I Wrong About Her",
@@ -91,7 +203,25 @@
       "streaming": [
         "crunchyroll"
       ],
-      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00378120/oh-boy-was-i-wrong-about-her"
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00378120/oh-boy-was-i-wrong-about-her",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Comedy",
+          "Romance"
+        ],
+        "tags": [
+          "Female Protagonist",
+          "Male Protagonist",
+          "Heterosexual",
+          "Female Harem",
+          "Tomboy",
+          "School"
+        ],
+        "studios": [
+          "project No.9"
+        ]
+      }
     },
     {
       "titleEN": "A Livid Lady's Guide to Getting Even: How I Crushed My Homeland with My Mighty Grimoires",
@@ -105,7 +235,27 @@
       "streaming": [
         "crunchyroll"
       ],
-      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00379182/a-livid-ladys-guide-to-getting-even-how-i-crushed-my-homeland-with-my-mighty-grimoires"
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00379182/a-livid-ladys-guide-to-getting-even-how-i-crushed-my-homeland-with-my-mighty-grimoires",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Drama",
+          "Fantasy"
+        ],
+        "tags": [
+          "Female Protagonist",
+          "Villainess",
+          "Revenge",
+          "Exiled",
+          "Gore",
+          "Royal Affairs",
+          "Magic",
+          "Economics"
+        ],
+        "studios": [
+          "Studio Comet"
+        ]
+      }
     },
     {
       "titleEN": "Heroine? Saint? No, I'm an All-Works Maid (And Proud of It)!",
@@ -119,7 +269,27 @@
       "streaming": [
         "crunchyroll"
       ],
-      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00378069/heroine-saint-no-im-an-all-works-maid-and-proud-of-it"
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00378069/heroine-saint-no-im-an-all-works-maid-and-proud-of-it",
+      "anilist": {
+        "format": "ONA",
+        "genres": [
+          "Comedy",
+          "Fantasy"
+        ],
+        "tags": [
+          "Female Protagonist",
+          "Magic",
+          "Maids",
+          "Ojou-sama",
+          "Isekai",
+          "Cute Girls Doing Cute Things",
+          "Medieval",
+          "Shoujo"
+        ],
+        "studios": [
+          "EMT Squared"
+        ]
+      }
     },
     {
       "titleEN": "Recommendations from Iwamoto-Senpai",
@@ -133,7 +303,23 @@
       "streaming": [
         "crunchyroll"
       ],
-      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00378096/recommendations-from-iwamoto-senpai"
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00378096/recommendations-from-iwamoto-senpai",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Action",
+          "Supernatural"
+        ],
+        "tags": [
+          "Super Power",
+          "Male Protagonist",
+          "Primarily Male Cast",
+          "Military"
+        ],
+        "studios": [
+          "Studio DEEN"
+        ]
+      }
     },
     {
       "titleEN": "Grow Up Show: Sunflower Circus",
@@ -147,7 +333,30 @@
       "streaming": [
         "crunchyroll"
       ],
-      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00378063/grow-up-show"
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00378063/grow-up-show",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Adventure",
+          "Slice of Life",
+          "Sports"
+        ],
+        "tags": [
+          "Circus",
+          "Female Protagonist",
+          "Cute Girls Doing Cute Things",
+          "Primarily Female Cast",
+          "Acrobatics",
+          "Estranged Family",
+          "Found Family",
+          "Orphan",
+          "Historical"
+        ],
+        "studios": [
+          "A-1 Pictures",
+          "Psyde Kick Studio"
+        ]
+      }
     },
     {
       "titleEN": "Goodbye, Lara",
@@ -161,7 +370,31 @@
       "streaming": [
         "crunchyroll"
       ],
-      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00378059/goodbye-lara"
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00378059/goodbye-lara",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Drama",
+          "Fantasy",
+          "Romance"
+        ],
+        "tags": [
+          "Female Protagonist",
+          "Mermaid",
+          "Fairy Tale",
+          "Coastal",
+          "Urban Fantasy",
+          "Curses",
+          "Interspecies",
+          "LGBTQ+ Themes",
+          "Magic",
+          "Shapeshifting",
+          "Witch"
+        ],
+        "studios": [
+          "Kinema Citrus"
+        ]
+      }
     },
     {
       "titleEN": "Young Ladies Don't Play Fighting Games",
@@ -181,7 +414,28 @@
       "streaming": [
         "crunchyroll"
       ],
-      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00362362/young-ladies-dont-play-fighting-games"
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00362362/young-ladies-dont-play-fighting-games",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Drama"
+        ],
+        "tags": [
+          "Video Games",
+          "Female Protagonist",
+          "Primarily Female Cast",
+          "E-Sports",
+          "Primarily Teen Cast",
+          "Yuri",
+          "Advertisement",
+          "Boarding School",
+          "Ojou-sama",
+          "Otaku Culture"
+        ],
+        "studios": [
+          "diomedéa"
+        ]
+      }
     },
     {
       "titleEN": "Jaadugar: A Witch in Mongolia",
@@ -195,7 +449,36 @@
       "streaming": [
         "crunchyroll"
       ],
-      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00378078/jaadugar-a-witch-in-mongolia"
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00378078/jaadugar-a-witch-in-mongolia",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Adventure",
+          "Drama"
+        ],
+        "tags": [
+          "Royal Affairs",
+          "Female Protagonist",
+          "Indigenous Cultures",
+          "Historical",
+          "Politics",
+          "War",
+          "Slavery",
+          "Foreign",
+          "Biographical",
+          "Josei",
+          "Class Struggle",
+          "Kingdom Management",
+          "Religion",
+          "Philosophy",
+          "Coming of Age",
+          "Middle East",
+          "Orphan"
+        ],
+        "studios": [
+          "Science SARU"
+        ]
+      }
     },
     {
       "titleEN": "Tomb Raider King",
@@ -209,7 +492,30 @@
       "streaming": [
         "crunchyroll"
       ],
-      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00378123/tomb-raider-king"
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00378123/tomb-raider-king",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Action",
+          "Adventure",
+          "Fantasy"
+        ],
+        "tags": [
+          "Anti-Hero",
+          "Male Protagonist",
+          "Magic",
+          "Gods",
+          "Demons",
+          "Urban Fantasy",
+          "Age Regression",
+          "Surreal Comedy",
+          "Dungeon",
+          "Travel"
+        ],
+        "studios": [
+          "STUDIO EEK"
+        ]
+      }
     },
     {
       "titleEN": "Iron Wok Jan!",
@@ -223,7 +529,26 @@
       "streaming": [
         "crunchyroll"
       ],
-      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00378075/iron-wok-jan"
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00378075/iron-wok-jan",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Action",
+          "Psychological"
+        ],
+        "tags": [
+          "Anti-Hero",
+          "Food",
+          "Restaurant",
+          "Male Protagonist",
+          "Shounen",
+          "Work",
+          "Educational"
+        ],
+        "studios": [
+          "TROYCA"
+        ]
+      }
     },
     {
       "titleEN": "From Overshadowed to Overpowered: Second Reincarnation of a Talentless Sage",
@@ -237,7 +562,28 @@
       "streaming": [
         "crunchyroll"
       ],
-      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00378115/from-overshadowed-to-overpowered-second-reincarnation-of-a-talentless-sage"
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00378115/from-overshadowed-to-overpowered-second-reincarnation-of-a-talentless-sage",
+      "anilist": {
+        "format": "ONA",
+        "genres": [
+          "Action",
+          "Adventure",
+          "Fantasy"
+        ],
+        "tags": [
+          "Magic",
+          "School",
+          "Male Protagonist",
+          "Isekai",
+          "Demons",
+          "Elf",
+          "Heterosexual",
+          "Female Harem"
+        ],
+        "studios": [
+          "EMT Squared"
+        ]
+      }
     },
     {
       "titleEN": "Dara-san of Reiwa",
@@ -251,7 +597,34 @@
       "streaming": [
         "crunchyroll"
       ],
-      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00377933/dara-san-of-the-reiwa-era"
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00377933/dara-san-of-the-reiwa-era",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Comedy",
+          "Horror",
+          "Supernatural"
+        ],
+        "tags": [
+          "Youkai",
+          "Curses",
+          "Monster Girl",
+          "Crossdressing",
+          "Tomboy",
+          "Femboy",
+          "Shrine Maiden",
+          "Female Protagonist",
+          "Rural",
+          "Mythology",
+          "Nudity",
+          "Gods",
+          "Cosplay",
+          "Gore"
+        ],
+        "studios": [
+          "Asahi Production"
+        ]
+      }
     },
     {
       "titleEN": "Mebius Dust",
@@ -265,7 +638,20 @@
       "streaming": [
         "crunchyroll"
       ],
-      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00379439/mebius-dust"
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00379439/mebius-dust",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Action",
+          "Supernatural"
+        ],
+        "tags": [
+          "Super Power"
+        ],
+        "studios": [
+          "Doga Kobo"
+        ]
+      }
     },
     {
       "titleEN": "Though I Am an Inept Villainess",
@@ -281,7 +667,26 @@
         "hulu"
       ],
       "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00371881/though-i-am-an-inept-villainess",
-      "huluUrl": "https://www.hulu.com/series/though-i-am-an-inept-villainess-8a91ef01-78f6-4c33-9566-841da5a9b053"
+      "huluUrl": "https://www.hulu.com/series/though-i-am-an-inept-villainess-8a91ef01-78f6-4c33-9566-841da5a9b053",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Drama",
+          "Fantasy",
+          "Romance"
+        ],
+        "tags": [
+          "Female Protagonist",
+          "Royal Affairs",
+          "Villainess",
+          "Ancient China",
+          "Historical",
+          "Magic"
+        ],
+        "studios": [
+          "Doga Kobo"
+        ]
+      }
     },
     {
       "titleEN": "Let's Go Kaikigumi",
@@ -302,7 +707,26 @@
         "crunchyroll"
       ],
       "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00378084/lets-go-kaikigumi",
-      "ed": true
+      "ed": true,
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Comedy",
+          "Horror",
+          "Supernatural"
+        ],
+        "tags": [
+          "Youkai",
+          "Male Protagonist",
+          "Female Protagonist",
+          "Ghost",
+          "Surreal Comedy",
+          "Curses"
+        ],
+        "studios": [
+          "C-Station"
+        ]
+      }
     },
     {
       "titleEN": "The Frontier Lord Begins with Zero Subjects",
@@ -316,7 +740,27 @@
       "streaming": [
         "crunchyroll"
       ],
-      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00378124/the-frontier-lord-begins-with-zero-subjects"
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00378124/the-frontier-lord-begins-with-zero-subjects",
+      "anilist": {
+        "format": "ONA",
+        "genres": [
+          "Action",
+          "Comedy",
+          "Drama",
+          "Fantasy",
+          "Romance",
+          "Slice of Life"
+        ],
+        "tags": [
+          "Kingdom Management",
+          "Cohabitation",
+          "Found Family",
+          "LGBTQ+ Themes"
+        ],
+        "studios": [
+          "animation studio42"
+        ]
+      }
     },
     {
       "titleEN": "The Exiled Heavy Knight Knows How to Game the System",
@@ -337,7 +781,29 @@
         "crunchyroll"
       ],
       "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00378018/the-exiled-heavy-knight-knows-how-to-game-the-system",
-      "ed": true
+      "ed": true,
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Action",
+          "Fantasy"
+        ],
+        "tags": [
+          "CGI",
+          "Exiled",
+          "Isekai",
+          "Male Protagonist",
+          "Class Struggle",
+          "Dungeon",
+          "Swordplay",
+          "Gore",
+          "Magic",
+          "Estranged Family"
+        ],
+        "studios": [
+          "GoHands"
+        ]
+      }
     },
     {
       "titleEN": "BanG Dream! YUME∞MITA",
@@ -351,7 +817,32 @@
       "streaming": [
         "crunchyroll"
       ],
-      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00379424/bang-dream-yumemita"
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00379424/bang-dream-yumemita",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Comedy",
+          "Drama",
+          "Music",
+          "Slice of Life"
+        ],
+        "tags": [
+          "Primarily Female Cast",
+          "Female Protagonist",
+          "Primarily Teen Cast",
+          "Band",
+          "VTuber",
+          "Full CGI",
+          "Urban",
+          "Virtual World",
+          "Yuri",
+          "School",
+          "Otaku Culture"
+        ],
+        "studios": [
+          "NICHICALINE"
+        ]
+      }
     },
     {
       "titleEN": "The World's Strongest Rearguard",
@@ -365,7 +856,23 @@
       "streaming": [
         "crunchyroll"
       ],
-      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00378122/the-worlds-strongest-rearguard"
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00378122/the-worlds-strongest-rearguard",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Action",
+          "Adventure",
+          "Fantasy"
+        ],
+        "tags": [
+          "Isekai",
+          "Female Harem",
+          "Nudity"
+        ],
+        "studios": [
+          "Maho Film"
+        ]
+      }
     },
     {
       "titleEN": "Smoking Behind the Supermarket with You",
@@ -379,7 +886,31 @@
       "streaming": [
         "crunchyroll"
       ],
-      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00378116/smoking-behind-the-supermarket-with-you"
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00378116/smoking-behind-the-supermarket-with-you",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Comedy",
+          "Romance",
+          "Slice of Life"
+        ],
+        "tags": [
+          "Seinen",
+          "Heterosexual",
+          "Primarily Adult Cast",
+          "Work",
+          "Konbini",
+          "Iyashikei",
+          "Episodic",
+          "Male Protagonist",
+          "Female Protagonist",
+          "Urban",
+          "Office"
+        ],
+        "studios": [
+          "Asahi Production"
+        ]
+      }
     },
     {
       "titleEN": "Kaiju Girl Caramelise",
@@ -393,7 +924,39 @@
       "streaming": [
         "crunchyroll"
       ],
-      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00378081/kaiju-girl-caramelise"
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00378081/kaiju-girl-caramelise",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Comedy",
+          "Romance",
+          "Supernatural"
+        ],
+        "tags": [
+          "Coming of Age",
+          "Shapeshifting",
+          "Kaiju",
+          "Monster Girl",
+          "Female Protagonist",
+          "Body Image",
+          "Heterosexual",
+          "Henshin",
+          "Urban",
+          "Primarily Teen Cast",
+          "Interspecies",
+          "Urban Fantasy",
+          "Tokusatsu",
+          "Super Power",
+          "School",
+          "CGI",
+          "Bullying",
+          "Tsundere",
+          "Gyaru"
+        ],
+        "studios": [
+          "LIDENFILMS"
+        ]
+      }
     },
     {
       "titleEN": "The Cat and the Dragon",
@@ -413,7 +976,33 @@
       "streaming": [
         "crunchyroll"
       ],
-      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00378117/the-cat-and-the-dragon"
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00378117/the-cat-and-the-dragon",
+      "anilist": {
+        "format": "ONA",
+        "genres": [
+          "Adventure",
+          "Fantasy"
+        ],
+        "tags": [
+          "Found Family",
+          "Animals",
+          "Primarily Animal Cast",
+          "Dragons",
+          "Magic",
+          "Episodic",
+          "Iyashikei",
+          "Anthropomorphism",
+          "Parenthood",
+          "Medieval",
+          "Wilderness",
+          "Family Life",
+          "Environmental",
+          "Ensemble Cast"
+        ],
+        "studios": [
+          "OLM"
+        ]
+      }
     },
     {
       "titleEN": "Magical Girl Lyrical Nanoha EXCEEDS Gun Blaze Vengeance",
@@ -427,7 +1016,40 @@
       "streaming": [
         "crunchyroll"
       ],
-      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00378090/magical-girl-lyrical-nanoha-exceeds-gun-blaze-vengeance"
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00378090/magical-girl-lyrical-nanoha-exceeds-gun-blaze-vengeance",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Action",
+          "Comedy",
+          "Drama",
+          "Mahou Shoujo",
+          "Sci-Fi"
+        ],
+        "tags": [
+          "Female Protagonist",
+          "Primarily Female Cast",
+          "Magic",
+          "Henshin",
+          "Demons",
+          "Super Power",
+          "Post-Apocalyptic",
+          "Drugs",
+          "Guns",
+          "Found Family",
+          "Gore",
+          "Military",
+          "Urban",
+          "CGI",
+          "Yuri",
+          "Swordplay",
+          "Spearplay",
+          "Cannibalism"
+        ],
+        "studios": [
+          "Seven Arcs"
+        ]
+      }
     },
     {
       "titleEN": "Rich Girl Caretaker: I'm Secretly the Caregiver of the Most Popular Girl in This Rich Kid School",
@@ -441,7 +1063,28 @@
       "streaming": [
         "crunchyroll"
       ],
-      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00378102/rich-girl-caretaker-im-secretly-the-caregiver-of-the-most-popular-girl-in-this-rich-kid-school"
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00378102/rich-girl-caretaker-im-secretly-the-caregiver-of-the-most-popular-girl-in-this-rich-kid-school",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Comedy",
+          "Romance"
+        ],
+        "tags": [
+          "Heterosexual",
+          "Ojou-sama",
+          "School",
+          "Female Harem",
+          "Male Protagonist",
+          "Butler",
+          "Kuudere",
+          "Primarily Teen Cast",
+          "Arranged Marriage"
+        ],
+        "studios": [
+          "Brain's Base"
+        ]
+      }
     },
     {
       "titleEN": "The Duke's Son Claims He Won't Love Me Yet Showers Me with Adoration",
@@ -455,7 +1098,25 @@
       "streaming": [
         "crunchyroll"
       ],
-      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00378118/the-dukes-son-claims-he-wont-love-me-yet-showers-me-with-adoration"
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00378118/the-dukes-son-claims-he-wont-love-me-yet-showers-me-with-adoration",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Fantasy",
+          "Romance"
+        ],
+        "tags": [
+          "Heterosexual",
+          "Shoujo",
+          "Arranged Marriage",
+          "Marriage",
+          "Female Protagonist"
+        ],
+        "studios": [
+          "Zero-G",
+          "Grass"
+        ]
+      }
     },
     {
       "titleEN": "The Ogre's Bride",
@@ -469,7 +1130,24 @@
       "streaming": [
         "crunchyroll"
       ],
-      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00378121/the-ogres-bride"
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00378121/the-ogres-bride",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Drama",
+          "Fantasy",
+          "Romance"
+        ],
+        "tags": [
+          "Shoujo",
+          "Female Protagonist",
+          "Heterosexual",
+          "Demons"
+        ],
+        "studios": [
+          "Colored Pencil Animation Japan"
+        ]
+      }
     },
     {
       "titleEN": "Hanaori-san Still Wants to Fight in the Next Life",
@@ -483,7 +1161,27 @@
       "streaming": [
         "crunchyroll"
       ],
-      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00378066/hanaori-san-still-wants-to-fight-in-the-next-life"
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00378066/hanaori-san-still-wants-to-fight-in-the-next-life",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Comedy",
+          "Romance",
+          "Supernatural"
+        ],
+        "tags": [
+          "Reverse Isekai",
+          "Parody",
+          "Heterosexual",
+          "Slapstick",
+          "Isekai",
+          "Episodic",
+          "School"
+        ],
+        "studios": [
+          "LIDENFILMS"
+        ]
+      }
     },
     {
       "titleEN": "Love Unseen Beneath the Clear Night Sky",
@@ -503,7 +1201,24 @@
       "streaming": [
         "crunchyroll"
       ],
-      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00378087/love-unseen-beneath-the-clear-night-sky"
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00378087/love-unseen-beneath-the-clear-night-sky",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Drama",
+          "Romance"
+        ],
+        "tags": [
+          "Disability",
+          "Heterosexual",
+          "Primarily Adult Cast",
+          "College",
+          "Male Protagonist"
+        ],
+        "studios": [
+          "Makaria"
+        ]
+      }
     },
     {
       "titleEN": "The Insipid Prince's Furtive Grab for The Throne",
@@ -517,7 +1232,25 @@
       "streaming": [
         "crunchyroll"
       ],
-      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00378119/the-insipid-princes-furtive-grab-for-the-throne"
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00378119/the-insipid-princes-furtive-grab-for-the-throne",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Action",
+          "Comedy",
+          "Drama",
+          "Fantasy",
+          "Romance"
+        ],
+        "tags": [
+          "Royal Affairs",
+          "Politics",
+          "Heterosexual"
+        ],
+        "studios": [
+          "Maho Film"
+        ]
+      }
     },
     {
       "titleEN": "I Want to Love You Till Your Dying Day",
@@ -537,7 +1270,32 @@
       "streaming": [
         "crunchyroll"
       ],
-      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00374354/i-want-to-love-you-till-your-dying-day"
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00374354/i-want-to-love-you-till-your-dying-day",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Drama",
+          "Fantasy",
+          "Romance"
+        ],
+        "tags": [
+          "Yuri",
+          "War",
+          "Primarily Female Cast",
+          "Magic",
+          "Female Protagonist",
+          "Primarily Teen Cast",
+          "School",
+          "LGBTQ+ Themes",
+          "Military",
+          "Orphan",
+          "Dystopian",
+          "Gore"
+        ],
+        "studios": [
+          "ROLL2"
+        ]
+      }
     },
     {
       "titleEN": "The Oblivious Saint Can't Contain Her Power",
@@ -551,7 +1309,27 @@
       "streaming": [
         "crunchyroll"
       ],
-      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00378125/the-oblivious-saint-cant-contain-her-power"
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00378125/the-oblivious-saint-cant-contain-her-power",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Drama",
+          "Fantasy",
+          "Romance"
+        ],
+        "tags": [
+          "Female Protagonist",
+          "Arranged Marriage",
+          "Heterosexual",
+          "Shoujo",
+          "Magic",
+          "Royal Affairs"
+        ],
+        "studios": [
+          "Magic Bus",
+          "Picante Circus"
+        ]
+      }
     },
     {
       "titleEN": "Victoria of Many Faces",
@@ -565,7 +1343,27 @@
       "streaming": [
         "crunchyroll"
       ],
-      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00378126/victoria-of-many-faces"
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00378126/victoria-of-many-faces",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Action",
+          "Drama",
+          "Fantasy",
+          "Romance"
+        ],
+        "tags": [
+          "Found Family",
+          "Family Life",
+          "Josei",
+          "Parenthood",
+          "Female Protagonist",
+          "Heterosexual"
+        ],
+        "studios": [
+          "Studio DEEN"
+        ]
+      }
     },
     {
       "titleEN": "Draw This, Then Die!",
@@ -585,7 +1383,28 @@
       "streaming": [
         "crunchyroll"
       ],
-      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00371656/draw-this-then-die"
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00371656/draw-this-then-die",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Comedy",
+          "Slice of Life"
+        ],
+        "tags": [
+          "Writing",
+          "Drawing",
+          "Primarily Female Cast",
+          "Female Protagonist",
+          "Otaku Culture",
+          "Teacher",
+          "School Club",
+          "Primarily Teen Cast",
+          "Cute Girls Doing Cute Things"
+        ],
+        "studios": [
+          "Shin-Ei Animation"
+        ]
+      }
     },
     {
       "titleEN": "Please Excuse My Younger Brothers",
@@ -599,7 +1418,25 @@
       "streaming": [
         "crunchyroll"
       ],
-      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00371926/please-excuse-my-younger-brothers"
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00371926/please-excuse-my-younger-brothers",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Comedy",
+          "Romance",
+          "Slice of Life"
+        ],
+        "tags": [
+          "Shoujo",
+          "Family Life",
+          "Heterosexual",
+          "Female Protagonist",
+          "Inseki"
+        ],
+        "studios": [
+          "Lay-duce"
+        ]
+      }
     },
     {
       "titleEN": "I Became a Legend After My 10 Year-Long Last Stand",
@@ -613,7 +1450,24 @@
       "streaming": [
         "crunchyroll"
       ],
-      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00371671/i-became-a-legend-after-my-10-year-long-last-stand"
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00371671/i-became-a-legend-after-my-10-year-long-last-stand",
+      "anilist": {
+        "format": "ONA",
+        "genres": [
+          "Action",
+          "Adventure",
+          "Fantasy"
+        ],
+        "tags": [
+          "Age Regression",
+          "Swordplay",
+          "Demons",
+          "Male Protagonist"
+        ],
+        "studios": [
+          "Gekkou"
+        ]
+      }
     },
     {
       "titleEN": "The Villager of Level 999",
@@ -627,7 +1481,28 @@
       "streaming": [
         "crunchyroll"
       ],
-      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00371878/the-villager-of-level-999"
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00371878/the-villager-of-level-999",
+      "anilist": {
+        "format": "ONA",
+        "genres": [
+          "Action",
+          "Adventure",
+          "Comedy",
+          "Fantasy"
+        ],
+        "tags": [
+          "Demons",
+          "Magic",
+          "Parody",
+          "Male Protagonist",
+          "Medieval",
+          "Tomboy",
+          "Surreal Comedy"
+        ],
+        "studios": [
+          "Brain's Base"
+        ]
+      }
     },
     {
       "titleEN": "The World Is Dancing",
@@ -641,7 +1516,25 @@
       "streaming": [
         "hidive"
       ],
-      "hidiveUrl": "https://www.hidive.com/season/36240"
+      "hidiveUrl": "https://www.hidive.com/season/36240",
+      "anilist": {
+        "format": "ONA",
+        "genres": [
+          "Drama"
+        ],
+        "tags": [
+          "Historical",
+          "Dancing",
+          "Coming of Age",
+          "Acting",
+          "Musical Theater",
+          "Biographical",
+          "Crossdressing"
+        ],
+        "studios": [
+          "Cypic"
+        ]
+      }
     },
     {
       "titleEN": "Black Torch",
@@ -655,7 +1548,30 @@
       "streaming": [
         "crunchyroll"
       ],
-      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00377907/black-torch"
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00377907/black-torch",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Action",
+          "Adventure",
+          "Fantasy",
+          "Sci-Fi",
+          "Supernatural"
+        ],
+        "tags": [
+          "Shounen",
+          "Youkai",
+          "Male Protagonist",
+          "Monster Boy",
+          "Mythology",
+          "Primarily Teen Cast",
+          "Urban Fantasy",
+          "Ensemble Cast"
+        ],
+        "studios": [
+          "100studio"
+        ]
+      }
     },
     {
       "titleEN": "The Forsaken Saintess and her Foodie Roadtrip in Another World",
@@ -669,7 +1585,25 @@
       "streaming": [
         "hidive"
       ],
-      "hidiveUrl": "https://www.hidive.com/season/36241"
+      "hidiveUrl": "https://www.hidive.com/season/36241",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Action",
+          "Adventure",
+          "Comedy",
+          "Fantasy"
+        ],
+        "tags": [
+          "Josei",
+          "Isekai",
+          "Food",
+          "Female Protagonist"
+        ],
+        "studios": [
+          "EMT Squared"
+        ]
+      }
     },
     {
       "titleEN": "Chainsmoker Cat",
@@ -691,7 +1625,37 @@
       ],
       "netflixUrl": "https://www.netflix.com/title/82760630",
       "op": true,
-      "ed": true
+      "ed": true,
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Comedy",
+          "Ecchi",
+          "Slice of Life"
+        ],
+        "tags": [
+          "Surreal Comedy",
+          "Drugs",
+          "Nekomimi",
+          "Female Protagonist",
+          "Kemonomimi",
+          "Primarily Female Cast",
+          "Episodic",
+          "Urban",
+          "Primarily Adult Cast",
+          "Seinen",
+          "Nudity",
+          "Rehabilitation",
+          "Urban Fantasy",
+          "Satire",
+          "Survival",
+          "Delinquents",
+          "Hikikomori"
+        ],
+        "studios": [
+          "Bibury Animation Studios"
+        ]
+      }
     }
   ],
   "pending": [],

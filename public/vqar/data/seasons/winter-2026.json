@@ -15,7 +15,29 @@
       "streaming": [
         "crunchyroll"
       ],
-      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00365559/dead-account"
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00365559/dead-account",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Action",
+          "Supernatural"
+        ],
+        "tags": [
+          "Exorcism",
+          "Urban Fantasy",
+          "Super Power",
+          "Ghost",
+          "Curses",
+          "Boarding School",
+          "School",
+          "Male Protagonist",
+          "Shounen",
+          "Body Horror"
+        ],
+        "studios": [
+          "SynergySP"
+        ]
+      }
     },
     {
       "titleEN": "Kaya-chan Isn't Scary",
@@ -29,7 +51,35 @@
       "streaming": [
         "crunchyroll"
       ],
-      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00365583/kaya-chan-isnt-scary"
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00365583/kaya-chan-isnt-scary",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Comedy",
+          "Horror",
+          "Slice of Life",
+          "Supernatural"
+        ],
+        "tags": [
+          "Female Protagonist",
+          "Primarily Child Cast",
+          "Seinen",
+          "Ghost",
+          "School",
+          "Super Power",
+          "Exorcism",
+          "Episodic",
+          "Curses",
+          "Urban Fantasy",
+          "Body Horror",
+          "Work",
+          "Cosmic Horror",
+          "Parenthood"
+        ],
+        "studios": [
+          "East Fish Studio"
+        ]
+      }
     },
     {
       "titleEN": "The Daily Life of a Part-time Torturer",
@@ -43,7 +93,27 @@
       "streaming": [
         "crunchyroll"
       ],
-      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00365604/the-daily-life-of-a-part-time-torturer"
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00365604/the-daily-life-of-a-part-time-torturer",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Comedy",
+          "Slice of Life"
+        ],
+        "tags": [
+          "Cute Boys Doing Cute Things",
+          "Torture",
+          "Primarily Male Cast",
+          "Male Protagonist",
+          "Work",
+          "Primarily Adult Cast",
+          "Slapstick",
+          "Iyashikei"
+        ],
+        "studios": [
+          "diomedéa"
+        ]
+      }
     },
     {
       "titleEN": "A Misanthrope Teaches a Class for Demi-Humans",
@@ -57,7 +127,27 @@
       "streaming": [
         "crunchyroll"
       ],
-      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00365542/a-misanthrope-teaches-a-class-for-demi-humans"
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00365542/a-misanthrope-teaches-a-class-for-demi-humans",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Comedy",
+          "Drama",
+          "Fantasy",
+          "Romance",
+          "Slice of Life"
+        ],
+        "tags": [
+          "Teacher",
+          "School",
+          "Cute Girls Doing Cute Things",
+          "Kemonomimi",
+          "Monster Girl"
+        ],
+        "studios": [
+          "Asread"
+        ]
+      }
     },
     {
       "titleEN": "Hana-Kimi",
@@ -71,7 +161,33 @@
       "streaming": [
         "crunchyroll"
       ],
-      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00365568/hana-kimi"
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00365568/hana-kimi",
+      "anilist": {
+        "format": "ONA",
+        "genres": [
+          "Comedy",
+          "Drama",
+          "Romance",
+          "Slice of Life"
+        ],
+        "tags": [
+          "Boarding School",
+          "Crossdressing",
+          "Shoujo",
+          "Female Protagonist",
+          "Primarily Male Cast",
+          "Primarily Teen Cast",
+          "Athletics",
+          "Tomboy",
+          "Gender Bending",
+          "School",
+          "Male Harem",
+          "Heterosexual"
+        ],
+        "studios": [
+          "Signal.MD"
+        ]
+      }
     },
     {
       "titleEN": "Oedo Fire Slayer -The Legend of Phoenix-",
@@ -85,7 +201,22 @@
       "streaming": [
         "crunchyroll"
       ],
-      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00365724/oedo-fire-slayer--the-legend-of-phoenix-"
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00365724/oedo-fire-slayer--the-legend-of-phoenix-",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Action",
+          "Drama"
+        ],
+        "tags": [
+          "Firefighters",
+          "Full CGI",
+          "Historical"
+        ],
+        "studios": [
+          "SynergySP"
+        ]
+      }
     },
     {
       "titleEN": "Shiboyugi: Playing Death Games to Put Food on the Table",
@@ -100,7 +231,29 @@
         "crunchyroll",
         "netflix"
       ],
-      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00365787/shiboyugi-playing-death-games-to-put-food-on-the-table"
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00365787/shiboyugi-playing-death-games-to-put-food-on-the-table",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Action",
+          "Drama",
+          "Mystery",
+          "Psychological",
+          "Thriller"
+        ],
+        "tags": [
+          "Primarily Female Cast",
+          "Death Game",
+          "Female Protagonist",
+          "Achronological Order",
+          "Philosophy",
+          "Kuudere",
+          "Survival"
+        ],
+        "studios": [
+          "Studio DEEN"
+        ]
+      }
     },
     {
       "titleEN": "The Case Book of Arne",
@@ -114,7 +267,21 @@
       "streaming": [
         "crunchyroll"
       ],
-      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00365733/the-casebook-of-arne"
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00365733/the-casebook-of-arne",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Mystery"
+        ],
+        "tags": [
+          "Detective",
+          "Vampire",
+          "Shoujo"
+        ],
+        "studios": [
+          "SILVER LINK."
+        ]
+      }
     },
     {
       "titleEN": "Tamon's B-Side",
@@ -128,7 +295,35 @@
       "streaming": [
         "crunchyroll"
       ],
-      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00365598/tamons-b-side"
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00365598/tamons-b-side",
+      "anilist": {
+        "format": "ONA",
+        "genres": [
+          "Comedy",
+          "Music",
+          "Romance"
+        ],
+        "tags": [
+          "Otaku Culture",
+          "Female Protagonist",
+          "Shoujo",
+          "Idol",
+          "Heterosexual",
+          "Surreal Comedy",
+          "Work",
+          "Primarily Teen Cast",
+          "Hikikomori",
+          "Slapstick",
+          "Urban",
+          "Kuudere",
+          "Tsundere",
+          "CGI",
+          "Coming of Age"
+        ],
+        "studios": [
+          "J.C.STAFF"
+        ]
+      }
     },
     {
       "titleEN": "The Villainess Is Adored by the Prince of the Neighbor Kingdom",
@@ -142,7 +337,25 @@
       "streaming": [
         "crunchyroll"
       ],
-      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00365613/the-villainess-is-adored-by-the-prince-of-the-neighbor-kingdom"
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00365613/the-villainess-is-adored-by-the-prince-of-the-neighbor-kingdom",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Fantasy",
+          "Romance"
+        ],
+        "tags": [
+          "Shoujo",
+          "Villainess",
+          "Royal Affairs",
+          "Isekai",
+          "Female Protagonist",
+          "Heterosexual"
+        ],
+        "studios": [
+          "Studio DEEN"
+        ]
+      }
     },
     {
       "titleEN": "Journal with Witch",
@@ -156,7 +369,32 @@
       "streaming": [
         "crunchyroll"
       ],
-      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00365571/journal-with-witch"
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00365571/journal-with-witch",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Drama",
+          "Slice of Life"
+        ],
+        "tags": [
+          "Female Protagonist",
+          "Adoption",
+          "Estranged Family",
+          "Coming of Age",
+          "Josei",
+          "Family Life",
+          "Orphan",
+          "Parenthood",
+          "Found Family",
+          "Writing",
+          "Primarily Female Cast",
+          "Urban",
+          "School"
+        ],
+        "studios": [
+          "Shuka"
+        ]
+      }
     },
     {
       "titleEN": "The Invisible Man and His Soon-to-Be Wife",
@@ -170,7 +408,38 @@
       "streaming": [
         "crunchyroll"
       ],
-      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00365610/the-invisible-man-and-his-soon-to-be-wife"
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00365610/the-invisible-man-and-his-soon-to-be-wife",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Comedy",
+          "Romance",
+          "Supernatural"
+        ],
+        "tags": [
+          "Iyashikei",
+          "Female Protagonist",
+          "Disability",
+          "Male Protagonist",
+          "Urban",
+          "Detective",
+          "Kemonomimi",
+          "Urban Fantasy",
+          "Interspecies",
+          "Office Lady",
+          "Anthropomorphism",
+          "Monster Girl",
+          "Monster Boy",
+          "Heterosexual",
+          "Primarily Adult Cast",
+          "Elf",
+          "Seinen",
+          "Work"
+        ],
+        "studios": [
+          "project No.9"
+        ]
+      }
     },
     {
       "titleEN": "Tune In to the Midnight Heart",
@@ -184,7 +453,31 @@
       "streaming": [
         "crunchyroll"
       ],
-      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00365772/tune-in-to-the-midnight-heart"
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00365772/tune-in-to-the-midnight-heart",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Comedy",
+          "Romance"
+        ],
+        "tags": [
+          "Heterosexual",
+          "Female Harem",
+          "Male Protagonist",
+          "School Club",
+          "Ensemble Cast",
+          "Acting",
+          "Primarily Teen Cast",
+          "Shounen",
+          "VTuber",
+          "Tsundere",
+          "Primarily Female Cast",
+          "School"
+        ],
+        "studios": [
+          "Gekkou"
+        ]
+      }
     },
     {
       "titleEN": "In the Clear Moonlit Dusk",
@@ -198,7 +491,28 @@
       "streaming": [
         "crunchyroll"
       ],
-      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00334040/in-the-clear-moonlit-dusk"
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00334040/in-the-clear-moonlit-dusk",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Romance",
+          "Slice of Life"
+        ],
+        "tags": [
+          "Shoujo",
+          "Heterosexual",
+          "Female Protagonist",
+          "Primarily Teen Cast",
+          "Urban",
+          "School",
+          "Tomboy",
+          "Iyashikei"
+        ],
+        "studios": [
+          "East Fish Studio",
+          "Atelier Peuplier"
+        ]
+      }
     },
     {
       "titleEN": "The Darwin Incident",
@@ -212,7 +526,36 @@
       "streaming": [
         "prime"
       ],
-      "primeUrl": "https://www.amazon.com/gp/video/detail/B0G5647BNF/"
+      "primeUrl": "https://www.amazon.com/gp/video/detail/B0G5647BNF/",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Sci-Fi",
+          "Thriller"
+        ],
+        "tags": [
+          "Terrorism",
+          "Criminal Organization",
+          "Environmental",
+          "Eco-Horror",
+          "Anthropomorphism",
+          "Politics",
+          "Coming of Age",
+          "Animals",
+          "Adoption",
+          "Urban Fantasy",
+          "Interspecies",
+          "Foreign",
+          "Philosophy",
+          "Seinen",
+          "Guns",
+          "School",
+          "CGI"
+        ],
+        "studios": [
+          "BELLNOX FILMS"
+        ]
+      }
     },
     {
       "titleEN": "Tatsuki Fujimoto 17-26",
@@ -226,7 +569,56 @@
       "streaming": [
         "prime"
       ],
-      "primeUrl": "https://www.amazon.com/gp/video/detail/B0FGHMF69K/"
+      "primeUrl": "https://www.amazon.com/gp/video/detail/B0FGHMF69K/",
+      "anilist": {
+        "format": "MOVIE",
+        "genres": [
+          "Action",
+          "Comedy",
+          "Drama",
+          "Romance",
+          "Sci-Fi",
+          "Slice of Life",
+          "Supernatural"
+        ],
+        "tags": [
+          "Episodic",
+          "Anthology",
+          "Surreal Comedy",
+          "Urban Fantasy",
+          "Female Protagonist",
+          "School",
+          "Male Protagonist",
+          "Magic",
+          "Urban",
+          "Family Life",
+          "Found Family",
+          "Aliens",
+          "Heterosexual",
+          "Dystopian",
+          "Assassins",
+          "Coastal",
+          "Monster Girl",
+          "Shapeshifting",
+          "Gender Bending",
+          "Nudity",
+          "Mermaid",
+          "Vampire",
+          "Drawing",
+          "LGBTQ+ Themes",
+          "Language Barrier",
+          "Disability",
+          "Transgender"
+        ],
+        "studios": [
+          "ZEXCS",
+          "Lapin Track",
+          "100studio",
+          "Studio Kafka",
+          "P.A.WORKS",
+          "GRAPH77"
+        ]
+      }
     },
     {
       "titleEN": "You don't know Gunma yet.: Reiwa version",
@@ -237,7 +629,18 @@
       "dateReviewed": "2026-01-20T13:00:00Z",
       "anilistId": 202419,
       "annId": 37944,
-      "streaming": []
+      "streaming": [],
+      "anilist": {
+        "format": "TV_SHORT",
+        "genres": [
+          "Comedy"
+        ],
+        "tags": [],
+        "studios": [
+          "Imagica Infos",
+          "Imageworks Studio"
+        ]
+      }
     },
     {
       "titleEN": "Fate/strange Fake",
@@ -251,7 +654,44 @@
       "streaming": [
         "crunchyroll"
       ],
-      "crunchyrollUrl": "https://www.crunchyroll.com/series/G4PH0WJQZ/fatestrange-fake"
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/G4PH0WJQZ/fatestrange-fake",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Action",
+          "Adventure",
+          "Fantasy",
+          "Mystery",
+          "Supernatural"
+        ],
+        "tags": [
+          "Urban",
+          "Mythology",
+          "Magic",
+          "Foreign",
+          "Urban Fantasy",
+          "Conspiracy",
+          "Gods",
+          "War",
+          "Battle Royale",
+          "Ensemble Cast",
+          "Anachronism",
+          "Police",
+          "Religion",
+          "Death Game",
+          "Vampire",
+          "Guns",
+          "Swordplay",
+          "Assassins",
+          "Gore",
+          "Cyborg",
+          "Archery",
+          "Shapeshifting"
+        ],
+        "studios": [
+          "A-1 Pictures"
+        ]
+      }
     },
     {
       "titleEN": "You and I Are Polar Opposites",
@@ -265,7 +705,32 @@
       "streaming": [
         "crunchyroll"
       ],
-      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00365624/you-and-i-are-polar-opposites"
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00365624/you-and-i-are-polar-opposites",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Comedy",
+          "Romance",
+          "Slice of Life"
+        ],
+        "tags": [
+          "Heterosexual",
+          "Ensemble Cast",
+          "School",
+          "Primarily Teen Cast",
+          "Coming of Age",
+          "Iyashikei",
+          "Gyaru",
+          "Kuudere",
+          "Urban",
+          "Female Protagonist",
+          "Shounen",
+          "Chibi"
+        ],
+        "studios": [
+          "Lapin Track"
+        ]
+      }
     },
     {
       "titleEN": "Scum of the Brave",
@@ -279,7 +744,34 @@
       "streaming": [
         "crunchyroll"
       ],
-      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00365730/scum-of-the-brave"
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00365730/scum-of-the-brave",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Action",
+          "Comedy",
+          "Drama",
+          "Fantasy",
+          "Sci-Fi"
+        ],
+        "tags": [
+          "Male Protagonist",
+          "Drugs",
+          "Urban Fantasy",
+          "Crime",
+          "Anti-Hero",
+          "Super Power",
+          "Mafia",
+          "Swordplay",
+          "Urban",
+          "Gore",
+          "Chibi",
+          "Bar"
+        ],
+        "studios": [
+          "OLM"
+        ]
+      }
     },
     {
       "titleEN": "Champignon Witch",
@@ -293,7 +785,37 @@
       "streaming": [
         "crunchyroll"
       ],
-      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00365553/champignon-witch"
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00365553/champignon-witch",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Drama",
+          "Fantasy",
+          "Supernatural"
+        ],
+        "tags": [
+          "Witch",
+          "Female Protagonist",
+          "Shoujo",
+          "Magic",
+          "Medieval",
+          "Animals",
+          "Rural",
+          "Age Regression",
+          "Conspiracy",
+          "Fairy",
+          "Anthropomorphism",
+          "Horticulture",
+          "Wilderness",
+          "Medicine",
+          "Heterosexual",
+          "Shapeshifting"
+        ],
+        "studios": [
+          "Qzil.la",
+          "TYPHOON GRAPHICS"
+        ]
+      }
     },
     {
       "titleEN": "Dark Moon: The Blood Altar",
@@ -307,7 +829,26 @@
       "streaming": [
         "crunchyroll"
       ],
-      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00365556/dark-moon-the-blood-altar"
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00365556/dark-moon-the-blood-altar",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Supernatural"
+        ],
+        "tags": [
+          "Vampire",
+          "Female Protagonist",
+          "Ensemble Cast",
+          "Male Harem",
+          "Super Power",
+          "School",
+          "Werewolf",
+          "Primarily Male Cast"
+        ],
+        "studios": [
+          "TROYCA"
+        ]
+      }
     },
     {
       "titleEN": "Isekai Office Worker: The Other World's Books Depend on the Bean Counter",
@@ -320,7 +861,32 @@
       "annId": 33889,
       "streaming": [
         "crunchyroll"
-      ]
+      ],
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Adventure",
+          "Fantasy",
+          "Romance",
+          "Slice of Life"
+        ],
+        "tags": [
+          "Male Protagonist",
+          "Work",
+          "Economics",
+          "LGBTQ+ Themes",
+          "Boys' Love",
+          "Magic",
+          "Politics",
+          "Royal Affairs",
+          "Isekai",
+          "Kingdom Management",
+          "Primarily Adult Cast"
+        ],
+        "studios": [
+          "Studio DEEN"
+        ]
+      }
     },
     {
       "titleEN": "The Holy Grail of Eris",
@@ -334,7 +900,33 @@
       "streaming": [
         "crunchyroll"
       ],
-      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00365781/the-holy-grail-of-eris"
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00365781/the-holy-grail-of-eris",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Drama",
+          "Fantasy",
+          "Mystery",
+          "Romance",
+          "Supernatural"
+        ],
+        "tags": [
+          "Female Protagonist",
+          "Ghost",
+          "Revenge",
+          "Royal Affairs",
+          "Villainess",
+          "Detective",
+          "Anti-Hero",
+          "Politics",
+          "Historical",
+          "Ojou-sama",
+          "Shoujo"
+        ],
+        "studios": [
+          "Ashi Productions"
+        ]
+      }
     },
     {
       "titleEN": "Chained Soldier S2",
@@ -347,7 +939,36 @@
       "annId": 32540,
       "streaming": [
         "hidive"
-      ]
+      ],
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Action",
+          "Adventure",
+          "Drama",
+          "Ecchi",
+          "Fantasy",
+          "Romance"
+        ],
+        "tags": [
+          "Female Harem",
+          "Heterosexual",
+          "Super Power",
+          "Female Protagonist",
+          "Slavery",
+          "Urban Fantasy",
+          "Shounen",
+          "Nudity",
+          "Male Protagonist",
+          "Creature Taming",
+          "Primarily Female Cast",
+          "Ensemble Cast"
+        ],
+        "studios": [
+          "Passione",
+          "Hayabusa Film"
+        ]
+      }
     },
     {
       "titleEN": "A Gentle Noble's Vacation Recommendation",
@@ -361,7 +982,28 @@
       "streaming": [
         "crunchyroll"
       ],
-      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00365550/a-gentle-nobles-vacation-recommendation"
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00365550/a-gentle-nobles-vacation-recommendation",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Adventure",
+          "Fantasy",
+          "Slice of Life"
+        ],
+        "tags": [
+          "Primarily Male Cast",
+          "Male Protagonist",
+          "Josei",
+          "Cute Boys Doing Cute Things",
+          "LGBTQ+ Themes",
+          "Isekai",
+          "Iyashikei"
+        ],
+        "studios": [
+          "Ascension",
+          "SynergySP"
+        ]
+      }
     },
     {
       "titleEN": "Reincarnated as a Dragon Hatchling",
@@ -374,7 +1016,25 @@
       "annId": 35147,
       "streaming": [
         "hidive"
-      ]
+      ],
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Action",
+          "Adventure",
+          "Fantasy"
+        ],
+        "tags": [
+          "Dragons",
+          "Male Protagonist",
+          "Creature Taming",
+          "Isekai"
+        ],
+        "studios": [
+          "GA-CREW",
+          "Felix Film"
+        ]
+      }
     },
     {
       "titleEN": "Hell Mode: The Hardcore Gamer Dominates in Another World with Garbage Balancing",
@@ -387,7 +1047,27 @@
       "annId": 34132,
       "streaming": [
         "hidive"
-      ]
+      ],
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Action",
+          "Adventure",
+          "Fantasy"
+        ],
+        "tags": [
+          "Creature Taming",
+          "Isekai",
+          "Male Protagonist",
+          "Animals",
+          "Video Games",
+          "Class Struggle",
+          "CGI"
+        ],
+        "studios": [
+          "Yokohama Animation Lab"
+        ]
+      }
     },
     {
       "titleEN": "Easygoing Territory Defense by the Optimistic Lord: Production Magic Turns a Nameless Village into the Strongest Fortified City",
@@ -401,7 +1081,26 @@
       "streaming": [
         "crunchyroll"
       ],
-      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00365565/easygoing-territory-defense-by-the-optimistic-lord"
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00365565/easygoing-territory-defense-by-the-optimistic-lord",
+      "anilist": {
+        "format": "ONA",
+        "genres": [
+          "Adventure",
+          "Fantasy"
+        ],
+        "tags": [
+          "Male Protagonist",
+          "Kingdom Management",
+          "Magic",
+          "Isekai",
+          "Rural",
+          "Medieval",
+          "Cute Boys Doing Cute Things"
+        ],
+        "studios": [
+          "NAZ"
+        ]
+      }
     },
     {
       "titleEN": "An Adventurer's Daily Grind at Age 29",
@@ -415,7 +1114,23 @@
       "streaming": [
         "crunchyroll"
       ],
-      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00365607/an-adventurers-daily-grind-at-age-29"
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00365607/an-adventurers-daily-grind-at-age-29",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Adventure",
+          "Fantasy",
+          "Slice of Life"
+        ],
+        "tags": [
+          "Iyashikei",
+          "Medieval",
+          "Male Protagonist"
+        ],
+        "studios": [
+          "HORNETS"
+        ]
+      }
     },
     {
       "titleEN": "Kunon the Sorcerer Can See",
@@ -429,7 +1144,34 @@
       "streaming": [
         "crunchyroll"
       ],
-      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00365586/kunon-the-sorcerer-can-see"
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00365586/kunon-the-sorcerer-can-see",
+      "anilist": {
+        "format": "ONA",
+        "genres": [
+          "Action",
+          "Adventure",
+          "Fantasy"
+        ],
+        "tags": [
+          "Magic",
+          "Disability",
+          "Male Protagonist",
+          "College",
+          "Primarily Teen Cast",
+          "Maids",
+          "Boarding School",
+          "Surreal Comedy",
+          "Coming of Age",
+          "Arranged Marriage",
+          "Agriculture",
+          "Food",
+          "Swordplay",
+          "Iyashikei"
+        ],
+        "studios": [
+          "Platinum Vision"
+        ]
+      }
     },
     {
       "titleEN": "Sentenced to Be a Hero",
@@ -443,7 +1185,30 @@
       "streaming": [
         "crunchyroll"
       ],
-      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00356809/sentenced-to-be-a-hero"
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00356809/sentenced-to-be-a-hero",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Action",
+          "Drama",
+          "Fantasy"
+        ],
+        "tags": [
+          "Medieval",
+          "Male Protagonist",
+          "Demons",
+          "Anti-Hero",
+          "Gods",
+          "Gore",
+          "Ensemble Cast",
+          "Crime",
+          "Military",
+          "Swordplay"
+        ],
+        "studios": [
+          "Studio KAI"
+        ]
+      }
     },
     {
       "titleEN": "Roll Over and Die",
@@ -457,7 +1222,38 @@
       "streaming": [
         "crunchyroll"
       ],
-      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00365592/roll-over-and-die"
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00365592/roll-over-and-die",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Action",
+          "Adventure",
+          "Drama",
+          "Fantasy",
+          "Horror"
+        ],
+        "tags": [
+          "Female Protagonist",
+          "Swordplay",
+          "Yuri",
+          "Magic",
+          "Gore",
+          "Religion",
+          "Slavery",
+          "Medieval",
+          "Body Horror",
+          "Body Image",
+          "Demons",
+          "LGBTQ+ Themes",
+          "Chimera",
+          "Zombie",
+          "Witch",
+          "Spearplay"
+        ],
+        "studios": [
+          "A.C.G.T."
+        ]
+      }
     },
     {
       "titleEN": "Noble Reincarnation: Born Blessed, So I'll Obtain Ultimate Power",
@@ -471,7 +1267,27 @@
       "streaming": [
         "crunchyroll"
       ],
-      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00365721/noble-reincarnation-born-blessed-so-ill-obtain-ultimate-power"
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00365721/noble-reincarnation-born-blessed-so-ill-obtain-ultimate-power",
+      "anilist": {
+        "format": "ONA",
+        "genres": [
+          "Action",
+          "Adventure",
+          "Fantasy"
+        ],
+        "tags": [
+          "Politics",
+          "Royal Affairs",
+          "Swordplay",
+          "Magic",
+          "Maids",
+          "Male Protagonist",
+          "Kingdom Management"
+        ],
+        "studios": [
+          "CompTown"
+        ]
+      }
     },
     {
       "titleEN": "You Can't Be In a Rom-Com with Your Childhood Friends!",
@@ -485,7 +1301,26 @@
       "streaming": [
         "crunchyroll"
       ],
-      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00365622/you-cant-be-in-a-rom-com-with-your-childhood-friends"
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00365622/you-cant-be-in-a-rom-com-with-your-childhood-friends",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Comedy",
+          "Romance"
+        ],
+        "tags": [
+          "Heterosexual",
+          "Male Protagonist",
+          "Love Triangle",
+          "Shounen",
+          "School",
+          "Tsundere",
+          "Tanned Skin"
+        ],
+        "studios": [
+          "Tezuka Productions"
+        ]
+      }
     },
     {
       "titleEN": "There was a Cute Girl in the Hero's Party, so I Tried Confessing to Her",
@@ -499,7 +1334,25 @@
       "streaming": [
         "crunchyroll"
       ],
-      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00355229/there-was-a-cute-girl-in-the-heros-party-so-i-tried-confessing-to-her"
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00355229/there-was-a-cute-girl-in-the-heros-party-so-i-tried-confessing-to-her",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Adventure",
+          "Comedy",
+          "Fantasy",
+          "Romance"
+        ],
+        "tags": [
+          "Demons",
+          "Heterosexual",
+          "Chuunibyou",
+          "Medieval"
+        ],
+        "studios": [
+          "Gekkou"
+        ]
+      }
     },
     {
       "titleEN": "Wash It All Away",
@@ -513,7 +1366,27 @@
       "streaming": [
         "crunchyroll"
       ],
-      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00365775/wash-it-all-away"
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00365775/wash-it-all-away",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Comedy",
+          "Romance",
+          "Slice of Life"
+        ],
+        "tags": [
+          "Iyashikei",
+          "Work",
+          "Female Protagonist",
+          "Amnesia",
+          "Educational",
+          "Seinen",
+          "Coastal"
+        ],
+        "studios": [
+          "Okuruto Noboru"
+        ]
+      }
     },
     {
       "titleEN": "The Demon King's Daughter Is Too Kind!!",
@@ -527,7 +1400,27 @@
       "streaming": [
         "crunchyroll"
       ],
-      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00365778/the-demon-kings-daughter-is-too-kind"
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00365778/the-demon-kings-daughter-is-too-kind",
+      "anilist": {
+        "format": "ONA",
+        "genres": [
+          "Comedy",
+          "Fantasy",
+          "Slice of Life"
+        ],
+        "tags": [
+          "Female Protagonist",
+          "Cute Girls Doing Cute Things",
+          "Demons",
+          "Family Life",
+          "Iyashikei",
+          "Rural",
+          "Episodic"
+        ],
+        "studios": [
+          "EMT Squared"
+        ]
+      }
     },
     {
       "titleEN": "Jack-of-All-Trades, Party of None",
@@ -541,7 +1434,25 @@
       "streaming": [
         "crunchyroll"
       ],
-      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00366764/jack-of-all-trades-party-of-none"
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00366764/jack-of-all-trades-party-of-none",
+      "anilist": {
+        "format": "ONA",
+        "genres": [
+          "Action",
+          "Adventure",
+          "Fantasy"
+        ],
+        "tags": [
+          "Male Protagonist",
+          "Magic",
+          "Dungeon",
+          "CGI",
+          "Swordplay"
+        ],
+        "studios": [
+          "animation studio42"
+        ]
+      }
     }
   ],
   "pending": [],
