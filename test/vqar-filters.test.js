@@ -34,7 +34,7 @@ test('a review is filed under its revisit rating once it has one, like Highest R
 });
 
 test('Extras: a revisit, which way it moved the rating, and OP/ED notes', () => {
-  assert.deepEqual(reviewValues('has', ep1Only), []);
+  assert.deepEqual(reviewValues('has', ep1Only), ['queue']);
   assert.deepEqual(reviewValues('has', ratedUp), ['revisit', 'up']);
   assert.deepEqual(reviewValues('has', ratedDown), ['revisit', 'down', 'oped']);
   assert.deepEqual(reviewValues('has', revisitNoRating), ['revisit']);
@@ -106,4 +106,11 @@ test('open-ended rows take any value from the URL and serialize alphabetically; 
   const params = new URLSearchParams();
   writeChipFiltersToParams(params, parsed);
   assert.equal(params.get('genre'), 'Action,Slice of Life');
+});
+
+test('Extras "To revisit": an episode-1 4 with no revisit yet, and nothing else', () => {
+  assert.deepEqual(reviewValues('has', { titleEN: 'H', ratingNumber: 4 }), ['queue']);
+  assert.deepEqual(reviewValues('has', { titleEN: 'P', ratingNumber: 5 }), []);
+  assert.deepEqual(reviewValues('has', { titleEN: 'M', ratingNumber: 3 }), []);
+  assert.deepEqual(reviewValues('has', ratedDown), ['revisit', 'down', 'oped']);
 });

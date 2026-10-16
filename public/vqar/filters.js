@@ -11,7 +11,7 @@
  * they're rows like any other here.
  */
 
-import { effectiveRatingNumber, RATING_NUMBER_LABELS } from './rating.js';
+import { effectiveRatingNumber, awaitingRevisit, RATING_NUMBER_LABELS } from './rating.js';
 import { STREAMING_SERVICES } from '../streaming.js';
 
 /** @typedef {'rating'|'on'|'has'|'format'|'genre'|'tag'|'studio'} ChipDimension */
@@ -22,6 +22,7 @@ export const RATING_VALUES = ['5', '4', '3', '2', '1', '0'];
 
 /** The Extras row, in display order. */
 export const HAS_OPTIONS = {
+  queue: 'To revisit',
   revisit: 'Revisited',
   up: 'Rated up on revisit',
   down: 'Rated down on revisit',
@@ -92,6 +93,7 @@ export function reviewValues(dimension, review) {
   if (dimension === 'tag') return review.anilist?.tags ?? [];
   if (dimension === 'studio') return review.anilist?.studios ?? [];
   const values = [];
+  if (awaitingRevisit(review)) values.push('queue');
   if (review.fullReview) values.push('revisit');
   const before = review.ratingNumber;
   const after = review.fullReview?.ratingNumber;

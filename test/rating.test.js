@@ -1,7 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 
-import { effectiveRatingNumber } from '../public/vqar/rating.js';
+import { effectiveRatingNumber, awaitingRevisit } from '../public/vqar/rating.js';
 
 test('a review with no re-review keeps its episode-1 rating', () => {
   assert.equal(effectiveRatingNumber({ ratingNumber: 4 }), 4);
@@ -21,4 +21,11 @@ test('a re-review with only prose falls back to the episode-1 rating', () => {
 
 test('a text-only review has no numeric rating either way', () => {
   assert.equal(effectiveRatingNumber({ ratingText: 'Yeah' }), undefined);
+});
+
+test('only an episode-1 4 with no revisit is awaiting one', () => {
+  assert.equal(awaitingRevisit({ ratingNumber: 4 }), true);
+  assert.equal(awaitingRevisit({ ratingNumber: 4, fullReview: { ratingNumber: 4 } }), false);
+  assert.equal(awaitingRevisit({ ratingNumber: 5 }), false);
+  assert.equal(awaitingRevisit({ ratingNumber: 3 }), false);
 });

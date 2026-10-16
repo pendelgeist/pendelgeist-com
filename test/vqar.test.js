@@ -732,6 +732,14 @@ test('Extras filters on revisits that moved the rating, and on OP/ED notes', asy
   assert.deepEqual(titles(document), ['Trash Show']);
 });
 
+test('Extras "To revisit" lists the 4s still waiting on a revisit', async () => {
+  const { document, window } = await loadFiltered();
+  assert.equal(chipCount(document, 'has', 'queue'), '1');
+  chip(document, 'has', 'queue').click();
+  assert.deepEqual(titles(document), ['Hidive Show']);
+  assert.equal(window.location.search, '?has=queue');
+});
+
 test('a filtered URL restores season, search, sort and chips on load', async () => {
   const { document } = await loadFiltered('?season=all&q=peak&sort=title&rating=5');
   assert.equal(document.getElementById('seasonFilter').value, 'all');

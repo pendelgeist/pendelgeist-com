@@ -8,7 +8,7 @@ import {
   flattenReviews, computeGlanceStats, computeRatingDistribution, computeRatingsOverTime,
   computeHallOfFame, computeSecondImpressions, computeOpEdHighlights,
   computeCategoryRatings, computeLovesAndHates, computeGenreBySeason,
-  computeRevisitCandidates, computeContinuationWatch, computeSeasonCoverage,
+  computeRevisitCandidates, computeContinuationWatch, computeSeasonCoverage, computeHopeCheck,
 } from '../public/vqar-stats/stats.js';
 import { createPathFetchStub } from './helpers.js';
 
@@ -580,4 +580,80 @@ test('picking one season scopes the category sections and hides Genre by Season'
   assert.equal(document.getElementById('genreBySeasonSection').hidden, true);
   // Summer alone has no genre with 3 shows.
   assert.match(document.querySelector('#tasteTable .loading').textContent, /No genres with 3\+ shows/);
+});
+
+// --- Hope Check ---
+
+const hope = (titleEN, after, extra = {}) => ({
+  titleEN, ratingNumber: 4, ratingText: 'Yeah', dateReviewed: '2026-07-01',
+  ...(after === undefined ? {} : { fullReview: { ratingNumber: after, ratingText: 'x' } }), ...extra,
+});
+
+const hopeSeasons = [
+  {
+    id: 'summer-2026', name: 'Summer 2026',
+    reviewed: [hope('Rose', 5), hope('Fell', 2), hope('Waiting'), { titleEN: 'Peak', ratingNumber: 5, ratingText: 'Peak', dateReviewed: '2026-07-01' }],
+    pending: [], skipped: [],
+  },
+  {
+    id: 'spring-2026', name: 'Spring 2026',
+    reviewed: [
+      hope('Held', 4, { dateReviewed: '2026-04-01' }),
+      // A 3 that grew isn't a dashed or kept hope - it never was one.
+      { titleEN: 'Grower', ratingNumber: 3, ratingText: 'Meh', dateReviewed: '2026-04-02', fullReview: { ratingNumber: 5, ratingText: 'Peak' } },
+    ],
+    pending: [], skipped: [],
+  },
+];
+
+test('computeHopeCheck follows episode-1 4s: rose, held, fell or still waiting, overall and per season in airing order', () => {
+  const h = computeHopeCheck(flattenReviews(hopeSeasons));
+  assert.deepEqual(
+    { hoping: h.hoping, revisited: h.revisited, rose: h.rose, held: h.held, fell: h.fell, waiting: h.waiting },
+    { hoping: 4, revisited: 3, rose: 1, held: 1, fell: 1, waiting: 1 });
+  assert.equal(h.heldShare, 2 / 3);
+  assert.deepEqual(h.bySeason.map(s => [s.id, s.hoping, s.revisited, s.waiting, s.heldShare]), [
+    ['spring-2026', 1, 1, 0, 1],
+    ['summer-2026', 3, 2, 1, 0.5],
+  ]);
+});
+
+test('computeHopeCheck has no held-up share before any 4 is revisited', () => {
+  const h = computeHopeCheck(flattenReviews([{ id: 'x', name: 'X', reviewed: [hope('Waiting')] }]));
+  assert.equal(h.heldShare, null);
+  assert.equal(h.waiting, 1);
+});
+
+function hopeRoutes() {
+  return createPathFetchStub({
+    '/vqar/data/index.json': seasonIndex,
+    '/vqar/data/seasons/summer-2026.json': hopeSeasons[0],
+    '/vqar/data/seasons/spring-2026.json': hopeSeasons[1],
+  });
+}
+
+test('Hope Check tiles the totals and tables each season, linking its waiting count to /vqar', async () => {
+  const { document } = await loadApp({ fetch: hopeRoutes() });
+  await waitForTable(document, 'hopeCheckTable');
+  const tiles = Object.fromEntries([...document.querySelectorAll('#hopeCheckStats .stat-tile')]
+    .map((el) => [el.querySelector('.stat-label').textContent, el.querySelector('.stat-value').textContent]));
+  assert.equal(tiles['Hope Held Up'], '67%');
+  assert.equal(tiles['Still Waiting'], '1');
+  assert.deepEqual(tableRows(document, 'hopeCheckTable'), [
+    ['Spring 2026', '1', '1', '0', '1', '0', '100%', '0'],
+    ['Summer 2026', '3', '2', '1', '0', '1', '50%', '1'],
+  ]);
+  assert.equal(document.querySelector('#hopeCheckTable td a').getAttribute('href'), '/vqar?season=summer-2026&has=queue');
+  // Revisit Candidates links to the same view for the season in the spotlight.
+  const link = document.getElementById('revisitLink');
+  assert.equal(link.hidden, false);
+  assert.equal(link.getAttribute('href'), '/vqar?season=summer-2026&has=queue');
+});
+
+test('Hope Check drops the per-season table once the filter picks one season', async () => {
+  const { document } = await loadApp({ fetch: hopeRoutes(), url: 'http://localhost/vqar-stats/index.html?season=spring-2026' });
+  await new Promise((r) => setTimeout(r, 50));
+  assert.equal(document.querySelector('#hopeCheckTable table'), null);
+  // Spring's only 4 has been revisited, so there's nothing to link to.
+  assert.equal(document.getElementById('revisitLink').hidden, true);
 });

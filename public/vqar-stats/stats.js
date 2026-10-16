@@ -5,7 +5,7 @@
  * and hands the resulting season array to these functions.
  */
 
-import { effectiveRatingNumber, RATING_NUMBER_LABELS } from '../vqar/rating.js';
+import { effectiveRatingNumber, awaitingRevisit, HOPING_RATING, RATING_NUMBER_LABELS } from '../vqar/rating.js';
 import { entryTitle } from '../vqar/list-entries.js';
 import { reviewValues } from '../vqar/filters.js';
 
@@ -164,14 +164,14 @@ export function computeSecondImpressions(reviews) {
 /**
  * A season's 4/5s ("Yeah") that haven't been given a `fullReview` yet - the
  * "I liked episode 1, I should go back and actually finish/revisit this"
- * pile. Excludes 5/5s (nothing to reconsider there) and anything already
- * re-reviewed (already revisited).
+ * pile (see awaitingRevisit). Excludes 5/5s (nothing to reconsider there)
+ * and anything already re-reviewed (already revisited).
  * @param {ReturnType<typeof flattenReviews>} reviews
  * @param {string|number} seasonId
  */
 export function computeRevisitCandidates(reviews, seasonId) {
   return reviews
-    .filter(r => r.season === String(seasonId) && r.ratingNumber === 4 && !r.fullReview)
+    .filter(r => r.season === String(seasonId) && awaitingRevisit(r))
     .sort((a, b) => b._timestamp - a._timestamp || (a.titleEN ?? '').localeCompare(b.titleEN ?? ''));
 }
 
@@ -378,6 +378,22 @@ export function computeLovesAndHates(reviews, dimension, { n = 3, minShows = MIN
 }
 
 /**
+ * The seasons a set of reviews comes from, in airing order (by each one's
+ * earliest review).
+ * @param {ReturnType<typeof flattenReviews>} reviews
+ * @returns {{ id: string, name: string }[]}
+ */
+function seasonsInAiringOrder(reviews) {
+  /** @type {Map<string, { id: string, name: string, first: number }>} */
+  const seasonsById = new Map();
+  for (const r of reviews) {
+    const seen = seasonsById.get(r.season);
+    if (!seen || r._timestamp < seen.first) seasonsById.set(r.season, { id: r.season, name: r.seasonName, first: r._timestamp });
+  }
+  return [...seasonsById.values()].sort((a, b) => a.first - b.first).map(({ id, name }) => ({ id, name }));
+}
+
+/**
  * Each genre's average rating per season - did romance have a good spring? -
  * with seasons in airing order (by their earliest review). Genres with fewer
  * than `minShows` across every season are left out; a season with no shows
@@ -387,14 +403,7 @@ export function computeLovesAndHates(reviews, dimension, { n = 3, minShows = MIN
  */
 export function computeGenreBySeason(reviews, { minShows = MIN_CATEGORY_SHOWS } = {}) {
   const rated = reviews.filter(r => typeof effectiveRatingNumber(r) === 'number');
-
-  /** @type {Map<string, { id: string, name: string, first: number }>} */
-  const seasonsById = new Map();
-  for (const r of rated) {
-    const seen = seasonsById.get(r.season);
-    if (!seen || r._timestamp < seen.first) seasonsById.set(r.season, { id: r.season, name: r.seasonName, first: r._timestamp });
-  }
-  const seasons = [...seasonsById.values()].sort((a, b) => a.first - b.first).map(({ id, name }) => ({ id, name }));
+  const seasons = seasonsInAiringOrder(rated);
 
   const rows = computeCategoryRatings(rated, 'genre', { minShows }).map(({ value }) => {
     /** @type {Record<string, { avgRating: number, shows: number }>} */
@@ -408,4 +417,46 @@ export function computeGenreBySeason(reviews, { minShows = MIN_CATEGORY_SHOWS } 
     return { value, cells };
   });
   return { seasons, rows };
+}
+
+/**
+ * @typedef {Object} HopeCheckCounts
+ * @property {number} hoping - shows rated HOPING_RATING on episode 1
+ * @property {number} revisited - of those, how many have a rated revisit
+ * @property {number} rose - revisit rated above HOPING_RATING
+ * @property {number} held - revisit rated HOPING_RATING again
+ * @property {number} fell - revisit rated below HOPING_RATING
+ * @property {number} waiting - no revisit yet (awaitingRevisit)
+ * @property {number|null} heldShare - (rose + held) / revisited; null with no revisits
+ */
+
+/**
+ * How the "Yeah, Here's Hoping" 4s turn out: an episode-1 4 is a "watch
+ * more" rather than a verdict, so this counts how many got their revisit,
+ * how many of those held up (rose or stayed at 4) or fell, and how many are
+ * still waiting - overall and per season, seasons in airing order.
+ * @param {ReturnType<typeof flattenReviews>} reviews
+ * @returns {HopeCheckCounts & { bySeason: (HopeCheckCounts & { id: string, name: string })[] }}
+ */
+export function computeHopeCheck(reviews) {
+  const hoping = reviews.filter(r => r.ratingNumber === HOPING_RATING);
+  /** @param {typeof hoping} shows @returns {HopeCheckCounts} */
+  const count = (shows) => {
+    const after = shows.map(r => r.fullReview?.ratingNumber).filter(n => typeof n === 'number');
+    const rose = after.filter(n => n > HOPING_RATING).length;
+    const held = after.filter(n => n === HOPING_RATING).length;
+    return {
+      hoping: shows.length,
+      revisited: after.length,
+      rose,
+      held,
+      fell: after.filter(n => n < HOPING_RATING).length,
+      waiting: shows.filter(awaitingRevisit).length,
+      heldShare: after.length ? (rose + held) / after.length : null,
+    };
+  };
+  return {
+    ...count(hoping),
+    bySeason: seasonsInAiringOrder(hoping).map(({ id, name }) => ({ id, name, ...count(hoping.filter(r => r.season === id)) })),
+  };
 }

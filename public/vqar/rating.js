@@ -38,3 +38,20 @@ export const RATING_NUMBER_LABELS = {
   4: "Yeah, Here's Hoping",
   5: 'Peak, Nice Ep Broh',
 };
+
+/**
+ * The episode-1 tier that means "worth watching more" - "Yeah, Here's
+ * Hoping" - and so the one revisits come from. A 5 is already a verdict and
+ * a 3 or below rarely gets a second look.
+ */
+export const HOPING_RATING = 4;
+
+/**
+ * Whether a show is still waiting on its revisit: rated HOPING_RATING on
+ * episode 1, with no `fullReview` yet. /vqar's "To revisit" filter and
+ * /vqar-stats' Revisit Candidates and Hope Check all count by this.
+ * @param {{ ratingNumber?: number, fullReview?: object }} review
+ */
+export function awaitingRevisit(review) {
+  return review.ratingNumber === HOPING_RATING && !review.fullReview;
+}
