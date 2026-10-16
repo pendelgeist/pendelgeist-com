@@ -6,10 +6,13 @@
  */
 
 import { VQAR_INDEX_PATH } from '../vqar/data-paths.js';
-import { createDataTable, renderStatGrid, renderBarChart } from '../data-table.js';
+import { createDataTable, renderStatGrid, renderBarChart, MISSING } from '../data-table.js';
+import { FORMAT_LABELS } from '../vqar/filters.js';
+import { STREAMING_SERVICES } from '../streaming.js';
 import {
   flattenReviews, computeGlanceStats, computeRatingDistribution, computeRatingsOverTime,
   computeHallOfFame, computeSecondImpressions, computeOpEdHighlights,
+  computeCategoryRatings, computeLovesAndHates, computeGenreBySeason, MIN_CATEGORY_SHOWS,
   computeRevisitCandidates, computeContinuationWatch, computeSeasonCoverage,
 } from './stats.js';
 
@@ -35,6 +38,12 @@ const dom = {
   secondImpressionsTable: document.getElementById('secondImpressionsTable'),
   topOps: document.getElementById('topOps'),
   topEds: document.getElementById('topEds'),
+  tasteSwitch: document.getElementById('tasteSwitch'),
+  tasteTable: document.getElementById('tasteTable'),
+  tasteNote: document.getElementById('tasteNote'),
+  lovesHates: document.getElementById('lovesHates'),
+  genreBySeasonSection: document.getElementById('genreBySeasonSection'),
+  genreBySeasonTable: document.getElementById('genreBySeasonTable'),
 };
 
 dom.infoToggle?.addEventListener('click', (e) => {
@@ -235,6 +244,136 @@ function renderOpEd(reviews) {
   renderDataTable(dom.topEds, cols, s.likedEds.map(row));
 }
 
+/**
+ * The Taste Profile's dimensions: how each is labelled, and how a value of it
+ * reads (an AniList format enum or a streaming key isn't what a person
+ * would call it). Each `key` is also the /vqar URL parameter for it.
+ */
+const TASTE_DIMENSIONS = [
+  { key: 'genre', label: 'Genre', singular: 'genre', plural: 'genres', display: (v) => v },
+  { key: 'studio', label: 'Studio', singular: 'studio', plural: 'studios', display: (v) => v },
+  { key: 'tag', label: 'Tag', singular: 'tag', plural: 'tags', display: (v) => v },
+  { key: 'format', label: 'Format', singular: 'format', plural: 'formats', display: (v) => FORMAT_LABELS[v] ?? v },
+  { key: 'on', label: 'Streaming', singular: 'service', plural: 'services', display: (v) => STREAMING_SERVICES[v]?.name ?? v },
+];
+
+/** Which dimension the Taste Profile is showing. */
+let tasteDimension = 'genre';
+/** The reviews the category sections were last drawn from, so the switch can redraw without a refetch. */
+let categoryReviews = [];
+
+/**
+ * A link to /vqar filtered to one category, in the season this page is
+ * showing - "these are the shows that number is about".
+ * @param {string} key - the dimension, which is also its /vqar URL parameter
+ * @param {string} value
+ */
+function vqarHref(key, value) {
+  const params = new URLSearchParams({ season: dom.seasonFilter?.value || 'all', [key]: value });
+  return `/vqar?${params}`;
+}
+
+const percent = (fraction) => `${Math.round(fraction * 100)}%`;
+
+function renderTasteSwitch() {
+  if (!dom.tasteSwitch) return;
+  dom.tasteSwitch.replaceChildren(...TASTE_DIMENSIONS.map(({ key, label }) => {
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.className = 'vs-switch-button';
+    button.dataset.dimension = key;
+    button.textContent = label;
+    button.setAttribute('aria-pressed', String(key === tasteDimension));
+    return button;
+  }));
+}
+
+function renderTasteProfile(reviews) {
+  const dimension = TASTE_DIMENSIONS.find(d => d.key === tasteDimension) ?? TASTE_DIMENSIONS[0];
+  const rows = computeCategoryRatings(reviews, dimension.key);
+  renderTasteSwitch();
+  if (rows.length === 0) {
+    const empty = document.createElement('div');
+    empty.className = 'loading';
+    empty.textContent = `No ${dimension.plural} with ${MIN_CATEGORY_SHOWS}+ shows here yet.`;
+    dom.tasteTable?.replaceChildren(empty);
+  } else {
+    renderDataTable(dom.tasteTable,
+      [dimension.label, 'Shows', 'Avg', 'Rated 4–5', 'Rated 0–1', 'Revisit shift', 'Finished', 'Liked OP/ED'],
+      rows.map(r => [
+        { text: dimension.display(r.value), href: vqarHref(dimension.key, r.value) },
+        String(r.shows),
+        formatRating(r.avgRating),
+        percent(r.highShare),
+        percent(r.lowShare),
+        r.revisitShift === null ? MISSING : formatDelta(r.revisitShift),
+        String(r.finished),
+        String(r.likedOpEd),
+      ]));
+  }
+  if (dom.tasteNote) {
+    dom.tasteNote.textContent = rows.hidden === 1
+      ? `1 more ${dimension.singular} with fewer than ${MIN_CATEGORY_SHOWS} shows isn't listed.`
+      : rows.hidden > 1 ? `${rows.hidden} more ${dimension.plural} with fewer than ${MIN_CATEGORY_SHOWS} shows aren't listed.` : '';
+  }
+}
+
+function renderLovesAndHates(reviews) {
+  if (!dom.lovesHates) return;
+  const blocks = TASTE_DIMENSIONS.filter(d => ['genre', 'studio', 'tag'].includes(d.key)).map(dimension => {
+    const block = document.createElement('div');
+    const heading = document.createElement('h3');
+    heading.textContent = dimension.plural[0].toUpperCase() + dimension.plural.slice(1);
+    block.appendChild(heading);
+    const { loves, hates } = computeLovesAndHates(reviews, dimension.key);
+    if (loves.length === 0) {
+      const empty = document.createElement('p');
+      empty.className = 'vs-note';
+      empty.textContent = `Not enough ${dimension.plural} with ${MIN_CATEGORY_SHOWS}+ shows yet.`;
+      block.appendChild(empty);
+      return block;
+    }
+    const row = (r) => [{ text: dimension.display(r.value), href: vqarHref(dimension.key, r.value) }, formatRating(r.avgRating), String(r.shows)];
+    for (const [label, list] of [['Loves', loves], ['Hates', hates]]) {
+      if (list.length === 0) continue;
+      const sub = document.createElement('h4');
+      sub.className = `vs-loves-hates-label vs-${label.toLowerCase()}`;
+      sub.textContent = label;
+      block.append(sub, createDataTable([dimension.label, 'Avg', 'Shows'], list.map(row)));
+    }
+    return block;
+  });
+  dom.lovesHates.replaceChildren(...blocks);
+}
+
+function renderGenreBySeason(reviews) {
+  const grid = computeGenreBySeason(reviews);
+  // Like Ratings Over Time: a comparison across seasons needs more than one.
+  if (dom.genreBySeasonSection) dom.genreBySeasonSection.hidden = grid.seasons.length <= 1 || grid.rows.length === 0;
+  if (dom.genreBySeasonSection?.hidden) return;
+  renderDataTable(dom.genreBySeasonTable,
+    ['Genre', ...grid.seasons.map(s => s.name)],
+    grid.rows.map(r => [
+      { text: r.value, href: vqarHref('genre', r.value) },
+      ...grid.seasons.map(s => r.cells[s.id] ? formatRating(r.cells[s.id].avgRating) : MISSING),
+    ]));
+}
+
+function renderCategorySections(reviews) {
+  categoryReviews = reviews;
+  renderTasteProfile(reviews);
+  renderLovesAndHates(reviews);
+  renderGenreBySeason(reviews);
+}
+
+dom.tasteSwitch?.addEventListener('click', (e) => {
+  const button = /** @type {HTMLElement|null} */ (/** @type {Element} */ (e.target).closest('.vs-switch-button'));
+  if (!button?.dataset.dimension) return;
+  tasteDimension = button.dataset.dimension;
+  renderTasteProfile(categoryReviews);
+  dom.tasteSwitch?.querySelector(`[data-dimension="${tasteDimension}"]`)?.focus();
+});
+
 /** @type {SeasonData[]} */
 let allSeasons = [];
 /** @type {ReturnType<typeof flattenReviews>} */
@@ -287,6 +426,7 @@ function renderAll(seasons, reviews) {
   renderGlanceStats(seasons, reviews);
   renderRatingDistribution(reviews);
   renderRatingsOverTime(reviews);
+  renderCategorySections(reviews);
   renderHallOfFame(reviews);
   renderSecondImpressions(reviews);
   renderOpEd(reviews);

@@ -7,6 +7,7 @@ import { JSDOM } from 'jsdom';
 import {
   flattenReviews, computeGlanceStats, computeRatingDistribution, computeRatingsOverTime,
   computeHallOfFame, computeSecondImpressions, computeOpEdHighlights,
+  computeCategoryRatings, computeLovesAndHates, computeGenreBySeason,
   computeRevisitCandidates, computeContinuationWatch, computeSeasonCoverage,
 } from '../public/vqar-stats/stats.js';
 import { createPathFetchStub } from './helpers.js';
@@ -444,4 +445,139 @@ test('computeContinuationWatch reads titles from object-form pending and skipped
     ['Great Show 3rd Season', 'skipped'],
     ['Great Show Season 2', 'pending'],
   ]);
+});
+
+// --- category cross-references ---
+
+const tagged = (titleEN, ratingNumber, anilist, extra = {}) =>
+  ({ titleEN, ratingNumber, ratingText: 'x', review: '', dateReviewed: '2026-07-01', anilistId: 1, anilist: { genres: [], tags: [], studios: [], ...anilist }, ...extra });
+
+const categorySeasons = [
+  {
+    id: 'summer-2026', name: 'Summer 2026',
+    reviewed: [
+      tagged('Isekai A', 1, { format: 'TV', genres: ['Fantasy'], tags: ['Isekai'], studios: ['GoHands'] }, { streaming: ['crunchyroll'] }),
+      tagged('Isekai B', 0, { format: 'TV', genres: ['Fantasy'], tags: ['Isekai'], studios: ['GoHands'] }, { streaming: ['crunchyroll'], finishedSeason: true }),
+      tagged('Romcom A', 5, { format: 'ONA', genres: ['Comedy', 'Romance'], tags: ['School'], studios: ['MAPPA'] }, { op: true }),
+    ],
+    pending: [], skipped: [],
+  },
+  {
+    id: 'spring-2026', name: 'Spring 2026',
+    reviewed: [
+      // Revisited 2 -> 4: counts as a 4, and as a +2 shift.
+      tagged('Isekai C', 2, { format: 'TV', genres: ['Fantasy', 'Comedy'], tags: ['Isekai'], studios: ['MAPPA'] }, { fullReview: { ratingNumber: 4, ratingText: 'y' }, dateReviewed: '2026-04-01' }),
+      tagged('Romcom B', 4, { format: 'TV', genres: ['Comedy', 'Romance'], tags: ['School'], studios: ['MAPPA'] }, { dateReviewed: '2026-04-02' }),
+      { titleEN: 'Untagged', ratingNumber: 3, ratingText: 'x', review: '', dateReviewed: '2026-04-03' },
+    ],
+    pending: [], skipped: [],
+  },
+];
+const categoryReviews = flattenReviews(categorySeasons);
+
+test('computeCategoryRatings averages each genre by its revisit-aware rating, with share and note counts', () => {
+  const rows = computeCategoryRatings(categoryReviews, 'genre', { minShows: 1 });
+  const fantasy = rows.find((r) => r.value === 'Fantasy');
+  assert.deepEqual(fantasy, {
+    value: 'Fantasy', shows: 3, avgRating: (1 + 0 + 4) / 3,
+    highShare: 1 / 3, lowShare: 2 / 3, revisitShift: 2, revisits: 1, finished: 1, likedOpEd: 0,
+  });
+  // Best first; reviews with no AniList data simply don't appear under any genre.
+  assert.deepEqual(rows.map((r) => r.value), ['Romance', 'Comedy', 'Fantasy']);
+  assert.equal(rows.find((r) => r.value === 'Romance').revisitShift, null);
+});
+
+test('computeCategoryRatings leaves out categories under the minimum, and says how many', () => {
+  const rows = computeCategoryRatings(categoryReviews, 'studio', { minShows: 3 });
+  assert.deepEqual(rows.map((r) => [r.value, r.shows]), [['MAPPA', 3]]);
+  assert.equal(rows.hidden, 1);
+});
+
+test('computeCategoryRatings works for format and streaming too', () => {
+  assert.deepEqual(computeCategoryRatings(categoryReviews, 'format', { minShows: 1 }).map((r) => r.value), ['ONA', 'TV']);
+  assert.deepEqual(computeCategoryRatings(categoryReviews, 'on', { minShows: 1 }).map((r) => [r.value, r.shows]), [['crunchyroll', 2]]);
+});
+
+test('computeLovesAndHates picks the best and worst rated categories that clear the minimum', () => {
+  const { loves, hates } = computeLovesAndHates(categoryReviews, 'tag', { n: 1, minShows: 2 });
+  assert.deepEqual(loves.map((r) => r.value), ['School']);
+  assert.deepEqual(hates.map((r) => r.value), ['Isekai']);
+});
+
+test('computeLovesAndHates never lists the same category as both a love and a hate', () => {
+  const { loves, hates } = computeLovesAndHates(categoryReviews, 'tag', { n: 5, minShows: 2 });
+  assert.deepEqual(loves.map((r) => r.value), ['School']);
+  assert.deepEqual(hates.map((r) => r.value), ['Isekai']);
+});
+
+test('computeGenreBySeason averages each genre per season, seasons in airing order', () => {
+  const grid = computeGenreBySeason(categoryReviews, { minShows: 2 });
+  assert.deepEqual(grid.seasons.map((s) => s.id), ['spring-2026', 'summer-2026']);
+  const comedy = grid.rows.find((r) => r.value === 'Comedy');
+  assert.deepEqual(comedy.cells, { 'spring-2026': { avgRating: 4, shows: 2 }, 'summer-2026': { avgRating: 5, shows: 1 } });
+  assert.deepEqual(grid.rows.find((r) => r.value === 'Fantasy').cells['spring-2026'], { avgRating: 4, shows: 1 });
+});
+
+function categoryRoutes() {
+  return createPathFetchStub({
+    '/vqar/data/index.json': seasonIndex,
+    '/vqar/data/seasons/summer-2026.json': categorySeasons[0],
+    '/vqar/data/seasons/spring-2026.json': categorySeasons[1],
+  });
+}
+
+async function waitForTable(document, id) {
+  for (let i = 0; i < 200 && !document.querySelector(`#${id} table`); i++) await new Promise((r) => setTimeout(r, 5));
+}
+
+const tableRows = (document, id) => [...document.querySelectorAll(`#${id} tbody tr`)].map((tr) => [...tr.children].map((td) => td.textContent));
+
+test('Taste Profile tables genres by your ratings, each name linking to that genre on /vqar', async () => {
+  const { document } = await loadApp({ fetch: categoryRoutes() });
+  await waitForTable(document, 'tasteTable');
+
+  // Romance has only 2 shows, under the 3-show minimum.
+  assert.deepEqual(tableRows(document, 'tasteTable'), [
+    ['Comedy', '3', '4.3', '100%', '0%', '+2.0', '0', '1'],
+    ['Fantasy', '3', '1.7', '33%', '67%', '+2.0', '1', '0'],
+  ]);
+  assert.equal(document.querySelector('#tasteTable td a').getAttribute('href'), '/vqar?season=all&genre=Comedy');
+  assert.equal(document.getElementById('tasteNote').textContent, "1 more genre with fewer than 3 shows isn't listed.");
+});
+
+test('the Taste Profile switch re-slices by studio, format or streaming service', async () => {
+  const { document } = await loadApp({ fetch: categoryRoutes() });
+  await waitForTable(document, 'tasteTable');
+
+  document.querySelector('.vs-switch-button[data-dimension="studio"]').click();
+  assert.deepEqual(tableRows(document, 'tasteTable').map((r) => r[0]), ['MAPPA']);
+  assert.equal(document.querySelector('.vs-switch-button[data-dimension="studio"]').getAttribute('aria-pressed'), 'true');
+  assert.equal(document.querySelector('#tasteTable td a').getAttribute('href'), '/vqar?season=all&studio=MAPPA');
+
+  document.querySelector('.vs-switch-button[data-dimension="format"]').click();
+  assert.deepEqual(tableRows(document, 'tasteTable').map((r) => r[0]), ['TV']);
+
+  document.querySelector('.vs-switch-button[data-dimension="on"]').click();
+  assert.match(document.querySelector('#tasteTable .loading').textContent, /No services with 3\+ shows/);
+});
+
+test('Loves & Hates lists best and worst per genre/studio/tag, and Genre by Season needs more than one season', async () => {
+  const { document } = await loadApp({ fetch: categoryRoutes() });
+  await waitForTable(document, 'lovesHates');
+  const headings = [...document.querySelectorAll('#lovesHates h3')].map((h) => h.textContent);
+  assert.deepEqual(headings, ['Genres', 'Studios', 'Tags']);
+  assert.equal(document.querySelector('#lovesHates .vs-loves + .table-scroll td a').textContent, 'Comedy');
+  assert.equal(document.querySelector('#lovesHates .vs-hates + .table-scroll td a').textContent, 'Fantasy');
+
+  assert.equal(document.getElementById('genreBySeasonSection').hidden, false);
+  assert.deepEqual(tableRows(document, 'genreBySeasonTable')[0], ['Comedy', '4.0', '5.0']);
+});
+
+test('picking one season scopes the category sections and hides Genre by Season', async () => {
+  const { document } = await loadApp({ fetch: categoryRoutes(), url: 'http://localhost/vqar-stats/index.html?season=summer-2026' });
+  await waitForTable(document, 'tasteTable').catch(() => {});
+  await new Promise((r) => setTimeout(r, 50));
+  assert.equal(document.getElementById('genreBySeasonSection').hidden, true);
+  // Summer alone has no genre with 3 shows.
+  assert.match(document.querySelector('#tasteTable .loading').textContent, /No genres with 3\+ shows/);
 });
