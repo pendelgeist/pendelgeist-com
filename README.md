@@ -403,6 +403,23 @@ npm run fetch-anilist-tags -- --print-queries           # the queries, ids fille
 npm run fetch-anilist-tags -- --from=q1.json,q2.json    # import the saved responses
 ```
 
+**Linking reviews that have no `anilistId` yet** works the same way, by search. Each search is
+narrowed to the review's own AniList season (`fall-2026` → Fall 2026), which makes the top hit far
+more reliable for a generic English title. It's wrapped in `Page(perPage: 1)`, because a bare
+`Media(search:)` that finds nothing is a 404, and AniList then nulls every other search in the same
+query. A result is applied only when its titles resemble the review's (`titlesLikelyMatch`). Any
+other result is reported for a person to check and pass with `--accept=<alias>`. Linking sets
+`anilistId`, the generated `anilist` object, and `titleJP` from AniList's native title, but only
+where the review has no `titleJP` already. For shows the season-narrowed search missed, retry
+across every season with `--any-season`.
+
+```
+npm run fetch-anilist-tags -- --print-search-queries                 # one search per unlinked review
+npm run fetch-anilist-tags -- --link-from=s1.json,s2.json            # link the confident matches
+npm run fetch-anilist-tags -- --link-from=s1.json --accept=fall_2026__32   # take a checked unsure one
+npm run fetch-anilist-tags -- --print-search-queries --any-season    # retry what found nothing
+```
+
 `/vqar` turns these into Format and Genre chip rows and Tag and Studio dropdowns, under the same
 any-within-a-row, all-across-rows rule as the other filters. These rows stay hidden until
 something in the selected season has AniList data. Each card also gets a quiet line with the

@@ -106,7 +106,10 @@ marking: no rating, note or date, and validation rejects anything but `true`.
 `npm run fetch-anilist-tags` from its `anilistId`, and the script overwrites it on every run, so
 never hand-edit it. After adding a review with an `anilistId`, rerun the script. If AniList is
 unreachable from here, run the `--print-queries` queries by hand, or ask the user to, and import
-the results with `--from`. README → "AniList tags".
+the results with `--from`. A review with no `anilistId` yet gets linked by search instead:
+`--print-search-queries`, then `--link-from=…`. That sets `anilistId`, the tags, and `titleJP` from
+AniList's native title. Never `--accept` a match the script reports as unsure without checking that
+it's the same show. README → "AniList tags".
 
 **Finishing a season**: set `"finishedSeason": true` on the show's entry when the user says they
 watched the whole season. It's a bare marking like op/ed, and it's independent of everything else.
