@@ -321,6 +321,11 @@ revisit is filed under its revisit rating, the same number "Highest Rating" sort
 count ignores its own row's selection, so it says how many reviews pressing it would bring in.
 On narrow screens the chip rows start collapsed behind a "More filters" button.
 
+Next to "Current Season", jump links with counts go straight to To Be Reviewed / Not Reviewing,
+opening the collapsed section on the way (as does arriving on a `#pendingSection` /
+`#skippedSection` link). Once you're a screen's worth down, a floating "↑ Top" button appears.
+Both scroll smoothly unless the reader prefers reduced motion.
+
 The matching and counting live in `public/vqar/filters.js`, DOM-free like `/vqar-stats`'
 `stats.js`, and tested in `test/vqar-filters.test.js`. Every control is mirrored into the URL
 (`/vqar?season=all&rating=4,5&on=hidive`) via `history.replaceState`, as on `/vqar-stats` and
