@@ -554,6 +554,24 @@ Over Time" hides itself whenever the current view (e.g. the season filter) cover
 season, since a trend needs more than one point on it. There's no raw review browser/search on
 this page — that's what `/vqar` (per-season) and `/graphql` (query anything) are for.
 
+**Category cross-references.** Three sections set your ratings against the AniList data and the
+streaming services. All three are computed live from the reviews, like everything else on the
+page, so they're always current, with nothing to pre-compute or rebuild.
+- **Taste Profile** (`computeCategoryRatings`) is one sortable table, switchable between genre,
+  studio, tag, format and streaming service. For each category it shows how many shows, your average
+  rating, the share rated 4–5 and the share rated 0–1, the average revisit shift, and how many you
+  finished or liked the OP/ED of.
+- **Loves & Hates** (`computeLovesAndHates`) gives your three best- and worst-rated genres, studios
+  and tags. Short lists are split down the middle, so nothing appears as both a love and a hate.
+- **Genre by Season** (`computeGenreBySeason`) is each genre's average, season by season, in airing
+  order. It hides itself for a single season.
+
+Categories with fewer than `MIN_CATEGORY_SHOWS` (3) shows are left out, so one show can't decide a
+ranking, and the table notes how many were. Shows are categorised by the same `reviewValues` as
+`/vqar`'s filters, and every name links to `/vqar` filtered to that category in the season in view.
+That works because `createDataTable` (`public/data-table.js`) takes `{ text, href }` cells, and its
+`MISSING` placeholder ("—") sorts last without turning a numeric column into a text one.
+
 "Season Spotlight" is a pair of sections at the top of the page that track whichever season
 is currently in view — the current season when the filter is "All Seasons" or the current
 season itself, or the picked season when a past one is selected (`spotlightSeasonId` in

@@ -96,6 +96,99 @@
   }
 }
 
+/* Loves & Hates: genres / studios / tags side by side */
+
+.vs-three-col {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.vs-three-col > * {
+  min-width: 0;
+}
+
+.vs-three-col h3 {
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+  color: var(--color-accent);
+}
+
+.vs-loves-hates-label {
+  margin: 0.75rem 0 0.25rem;
+  font-size: 0.7rem;
+  letter-spacing: 0.1rem;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+
+.vs-loves::before {
+  content: '\2665  ';
+}
+
+.vs-hates::before {
+  content: '\2717  ';
+}
+
+@media (max-width: 900px) {
+  .vs-three-col {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Taste Profile's dimension switch - pills on the page background, pressed
+ * one inverted, the way /vqar's filter chips do it (no opacity tricks). */
+
+.vs-switch {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-bottom: 0.75rem;
+}
+
+.vs-switch-button {
+  padding: 0.25rem 0.8rem;
+  font: inherit;
+  font-size: 0.8rem;
+  font-weight: 700;
+  border: 1px solid var(--color-accent);
+  border-radius: 999px;
+  background-color: transparent;
+  color: var(--color-accent);
+  cursor: pointer;
+}
+
+.vs-switch-button[aria-pressed="true"] {
+  background-color: var(--color-accent);
+  color: var(--color-bg);
+}
+
+.vs-switch-button:hover {
+  text-decoration: underline;
+}
+
+.vs-switch-button:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+.vs-note {
+  margin-top: 0.5rem;
+  font-size: 0.8rem;
+  font-style: italic;
+  color: var(--color-muted);
+}
+
+/* A table name that links off to the filtered /vqar view: the cell's own
+ * text colour, so it stays inside the pairings the contrast test covers,
+ * marked as a link by its underline. */
+.data-table td a {
+  color: inherit;
+  text-decoration: underline;
+}
+
 /* Stat tiles */
 
 .stat-grid {

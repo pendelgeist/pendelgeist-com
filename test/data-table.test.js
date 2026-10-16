@@ -119,3 +119,26 @@ test('renderBarChart empties its container rather than leaving a stale chart beh
   renderBarChart(container, []);
   assert.equal(container.childElementCount, 0);
 });
+
+test('a cell given as { text, href } renders as a link, and sorts by its text', () => {
+  const wrap = createDataTable(['Studio', 'Shows'], [
+    [{ text: 'MAPPA', href: '/vqar?studio=MAPPA' }, '4'],
+    [{ text: 'GoHands', href: '/vqar?studio=GoHands' }, '2'],
+  ]);
+  const link = wrap.querySelector('tbody td a');
+  assert.equal(link.textContent, 'MAPPA');
+  assert.equal(link.getAttribute('href'), '/vqar?studio=MAPPA');
+
+  wrap.querySelector('.sort-button').click();
+  assert.deepEqual(bodyRows(wrap), [['GoHands', '2'], ['MAPPA', '4']]);
+});
+
+test('a "—" cell is a missing value: the column still sorts numerically, with it last either way', () => {
+  const wrap = createDataTable(['Shift'], [['+0.5'], ['—'], ['-1.0'], ['+2.0']]);
+  const button = wrap.querySelector('.sort-button');
+
+  button.click();
+  assert.deepEqual(bodyRows(wrap), [['-1.0'], ['+0.5'], ['+2.0'], ['—']]);
+  button.click();
+  assert.deepEqual(bodyRows(wrap), [['+2.0'], ['+0.5'], ['-1.0'], ['—']]);
+});

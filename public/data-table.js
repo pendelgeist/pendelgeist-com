@@ -13,6 +13,14 @@
  * '<' in a transcribed cell is text, never markup.
  */
 
+/** The placeholder for a cell with no value - sorts last, and doesn't make a numeric column sort as text. */
+export const MISSING = '—';
+
+/** A cell's display text, whether it's a plain string or a `{ text, href }` link. */
+function cellText(cell) {
+  return typeof cell === 'object' && cell !== null ? cell.text : cell;
+}
+
 /** Parses "84,000" / "13.3%" / "991,164" into a comparable number, or NaN. */
 export function parseNumeric(cell) {
   const cleaned = String(cell).replace(/,/g, '').replace(/%$/, '');
@@ -51,10 +59,15 @@ export function renderStatGrid(container, stats) {
  * each page's own CSS.
  *
  * Sorting is numeric only when *every* value in the column parses as a number,
- * so a column of mixed text and digits still sorts predictably as text.
+ * so a column of mixed text and digits still sorts predictably as text. A
+ * MISSING cell ("—") doesn't count against that: it's a value that isn't
+ * there, so it sorts last in either direction.
+ *
+ * A cell is a string, or `{ text, href }` to render it as a link (sorted by
+ * its text) - how a table row leads off to a filtered view of what it counts.
  *
  * @param {string[]} columns - header labels
- * @param {string[][]} rows - one array of cell strings per row, in column order
+ * @param {(string|{text: string, href: string})[][]} rows - one array of cells per row, in column order
  * @returns {HTMLElement} the `.table-scroll` wrapper holding the table
  */
 export function createDataTable(columns, rows) {
@@ -93,7 +106,14 @@ export function createDataTable(columns, rows) {
       const tr = document.createElement('tr');
       tr.append(...row.map(cell => {
         const td = document.createElement('td');
-        td.textContent = cell;
+        if (typeof cell === 'object' && cell !== null) {
+          const link = document.createElement('a');
+          link.href = cell.href;
+          link.textContent = cell.text;
+          td.appendChild(link);
+        } else {
+          td.textContent = cell;
+        }
         return td;
       }));
       return tr;
@@ -104,10 +124,15 @@ export function createDataTable(columns, rows) {
     const sorted = [...rows];
     if (sortState.col >= 0) {
       const { col, dir } = sortState;
-      const allNumeric = rows.every(r => !Number.isNaN(parseNumeric(r[col])));
+      const text = (row) => cellText(row[col]);
+      const present = rows.filter(r => text(r) !== MISSING);
+      const allNumeric = present.length > 0 && present.every(r => !Number.isNaN(parseNumeric(text(r))));
       sorted.sort((a, b) => {
-        if (allNumeric) return (parseNumeric(a[col]) - parseNumeric(b[col])) * dir;
-        return a[col].localeCompare(b[col]) * dir;
+        const aMissing = text(a) === MISSING;
+        const bMissing = text(b) === MISSING;
+        if (aMissing || bMissing) return Number(aMissing) - Number(bMissing);
+        if (allNumeric) return (parseNumeric(text(a)) - parseNumeric(text(b))) * dir;
+        return text(a).localeCompare(text(b)) * dir;
       });
     }
     renderRows(sorted);

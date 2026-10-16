@@ -7,6 +7,7 @@
 
 import { effectiveRatingNumber, RATING_NUMBER_LABELS } from '../vqar/rating.js';
 import { entryTitle } from '../vqar/list-entries.js';
+import { reviewValues } from '../vqar/filters.js';
 
 /** @typedef {import('../vqar/app.js').SeasonData} SeasonData */
 
@@ -283,4 +284,128 @@ export function computeOpEdHighlights(reviews) {
   const likedOps = liked('op');
   const likedEds = liked('ed');
   return { opCount: likedOps.length, edCount: likedEds.length, likedOps, likedEds };
+}
+
+/**
+ * How many shows a category needs before it's ranked. Below this, one lucky
+ * or unlucky show decides its average - a studio with a single 5 isn't
+ * really your favourite studio.
+ */
+export const MIN_CATEGORY_SHOWS = 3;
+
+/**
+ * The dimensions the category cross-references slice by. Each is one of
+ * /vqar's filter rows (see filters.js) - the same `reviewValues` decides what
+ * a show counts under on both pages, so a row here always matches the
+ * filtered view it links to.
+ * @type {('genre'|'studio'|'tag'|'format'|'on')[]}
+ */
+export const CATEGORY_DIMENSIONS = ['genre', 'studio', 'tag', 'format', 'on'];
+
+/**
+ * @typedef {Object} CategoryRow
+ * @property {string} value - the genre/studio/tag/format/service
+ * @property {number} shows - rated shows under it
+ * @property {number} avgRating - by effectiveRatingNumber, so a revisit's rating wins
+ * @property {number} highShare - fraction rated 4-5
+ * @property {number} lowShare - fraction rated 0-1
+ * @property {number|null} revisitShift - average revisit-minus-episode-1 change, over the revisits that have both; null with none
+ * @property {number} revisits - how many shows that shift is over
+ * @property {number} finished - shows marked finishedSeason
+ * @property {number} likedOpEd - shows with a liked OP or ED
+ */
+
+/**
+ * Your ratings cross-referenced by one category: per genre (or studio, tag,
+ * format, streaming service), how many shows, how they rated on average, how
+ * many were loved or hated, which way revisits moved them, and how often you
+ * finished them or liked their OP/ED. Best average first; ties by more shows,
+ * then name. Only numerically rated shows count. Categories under `minShows`
+ * are left out, and the returned array's `hidden` says how many were.
+ * @param {ReturnType<typeof flattenReviews>} reviews
+ * @param {typeof CATEGORY_DIMENSIONS[number]} dimension
+ * @param {{ minShows?: number }} [options]
+ * @returns {CategoryRow[] & { hidden: number }}
+ */
+export function computeCategoryRatings(reviews, dimension, { minShows = MIN_CATEGORY_SHOWS } = {}) {
+  /** @type {Map<string, ReturnType<typeof flattenReviews>>} */
+  const byValue = new Map();
+  for (const review of reviews) {
+    if (typeof effectiveRatingNumber(review) !== 'number') continue;
+    for (const value of reviewValues(dimension, review)) {
+      byValue.set(value, [...(byValue.get(value) ?? []), review]);
+    }
+  }
+
+  const all = [...byValue].map(([value, shows]) => {
+    const ratings = shows.map(effectiveRatingNumber);
+    const shifts = shows
+      .filter(r => typeof r.ratingNumber === 'number' && typeof r.fullReview?.ratingNumber === 'number')
+      .map(r => r.fullReview.ratingNumber - r.ratingNumber);
+    return {
+      value,
+      shows: shows.length,
+      avgRating: ratings.reduce((a, b) => a + b, 0) / ratings.length,
+      highShare: ratings.filter(n => n >= 4).length / ratings.length,
+      lowShare: ratings.filter(n => n <= 1).length / ratings.length,
+      revisitShift: shifts.length ? shifts.reduce((a, b) => a + b, 0) / shifts.length : null,
+      revisits: shifts.length,
+      finished: shows.filter(r => r.finishedSeason === true).length,
+      likedOpEd: shows.filter(r => r.op === true || r.ed === true).length,
+    };
+  });
+
+  const kept = all
+    .filter(row => row.shows >= minShows)
+    .sort((a, b) => b.avgRating - a.avgRating || b.shows - a.shows || a.value.localeCompare(b.value));
+  return Object.assign(kept, { hidden: all.length - kept.length });
+}
+
+/**
+ * Your best- and worst-rated categories on one dimension, among those that
+ * clear `minShows`. With fewer than 2n ranked, the list is split down the
+ * middle instead, so nothing shows up as both a love and a hate.
+ * @param {ReturnType<typeof flattenReviews>} reviews
+ * @param {typeof CATEGORY_DIMENSIONS[number]} dimension
+ * @param {{ n?: number, minShows?: number }} [options]
+ */
+export function computeLovesAndHates(reviews, dimension, { n = 3, minShows = MIN_CATEGORY_SHOWS } = {}) {
+  const ranked = computeCategoryRatings(reviews, dimension, { minShows });
+  const half = Math.min(n, Math.ceil(ranked.length / 2));
+  const loves = ranked.slice(0, half);
+  const hates = ranked.slice(half).reverse().slice(0, Math.min(n, ranked.length - half));
+  return { loves, hates };
+}
+
+/**
+ * Each genre's average rating per season - did romance have a good spring? -
+ * with seasons in airing order (by their earliest review). Genres with fewer
+ * than `minShows` across every season are left out; a season with no shows
+ * in a genre simply has no cell for it.
+ * @param {ReturnType<typeof flattenReviews>} reviews
+ * @param {{ minShows?: number }} [options]
+ */
+export function computeGenreBySeason(reviews, { minShows = MIN_CATEGORY_SHOWS } = {}) {
+  const rated = reviews.filter(r => typeof effectiveRatingNumber(r) === 'number');
+
+  /** @type {Map<string, { id: string, name: string, first: number }>} */
+  const seasonsById = new Map();
+  for (const r of rated) {
+    const seen = seasonsById.get(r.season);
+    if (!seen || r._timestamp < seen.first) seasonsById.set(r.season, { id: r.season, name: r.seasonName, first: r._timestamp });
+  }
+  const seasons = [...seasonsById.values()].sort((a, b) => a.first - b.first).map(({ id, name }) => ({ id, name }));
+
+  const rows = computeCategoryRatings(rated, 'genre', { minShows }).map(({ value }) => {
+    /** @type {Record<string, { avgRating: number, shows: number }>} */
+    const cells = {};
+    for (const { id } of seasons) {
+      const ratings = rated
+        .filter(r => r.season === id && reviewValues('genre', r).includes(value))
+        .map(effectiveRatingNumber);
+      if (ratings.length) cells[id] = { avgRating: ratings.reduce((a, b) => a + b, 0) / ratings.length, shows: ratings.length };
+    }
+    return { value, cells };
+  });
+  return { seasons, rows };
 }
