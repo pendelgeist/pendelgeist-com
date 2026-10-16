@@ -13,7 +13,7 @@ import {
   flattenReviews, computeGlanceStats, computeRatingDistribution, computeRatingsOverTime,
   computeHallOfFame, computeSecondImpressions, computeOpEdHighlights,
   computeCategoryRatings, computeLovesAndHates, computeGenreBySeason, MIN_CATEGORY_SHOWS,
-  computeRevisitCandidates, computeContinuationWatch, computeSeasonCoverage,
+  computeRevisitCandidates, computeContinuationWatch, computeSeasonCoverage, computeHopeCheck,
 } from './stats.js';
 
 /** @typedef {import('../vqar/app.js').SeasonData} SeasonData */
@@ -26,6 +26,7 @@ const dom = {
   coverageBar: document.getElementById('coverageBar'),
   spotlightSeasonName: document.getElementById('spotlightSeasonName'),
   revisitList: document.getElementById('revisitList'),
+  revisitLink: document.getElementById('revisitLink'),
   continuationList: document.getElementById('continuationList'),
   statsGlance: document.getElementById('statsGlance'),
   ratingDistributionChart: document.getElementById('ratingDistributionChart'),
@@ -36,6 +37,8 @@ const dom = {
   hallOfFameWorst: document.getElementById('hallOfFameWorst'),
   secondImpressionsStats: document.getElementById('secondImpressionsStats'),
   secondImpressionsTable: document.getElementById('secondImpressionsTable'),
+  hopeCheckStats: document.getElementById('hopeCheckStats'),
+  hopeCheckTable: document.getElementById('hopeCheckTable'),
   topOps: document.getElementById('topOps'),
   topEds: document.getElementById('topEds'),
   tasteSwitch: document.getElementById('tasteSwitch'),
@@ -162,6 +165,45 @@ function renderSecondImpressions(reviews) {
 }
 
 /**
+ * /vqar's "To revisit" view of one season - the Extras chip that lists the
+ * same shows as Revisit Candidates and the Hope Check's "Still waiting".
+ * @param {string} seasonId
+ */
+function queueHref(seasonId) {
+  return `/vqar?${new URLSearchParams({ season: seasonId, has: 'queue' })}`;
+}
+
+function renderHopeCheck(reviews) {
+  const h = computeHopeCheck(reviews);
+  renderStatGrid(dom.hopeCheckStats, [
+    { label: "Rated 4 on Ep 1", value: String(h.hoping) },
+    { label: 'Revisited', value: String(h.revisited) },
+    { label: 'Rose to 5', value: String(h.rose) },
+    { label: 'Held at 4', value: String(h.held) },
+    { label: 'Fell', value: String(h.fell) },
+    { label: 'Hope Held Up', value: h.heldShare === null ? '—' : percent(h.heldShare) },
+    { label: 'Still Waiting', value: String(h.waiting) },
+  ]);
+  // Per season only says more than the tiles when there's more than one.
+  if (h.bySeason.length <= 1) {
+    dom.hopeCheckTable?.replaceChildren();
+    return;
+  }
+  renderDataTable(dom.hopeCheckTable,
+    ['Season', 'Rated 4', 'Revisited', 'Rose', 'Held', 'Fell', 'Held up', 'Still waiting'],
+    h.bySeason.map(s => [
+      s.name,
+      String(s.hoping),
+      String(s.revisited),
+      String(s.rose),
+      String(s.held),
+      String(s.fell),
+      s.heldShare === null ? MISSING : percent(s.heldShare),
+      s.waiting > 0 ? { text: String(s.waiting), href: queueHref(s.id) } : '0',
+    ]));
+}
+
+/**
  * A progress bar of reviewed shows out of reviewed + pending, with both counts
  * labeled underneath.
  * @param {SeasonData[]} seasons
@@ -223,6 +265,10 @@ function renderSeasonSpotlight(seasons, reviews, seasonId) {
     dom.revisitList.replaceChildren(div);
   } else {
     renderShowList(dom.revisitList, revisitCandidates.map(r => r.titleEN ?? 'Untitled'));
+  }
+  if (dom.revisitLink) {
+    dom.revisitLink.hidden = revisitCandidates.length === 0;
+    dom.revisitLink.href = queueHref(seasonId);
   }
 
   const continuationMatches = computeContinuationWatch(seasons, seasonId);
@@ -429,6 +475,7 @@ function renderAll(seasons, reviews) {
   renderCategorySections(reviews);
   renderHallOfFame(reviews);
   renderSecondImpressions(reviews);
+  renderHopeCheck(reviews);
   renderOpEd(reviews);
 }
 

@@ -327,7 +327,7 @@ A season id that can't be `<season>-<year>` (a one-off, a special) needs an expl
 
 Besides Season / Search / Sort, `/vqar` has three rows of toggle chips: **Rating** (the 0–5
 tiers, labeled from `RATING_NUMBER_LABELS`), **Streaming** (only the services something in the
-selected season is on), **Extras** (revisited, rated up/down on revisit, liked OP/ED, finished season), and
+selected season is on), **Extras** (to revisit, revisited, rated up/down on revisit, liked OP/ED, finished season), and
 **Format**/**Genre**/**Tag**/**Studio** from AniList (see "AniList tags" below). Within
 a row any pressed chip matches; across rows every row with a selection must match. A show with a
 revisit is filed under its revisit rating, the same number "Highest Rating" sorts on. Each chip's
@@ -566,6 +566,15 @@ page, so they're always current, with nothing to pre-compute or rebuild.
 - **Genre by Season** (`computeGenreBySeason`) is each genre's average, season by season, in airing
   order. It hides itself for a single season.
 
+**Hope Check** (`computeHopeCheck`) treats an episode-1 4 ("Yeah, Here's Hoping") as "watch more"
+rather than a verdict, and tracks how those turned out: how many got a revisit, whether it rose to 5,
+held at 4 or fell, the share that held up (rose or held), and how many are still waiting. Totals as
+tiles, plus a per-season table when more than one season is in view. Each "still waiting" count
+links to `/vqar`'s **To revisit** Extras chip (`?has=queue`) for that season, as does Revisit
+Candidates. All three count by `awaitingRevisit` in `public/vqar/rating.js` - an episode-1 4 with
+no `fullReview` - so they can't disagree. Nothing is marked by hand: a show leaves the queue when
+its revisit is saved.
+
 Categories with fewer than `MIN_CATEGORY_SHOWS` (3) shows are left out, so one show can't decide a
 ranking, and the table notes how many were. Shows are categorised by the same `reviewValues` as
 `/vqar`'s filters, and every name links to `/vqar` filtered to that category in the season in view.
@@ -578,8 +587,9 @@ season itself, or the picked season when a past one is selected (`spotlightSeaso
 `applySeasonFilter()`):
 
 - **Revisit Candidates** (`computeRevisitCandidates`) — that season's 4/5s ("Yeah") that
-  haven't gotten a `fullReview` yet, i.e. shows liked enough on episode 1 to be worth
-  actually going back and finishing/re-reviewing.
+  haven't gotten a `fullReview` yet (`awaitingRevisit`), i.e. shows liked enough on episode 1
+  to be worth actually going back and finishing/re-reviewing, with a link to the same list
+  as `/vqar`'s **To revisit** filter.
 - **Continuing Seasons Worth Watching** (`computeContinuationWatch`) — that season's full
   lineup (pending, skipped, and reviewed titles alike) cross-checked by title against shows
   rated 4+ in an *earlier* season (judged by each season's earliest `dateReviewed`, since

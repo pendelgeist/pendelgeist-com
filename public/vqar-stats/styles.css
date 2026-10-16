@@ -181,6 +181,14 @@
   color: var(--color-muted);
 }
 
+/* "See them on VQAR" under Revisit Candidates: accent on the page
+ * background, the same pairing as the switch pills. */
+.vs-note a {
+  color: var(--color-accent);
+  font-style: normal;
+  font-weight: 700;
+}
+
 /* A table name that links off to the filtered /vqar view: the cell's own
  * text colour, so it stays inside the pairings the contrast test covers,
  * marked as a link by its underline. */
