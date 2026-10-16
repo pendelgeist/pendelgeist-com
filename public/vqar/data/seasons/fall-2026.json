@@ -370,6 +370,17 @@
         "youtube"
       ],
       "youtubeUrl": "https://www.youtube.com/@SuikodenTheAnime-EN"
+    },
+    {
+      "titleEN": "Jyuou Mujin Dandivine",
+      "ratingNumber": 3,
+      "ratingText": "Meh, Finishing the Ep",
+      "review": "So this show I'm kind of curious about. I'm going to finish the episode, but it's a little slow getting going, and I'm curious though, because the premise sounds kind of interesting and it looks kind of cool: a classic Voltron-style divine robot that actually exists, but is also driving this company's toy sales. And it looks like there's some sort of Sailor Moon-type evil entity coming through, so I kind of wish they would get to the stuff a little bit more here, but we'll see…",
+      "dateReviewed": "2026-10-16T08:16:23-04:00",
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00385792/dandivine"
     }
   ],
   "pending": [
@@ -377,7 +388,6 @@
     { "title": "Fool Night", "firstEpisode": "2026-11-26", "streaming": ["netflix"], "netflixUrl": "https://www.netflix.com/title/81991076" },
     { "title": "Ranma1/2 (2024) Season 3", "availableNow": true, "streaming": ["netflix"], "netflixUrl": "https://www.netflix.com/title/81171925" },
     { "title": "Devils' Crest", "firstEpisode": "2026-11-06", "streaming": ["prime"] },
-    { "title": "Jyuou Mujin Dandivine", "availableNow": true, "streaming": ["crunchyroll"], "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00385792/dandivine" },
     { "title": "Kyoufu Collector", "availableNow": true, "streaming": ["crunchyroll"], "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00383993/horror-collector" }
   ],
   "skipped": [
