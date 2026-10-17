@@ -921,13 +921,61 @@ test('the AniList rows stay hidden until something in the season has AniList dat
   assert.equal(document.querySelector('.entry-anilist'), null);
 });
 
-test('a card lists format, studio, genres and its five most relevant tags', async () => {
+const anilistLinks = (document) => [...document.querySelectorAll('.entry-anilist a')].map((a) => [a.className, a.textContent]);
+
+test('a card lists format, studio, genres and its five most relevant tags, each shaped by its type', async () => {
   const { document } = await loadApp({ fetch: anilistRoutes([isekaiTrash]) });
   await waitFor(() => showTitles(document).length === 1);
-  assert.equal(
-    document.querySelector('.entry-anilist-details').textContent,
-    'TV · GoHands · Action, Fantasy · Isekai, Male Protagonist, Magic, Swordplay, Dungeon',
-  );
+  assert.deepEqual(anilistLinks(document), [
+    ['entry-anilist-format', 'TV'],
+    ['entry-anilist-studio', 'GoHands'],
+    ['entry-anilist-genre', 'Action'],
+    ['entry-anilist-genre', 'Fantasy'],
+    ['entry-anilist-tag', '#Isekai'],
+    ['entry-anilist-tag', '#Male Protagonist'],
+    ['entry-anilist-tag', '#Magic'],
+    ['entry-anilist-tag', '#Swordplay'],
+    ['entry-anilist-tag', '#Dungeon'],
+  ]);
+  // No "AniList" label: the shapes tell the types apart.
+  assert.equal(document.querySelector('.entry-anilist').textContent.includes('AniList'), false);
+});
+
+test('each AniList value links to the current view narrowed to it', async () => {
+  const { document } = await loadApp({ fetch: anilistRoutes([isekaiTrash, romcom]), url: 'http://localhost/vqar/?rating=1,3' });
+  await waitFor(() => showTitles(document).length === 2);
+  const href = (cls, text) => [...document.querySelectorAll(`.${cls}`)].find((a) => a.textContent === text).getAttribute('href');
+  assert.equal(href('entry-anilist-genre', 'Fantasy'), 'http://localhost/vqar/?rating=3,1&genre=Fantasy');
+  assert.equal(href('entry-anilist-tag', '#Isekai'), 'http://localhost/vqar/?rating=3,1&tag=Isekai');
+  assert.equal(href('entry-anilist-format', 'TV'), 'http://localhost/vqar/?rating=3,1&format=TV');
+});
+
+test('clicking an AniList value filters in place and opens its control', async () => {
+  const { document, window } = await loadApp({ fetch: anilistRoutes([isekaiTrash, isekaiGood, romcom]) });
+  await waitFor(() => showTitles(document).length === 3);
+  const link = [...document.querySelectorAll('.entry-anilist-studio')].find((a) => a.textContent === 'MAPPA');
+  const event = new window.MouseEvent('click', { bubbles: true, cancelable: true, button: 0 });
+  link.dispatchEvent(event);
+  assert.equal(event.defaultPrevented, true);
+  assert.deepEqual(showTitles(document), ['Isekai Good', 'Romcom']);
+  assert.equal(window.location.search, '?studio=MAPPA');
+  assert.equal(document.getElementById('studioFilter').value, 'MAPPA');
+  assert.equal(document.getElementById('otakuFilters').hidden, false);
+
+  // A second click on a genre narrows further rather than starting over.
+  [...document.querySelectorAll('.entry-anilist-genre')].find((a) => a.textContent === 'Comedy')
+    .dispatchEvent(new window.MouseEvent('click', { bubbles: true, cancelable: true, button: 0 }));
+  assert.deepEqual(showTitles(document), ['Romcom']);
+  assert.equal(window.location.search, '?genre=Comedy&studio=MAPPA');
+});
+
+test('a modified click on an AniList value is left to the browser', async () => {
+  const { document, window } = await loadApp({ fetch: anilistRoutes([isekaiTrash, isekaiGood]) });
+  await waitFor(() => showTitles(document).length === 2);
+  const event = new window.MouseEvent('click', { bubbles: true, cancelable: true, button: 0, ctrlKey: true });
+  document.querySelector('.entry-anilist-genre').dispatchEvent(event);
+  assert.equal(event.defaultPrevented, false);
+  assert.equal(showTitles(document).length, 2);
 });
 
 test('Genre and Format chips filter, offering only what the season has', async () => {
@@ -1033,5 +1081,5 @@ test('the reviewer\'s own markings and the AniList line are told apart by class'
   await waitFor(() => showTitles(document).length === 1);
   const marks = [...document.querySelectorAll('.entry-mark')].map((el) => el.className);
   assert.deepEqual(marks, ['entry-mark entry-mark-finished', 'entry-mark entry-mark-oped']);
-  assert.equal(document.querySelector('.entry-anilist-label').textContent, 'AniList');
+  assert.ok(document.querySelector('.entry-anilist'));
 });

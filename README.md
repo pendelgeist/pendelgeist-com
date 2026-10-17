@@ -429,9 +429,13 @@ npm run fetch-anilist-tags -- --print-search-queries --any-season    # retry wha
 `/vqar` turns these into Format and Genre chip rows and Tag and Studio dropdowns, under the same
 any-within-a-row, all-across-rows rule as the other filters. These rows stay hidden until
 something in the selected season has AniList data. Each card also gets a quiet line with the
-show's format, studio, genres and top five tags, labelled "AniList" and set off by a left rule.
-That keeps it visibly apart from the reviewer's own markings (♪ Liked OP/ED, ✓ Finished season),
-which are accent-coloured pills. GraphQL exposes the same object as
+show's format, studio, genres and top five tags, set off by a left rule. Each type has its own
+shape, so they read apart without labels: the format boxed, the studio plain, each genre an
+outlined pill, each tag a `#hashtag`. Every value links to the current view narrowed to it
+(`filterHref` in `app.js`); a plain click applies that in place and opens the Otaku filters,
+while a modified click opens the link as usual. The line stays muted, so it's visibly apart
+from the reviewer's own markings (♪ Liked OP/ED, ✓ Finished season), which are accent-coloured
+pills. GraphQL exposes the same object as
 `Review.anilist`. `scripts/validateSeason.js` checks its shape. It also rejects `anilist` data
 on a review with no `anilistId` to have generated it from, and a comma in any value, since the
 filter URLs separate values with commas.

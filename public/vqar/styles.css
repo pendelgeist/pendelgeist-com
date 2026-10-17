@@ -469,16 +469,42 @@ article:hover {
   margin-top: 0.6rem;
   padding: 0.1rem 0 0.1rem 0.5rem;
   border-left: 2px solid var(--color-muted);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.3rem 0.5rem;
   font-size: 0.72rem;
   color: var(--color-muted);
 }
 
-.entry-anilist-label {
-  margin-right: 0.5rem;
-  font-size: 0.6rem;
+/* Every value is a link to the view narrowed to it; each type has its own
+ * shape so they read apart without labels. All muted on the card, so they
+ * stay inside the pairings the contrast test covers; hover underlines. */
+.entry-anilist a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.entry-anilist a:hover {
+  text-decoration: underline;
+}
+
+.entry-anilist a:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 1px;
+}
+
+.entry-anilist-format {
+  padding: 0 0.3rem;
+  border: 1px solid var(--color-muted);
+  border-radius: 3px;
   font-weight: 700;
-  letter-spacing: 0.1rem;
-  text-transform: uppercase;
+}
+
+.entry-anilist-genre {
+  padding: 0 0.45rem;
+  border: 1px solid var(--color-muted);
+  border-radius: 999px;
 }
 
 /* The reviewer's own markings - liked OP/ED, finished season. Accent pills
