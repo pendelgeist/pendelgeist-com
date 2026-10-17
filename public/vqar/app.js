@@ -407,28 +407,59 @@ const CARD_TAG_LIMIT = 5;
 /**
  * Format, studio, genres and top tags from the generated `anilist` object, as
  * one quiet line under the review - context for the filters, not part of the
- * review itself.
+ * review itself. Each type has its own shape, so they read apart without
+ * labels: the format boxed, the studio plain, each genre a pill, each tag a
+ * #hashtag. Every value links to the current view narrowed to it (see
+ * filterHref), and a plain click applies that in place.
  * @param {Review} r
  */
 function createAnilistLine(r) {
   if (!r.anilist) return null;
+  /** @type {[import('./filters.js').ChipDimension, string, string][]} */
   const parts = [
-    r.anilist.format ? (FORMAT_LABELS[r.anilist.format] ?? r.anilist.format) : '',
-    r.anilist.studios.join(', '),
-    r.anilist.genres.join(', '),
-    r.anilist.tags.slice(0, CARD_TAG_LIMIT).join(', '),
-  ].filter(Boolean);
+    ...(r.anilist.format ? [/** @type {const} */ (['format', r.anilist.format, FORMAT_LABELS[r.anilist.format] ?? r.anilist.format])] : []),
+    ...r.anilist.studios.map(v => /** @type {const} */ (['studio', v, v])),
+    ...r.anilist.genres.map(v => /** @type {const} */ (['genre', v, v])),
+    ...r.anilist.tags.slice(0, CARD_TAG_LIMIT).map(v => /** @type {const} */ (['tag', v, `#${v}`])),
+  ];
   if (parts.length === 0) return null;
   const line = document.createElement('div');
   line.className = 'entry-anilist';
-  const label = document.createElement('span');
-  label.className = 'entry-anilist-label';
-  label.textContent = 'AniList';
-  const details = document.createElement('span');
-  details.className = 'entry-anilist-details';
-  details.textContent = parts.join(' · ');
-  line.append(label, details);
+  line.append(...parts.map(([dimension, value, text]) => {
+    const link = document.createElement('a');
+    link.className = `entry-anilist-${dimension}`;
+    link.href = filterHref(dimension, value);
+    link.dataset.dimension = dimension;
+    link.dataset.value = value;
+    link.textContent = text;
+    return link;
+  }));
   return line;
+}
+
+/**
+ * The chip filters with one more value selected. Studio and Tag are
+ * single-choice dropdowns, so a value there replaces what was picked.
+ * @param {import('./filters.js').ChipDimension} dimension
+ * @param {string} value
+ * @returns {import('./filters.js').ChipFilters}
+ */
+function filtersWith(dimension, value) {
+  const next = /** @type {import('./filters.js').ChipFilters} */ (
+    Object.fromEntries(Object.entries(chipFilters).map(([d, set]) => [d, new Set(set)])));
+  if (dimension === 'studio' || dimension === 'tag') next[dimension] = new Set([value]);
+  else next[dimension].add(value);
+  return next;
+}
+
+/**
+ * Where a card's genre/studio/tag/format link goes: this same view - season,
+ * search, sort, filters - narrowed to that value too.
+ * @param {import('./filters.js').ChipDimension} dimension
+ * @param {string} value
+ */
+function filterHref(dimension, value) {
+  return stateHref(filtersWith(dimension, value));
 }
 
 /** Every text/rating field on a review worth matching a search term against. */
@@ -466,7 +497,16 @@ function applyStateFromUrl() {
  * through filters doesn't fill up browser history.
  */
 function updateUrl() {
-  if (!dom.seasonFilter || !dom.searchInput || !dom.sortBy) return;
+  const href = stateHref(chipFilters);
+  if (href && href !== location.href) history.replaceState(null, '', href);
+}
+
+/**
+ * The URL for the current season, search and sort with the given filters.
+ * @param {import('./filters.js').ChipFilters} filters
+ */
+function stateHref(filters) {
+  if (!dom.seasonFilter || !dom.searchInput || !dom.sortBy) return '';
   const url = new URL(location.href);
   const setOrDelete = (key, value, defaultValue) => {
     if (value && value !== defaultValue) url.searchParams.set(key, value);
@@ -475,11 +515,10 @@ function updateUrl() {
   setOrDelete('season', dom.seasonFilter.value, currentSeasonId);
   setOrDelete('q', dom.searchInput.value.trim(), '');
   setOrDelete('sort', dom.sortBy.value, 'recent');
-  writeChipFiltersToParams(url.searchParams, chipFilters);
+  writeChipFiltersToParams(url.searchParams, filters);
   // URLSearchParams escapes the commas between chip values; a comma is legal
   // in a query string, and `rating=4,5` reads better in a shared link.
-  const href = url.href.replace(/%2C/gi, ',');
-  if (href !== location.href) history.replaceState(null, '', href);
+  return url.href.replace(/%2C/gi, ',');
 }
 
 /** Whether anything Clear Filters would reset is set. Season and sort aren't filters in that sense. */
@@ -874,6 +913,20 @@ for (const [select, dimension] of /** @type {const} */ ([[dom.tagFilter, 'tag'],
     renderReviews();
   });
 }
+
+// A card's genre/studio/tag/format link, plain-clicked: apply it in place
+// rather than reloading. Its control opens with it, so no filter is ever on
+// out of view, and the list scrolls back to its top. Modified clicks (new
+// tab, etc.) follow the href as usual.
+dom.reviewedShows?.addEventListener('click', (e) => {
+  const link = /** @type {HTMLAnchorElement|null} */ (/** @type {Element} */ (e.target).closest('.entry-anilist a'));
+  if (!link || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+  e.preventDefault();
+  chipFilters = filtersWith(/** @type {import('./filters.js').ChipDimension} */ (link.dataset.dimension), link.dataset.value ?? '');
+  setOtakuOpen(true);
+  renderReviews();
+  dom.reviewedShows?.closest('.section')?.scrollIntoView?.();
+});
 
 dom.clearFilters?.addEventListener('click', () => {
   if (dom.searchInput) dom.searchInput.value = '';
