@@ -228,13 +228,20 @@ async function loadForCurrentFilter() {
     ? seasonIndex.seasons
     : seasonIndex.seasons.filter(s => String(s.id) === filterValue);
 
+  // The To Be Reviewed / Not Reviewing lists are always the current season's,
+  // whatever the filter shows, so it's loaded alongside a past season too.
+  const currentMeta = seasonIndex.seasons.find(s => String(s.id) === currentSeasonId);
+  const toLoad = currentMeta && !metasNeeded.includes(currentMeta) ? [...metasNeeded, currentMeta] : metasNeeded;
+
   showLoading('LOADING SEASON...');
   dom.seasonFilter.disabled = true;
-  const failed = await ensureSeasonsLoaded(metasNeeded);
+  const failed = await ensureSeasonsLoaded(toLoad);
   if (token !== loadToken) return; // a newer selection superseded this load
 
   dom.seasonFilter.disabled = false;
-  loadErrors = failed;
+  // Only a season the reviews come from counts as a load error here; a
+  // failed current season just leaves its lists showing "None".
+  loadErrors = failed.filter(m => metasNeeded.includes(m));
   renderReviews();
   renderList(dom.pendingShows, 'pending');
   renderList(dom.skippedShows, 'skipped');

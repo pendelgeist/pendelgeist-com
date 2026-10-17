@@ -127,7 +127,8 @@ to write it at all if any season fails validation.
 Four independent consumers read that index, whose path is exported once from
 `public/vqar/data-paths.js` so it can't drift:
 - `public/vqar/app.js` — the display page, fetches client-side. Loads one season at a time,
-  on demand. Its chip filters (rating/streaming/extras) live in the DOM-free `filters.js`, and
+  on demand, plus the current season, whose To Be Reviewed / Not Reviewing lists it always
+  shows. Its chip filters (rating/streaming/extras) live in the DOM-free `filters.js`, and
   every control is mirrored into the query string with `replaceState`.
 - `public/vqar-stats/app.js` — always loads *every* season, since every stat on it is an
   aggregate. Crunching lives in `stats.js`, kept pure and DOM-free so it's testable without

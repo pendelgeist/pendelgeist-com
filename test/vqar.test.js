@@ -740,6 +740,21 @@ test('Extras "To revisit" lists the 4s still waiting on a revisit', async () => 
   assert.equal(window.location.search, '?has=queue');
 });
 
+test('picking a past season keeps the current season\'s To Be Reviewed / Not Reviewing lists and counts', async () => {
+  const fetch = createPathFetchStub({
+    '/vqar/data/index.json': filterIndex,
+    ...filterSeasons,
+    '/vqar/data/seasons/fall-2026.json': { ...filterSeasons['/vqar/data/seasons/fall-2026.json'], pending: ['Fall Pending'], skipped: ['Fall Skipped'] },
+  });
+  const { document } = await loadApp({ fetch, url: 'http://localhost/vqar/?season=summer-2026' });
+  await waitFor(() => titles(document).length > 0);
+  assert.deepEqual(titles(document), ['Summer Peak']);
+  assert.equal(text(document.getElementById('pendingShows')), 'Fall Pending');
+  assert.equal(text(document.getElementById('skippedShows')), 'Fall Skipped');
+  assert.equal(document.getElementById('pendingCount').textContent, '(1)');
+  assert.equal(document.getElementById('skippedCount').textContent, '(1)');
+});
+
 test('a filtered URL restores season, search, sort and chips on load', async () => {
   const { document } = await loadFiltered('?season=all&q=peak&sort=title&rating=5');
   assert.equal(document.getElementById('seasonFilter').value, 'all');
