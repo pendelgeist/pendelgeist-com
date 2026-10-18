@@ -13,8 +13,8 @@ import { STREAMING_URL_FIELDS } from '../public/streaming.js';
 import { entryTitle, normalizeEntry } from '../public/vqar/list-entries.js';
 
 export const typeDefs = `#graphql
-"""A full-series re-review attached to a review, once a "Finish Ep"-rated show
-is actually finished."""
+"""A revisit attached to a review, after watching more of the show. Its rating
+replaces the episode-1 one."""
 type SubReview {
   ratingNumber: Float
   ratingText: String
@@ -37,6 +37,8 @@ type AniListInfo {
 type Review {
   titleEN: String!
   titleJP: String
+  "Optional free text for when an older show first aired, e.g. \\"Winter 2004\\"."
+  airedLabel: String
   ratingNumber: Float
   ratingText: String
   review: String
@@ -130,6 +132,8 @@ type Season {
   name: String!
   "Optional MAL season id, purely informational."
   number: Int
+  "True for a shelf of older shows reviewed outside their airing season rather than a real season; it is left out of per-season trends."
+  archive: Boolean!
   reviewed: [Review!]!
   "Titles still to be reviewed; see pendingShows for streaming and premiere info."
   pending: [String!]!
@@ -226,6 +230,7 @@ export function makeRootValue({ assets, origin }) {
       id,
       name,
       number: data.number ?? null,
+      archive: data.archive === true,
       reviewed: (data.reviewed ?? []).map((r) => ({ ...r, season: id, seasonName: name })),
       pending: (data.pending ?? []).map(entryTitle),
       skipped: (data.skipped ?? []).map(entryTitle),

@@ -1,0 +1,118 @@
+{
+  "id": "older-shows",
+  "name": "Older Shows",
+  "sortKey": 0,
+  "archive": true,
+  "reviewed": [
+    {
+      "titleEN": "Paranoia Agent",
+      "titleJP": "妄想代理人",
+      "airedLabel": "Winter 2004",
+      "ratingNumber": 5,
+      "ratingText": "Peak, Nice Ep Broh",
+      "review": "Dammit, this is still great. It still actually looks really good, which is especially hard considering the era it was made in, which was the early digital transition — there are a lot of things from that era that end up looking pretty trashy. Fabulous opening, too. It's a great episode, a great piece of Kon's work. And it's always interesting to see someone who primarily works in one medium translate to another — in this case, a film director going and doing a 13-episode TV series. So I'm very happy that we're watching/reviewing this again, and I'm definitely looking forward to seeing where this crazy show goes, one I haven't watched in over 20 years.",
+      "dateReviewed": "2026-05-19T08:00:00-04:00",
+      "anilistId": 323,
+      "annId": 3169,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/G5PHNMW8E/paranoia-agent",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Drama",
+          "Mystery",
+          "Psychological",
+          "Supernatural",
+          "Thriller"
+        ],
+        "tags": [
+          "Denpa",
+          "Crime",
+          "Philosophy",
+          "Detective",
+          "Urban Fantasy",
+          "Ensemble Cast",
+          "Police",
+          "Urban",
+          "Male Protagonist",
+          "Episodic",
+          "Disability",
+          "Satire",
+          "Dissociative Identities",
+          "Bullying",
+          "Female Protagonist"
+        ],
+        "studios": [
+          "MADHOUSE"
+        ]
+      }
+    },
+    {
+      "titleEN": "Tatsuki Fujimoto 17-26",
+      "titleJP": "藤本タツキ 17-26",
+      "ratingNumber": 4,
+      "ratingText": "Restored Some Faith in Humanity",
+      "review": "I finally watched an episode of this, so this is an out-of-order review. S-tier. It's fabulous. At least episode one was incredible—so well done, one of those things where you watch it and you're like, \"yeah, just make good anime and everything in the world will be better.\"",
+      "dateReviewed": "2026-01-20T07:30:00-05:00",
+      "anilistId": 198188,
+      "annId": 37753,
+      "streaming": [
+        "prime"
+      ],
+      "primeUrl": "https://www.amazon.com/gp/video/detail/B0FGHMF69K/",
+      "anilist": {
+        "format": "MOVIE",
+        "genres": [
+          "Action",
+          "Comedy",
+          "Drama",
+          "Romance",
+          "Sci-Fi",
+          "Slice of Life",
+          "Supernatural"
+        ],
+        "tags": [
+          "Episodic",
+          "Anthology",
+          "Surreal Comedy",
+          "Urban Fantasy",
+          "Female Protagonist",
+          "School",
+          "Male Protagonist",
+          "Magic",
+          "Urban",
+          "Family Life",
+          "Found Family",
+          "Aliens",
+          "Heterosexual",
+          "Dystopian",
+          "Assassins",
+          "Coastal",
+          "Monster Girl",
+          "Shapeshifting",
+          "Gender Bending",
+          "Nudity",
+          "Mermaid",
+          "Vampire",
+          "Drawing",
+          "LGBTQ+ Themes",
+          "Language Barrier",
+          "Disability",
+          "Transgender"
+        ],
+        "studios": [
+          "ZEXCS",
+          "Lapin Track",
+          "100studio",
+          "Studio Kafka",
+          "P.A.WORKS",
+          "GRAPH77"
+        ]
+      }
+    }
+  ],
+  "pending": [],
+  "skipped": []
+}

@@ -82,7 +82,7 @@ ordered newest-first by parsing `<season>-<year>` out of the id, with an explici
 
 **Editing a season**: edit `public/vqar/data/seasons/<id>.json`, run `npm run build-vqar-index`,
 run `npm test`. Adding a review = appending to that season's `reviewed` array (only `titleEN`,
-`ratingText`, `dateReviewed` are required; `dateReviewed` is a full timestamp with the reviewer's Eastern offset like
+`ratingNumber`, `ratingText`, `dateReviewed` are required; `dateReviewed` is a full timestamp with the reviewer's Eastern offset like
 `2026-10-08T10:30:00-04:00` — stamp it with `TZ=America/New_York date +%Y-%m-%dT%H:%M:%S%:z`, not
 `date -u`: the page shows the date exactly as written, so a UTC stamp puts an evening review on
 tomorrow's date. "Most recent" sorts on it) and removing the title from `pending`/`skipped` if
@@ -115,6 +115,12 @@ it's the same show. README → "AniList tags".
 watched the whole season. It's a bare marking like op/ed, and it's independent of everything else.
 Don't infer it from a revisit, which may cover only an episode or two, or from a rating, since a
 season of trash can get finished too. Don't add it unless the user says so.
+
+**Older shows**: a review of a show that didn't air in the season it was watched in goes in
+`seasons/older-shows.json` (`"archive": true`, `"sortKey": 0`), with an optional free-text
+`airedLabel` like `"Winter 2004"`. It counts in every total and average but is left out of the
+per-season stats (`_archive` in `public/vqar-stats/stats.js`), and can't be `current`. README →
+"Older shows".
 
 **Starting a season**: add `seasons/<season>-<year>.json` with a matching `id`, a `name`,
 `"current": true`, and empty `reviewed`/`pending`/`skipped` — then **remove `current` from the

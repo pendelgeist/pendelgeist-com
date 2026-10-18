@@ -3,6 +3,8 @@ import assert from 'node:assert/strict';
 import { graphql, buildSchema } from 'graphql';
 import { typeDefs, makeRootValue } from '../src/schema.js';
 import { createPathFetchStub } from './helpers.js';
+import { REVIEW_KEYS, FULL_REVIEW_KEYS } from '../scripts/validateSeason.js';
+import { LIST_ENTRY_KEYS } from '../public/vqar/list-entries.js';
 
 // Mirrors the index/season file shapes used by test/vqar.test.js.
 const seasonIndex = {
@@ -391,5 +393,56 @@ test('a review carries its generated AniList format, genres, tags and studios', 
   assert.deepEqual(result.data.currentSeason.reviewed, [
     { titleEN: 'Tagged', anilist: { format: 'TV', genres: ['Action'], tags: ['Isekai'], studios: ['GoHands'] } },
     { titleEN: 'Untagged', anilist: null },
+  ]);
+});
+
+// --- The schema and the validator agree on the shape ---
+
+const fieldNames = (type) => Object.keys(schema.getType(type).getFields());
+
+test('Review exposes exactly the keys validation allows, plus the season it was read from', () => {
+  assert.deepEqual(fieldNames('Review').sort(), [...REVIEW_KEYS, 'season', 'seasonName'].sort());
+});
+
+test('SubReview exposes exactly the keys a fullReview may carry', () => {
+  assert.deepEqual(fieldNames('SubReview').sort(), [...FULL_REVIEW_KEYS].sort());
+});
+
+test('PendingShow and SkippedShow expose exactly the keys their list entries may carry', () => {
+  assert.deepEqual(fieldNames('PendingShow').sort(), [...LIST_ENTRY_KEYS.pending].sort());
+  assert.deepEqual(fieldNames('SkippedShow').sort(), [...LIST_ENTRY_KEYS.skipped].sort());
+});
+
+test('Season.archive is true for a shelf of older shows and false otherwise; airedLabel passes through', async () => {
+  const assetsStub = createPathFetchStub({
+    '/vqar/data/index.json': {
+      currentSeason: 'summer-2026',
+      seasons: [
+        { id: 'summer-2026', name: 'Summer 2026', file: '/vqar/data/seasons/summer-2026.json' },
+        { id: 'older-shows', name: 'Older Shows', file: '/vqar/data/seasons/older-shows.json' },
+      ],
+    },
+    '/vqar/data/seasons/summer-2026.json': seasons['/vqar/data/seasons/summer-2026.json'],
+    '/vqar/data/seasons/older-shows.json': {
+      id: 'older-shows',
+      name: 'Older Shows',
+      sortKey: 0,
+      archive: true,
+      reviewed: [
+        { titleEN: 'Paranoia Agent', ratingNumber: 5, ratingText: 'Peak', dateReviewed: '2026-05-19T08:00:00-04:00', airedLabel: 'Winter 2004' },
+        { titleEN: 'Untagged Old Show', ratingNumber: 3, ratingText: 'Meh', dateReviewed: '2026-05-20T08:00:00-04:00' },
+      ],
+      pending: [],
+      skipped: [],
+    },
+  });
+
+  const result = await run('{ currentSeason { archive } older: season(id: "older-shows") { archive reviewed { titleEN airedLabel season } } }', assetsStub);
+  assert.equal(result.errors, undefined);
+  assert.equal(result.data.currentSeason.archive, false);
+  assert.equal(result.data.older.archive, true);
+  assert.deepEqual(result.data.older.reviewed, [
+    { titleEN: 'Paranoia Agent', airedLabel: 'Winter 2004', season: 'older-shows' },
+    { titleEN: 'Untagged Old Show', airedLabel: null, season: 'older-shows' },
   ]);
 });

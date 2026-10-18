@@ -49,6 +49,16 @@ test('the index names a current season that it also lists', () => {
 
 // --- Ordering ---
 
+test('an archive season with sortKey 0 sorts after every real season', () => {
+  const ordered = buildIndex([
+    { id: 'older-shows', name: 'Older Shows', sortKey: 0, archive: true },
+    { id: 'winter-2026', name: 'Winter 2026' },
+    { id: 'fall-2025', name: 'Fall 2025' },
+  ]).seasons.map((s) => s.id);
+
+  assert.deepEqual(ordered, ['winter-2026', 'fall-2025', 'older-shows']);
+});
+
 test('seasons run newest first, across the year boundary', () => {
   const ordered = buildIndex([
     { id: 'spring-2026', name: 'Spring 2026' },
@@ -98,7 +108,7 @@ function validSeason(overrides = {}) {
   return {
     id: 'spring-2026',
     name: 'Spring 2026',
-    reviewed: [{ titleEN: 'Cool Show', ratingText: 'Finish Ep', dateReviewed: '2026-04-01T12:00:00Z' }],
+    reviewed: [{ titleEN: 'Cool Show', ratingNumber: 3, ratingText: 'Finish Ep', dateReviewed: '2026-04-01T08:00:00-04:00' }],
     pending: [],
     skipped: [],
     ...overrides,

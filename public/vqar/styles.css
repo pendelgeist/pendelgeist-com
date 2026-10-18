@@ -416,7 +416,8 @@ article:hover {
   color: var(--color-accent);
 }
 
-.entry-published {
+.entry-published,
+.entry-aired {
   font-size: 0.72rem;
   font-weight: lighter;
   color: var(--color-muted);

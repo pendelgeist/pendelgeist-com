@@ -20,6 +20,11 @@
       "id": "winter-2026",
       "name": "Winter 2026",
       "file": "/vqar/data/seasons/winter-2026.json"
+    },
+    {
+      "id": "older-shows",
+      "name": "Older Shows",
+      "file": "/vqar/data/seasons/older-shows.json"
     }
   ]
 }

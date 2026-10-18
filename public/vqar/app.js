@@ -9,8 +9,8 @@ import {
 } from './filters.js';
 
 /**
- * A full-series re-review attached to a Review, once a "Finish Ep"-rated show
- * is actually finished.
+ * A revisit attached to a Review, after watching more of the show. Its rating
+ * replaces the episode-1 one.
  * @typedef {Object} SubReview
  * @property {number} [ratingNumber]
  * @property {string} [ratingText]
@@ -22,6 +22,7 @@ import {
  * @typedef {Object} Review
  * @property {string} titleEN
  * @property {string} titleJP
+ * @property {string} [airedLabel] - optional free text for when an older show first aired (e.g. "Winter 2004")
  * @property {number} ratingNumber
  * @property {string} ratingText
  * @property {string} review
@@ -77,8 +78,9 @@ import {
 /** @type {Record<string, (a: Review, b: Review) => number>} */
 const SORTERS = {
   // dateReviewed is a full timestamp, so ties are rare. Break any by position:
-  // seasons are listed newest-first, and within a season reviews are appended
-  // as they're written, so a later entry is the more recent one.
+  // seasons are listed newest-first, and within a season the file order isn't
+  // consistent (older files are newest-first, fall-2026 is oldest-first), so
+  // this is only a stable fallback, not a claim about which entry is newer.
   recent: (a, b) =>
     b._timestamp - a._timestamp || a._seasonRank - b._seasonRank || b._index - a._index,
   'rating-high': (a, b) => (effectiveRatingNumber(b) ?? 0) - (effectiveRatingNumber(a) ?? 0),
@@ -179,7 +181,7 @@ async function getSeasonData(meta) {
 
 /**
  * Ensures every season in `metas` is present in `seasonDataById`, fetching
- * (cache-first) whichever ones are missing, in parallel.
+ * whichever ones are missing, in parallel.
  * @param {SeasonMeta[]} metas
  * @returns {Promise<SeasonMeta[]>} the metas that failed to load, if any
  */
@@ -368,6 +370,13 @@ function createReviewArticle(r) {
 
   meta.append(rating, published);
 
+  if (r.airedLabel) {
+    const aired = document.createElement('span');
+    aired.className = 'entry-aired';
+    aired.textContent = `Aired: ${r.airedLabel}`;
+    meta.appendChild(aired);
+  }
+
   if (r.watchProgress) {
     const progress = document.createElement('span');
     progress.className = 'entry-progress';
@@ -463,7 +472,7 @@ function filterHref(dimension, value) {
 /** Every text/rating field on a review worth matching a search term against. */
 function searchableFields(r) {
   return [
-    r.titleEN, r.titleJP, r.review, r.ratingText,
+    r.titleEN, r.titleJP, r.airedLabel, r.review, r.ratingText,
     r.fullReview?.review, r.fullReview?.ratingText,
   ];
 }

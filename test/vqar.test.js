@@ -442,6 +442,31 @@ test('a review with watchProgress renders it in the entry meta; one without does
   assert.equal(badges[0].textContent, 'Progress: Ep 3');
 });
 
+test('an older show shows when it aired, and a search for that finds it', async () => {
+  const fetch = createPathFetchStub({
+    '/vqar/data/index.json': seasonIndex,
+    '/vqar/data/seasons/summer-2026.json': {
+      id: 'summer-2026',
+      name: 'Summer 2026',
+      reviewed: [
+        { titleEN: 'Old Classic', ratingText: 'Peak', dateReviewed: '2026-07-01', airedLabel: 'Winter 2004' },
+        { titleEN: 'New Show', ratingText: 'Meh', dateReviewed: '2026-07-02' },
+      ],
+      pending: [],
+      skipped: [],
+    },
+  });
+  const { document } = await loadApp({ fetch });
+
+  const aired = [...document.querySelectorAll('.entry-aired')];
+  assert.equal(aired.length, 1);
+  assert.equal(aired[0].textContent, 'Aired: Winter 2004');
+
+  document.getElementById('searchInput').value = 'winter 2004';
+  document.getElementById('searchInput').dispatchEvent(new document.defaultView.Event('input'));
+  assert.deepEqual(showTitles(document), ['Old Classic']);
+});
+
 test('search matches text inside a full-series re-review, not just the main review', async () => {
   const fetch = createPathFetchStub({
     '/vqar/data/index.json': seasonIndex,

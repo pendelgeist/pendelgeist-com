@@ -657,3 +657,37 @@ test('Hope Check drops the per-season table once the filter picks one season', a
   // Spring's only 4 has been revisited, so there's nothing to link to.
   assert.equal(document.getElementById('revisitLink').hidden, true);
 });
+
+// --- An archive season (older shows) is a shelf, not a point in time ---
+
+const shelf = {
+  id: 'older-shows', name: 'Older Shows', archive: true,
+  reviewed: [
+    { titleEN: 'Old Classic', ratingNumber: 4, ratingText: 'Yeah', dateReviewed: '2026-03-01', anilist: { format: 'TV', genres: ['Drama'], tags: [], studios: [] } },
+    { titleEN: 'Old Favorite', ratingNumber: 5, ratingText: 'Peak', dateReviewed: '2026-03-02', anilist: { format: 'TV', genres: ['Drama'], tags: [], studios: [] } },
+    { titleEN: 'Old Pick', ratingNumber: 5, ratingText: 'Peak', dateReviewed: '2026-03-03' },
+  ],
+  pending: [], skipped: [],
+};
+const withShelf = [...seasons, shelf];
+const shelfReviews = flattenReviews(withShelf);
+
+test('older-shows reviews still count in the totals, ratings and Hall of Fame', () => {
+  const s = computeGlanceStats(withShelf, shelfReviews);
+  assert.equal(s.totalReviews, 9);
+  assert.equal(s.avgRating, (5 + 5 + 1 + 3 + 2 + 4 + 5 + 5) / 8);
+  assert.ok(computeHallOfFame(shelfReviews, 10).best.some(r => r.titleEN === 'Old Favorite'));
+  assert.equal(computeRatingDistribution(shelfReviews).find(d => d.ratingNumber === 4).count, 1);
+});
+
+test('older-shows is not a season in the trends, coverage, busiest-season or season counts', () => {
+  assert.deepEqual(computeRatingsOverTime(shelfReviews).map(s => s.seasonName), ['Spring 2026', 'Summer 2026']);
+
+  const s = computeGlanceStats(withShelf, shelfReviews);
+  assert.equal(s.seasonsCovered, 2);
+  assert.equal(s.busiestSeasonName, 'Summer 2026');
+
+  assert.deepEqual(computeSeasonCoverage(withShelf), computeSeasonCoverage(seasons));
+  assert.deepEqual(computeGenreBySeason(shelfReviews, { minShows: 1 }).seasons.map(x => x.name), computeGenreBySeason(reviews, { minShows: 1 }).seasons.map(x => x.name));
+  assert.deepEqual(computeHopeCheck(shelfReviews).bySeason.map(x => x.name), computeHopeCheck(reviews).bySeason.map(x => x.name));
+});
