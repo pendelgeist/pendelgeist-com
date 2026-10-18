@@ -116,6 +116,12 @@ watched the whole season. It's a bare marking like op/ed, and it's independent o
 Don't infer it from a revisit, which may cover only an episode or two, or from a rating, since a
 season of trash can get finished too. Don't add it unless the user says so.
 
+**Older shows**: a review of a show that didn't air in the season it was watched in goes in
+`seasons/older-shows.json` (`"archive": true`, `"sortKey": 0`), with an optional free-text
+`airedLabel` like `"Winter 2004"`. It counts in every total and average but is left out of the
+per-season stats (`_archive` in `public/vqar-stats/stats.js`), and can't be `current`. README →
+"Older shows".
+
 **Starting a season**: add `seasons/<season>-<year>.json` with a matching `id`, a `name`,
 `"current": true`, and empty `reviewed`/`pending`/`skipped` — then **remove `current` from the
 previous season**, since exactly one may carry it. Rebuild the index and run the tests. Full

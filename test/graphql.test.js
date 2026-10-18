@@ -412,3 +412,37 @@ test('PendingShow and SkippedShow expose exactly the keys their list entries may
   assert.deepEqual(fieldNames('PendingShow').sort(), [...LIST_ENTRY_KEYS.pending].sort());
   assert.deepEqual(fieldNames('SkippedShow').sort(), [...LIST_ENTRY_KEYS.skipped].sort());
 });
+
+test('Season.archive is true for a shelf of older shows and false otherwise; airedLabel passes through', async () => {
+  const assetsStub = createPathFetchStub({
+    '/vqar/data/index.json': {
+      currentSeason: 'summer-2026',
+      seasons: [
+        { id: 'summer-2026', name: 'Summer 2026', file: '/vqar/data/seasons/summer-2026.json' },
+        { id: 'older-shows', name: 'Older Shows', file: '/vqar/data/seasons/older-shows.json' },
+      ],
+    },
+    '/vqar/data/seasons/summer-2026.json': seasons['/vqar/data/seasons/summer-2026.json'],
+    '/vqar/data/seasons/older-shows.json': {
+      id: 'older-shows',
+      name: 'Older Shows',
+      sortKey: 0,
+      archive: true,
+      reviewed: [
+        { titleEN: 'Paranoia Agent', ratingNumber: 5, ratingText: 'Peak', dateReviewed: '2026-05-19T08:00:00-04:00', airedLabel: 'Winter 2004' },
+        { titleEN: 'Untagged Old Show', ratingNumber: 3, ratingText: 'Meh', dateReviewed: '2026-05-20T08:00:00-04:00' },
+      ],
+      pending: [],
+      skipped: [],
+    },
+  });
+
+  const result = await run('{ currentSeason { archive } older: season(id: "older-shows") { archive reviewed { titleEN airedLabel season } } }', assetsStub);
+  assert.equal(result.errors, undefined);
+  assert.equal(result.data.currentSeason.archive, false);
+  assert.equal(result.data.older.archive, true);
+  assert.deepEqual(result.data.older.reviewed, [
+    { titleEN: 'Paranoia Agent', airedLabel: 'Winter 2004', season: 'older-shows' },
+    { titleEN: 'Untagged Old Show', airedLabel: null, season: 'older-shows' },
+  ]);
+});

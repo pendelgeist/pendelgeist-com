@@ -689,3 +689,26 @@ test('flags the same AniList id reviewed in two seasons', () => {
   spring.reviewed[0].anilistId = 1;
   assert.deepEqual(validateSeasonCollection([winter, spring]), []);
 });
+
+// --- Archive seasons (older shows) and airedLabel ---
+
+test('an archive season needs a sortKey, is a bare true marking, and is never the current season', () => {
+  const archive = (overrides = {}) => ({ ...cleanSeason(), id: 'older-shows', name: 'Older Shows', sortKey: 0, archive: true, ...overrides });
+
+  assert.deepEqual(validateSeason(archive(), { filename: 'older-shows.json' }), []);
+  assert.ok(validateSeason(archive({ sortKey: undefined })).some(i => i.includes('sortKey')));
+  assert.ok(validateSeason(archive({ archive: 'yes' })).some(i => i.includes('malformed archive')));
+  assert.ok(validateSeason(archive({ archive: false })).some(i => i.includes('malformed archive')));
+  assert.ok(validateSeason(archive({ current: true })).some(i => i.includes('archive and current')));
+});
+
+test('airedLabel is a non-empty string', () => {
+  for (const airedLabel of ['', '  ', 2004, null]) {
+    const season = cleanSeason();
+    season.reviewed.push(review({ airedLabel }));
+    assert.ok(validateSeason(season).some(i => i.includes('"Probe Show"') && i.includes('airedLabel')), `accepted ${JSON.stringify(airedLabel)}`);
+  }
+  const season = cleanSeason();
+  season.reviewed.push(review({ airedLabel: 'Winter 2004' }));
+  assert.deepEqual(validateSeason(season), []);
+});

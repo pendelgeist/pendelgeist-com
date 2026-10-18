@@ -7,7 +7,7 @@ import { normalizeTitle } from './anilistMatch.js';
  * so a typo (`curent`, `fullReveiw`) is rejected rather than quietly doing
  * nothing on the page, in the stats and in the API.
  */
-export const SEASON_KEYS = ['id', 'name', 'number', 'current', 'sortKey', 'reviewed', 'pending', 'skipped'];
+export const SEASON_KEYS = ['id', 'name', 'number', 'current', 'archive', 'sortKey', 'reviewed', 'pending', 'skipped'];
 
 const URL_FIELDS = [...Object.values(STREAMING_URL_FIELDS), 'wikipediaUrl', 'wikipediaJaUrl'];
 
@@ -17,7 +17,7 @@ const URL_FIELDS = [...Object.values(STREAMING_URL_FIELDS), 'wikipediaUrl', 'wik
  * schema can't drift from what validation lets through.
  */
 export const REVIEW_KEYS = [
-  'titleEN', 'titleJP', 'ratingNumber', 'ratingText', 'review', 'dateReviewed',
+  'titleEN', 'titleJP', 'airedLabel', 'ratingNumber', 'ratingText', 'review', 'dateReviewed',
   'fullReview', 'op', 'ed', 'finishedSeason', 'watchProgress',
   'anilistId', 'anilist', 'annId', 'streaming', ...URL_FIELDS,
 ];
@@ -276,6 +276,15 @@ export function validateSeason(season, { filename, now = Date.now() } = {}) {
   if (season.sortKey !== undefined && typeof season.sortKey !== 'number') {
     issues.push('season has a malformed sortKey (expected a number)');
   }
+  // An archive season (older shows, reviewed out of their airing season) is a
+  // bare marking like op/ed. It is never the current season, whose pending and
+  // skipped lists the page always shows.
+  if (season.archive !== undefined && season.archive !== true) {
+    issues.push('season has a malformed archive (expected true - mark an older-shows season with "archive": true, or leave it out)');
+  }
+  if (season.archive === true && season.current === true) {
+    issues.push('season is marked both archive and current - the current season has to be a real airing season');
+  }
   const reviewed = Array.isArray(season.reviewed) ? season.reviewed : [];
   const pendingEntries = Array.isArray(season.pending) ? season.pending : [];
   const skippedEntries = Array.isArray(season.skipped) ? season.skipped : [];
@@ -334,6 +343,9 @@ export function validateSeason(season, { filename, now = Date.now() } = {}) {
       issues.push(`"${label}" has a dateReviewed without a time (expected a timestamp like 2026-04-01T18:30:00-04:00)`);
     } else {
       issues.push(...timestampIssues(label, 'dateReviewed', r.dateReviewed, now));
+    }
+    if (r.airedLabel !== undefined && (typeof r.airedLabel !== 'string' || r.airedLabel.trim() === '')) {
+      issues.push(`"${label}" has a malformed airedLabel (expected a non-empty string like "Winter 2004")`);
     }
     if (r.anilistId !== undefined && !Number.isInteger(r.anilistId)) {
       issues.push(`"${label}" has a malformed anilistId (expected an integer)`);

@@ -23,6 +23,9 @@ export function flattenReviews(seasons) {
     season: String(season.id),
     seasonName: season.name,
     _timestamp: Date.parse(r.dateReviewed) || 0,
+    // An archive season (older shows) is a shelf, not a point in time, so the
+    // per-season trends below leave its reviews out.
+    _archive: season.archive === true,
   })));
 }
 
@@ -44,7 +47,7 @@ export function computeGlanceStats(seasons, reviews) {
   const avgRating = mean(numericRatings(reviews));
 
   const bySeason = new Map();
-  for (const r of reviews) bySeason.set(r.season, (bySeason.get(r.season) ?? 0) + 1);
+  for (const r of reviews) if (!r._archive) bySeason.set(r.season, (bySeason.get(r.season) ?? 0) + 1);
   let busiest = null;
   for (const [seasonId, count] of bySeason) {
     if (!busiest || count > busiest.count) {
@@ -56,7 +59,7 @@ export function computeGlanceStats(seasons, reviews) {
 
   return {
     totalReviews: reviews.length,
-    seasonsCovered: seasons.filter(s => (s.reviewed ?? []).length > 0).length,
+    seasonsCovered: seasons.filter(s => s.archive !== true && (s.reviewed ?? []).length > 0).length,
     avgRating,
     fullReReviews: reviews.filter(r => r.fullReview).length,
     likedOps: reviews.filter(r => r.op === true).length,
@@ -74,8 +77,9 @@ export function computeGlanceStats(seasons, reviews) {
  * @param {SeasonData[]} seasons
  */
 export function computeSeasonCoverage(seasons) {
-  const reviewed = seasons.reduce((sum, s) => sum + (s.reviewed ?? []).length, 0);
-  const pending = seasons.reduce((sum, s) => sum + (s.pending ?? []).length, 0);
+  const airing = seasons.filter(s => s.archive !== true);
+  const reviewed = airing.reduce((sum, s) => sum + (s.reviewed ?? []).length, 0);
+  const pending = airing.reduce((sum, s) => sum + (s.pending ?? []).length, 0);
   const total = reviewed + pending;
   return { reviewed, pending, total, pct: total ? Math.round((reviewed / total) * 100) : null };
 }
@@ -114,6 +118,7 @@ export function computeRatingDistribution(reviews) {
 export function computeRatingsOverTime(reviews) {
   const bySeason = new Map();
   for (const r of reviews) {
+    if (r._archive) continue;
     const entry = bySeason.get(r.season) ?? { season: r.season, seasonName: r.seasonName, ratings: [], earliest: Infinity };
     const rating = effectiveRatingNumber(r);
     if (typeof rating === 'number') entry.ratings.push(rating);
@@ -379,7 +384,8 @@ export function computeLovesAndHates(reviews, dimension, { n = 3, minShows = MIN
 
 /**
  * The seasons a set of reviews comes from, in airing order (by each one's
- * earliest review).
+ * earliest review). Archive seasons (older shows) have no airing order, so
+ * they aren't listed.
  * @param {ReturnType<typeof flattenReviews>} reviews
  * @returns {{ id: string, name: string }[]}
  */
@@ -387,6 +393,7 @@ function seasonsInAiringOrder(reviews) {
   /** @type {Map<string, { id: string, name: string, first: number }>} */
   const seasonsById = new Map();
   for (const r of reviews) {
+    if (r._archive) continue;
     const seen = seasonsById.get(r.season);
     if (!seen || r._timestamp < seen.first) seasonsById.set(r.season, { id: r.season, name: r.seasonName, first: r._timestamp });
   }

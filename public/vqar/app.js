@@ -22,6 +22,7 @@ import {
  * @typedef {Object} Review
  * @property {string} titleEN
  * @property {string} titleJP
+ * @property {string} [airedLabel] - optional free text for when an older show first aired (e.g. "Winter 2004")
  * @property {number} ratingNumber
  * @property {string} ratingText
  * @property {string} review
@@ -369,6 +370,13 @@ function createReviewArticle(r) {
 
   meta.append(rating, published);
 
+  if (r.airedLabel) {
+    const aired = document.createElement('span');
+    aired.className = 'entry-aired';
+    aired.textContent = `Aired: ${r.airedLabel}`;
+    meta.appendChild(aired);
+  }
+
   if (r.watchProgress) {
     const progress = document.createElement('span');
     progress.className = 'entry-progress';
@@ -464,7 +472,7 @@ function filterHref(dimension, value) {
 /** Every text/rating field on a review worth matching a search term against. */
 function searchableFields(r) {
   return [
-    r.titleEN, r.titleJP, r.review, r.ratingText,
+    r.titleEN, r.titleJP, r.airedLabel, r.review, r.ratingText,
     r.fullReview?.review, r.fullReview?.ratingText,
   ];
 }

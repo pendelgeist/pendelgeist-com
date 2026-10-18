@@ -134,6 +134,7 @@ forgotten rebuild.
 Each season file has `id`, `name`, `reviewed`, `pending`, and `skipped`. It may also carry
 a `number` (e.g. a MAL season id like `2603`) — optional, informational metadata for your
 own reference; neither page reads it, though the GraphQL API exposes it as `Season.number`.
+A season may also be marked `"archive": true` — see "Older shows" below.
 Adding a season means dropping a new file in `seasons/` and rebuilding the index; editing an
 old season never touches the others.
 
@@ -211,6 +212,9 @@ extras:
 - `op` / `ed` — `true` marks an opening/ending you liked, for finding it again later. It's a
   bare marking, with no rating or note: anything but `true` is rejected, and an OP/ED you
   didn't note is simply left out. `/vqar` shows it as a "Liked OP"/"Liked ED" pill.
+
+A review of a show from outside the season (see "Older shows") may carry `airedLabel`, free
+text for when it first aired, such as `"Winter 2004"`.
 
 A review may also carry `finishedSeason: true` — you watched the whole season. It's the same
 kind of bare marking (anything but `true` is rejected), and it's **independent of everything
@@ -324,6 +328,23 @@ only current one.
 A season id that can't be `<season>-<year>` (a one-off, a special) needs an explicit numeric
 `sortKey` instead, higher meaning more recent — the committed seasons sort at
 `year * 10 + season`, so `20263` sits where a fall-2026 would.
+
+### Older shows (the archive season)
+
+A review of a show that didn't air in the season you watched it in (Paranoia Agent, an old
+classic) goes in `seasons/older-shows.json`, a season that is a shelf rather than a point in
+time: `"archive": true` and `"sortKey": 0`, so it sorts after every real season and shows up
+last in the Season dropdown as "Older Shows". Add the review to its `reviewed` array like
+any other (newest first, by convention), and give it an optional `airedLabel`, free text for
+when it first aired — `"airedLabel": "Winter 2004"` shows on the card as "Aired: Winter 2004"
+and is found by search.
+
+An archive season still counts everywhere a review counts (totals, average rating, rating
+distribution, Hall of Fame, genre and studio averages), but it is not a season for the
+per-season stats on `/vqar-stats`: the ratings-over-time chart, genre-by-season, Hope Check
+by season, "seasons covered", busiest season and the coverage tile all leave it out.
+`archive` is a bare `true` and can't be combined with `current`. The GraphQL API exposes it
+as `Season.archive`, and `airedLabel` as `Review.airedLabel`.
 
 ### Filtering and linking
 
