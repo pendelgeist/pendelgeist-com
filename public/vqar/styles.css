@@ -198,7 +198,7 @@ input:focus, select:focus {
   font-size: 0.8rem;
 }
 
-/* The whole chip block sits behind the one Go Full Otaku toggle, split into
+/* The whole chip block sits behind the one Level 6 Otaku toggle, split into
  * Rating/Streaming and then the reviewer's own notes and AniList's data. All
  * of it is on .filters' chrome, so --color-nav-link throughout. */
 .filter-chips[hidden],

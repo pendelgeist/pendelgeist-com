@@ -810,7 +810,7 @@ test('the one toggle shows how many chips are on and opens every chip row', asyn
   assert.equal(document.querySelectorAll('.filters button[aria-controls]').length, 1, 'there is only one expansion');
   chip(document, 'rating', '5').click();
   chip(document, 'on', 'hidive').click();
-  assert.equal(toggle.textContent, 'Go Full Otaku (2)');
+  assert.equal(toggle.textContent, 'Level 6 Otaku (2)');
 
   toggle.click();
   assert.equal(toggle.getAttribute('aria-expanded'), 'true');
@@ -1066,7 +1066,7 @@ test('a link that sets a filter opens the section, so no filter is on out of sig
   const { document } = await loadApp({ fetch: anilistRoutes([isekaiTrash, isekaiGood]), url: 'http://localhost/vqar/?studio=MAPPA' });
   await waitFor(() => showTitles(document).length === 1);
   assert.equal(document.getElementById('filterChips').hidden, false);
-  assert.equal(document.getElementById('filtersToggle').textContent, 'Go Full Otaku (1)');
+  assert.equal(document.getElementById('filtersToggle').textContent, 'Level 6 Otaku (1)');
 });
 
 test('with site data blocked, the filters toggle still works', async () => {

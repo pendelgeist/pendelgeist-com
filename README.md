@@ -332,7 +332,7 @@ selected season is on), **Extras** (to revisit, revisited, rated up/down on revi
 a row any pressed chip matches; across rows every row with a selection must match. A show with a
 revisit is filed under its revisit rating, the same number "Highest Rating" sorts on. Each chip's
 count ignores its own row's selection, so it says how many reviews pressing it would bring in.
-All of the chip rows sit behind a single **Go Full Otaku** toggle (on every screen size): Rating and
+All of the chip rows sit behind a single **Level 6 Otaku** toggle (on every screen size): Rating and
 Streaming first, then two labelled groups, "Your notes" (Extras) and "From AniList" (Studio,
 Format, Genre, Tag). The toggle carries a count of the active filters, and its open/closed state
 is a remembered reader preference (`localStorage`, like the theme). It also opens on its own when

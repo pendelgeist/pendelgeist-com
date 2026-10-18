@@ -645,7 +645,7 @@ function renderChips(reviews, seasonReviews) {
 }
 
 /** The one toggle for every chip row (Rating through AniList). */
-const FILTERS_LABEL = 'Go Full Otaku';
+const FILTERS_LABEL = 'Level 6 Otaku';
 
 /** Where the chip rows' open/closed state is kept between visits - a reader preference. */
 const FILTERS_STORAGE_KEY = 'pendelgeist:vqar:filters';
