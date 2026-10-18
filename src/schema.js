@@ -13,8 +13,8 @@ import { STREAMING_URL_FIELDS } from '../public/streaming.js';
 import { entryTitle, normalizeEntry } from '../public/vqar/list-entries.js';
 
 export const typeDefs = `#graphql
-"""A full-series re-review attached to a review, once a "Finish Ep"-rated show
-is actually finished."""
+"""A revisit attached to a review, after watching more of the show. Its rating
+replaces the episode-1 one."""
 type SubReview {
   ratingNumber: Float
   ratingText: String

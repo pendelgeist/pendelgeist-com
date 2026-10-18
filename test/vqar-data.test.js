@@ -98,7 +98,7 @@ function validSeason(overrides = {}) {
   return {
     id: 'spring-2026',
     name: 'Spring 2026',
-    reviewed: [{ titleEN: 'Cool Show', ratingText: 'Finish Ep', dateReviewed: '2026-04-01T12:00:00Z' }],
+    reviewed: [{ titleEN: 'Cool Show', ratingNumber: 3, ratingText: 'Finish Ep', dateReviewed: '2026-04-01T08:00:00-04:00' }],
     pending: [],
     skipped: [],
     ...overrides,

@@ -82,7 +82,7 @@ ordered newest-first by parsing `<season>-<year>` out of the id, with an explici
 
 **Editing a season**: edit `public/vqar/data/seasons/<id>.json`, run `npm run build-vqar-index`,
 run `npm test`. Adding a review = appending to that season's `reviewed` array (only `titleEN`,
-`ratingText`, `dateReviewed` are required; `dateReviewed` is a full timestamp with the reviewer's Eastern offset like
+`ratingNumber`, `ratingText`, `dateReviewed` are required; `dateReviewed` is a full timestamp with the reviewer's Eastern offset like
 `2026-10-08T10:30:00-04:00` — stamp it with `TZ=America/New_York date +%Y-%m-%dT%H:%M:%S%:z`, not
 `date -u`: the page shows the date exactly as written, so a UTC stamp puts an evening review on
 tomorrow's date. "Most recent" sorts on it) and removing the title from `pending`/`skipped` if

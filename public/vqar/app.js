@@ -9,8 +9,8 @@ import {
 } from './filters.js';
 
 /**
- * A full-series re-review attached to a Review, once a "Finish Ep"-rated show
- * is actually finished.
+ * A revisit attached to a Review, after watching more of the show. Its rating
+ * replaces the episode-1 one.
  * @typedef {Object} SubReview
  * @property {number} [ratingNumber]
  * @property {string} [ratingText]
@@ -77,8 +77,9 @@ import {
 /** @type {Record<string, (a: Review, b: Review) => number>} */
 const SORTERS = {
   // dateReviewed is a full timestamp, so ties are rare. Break any by position:
-  // seasons are listed newest-first, and within a season reviews are appended
-  // as they're written, so a later entry is the more recent one.
+  // seasons are listed newest-first, and within a season the file order isn't
+  // consistent (older files are newest-first, fall-2026 is oldest-first), so
+  // this is only a stable fallback, not a claim about which entry is newer.
   recent: (a, b) =>
     b._timestamp - a._timestamp || a._seasonRank - b._seasonRank || b._index - a._index,
   'rating-high': (a, b) => (effectiveRatingNumber(b) ?? 0) - (effectiveRatingNumber(a) ?? 0),
@@ -179,7 +180,7 @@ async function getSeasonData(meta) {
 
 /**
  * Ensures every season in `metas` is present in `seasonDataById`, fetching
- * (cache-first) whichever ones are missing, in parallel.
+ * whichever ones are missing, in parallel.
  * @param {SeasonMeta[]} metas
  * @returns {Promise<SeasonMeta[]>} the metas that failed to load, if any
  */
