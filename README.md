@@ -332,13 +332,13 @@ selected season is on), **Extras** (to revisit, revisited, rated up/down on revi
 a row any pressed chip matches; across rows every row with a selection must match. A show with a
 revisit is filed under its revisit rating, the same number "Highest Rating" sorts on. Each chip's
 count ignores its own row's selection, so it says how many reviews pressing it would bring in.
-Only **Rating** and **Streaming** are always shown. The rest sit behind an **Otaku filters** toggle, in
-two labelled groups: "Your notes" (Extras) and "From AniList" (Studio, Format, Genre, Tag). The
-toggle's open/closed state is a remembered reader preference (`localStorage`, like the theme).
-The section also opens on its own when the URL sets one of its filters, so a filter is never
-active out of sight. In the AniList rows, a value the other filters would leave with nothing
-isn't offered at all, rather than listed at "(0)", though a selected one always stays.
-On narrow screens all the chip rows start collapsed behind a "More filters" button.
+All of the chip rows sit behind a single **Go Full Otaku** toggle (on every screen size): Rating and
+Streaming first, then two labelled groups, "Your notes" (Extras) and "From AniList" (Studio,
+Format, Genre, Tag). The toggle carries a count of the active filters, and its open/closed state
+is a remembered reader preference (`localStorage`, like the theme). It also opens on its own when
+the URL sets any filter, so a filter is never active out of sight. In the AniList rows, a value
+the other filters would leave with nothing isn't offered at all, rather than listed at "(0)",
+though a selected one always stays.
 
 Next to "Current Season", jump links with counts go straight to To Be Reviewed / Not Reviewing,
 opening the collapsed section on the way (as does arriving on a `#pendingSection` /
@@ -432,7 +432,7 @@ something in the selected season has AniList data. Each card also gets a quiet l
 show's format, studio, genres and top five tags, set off by a left rule. Each type has its own
 shape, so they read apart without labels: the format boxed, the studio plain, each genre an
 outlined pill, each tag a `#hashtag`. Every value links to the current view narrowed to it
-(`filterHref` in `app.js`); a plain click applies that in place and opens the Otaku filters,
+(`filterHref` in `app.js`); a plain click applies that in place and opens the filters,
 while a modified click opens the link as usual. The line stays muted, so it's visibly apart
 from the reviewer's own markings (♪ Liked OP/ED, ✓ Finished season), which are accent-coloured
 pills. GraphQL exposes the same object as
