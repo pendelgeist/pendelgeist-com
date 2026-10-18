@@ -803,16 +803,21 @@ test('the summary counts what is shown, and Clear filters resets search and chip
   assert.equal(window.location.search, '?season=all');
 });
 
-test('the mobile toggle shows how many chips are on and opens the chip rows', async () => {
+test('the one toggle shows how many chips are on and opens every chip row', async () => {
   const { document } = await loadFiltered();
   const toggle = document.getElementById('filtersToggle');
+  assert.equal(document.getElementById('filterChips').hidden, true);
+  assert.equal(document.querySelectorAll('.filters button[aria-controls]').length, 1, 'there is only one expansion');
   chip(document, 'rating', '5').click();
   chip(document, 'on', 'hidive').click();
-  assert.equal(toggle.textContent, 'More filters (2)');
+  assert.equal(toggle.textContent, 'Level 6 Otaku (2)');
 
   toggle.click();
   assert.equal(toggle.getAttribute('aria-expanded'), 'true');
-  assert.ok(document.getElementById('filterChips').classList.contains('open'));
+  assert.equal(document.getElementById('filterChips').hidden, false);
+  toggle.click();
+  assert.equal(toggle.getAttribute('aria-expanded'), 'false');
+  assert.equal(document.getElementById('filterChips').hidden, true);
 });
 
 test('keyboard focus stays on a chip after pressing it, though the row is rebuilt', async () => {
@@ -960,7 +965,7 @@ test('clicking an AniList value filters in place and opens its control', async (
   assert.deepEqual(showTitles(document), ['Isekai Good', 'Romcom']);
   assert.equal(window.location.search, '?studio=MAPPA');
   assert.equal(document.getElementById('studioFilter').value, 'MAPPA');
-  assert.equal(document.getElementById('otakuFilters').hidden, false);
+  assert.equal(document.getElementById('filterChips').hidden, false);
 
   // A second click on a genre narrows further rather than starting over.
   [...document.querySelectorAll('.entry-anilist-genre')].find((a) => a.textContent === 'Comedy')
@@ -1035,13 +1040,13 @@ test('the AniList rows only offer what the current filters would actually show, 
   assert.equal(tag.querySelector('option[value="Isekai"]').textContent, 'Isekai (0)');
 });
 
-test('the Otaku section starts closed, opens on its toggle, and remembers that', async () => {
+test('the filters start closed, opens on its toggle, and remembers that', async () => {
   global.localStorage = createLocalStorageStub();
   try {
     const first = await loadApp({ fetch: anilistRoutes([isekaiTrash]) });
     await waitFor(() => showTitles(first.document).length === 1);
-    const section = first.document.getElementById('otakuFilters');
-    const toggle = first.document.getElementById('otakuToggle');
+    const section = first.document.getElementById('filterChips');
+    const toggle = first.document.getElementById('filtersToggle');
     assert.equal(section.hidden, true);
     assert.equal(toggle.getAttribute('aria-expanded'), 'false');
 
@@ -1051,26 +1056,26 @@ test('the Otaku section starts closed, opens on its toggle, and remembers that',
 
     const second = await loadApp({ fetch: anilistRoutes([isekaiTrash]) });
     await waitFor(() => showTitles(second.document).length === 1);
-    assert.equal(second.document.getElementById('otakuFilters').hidden, false);
+    assert.equal(second.document.getElementById('filterChips').hidden, false);
   } finally {
     delete global.localStorage;
   }
 });
 
-test('a link that sets an Otaku filter opens the section, so no filter is on out of sight', async () => {
+test('a link that sets a filter opens the section, so no filter is on out of sight', async () => {
   const { document } = await loadApp({ fetch: anilistRoutes([isekaiTrash, isekaiGood]), url: 'http://localhost/vqar/?studio=MAPPA' });
   await waitFor(() => showTitles(document).length === 1);
-  assert.equal(document.getElementById('otakuFilters').hidden, false);
-  assert.equal(document.getElementById('otakuToggle').textContent, 'Otaku filters (1)');
+  assert.equal(document.getElementById('filterChips').hidden, false);
+  assert.equal(document.getElementById('filtersToggle').textContent, 'Level 6 Otaku (1)');
 });
 
-test('with site data blocked, the Otaku toggle still works', async () => {
+test('with site data blocked, the filters toggle still works', async () => {
   Object.defineProperty(global, 'localStorage', { get() { throw new Error('SecurityError'); }, configurable: true });
   try {
     const { document } = await loadApp({ fetch: anilistRoutes([isekaiTrash]) });
     await waitFor(() => showTitles(document).length === 1);
-    document.getElementById('otakuToggle').click();
-    assert.equal(document.getElementById('otakuFilters').hidden, false);
+    document.getElementById('filtersToggle').click();
+    assert.equal(document.getElementById('filterChips').hidden, false);
   } finally {
     delete global.localStorage;
   }

@@ -67,8 +67,8 @@
           <option value="title">Title (A-Z)</option>
         </select>
       </div>
-      <button type="button" id="filtersToggle" class="filters-toggle" aria-expanded="false" aria-controls="filterChips">More filters</button>
-      <div class="filter-chips" id="filterChips">
+      <button type="button" id="filtersToggle" class="filters-toggle" aria-expanded="false" aria-controls="filterChips">Level 6 Otaku</button>
+      <div class="filter-chips" id="filterChips" hidden>
         <div class="chip-row" role="group" aria-labelledby="ratingChipsLabel">
           <span class="chip-row-label" id="ratingChipsLabel">Rating</span>
           <div class="chip-list" id="ratingChips"></div>
@@ -77,33 +77,30 @@
           <span class="chip-row-label" id="onChipsLabel">Streaming</span>
           <div class="chip-list" id="onChips"></div>
         </div>
-        <button type="button" id="otakuToggle" class="otaku-toggle" aria-expanded="false" aria-controls="otakuFilters">Otaku filters</button>
-        <div class="otaku-filters" id="otakuFilters" hidden>
-          <div class="filter-section">
-            <span class="filter-section-label">Your notes</span>
-            <div class="chip-row" role="group" aria-labelledby="hasChipsLabel">
-              <span class="chip-row-label" id="hasChipsLabel">Extras</span>
-              <div class="chip-list" id="hasChips"></div>
-            </div>
+        <div class="filter-section">
+          <span class="filter-section-label">Your notes</span>
+          <div class="chip-row" role="group" aria-labelledby="hasChipsLabel">
+            <span class="chip-row-label" id="hasChipsLabel">Extras</span>
+            <div class="chip-list" id="hasChips"></div>
           </div>
-          <div class="filter-section anilist-row">
-            <span class="filter-section-label">From AniList</span>
-            <div class="chip-row">
-              <label class="chip-row-label" for="studioFilter">Studio</label>
-              <select id="studioFilter" class="chip-select"></select>
-            </div>
-            <div class="chip-row" role="group" aria-labelledby="formatChipsLabel">
-              <span class="chip-row-label" id="formatChipsLabel">Format</span>
-              <div class="chip-list" id="formatChips"></div>
-            </div>
-            <div class="chip-row" role="group" aria-labelledby="genreChipsLabel">
-              <span class="chip-row-label" id="genreChipsLabel">Genre</span>
-              <div class="chip-list" id="genreChips"></div>
-            </div>
-            <div class="chip-row">
-              <label class="chip-row-label" for="tagFilter">Tag</label>
-              <select id="tagFilter" class="chip-select"></select>
-            </div>
+        </div>
+        <div class="filter-section anilist-row">
+          <span class="filter-section-label">From AniList</span>
+          <div class="chip-row">
+            <label class="chip-row-label" for="studioFilter">Studio</label>
+            <select id="studioFilter" class="chip-select"></select>
+          </div>
+          <div class="chip-row" role="group" aria-labelledby="formatChipsLabel">
+            <span class="chip-row-label" id="formatChipsLabel">Format</span>
+            <div class="chip-list" id="formatChips"></div>
+          </div>
+          <div class="chip-row" role="group" aria-labelledby="genreChipsLabel">
+            <span class="chip-row-label" id="genreChipsLabel">Genre</span>
+            <div class="chip-list" id="genreChips"></div>
+          </div>
+          <div class="chip-row">
+            <label class="chip-row-label" for="tagFilter">Tag</label>
+            <select id="tagFilter" class="chip-select"></select>
           </div>
         </div>
       </div>

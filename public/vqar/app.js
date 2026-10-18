@@ -108,8 +108,6 @@ const dom = {
   formatChips: document.getElementById('formatChips'),
   genreChips: document.getElementById('genreChips'),
   tagFilter: /** @type {HTMLSelectElement|null} */ (document.getElementById('tagFilter')),
-  otakuToggle: document.getElementById('otakuToggle'),
-  otakuFilters: document.getElementById('otakuFilters'),
   studioFilter: /** @type {HTMLSelectElement|null} */ (document.getElementById('studioFilter')),
   resultCount: document.getElementById('resultCount'),
   clearFilters: document.getElementById('clearFilters'),
@@ -282,7 +280,7 @@ async function loadData() {
       dom.seasonFilter.replaceChildren(allOption, fragment);
     }
     applyStateFromUrl();
-    restoreOtakuOpen();
+    restoreFiltersOpen();
 
     await loadForCurrentFilter();
   } catch (error) {
@@ -642,43 +640,35 @@ function renderChips(reviews, seasonReviews) {
 
   const active = activeChipCount(chipFilters);
   if (dom.filtersToggle) {
-    dom.filtersToggle.textContent = active > 0 ? `More filters (${active})` : 'More filters';
-  }
-  const otaku = otakuFilterCount();
-  if (dom.otakuToggle) {
-    dom.otakuToggle.textContent = otaku > 0 ? `Otaku filters (${otaku})` : 'Otaku filters';
+    dom.filtersToggle.textContent = active > 0 ? `${FILTERS_LABEL} (${active})` : FILTERS_LABEL;
   }
 }
 
-/** The rows behind the Otaku toggle - everything but Rating and Streaming. */
-const OTAKU_DIMENSIONS = /** @type {const} */ (['has', 'format', 'genre', 'studio', 'tag']);
+/** The one toggle for every chip row (Rating through AniList). */
+const FILTERS_LABEL = 'Level 6 Otaku';
 
-function otakuFilterCount() {
-  return OTAKU_DIMENSIONS.reduce((total, dimension) => total + chipFilters[dimension].size, 0);
-}
-
-/** Where the Otaku section's open/closed state is kept between visits - a reader preference. */
-const OTAKU_STORAGE_KEY = 'pendelgeist:vqar:otaku';
+/** Where the chip rows' open/closed state is kept between visits - a reader preference. */
+const FILTERS_STORAGE_KEY = 'pendelgeist:vqar:filters';
 
 /** @param {boolean} open */
-function setOtakuOpen(open) {
-  if (dom.otakuFilters) dom.otakuFilters.hidden = !open;
-  dom.otakuToggle?.setAttribute('aria-expanded', String(open));
+function setFiltersOpen(open) {
+  if (dom.filterChips) dom.filterChips.hidden = !open;
+  dom.filtersToggle?.setAttribute('aria-expanded', String(open));
 }
 
 /**
- * Opens the Otaku section if it was left open last time - or, whatever was
- * left, if the URL already sets one of its filters, so no filter is ever on
+ * Opens the chip rows if they were left open last time - or, whatever was
+ * left, if the URL already sets one of their filters, so no filter is ever on
  * without its control in view.
  */
-function restoreOtakuOpen() {
+function restoreFiltersOpen() {
   let saved = false;
   try {
-    saved = localStorage.getItem(OTAKU_STORAGE_KEY) === 'open';
+    saved = localStorage.getItem(FILTERS_STORAGE_KEY) === 'open';
   } catch {
     // Site data blocked: start closed.
   }
-  setOtakuOpen(saved || otakuFilterCount() > 0);
+  setFiltersOpen(saved || activeChipCount(chipFilters) > 0);
 }
 
 /**
@@ -923,7 +913,7 @@ dom.reviewedShows?.addEventListener('click', (e) => {
   if (!link || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
   e.preventDefault();
   chipFilters = filtersWith(/** @type {import('./filters.js').ChipDimension} */ (link.dataset.dimension), link.dataset.value ?? '');
-  setOtakuOpen(true);
+  setFiltersOpen(true);
   renderReviews();
   dom.reviewedShows?.closest('.section')?.scrollIntoView?.();
 });
@@ -959,21 +949,14 @@ window.addEventListener('scroll', updateBackToTop, { passive: true });
 updateBackToTop();
 dom.backToTop?.addEventListener('click', () => window.scrollTo(0, 0));
 
-dom.otakuToggle?.addEventListener('click', () => {
-  const open = dom.otakuFilters?.hidden ?? false;
-  setOtakuOpen(open);
+dom.filtersToggle?.addEventListener('click', () => {
+  const open = dom.filterChips?.hidden ?? false;
+  setFiltersOpen(open);
   try {
-    localStorage.setItem(OTAKU_STORAGE_KEY, open ? 'open' : 'closed');
+    localStorage.setItem(FILTERS_STORAGE_KEY, open ? 'open' : 'closed');
   } catch {
     // Site data blocked: the toggle still works, it just won't be remembered.
   }
-});
-
-// Only visible on narrow screens (see styles.css), where the chip rows start
-// collapsed so they don't push the reviews below the fold.
-dom.filtersToggle?.addEventListener('click', () => {
-  const open = dom.filterChips?.classList.toggle('open') ?? false;
-  dom.filtersToggle?.setAttribute('aria-expanded', String(open));
 });
 
 await loadData();

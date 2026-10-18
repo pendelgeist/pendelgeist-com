@@ -198,46 +198,10 @@ input:focus, select:focus {
   font-size: 0.8rem;
 }
 
-/* Basic vs Otaku: Rating and Streaming always show; the rest sit behind the
- * Otaku toggle, split into the reviewer's own notes and AniList's data. All
+/* The whole chip block sits behind the one Level 6 Otaku toggle, split into
+ * Rating/Streaming and then the reviewer's own notes and AniList's data. All
  * of it is on .filters' chrome, so --color-nav-link throughout. */
-.otaku-toggle {
-  align-self: flex-start;
-  padding: 0.25rem 0.7rem;
-  font: inherit;
-  font-size: 0.8rem;
-  font-weight: 700;
-  border: 1px dashed var(--color-nav-link);
-  border-radius: 999px;
-  background-color: transparent;
-  color: var(--color-nav-link);
-  cursor: pointer;
-}
-
-.otaku-toggle::before {
-  content: '\25B8  ';
-}
-
-.otaku-toggle[aria-expanded="true"]::before {
-  content: '\25BE  ';
-}
-
-.otaku-toggle:hover {
-  text-decoration: underline;
-}
-
-.otaku-toggle:focus-visible {
-  outline: 2px solid var(--color-nav-link);
-  outline-offset: 2px;
-}
-
-.otaku-filters {
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-}
-
-.otaku-filters[hidden],
+.filter-chips[hidden],
 .filter-section[hidden] {
   display: none;
 }
@@ -263,9 +227,18 @@ input:focus, select:focus {
   font-weight: 700;
 }
 
-/* Desktop shows every chip row; the toggle only exists on narrow screens. */
 .filters-toggle {
-  display: none;
+  justify-self: start;
+  font-weight: 700;
+  border-style: dashed;
+}
+
+.filters-toggle::before {
+  content: '\25B8  ';
+}
+
+.filters-toggle[aria-expanded="true"]::before {
+  content: '\25BE  ';
 }
 
 /* Result count + Clear filters, on the page background under REVIEWED. */
@@ -593,16 +566,6 @@ article:hover {
 
   input, select {
     min-width: 100%;
-  }
-
-  /* Chip rows start collapsed so they don't push the reviews below the fold. */
-  .filters-toggle {
-    display: block;
-    justify-self: start;
-  }
-
-  .filter-chips:not(.open) {
-    display: none;
   }
 
   .chip-row {
