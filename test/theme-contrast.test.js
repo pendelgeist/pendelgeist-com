@@ -1,5 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
+import fs from 'node:fs';
 import { contrastRatio } from '../public/theme-palette.js';
 
 /**
@@ -43,6 +44,12 @@ const THEMES = {
   },
   'FFVII Menu': {
     bg: '#0a1030', text: '#fff', accent: '#6ecfff', surface: '#14206b', chrome: '#0a1030', muted: '#9fb4e0', navLink: '#fff', title: '#fff',
+  },
+  Manga: {
+    bg: '#f6f6f4', text: '#111', accent: '#111', surface: '#fff', chrome: '#141414', muted: '#4a4a4a', navLink: '#f6f6f4', title: '#111',
+  },
+  'Game Boy': {
+    bg: '#9bbc0f', text: '#0f380f', accent: '#0f380f', surface: '#8bac0f', chrome: '#0f380f', muted: '#0f380f', navLink: '#9bbc0f', title: '#0f380f',
   },
   'Eva-01': {
     bg: '#170b28', text: '#eafbe0', accent: '#39ff14', surface: '#241340', chrome: '#0d0619', muted: '#b9a8d6', navLink: '#eafbe0', title: '#39ff14',
@@ -96,3 +103,27 @@ for (const [name, t] of Object.entries(THEMES)) {
     assert.ok(contrastRatio(entryBorderMuted, surface) >= MIN_UI, `fact/unknowable border vs surface: ${contrastRatio(entryBorderMuted, surface).toFixed(2)}`);
   });
 }
+
+// --- Rainbow's decoration, which the variable pairings above can't see ---
+
+const css = fs.readFileSync(new URL('../public/styles.css', import.meta.url), 'utf-8');
+
+test('Rainbow: every stop of the gradient heading text clears AA on its white surface', () => {
+  const rule = /:root\[data-theme="rainbow"\] \.entry-title-jp \{[^}]*?linear-gradient\(90deg, ([^)]*)\)/.exec(css);
+  assert.ok(rule, 'expected the gradient text rule in styles.css');
+  for (const stop of rule[1].split(',').map(s => s.trim())) {
+    const ratio = contrastRatio(hex(stop), hex('#fff'));
+    assert.ok(ratio >= MIN_NORMAL, `${stop} vs #fff: ${ratio.toFixed(2)}`);
+  }
+});
+
+test('Rainbow: buttons stay out of the surface-filled gradient frame, which would put nav-link text on surface', () => {
+  const frame = /((?::root\[data-theme="rainbow"\][^{]*,\s*)*:root\[data-theme="rainbow"\][^{]*)\{\s*border: 3px solid transparent;/.exec(css);
+  assert.ok(frame, 'expected the gradient-frame rule in styles.css');
+  assert.doesNotMatch(frame[1], /button/);
+});
+
+test('theme decoration on body::before/::after paints under the content, not over it', () => {
+  assert.match(css, /:root\[data-theme\] body \{\s*position: relative;\s*isolation: isolate;\s*\}/);
+  assert.match(css, /:root\[data-theme\] body::before,\s*:root\[data-theme\] body::after \{\s*z-index: -1;\s*\}/);
+});

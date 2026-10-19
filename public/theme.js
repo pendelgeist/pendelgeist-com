@@ -5,17 +5,20 @@ const PALETTE_KEY_PREFIX = 'pendelgeist:theme:palette:';
 
 // Extend this list (and add a matching CSS rule in styles.css) to add more
 // themes later. "system" means no override - color-scheme: light dark
-// follows the OS/browser preference.
+// follows the OS/browser preference. `group` is the <optgroup> the picker
+// files a theme under, in the order the groups first appear here.
 const THEMES = [
-  { id: 'system', label: 'Auto' },
-  { id: 'light', label: 'AMO - L' },
-  { id: 'dark', label: 'AMO - Kira' },
-  { id: 'rainbow', label: 'Rainbow' },
-  { id: 'vaporwave', label: 'Vaporwave' },
-  { id: 'ffvii', label: 'FFVII Menu' },
-  { id: 'eva-01', label: 'Eva-01' },
-  { id: 'random-light', label: 'Random (Light)' },
-  { id: 'random-dark', label: 'Random (Dark)' },
+  { id: 'system', label: 'Auto', group: 'Standard' },
+  { id: 'light', label: 'AMO - L', group: 'Standard' },
+  { id: 'dark', label: 'AMO - Kira', group: 'Standard' },
+  { id: 'ffvii', label: 'FFVII Menu', group: 'Anime & Games' },
+  { id: 'eva-01', label: 'Eva-01', group: 'Anime & Games' },
+  { id: 'manga', label: 'Manga', group: 'Anime & Games' },
+  { id: 'gameboy', label: 'Game Boy', group: 'Anime & Games' },
+  { id: 'rainbow', label: 'Rainbow', group: 'Novelty' },
+  { id: 'vaporwave', label: 'Vaporwave', group: 'Novelty' },
+  { id: 'random-light', label: 'Random (Light)', group: 'Random' },
+  { id: 'random-dark', label: 'Random (Dark)', group: 'Random' },
 ];
 
 const RANDOM_THEMES = new Set(['random-light', 'random-dark']);
@@ -109,11 +112,19 @@ function buildPicker() {
   select.className = 'theme-picker';
   select.setAttribute('aria-label', 'Theme');
 
+  const groups = new Map();
   for (const theme of THEMES) {
+    let group = groups.get(theme.group);
+    if (!group) {
+      group = document.createElement('optgroup');
+      group.label = theme.group;
+      groups.set(theme.group, group);
+      select.appendChild(group);
+    }
     const option = document.createElement('option');
     option.value = theme.id;
     option.textContent = theme.label;
-    select.appendChild(option);
+    group.appendChild(option);
   }
 
   const reroll = document.createElement('button');

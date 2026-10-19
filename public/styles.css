@@ -1,3 +1,41 @@
+/* Comic Neue (OFL - public/fonts/comic-neue/OFL.txt): Rainbow's stand-in
+ * for Comic Sans MS, which isn't installed on Linux or Android, and the
+ * Manga theme's speech-bubble lettering. Bangers (OFL) is Manga's SFX
+ * heading face, and Press Start 2P (OFL) Game Boy's. A browser only
+ * downloads a face a rendered element actually uses, so these cost nothing
+ * outside their themes. */
+@font-face {
+  font-family: 'Comic Neue';
+  src: url('/fonts/comic-neue/ComicNeue-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Comic Neue';
+  src: url('/fonts/comic-neue/ComicNeue-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Bangers';
+  src: url('/fonts/bangers/Bangers.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Press Start 2P';
+  src: url('/fonts/press-start-2p/PressStart2P.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
 /* Reactor7 by Caveras (http://fontstruct.com/fontstructors/caveras), based on
  * the main text font from Final Fantasy VII (Squaresoft, 1997). Licensed
  * CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/) - see
@@ -54,8 +92,8 @@
  * light-dark(), which resolves based on the *used value* of color-scheme.
  * With no override, color-scheme: light dark follows the OS/browser
  * preference. Picking a theme just narrows color-scheme to one value - no
- * need to redefine the palette per theme. A future custom (non light/dark)
- * theme would instead override the --color-* variables directly here.
+ * need to redefine the palette per theme. The fixed themes below override
+ * the --color-* variables directly instead.
  */
 :root[data-theme="light"] {
   color-scheme: light;
@@ -70,7 +108,22 @@
  * instead of relying on light-dark(). "Random (Light)"/"Random (Dark)" work
  * the same way, except theme.js computes and inline-sets these variables
  * itself (see public/theme-palette.js) - only their color-scheme lives here.
+ *
+ * A theme's full-page decoration (Rainbow's wash, Vaporwave's sun and grid,
+ * Eva-01's scanlines, Manga's sketches) lives on body::before/::after with
+ * z-index: -1, inside the stacking context body's isolation opens - so it
+ * paints over body's own background but under every bit of content, rather
+ * than across the text the way a plain fixed overlay would.
  */
+:root[data-theme] body {
+  position: relative;
+  isolation: isolate;
+}
+
+:root[data-theme] body::before,
+:root[data-theme] body::after {
+  z-index: -1;
+}
 :root[data-theme="rainbow"] {
   color-scheme: light;
   --color-bg: #fdfdff;
@@ -88,8 +141,8 @@
   --color-section-border: #7a2ea1;
   --shadow-heading: 0 0 20px transparent;
   --shadow-focus: 0 0 10px rgba(122, 46, 161, 0.4);
-  --font-heading: 'Comic Sans MS', 'Chalkboard SE', cursive;
-  --font-body: 'Comic Sans MS', 'Chalkboard SE', cursive;
+  --font-heading: 'Comic Sans MS', 'Chalkboard SE', 'Comic Neue', cursive;
+  --font-body: 'Comic Sans MS', 'Chalkboard SE', 'Comic Neue', cursive;
   --border-width: 3px;
   --border-style: solid;
   --radius-card: 6px;
@@ -101,10 +154,6 @@
  * under the nav bar, and confetti-colored list bullets. Body text and inputs
  * stay on solid --color-surface/--color-bg so none of this touches
  * readability - it's all decoration layered around the actual content. */
-:root[data-theme="rainbow"] body {
-  position: relative;
-}
-
 :root[data-theme="rainbow"] body::before {
   content: '';
   position: fixed;
@@ -120,7 +169,10 @@
 :root[data-theme="rainbow"] .section h2,
 :root[data-theme="rainbow"] .entry-title,
 :root[data-theme="rainbow"] .entry-title-jp {
-  background: linear-gradient(90deg, #ff0000, #ff9900, #ffee00, #33ff00, #00d9ff, #6600ff, #ff00cc, #ff0000);
+  /* Every stop clears AA (4.5:1) on Rainbow's white surface - the classic
+   * spectrum's yellow and lime sat near 1.2:1, so a title went unreadable
+   * each time that stretch scrolled past. Checked in theme-contrast.test.js. */
+  background: linear-gradient(90deg, #c81e1e, #b8400a, #946200, #2a7d12, #0b6e8e, #5b2bd6, #b0177e, #c81e1e);
   background-size: 200% auto;
   -webkit-background-clip: text;
   background-clip: text;
@@ -143,8 +195,7 @@
 :root[data-theme="rainbow"] article,
 :root[data-theme="rainbow"] .guidelines,
 :root[data-theme="rainbow"] .container input,
-:root[data-theme="rainbow"] .container select,
-:root[data-theme="rainbow"] .container button {
+:root[data-theme="rainbow"] .container select {
   border: 3px solid transparent;
   background-image:
     linear-gradient(var(--color-surface), var(--color-surface)),
@@ -159,13 +210,10 @@
   padding: 0.75rem;
 }
 
-/* #runQuery normally sits on --color-chrome and uses --color-nav-link for
- * readable text; the gradient fill above swaps its background to
- * --color-surface, so its text needs to be pinned to --color-text instead.
- * Needs the extra [data-theme] specificity to beat the plain #runQuery rule. */
-:root[data-theme="rainbow"] #runQuery {
-  color: var(--color-text);
-}
+/* Buttons are left out of the gradient frame above on purpose: its fill
+ * swaps their background to --color-surface while most of them (filter
+ * chips, the filters toggle, #runQuery) keep --color-nav-link text meant for
+ * --color-chrome - white on white, so every chip went invisible. */
 
 :root[data-theme="rainbow"] .show-list li:nth-child(7n + 1)::before {
   color: #ff0000;
@@ -344,7 +392,8 @@
 :root[data-theme="ffvii"] .section,
 :root[data-theme="ffvii"] article,
 :root[data-theme="ffvii"] .guidelines {
-  border: var(--border-width) var(--border-style) rgba(110, 207, 255, 0.35);
+  /* The game's window frame: a pale silver-blue rim, not a tinted glow. */
+  border: var(--border-width) var(--border-style) #c9d3ea;
   background: linear-gradient(135deg, #1c3f8f 0%, #0a1030 100%);
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.3),
@@ -354,6 +403,12 @@
 
 :root[data-theme="ffvii"] .section {
   padding: 0.75rem;
+}
+
+/* The menu cursor: a pointing hand in place of the list bullet on the row
+ * you're over, the way the game marks the selected command. */
+:root[data-theme="ffvii"] .show-list li:hover::before {
+  content: '\261E ';
 }
 
 /* Eva-01: Shinji's unit - deep violet body with an acid-green accent, in the
@@ -385,7 +440,12 @@
 
 :root[data-theme="eva-01"] body {
   background: radial-gradient(ellipse at top, #241340 0%, #170b28 70%);
-  position: relative;
+}
+
+/* NERV caution striping under the nav, in Unit-01's own violet and green. */
+:root[data-theme="eva-01"] nav {
+  border-bottom: 6px solid transparent;
+  border-image: repeating-linear-gradient(-45deg, #39ff14 0 10px, #0d0619 10px 20px) 6;
 }
 
 /* Faint horizontal scanlines, echoing a MAGI console readout. */
@@ -397,8 +457,7 @@
   background: repeating-linear-gradient(to bottom, rgba(0, 0, 0, 0.15) 0 1px, transparent 1px 3px);
 }
 
-/* A quick, tense pulse on headings - the Eva's own heartbeat during battle,
- * faster than Eva-00's calm glow or Eva-02's irregular flicker. */
+/* A quick, tense pulse on headings - the Eva's own heartbeat during battle. */
 :root[data-theme="eva-01"] .section h2 {
   animation: eva01-pulse 1.2s ease-in-out infinite;
 }
@@ -420,6 +479,194 @@
 
 :root[data-theme="eva-01"] .section {
   padding: 0.75rem;
+}
+
+/* Manga: grayscale ink on paper - screentone dots for the page, panels for
+ * the cards, a black SFX banner for each section heading, the review itself
+ * in a speech bubble, and pencil-sketch filler (an anime utility pole, a
+ * cherry branch) drawn faintly into the margins behind everything. */
+:root[data-theme="manga"] {
+  color-scheme: light;
+  --color-bg: #f6f6f4;
+  --color-text: #111;
+  --color-accent: #111;
+  --color-surface: #fff;
+  --color-chrome: #141414;
+  --color-muted: #4a4a4a;
+  --color-nav-link: #f6f6f4;
+  --color-input-border: #111;
+  --color-input-focus: #111;
+  --color-title: #111;
+  --color-guideline-border: #111;
+  --color-article-border: #111;
+  --color-section-border: #111;
+  --shadow-card: 6px 6px 0 #111;
+  --shadow-heading: none;
+  --shadow-focus: 3px 3px 0 #111;
+  --font-heading: 'Bangers', Impact, 'Arial Narrow Bold', sans-serif;
+  --font-body: 'Raleway', sans-serif;
+  --border-width: 3px;
+  --border-style: solid;
+  --radius-card: 0;
+  --spacing-section: 2.25rem;
+}
+
+:root[data-theme="manga"] body {
+  background-color: #f6f6f4;
+  background-image: radial-gradient(rgb(0 0 0 / 13%) 1px, transparent 1.3px);
+  background-size: 7px 7px;
+}
+
+:root[data-theme="manga"] body::before {
+  content: '';
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  width: min(900px, 100vw);
+  height: 440px;
+  pointer-events: none;
+  background: url('/themes/manga/pole.svg') no-repeat right bottom / contain;
+  opacity: 0.32;
+}
+
+:root[data-theme="manga"] body::after {
+  content: '';
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: min(520px, 70vw);
+  height: 300px;
+  pointer-events: none;
+  background: url('/themes/manga/sakura.svg') no-repeat left top / contain;
+  opacity: 0.28;
+}
+
+/* Focus lines radiating behind the nav, the way manga frames a reveal. */
+:root[data-theme="manga"] nav {
+  background: repeating-conic-gradient(from 0deg at 50% 50%, #141414 0deg 3deg, #262626 3deg 6deg);
+  border-bottom: 3px solid #111;
+}
+
+:root[data-theme="manga"] article,
+:root[data-theme="manga"] .guidelines {
+  border: 3px solid #111;
+  box-shadow: var(--shadow-card);
+}
+
+:root[data-theme="manga"] .section h2 {
+  display: inline-block;
+  padding: 0.1rem 1rem 0.2rem;
+  border-bottom: none;
+  background: #111;
+  color: #f6f6f4;
+  font-weight: 400;
+  letter-spacing: 0.15rem;
+  transform: skew(-8deg);
+}
+
+:root[data-theme="manga"] .entry-title {
+  font-family: 'Bangers', Impact, sans-serif;
+  font-weight: 400;
+  letter-spacing: 0.06rem;
+}
+
+/* The review is what the reviewer said, so it goes in a speech bubble,
+ * lettered the way scanlations letter dialogue. */
+:root[data-theme="manga"] .entry-description {
+  position: relative;
+  margin: 0.5rem 0 1rem;
+  padding: 0.6rem 1rem;
+  border: 2px solid #111;
+  border-radius: 1.4rem;
+  background: #fff;
+  font-family: 'Comic Neue', 'Comic Sans MS', cursive;
+  font-weight: 700;
+}
+
+:root[data-theme="manga"] .entry-description::after {
+  content: '';
+  position: absolute;
+  left: 2.2rem;
+  bottom: -11px;
+  width: 16px;
+  height: 16px;
+  border-right: 2px solid #111;
+  border-bottom: 2px solid #111;
+  background: #fff;
+  transform: skew(30deg) rotate(45deg);
+}
+
+/* Game Boy (DMG-01): the original four greens, a pixel font for headings,
+ * hard pixel shadows and a faint LCD dot grid. Text and muted share the
+ * darkest shade, since the two middle greens can't carry text on the
+ * screen's own green at AA. */
+:root[data-theme="gameboy"] {
+  color-scheme: light;
+  --color-bg: #9bbc0f;
+  --color-text: #0f380f;
+  --color-accent: #0f380f;
+  --color-surface: #8bac0f;
+  --color-chrome: #0f380f;
+  --color-muted: #0f380f;
+  --color-nav-link: #9bbc0f;
+  --color-input-border: #306230;
+  --color-input-focus: #0f380f;
+  --color-title: #0f380f;
+  --color-guideline-border: #306230;
+  --color-article-border: #306230;
+  --color-section-border: #0f380f;
+  --shadow-card: 4px 4px 0 #306230;
+  --shadow-heading: none;
+  --shadow-focus: 0 0 0 3px #306230;
+  --font-heading: 'Press Start 2P', 'Courier New', monospace;
+  --font-body: 'Courier New', monospace;
+  --border-width: 4px;
+  --border-style: solid;
+  --radius-card: 0;
+  --spacing-section: 2rem;
+}
+
+:root[data-theme="gameboy"] body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background:
+    repeating-linear-gradient(0deg, rgb(15 56 15 / 7%) 0 1px, transparent 1px 4px),
+    repeating-linear-gradient(90deg, rgb(15 56 15 / 7%) 0 1px, transparent 1px 4px);
+}
+
+/* Press Start 2P is an 8px-grid pixel font: kept to multiples of 8px so it
+ * stays crisp, and given no extra letter-spacing (its glyphs carry their own). */
+:root[data-theme="gameboy"] .section h2 {
+  font-size: 1.5rem;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 1.5;
+}
+
+:root[data-theme="gameboy"] .nav-title,
+:root[data-theme="gameboy"] .entry-title {
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.6;
+}
+
+@media (max-width: 700px) {
+  :root[data-theme="gameboy"] .nav-title {
+    font-size: 0.75rem;
+  }
+}
+
+:root[data-theme="gameboy"] article,
+:root[data-theme="gameboy"] .guidelines {
+  border: var(--border-width) var(--border-style) #306230;
+  box-shadow: var(--shadow-card);
+}
+
+:root[data-theme="gameboy"] .show-list li::before {
+  content: '\25B6  ';
 }
 
 :root[data-theme="random-light"] {
@@ -506,6 +753,7 @@ nav {
   color: var(--color-nav-link);
 }
 
+.theme-picker optgroup,
 .theme-picker option {
   color: initial;
 }
@@ -672,7 +920,7 @@ nav {
 .entry-streaming-oceanveil { background-color: #49e4e6; color: #000; }
 
 
-/* Accessibility: every per-theme animation added below (Rainbow's spin,
+/* Accessibility: every per-theme animation above (Rainbow's spin,
  * Vaporwave's drift, FFVII's pulse, Eva-01's heartbeat pulse) gets
  * neutralized here rather than individually, so a theme can't accidentally
  * ship motion that ignores the OS/browser preference. */

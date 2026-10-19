@@ -53,7 +53,7 @@ The actual colors live in `styles.css` as `--color-*` custom properties. "Auto"/
 define them with `light-dark(lightValue, darkValue)`, which resolves off the *used value*
 of `color-scheme` — so picking Light or Dark just narrows `color-scheme` to one value
 (`:root[data-theme="dark"] { color-scheme: dark; }`) rather than redefining every variable.
-Rainbow, Vaporwave, FFVII Menu, and Eva-01 are fixed novelty themes that instead override
+Rainbow, Vaporwave, FFVII Menu, Eva-01, Manga, and Game Boy are fixed novelty themes that instead override
 every `--color-*` directly for their own `[data-theme="..."]` selector. Beyond color, each
 also gets its own `--font-heading`/`--font-body`, `--border-width`/`--border-style`,
 `--radius-card`, and `--spacing-section` (the base values live in `:root`, same pattern as
@@ -62,9 +62,20 @@ background wash, a gradient "frame" around every card and the nav bar, gradient 
 every heading, and confetti-colored list bullets; Vaporwave adds a hazy sunset glow, a
 drifting neon grid floor, and glowing card/nav borders; FFVII Menu keeps it to a radial
 background glow, a diagonal gradient/bevel on every card echoing the game's own dialog
-boxes, and a pulsing "materia" glow on section headings; Eva-01 (Neon Genesis Evangelion's
-Unit-01, in purple/acid-green with a MAGI-terminal monospace font) adds faint scanlines and
-a quick heartbeat-style pulse on section headings. All per-theme motion is neutralized by a
+boxes with the menu window's silver rim, a pulsing "materia" glow on section headings, and
+the pointing-hand cursor on the list row you're over; Eva-01 (Neon Genesis Evangelion's
+Unit-01, in purple/acid-green with a MAGI-terminal monospace font) adds faint scanlines,
+violet/green caution striping under the nav, and a quick heartbeat-style pulse on section
+headings; Manga is grayscale ink on paper — screentone dots, cards drawn as panels with a
+hard drop shadow, skewed black SFX banners for section headings, each review in a speech
+bubble, and faint pencil-sketch filler (an anime utility pole with crows on the wires, a
+cherry branch) from `public/themes/manga/` drawn into the margins; Game Boy uses the
+DMG-01's four greens, a pixel font and a faint LCD dot grid.
+
+Full-page decoration lives on `body::before`/`::after`, which every theme gets at
+`z-index: -1` inside an `isolation: isolate` body, so it paints under the content instead
+of across the text. The picker files the themes under `<optgroup>`s (the `group` on each
+`THEMES` entry). All per-theme motion is neutralized by a
 blanket `prefers-reduced-motion: reduce` rule at the bottom of `styles.css`, so it never
 overrides that OS/browser preference. A new theme along these lines just needs a CSS block
 like those and an entry in the `THEMES` list in `theme.js`.
@@ -75,6 +86,13 @@ loaded via `@font-face` at the top of `styles.css`. It's licensed CC BY-NC-SA 3.
 `public/fonts/reactor7/license.txt`) — non-commercial use only, with attribution — and is
 deliberately only ever set at 16px multiples (`.section h2` is 2rem, `.nav-title` is 1rem),
 since it's a pixel font that blurs at any other size.
+
+Three more faces are self-hosted under `public/fonts/`, all SIL OFL 1.1 (license text next
+to each): Comic Neue, Rainbow's fallback where Comic Sans MS isn't installed (Linux,
+Android) and Manga's speech-bubble lettering; Bangers, Manga's heading face; and Press
+Start 2P, Game Boy's pixel heading face, kept at 8px multiples for the same reason as
+Reactor7. A browser only downloads a face that a rendered element uses, so none of them
+costs anything outside its theme.
 
 ### Random (Light) / Random (Dark)
 
@@ -92,7 +110,7 @@ don't linger on top of that theme's plain CSS.
 
 ### Contrast conventions for the fixed themes
 
-Unlike Random Light/Dark, the fixed themes (Auto/Light/Dark, Rainbow, Vaporwave, FFVII,
+Unlike Random Light/Dark, the fixed themes (Auto/Light/Dark, Rainbow, Vaporwave, FFVII, Manga, Game Boy,
 Eva-01) have hand-picked colors that can't self-correct — `test/theme-contrast.test.js`
 checks every one of them against the real pairings the CSS actually produces, and encodes the
 convention that keeps new components from breaking it:

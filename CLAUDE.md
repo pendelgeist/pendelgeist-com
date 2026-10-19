@@ -190,12 +190,13 @@ Random themes) into every page's `<nav>`, and persists the choice to `localStora
 are `--color-*` custom properties in `public/styles.css`:
 - Auto/Light/Dark share one set of values via `light-dark()`; picking one just narrows
   `color-scheme`.
-- Rainbow/Vaporwave/FFVII Menu/Eva-01 are fixed themes that override every `--color-*` (plus
+- Rainbow/Vaporwave/FFVII Menu/Eva-01/Manga/Game Boy are fixed themes that override every `--color-*` (plus
   fonts, borders, radii, spacing) for their own `[data-theme="..."]` selector, with bespoke
   CSS flourishes on top. Adding a new one this way = a CSS block + an entry in the `THEMES`
   array in `theme.js`. All per-theme motion is neutralized by the blanket
   `prefers-reduced-motion: reduce` rule at the bottom of `styles.css` — keep new flourishes
-  covered by it.
+  covered by it. Full-page decoration goes on `body::before`/`::after`, which every theme
+  gets at `z-index: -1` inside an isolated body, so it stays under the text.
 - Random (Light)/Random (Dark) have no fixed values — `public/theme-palette.js` rolls a
   random hue and *solves for* a lightness that clears WCAG AA contrast (4.5:1) against
   whatever it renders on, rather than picking blind. `PALETTE_PROPERTIES` in that file is the
