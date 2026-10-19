@@ -13,7 +13,7 @@ import { contrastRatio } from '../public/theme-palette.js';
  * Regression coverage for a real bug: several components render text/borders
  * on top of --color-chrome (nav bar, filter bars, eva's chrome-styled
  * buttons) using --color-text or --color-accent instead of --color-nav-link.
- * In the default Light theme (and Rainbow), --color-chrome is intentionally
+ * In the default Light theme, --color-chrome is intentionally
  * close to (or identical to) --color-accent, so that mismatch produces
  * unreadable or fully invisible text.
  */
@@ -35,9 +35,6 @@ const THEMES = {
   },
   Dark: {
     bg: '#000', text: '#00a200', accent: '#f00', surface: '#111', chrome: '#000', muted: '#00a200', navLink: '#f00', title: '#f00',
-  },
-  Rainbow: {
-    bg: '#fdfdff', text: '#1a1a1a', accent: '#7a2ea1', surface: '#fff', chrome: '#1a1a2e', muted: '#555', navLink: '#fff', title: '#1a1a1a',
   },
   Vaporwave: {
     bg: '#1a0b2e', text: '#f2e9ff', accent: '#ff71ce', surface: '#2d1b4e', chrome: '#130821', muted: '#b39ddb', navLink: '#01cdfe', title: '#ff71ce',
@@ -104,24 +101,9 @@ for (const [name, t] of Object.entries(THEMES)) {
   });
 }
 
-// --- Rainbow's decoration, which the variable pairings above can't see ---
+// --- Theme decoration, which the variable pairings above can't see ---
 
 const css = fs.readFileSync(new URL('../public/styles.css', import.meta.url), 'utf-8');
-
-test('Rainbow: every stop of the gradient heading text clears AA on its white surface', () => {
-  const rule = /:root\[data-theme="rainbow"\] \.entry-title-jp \{[^}]*?linear-gradient\(90deg, ([^)]*)\)/.exec(css);
-  assert.ok(rule, 'expected the gradient text rule in styles.css');
-  for (const stop of rule[1].split(',').map(s => s.trim())) {
-    const ratio = contrastRatio(hex(stop), hex('#fff'));
-    assert.ok(ratio >= MIN_NORMAL, `${stop} vs #fff: ${ratio.toFixed(2)}`);
-  }
-});
-
-test('Rainbow: buttons stay out of the surface-filled gradient frame, which would put nav-link text on surface', () => {
-  const frame = /((?::root\[data-theme="rainbow"\][^{]*,\s*)*:root\[data-theme="rainbow"\][^{]*)\{\s*border: 3px solid transparent;/.exec(css);
-  assert.ok(frame, 'expected the gradient-frame rule in styles.css');
-  assert.doesNotMatch(frame[1], /button/);
-});
 
 test('theme decoration on body::before/::after paints under the content, not over it', () => {
   assert.match(css, /:root\[data-theme\] body \{\s*position: relative;\s*isolation: isolate;\s*\}/);

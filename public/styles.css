@@ -1,6 +1,5 @@
-/* Comic Neue (OFL - public/fonts/comic-neue/OFL.txt): Rainbow's stand-in
- * for Comic Sans MS, which isn't installed on Linux or Android, and the
- * Manga theme's speech-bubble lettering. Bangers (OFL) is Manga's SFX
+/* Comic Neue (OFL - public/fonts/comic-neue/OFL.txt) letters the Manga
+ * theme's speech bubbles. Bangers (OFL) is Manga's SFX
  * heading face, and Press Start 2P (OFL) Game Boy's. A browser only
  * downloads a face a rendered element actually uses, so these cost nothing
  * outside their themes. */
@@ -105,11 +104,11 @@
 
 /*
  * Fixed novelty themes: same idea, just overriding every --color-* directly
- * instead of relying on light-dark(). "Random (Light)"/"Random (Dark)" work
- * the same way, except theme.js computes and inline-sets these variables
- * itself (see public/theme-palette.js) - only their color-scheme lives here.
+ * instead of relying on light-dark(). "Random" works the same way, except
+ * theme.js computes and inline-sets these variables itself, color-scheme
+ * included (see public/theme-palette.js), so it has no rule here at all.
  *
- * A theme's full-page decoration (Rainbow's wash, Vaporwave's sun and grid,
+ * A theme's full-page decoration (Vaporwave's sun and grid,
  * Eva-01's scanlines, Manga's sketches) lives on body::before/::after with
  * z-index: -1, inside the stacking context body's isolation opens - so it
  * paints over body's own background but under every bit of content, rather
@@ -124,143 +123,6 @@
 :root[data-theme] body::after {
   z-index: -1;
 }
-:root[data-theme="rainbow"] {
-  color-scheme: light;
-  --color-bg: #fdfdff;
-  --color-text: #1a1a1a;
-  --color-accent: #7a2ea1;
-  --color-surface: #fff;
-  --color-chrome: #1a1a2e;
-  --color-muted: #555;
-  --color-nav-link: #fff;
-  --color-input-border: #7a2ea1;
-  --color-input-focus: #7a2ea1;
-  --color-title: #1a1a1a;
-  --color-guideline-border: #ddd;
-  --color-article-border: #ddd;
-  --color-section-border: #7a2ea1;
-  --shadow-heading: 0 0 20px transparent;
-  --shadow-focus: 0 0 10px rgba(122, 46, 161, 0.4);
-  --font-heading: 'Comic Sans MS', 'Chalkboard SE', 'Comic Neue', cursive;
-  --font-body: 'Comic Sans MS', 'Chalkboard SE', 'Comic Neue', cursive;
-  --border-width: 3px;
-  --border-style: solid;
-  --radius-card: 6px;
-  --spacing-section: 2.5rem;
-}
-
-/* Rainbow goes all-in: a slowly spinning wash behind everything, gradient
- * text on every heading, an animated gradient "frame" around every card and
- * under the nav bar, and confetti-colored list bullets. Body text and inputs
- * stay on solid --color-surface/--color-bg so none of this touches
- * readability - it's all decoration layered around the actual content. */
-:root[data-theme="rainbow"] body::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  background: conic-gradient(from 0deg, red, orange, yellow, green, blue, indigo, violet, red);
-  opacity: 0.18;
-  filter: blur(80px);
-  animation: rainbow-spin 12s linear infinite;
-}
-
-:root[data-theme="rainbow"] .nav-title,
-:root[data-theme="rainbow"] .section h2,
-:root[data-theme="rainbow"] .entry-title,
-:root[data-theme="rainbow"] .entry-title-jp {
-  /* Every stop clears AA (4.5:1) on Rainbow's white surface - the classic
-   * spectrum's yellow and lime sat near 1.2:1, so a title went unreadable
-   * each time that stretch scrolled past. Checked in theme-contrast.test.js. */
-  background: linear-gradient(90deg, #c81e1e, #b8400a, #946200, #2a7d12, #0b6e8e, #5b2bd6, #b0177e, #c81e1e);
-  background-size: 200% auto;
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  animation: rainbow-shift 6s linear infinite;
-}
-
-:root[data-theme="rainbow"] nav {
-  border-bottom: 4px solid transparent;
-  background-image:
-    linear-gradient(var(--color-chrome), var(--color-chrome)),
-    linear-gradient(90deg, red, orange, yellow, green, blue, indigo, violet, red);
-  background-origin: border-box;
-  background-clip: padding-box, border-box;
-  background-size: 100% 100%, 300% 100%;
-  animation: rainbow-border-shift 6s linear infinite;
-}
-
-:root[data-theme="rainbow"] .section,
-:root[data-theme="rainbow"] article,
-:root[data-theme="rainbow"] .guidelines,
-:root[data-theme="rainbow"] .container input,
-:root[data-theme="rainbow"] .container select {
-  border: 3px solid transparent;
-  background-image:
-    linear-gradient(var(--color-surface), var(--color-surface)),
-    linear-gradient(90deg, red, orange, yellow, green, blue, indigo, violet, red);
-  background-origin: border-box;
-  background-clip: padding-box, border-box;
-  background-size: 100% 100%, 300% 100%;
-  animation: rainbow-border-shift 6s linear infinite;
-}
-
-:root[data-theme="rainbow"] .section {
-  padding: 0.75rem;
-}
-
-/* Buttons are left out of the gradient frame above on purpose: its fill
- * swaps their background to --color-surface while most of them (filter
- * chips, the filters toggle, #runQuery) keep --color-nav-link text meant for
- * --color-chrome - white on white, so every chip went invisible. */
-
-:root[data-theme="rainbow"] .show-list li:nth-child(7n + 1)::before {
-  color: #ff0000;
-}
-
-:root[data-theme="rainbow"] .show-list li:nth-child(7n + 2)::before {
-  color: #ff9900;
-}
-
-:root[data-theme="rainbow"] .show-list li:nth-child(7n + 3)::before {
-  color: #cca300;
-}
-
-:root[data-theme="rainbow"] .show-list li:nth-child(7n + 4)::before {
-  color: #33aa00;
-}
-
-:root[data-theme="rainbow"] .show-list li:nth-child(7n + 5)::before {
-  color: #00a3c4;
-}
-
-:root[data-theme="rainbow"] .show-list li:nth-child(7n + 6)::before {
-  color: #6600ff;
-}
-
-:root[data-theme="rainbow"] .show-list li:nth-child(7n + 7)::before {
-  color: #d6009e;
-}
-
-@keyframes rainbow-shift {
-  to {
-    background-position: 200% center;
-  }
-}
-
-@keyframes rainbow-border-shift {
-  to {
-    background-position: 0 0, -300% 0;
-  }
-}
-
-@keyframes rainbow-spin {
-  to {
-    transform: rotate(1turn);
-  }
-}
-
 :root[data-theme="vaporwave"] {
   color-scheme: dark;
   --color-bg: #1a0b2e;
@@ -669,14 +531,6 @@
   content: '\25B6  ';
 }
 
-:root[data-theme="random-light"] {
-  color-scheme: light;
-}
-
-:root[data-theme="random-dark"] {
-  color-scheme: dark;
-}
-
 /* Base */
 
 body {
@@ -920,8 +774,7 @@ nav {
 .entry-streaming-oceanveil { background-color: #49e4e6; color: #000; }
 
 
-/* Accessibility: every per-theme animation above (Rainbow's spin,
- * Vaporwave's drift, FFVII's pulse, Eva-01's heartbeat pulse) gets
+/* Accessibility: every per-theme animation above (Vaporwave's drift, FFVII's pulse, Eva-01's heartbeat pulse) gets
  * neutralized here rather than individually, so a theme can't accidentally
  * ship motion that ignores the OS/browser preference. */
 @media (prefers-reduced-motion: reduce) {

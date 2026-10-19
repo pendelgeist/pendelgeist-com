@@ -15,20 +15,22 @@ const THEMES = [
   { id: 'eva-01', label: 'Eva-01', group: 'Anime & Games' },
   { id: 'manga', label: 'Manga', group: 'Anime & Games' },
   { id: 'gameboy', label: 'Game Boy', group: 'Anime & Games' },
-  { id: 'rainbow', label: 'Rainbow', group: 'Novelty' },
   { id: 'vaporwave', label: 'Vaporwave', group: 'Novelty' },
-  { id: 'random-light', label: 'Random (Light)', group: 'Random' },
-  { id: 'random-dark', label: 'Random (Dark)', group: 'Random' },
+  { id: 'random', label: 'Random', group: 'Novelty' },
 ];
 
-const RANDOM_THEMES = new Set(['random-light', 'random-dark']);
+const RANDOM_THEMES = new Set(['random']);
+
+/** Ids from the old Random (Light)/Random (Dark) pair, merged into "random". */
+const LEGACY_RANDOM_MODES = { 'random-light': 'light', 'random-dark': 'dark' };
 
 function paletteKeyFor(themeId) {
   return `${PALETTE_KEY_PREFIX}${themeId}`;
 }
 
-function modeFor(themeId) {
-  return themeId === 'random-dark' ? 'dark' : 'light';
+/** Each roll of the Random theme picks light or dark as well as its colors. */
+function rollMode() {
+  return Math.random() < 0.5 ? 'light' : 'dark';
 }
 
 function readSavedPalette(themeId) {
@@ -74,7 +76,7 @@ function applyTheme(themeId) {
   document.documentElement.setAttribute('data-theme', themeId);
 
   if (RANDOM_THEMES.has(themeId)) {
-    const palette = readSavedPalette(themeId) ?? rollPalette(modeFor(themeId));
+    const palette = readSavedPalette(themeId) ?? rollPalette(rollMode());
     savePalette(themeId, palette);
     applyPalette(palette);
   }
@@ -82,7 +84,7 @@ function applyTheme(themeId) {
 
 /** Rolls a fresh palette for the given random theme, applying and saving it over whatever was there before. */
 function rerollTheme(themeId) {
-  const palette = rollPalette(modeFor(themeId));
+  const palette = rollPalette(rollMode());
   savePalette(themeId, palette);
   applyPalette(palette);
 }
@@ -93,6 +95,32 @@ function readSavedTheme() {
   } catch {
     return null;
   }
+}
+
+/**
+ * The saved theme as an id the picker still offers. A saved Random (Light)
+ * or Random (Dark) becomes "random", keeping its palette (now tagged with its
+ * mode, which the merged theme stores in the palette itself); a theme that's
+ * been removed (Rainbow) falls back to Auto.
+ * @param {string|null} saved
+ */
+function migrateSavedTheme(saved) {
+  if (saved && saved in LEGACY_RANDOM_MODES) {
+    const palette = readSavedPalette(saved);
+    if (palette) savePalette('random', { ...palette, 'color-scheme': LEGACY_RANDOM_MODES[saved] });
+    try {
+      for (const legacy of Object.keys(LEGACY_RANDOM_MODES)) localStorage.removeItem(paletteKeyFor(legacy));
+    } catch {
+      // Best-effort cleanup; a stale key is harmless.
+    }
+    saveTheme('random');
+    return 'random';
+  }
+  if (saved && !THEMES.some(theme => theme.id === saved)) {
+    saveTheme('system');
+    return 'system';
+  }
+  return saved ?? 'system';
 }
 
 function saveTheme(themeId) {
@@ -139,7 +167,7 @@ function buildPicker() {
     reroll.hidden = !RANDOM_THEMES.has(themeId);
   }
 
-  const savedTheme = readSavedTheme() ?? 'system';
+  const savedTheme = migrateSavedTheme(readSavedTheme());
   select.value = savedTheme;
   applyTheme(savedTheme); // in case the inline pre-paint script (see index.html) wasn't there
   updateRerollVisibility(savedTheme);

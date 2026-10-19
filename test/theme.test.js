@@ -27,11 +27,11 @@ test('renders a theme picker into the nav with every theme option', async () => 
   assert.ok(select, 'expected a #themePicker select in the nav');
   assert.deepEqual(
     [...select.options].map(o => o.value),
-    ['system', 'light', 'dark', 'ffvii', 'eva-01', 'manga', 'gameboy', 'rainbow', 'vaporwave', 'random-light', 'random-dark']
+    ['system', 'light', 'dark', 'ffvii', 'eva-01', 'manga', 'gameboy', 'vaporwave', 'random']
   );
   assert.deepEqual(
     [...select.options].map(o => o.textContent),
-    ['Auto', 'AMO - L', 'AMO - Kira', 'FFVII Menu', 'Eva-01', 'Manga', 'Game Boy', 'Rainbow', 'Vaporwave', 'Random (Light)', 'Random (Dark)']
+    ['Auto', 'AMO - L', 'AMO - Kira', 'FFVII Menu', 'Eva-01', 'Manga', 'Game Boy', 'Vaporwave', 'Random']
   );
 });
 
@@ -39,7 +39,7 @@ test('files the themes under labelled groups in the picker', async () => {
   const { document } = await loadThemeScript();
 
   const groups = [...document.querySelectorAll('#themePicker optgroup')];
-  assert.deepEqual(groups.map(g => g.label), ['Standard', 'Anime & Games', 'Novelty', 'Random']);
+  assert.deepEqual(groups.map(g => g.label), ['Standard', 'Anime & Games', 'Novelty']);
   assert.deepEqual([...groups[1].querySelectorAll('option')].map(o => o.value), ['ffvii', 'eva-01', 'manga', 'gameboy']);
 });
 
@@ -108,33 +108,33 @@ test('picking "Auto" clears any theme override', async () => {
   assert.equal(localStorage.getItem('pendelgeist:theme'), 'system');
 });
 
-test('picking "Random (Dark)" rolls a palette, applies it inline, saves it, and shows the reroll button', async () => {
+test('picking "Random" rolls a palette, applies it inline, saves it, and shows the reroll button', async () => {
   const localStorage = createLocalStorageStub();
   const { document } = await loadThemeScript({ localStorage });
 
   const select = document.getElementById('themePicker');
-  select.value = 'random-dark';
+  select.value = 'random';
   select.dispatchEvent(new document.defaultView.Event('change'));
 
-  assert.equal(document.documentElement.getAttribute('data-theme'), 'random-dark');
+  assert.equal(document.documentElement.getAttribute('data-theme'), 'random');
   const bg = document.documentElement.style.getPropertyValue('--color-bg');
   assert.ok(bg, 'expected --color-bg to be set inline');
 
-  const saved = JSON.parse(localStorage.getItem('pendelgeist:theme:palette:random-dark'));
+  const saved = JSON.parse(localStorage.getItem('pendelgeist:theme:palette:random'));
   assert.equal(saved['--color-bg'], bg);
   assert.equal(document.getElementById('themeReroll').hidden, false);
 });
 
 test('reloading with a saved random theme reuses its saved palette instead of rolling a new one', async () => {
   const localStorage = createLocalStorageStub();
-  localStorage.setItem('pendelgeist:theme', 'random-light');
-  localStorage.setItem('pendelgeist:theme:palette:random-light', JSON.stringify({ '--color-bg': 'hsl(1, 2%, 99%)' }));
+  localStorage.setItem('pendelgeist:theme', 'random');
+  localStorage.setItem('pendelgeist:theme:palette:random', JSON.stringify({ '--color-bg': 'hsl(1, 2%, 99%)' }));
 
   const { document } = await loadThemeScript({ localStorage });
 
   assert.equal(document.documentElement.style.getPropertyValue('--color-bg'), 'hsl(1, 2%, 99%)');
   assert.equal(
-    localStorage.getItem('pendelgeist:theme:palette:random-light'),
+    localStorage.getItem('pendelgeist:theme:palette:random'),
     JSON.stringify({ '--color-bg': 'hsl(1, 2%, 99%)' })
   );
 });
@@ -144,14 +144,14 @@ test('the reroll button replaces the saved palette for the active random theme',
   const { document } = await loadThemeScript({ localStorage });
 
   const select = document.getElementById('themePicker');
-  select.value = 'random-dark';
+  select.value = 'random';
   select.dispatchEvent(new document.defaultView.Event('change'));
-  const first = localStorage.getItem('pendelgeist:theme:palette:random-dark');
+  const first = localStorage.getItem('pendelgeist:theme:palette:random');
 
-  let rerolled = localStorage.getItem('pendelgeist:theme:palette:random-dark');
+  let rerolled = localStorage.getItem('pendelgeist:theme:palette:random');
   for (let attempt = 0; attempt < 20 && rerolled === first; attempt++) {
     document.getElementById('themeReroll').dispatchEvent(new document.defaultView.Event('click'));
-    rerolled = localStorage.getItem('pendelgeist:theme:palette:random-dark');
+    rerolled = localStorage.getItem('pendelgeist:theme:palette:random');
   }
 
   assert.notEqual(rerolled, first, 'expected the reroll button to replace the saved palette');
@@ -162,13 +162,53 @@ test('switching away from a random theme clears its inline color overrides', asy
   const { document } = await loadThemeScript({ localStorage });
 
   const select = document.getElementById('themePicker');
-  select.value = 'random-dark';
+  select.value = 'random';
   select.dispatchEvent(new document.defaultView.Event('change'));
   assert.ok(document.documentElement.style.getPropertyValue('--color-bg'));
 
-  select.value = 'rainbow';
+  select.value = 'vaporwave';
   select.dispatchEvent(new document.defaultView.Event('change'));
 
   assert.equal(document.documentElement.style.getPropertyValue('--color-bg'), '');
   assert.equal(document.getElementById('themeReroll').hidden, true);
+});
+
+test('a Random roll sets its own color-scheme, light or dark, and clears it on switching away', async () => {
+  const localStorage = createLocalStorageStub();
+  const { document } = await loadThemeScript({ localStorage });
+
+  const select = document.getElementById('themePicker');
+  select.value = 'random';
+  select.dispatchEvent(new document.defaultView.Event('change'));
+  assert.ok(['light', 'dark'].includes(document.documentElement.style.getPropertyValue('color-scheme')));
+
+  select.value = 'manga';
+  select.dispatchEvent(new document.defaultView.Event('change'));
+  assert.equal(document.documentElement.style.getPropertyValue('color-scheme'), '');
+});
+
+test('a saved Random (Dark) becomes Random, keeping its colors and coming back dark', async () => {
+  const localStorage = createLocalStorageStub();
+  localStorage.setItem('pendelgeist:theme', 'random-dark');
+  localStorage.setItem('pendelgeist:theme:palette:random-dark', JSON.stringify({ '--color-bg': 'hsl(1, 2%, 9%)' }));
+
+  const { document } = await loadThemeScript({ localStorage });
+
+  assert.equal(document.getElementById('themePicker').value, 'random');
+  assert.equal(document.documentElement.getAttribute('data-theme'), 'random');
+  assert.equal(document.documentElement.style.getPropertyValue('--color-bg'), 'hsl(1, 2%, 9%)');
+  assert.equal(document.documentElement.style.getPropertyValue('color-scheme'), 'dark');
+  assert.equal(localStorage.getItem('pendelgeist:theme'), 'random');
+  assert.equal(localStorage.getItem('pendelgeist:theme:palette:random-dark'), null);
+});
+
+test('a saved theme that no longer exists (Rainbow) falls back to Auto', async () => {
+  const localStorage = createLocalStorageStub();
+  localStorage.setItem('pendelgeist:theme', 'rainbow');
+
+  const { document } = await loadThemeScript({ localStorage });
+
+  assert.equal(document.getElementById('themePicker').value, 'system');
+  assert.equal(document.documentElement.hasAttribute('data-theme'), false);
+  assert.equal(localStorage.getItem('pendelgeist:theme'), 'system');
 });

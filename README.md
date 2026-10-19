@@ -53,13 +53,11 @@ The actual colors live in `styles.css` as `--color-*` custom properties. "Auto"/
 define them with `light-dark(lightValue, darkValue)`, which resolves off the *used value*
 of `color-scheme` — so picking Light or Dark just narrows `color-scheme` to one value
 (`:root[data-theme="dark"] { color-scheme: dark; }`) rather than redefining every variable.
-Rainbow, Vaporwave, FFVII Menu, Eva-01, Manga, and Game Boy are fixed novelty themes that instead override
+Vaporwave, FFVII Menu, Eva-01, Manga, and Game Boy are fixed novelty themes that instead override
 every `--color-*` directly for their own `[data-theme="..."]` selector. Beyond color, each
 also gets its own `--font-heading`/`--font-body`, `--border-width`/`--border-style`,
 `--radius-card`, and `--spacing-section` (the base values live in `:root`, same pattern as
-the colors), plus theme-specific flourishes layered on top: Rainbow adds an animated
-background wash, a gradient "frame" around every card and the nav bar, gradient text on
-every heading, and confetti-colored list bullets; Vaporwave adds a hazy sunset glow, a
+the colors), plus theme-specific flourishes layered on top: Vaporwave adds a hazy sunset glow, a
 drifting neon grid floor, and glowing card/nav borders; FFVII Menu keeps it to a radial
 background glow, a diagonal gradient/bevel on every card echoing the game's own dialog
 boxes with the menu window's silver rim, a pulsing "materia" glow on section headings, and
@@ -88,29 +86,32 @@ deliberately only ever set at 16px multiples (`.section h2` is 2rem, `.nav-title
 since it's a pixel font that blurs at any other size.
 
 Three more faces are self-hosted under `public/fonts/`, all SIL OFL 1.1 (license text next
-to each): Comic Neue, Rainbow's fallback where Comic Sans MS isn't installed (Linux,
-Android) and Manga's speech-bubble lettering; Bangers, Manga's heading face; and Press
+to each): Comic Neue, Manga's speech-bubble lettering; Bangers, Manga's heading face; and Press
 Start 2P, Game Boy's pixel heading face, kept at 8px multiples for the same reason as
 Reactor7. A browser only downloads a face that a rendered element uses, so none of them
 costs anything outside its theme.
 
-### Random (Light) / Random (Dark)
+### Random
 
-These two don't have fixed colors — `public/theme-palette.js` rolls a random hue for the
+Random doesn't have fixed colors — `public/theme-palette.js` rolls a random hue for the
 background and a random (but sufficiently different) hue for the accent, then *solves for*
 a lightness at each hue that clears WCAG AA contrast (4.5:1) against whatever it'll actually
-render on, rather than just picking one and hoping. `test/theme-palette.test.js` rolls each
-mode 200 times and checks every text/background pairing still clears that bar.
+render on, rather than just picking one and hoping. Each roll also picks light or dark, and
+the palette carries that as its own `color-scheme`, so Random needs no CSS rule of its own.
+`test/theme-palette.test.js` rolls each mode 200 times and checks every text/background
+pairing still clears that bar.
 
-The rolled palette is saved to `localStorage` per mode (`pendelgeist:theme:palette:random-light`/
-`...random-dark`), so revisiting or switching back to it reuses the same colors instead of
-re-rolling — a 🎲 button appears next to the picker (only while a random theme is active) to
-roll a new one on demand. Switching to any other theme clears the inline overrides so they
+The rolled palette is saved to `localStorage` (`pendelgeist:theme:palette:random`), so
+revisiting or switching back to it reuses the same colors instead of re-rolling — a 🎲 button
+appears next to the picker (only while Random is active) to roll a new one on demand. Random
+replaced an earlier Random (Light)/Random (Dark) pair: a visitor who had one of those saved
+is moved to Random with the same colors, and one who had the removed Rainbow theme goes back
+to Auto (`migrateSavedTheme` in `theme.js`). Switching to any other theme clears the inline overrides so they
 don't linger on top of that theme's plain CSS.
 
 ### Contrast conventions for the fixed themes
 
-Unlike Random Light/Dark, the fixed themes (Auto/Light/Dark, Rainbow, Vaporwave, FFVII, Manga, Game Boy,
+Unlike Random, the fixed themes (Auto/Light/Dark, Vaporwave, FFVII, Manga, Game Boy,
 Eva-01) have hand-picked colors that can't self-correct — `test/theme-contrast.test.js`
 checks every one of them against the real pairings the CSS actually produces, and encodes the
 convention that keeps new components from breaking it:
@@ -118,7 +119,7 @@ convention that keeps new components from breaking it:
 - **Never pair `--color-text`/`--color-accent` with a `--color-chrome` background.**
   `--color-chrome` is meant for nav-bar-style UI (the nav itself, filter bars, chrome-styled
   buttons), and in some themes it's deliberately close to or identical to `--color-accent`
-  (Light: both `#315979`) or close to `--color-text`'s darkness (Rainbow). Anything rendering
+  (Light: both `#315979`) or close to `--color-text`'s darkness (Manga). Anything rendering
   text or a border on `--color-chrome` should use `--color-nav-link` instead — the variable
   specifically chosen to stay readable against it.
 - **Don't dim text with `opacity` for a "muted/secondary" look** — it stacks with whatever
