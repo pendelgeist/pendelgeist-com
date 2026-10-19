@@ -1,5 +1,5 @@
 /**
- * Color math for the "Random (Light)" / "Random (Dark)" themes. Only the hue
+ * Color math for the "Random" theme. Only the hue
  * and saturation of each role are actually random - lightness is always
  * solved for so every text/background pairing clears WCAG AA (4.5:1) against
  * whatever it's actually rendered on. See theme.js for how a rolled palette
@@ -12,6 +12,7 @@ const MIN_CONTRAST = 4.5; // WCAG AA for normal text
 // when switching away from a random theme, so an old inline override (which
 // would otherwise outrank the next theme's plain CSS rule) doesn't linger.
 export const PALETTE_PROPERTIES = [
+  'color-scheme',
   '--color-bg',
   '--color-text',
   '--color-accent',
@@ -88,7 +89,9 @@ function findContrastingLightness(bgRgb, hue, saturation, toward, minRatio) {
 }
 
 /**
- * Rolls a full random palette for "random-light" or "random-dark". The nav
+ * Rolls a full random palette for the "Random" theme, in a light or dark
+ * mode. The palette carries its own `color-scheme`, so a saved dark roll
+ * comes back dark without any per-mode CSS rule. The nav
  * bar is always a dark bar regardless of mode (matching the built-in
  * light/dark themes), so its text just needs to clear contrast against a
  * fixed dark chrome rather than the overall background.
@@ -140,6 +143,7 @@ export function rollPalette(mode) {
   const navLink = color(accentHue, navLinkSat, navLinkLightness);
 
   return {
+    'color-scheme': mode,
     '--color-bg': bg.css,
     '--color-text': text.css,
     '--color-accent': accent.css,

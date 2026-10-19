@@ -185,22 +185,23 @@ hand. Both pages are documented in full in the README.
 
 ### Theme system
 
-`public/theme.js` builds the theme `<select>` (+ a 🎲 reroll button, shown only for the two
-Random themes) into every page's `<nav>`, and persists the choice to `localStorage`. Colors
+`public/theme.js` builds the theme `<select>` (+ a 🎲 reroll button, shown only for the
+Random theme) into every page's `<nav>`, and persists the choice to `localStorage`. Colors
 are `--color-*` custom properties in `public/styles.css`:
 - Auto/Light/Dark share one set of values via `light-dark()`; picking one just narrows
   `color-scheme`.
-- Rainbow/Vaporwave/FFVII Menu/Eva-01 are fixed themes that override every `--color-*` (plus
+- Vaporwave/FFVII Menu/Eva-01/Manga/Game Boy are fixed themes that override every `--color-*` (plus
   fonts, borders, radii, spacing) for their own `[data-theme="..."]` selector, with bespoke
   CSS flourishes on top. Adding a new one this way = a CSS block + an entry in the `THEMES`
   array in `theme.js`. All per-theme motion is neutralized by the blanket
   `prefers-reduced-motion: reduce` rule at the bottom of `styles.css` — keep new flourishes
-  covered by it.
-- Random (Light)/Random (Dark) have no fixed values — `public/theme-palette.js` rolls a
-  random hue and *solves for* a lightness that clears WCAG AA contrast (4.5:1) against
+  covered by it. Full-page decoration goes on `body::before`/`::after`, which every theme
+  gets at `z-index: -1` inside an isolated body, so it stays under the text.
+- Random has no fixed values — `public/theme-palette.js` rolls light or dark plus a
+  random hue (the palette carries its own `color-scheme`) and *solves for* a lightness that clears WCAG AA contrast (4.5:1) against
   whatever it renders on, rather than picking blind. `PALETTE_PROPERTIES` in that file is the
   authoritative list of every custom property a rolled palette can set; `theme.js` clears
-  exactly those when switching away from a random theme.
+  exactly those when switching away from Random.
 
 Each page's `<head>` has an inline pre-paint `<script>` (duplicated into all eight pages on
 purpose — it must run before first paint, so it can't be a module) that re-applies the saved

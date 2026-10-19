@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 440" fill="none" stroke="#111" stroke-linecap="round" stroke-linejoin="round">
+  <!-- Utility pole and sagging wires, the stock establishing shot of every
+       slice-of-life anime, drawn as a loose pencil sketch: doubled strokes,
+       a little wobble, hatching for shade. -->
+  <g stroke-width="2.2">
+    <path d="M748 34 Q745 220 741 440"/>
+    <path d="M764 34 Q762 230 758 440"/>
+    <path d="M751 36 Q745 200 744 440" stroke-width="1" opacity=".6"/>
+    <path d="M690 82 L822 76"/>
+    <path d="M690 90 L822 84"/>
+    <path d="M704 142 L808 138"/>
+    <path d="M704 149 L808 145"/>
+    <path d="M770 190 h34 v46 h-34 z"/>
+    <path d="M772 192 h30 v42" stroke-width="1" opacity=".6"/>
+  </g>
+  <g stroke-width="1.2" opacity=".7">
+    <path d="M760 60 l-8 10 M760 110 l-8 10 M760 160 l-8 10 M759 250 l-8 10 M759 300 l-8 10 M758 350 l-8 10 M758 400 l-8 10"/>
+    <path d="M760 70 l-8 10 M760 120 l-8 10 M760 170 l-8 10 M759 260 l-8 10 M759 310 l-8 10 M758 360 l-8 10 M758 410 l-8 10"/>
+    <path d="M800 200 l-8 10 M800 212 l-8 10 M800 224 l-8 10"/>
+  </g>
+  <g stroke-width="2">
+    <circle cx="694" cy="76" r="4"/><circle cx="818" cy="70" r="4"/>
+    <circle cx="708" cy="136" r="4"/><circle cx="804" cy="132" r="4"/>
+  </g>
+  <g stroke-width="1.6">
+    <path d="M694 80 Q420 150 0 120"/>
+    <path d="M694 80 Q430 160 0 138" opacity=".55"/>
+    <path d="M708 140 Q460 205 0 186"/>
+    <path d="M818 74 Q860 96 900 92"/>
+    <path d="M804 136 Q855 160 900 156"/>
+  </g>
+  <g stroke-width="2.2">
+    <path d="M300 133 q7 -10 14 0 q7 -10 14 0"/>
+    <path d="M352 140 q6 -9 12 0 q6 -9 12 0"/>
+    <path d="M520 171 q6 -9 12 0 q6 -9 12 0"/>
+    <path d="M150 20 q9 -12 18 0 q9 -12 18 0"/>
+    <path d="M205 48 q6 -8 12 0 q6 -8 12 0"/>
+  </g>
+</svg>

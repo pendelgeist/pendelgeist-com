@@ -1,5 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
+import fs from 'node:fs';
 import { contrastRatio } from '../public/theme-palette.js';
 
 /**
@@ -12,7 +13,7 @@ import { contrastRatio } from '../public/theme-palette.js';
  * Regression coverage for a real bug: several components render text/borders
  * on top of --color-chrome (nav bar, filter bars, eva's chrome-styled
  * buttons) using --color-text or --color-accent instead of --color-nav-link.
- * In the default Light theme (and Rainbow), --color-chrome is intentionally
+ * In the default Light theme, --color-chrome is intentionally
  * close to (or identical to) --color-accent, so that mismatch produces
  * unreadable or fully invisible text.
  */
@@ -35,14 +36,17 @@ const THEMES = {
   Dark: {
     bg: '#000', text: '#00a200', accent: '#f00', surface: '#111', chrome: '#000', muted: '#00a200', navLink: '#f00', title: '#f00',
   },
-  Rainbow: {
-    bg: '#fdfdff', text: '#1a1a1a', accent: '#7a2ea1', surface: '#fff', chrome: '#1a1a2e', muted: '#555', navLink: '#fff', title: '#1a1a1a',
-  },
   Vaporwave: {
     bg: '#1a0b2e', text: '#f2e9ff', accent: '#ff71ce', surface: '#2d1b4e', chrome: '#130821', muted: '#b39ddb', navLink: '#01cdfe', title: '#ff71ce',
   },
   'FFVII Menu': {
     bg: '#0a1030', text: '#fff', accent: '#6ecfff', surface: '#14206b', chrome: '#0a1030', muted: '#9fb4e0', navLink: '#fff', title: '#fff',
+  },
+  Manga: {
+    bg: '#f6f6f4', text: '#111', accent: '#111', surface: '#fff', chrome: '#141414', muted: '#4a4a4a', navLink: '#f6f6f4', title: '#111',
+  },
+  'Game Boy': {
+    bg: '#9bbc0f', text: '#0f380f', accent: '#0f380f', surface: '#8bac0f', chrome: '#0f380f', muted: '#0f380f', navLink: '#9bbc0f', title: '#0f380f',
   },
   'Eva-01': {
     bg: '#170b28', text: '#eafbe0', accent: '#39ff14', surface: '#241340', chrome: '#0d0619', muted: '#b9a8d6', navLink: '#eafbe0', title: '#39ff14',
@@ -96,3 +100,12 @@ for (const [name, t] of Object.entries(THEMES)) {
     assert.ok(contrastRatio(entryBorderMuted, surface) >= MIN_UI, `fact/unknowable border vs surface: ${contrastRatio(entryBorderMuted, surface).toFixed(2)}`);
   });
 }
+
+// --- Theme decoration, which the variable pairings above can't see ---
+
+const css = fs.readFileSync(new URL('../public/styles.css', import.meta.url), 'utf-8');
+
+test('theme decoration on body::before/::after paints under the content, not over it', () => {
+  assert.match(css, /:root\[data-theme\] body \{\s*position: relative;\s*isolation: isolate;\s*\}/);
+  assert.match(css, /:root\[data-theme\] body::before,\s*:root\[data-theme\] body::after \{\s*z-index: -1;\s*\}/);
+});
