@@ -216,12 +216,6 @@
   text-shadow: -2px 0 rgb(1 205 254 / 70%), 2px 0 rgb(255 113 206 / 70%);
 }
 
-/* 美学 - "aesthetic" - after every section heading. */
-:root[data-theme="vaporwave"] .section > h2::after {
-  content: ' \7F8E\5B66';
-  letter-spacing: 0.1rem;
-}
-
 /* Each section is a Windows 95 window: a navy-to-pink title bar with its
  * own minimize/maximize/close, over an opaque body. */
 :root[data-theme="vaporwave"] .section,

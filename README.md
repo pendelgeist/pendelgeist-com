@@ -59,7 +59,7 @@ also gets its own `--font-heading`/`--font-body`, `--border-width`/`--border-sty
 `--radius-card`, and `--spacing-section` (the base values live in `:root`, same pattern as
 the colors), plus theme-specific flourishes layered on top: Vaporwave is a synthwave dusk — a striped sunset sun and palm silhouettes
 (`public/themes/vaporwave/`) on the horizon, a neon grid floor in perspective drifting toward
-you, chrome italic headings with a VHS color split and 美学 after each, and every section a
+you, chrome italic headings with a VHS color split, and every section a
 frosted Windows-95 window with its own title bar, dense enough (85%) that the sun behind
 never drops text below AA; FFVII Menu keeps it to a radial
 background glow, a diagonal gradient/bevel on every card echoing the game's own dialog
