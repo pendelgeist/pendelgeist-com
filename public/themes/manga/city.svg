@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 300" preserveAspectRatio="xMidYMax meet" fill="none" stroke="#111" stroke-linecap="square">
+  <!-- An old European street in fine ruled line: gabled roofs, chimneys, a
+       church spire, rows of windows, and ruled hatching for the shadows -
+       the clean, cinematic realism of a suspense manga. -->
+  <g stroke-width="1.4">
+    <path d="M0 300 V170 L40 140 L80 170 V300"/>
+    <path d="M80 300 V190 H160 V300 M80 190 L120 160 L160 190"/>
+    <path d="M160 300 V150 L200 120 L240 150 V300"/>
+    <path d="M240 300 V200 H330 V300 M250 200 V180 H270 V200"/>
+    <path d="M330 300 V120 L360 120 L360 70 L370 30 L380 70 L380 120 L410 120 V300"/>
+    <path d="M410 300 V180 L450 150 L490 180 V300"/>
+    <path d="M490 300 V210 H600 V300 M560 210 V186 H578 V210"/>
+    <path d="M600 300 V160 L650 130 L700 160 V300"/>
+    <path d="M700 300 V190 H780 V300 M700 190 L740 170 L780 190"/>
+    <path d="M780 300 V140 L820 110 L860 140 V300 M836 124 V96 H850 V134"/>
+    <path d="M860 300 V200 H960 V300"/>
+    <path d="M960 300 V170 L1000 145 L1040 170 V300"/>
+    <path d="M1040 300 V190 H1120 V300 M1040 190 L1080 165 L1120 190"/>
+    <path d="M1120 300 V160 L1160 130 L1200 160 V300"/>
+  </g>
+  <g stroke-width="1">
+    <path d="M12 190 h10 v14 h-10 Z M50 190 h10 v14 h-10 Z M12 226 h10 v14 h-10 Z M50 226 h10 v14 h-10 Z"/>
+    <path d="M94 210 h12 v16 h-12 Z M130 210 h12 v16 h-12 Z M94 248 h12 v16 h-12 Z M130 248 h12 v16 h-12 Z"/>
+    <path d="M174 170 h10 v14 h-10 Z M212 170 h10 v14 h-10 Z M174 206 h10 v14 h-10 Z M212 206 h10 v14 h-10 Z M174 242 h10 v14 h-10 Z M212 242 h10 v14 h-10 Z"/>
+    <path d="M346 150 h12 v24 h-12 Z M382 150 h12 v24 h-12 Z M362 200 a8 8 0 0 1 16 0 v20 h-16 Z"/>
+    <path d="M616 180 h12 v16 h-12 Z M670 180 h12 v16 h-12 Z M616 220 h12 v16 h-12 Z M670 220 h12 v16 h-12 Z"/>
+    <path d="M794 160 h10 v14 h-10 Z M834 160 h10 v14 h-10 Z M794 200 h10 v14 h-10 Z M834 200 h10 v14 h-10 Z"/>
+    <path d="M976 190 h10 v14 h-10 Z M1012 190 h10 v14 h-10 Z M1136 180 h10 v14 h-10 Z M1172 180 h10 v14 h-10 Z"/>
+  </g>
+  <g stroke-width=".7" opacity=".7">
+    <path d="M160 160 l40 -30 M160 170 l40 -30 M160 180 l40 -30 M160 190 l40 -30 M600 170 l50 -30 M600 180 l50 -30 M600 190 l50 -30 M780 150 l40 -30 M780 160 l40 -30 M780 170 l40 -30"/>
+    <path d="M330 130 v170 M334 130 v170 M338 130 v170 M486 190 v110 M482 190 v110 M956 210 v90 M952 210 v90"/>
+  </g>
+</svg>

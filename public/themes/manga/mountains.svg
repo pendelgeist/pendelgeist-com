@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 360" preserveAspectRatio="xMidYMax meet">
+  <!-- Sumi-e ridgelines: three layers of ink wash, each a gray that fades
+       out toward its base, the far range palest - mist between them. -->
+  <defs>
+    <linearGradient id="far" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#111" stop-opacity=".22"/><stop offset="1" stop-color="#111" stop-opacity="0"/></linearGradient>
+    <linearGradient id="mid" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#111" stop-opacity=".4"/><stop offset=".8" stop-color="#111" stop-opacity="0"/></linearGradient>
+    <linearGradient id="near" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#111" stop-opacity=".75"/><stop offset="1" stop-color="#111" stop-opacity=".2"/></linearGradient>
+  </defs>
+  <path fill="url(#far)" d="M0 200 L90 150 L150 175 L240 90 L310 140 L380 120 L470 60 L540 120 L620 100 L700 150 L790 80 L860 130 L950 110 L1040 160 L1120 120 L1200 150 V360 H0 Z"/>
+  <path fill="url(#mid)" d="M0 260 L70 220 L130 240 L200 180 L260 230 L330 210 L420 150 L500 220 L580 200 L660 240 L760 170 L840 230 L920 210 L1000 250 L1090 200 L1200 240 V360 H0 Z"/>
+  <path fill="url(#near)" d="M0 330 C60 300 110 290 160 300 C210 270 250 240 300 262 C350 284 380 300 440 306 C520 300 560 320 640 330 C700 322 760 300 820 280 C880 262 920 280 960 300 C1020 320 1080 312 1200 320 V360 H0 Z"/>
+  <g stroke="#111" stroke-linecap="round" fill="none" opacity=".55">
+    <path d="M180 300 l4 -40 M186 300 l10 -34 M174 300 l-8 -30" stroke-width="2"/>
+    <path d="M980 304 l2 -48 M986 304 l12 -40 M976 304 l-10 -36" stroke-width="2"/>
+  </g>
+</svg>

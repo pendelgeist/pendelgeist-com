@@ -13,11 +13,11 @@ const THEMES = [
   { id: 'dark', label: 'AMO - Kira', group: 'Standard' },
   { id: 'ffvii', label: 'FFVII Menu', group: 'Anime & Games' },
   { id: 'eva-01', label: 'Eva-01', group: 'Anime & Games' },
-  { id: 'manga', label: 'Manga', group: 'Anime & Games' },
-  { id: 'manga-comedy', label: 'Manga (Comedy)', group: 'Anime & Games' },
-  { id: 'manga-seinen', label: 'Manga (Seinen)', group: 'Anime & Games' },
   { id: 'manga-shoujo', label: 'Manga (Shoujo)', group: 'Anime & Games' },
-  { id: 'manga-yonkoma', label: 'Manga (4-Koma)', group: 'Anime & Games' },
+  { id: 'manga-seinen-ink', label: 'Seinen (Ink Wash)', group: 'Anime & Games' },
+  { id: 'manga-seinen-gekiga', label: 'Seinen (Gekiga)', group: 'Anime & Games' },
+  { id: 'manga-seinen-cinema', label: 'Seinen (Cinematic)', group: 'Anime & Games' },
+  { id: 'manga-seinen-cyber', label: 'Seinen (Cyberpunk)', group: 'Anime & Games' },
   { id: 'gameboy', label: 'Game Boy', group: 'Anime & Games' },
   { id: 'vaporwave', label: 'Vaporwave', group: 'Novelty' },
   { id: 'random', label: 'Random', group: 'Novelty' },
@@ -105,7 +105,7 @@ function readSavedTheme() {
  * The saved theme as an id the picker still offers. A saved Random (Light)
  * or Random (Dark) becomes "random", keeping its palette (now tagged with its
  * mode, which the merged theme stores in the palette itself); a theme that's
- * been removed (Rainbow) falls back to Auto.
+ * been removed (Rainbow, the dropped Manga styles) falls back to Auto.
  * @param {string|null} saved
  */
 function migrateSavedTheme(saved) {
