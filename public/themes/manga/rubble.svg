@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 380" fill="none" stroke="#111" stroke-linecap="round" stroke-linejoin="round">
+  <!-- A smashed stone wall: blocks in heavy outline, cross-hatched on their
+       shadow sides, chunks and grit flying out of the break. -->
+  <g stroke-width="3">
+    <path d="M0 120 L80 116 L84 176 L0 180 Z"/>
+    <path d="M0 184 L120 178 L124 240 L0 246 Z"/>
+    <path d="M84 116 L150 112 L118 176 Z"/>
+    <path d="M0 250 L70 246 L74 310 L0 314 Z"/>
+    <path d="M74 246 L160 240 L164 300 L78 306 Z"/>
+    <path d="M0 318 L130 310 L132 380 M164 304 L260 298 L262 380"/>
+    <path d="M128 182 L170 150 L196 176 L160 236 Z"/>
+  </g>
+  <g stroke-width="1.2" opacity=".8">
+    <path d="M6 132 l70 -4 M6 144 l70 -4 M6 156 l70 -4 M6 168 l70 -4"/>
+    <path d="M10 130 l30 44 M30 128 l30 44 M50 126 l26 40"/>
+    <path d="M8 262 l60 -4 M8 274 l60 -4 M8 286 l60 -4 M8 298 l60 -4"/>
+    <path d="M84 258 l74 -6 M84 272 l74 -6 M84 286 l74 -6"/>
+    <path d="M138 200 l40 -30 M144 212 l38 -28 M152 222 l34 -26"/>
+    <path d="M10 196 l100 -6 M10 210 l100 -6 M10 224 l100 -6"/>
+  </g>
+  <g stroke-width="2.6" fill="#111">
+    <path d="M240 150 l18 -10 l10 14 l-16 12 Z"/>
+    <path d="M300 110 l12 -4 l4 12 l-12 6 Z"/>
+    <path d="M280 210 l22 -6 l6 18 l-20 8 Z"/>
+    <path d="M350 160 l10 -2 l2 10 l-10 2 Z"/>
+    <path d="M220 96 l8 -4 l4 8 l-8 4 Z"/>
+  </g>
+  <g stroke-width="1.6">
+    <path d="M200 170 L560 60 M206 186 L590 150 M204 200 L600 230 M196 212 L520 330 M190 160 L420 20"/>
+  </g>
+</svg>

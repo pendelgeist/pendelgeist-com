@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 200">
+  <!-- The top half of a synthwave sun, yellow into hot pink, with the
+       horizontal slats cut out of its lower half getting thicker toward the
+       horizon. -->
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffe66d"/>
+      <stop offset=".45" stop-color="#ff9f5a"/>
+      <stop offset=".8" stop-color="#ff4fa3"/>
+      <stop offset="1" stop-color="#d63ad8"/>
+    </linearGradient>
+    <mask id="m">
+      <rect width="400" height="200" fill="#fff"/>
+      <g fill="#000">
+        <rect y="92" width="400" height="4"/>
+        <rect y="112" width="400" height="6"/>
+        <rect y="132" width="400" height="8"/>
+        <rect y="152" width="400" height="11"/>
+        <rect y="172" width="400" height="14"/>
+      </g>
+    </mask>
+  </defs>
+  <circle cx="200" cy="200" r="200" fill="url(#g)" mask="url(#m)"/>
+</svg>

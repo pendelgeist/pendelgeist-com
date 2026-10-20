@@ -53,12 +53,15 @@ The actual colors live in `styles.css` as `--color-*` custom properties. "Auto"/
 define them with `light-dark(lightValue, darkValue)`, which resolves off the *used value*
 of `color-scheme` — so picking Light or Dark just narrows `color-scheme` to one value
 (`:root[data-theme="dark"] { color-scheme: dark; }`) rather than redefining every variable.
-Vaporwave, FFVII Menu, Eva-01, Manga, and Game Boy are fixed novelty themes that instead override
+Vaporwave, FFVII Menu, Eva-01, the four Manga themes, and Game Boy are fixed novelty themes that instead override
 every `--color-*` directly for their own `[data-theme="..."]` selector. Beyond color, each
 also gets its own `--font-heading`/`--font-body`, `--border-width`/`--border-style`,
 `--radius-card`, and `--spacing-section` (the base values live in `:root`, same pattern as
-the colors), plus theme-specific flourishes layered on top: Vaporwave adds a hazy sunset glow, a
-drifting neon grid floor, and glowing card/nav borders; FFVII Menu keeps it to a radial
+the colors), plus theme-specific flourishes layered on top: Vaporwave is a synthwave dusk — a striped sunset sun and palm silhouettes
+(`public/themes/vaporwave/`) on the horizon, a neon grid floor in perspective drifting toward
+you, chrome italic headings with a VHS color split and 美学 after each, and every section a
+frosted Windows-95 window with its own title bar, dense enough (85%) that the sun behind
+never drops text below AA; FFVII Menu keeps it to a radial
 background glow, a diagonal gradient/bevel on every card echoing the game's own dialog
 boxes with the menu window's silver rim, a pulsing "materia" glow on section headings, and
 the pointing-hand cursor on the list row you're over; Eva-01 (Neon Genesis Evangelion's
@@ -72,7 +75,11 @@ bubble, and faint pencil-sketch filler (an anime utility pole with crows on the 
 cherry branch) from `public/themes/manga/` drawn into the margins; Game Boy uses the
 DMG-01's four greens, a pixel font and a faint LCD dot grid. Manga and Game Boy also redraw
 the streaming badges in their own palette, rather than leaving brand orange and red as the
-only off-palette color on the page.
+only off-palette color on the page. Manga has three genre variants on the same base (they
+all match `[data-theme^="manga"]`): Comedy (clean white '80s comedy pages, hollow
+screentone-filled SFX headings, a wind bell and a pond splash), Seinen (hatched paper, heavy
+panels, jagged impact-burst headings, a smashed wall, speed lines and ゴゴゴ down the margin)
+and Shoujo (fading screentone, rounded panels, sparkled headings, roses and bubbles).
 
 Full-page decoration lives on `body::before`/`::after`, which every theme gets at
 `z-index: -1` inside an `isolation: isolate` body, so it paints under the content instead
@@ -117,7 +124,7 @@ don't linger on top of that theme's plain CSS.
 
 ### Contrast conventions for the fixed themes
 
-Unlike Random, the fixed themes (Auto/Light/Dark, Vaporwave, FFVII, Manga, Game Boy,
+Unlike Random, the fixed themes (Auto/Light/Dark, Vaporwave, FFVII, the Manga themes, Game Boy,
 Eva-01) have hand-picked colors that can't self-correct — `test/theme-contrast.test.js`
 checks every one of them against the real pairings the CSS actually produces, and encodes the
 convention that keeps new components from breaking it:

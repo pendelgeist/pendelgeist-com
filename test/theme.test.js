@@ -27,11 +27,11 @@ test('renders a theme picker into the nav with every theme option', async () => 
   assert.ok(select, 'expected a #themePicker select in the nav');
   assert.deepEqual(
     [...select.options].map(o => o.value),
-    ['system', 'light', 'dark', 'ffvii', 'eva-01', 'manga', 'gameboy', 'vaporwave', 'random']
+    ['system', 'light', 'dark', 'ffvii', 'eva-01', 'manga', 'manga-comedy', 'manga-seinen', 'manga-shoujo', 'gameboy', 'vaporwave', 'random']
   );
   assert.deepEqual(
     [...select.options].map(o => o.textContent),
-    ['Auto', 'AMO - L', 'AMO - Kira', 'FFVII Menu', 'Eva-01', 'Manga', 'Game Boy', 'Vaporwave', 'Random']
+    ['Auto', 'AMO - L', 'AMO - Kira', 'FFVII Menu', 'Eva-01', 'Manga', 'Manga (Comedy)', 'Manga (Seinen)', 'Manga (Shoujo)', 'Game Boy', 'Vaporwave', 'Random']
   );
 });
 
@@ -40,7 +40,7 @@ test('files the themes under labelled groups in the picker', async () => {
 
   const groups = [...document.querySelectorAll('#themePicker optgroup')];
   assert.deepEqual(groups.map(g => g.label), ['Standard', 'Anime & Games', 'Novelty']);
-  assert.deepEqual([...groups[1].querySelectorAll('option')].map(o => o.value), ['ffvii', 'eva-01', 'manga', 'gameboy']);
+  assert.deepEqual([...groups[1].querySelectorAll('option')].map(o => o.value), ['ffvii', 'eva-01', 'manga', 'manga-comedy', 'manga-seinen', 'manga-shoujo', 'gameboy']);
 });
 
 test('renders a reroll button in the nav, hidden by default', async () => {
