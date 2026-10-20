@@ -42,20 +42,20 @@ const THEMES = {
   'FFVII Menu': {
     bg: '#0a1030', text: '#fff', accent: '#6ecfff', surface: '#14206b', chrome: '#0a1030', muted: '#9fb4e0', navLink: '#fff', title: '#fff',
   },
-  Manga: {
-    bg: '#f6f6f4', text: '#111', accent: '#111', surface: '#fff', chrome: '#141414', muted: '#4a4a4a', navLink: '#f6f6f4', title: '#111',
-  },
-  'Manga (Comedy)': {
-    bg: '#fff', text: '#111', accent: '#111', surface: '#fff', chrome: '#141414', muted: '#4a4a4a', navLink: '#f6f6f4', title: '#111',
-  },
-  'Manga (Seinen)': {
-    bg: '#ecebe6', text: '#111', accent: '#111', surface: '#fff', chrome: '#141414', muted: '#3d3d3d', navLink: '#f6f6f4', title: '#111',
-  },
   'Manga (Shoujo)': {
     bg: '#fff', text: '#111', accent: '#111', surface: '#fff', chrome: '#e4e4e4', muted: '#555', navLink: '#222', title: '#111',
   },
-  'Manga (4-Koma)': {
+  'Seinen (Ink Wash)': {
+    bg: '#f3efe6', text: '#111', accent: '#111', surface: '#fbf9f4', chrome: '#1b1a17', muted: '#4a463f', navLink: '#f3efe6', title: '#111',
+  },
+  'Seinen (Gekiga)': {
+    bg: '#0c0c0c', text: '#ece9e2', accent: '#ece9e2', surface: '#171717', chrome: '#000', muted: '#b5b0a6', navLink: '#ece9e2', title: '#ece9e2',
+  },
+  'Seinen (Cinematic)': {
     bg: '#fff', text: '#111', accent: '#111', surface: '#fff', chrome: '#fff', muted: '#444', navLink: '#111', title: '#111',
+  },
+  'Seinen (Cyberpunk)': {
+    bg: '#f1f1ef', text: '#111', accent: '#111', surface: '#fff', chrome: '#141414', muted: '#4a4a4a', navLink: '#f6f6f4', title: '#111',
   },
   'Game Boy': {
     bg: '#9bbc0f', text: '#0f380f', accent: '#0f380f', surface: '#8bac0f', chrome: '#0f380f', muted: '#0f380f', navLink: '#9bbc0f', title: '#0f380f',

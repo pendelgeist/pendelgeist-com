@@ -27,11 +27,11 @@ test('renders a theme picker into the nav with every theme option', async () => 
   assert.ok(select, 'expected a #themePicker select in the nav');
   assert.deepEqual(
     [...select.options].map(o => o.value),
-    ['system', 'light', 'dark', 'ffvii', 'eva-01', 'manga', 'manga-comedy', 'manga-seinen', 'manga-shoujo', 'manga-yonkoma', 'gameboy', 'vaporwave', 'random']
+    ['system', 'light', 'dark', 'ffvii', 'eva-01', 'manga-shoujo', 'manga-seinen-ink', 'manga-seinen-gekiga', 'manga-seinen-cinema', 'manga-seinen-cyber', 'gameboy', 'vaporwave', 'random']
   );
   assert.deepEqual(
     [...select.options].map(o => o.textContent),
-    ['Auto', 'AMO - L', 'AMO - Kira', 'FFVII Menu', 'Eva-01', 'Manga', 'Manga (Comedy)', 'Manga (Seinen)', 'Manga (Shoujo)', 'Manga (4-Koma)', 'Game Boy', 'Vaporwave', 'Random']
+    ['Auto', 'AMO - L', 'AMO - Kira', 'FFVII Menu', 'Eva-01', 'Manga (Shoujo)', 'Seinen (Ink Wash)', 'Seinen (Gekiga)', 'Seinen (Cinematic)', 'Seinen (Cyberpunk)', 'Game Boy', 'Vaporwave', 'Random']
   );
 });
 
@@ -40,7 +40,7 @@ test('files the themes under labelled groups in the picker', async () => {
 
   const groups = [...document.querySelectorAll('#themePicker optgroup')];
   assert.deepEqual(groups.map(g => g.label), ['Standard', 'Anime & Games', 'Novelty']);
-  assert.deepEqual([...groups[1].querySelectorAll('option')].map(o => o.value), ['ffvii', 'eva-01', 'manga', 'manga-comedy', 'manga-seinen', 'manga-shoujo', 'manga-yonkoma', 'gameboy']);
+  assert.deepEqual([...groups[1].querySelectorAll('option')].map(o => o.value), ['ffvii', 'eva-01', 'manga-shoujo', 'manga-seinen-ink', 'manga-seinen-gekiga', 'manga-seinen-cinema', 'manga-seinen-cyber', 'gameboy']);
 });
 
 test('renders a reroll button in the nav, hidden by default', async () => {
@@ -182,7 +182,7 @@ test('a Random roll sets its own color-scheme, light or dark, and clears it on s
   select.dispatchEvent(new document.defaultView.Event('change'));
   assert.ok(['light', 'dark'].includes(document.documentElement.style.getPropertyValue('color-scheme')));
 
-  select.value = 'manga';
+  select.value = 'manga-shoujo';
   select.dispatchEvent(new document.defaultView.Event('change'));
   assert.equal(document.documentElement.style.getPropertyValue('color-scheme'), '');
 });

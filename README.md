@@ -53,7 +53,7 @@ The actual colors live in `styles.css` as `--color-*` custom properties. "Auto"/
 define them with `light-dark(lightValue, darkValue)`, which resolves off the *used value*
 of `color-scheme` — so picking Light or Dark just narrows `color-scheme` to one value
 (`:root[data-theme="dark"] { color-scheme: dark; }`) rather than redefining every variable.
-Vaporwave, FFVII Menu, Eva-01, the four Manga themes, and Game Boy are fixed novelty themes that instead override
+Vaporwave, FFVII Menu, Eva-01, the manga themes, and Game Boy are fixed novelty themes that instead override
 every `--color-*` directly for their own `[data-theme="..."]` selector. Beyond color, each
 also gets its own `--font-heading`/`--font-body`, `--border-width`/`--border-style`,
 `--radius-card`, and `--spacing-section` (the base values live in `:root`, same pattern as
@@ -69,21 +69,23 @@ Unit-01: violet chrome and cards, lime-green headings and armor-stripe card edge
 orange chest plate for ratings, on the black-and-blood-red backdrop of the unit's key art,
 in a MAGI-terminal monospace font) adds faint scanlines, lime/black caution striping under
 the nav, and a quick heartbeat-style pulse on section
-headings; Manga is grayscale ink on paper — screentone dots, cards drawn as panels with a
-hard drop shadow, skewed black SFX banners for section headings, each review in a speech
-bubble, and faint pencil-sketch filler (an anime utility pole with crows on the wires, a
-cherry branch) from `public/themes/manga/` drawn into the margins; Game Boy uses the
-DMG-01's four greens, a pixel font and a faint LCD dot grid. Manga and Game Boy also redraw
-the streaming badges in their own palette, rather than leaving brand orange and red as the
-only off-palette color on the page. Manga has four genre variants on the same base (they
-all match `[data-theme^="manga"]`): Comedy (clean white '80s comedy pages, hollow
-screentone-filled SFX headings, a wind bell and a pond splash), Seinen (hatched paper, heavy
-panels, jagged impact-burst headings, a smashed wall, speed lines and ゴゴゴ down the margin)
-and Shoujo (after Fruits Basket and Kare Kano: hairline panels on a lot of white, a gray
-glitter-and-bokeh tone fading down from the top, light gray chrome, serif-italic headings
-between sparkles, soft rounded bubbles, fine-lined roses and bubbles)), and 4-Koma (a yonkoma strip after Azumanga Daioh:
-plain white pages and chrome, reviews as equal thin-ruled panels in one narrow strip with a
-wider break after every fourth, small centered strip titles, a 四コマ badge and a sleepy dog).
+headings; the manga themes share a grayscale base (they all match `[data-theme^="manga"]`:
+Mincho headings, hairline panels, the review in a speech bubble) with sketch art from
+`public/themes/manga/` — Manga (Shoujo), after Fruits Basket and Kare Kano (hairline panels
+on a lot of white, a gray glitter-and-bokeh tone fading down from the top, light gray chrome,
+serif-italic headings between sparkles, fine-lined roses and bubbles), and four Seinen
+styles, none of which borrow American-comic lettering, bursts or offset shadows: Ink Wash
+(sumi-e after Vagabond — washi paper, ink blooms, misty ridgelines, a dry-brush stroke under
+each heading and a 評 seal), Gekiga (dark, after Berserk — a black night page, white-ruled
+panels, white bubbles cut out of the dark, a castle wall in white hatching and ドドド down
+the margin), Cinematic (clean realism after Monster — white pages and chrome, wide-guttered
+hairline panels with a screentone sky band, sections opened as numbered chapters, an old
+European street in ruled line) and Cyberpunk (technical line after Ghost in the Shell and
+Akira — a drafting grid, crop-ticked panels, uppercase headings tagged FILE.01, the review as
+a boxed NOTE annotation, a conduit cutaway with callouts); Game Boy uses the DMG-01's four
+greens, a pixel font and a faint LCD dot grid. The manga themes and Game Boy also redraw the
+streaming badges in their own palette, rather than leaving brand orange and red as the only
+off-palette color on the page.
 
 Full-page decoration lives on `body::before`/`::after`, which every theme gets at
 `z-index: -1` inside an `isolation: isolate` body, so it paints under the content instead
@@ -102,11 +104,10 @@ other size. Like the game, the theme sets everything it can in it — section he
 3rem, and the nav, card titles, ratings and review text at 2rem (the nav drops to 1.5rem on
 a phone) — since its glyphs sit small in their em box and read at about body-text size there.
 
-Three more faces are self-hosted under `public/fonts/`, all SIL OFL 1.1 (license text next
-to each): Comic Neue, Manga's speech-bubble lettering; Bangers, Manga's heading face; and Press
-Start 2P, Game Boy's pixel heading face, kept at 8px multiples for the same reason as
-Reactor7. A browser only downloads a face that a rendered element uses, so none of them
-costs anything outside its theme.
+Press Start 2P, Game Boy's pixel heading face, is self-hosted under `public/fonts/` too (SIL
+OFL 1.1, license alongside) and kept at 8px multiples for the same reason as Reactor7. A
+browser only downloads a face that a rendered element uses, so it costs nothing outside its
+theme.
 
 ### Random
 
