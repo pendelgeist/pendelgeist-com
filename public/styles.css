@@ -38,9 +38,10 @@
 /* Reactor7 by Caveras (http://fontstruct.com/fontstructors/caveras), based on
  * the main text font from Final Fantasy VII (Squaresoft, 1997). Licensed
  * CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/) - see
- * public/fonts/reactor7/license.txt. Used only by the FFVII Menu theme's
- * headings, and only at 16px multiples (1rem, 2rem, ...), since it's a pixel
- * font that gets blurry scaled to anything else. */
+ * public/fonts/reactor7/license.txt. Used only by the FFVII Menu theme (its
+ * headings, nav, card titles, ratings and review text), and only at 8px
+ * multiples (1.5rem, 2rem, 3rem), since it's a pixel font that gets blurry
+ * scaled to anything else. */
 @font-face {
   font-family: 'Reactor7';
   src: url('/fonts/reactor7/Reactor7.woff') format('woff'),
@@ -267,31 +268,70 @@
   padding: 0.75rem;
 }
 
+/* The game sets every word of its menus in this one face, so the theme
+ * carries Reactor7 past the section headings too: the nav, card titles,
+ * ratings and the review text itself. Its glyphs sit small in their em box,
+ * so it's set at 2rem (and 3rem for section headings) to read at about the
+ * size of the surrounding text - still a 16px multiple, where the pixel font
+ * stays crisp - with line-height pulled in to match. */
+:root[data-theme="ffvii"] .section h2 {
+  font-size: 3rem;
+  font-weight: 400;
+}
+
+:root[data-theme="ffvii"] .nav-left > a,
+:root[data-theme="ffvii"] .nav-title,
+:root[data-theme="ffvii"] .entry-title,
+:root[data-theme="ffvii"] .entry-rating,
+:root[data-theme="ffvii"] .entry-description,
+:root[data-theme="ffvii"] .link-card-title {
+  font-family: var(--font-heading);
+  font-size: 2rem;
+  font-weight: 400;
+  line-height: 1;
+}
+
+:root[data-theme="ffvii"] .entry-description {
+  line-height: 1.25;
+}
+
+/* A phone's nav would wrap to five tall lines at 2rem; 1.5rem is still on
+ * the font's 8px grid. */
+@media (max-width: 700px) {
+  :root[data-theme="ffvii"] .nav-left > a,
+  :root[data-theme="ffvii"] .nav-title {
+    font-size: 1.5rem;
+  }
+}
+
 /* The menu cursor: a pointing hand in place of the list bullet on the row
  * you're over, the way the game marks the selected command. */
 :root[data-theme="ffvii"] .show-list li:hover::before {
   content: '\261E ';
 }
 
-/* Eva-01: Shinji's unit - deep violet body with an acid-green accent, in the
- * MAGI-terminal monospace the franchise's own computer displays use. */
+/* Eva-01: Shinji's unit - its violet armor for the chrome and cards, the
+ * lime-green plating for headings and accents, the orange of its chest
+ * plate for ratings and focus, all on the black-and-blood-red backdrop of
+ * the unit's key art, in the MAGI-terminal monospace the franchise's own
+ * computer displays use. */
 :root[data-theme="eva-01"] {
   color-scheme: dark;
-  --color-bg: #170b28;
-  --color-text: #eafbe0;
-  --color-accent: #39ff14;
-  --color-surface: #241340;
-  --color-chrome: #0d0619;
-  --color-muted: #b9a8d6;
-  --color-nav-link: #eafbe0;
-  --color-input-border: #39ff14;
-  --color-input-focus: #7cffb3;
-  --color-title: #39ff14;
-  --color-guideline-border: rgba(57, 255, 20, 0.35);
-  --color-article-border: rgba(57, 255, 20, 0.2);
-  --color-section-border: #39ff14;
-  --shadow-heading: 0 0 14px rgba(57, 255, 20, 0.65);
-  --shadow-focus: 0 0 10px rgba(57, 255, 20, 0.6);
+  --color-bg: #0d0912;
+  --color-text: #f3eefb;
+  --color-accent: #9be34f;
+  --color-surface: #2b1747;
+  --color-chrome: #5a2d91;
+  --color-muted: #cbb8e8;
+  --color-nav-link: #d4f78a;
+  --color-input-border: #9be34f;
+  --color-input-focus: #f5a623;
+  --color-title: #9be34f;
+  --color-guideline-border: rgba(155, 227, 79, 0.5);
+  --color-article-border: #7b4ab3;
+  --color-section-border: #9be34f;
+  --shadow-heading: 0 0 14px rgba(155, 227, 79, 0.6);
+  --shadow-focus: 0 0 10px rgba(245, 166, 35, 0.6);
   --font-heading: 'Courier New', monospace;
   --font-body: 'Courier New', monospace;
   --border-width: 2px;
@@ -301,13 +341,13 @@
 }
 
 :root[data-theme="eva-01"] body {
-  background: radial-gradient(ellipse at top, #241340 0%, #170b28 70%);
+  background: radial-gradient(ellipse 70% 60% at 60% 40%, #4a0b12 0%, #1c0a14 45%, #0d0912 75%) fixed;
 }
 
 /* NERV caution striping under the nav, in Unit-01's own violet and green. */
 :root[data-theme="eva-01"] nav {
   border-bottom: 6px solid transparent;
-  border-image: repeating-linear-gradient(-45deg, #39ff14 0 10px, #0d0619 10px 20px) 6;
+  border-image: repeating-linear-gradient(-45deg, #9be34f 0 10px, #0d0912 10px 20px) 6;
 }
 
 /* Faint horizontal scanlines, echoing a MAGI console readout. */
@@ -326,17 +366,26 @@
 
 @keyframes eva01-pulse {
   0%, 100% {
-    text-shadow: 0 0 4px rgba(57, 255, 20, 0.4);
+    text-shadow: 0 0 4px rgba(155, 227, 79, 0.4);
   }
   50% {
-    text-shadow: 0 0 16px rgba(57, 255, 20, 0.9);
+    text-shadow: 0 0 16px rgba(155, 227, 79, 0.9);
   }
 }
 
 :root[data-theme="eva-01"] .section,
 :root[data-theme="eva-01"] article,
 :root[data-theme="eva-01"] .guidelines {
-  border: var(--border-width) var(--border-style) rgba(57, 255, 20, 0.3);
+  border: var(--border-width) var(--border-style) #7b4ab3;
+}
+
+/* Armor plating: each card gets the lime stripe down its edge. */
+:root[data-theme="eva-01"] article {
+  border-left: 6px solid #9be34f;
+}
+
+:root[data-theme="eva-01"] .entry-rating {
+  color: #f5a623;
 }
 
 :root[data-theme="eva-01"] .section {
@@ -744,7 +793,8 @@ nav {
 
 
 /* Streaming service badges (see public/streaming.js), shared by /vqar and
- * /fsar - deliberately fixed brand colors rather than theme custom properties,
+ * /fsar - deliberately fixed brand colors rather than theme custom properties
+ * (except in Manga and Game Boy, which redraw them in their own palette),
  * since the point is at-a-glance recognition of the actual service regardless
  * of which site theme is active. Each pairs white (or, for Hulu's light green,
  * black) text with its own brand fill, so these sit outside the --color-*
@@ -773,6 +823,31 @@ nav {
 .entry-streaming-prime { background-color: #1f2e45; }
 .entry-streaming-oceanveil { background-color: #49e4e6; color: #000; }
 
+
+/* The two themes with a fixed palette of their own redraw the streaming
+ * badges in it - brand orange and red would be the only color on a Manga
+ * page, and off-palette on a Game Boy screen. The badge text still names
+ * the service, so nothing is lost but the hue. */
+:root[data-theme="manga"] .entry-streaming-badge {
+  border: 2px solid #111;
+  background-color: #fff;
+  color: #111;
+}
+
+:root[data-theme="manga"] .entry-streaming-badge:hover {
+  background-color: #111;
+  color: #fff;
+}
+
+:root[data-theme="gameboy"] .entry-streaming-badge {
+  border-radius: 0;
+  background-color: #0f380f;
+  color: #9bbc0f;
+}
+
+:root[data-theme="gameboy"] .entry-streaming-badge:hover {
+  background-color: #306230;
+}
 
 /* Accessibility: every per-theme animation above (Vaporwave's drift, FFVII's pulse, Eva-01's heartbeat pulse) gets
  * neutralized here rather than individually, so a theme can't accidentally
