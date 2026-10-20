@@ -725,29 +725,43 @@
   border-radius: 0.5rem;
 }
 
-/* Shoujo - a romance: soft gray tone fading down the page, rounded panels
- * with a gentle shadow, sparkles around every heading, and roses, bubbles
- * and twinkles drifting in the corner. */
+/* Shoujo - a romance, after Fruits Basket and Kare Kano: hairline ink on
+ * a lot of white, a soft gray tone washing down from the top with glitter
+ * and bokeh in it, light gray chrome instead of black, thin panels with no
+ * drop shadow, airy serif-italic headings between sparkles, softly rounded
+ * speech bubbles, and fine-lined roses and bubbles in the corner. */
 :root[data-theme="manga-shoujo"] {
+  --color-bg: #fff;
   --color-muted: #555;
-  --shadow-card: 0 6px 18px rgb(0 0 0 / 14%);
-  --border-width: 2px;
-  --radius-card: 18px;
-  --font-heading: 'Comic Neue', 'Comic Sans MS', cursive;
+  --color-chrome: #e4e4e4;
+  --color-nav-link: #222;
+  --color-input-border: #333;
+  --color-guideline-border: #333;
+  --color-article-border: #333;
+  --color-section-border: #333;
+  --shadow-card: none;
+  --shadow-focus: 0 0 0 3px rgb(0 0 0 / 15%);
+  --border-width: 1px;
+  --radius-card: 4px;
+  --font-heading: Georgia, 'Times New Roman', serif;
 }
 
 :root[data-theme="manga-shoujo"] body {
-  background-color: #fdfdfd;
-  background-image: radial-gradient(rgb(0 0 0 / 11%) 1.2px, transparent 1.4px);
-  background-size: 8px 8px;
+  background: #fff;
 }
 
+/* The kira-kira tone: pinpoint glitter, sparkle and soft bokeh scattered
+ * through a gray gradient that fades to white by mid-page. */
 :root[data-theme="manga-shoujo"] body::before {
   content: '';
   position: fixed;
   inset: 0;
   pointer-events: none;
-  background: linear-gradient(180deg, transparent 0%, #fdfdfd 55%);
+  background:
+    radial-gradient(circle, #fff 0 1.2px, transparent 1.8px) 0 0 / 23px 29px,
+    radial-gradient(circle, rgb(255 255 255 / 90%) 0 2.5px, transparent 3px) 7px 11px / 61px 53px,
+    radial-gradient(circle, rgb(255 255 255 / 55%) 0 9px, transparent 10px) 30px 20px / 157px 131px,
+    linear-gradient(180deg, #cfcfcf 0%, #e6e6e6 28%, #fff 60%);
 }
 
 :root[data-theme="manga-shoujo"] body::after {
@@ -759,47 +773,70 @@
   height: 360px;
   pointer-events: none;
   background: url('/themes/manga/roses.svg') no-repeat right bottom / contain;
-  opacity: 0.35;
+  opacity: 0.4;
 }
 
 :root[data-theme="manga-shoujo"] nav {
-  background: linear-gradient(90deg, #141414, #3a3a3a, #141414);
-  border-bottom: 2px solid #111;
+  background:
+    radial-gradient(circle, #fff 0 1.2px, transparent 1.8px) 0 0 / 19px 17px,
+    linear-gradient(90deg, #d6d6d6, #f2f2f2 50%, #d6d6d6);
+  border-bottom: 1px solid #333;
+  box-shadow: none;
 }
 
 :root[data-theme="manga-shoujo"] article,
 :root[data-theme="manga-shoujo"] .guidelines {
-  border: 2px solid #111;
-  border-radius: 18px;
+  border: 1px solid #333;
+  border-radius: 4px;
+  box-shadow: none;
 }
 
 :root[data-theme="manga-shoujo"] .section h2 {
-  padding: 0.2rem 1.2rem;
-  border-radius: 999px;
-  font-weight: 700;
+  display: block;
+  padding: 0 0 0.3rem;
+  background: none;
+  color: #1a1a1a;
+  border-bottom: 1px solid #333;
+  font-weight: 400;
   font-style: italic;
-  letter-spacing: 0.08rem;
+  letter-spacing: 0.18rem;
+  text-transform: none;
   transform: none;
 }
 
 :root[data-theme="manga-shoujo"] .section > h2::before {
   content: '\2727  ';
+  color: #777;
 }
 
 :root[data-theme="manga-shoujo"] .section > h2::after {
   content: '  \2727';
+  color: #777;
 }
 
 :root[data-theme="manga-shoujo"] .entry-title {
-  font-family: 'Comic Neue', 'Comic Sans MS', cursive;
-  font-weight: 700;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-weight: 400;
   font-style: italic;
+  letter-spacing: 0.04rem;
 }
 
 :root[data-theme="manga-shoujo"] .entry-description {
-  border-radius: 2rem;
+  padding: 0.8rem 1.4rem;
+  border: 1px solid #333;
+  border-radius: 2.2rem;
+  font-family: var(--font-body);
   font-weight: 400;
-  box-shadow: 0 0 0 4px #fff, 0 0 0 5px #111;
+}
+
+:root[data-theme="manga-shoujo"] .entry-description::after {
+  border-right-width: 1px;
+  border-bottom-width: 1px;
+  border-color: #333;
+}
+
+:root[data-theme="manga-shoujo"] .entry-streaming-badge {
+  border-width: 1px;
 }
 
 /* Game Boy (DMG-01): the original four greens, a pixel font for headings,

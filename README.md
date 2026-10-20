@@ -79,7 +79,9 @@ only off-palette color on the page. Manga has three genre variants on the same b
 all match `[data-theme^="manga"]`): Comedy (clean white '80s comedy pages, hollow
 screentone-filled SFX headings, a wind bell and a pond splash), Seinen (hatched paper, heavy
 panels, jagged impact-burst headings, a smashed wall, speed lines and ゴゴゴ down the margin)
-and Shoujo (fading screentone, rounded panels, sparkled headings, roses and bubbles).
+and Shoujo (after Fruits Basket and Kare Kano: hairline panels on a lot of white, a gray
+glitter-and-bokeh tone fading down from the top, light gray chrome, serif-italic headings
+between sparkles, soft rounded bubbles, fine-lined roses and bubbles).
 
 Full-page decoration lives on `body::before`/`::after`, which every theme gets at
 `z-index: -1` inside an `isolation: isolate` body, so it paints under the content instead
