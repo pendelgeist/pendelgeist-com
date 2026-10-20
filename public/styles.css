@@ -1,6 +1,23 @@
 /* Press Start 2P (OFL - public/fonts/press-start-2p/OFL.txt) is the Game
- * Boy theme's pixel heading face. A browser only downloads a face a
- * rendered element actually uses, so it costs nothing outside that theme. */
+ * Boy theme's pixel heading face, and Comic Neue (OFL) letters Seinen
+ * (Cinematic)'s speech bubbles. A browser only downloads a face a rendered
+ * element actually uses, so these cost nothing outside their themes. */
+@font-face {
+  font-family: 'Comic Neue';
+  src: url('/fonts/comic-neue/ComicNeue-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Comic Neue';
+  src: url('/fonts/comic-neue/ComicNeue-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
 @font-face {
   font-family: 'Press Start 2P';
   src: url('/fonts/press-start-2p/PressStart2P.woff2') format('woff2');
@@ -804,15 +821,20 @@
   color: #0c0c0c;
 }
 
-/* Cinematic - clean suspense realism, after Monster: white pages and white
- * chrome, hairline panels with wide gutters, a band of screentone fading
- * down from the top of every panel like a sky, each section opened like a
- * chapter title page, and an old European street in fine ruled line. */
+/* Cinematic - seinen realism, after Monster, Junji Ito and the modern
+ * seinen page: plain white paper and chrome, the reviews laid out as a page
+ * of panels in mixed sizes with white gutters (full width, then two halves,
+ * then two-thirds and a third, repeating), each panel opening on its own
+ * band of tone - dot screen, speed lines, pen hatching or a gradient -
+ * the review lettered in a tall oval bubble in centered capitals the way
+ * English manga is lettered, chapter openers with a ドン, a page number at
+ * the foot of the page, and foliage and an old street in fine line. */
 :root[data-theme="manga-seinen-cinema"] {
   --color-bg: #fff;
   --color-chrome: #fff;
   --color-nav-link: #111;
   --color-muted: #444;
+  --border-width: 2px;
 }
 
 :root[data-theme="manga-seinen-cinema"] body {
@@ -829,28 +851,111 @@
   height: min(300px, 34vh);
   pointer-events: none;
   background: url('/themes/manga/city.svg') no-repeat center bottom / 100% 100%;
-  opacity: 0.4;
+  opacity: 0.35;
+}
+
+:root[data-theme="manga-seinen-cinema"] body::after {
+  content: '';
+  position: fixed;
+  top: 3rem;
+  right: 0;
+  width: min(420px, 60vw);
+  height: 340px;
+  pointer-events: none;
+  background: url('/themes/manga/leaves.svg') no-repeat right top / contain;
+  opacity: 0.55;
 }
 
 :root[data-theme="manga-seinen-cinema"] nav {
-  border-bottom: 1px solid #111;
+  border-bottom: 2px solid #111;
   box-shadow: none;
 }
 
 :root[data-theme="manga-seinen-cinema"] article,
 :root[data-theme="manga-seinen-cinema"] .guidelines {
-  margin-bottom: 1.5rem;
-  padding-top: 1.75rem;
+  border: 2px solid #111;
+  background: #fff;
+}
+
+/* The page: panels in mixed widths, white gutters between them. */
+:root[data-theme="manga-seinen-cinema"] #reviewedShows {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 0.7rem;
+}
+
+:root[data-theme="manga-seinen-cinema"] #reviewedShows > * {
+  grid-column: 1 / -1;
+}
+
+:root[data-theme="manga-seinen-cinema"] #reviewedShows > article {
+  margin: 0;
+}
+
+:root[data-theme="manga-seinen-cinema"] #reviewedShows > article:nth-of-type(5n + 2),
+:root[data-theme="manga-seinen-cinema"] #reviewedShows > article:nth-of-type(5n + 3) {
+  grid-column: span 3;
+}
+
+:root[data-theme="manga-seinen-cinema"] #reviewedShows > article:nth-of-type(5n + 4) {
+  grid-column: span 4;
+}
+
+:root[data-theme="manga-seinen-cinema"] #reviewedShows > article:nth-of-type(5n + 5) {
+  grid-column: span 2;
+}
+
+@media (max-width: 900px) {
+  :root[data-theme="manga-seinen-cinema"] #reviewedShows > article:nth-of-type(n) {
+    grid-column: 1 / -1;
+  }
+}
+
+/* Every panel opens on a band of tone across its top, each in a different
+ * technique, fading out before the text starts. */
+:root[data-theme="manga-seinen-cinema"] #reviewedShows > article {
+  padding-top: 2.4rem;
   background:
-    linear-gradient(to bottom, transparent, #fff 3.5rem),
-    radial-gradient(rgb(0 0 0 / 28%) 1px, transparent 1.3px) 0 0 / 5px 5px,
+    linear-gradient(to bottom, transparent, #fff 2.2rem) no-repeat,
+    radial-gradient(rgb(0 0 0 / 35%) 1px, transparent 1.3px) 0 0 / 5px 5px,
     #fff;
+}
+
+:root[data-theme="manga-seinen-cinema"] #reviewedShows > article:nth-of-type(4n + 2) {
+  background:
+    linear-gradient(to bottom, transparent, #fff 2.2rem) no-repeat,
+    repeating-linear-gradient(90deg, #111 0 1px, transparent 1px 4px, #111 4px 5px, transparent 5px 11px),
+    #fff;
+}
+
+:root[data-theme="manga-seinen-cinema"] #reviewedShows > article:nth-of-type(4n + 3) {
+  background:
+    linear-gradient(to bottom, transparent, #fff 2.2rem) no-repeat,
+    repeating-linear-gradient(45deg, rgb(0 0 0 / 55%) 0 1px, transparent 1px 4px),
+    repeating-linear-gradient(-45deg, rgb(0 0 0 / 35%) 0 1px, transparent 1px 6px),
+    #fff;
+}
+
+:root[data-theme="manga-seinen-cinema"] #reviewedShows > article:nth-of-type(4n + 4) {
+  background:
+    linear-gradient(to bottom, #111 0, #555 0.8rem, transparent 2.2rem) no-repeat,
+    #fff;
+}
+
+/* The page number at the foot of the page. */
+:root[data-theme="manga-seinen-cinema"] #reviewedShows::after {
+  content: '118';
+  grid-column: 1 / -1;
+  margin-top: 0.6rem;
+  color: #444;
+  font: 700 0.75rem/1 'Raleway', sans-serif;
+  letter-spacing: 0.1rem;
 }
 
 :root[data-theme="manga-seinen-cinema"] .section > h2 {
   counter-increment: chapter;
-  border-bottom: 1px solid #111;
-  font-weight: 400;
+  border-bottom: 2px solid #111;
+  font-weight: 700;
   letter-spacing: 0.4rem;
 }
 
@@ -864,8 +969,46 @@
   text-transform: uppercase;
 }
 
+/* ドン - the beat a manga drops on a reveal. */
+:root[data-theme="manga-seinen-cinema"] .section > h2::after {
+  content: '\30C9\30F3';
+  display: inline-block;
+  margin-left: 0.6em;
+  color: transparent;
+  -webkit-text-stroke: 1.5px #111;
+  font: 900 1.3em/1 'Noto Sans JP', 'Hiragino Kaku Gothic ProN', 'Yu Gothic', sans-serif;
+  letter-spacing: -0.05em;
+  transform: skew(-10deg) rotate(-4deg);
+}
+
+:root[data-theme="manga-seinen-cinema"] .entry-title {
+  font-weight: 700;
+  letter-spacing: 0.04rem;
+}
+
+/* Lettered like an English manga: a tall oval, centered capitals. */
 :root[data-theme="manga-seinen-cinema"] .entry-description {
-  border-radius: 1.2rem;
+  /* An oval's usable interior is about 70% of its box, so the padding keeps
+   * the lettering inside the curve rather than running across it. */
+  padding: 3rem 14%;
+  border: 1.5px solid #111;
+  border-radius: 50%;
+  font: 700 0.82rem/1.45 'Comic Neue', 'Comic Sans MS', sans-serif;
+  letter-spacing: 0.02rem;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+@media (max-width: 600px) {
+  :root[data-theme="manga-seinen-cinema"] .entry-description {
+    padding: 2.6rem 10%;
+  }
+}
+
+:root[data-theme="manga-seinen-cinema"] .entry-description::after {
+  left: 50%;
+  border-right-width: 1.5px;
+  border-bottom-width: 1.5px;
 }
 
 /* Cyberpunk - technical line, after Ghost in the Shell and Akira: a
