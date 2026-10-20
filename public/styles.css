@@ -839,6 +839,122 @@
   border-width: 1px;
 }
 
+/* 4-Koma - a yonkoma strip, after Azumanga Daioh: plain white pages and
+ * white chrome, reviews stacked as equal thin-ruled panels in one narrow
+ * strip with a wider break after every fourth, a small centered strip title
+ * for each section, rounded speech bubbles, a 四コマ badge and a big sleepy
+ * dog for filler, and a page number at the foot of the strip. */
+:root[data-theme="manga-yonkoma"] {
+  --color-bg: #fff;
+  --color-chrome: #fff;
+  --color-nav-link: #111;
+  --color-muted: #444;
+  --color-input-border: #111;
+  --shadow-card: none;
+  --shadow-focus: 0 0 0 3px rgb(0 0 0 / 18%);
+  --border-width: 2px;
+  --radius-card: 0;
+  --font-heading: 'Noto Sans JP', 'Hiragino Kaku Gothic ProN', 'Yu Gothic', 'Raleway', sans-serif;
+}
+
+:root[data-theme="manga-yonkoma"] body {
+  background: #fff;
+}
+
+:root[data-theme="manga-yonkoma"] body::before {
+  content: '';
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: min(360px, 60vw);
+  height: 300px;
+  pointer-events: none;
+  background: url('/themes/manga/dog.svg') no-repeat left bottom / contain;
+  opacity: 0.4;
+}
+
+:root[data-theme="manga-yonkoma"] body::after {
+  content: '\56DB\A\30B3\30DE';
+  position: fixed;
+  right: 1.5rem;
+  bottom: 1.5rem;
+  display: grid;
+  place-items: center;
+  width: 6.5rem;
+  height: 6.5rem;
+  border-radius: 50%;
+  pointer-events: none;
+  background: #111;
+  color: #fff;
+  font: 900 1.5rem/1.1 var(--font-heading);
+  text-align: center;
+  white-space: pre;
+}
+
+:root[data-theme="manga-yonkoma"] nav {
+  background: #fff;
+  border-bottom: 2px solid #111;
+  box-shadow: none;
+}
+
+:root[data-theme="manga-yonkoma"] article,
+:root[data-theme="manga-yonkoma"] .guidelines {
+  border: 2px solid #111;
+  box-shadow: none;
+}
+
+:root[data-theme="manga-yonkoma"] #reviewedShows {
+  max-width: 48rem;
+  margin-inline: auto;
+}
+
+:root[data-theme="manga-yonkoma"] #reviewedShows article {
+  margin-bottom: 0.9rem;
+}
+
+/* Four panels to a strip, then a wider break before the next one. */
+:root[data-theme="manga-yonkoma"] #reviewedShows article:nth-of-type(4n) {
+  margin-bottom: 2.75rem;
+}
+
+:root[data-theme="manga-yonkoma"] #reviewedShows::after {
+  content: '0 1 8';
+  display: block;
+  margin-top: 1rem;
+  color: var(--color-muted);
+  font-size: 0.75rem;
+  letter-spacing: 0.4rem;
+  text-align: center;
+}
+
+:root[data-theme="manga-yonkoma"] .section h2 {
+  display: block;
+  padding: 0;
+  background: none;
+  color: #111;
+  border-bottom: none;
+  font-size: 1.6rem;
+  font-weight: 900;
+  letter-spacing: 0.3rem;
+  text-align: center;
+  text-transform: none;
+  transform: none;
+}
+
+:root[data-theme="manga-yonkoma"] .entry-title {
+  font-family: var(--font-heading);
+  font-weight: 900;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+:root[data-theme="manga-yonkoma"] .entry-description {
+  border: 2px solid #111;
+  border-radius: 2.4rem / 1.8rem;
+  font-family: var(--font-body);
+  font-weight: 500;
+}
+
 /* Game Boy (DMG-01): the original four greens, a pixel font for headings,
  * hard pixel shadows and a faint LCD dot grid. Text and muted share the
  * darkest shade, since the two middle greens can't carry text on the

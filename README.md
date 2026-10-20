@@ -75,13 +75,15 @@ bubble, and faint pencil-sketch filler (an anime utility pole with crows on the 
 cherry branch) from `public/themes/manga/` drawn into the margins; Game Boy uses the
 DMG-01's four greens, a pixel font and a faint LCD dot grid. Manga and Game Boy also redraw
 the streaming badges in their own palette, rather than leaving brand orange and red as the
-only off-palette color on the page. Manga has three genre variants on the same base (they
+only off-palette color on the page. Manga has four genre variants on the same base (they
 all match `[data-theme^="manga"]`): Comedy (clean white '80s comedy pages, hollow
 screentone-filled SFX headings, a wind bell and a pond splash), Seinen (hatched paper, heavy
 panels, jagged impact-burst headings, a smashed wall, speed lines and ゴゴゴ down the margin)
 and Shoujo (after Fruits Basket and Kare Kano: hairline panels on a lot of white, a gray
 glitter-and-bokeh tone fading down from the top, light gray chrome, serif-italic headings
-between sparkles, soft rounded bubbles, fine-lined roses and bubbles).
+between sparkles, soft rounded bubbles, fine-lined roses and bubbles)), and 4-Koma (a yonkoma strip after Azumanga Daioh:
+plain white pages and chrome, reviews as equal thin-ruled panels in one narrow strip with a
+wider break after every fourth, small centered strip titles, a 四コマ badge and a sleepy dog).
 
 Full-page decoration lives on `body::before`/`::after`, which every theme gets at
 `z-index: -1` inside an `isolation: isolate` body, so it paints under the content instead

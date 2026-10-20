@@ -17,6 +17,7 @@ const THEMES = [
   { id: 'manga-comedy', label: 'Manga (Comedy)', group: 'Anime & Games' },
   { id: 'manga-seinen', label: 'Manga (Seinen)', group: 'Anime & Games' },
   { id: 'manga-shoujo', label: 'Manga (Shoujo)', group: 'Anime & Games' },
+  { id: 'manga-yonkoma', label: 'Manga (4-Koma)', group: 'Anime & Games' },
   { id: 'gameboy', label: 'Game Boy', group: 'Anime & Games' },
   { id: 'vaporwave', label: 'Vaporwave', group: 'Novelty' },
   { id: 'random', label: 'Random', group: 'Novelty' },

@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 300" fill="none" stroke="#111" stroke-linecap="round" stroke-linejoin="round">
+  <!-- A big, sleepy-eyed white dog getting its head patted, in the plain
+       4-koma line style: a few clean strokes, dot eyes, tongue out, and the
+       pat lines over its head. -->
+  <g stroke-width="2.6">
+    <path d="M70 300 C60 250 64 200 90 170 C110 146 150 134 190 140 C232 146 262 170 272 206 C280 236 276 270 268 300"/>
+    <path d="M100 172 C84 182 70 214 74 248 C88 240 104 224 112 200"/>
+    <path d="M238 156 C262 150 286 168 296 196 C278 200 258 192 246 178"/>
+    <path d="M262 214 C280 214 300 222 312 236 C318 246 312 258 296 260 C280 262 262 254 250 244"/>
+    <path d="M300 236 q8 -4 10 4 q-2 8 -10 4 Z" fill="#111"/>
+    <path d="M270 256 q4 26 -6 34 q-12 4 -14 -10 q-2 -16 4 -24" />
+    <path d="M262 266 q-2 10 -1 18" stroke-width="1.6"/>
+  </g>
+  <g stroke-width="3">
+    <path d="M200 196 q8 -6 16 0"/>
+    <path d="M234 190 q7 -5 14 0"/>
+  </g>
+  <g stroke-width="2">
+    <path d="M150 112 q30 -24 66 -8"/>
+    <path d="M140 92 q36 -26 82 -10"/>
+    <path d="M300 120 q10 -12 22 -10 M306 138 q12 -6 24 0"/>
+  </g>
+</svg>
