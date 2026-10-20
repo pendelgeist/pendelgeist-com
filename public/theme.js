@@ -1,6 +1,7 @@
 import { rollPalette, PALETTE_PROPERTIES } from './theme-palette.js';
 
 const STORAGE_KEY = 'pendelgeist:theme';
+const LINK_PARAM = 'theme';
 const PALETTE_KEY_PREFIX = 'pendelgeist:theme:palette:';
 
 // Extend this list (and add a matching CSS rule in styles.css) to add more
@@ -102,6 +103,35 @@ function readSavedTheme() {
 }
 
 /**
+ * A theme named in the page's own link (`?theme=manga-shoujo`), so a theme can
+ * be shared. The parameter comes off the address bar once read: the choice is
+ * saved like any other pick, and the pages that mirror their own controls into
+ * the query string keep a clean URL to work with.
+ * @returns {string|null}
+ */
+function takeLinkedTheme() {
+  const win = document.defaultView;
+  if (!win) return null;
+  const url = new URL(win.location.href);
+  const linked = url.searchParams.get(LINK_PARAM);
+  if (linked === null) return null;
+  url.searchParams.delete(LINK_PARAM);
+  try {
+    win.history.replaceState(win.history.state, '', url.href);
+  } catch {
+    // Some embedded contexts refuse replaceState; the theme still applies.
+  }
+  return linked;
+}
+
+/** The current page's address with the given theme named in it. */
+function themeLink(themeId) {
+  const url = new URL(document.defaultView.location.href);
+  url.searchParams.set(LINK_PARAM, themeId);
+  return url.href;
+}
+
+/**
  * The saved theme as an id the picker still offers. A saved Random (Light)
  * or Random (Dark) becomes "random", keeping its palette (now tagged with its
  * mode, which the merged theme stores in the palette itself); a theme that's
@@ -171,7 +201,12 @@ function buildPicker() {
     reroll.hidden = !RANDOM_THEMES.has(themeId);
   }
 
-  const savedTheme = migrateSavedTheme(readSavedTheme());
+  // A link naming a theme the picker doesn't know is ignored rather than
+  // allowed to reset the reader's own choice.
+  const linked = takeLinkedTheme();
+  const linkedTheme = linked && (THEMES.some(theme => theme.id === linked) || linked in LEGACY_RANDOM_MODES) ? linked : null;
+  const savedTheme = migrateSavedTheme(linkedTheme ?? readSavedTheme());
+  if (linkedTheme !== null) saveTheme(savedTheme);
   select.value = savedTheme;
   applyTheme(savedTheme); // in case the inline pre-paint script (see index.html) wasn't there
   updateRerollVisibility(savedTheme);
@@ -186,6 +221,26 @@ function buildPicker() {
     rerollTheme(select.value);
   });
 
+  const share = document.createElement('button');
+  share.type = 'button';
+  share.id = 'themeShare';
+  share.className = 'theme-reroll theme-share';
+  share.textContent = '\u{1F517}';
+  share.title = 'Copy a link to this page in this theme';
+  share.setAttribute('aria-label', 'Copy a link to this page in this theme');
+  share.addEventListener('click', async () => {
+    const link = themeLink(select.value);
+    try {
+      await document.defaultView.navigator.clipboard.writeText(link);
+      share.textContent = '\u2713';
+      setTimeout(() => { share.textContent = '\u{1F517}'; }, 1500);
+    } catch {
+      // No clipboard access (an insecure context, or permission refused):
+      // hand the link over to copy by hand instead.
+      document.defaultView.prompt('Copy this link:', link);
+    }
+  });
+
   // Grouped in one wrapper so nav's `justify-content: space-between` always
   // sees exactly two children (the Home link and this group) - otherwise the
   // reroll button becoming a third child would space all three apart evenly,
@@ -194,6 +249,7 @@ function buildPicker() {
   controls.className = 'theme-controls';
   controls.appendChild(select);
   controls.appendChild(reroll);
+  controls.appendChild(share);
   nav.appendChild(controls);
 }
 

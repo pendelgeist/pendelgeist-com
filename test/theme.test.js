@@ -10,8 +10,8 @@ const THEME_JS_PATH = path.join(__dirname, '../public/theme.js');
 
 let importCounter = 0;
 
-async function loadThemeScript({ localStorage = createLocalStorageStub() } = {}) {
-  const dom = new JSDOM('<!DOCTYPE html><html><body><nav><a href="/">Home</a></nav></body></html>');
+async function loadThemeScript({ localStorage = createLocalStorageStub(), url = 'http://localhost/' } = {}) {
+  const dom = new JSDOM('<!DOCTYPE html><html><body><nav><a href="/">Home</a></nav></body></html>', { url });
 
   global.document = dom.window.document;
   global.localStorage = localStorage;
@@ -211,4 +211,42 @@ test('a saved theme that no longer exists (Rainbow) falls back to Auto', async (
   assert.equal(document.getElementById('themePicker').value, 'system');
   assert.equal(document.documentElement.hasAttribute('data-theme'), false);
   assert.equal(localStorage.getItem('pendelgeist:theme'), 'system');
+});
+
+// --- Sharing a theme by link ---
+
+test('a ?theme= link opens in that theme, saves it, and comes off the address bar', async () => {
+  const localStorage = createLocalStorageStub();
+  localStorage.setItem('pendelgeist:theme', 'vaporwave');
+  const { document } = await loadThemeScript({ localStorage, url: 'http://localhost/vqar?season=fall-2026&theme=manga-shoujo' });
+
+  assert.equal(document.documentElement.getAttribute('data-theme'), 'manga-shoujo');
+  assert.equal(document.getElementById('themePicker').value, 'manga-shoujo');
+  assert.equal(localStorage.getItem('pendelgeist:theme'), 'manga-shoujo');
+  assert.equal(document.defaultView.location.href, 'http://localhost/vqar?season=fall-2026');
+});
+
+test('a ?theme= naming no theme is ignored, leaving the saved one alone', async () => {
+  const localStorage = createLocalStorageStub();
+  localStorage.setItem('pendelgeist:theme', 'vaporwave');
+  const { document } = await loadThemeScript({ localStorage, url: 'http://localhost/?theme=nonsense' });
+
+  assert.equal(document.documentElement.getAttribute('data-theme'), 'vaporwave');
+  assert.equal(localStorage.getItem('pendelgeist:theme'), 'vaporwave');
+});
+
+test('the share button copies a link to this page in the current theme', async () => {
+  const localStorage = createLocalStorageStub();
+  localStorage.setItem('pendelgeist:theme', 'gameboy');
+  const { document } = await loadThemeScript({ localStorage, url: 'http://localhost/vqar?season=fall-2026' });
+
+  let copied = null;
+  Object.defineProperty(document.defaultView.navigator, 'clipboard', {
+    value: { writeText: async (text) => { copied = text; } },
+    configurable: true,
+  });
+  document.getElementById('themeShare').click();
+  await new Promise((resolve) => setTimeout(resolve, 0));
+
+  assert.equal(copied, 'http://localhost/vqar?season=fall-2026&theme=gameboy');
 });

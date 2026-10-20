@@ -54,6 +54,14 @@ test('the pre-paint script and theme.js agree on the storage keys', () => {
   }
 });
 
+// A shared link names its theme as ?theme=, and the script has to honor it
+// before first paint or the page flashes the reader's own theme first.
+test('the pre-paint script reads the same ?theme= link parameter theme.js does', () => {
+  const themeJs = fs.readFileSync(path.join(__dirname, '../public/theme.js'), 'utf-8');
+  assert.ok(themeJs.includes("const LINK_PARAM = 'theme';"));
+  assert.ok(prePaintScript(PAGES.home).includes(".get('theme')"));
+});
+
 for (const [name, htmlPath] of Object.entries(PAGES)) {
   test(`${name} page loads the theme picker script and has a nav to attach it to`, () => {
     const html = fs.readFileSync(htmlPath, 'utf-8');

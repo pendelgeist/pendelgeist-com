@@ -49,6 +49,14 @@ on `<html>`; "Auto" removes it and falls back to the OS/browser preference. An i
 script in each page's `<head>` applies a saved theme (and, for the random themes, its
 saved palette — see below) before first paint to avoid a flash of the wrong theme.
 
+A theme can be shared by link: `?theme=<id>` on any page (`/vqar?theme=manga-seinen-cinema`)
+opens it in that theme — the pre-paint script reads the parameter first — and `theme.js`
+then saves it as the visitor's choice and takes the parameter off the address bar, so the
+pages that mirror their own controls into the query string keep a clean URL. An id the
+picker doesn't offer is ignored rather than resetting the visitor's own theme. The 🔗 button
+next to the picker copies a link to the current page in the current theme (falling back to a
+prompt to copy by hand where the clipboard isn't available).
+
 The actual colors live in `styles.css` as `--color-*` custom properties. "Auto"/Light/Dark
 define them with `light-dark(lightValue, darkValue)`, which resolves off the *used value*
 of `color-scheme` — so picking Light or Dark just narrows `color-scheme` to one value
