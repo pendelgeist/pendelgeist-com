@@ -78,9 +78,12 @@ styles, none of which borrow American-comic lettering, bursts or offset shadows:
 (sumi-e after Vagabond — washi paper, ink blooms, misty ridgelines, a dry-brush stroke under
 each heading and a 評 seal), Gekiga (dark, after Berserk — a black night page, white-ruled
 panels, white bubbles cut out of the dark, a castle wall in white hatching and ドドド down
-the margin), Cinematic (clean realism after Monster — white pages and chrome, wide-guttered
-hairline panels with a screentone sky band, sections opened as numbered chapters, an old
-European street in ruled line) and Cyberpunk (technical line after Ghost in the Shell and
+the margin), Cinematic (seinen realism after Monster, Junji Ito and the modern seinen page — white
+pages and chrome; on `/vqar` the reviews laid out as a page of panels in mixed widths with
+white gutters, each opening on its own band of tone — dot screen, speed lines, hatching or a
+gradient; the review lettered in a tall oval bubble in centered capitals (Comic Neue, OFL,
+in `public/fonts/comic-neue/`); chapter openers with a ドン; a page number at the foot;
+foliage and an old European street in fine line) and Cyberpunk (technical line after Ghost in the Shell and
 Akira — a drafting grid, crop-ticked panels, uppercase headings tagged FILE.01, the review as
 a boxed NOTE annotation, a conduit cutaway with callouts); Game Boy uses the DMG-01's four
 greens, a pixel font and a faint LCD dot grid. The manga themes and Game Boy also redraw the

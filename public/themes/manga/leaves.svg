@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 340" fill="none" stroke="#111" stroke-linecap="round" stroke-linejoin="round">
+  <!-- Foliage reaching in from the corner, the way a seinen page frames a
+       shot: fine outlined leaves with a center vein, half of them filled
+       with dot screentone, on twigs coming off one branch. -->
+  <defs>
+    <pattern id="tone" width="5" height="5" patternUnits="userSpaceOnUse">
+      <circle cx="2.5" cy="2.5" r="1.1" fill="#111" stroke="none"/>
+    </pattern>
+    <path id="leaf" d="M0 0 C14 -18 44 -22 66 -8 C48 12 18 16 0 0 Z"/>
+  </defs>
+  <path d="M420 18 C360 30 300 70 250 120 C210 160 190 210 186 260" stroke-width="2.4"/>
+  <path d="M420 26 C362 40 306 78 258 126" stroke-width="1"/>
+  <path d="M300 74 C290 50 296 30 310 14 M252 122 C230 112 210 116 196 128 M216 176 C236 182 252 196 260 216 M196 230 C176 232 160 244 152 262" stroke-width="1.6"/>
+  <g stroke-width="1.4">
+    <use href="#leaf" transform="translate(310 14) rotate(-120)" fill="url(#tone)"/>
+    <use href="#leaf" transform="translate(300 40) rotate(-170)"/>
+    <use href="#leaf" transform="translate(330 52) rotate(-60)" fill="url(#tone)"/>
+    <use href="#leaf" transform="translate(196 128) rotate(170)"/>
+    <use href="#leaf" transform="translate(226 112) rotate(-150)" fill="url(#tone)"/>
+    <use href="#leaf" transform="translate(260 216) rotate(60)" fill="url(#tone)"/>
+    <use href="#leaf" transform="translate(240 186) rotate(20)"/>
+    <use href="#leaf" transform="translate(152 262) rotate(150)" fill="url(#tone)"/>
+    <use href="#leaf" transform="translate(186 252) rotate(100)"/>
+    <use href="#leaf" transform="translate(376 34) rotate(-100)"/>
+    <use href="#leaf" transform="translate(270 96) rotate(-30)" fill="url(#tone)"/>
+  </g>
+  <g stroke-width=".7" opacity=".8">
+    <path d="M312 12 l-30 -14 M300 40 l-36 6 M330 52 l18 -30 M196 128 l-36 -10 M260 216 l18 30 M152 262 l-34 18"/>
+  </g>
+</svg>
