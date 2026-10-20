@@ -45,6 +45,18 @@ const THEMES = {
   Manga: {
     bg: '#f6f6f4', text: '#111', accent: '#111', surface: '#fff', chrome: '#141414', muted: '#4a4a4a', navLink: '#f6f6f4', title: '#111',
   },
+  'Manga (Comedy)': {
+    bg: '#fff', text: '#111', accent: '#111', surface: '#fff', chrome: '#141414', muted: '#4a4a4a', navLink: '#f6f6f4', title: '#111',
+  },
+  'Manga (Seinen)': {
+    bg: '#ecebe6', text: '#111', accent: '#111', surface: '#fff', chrome: '#141414', muted: '#3d3d3d', navLink: '#f6f6f4', title: '#111',
+  },
+  'Manga (Shoujo)': {
+    bg: '#fff', text: '#111', accent: '#111', surface: '#fff', chrome: '#e4e4e4', muted: '#555', navLink: '#222', title: '#111',
+  },
+  'Manga (4-Koma)': {
+    bg: '#fff', text: '#111', accent: '#111', surface: '#fff', chrome: '#fff', muted: '#444', navLink: '#111', title: '#111',
+  },
   'Game Boy': {
     bg: '#9bbc0f', text: '#0f380f', accent: '#0f380f', surface: '#8bac0f', chrome: '#0f380f', muted: '#0f380f', navLink: '#9bbc0f', title: '#0f380f',
   },

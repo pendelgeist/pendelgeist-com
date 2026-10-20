@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 360" fill="none" stroke="#111" stroke-linecap="round" stroke-linejoin="round">
+  <!-- The shoujo frame: roses in outline with their leaves, floating
+       bubbles, and four-point sparkles. -->
+  <g stroke-width="1.2">
+    <g transform="translate(110 120)">
+      <path d="M0 0 q-14 -10 -2 -22 q14 -4 18 10 q4 16 -12 20 q-20 2 -22 -18 q0 -24 26 -28 q30 0 32 28 q0 32 -32 36 q-34 0 -40 -32"/>
+      <path d="M-40 4 q-6 30 20 44 q30 10 52 -10 q16 -18 8 -42"/>
+      <path d="M-20 48 q-20 30 -60 40 M-50 70 q-30 -10 -40 -30 q24 0 40 30 M-36 82 q6 26 -10 40 q-14 -20 10 -40"/>
+    </g>
+    <g transform="translate(250 60) scale(.7)">
+      <path d="M0 0 q-14 -10 -2 -22 q14 -4 18 10 q4 16 -12 20 q-20 2 -22 -18 q0 -24 26 -28 q30 0 32 28 q0 32 -32 36 q-34 0 -40 -32"/>
+      <path d="M-40 4 q-6 30 20 44 q30 10 52 -10 q16 -18 8 -42"/>
+    </g>
+  </g>
+  <g stroke-width="1">
+    <circle cx="250" cy="300" r="26" stroke-width=".8"/><circle cx="470" cy="300" r="34" stroke-width=".8"/>
+    <circle cx="330" cy="150" r="16"/><path d="M322 142 q4 -4 9 -4" stroke-width="1.2"/>
+    <circle cx="380" cy="100" r="10"/><circle cx="300" cy="210" r="8"/>
+    <circle cx="420" cy="190" r="22"/><path d="M408 178 q6 -6 13 -6" stroke-width="1.2"/>
+    <circle cx="460" cy="120" r="7"/><circle cx="200" cy="240" r="12"/>
+  </g>
+  <g stroke-width="1" fill="#111">
+    <path d="M360 40 l4 16 l16 4 l-16 4 l-4 16 l-4 -16 l-16 -4 l16 -4 Z"/>
+    <path d="M470 240 l3 11 l11 3 l-11 3 l-3 11 l-3 -11 l-11 -3 l11 -3 Z"/>
+    <path d="M230 170 l2 8 l8 2 l-8 2 l-2 8 l-2 -8 l-8 -2 l8 -2 Z"/>
+    <path d="M500 60 l2 7 l7 2 l-7 2 l-2 7 l-2 -7 l-7 -2 l7 -2 Z"/>
+  </g>
+</svg>
