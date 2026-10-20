@@ -49,7 +49,7 @@ const THEMES = {
     bg: '#9bbc0f', text: '#0f380f', accent: '#0f380f', surface: '#8bac0f', chrome: '#0f380f', muted: '#0f380f', navLink: '#9bbc0f', title: '#0f380f',
   },
   'Eva-01': {
-    bg: '#170b28', text: '#eafbe0', accent: '#39ff14', surface: '#241340', chrome: '#0d0619', muted: '#b9a8d6', navLink: '#eafbe0', title: '#39ff14',
+    bg: '#0d0912', text: '#f3eefb', accent: '#9be34f', surface: '#2b1747', chrome: '#5a2d91', muted: '#cbb8e8', navLink: '#d4f78a', title: '#9be34f',
   },
 };
 

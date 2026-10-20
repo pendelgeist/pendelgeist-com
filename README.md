@@ -62,13 +62,17 @@ drifting neon grid floor, and glowing card/nav borders; FFVII Menu keeps it to a
 background glow, a diagonal gradient/bevel on every card echoing the game's own dialog
 boxes with the menu window's silver rim, a pulsing "materia" glow on section headings, and
 the pointing-hand cursor on the list row you're over; Eva-01 (Neon Genesis Evangelion's
-Unit-01, in purple/acid-green with a MAGI-terminal monospace font) adds faint scanlines,
-violet/green caution striping under the nav, and a quick heartbeat-style pulse on section
+Unit-01: violet chrome and cards, lime-green headings and armor-stripe card edges, the
+orange chest plate for ratings, on the black-and-blood-red backdrop of the unit's key art,
+in a MAGI-terminal monospace font) adds faint scanlines, lime/black caution striping under
+the nav, and a quick heartbeat-style pulse on section
 headings; Manga is grayscale ink on paper — screentone dots, cards drawn as panels with a
 hard drop shadow, skewed black SFX banners for section headings, each review in a speech
 bubble, and faint pencil-sketch filler (an anime utility pole with crows on the wires, a
 cherry branch) from `public/themes/manga/` drawn into the margins; Game Boy uses the
-DMG-01's four greens, a pixel font and a faint LCD dot grid.
+DMG-01's four greens, a pixel font and a faint LCD dot grid. Manga and Game Boy also redraw
+the streaming badges in their own palette, rather than leaving brand orange and red as the
+only off-palette color on the page.
 
 Full-page decoration lives on `body::before`/`::after`, which every theme gets at
 `z-index: -1` inside an `isolation: isolate` body, so it paints under the content instead
@@ -82,8 +86,10 @@ FFVII Menu's headings also use Reactor7, a pixel font by Caveras modeled on the 
 PlayStation release's actual in-game font, self-hosted at `public/fonts/reactor7/` and
 loaded via `@font-face` at the top of `styles.css`. It's licensed CC BY-NC-SA 3.0 (see
 `public/fonts/reactor7/license.txt`) — non-commercial use only, with attribution — and is
-deliberately only ever set at 16px multiples (`.section h2` is 2rem, `.nav-title` is 1rem),
-since it's a pixel font that blurs at any other size.
+deliberately only ever set at 8px multiples, since it's a pixel font that blurs at any
+other size. Like the game, the theme sets everything it can in it — section headings at
+3rem, and the nav, card titles, ratings and review text at 2rem (the nav drops to 1.5rem on
+a phone) — since its glyphs sit small in their em box and read at about body-text size there.
 
 Three more faces are self-hosted under `public/fonts/`, all SIL OFL 1.1 (license text next
 to each): Comic Neue, Manga's speech-bubble lettering; Bangers, Manga's heading face; and Press
