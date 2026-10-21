@@ -1,8 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 24" preserveAspectRatio="none">
-  <!-- One dry-brush stroke: heavy at the start, breaking into bristle
-       streaks as the ink runs out. -->
-  <path fill="#111" d="M2 12 C40 2 120 4 220 6 C320 8 420 9 520 11 C560 12 590 13 598 15 C560 18 470 18 380 17 C280 16 160 18 60 21 C30 22 8 19 2 12 Z"/>
-  <g stroke="#fbf9f4" stroke-width="1.2" stroke-linecap="round">
-    <path d="M300 10 L598 13 M360 15 L560 15 M420 12 L590 14 M250 17 L470 16"/>
-  </g>
-</svg>
