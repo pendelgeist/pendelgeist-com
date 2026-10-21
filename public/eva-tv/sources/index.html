@@ -5,9 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script>
     // Applied before first paint to avoid a flash of the wrong theme; must
-    // match the storage key/values theme.js uses.
+    // match the storage key/values theme.js uses. A ?theme= in the link wins,
+    // so a shared link opens in its theme (theme.js validates and saves it).
     try {
-      var savedTheme = localStorage.getItem('pendelgeist:theme');
+      var savedTheme = new URLSearchParams(location.search).get('theme') || localStorage.getItem('pendelgeist:theme');
       if (savedTheme && savedTheme !== 'system') {
         document.documentElement.setAttribute('data-theme', savedTheme);
         var savedPalette = localStorage.getItem('pendelgeist:theme:palette:' + savedTheme);

@@ -207,7 +207,8 @@ Each page's `<head>` has an inline pre-paint `<script>` (duplicated into all eig
 purpose — it must run before first paint, so it can't be a module) that re-applies the saved
 theme/palette before first render. If it ever changes, change it in **every** page:
 `test/pages.test.js` asserts all eight copies are identical and that they use the same
-storage keys `theme.js` writes.
+storage keys `theme.js` writes. It also honors a `?theme=<id>` share link (theme.js validates,
+saves and strips it; the 🔗 button next to the picker builds one).
 
 ## Conventions
 
