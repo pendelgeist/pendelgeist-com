@@ -190,7 +190,7 @@ Random theme) into every page's `<nav>`, and persists the choice to `localStorag
 are `--color-*` custom properties in `public/styles.css`:
 - Auto/Light/Dark share one set of values via `light-dark()`; picking one just narrows
   `color-scheme`.
-- Vaporwave/FFVII Menu/Eva-01/Manga (Shoujo)/the four Seinen styles/Game Boy are fixed themes that override every `--color-*` (plus
+- Vaporwave/FFVII Menu/Eva-01/Shoujo/Seinen/Game Boy are fixed themes that override every `--color-*` (plus
   fonts, borders, radii, spacing) for their own `[data-theme="..."]` selector, with bespoke
   CSS flourishes on top. Adding a new one this way = a CSS block + an entry in the `THEMES`
   array in `theme.js`. All per-theme motion is neutralized by the blanket

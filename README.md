@@ -77,23 +77,18 @@ Unit-01: violet chrome and cards, lime-green headings and armor-stripe card edge
 orange chest plate for ratings, on the black-and-blood-red backdrop of the unit's key art,
 in a MAGI-terminal monospace font) adds faint scanlines, lime/black caution striping under
 the nav, and a quick heartbeat-style pulse on section
-headings; the manga themes share a grayscale base (they all match `[data-theme^="manga"]`:
+headings; the two manga themes share a grayscale base (both match `[data-theme^="manga"]`:
 Mincho headings, hairline panels, the review in a speech bubble) with sketch art from
-`public/themes/manga/` — Manga (Shoujo), after Fruits Basket and Kare Kano (hairline panels
-on a lot of white, a gray glitter-and-bokeh tone fading down from the top, light gray chrome,
-serif-italic headings between sparkles, fine-lined roses and bubbles), and four Seinen
-styles, none of which borrow American-comic lettering, bursts or offset shadows: Ink Wash
-(sumi-e after Vagabond — washi paper, ink blooms, misty ridgelines, a dry-brush stroke under
-each heading and a 評 seal), Gekiga (dark, after Berserk — a black night page, white-ruled
-panels, white bubbles cut out of the dark, a castle wall in white hatching and ドドド down
-the margin), Cinematic (seinen realism after Monster, Junji Ito and the modern seinen page — white
-pages and chrome; on `/vqar` the reviews laid out as a page of panels in mixed widths with
-white gutters, each opening on its own band of tone — dot screen, speed lines, hatching or a
-gradient; the review lettered in a tall oval bubble in centered capitals (Comic Neue, OFL,
-in `public/fonts/comic-neue/`); chapter openers with a ドン; a page number at the foot;
-foliage and an old European street in fine line) and Cyberpunk (technical line after Ghost in the Shell and
-Akira — a drafting grid, crop-ticked panels, uppercase headings tagged FILE.01, the review as
-a boxed NOTE annotation, a conduit cutaway with callouts); Game Boy uses the DMG-01's four
+`public/themes/manga/` — Shoujo (`manga-shoujo`), after Fruits Basket and Kare Kano (hairline
+panels on a lot of white, a gray glitter-and-bokeh tone fading down from the top, light gray
+chrome, serif-italic headings between sparkles, fine-lined roses and bubbles), and Seinen
+(`manga-seinen-cinema`), after Monster, Junji Ito and the modern seinen page, borrowing no
+American-comic lettering, bursts or offset shadows (white pages and chrome; on `/vqar` the
+reviews laid out as a page of panels in mixed widths with white gutters, each opening on its
+own band of tone — dot screen, speed lines, hatching or a gradient; the review lettered in a
+tall oval bubble in centered capitals (Comic Neue, OFL, in `public/fonts/comic-neue/`);
+chapter openers with a ドン; a page number at the foot; foliage and an old European street in
+fine line); Game Boy uses the DMG-01's four
 greens, a pixel font and a faint LCD dot grid. The manga themes and Game Boy also redraw the
 streaming badges in their own palette, rather than leaving brand orange and red as the only
 off-palette color on the page.
