@@ -19,11 +19,6 @@ const THEMES = [
   { id: 'gameboy', label: 'Game Boy', group: 'Anime & Games' },
   { id: 'vaporwave', label: 'Vaporwave', group: 'Novelty' },
   { id: 'random', label: 'Random', group: 'Novelty' },
-  // Preview: Seinen with each of two candidate touches, to compare live.
-  // Whichever is kept folds into Seinen and these come back out.
-  { id: 'manga-seinen-slant', label: 'Seinen (Slanted)', group: 'Preview' },
-  { id: 'manga-seinen-sfx', label: 'Seinen (SFX)', group: 'Preview' },
-  { id: 'manga-seinen-both', label: 'Seinen (Slanted + SFX)', group: 'Preview' },
 ];
 
 const RANDOM_THEMES = new Set(['random']);

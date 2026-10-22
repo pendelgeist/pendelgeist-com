@@ -338,6 +338,10 @@ function createSubReviewBlock(label, sub) {
 /** @param {Review} r */
 function createReviewArticle(r) {
   const article = document.createElement('article');
+  // The rating that counts (a revisit's, once there is one), for styles to
+  // key off - the Seinen theme picks each panel's tone and sound effect by it.
+  const effectiveRating = effectiveRatingNumber(r);
+  if (typeof effectiveRating === 'number') article.dataset.rating = String(effectiveRating);
   const body = document.createElement('div');
   body.className = 'entry-body';
 

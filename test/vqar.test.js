@@ -442,6 +442,27 @@ test('a review with watchProgress renders it in the entry meta; one without does
   assert.equal(badges[0].textContent, 'Progress: Ep 3');
 });
 
+test('each review card carries its effective rating for styles to key off, a revisit\'s once there is one', async () => {
+  const fetch = createPathFetchStub({
+    '/vqar/data/index.json': seasonIndex,
+    '/vqar/data/seasons/summer-2026.json': {
+      id: 'summer-2026',
+      name: 'Summer 2026',
+      reviewed: [
+        { titleEN: 'Dead On Arrival', ratingNumber: 0, ratingText: 'Dead', dateReviewed: '2026-07-03' },
+        { titleEN: 'Turned Around', ratingNumber: 4, ratingText: 'Yeah', dateReviewed: '2026-07-02', fullReview: { ratingNumber: 5, ratingText: 'Peak', review: 'x' } },
+        { titleEN: 'Unrated', ratingText: 'Custom', dateReviewed: '2026-07-01' },
+      ],
+      pending: [],
+      skipped: [],
+    },
+  });
+  const { document } = await loadApp({ fetch });
+
+  const ratings = [...document.querySelectorAll('#reviewedShows article')].map((a) => a.dataset.rating);
+  assert.deepEqual(ratings, ['0', '5', undefined]);
+});
+
 test('an older show shows when it aired, and a search for that finds it', async () => {
   const fetch = createPathFetchStub({
     '/vqar/data/index.json': seasonIndex,

@@ -48,15 +48,6 @@ const THEMES = {
   Seinen: {
     bg: '#fff', text: '#111', accent: '#111', surface: '#fff', chrome: '#fff', muted: '#444', navLink: '#111', title: '#111',
   },
-  'Seinen (Slanted)': {
-    bg: '#fff', text: '#111', accent: '#111', surface: '#fff', chrome: '#fff', muted: '#444', navLink: '#111', title: '#111',
-  },
-  'Seinen (SFX)': {
-    bg: '#fff', text: '#111', accent: '#111', surface: '#fff', chrome: '#fff', muted: '#444', navLink: '#111', title: '#111',
-  },
-  'Seinen (Slanted + SFX)': {
-    bg: '#fff', text: '#111', accent: '#111', surface: '#fff', chrome: '#fff', muted: '#444', navLink: '#111', title: '#111',
-  },
   'Game Boy': {
     bg: '#9bbc0f', text: '#0f380f', accent: '#0f380f', surface: '#8bac0f', chrome: '#0f380f', muted: '#0f380f', navLink: '#9bbc0f', title: '#0f380f',
   },
