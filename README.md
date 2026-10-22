@@ -79,10 +79,10 @@ in a MAGI-terminal monospace font) adds faint scanlines, lime/black caution stri
 the nav, and a quick heartbeat-style pulse on section
 headings; the two manga themes share a grayscale base (both match `[data-theme^="manga"]`:
 Mincho headings, hairline panels, the review in a speech bubble) with sketch art from
-`public/themes/manga/` — Shoujo (`manga-shoujo`), after Fruits Basket and Kare Kano (hairline
+`public/themes/manga/` — Shoujo Manga (`manga-shoujo`), after Fruits Basket and Kare Kano (hairline
 panels on a lot of white, a gray glitter-and-bokeh tone fading down from the top, light gray
 chrome, serif-italic headings between sparkles, fine-lined roses and bubbles), and Seinen
-(`manga-seinen-cinema`), after Monster, Junji Ito and the modern seinen page, borrowing no
+Manga (`manga-seinen-cinema`), after Monster, Junji Ito and the modern seinen page, borrowing no
 American-comic lettering, bursts or offset shadows (white pages and chrome; on `/vqar` the
 reviews laid out as a page of panels in mixed widths with white gutters, each opening on a
 band of tone with a katakana sound effect in its corner, both picked by the review's rating —
