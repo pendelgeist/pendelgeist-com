@@ -42,10 +42,10 @@ const THEMES = {
   'FFVII Menu': {
     bg: '#0a1030', text: '#fff', accent: '#6ecfff', surface: '#14206b', chrome: '#0a1030', muted: '#9fb4e0', navLink: '#fff', title: '#fff',
   },
-  Shoujo: {
+  'Shoujo Manga': {
     bg: '#fff', text: '#111', accent: '#111', surface: '#fff', chrome: '#e4e4e4', muted: '#555', navLink: '#222', title: '#111',
   },
-  Seinen: {
+  'Seinen Manga': {
     bg: '#fff', text: '#111', accent: '#111', surface: '#fff', chrome: '#fff', muted: '#444', navLink: '#111', title: '#111',
   },
   'Game Boy': {

@@ -31,7 +31,7 @@ test('renders a theme picker into the nav with every theme option', async () => 
   );
   assert.deepEqual(
     [...select.options].map(o => o.textContent),
-    ['Auto', 'AMO - L', 'AMO - Kira', 'FFVII Menu', 'Eva-01', 'Shoujo', 'Seinen', 'Game Boy', 'Vaporwave', 'Random']
+    ['Auto', 'AMO - L', 'AMO - Kira', 'FFVII Menu', 'Eva-01', 'Shoujo Manga', 'Seinen Manga', 'Game Boy', 'Vaporwave', 'Random']
   );
 });
 
