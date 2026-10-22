@@ -84,11 +84,13 @@ panels on a lot of white, a gray glitter-and-bokeh tone fading down from the top
 chrome, serif-italic headings between sparkles, fine-lined roses and bubbles), and Seinen
 (`manga-seinen-cinema`), after Monster, Junji Ito and the modern seinen page, borrowing no
 American-comic lettering, bursts or offset shadows (white pages and chrome; on `/vqar` the
-reviews laid out as a page of panels in mixed widths with white gutters, each opening on its
-own band of tone — dot screen, speed lines, hatching or a gradient; the review lettered in a
-tall oval bubble in centered capitals (Comic Neue, OFL, in `public/fonts/comic-neue/`);
-chapter openers with a ドン; a page number at the foot; foliage and an old European street in
-fine line); Game Boy uses the DMG-01's four
+reviews laid out as a page of panels in mixed widths with white gutters, each opening on a
+band of tone with a katakana sound effect in its corner, both picked by the review's rating —
+`app.js` stamps each card with `data-rating`, a revisit's rating once there is one: 5 ドーン
+DOOON over focus lines raining down, 4 ワクワク WAKU WAKU over bright dot screen, 3 シーン SILENCE over flat
+gray, 2 ズーン ZUUUN under hanging gloom lines, 1 ガーン GAAAN over heavy cross-hatching, 0
+チーン CHIIIN on solid black; plain left-aligned review text; chapter openers with a ドン; a
+page number at the foot; foliage and an old European street in fine line); Game Boy uses the DMG-01's four
 greens, a pixel font and a faint LCD dot grid. The manga themes and Game Boy also redraw the
 streaming badges in their own palette, rather than leaving brand orange and red as the only
 off-palette color on the page.

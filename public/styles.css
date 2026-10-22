@@ -1,23 +1,6 @@
 /* Press Start 2P (OFL - public/fonts/press-start-2p/OFL.txt) is the Game
- * Boy theme's pixel heading face, and Comic Neue (OFL) letters the Seinen
- * theme's speech bubbles. A browser only downloads a face a rendered
- * element actually uses, so these cost nothing outside their themes. */
-@font-face {
-  font-family: 'Comic Neue';
-  src: url('/fonts/comic-neue/ComicNeue-Regular.woff2') format('woff2');
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Comic Neue';
-  src: url('/fonts/comic-neue/ComicNeue-Bold.woff2') format('woff2');
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-}
-
+ * Boy theme's pixel heading face. A browser only downloads a face a
+ * rendered element actually uses, so it costs nothing outside that theme. */
 @font-face {
   font-family: 'Press Start 2P';
   src: url('/fonts/press-start-2p/PressStart2P.woff2') format('woff2');
@@ -653,13 +636,12 @@
  * nothing from American comics (no comic-book lettering, starbursts or hard
  * offset shadows) - it works in the things seinen pages actually use.
  *
- * Plain white paper and chrome, the reviews laid out as a page
- * of panels in mixed sizes with white gutters (full width, then two halves,
- * then two-thirds and a third, repeating), each panel opening on its own
- * band of tone - dot screen, speed lines, pen hatching or a gradient -
- * the review lettered in a tall oval bubble in centered capitals the way
- * English manga is lettered, chapter openers with a ドン, a page number at
- * the foot of the page, and foliage and an old street in fine line. */
+ * Plain white paper and chrome, the reviews laid out as a page of panels in
+ * mixed sizes with white gutters (full width, then two halves, then
+ * two-thirds and a third, repeating), each panel opening on a band of tone
+ * with a katakana sound effect - both picked by the review's rating - over
+ * plain left-aligned review text, chapter openers with a ドン, a page number
+ * at the foot of the page, and foliage and an old street in fine line. */
 :root[data-theme="manga-seinen-cinema"] {
   --color-bg: #fff;
   --color-chrome: #fff;
@@ -742,35 +724,113 @@
   }
 }
 
-/* Every panel opens on a band of tone across its top, each in a different
- * technique, fading out before the text starts. */
+/* Every panel opens on a band of tone across its top, and a sound effect
+ * lettered into its corner - both picked by the review's rating (the
+ * data-rating the page stamps on each card, a revisit's rating once there
+ * is one), so the page reads its verdicts before a word of them:
+ *
+ *   5 Peak   ドーン  DOOON      focus lines raining down from above
+ *   4 Yeah   ワクワク WAKU WAKU  bright dot screen, the anticipation tone
+ *   3 Meh    シーン  SILENCE    flat gray, nothing happening
+ *   2 Trash  ズーン  ZUUUN      gloom lines hanging down from the top
+ *   1 Never  ガーン  GAAAN      heavy cross-hatching, the shock
+ *   0 Dead   チーン  CHIIIN     solid black - the funeral bell
+ *
+ * The tone fades out before the text, and the effect sits in the band with
+ * a halo so it never sits on the review itself. An unrated review gets a
+ * plain dot screen and no effect. */
 :root[data-theme="manga-seinen-cinema"] #reviewedShows > article {
-  padding-top: 2.4rem;
+  position: relative;
+  padding-top: 3.6rem;
   background:
-    linear-gradient(to bottom, transparent, #fff 2.2rem) no-repeat,
-    radial-gradient(rgb(0 0 0 / 35%) 1px, transparent 1.3px) 0 0 / 5px 5px,
+    linear-gradient(to bottom, transparent, #fff 3.4rem) no-repeat,
+    radial-gradient(rgb(0 0 0 / 30%) 1px, transparent 1.3px) 0 0 / 5px 5px,
     #fff;
 }
 
-:root[data-theme="manga-seinen-cinema"] #reviewedShows > article:nth-of-type(4n + 2) {
+:root[data-theme="manga-seinen-cinema"] #reviewedShows > article[data-rating="5"] {
   background:
-    linear-gradient(to bottom, transparent, #fff 2.2rem) no-repeat,
-    repeating-linear-gradient(90deg, #111 0 1px, transparent 1px 4px, #111 4px 5px, transparent 5px 11px),
+    linear-gradient(to bottom, transparent, #fff 3.4rem) no-repeat,
+    repeating-conic-gradient(from 0deg at 50% -6rem, #111 0deg 0.5deg, transparent 0.5deg 1.6deg),
     #fff;
 }
 
-:root[data-theme="manga-seinen-cinema"] #reviewedShows > article:nth-of-type(4n + 3) {
+:root[data-theme="manga-seinen-cinema"] #reviewedShows > article[data-rating="4"] {
   background:
-    linear-gradient(to bottom, transparent, #fff 2.2rem) no-repeat,
-    repeating-linear-gradient(45deg, rgb(0 0 0 / 55%) 0 1px, transparent 1px 4px),
-    repeating-linear-gradient(-45deg, rgb(0 0 0 / 35%) 0 1px, transparent 1px 6px),
+    linear-gradient(to bottom, transparent, #fff 3.4rem) no-repeat,
+    radial-gradient(rgb(0 0 0 / 55%) 1.4px, transparent 1.7px) 0 0 / 6px 6px,
     #fff;
 }
 
-:root[data-theme="manga-seinen-cinema"] #reviewedShows > article:nth-of-type(4n + 4) {
+:root[data-theme="manga-seinen-cinema"] #reviewedShows > article[data-rating="3"] {
   background:
-    linear-gradient(to bottom, #111 0, #555 0.8rem, transparent 2.2rem) no-repeat,
+    linear-gradient(to bottom, #cfcfcf, #e6e6e6 1.6rem, #fff 3.4rem) no-repeat,
     #fff;
+}
+
+:root[data-theme="manga-seinen-cinema"] #reviewedShows > article[data-rating="2"] {
+  background:
+    linear-gradient(to bottom, transparent 0.4rem, #fff 3.4rem) no-repeat,
+    repeating-linear-gradient(90deg, #111 0 1px, transparent 1px 7px),
+    #fff;
+}
+
+:root[data-theme="manga-seinen-cinema"] #reviewedShows > article[data-rating="1"] {
+  background:
+    linear-gradient(to bottom, transparent, #fff 3.4rem) no-repeat,
+    repeating-linear-gradient(45deg, rgb(0 0 0 / 70%) 0 1px, transparent 1px 4px),
+    repeating-linear-gradient(-45deg, rgb(0 0 0 / 50%) 0 1px, transparent 1px 5px),
+    #fff;
+}
+
+:root[data-theme="manga-seinen-cinema"] #reviewedShows > article[data-rating="0"] {
+  background:
+    linear-gradient(to bottom, #111 0, #111 1.6rem, #666 2.4rem, #fff 3.4rem) no-repeat,
+    #fff;
+}
+
+/* The effect: katakana in the band's corner, the English under it. */
+:root[data-theme="manga-seinen-cinema"] #reviewedShows > article .entry-body::before,
+:root[data-theme="manga-seinen-cinema"] #reviewedShows > article .entry-body::after {
+  position: absolute;
+  right: 1rem;
+  pointer-events: none;
+  color: #111;
+  text-shadow: 0 0 3px #fff, 0 0 3px #fff, 0 0 2px #fff, 0 0 1px #fff;
+}
+
+:root[data-theme="manga-seinen-cinema"] #reviewedShows > article .entry-body::before {
+  top: 0.35rem;
+  font: 900 1.9rem/1 'Noto Sans JP', 'Hiragino Kaku Gothic ProN', 'Yu Gothic', sans-serif;
+  letter-spacing: -0.04em;
+  transform: rotate(-5deg);
+  transform-origin: right center;
+}
+
+:root[data-theme="manga-seinen-cinema"] #reviewedShows > article .entry-body::after {
+  top: 2.45rem;
+  font: 800 0.62rem/1 'Raleway', sans-serif;
+  letter-spacing: 0.14rem;
+}
+
+:root[data-theme="manga-seinen-cinema"] #reviewedShows > article[data-rating="5"] .entry-body::before { content: '\30C9\30FC\30F3'; font-size: 2.3rem; }
+:root[data-theme="manga-seinen-cinema"] #reviewedShows > article[data-rating="5"] .entry-body::after { content: 'DOOON'; }
+:root[data-theme="manga-seinen-cinema"] #reviewedShows > article[data-rating="4"] .entry-body::before { content: '\30EF\30AF\30EF\30AF'; }
+:root[data-theme="manga-seinen-cinema"] #reviewedShows > article[data-rating="4"] .entry-body::after { content: 'WAKU WAKU'; }
+:root[data-theme="manga-seinen-cinema"] #reviewedShows > article[data-rating="3"] .entry-body::before { content: '\30B7\30FC\30F3'; }
+:root[data-theme="manga-seinen-cinema"] #reviewedShows > article[data-rating="3"] .entry-body::after { content: 'SILENCE'; }
+:root[data-theme="manga-seinen-cinema"] #reviewedShows > article[data-rating="2"] .entry-body::before { content: '\30BA\30FC\30F3'; }
+:root[data-theme="manga-seinen-cinema"] #reviewedShows > article[data-rating="2"] .entry-body::after { content: 'ZUUUN'; }
+:root[data-theme="manga-seinen-cinema"] #reviewedShows > article[data-rating="1"] .entry-body::before { content: '\30AC\30FC\30F3'; }
+:root[data-theme="manga-seinen-cinema"] #reviewedShows > article[data-rating="1"] .entry-body::after { content: 'GAAAN'; }
+:root[data-theme="manga-seinen-cinema"] #reviewedShows > article[data-rating="0"] .entry-body::before { content: '\30C1\30FC\30F3'; }
+:root[data-theme="manga-seinen-cinema"] #reviewedShows > article[data-rating="0"] .entry-body::after { content: 'CHIIIN'; }
+
+/* Dead lands on the black band, so its effect turns white with a dark halo. */
+:root[data-theme="manga-seinen-cinema"] #reviewedShows > article[data-rating="0"] .entry-body::before,
+:root[data-theme="manga-seinen-cinema"] #reviewedShows > article[data-rating="0"] .entry-body::after {
+  color: #fff;
+  text-shadow: 0 0 3px #111, 0 0 3px #111, 0 0 2px #111;
 }
 
 /* The page number at the foot of the page. */
@@ -817,29 +877,17 @@
   letter-spacing: 0.04rem;
 }
 
-/* Lettered like an English manga: a tall oval, centered capitals. */
+/* The review is plain text in the body face, left-aligned - no bubble. */
 :root[data-theme="manga-seinen-cinema"] .entry-description {
-  /* An oval's usable interior is about 70% of its box, so the padding keeps
-   * the lettering inside the curve rather than running across it. */
-  padding: 3rem 14%;
-  border: 1.5px solid #111;
-  border-radius: 50%;
-  font: 700 0.82rem/1.45 'Comic Neue', 'Comic Sans MS', sans-serif;
-  letter-spacing: 0.02rem;
-  text-align: center;
-  text-transform: uppercase;
-}
-
-@media (max-width: 600px) {
-  :root[data-theme="manga-seinen-cinema"] .entry-description {
-    padding: 2.6rem 10%;
-  }
+  margin: 0.5rem 0 0.9rem;
+  padding: 0;
+  border: none;
+  border-radius: 0;
+  background: none;
 }
 
 :root[data-theme="manga-seinen-cinema"] .entry-description::after {
-  left: 50%;
-  border-right-width: 1.5px;
-  border-bottom-width: 1.5px;
+  content: none;
 }
 
 /* Game Boy (DMG-01): the original four greens, a pixel font for headings,
