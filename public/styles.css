@@ -660,7 +660,7 @@
  * the review lettered in a tall oval bubble in centered capitals the way
  * English manga is lettered, chapter openers with a ドン, a page number at
  * the foot of the page, and foliage and an old street in fine line. */
-:root[data-theme="manga-seinen-cinema"] {
+:root[data-theme^="manga-seinen"] {
   --color-bg: #fff;
   --color-chrome: #fff;
   --color-nav-link: #111;
@@ -668,12 +668,12 @@
   --border-width: 2px;
 }
 
-:root[data-theme="manga-seinen-cinema"] body {
+:root[data-theme^="manga-seinen"] body {
   background: #fff;
   counter-reset: chapter;
 }
 
-:root[data-theme="manga-seinen-cinema"] body::before {
+:root[data-theme^="manga-seinen"] body::before {
   content: '';
   position: fixed;
   left: 0;
@@ -685,7 +685,7 @@
   opacity: 0.35;
 }
 
-:root[data-theme="manga-seinen-cinema"] body::after {
+:root[data-theme^="manga-seinen"] body::after {
   content: '';
   position: fixed;
   top: 3rem;
@@ -697,54 +697,54 @@
   opacity: 0.55;
 }
 
-:root[data-theme="manga-seinen-cinema"] nav {
+:root[data-theme^="manga-seinen"] nav {
   border-bottom: 2px solid #111;
   box-shadow: none;
 }
 
-:root[data-theme="manga-seinen-cinema"] article,
-:root[data-theme="manga-seinen-cinema"] .guidelines {
+:root[data-theme^="manga-seinen"] article,
+:root[data-theme^="manga-seinen"] .guidelines {
   border: 2px solid #111;
   background: #fff;
 }
 
 /* The page: panels in mixed widths, white gutters between them. */
-:root[data-theme="manga-seinen-cinema"] #reviewedShows {
+:root[data-theme^="manga-seinen"] #reviewedShows {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
   gap: 0.7rem;
 }
 
-:root[data-theme="manga-seinen-cinema"] #reviewedShows > * {
+:root[data-theme^="manga-seinen"] #reviewedShows > * {
   grid-column: 1 / -1;
 }
 
-:root[data-theme="manga-seinen-cinema"] #reviewedShows > article {
+:root[data-theme^="manga-seinen"] #reviewedShows > article {
   margin: 0;
 }
 
-:root[data-theme="manga-seinen-cinema"] #reviewedShows > article:nth-of-type(5n + 2),
-:root[data-theme="manga-seinen-cinema"] #reviewedShows > article:nth-of-type(5n + 3) {
+:root[data-theme^="manga-seinen"] #reviewedShows > article:nth-of-type(5n + 2),
+:root[data-theme^="manga-seinen"] #reviewedShows > article:nth-of-type(5n + 3) {
   grid-column: span 3;
 }
 
-:root[data-theme="manga-seinen-cinema"] #reviewedShows > article:nth-of-type(5n + 4) {
+:root[data-theme^="manga-seinen"] #reviewedShows > article:nth-of-type(5n + 4) {
   grid-column: span 4;
 }
 
-:root[data-theme="manga-seinen-cinema"] #reviewedShows > article:nth-of-type(5n + 5) {
+:root[data-theme^="manga-seinen"] #reviewedShows > article:nth-of-type(5n + 5) {
   grid-column: span 2;
 }
 
 @media (max-width: 900px) {
-  :root[data-theme="manga-seinen-cinema"] #reviewedShows > article:nth-of-type(n) {
+  :root[data-theme^="manga-seinen"] #reviewedShows > article:nth-of-type(n) {
     grid-column: 1 / -1;
   }
 }
 
 /* Every panel opens on a band of tone across its top, each in a different
  * technique, fading out before the text starts. */
-:root[data-theme="manga-seinen-cinema"] #reviewedShows > article {
+:root[data-theme^="manga-seinen"] #reviewedShows > article {
   padding-top: 2.4rem;
   background:
     linear-gradient(to bottom, transparent, #fff 2.2rem) no-repeat,
@@ -752,14 +752,14 @@
     #fff;
 }
 
-:root[data-theme="manga-seinen-cinema"] #reviewedShows > article:nth-of-type(4n + 2) {
+:root[data-theme^="manga-seinen"] #reviewedShows > article:nth-of-type(4n + 2) {
   background:
     linear-gradient(to bottom, transparent, #fff 2.2rem) no-repeat,
     repeating-linear-gradient(90deg, #111 0 1px, transparent 1px 4px, #111 4px 5px, transparent 5px 11px),
     #fff;
 }
 
-:root[data-theme="manga-seinen-cinema"] #reviewedShows > article:nth-of-type(4n + 3) {
+:root[data-theme^="manga-seinen"] #reviewedShows > article:nth-of-type(4n + 3) {
   background:
     linear-gradient(to bottom, transparent, #fff 2.2rem) no-repeat,
     repeating-linear-gradient(45deg, rgb(0 0 0 / 55%) 0 1px, transparent 1px 4px),
@@ -767,14 +767,14 @@
     #fff;
 }
 
-:root[data-theme="manga-seinen-cinema"] #reviewedShows > article:nth-of-type(4n + 4) {
+:root[data-theme^="manga-seinen"] #reviewedShows > article:nth-of-type(4n + 4) {
   background:
     linear-gradient(to bottom, #111 0, #555 0.8rem, transparent 2.2rem) no-repeat,
     #fff;
 }
 
 /* The page number at the foot of the page. */
-:root[data-theme="manga-seinen-cinema"] #reviewedShows::after {
+:root[data-theme^="manga-seinen"] #reviewedShows::after {
   content: '118';
   grid-column: 1 / -1;
   margin-top: 0.6rem;
@@ -783,14 +783,14 @@
   letter-spacing: 0.1rem;
 }
 
-:root[data-theme="manga-seinen-cinema"] .section > h2 {
+:root[data-theme^="manga-seinen"] .section > h2 {
   counter-increment: chapter;
   border-bottom: 2px solid #111;
   font-weight: 700;
   letter-spacing: 0.4rem;
 }
 
-:root[data-theme="manga-seinen-cinema"] .section > h2::before {
+:root[data-theme^="manga-seinen"] .section > h2::before {
   content: 'Chapter ' counter(chapter);
   display: block;
   margin-bottom: 0.2rem;
@@ -801,7 +801,7 @@
 }
 
 /* ドン - the beat a manga drops on a reveal. */
-:root[data-theme="manga-seinen-cinema"] .section > h2::after {
+:root[data-theme^="manga-seinen"] .section > h2::after {
   content: '\30C9\30F3';
   display: inline-block;
   margin-left: 0.6em;
@@ -812,13 +812,13 @@
   transform: skew(-10deg) rotate(-4deg);
 }
 
-:root[data-theme="manga-seinen-cinema"] .entry-title {
+:root[data-theme^="manga-seinen"] .entry-title {
   font-weight: 700;
   letter-spacing: 0.04rem;
 }
 
 /* Lettered like an English manga: a tall oval, centered capitals. */
-:root[data-theme="manga-seinen-cinema"] .entry-description {
+:root[data-theme^="manga-seinen"] .entry-description {
   /* An oval's usable interior is about 70% of its box, so the padding keeps
    * the lettering inside the curve rather than running across it. */
   padding: 3rem 14%;
@@ -831,16 +831,180 @@
 }
 
 @media (max-width: 600px) {
-  :root[data-theme="manga-seinen-cinema"] .entry-description {
+  :root[data-theme^="manga-seinen"] .entry-description {
     padding: 2.6rem 10%;
   }
 }
 
-:root[data-theme="manga-seinen-cinema"] .entry-description::after {
+:root[data-theme^="manga-seinen"] .entry-description::after {
   left: 50%;
   border-right-width: 1.5px;
   border-bottom-width: 1.5px;
 }
+
+/* Seinen preview options - the plain Seinen above plus each of two ideas,
+ * offered side by side in the picker's Preview group to compare live:
+ * manga-seinen-slant (slanted panel edges), manga-seinen-sfx (katakana sound
+ * effects) and manga-seinen-both. Whichever wins folds into Seinen itself.
+ *
+ * Slanted panels, after the Junji Ito page: the full-width panel's bottom
+ * edge rises to the right, the two halves under it start along the same
+ * slope, and the edge between the two-thirds and the third leans - every
+ * gutter staying parallel. Each cut is a clip-path, and the edge it leaves
+ * is redrawn as a diagonal line by article::before, since a clipped border
+ * simply disappears along the cut. One column on a narrow screen, so the
+ * cuts come off there. */
+:root:is([data-theme="manga-seinen-slant"], [data-theme="manga-seinen-both"]) #reviewedShows > article {
+  position: relative;
+}
+
+:root:is([data-theme="manga-seinen-slant"], [data-theme="manga-seinen-both"]) #reviewedShows > article::before {
+  content: none;
+  position: absolute;
+  pointer-events: none;
+  /* A 3px line between the strip's bottom-left and top-right corners. */
+  background: linear-gradient(to top left, transparent calc(50% - 1.5px), #111 calc(50% - 1.5px) calc(50% + 1.5px), transparent calc(50% + 1.5px));
+}
+
+/* Full-width panel: bottom edge rises 48px to the right. */
+:root:is([data-theme="manga-seinen-slant"], [data-theme="manga-seinen-both"]) #reviewedShows > article:nth-of-type(5n + 1) {
+  padding-bottom: 3.5rem;
+  border-bottom: none;
+  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 48px), 0 100%);
+}
+
+:root:is([data-theme="manga-seinen-slant"], [data-theme="manga-seinen-both"]) #reviewedShows > article:nth-of-type(5n + 1)::before {
+  content: '';
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 48px;
+}
+
+/* The halves under it: tops on the same slope, 24px of it each, with the
+ * tone band and any sound effect moved down clear of the cut. */
+:root:is([data-theme="manga-seinen-slant"], [data-theme="manga-seinen-both"]) #reviewedShows > article:nth-of-type(5n + 2) {
+  border-top: none;
+  padding-top: calc(2.4rem + 48px);
+  background-position: 0 48px;
+  clip-path: polygon(0 48px, 100% 24px, 100% 100%, 0 100%);
+}
+
+:root:is([data-theme="manga-seinen-slant"], [data-theme="manga-seinen-both"]) #reviewedShows > article:nth-of-type(5n + 2)::before {
+  content: '';
+  left: 0;
+  right: 0;
+  top: 24px;
+  height: 24px;
+}
+
+:root:is([data-theme="manga-seinen-slant"], [data-theme="manga-seinen-both"]) #reviewedShows > article:nth-of-type(5n + 3) {
+  border-top: none;
+  padding-top: calc(2.4rem + 24px);
+  background-position: 0 24px;
+  clip-path: polygon(0 24px, 100% 0, 100% 100%, 0 100%);
+}
+
+:root:is([data-theme="manga-seinen-slant"], [data-theme="manga-seinen-both"]) #reviewedShows > article:nth-of-type(5n + 3)::before {
+  content: '';
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 24px;
+}
+
+/* Two-thirds and a third: the edge between them leans 28px. */
+:root:is([data-theme="manga-seinen-slant"], [data-theme="manga-seinen-both"]) #reviewedShows > article:nth-of-type(5n + 4) {
+  padding-right: calc(0.75rem + 28px);
+  border-right: none;
+  clip-path: polygon(0 0, 100% 0, calc(100% - 28px) 100%, 0 100%);
+}
+
+:root:is([data-theme="manga-seinen-slant"], [data-theme="manga-seinen-both"]) #reviewedShows > article:nth-of-type(5n + 4)::before {
+  content: '';
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: 28px;
+  background: linear-gradient(to bottom right, transparent calc(50% - 1.5px), #111 calc(50% - 1.5px) calc(50% + 1.5px), transparent calc(50% + 1.5px));
+}
+
+:root:is([data-theme="manga-seinen-slant"], [data-theme="manga-seinen-both"]) #reviewedShows > article:nth-of-type(5n + 5) {
+  padding-left: calc(0.75rem + 28px);
+  border-left: none;
+  clip-path: polygon(28px 0, 100% 0, 100% 100%, 0 100%);
+}
+
+:root:is([data-theme="manga-seinen-slant"], [data-theme="manga-seinen-both"]) #reviewedShows > article:nth-of-type(5n + 5)::before {
+  content: '';
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 28px;
+  background: linear-gradient(to bottom right, transparent calc(50% - 1.5px), #111 calc(50% - 1.5px) calc(50% + 1.5px), transparent calc(50% + 1.5px));
+}
+
+@media (max-width: 900px) {
+  :root:is([data-theme="manga-seinen-slant"], [data-theme="manga-seinen-both"]) #reviewedShows > article:nth-of-type(n) {
+    padding: 2.4rem 0.75rem 1rem;
+    border: 2px solid #111;
+    clip-path: none;
+  }
+
+  :root:is([data-theme="manga-seinen-slant"], [data-theme="manga-seinen-both"]) #reviewedShows > article:nth-of-type(n)::before {
+    content: none;
+  }
+}
+
+/* Sound effects, lettered the way scanlations do it: the katakana drawn
+ * into the panel's top corner over its band of tone, a white halo keeping
+ * it off the tone, and the English in small capitals beside it. Four panels
+ * in every six get one - ザワ (an uneasy murmur), ドキッ (a heartbeat),
+ * シーン (dead silence), ゴゴゴ (menace) - so they read as beats, not
+ * wallpaper. Decoration only: the katakana and translation are pseudo-
+ * element content, which screen readers mostly skip. */
+:root:is([data-theme="manga-seinen-sfx"], [data-theme="manga-seinen-both"]) #reviewedShows > article {
+  position: relative;
+}
+
+:root:is([data-theme="manga-seinen-sfx"], [data-theme="manga-seinen-both"]) #reviewedShows > article .entry-body::before,
+:root:is([data-theme="manga-seinen-sfx"], [data-theme="manga-seinen-both"]) #reviewedShows > article .entry-body::after {
+  position: absolute;
+  pointer-events: none;
+  color: #111;
+  text-shadow: 0 0 3px #fff, 0 0 3px #fff, 0 0 2px #fff, 0 0 1px #fff;
+}
+
+:root:is([data-theme="manga-seinen-sfx"], [data-theme="manga-seinen-both"]) #reviewedShows > article .entry-body::before {
+  top: 0.3rem;
+  right: 1rem;
+  font: 900 1.5rem/1 'Noto Sans JP', 'Hiragino Kaku Gothic ProN', 'Yu Gothic', sans-serif;
+  letter-spacing: -0.05em;
+  transform: rotate(-6deg);
+}
+
+:root:is([data-theme="manga-seinen-sfx"], [data-theme="manga-seinen-both"]) #reviewedShows > article .entry-body::after {
+  top: 0.75rem;
+  right: 5.4rem;
+  font: 700 0.6rem/1 'Comic Neue', 'Comic Sans MS', sans-serif;
+  letter-spacing: 0.08rem;
+}
+
+/* With slanted tops, the corner the effect sits in is cut away - drop it
+ * below the cut. */
+:root[data-theme="manga-seinen-both"] #reviewedShows > article:nth-of-type(5n + 2) .entry-body::before { top: calc(0.3rem + 48px); }
+:root[data-theme="manga-seinen-both"] #reviewedShows > article:nth-of-type(5n + 2) .entry-body::after { top: calc(0.75rem + 48px); }
+:root[data-theme="manga-seinen-both"] #reviewedShows > article:nth-of-type(5n + 3) .entry-body::before { top: calc(0.3rem + 24px); }
+:root[data-theme="manga-seinen-both"] #reviewedShows > article:nth-of-type(5n + 3) .entry-body::after { top: calc(0.75rem + 24px); }
+
+:root:is([data-theme="manga-seinen-sfx"], [data-theme="manga-seinen-both"]) #reviewedShows > article:nth-of-type(6n + 1) .entry-body::before { content: '\30B6\30EF\2026'; }
+:root:is([data-theme="manga-seinen-sfx"], [data-theme="manga-seinen-both"]) #reviewedShows > article:nth-of-type(6n + 1) .entry-body::after { content: 'ZAWA'; }
+:root:is([data-theme="manga-seinen-sfx"], [data-theme="manga-seinen-both"]) #reviewedShows > article:nth-of-type(6n + 2) .entry-body::before { content: '\30C9\30AD\30C3'; }
+:root:is([data-theme="manga-seinen-sfx"], [data-theme="manga-seinen-both"]) #reviewedShows > article:nth-of-type(6n + 2) .entry-body::after { content: 'BA-DUMP'; }
+:root:is([data-theme="manga-seinen-sfx"], [data-theme="manga-seinen-both"]) #reviewedShows > article:nth-of-type(6n + 4) .entry-body::before { content: '\30B7\30FC\30F3'; }
+:root:is([data-theme="manga-seinen-sfx"], [data-theme="manga-seinen-both"]) #reviewedShows > article:nth-of-type(6n + 4) .entry-body::after { content: 'SILENCE'; }
+:root:is([data-theme="manga-seinen-sfx"], [data-theme="manga-seinen-both"]) #reviewedShows > article:nth-of-type(6n + 5) .entry-body::before { content: '\30B4\30B4\30B4'; }
+:root:is([data-theme="manga-seinen-sfx"], [data-theme="manga-seinen-both"]) #reviewedShows > article:nth-of-type(6n + 5) .entry-body::after { content: 'RUMBLE'; }
 
 /* Game Boy (DMG-01): the original four greens, a pixel font for headings,
  * hard pixel shadows and a faint LCD dot grid. Text and muted share the

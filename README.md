@@ -88,7 +88,12 @@ reviews laid out as a page of panels in mixed widths with white gutters, each op
 own band of tone — dot screen, speed lines, hatching or a gradient; the review lettered in a
 tall oval bubble in centered capitals (Comic Neue, OFL, in `public/fonts/comic-neue/`);
 chapter openers with a ドン; a page number at the foot; foliage and an old European street in
-fine line); Game Boy uses the DMG-01's four
+fine line). Seinen's prefix rules (`[data-theme^="manga-seinen"]`) also carry three
+temporary themes in the picker's Preview group, for comparing two candidate touches live —
+Seinen (Slanted): panel edges cut on parallel diagonals, after the Junji Ito page; Seinen
+(SFX): katakana sound effects with small English translations in the top corner of four
+panels in six; and Seinen (Slanted + SFX) — whichever is kept folds into Seinen and the
+previews come back out; Game Boy uses the DMG-01's four
 greens, a pixel font and a faint LCD dot grid. The manga themes and Game Boy also redraw the
 streaming badges in their own palette, rather than leaving brand orange and red as the only
 off-palette color on the page.

@@ -27,11 +27,11 @@ test('renders a theme picker into the nav with every theme option', async () => 
   assert.ok(select, 'expected a #themePicker select in the nav');
   assert.deepEqual(
     [...select.options].map(o => o.value),
-    ['system', 'light', 'dark', 'ffvii', 'eva-01', 'manga-shoujo', 'manga-seinen-cinema', 'gameboy', 'vaporwave', 'random']
+    ['system', 'light', 'dark', 'ffvii', 'eva-01', 'manga-shoujo', 'manga-seinen-cinema', 'gameboy', 'vaporwave', 'random', 'manga-seinen-slant', 'manga-seinen-sfx', 'manga-seinen-both']
   );
   assert.deepEqual(
     [...select.options].map(o => o.textContent),
-    ['Auto', 'AMO - L', 'AMO - Kira', 'FFVII Menu', 'Eva-01', 'Shoujo', 'Seinen', 'Game Boy', 'Vaporwave', 'Random']
+    ['Auto', 'AMO - L', 'AMO - Kira', 'FFVII Menu', 'Eva-01', 'Shoujo', 'Seinen', 'Game Boy', 'Vaporwave', 'Random', 'Seinen (Slanted)', 'Seinen (SFX)', 'Seinen (Slanted + SFX)']
   );
 });
 
@@ -39,7 +39,7 @@ test('files the themes under labelled groups in the picker', async () => {
   const { document } = await loadThemeScript();
 
   const groups = [...document.querySelectorAll('#themePicker optgroup')];
-  assert.deepEqual(groups.map(g => g.label), ['Standard', 'Anime & Games', 'Novelty']);
+  assert.deepEqual(groups.map(g => g.label), ['Standard', 'Anime & Games', 'Novelty', 'Preview']);
   assert.deepEqual([...groups[1].querySelectorAll('option')].map(o => o.value), ['ffvii', 'eva-01', 'manga-shoujo', 'manga-seinen-cinema', 'gameboy']);
 });
 
