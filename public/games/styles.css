@@ -1,0 +1,174 @@
+/* Game-review-specific styles; shared site styles live in /styles.css. Copied
+ * from /vqar's entry styles rather than shared, like every page's own CSS, so
+ * a restyle of one never reaches the other. Reviews are plain <article>s, so
+ * the fixed themes dress them the same way they dress /vqar's. */
+
+/* Guidelines */
+
+.guidelines {
+  box-shadow: var(--shadow-card);
+  margin-bottom: 2rem;
+  padding: 1rem;
+  display: none;
+  background-color: var(--color-surface);
+  border: var(--border-width) var(--border-style) var(--color-guideline-border);
+  border-radius: var(--radius-card);
+}
+
+.guidelines.show {
+  display: block;
+}
+
+.guidelines h3 {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  margin-top: 1rem;
+  color: var(--color-accent);
+}
+
+.guidelines h3:first-child {
+  margin-top: 0;
+}
+
+.guidelines p {
+  margin: 0.25rem 0;
+}
+
+.guidelines a {
+  color: var(--color-accent);
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 1rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--color-accent);
+}
+
+.back-link[hidden],
+.section h2[hidden] {
+  display: none;
+}
+
+/* Review entries */
+
+article {
+  box-shadow: var(--shadow-card);
+  display: flex;
+  margin-bottom: 0.75rem;
+  padding: 1rem 0.75rem;
+  transition: transform 0.3s ease;
+  background-color: var(--color-surface);
+  border-bottom: var(--border-width) var(--border-style) var(--color-article-border);
+  border-radius: var(--radius-card);
+}
+
+.entry-body {
+  flex-grow: 1;
+}
+
+article:last-child {
+  border-bottom: none;
+}
+
+article:hover {
+  transform: translateX(5px);
+}
+
+.entry-title {
+  font-family: var(--font-heading);
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+  color: var(--color-title);
+}
+
+/* The title is the review's shareable link, so it keeps the title's color
+ * and only underlines on hover/focus, rather than reading as body link text. */
+.entry-permalink {
+  color: inherit;
+  text-decoration: none;
+}
+
+.entry-permalink:hover,
+.entry-permalink:focus-visible {
+  text-decoration: underline;
+}
+
+.entry-facts {
+  margin-bottom: 0.75rem;
+  font-size: 0.8rem;
+  color: var(--color-muted);
+}
+
+.entry-description {
+  font-weight: 500;
+  line-height: 1.8;
+  font-size: 0.9rem;
+}
+
+.entry-description p + p {
+  margin-top: 0.75rem;
+}
+
+.entry-meta {
+  margin-top: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.entry-rating {
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: var(--color-accent);
+}
+
+.entry-published {
+  font-size: 0.72rem;
+  font-weight: lighter;
+  color: var(--color-muted);
+}
+
+.entry-progress,
+.entry-mark {
+  padding: 0.1rem 0.5rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  border: 1px solid var(--color-accent);
+  border-radius: 999px;
+  color: var(--color-accent);
+}
+
+.entry-mark-finished::before {
+  content: '\2713  ';
+}
+
+/* Later impressions, oldest first under the original */
+
+.entry-addendum {
+  margin-top: 0.75rem;
+  padding-top: 0.75rem;
+  border-top: 1px dashed var(--color-article-border);
+}
+
+.entry-addendum .entry-meta {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+}
+
+.entry-addendum-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1rem;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+
+.loading-error {
+  color: var(--color-accent);
+  font-weight: 700;
+}

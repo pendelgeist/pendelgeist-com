@@ -37,7 +37,7 @@ Static site (`public/`) served from a Cloudflare Worker, plus a small GraphQL AP
 backed by the same data. Two independent things share one Worker:
 
 - **Static assets** (`public/`): plain HTML/CSS/vanilla-JS ES modules, no build step. There
-  are eight pages: `/` (home), `/vqar`, `/fsar`, `/vqar-stats`, `/nasubi`, `/eva-tv`,
+  are nine pages: `/` (home), `/vqar`, `/fsar`, `/games`, `/vqar-stats`, `/nasubi`, `/eva-tv`,
   `/eva-tv/sources`, and `/graphql`. Each loads shared `/styles.css` + `/theme.js`, then its
   own page-specific stylesheet and script.
 - **The Worker** (`src/worker.js`): only actually runs for non-GET/HEAD requests to
@@ -173,6 +173,18 @@ verdict one-liner and at least one written section. Reviews are not all recent s
 `format` (TV/OVA/ONA/Movie/Special) and free-text `airedLabel` carry release info instead of a
 VQAR-style season id, and episode counts are optional.
 
+### Game reviews
+
+`/games` (Very Quick Game Reviews) is first impressions of games, VQAR-style but deliberately
+small: one committed file, `public/games/data.json`, no generated index, no filters. Shape and
+helpers are in `public/games/schema.js`; `scripts/validateGameReviews.js` checks the file and
+`test/games-data.test.js` runs it in CI. Required per review: `id` (slug, used in the
+shareable `?game=<id>` link), `title`, `review`, `ratingNumber` (VQAR's 0–5 tiers), `ratingText`,
+`dateReviewed` (Eastern-offset timestamp, stamped the same way as VQAR's). Optional: `platform`,
+`hoursPlayed`, `finished: true`. Playing more = append to the game's `updates` array (oldest
+first, each with its own rating; the latest one counts) — don't start a new entry. **If the
+user hasn't given a rating, ask for one before saving.** README → "Very Quick Game Reviews page".
+
 ### Other pages
 
 `/eva-tv`, `/eva-tv/sources` and `/nasubi` each read a fixed set of committed JSON with no
@@ -203,10 +215,10 @@ are `--color-*` custom properties in `public/styles.css`:
   authoritative list of every custom property a rolled palette can set; `theme.js` clears
   exactly those when switching away from Random.
 
-Each page's `<head>` has an inline pre-paint `<script>` (duplicated into all eight pages on
+Each page's `<head>` has an inline pre-paint `<script>` (duplicated into all nine pages on
 purpose — it must run before first paint, so it can't be a module) that re-applies the saved
 theme/palette before first render. If it ever changes, change it in **every** page:
-`test/pages.test.js` asserts all eight copies are identical and that they use the same
+`test/pages.test.js` asserts all nine copies are identical and that they use the same
 storage keys `theme.js` writes. It also honors a `?theme=<id>` share link (theme.js validates,
 saves and strips it; the 🔗 button next to the picker builds one).
 

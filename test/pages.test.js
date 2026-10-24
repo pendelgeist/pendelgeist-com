@@ -15,6 +15,7 @@ const PAGES = {
   nasubi: path.join(__dirname, '../public/nasubi/index.html'),
   'vqar-stats': path.join(__dirname, '../public/vqar-stats/index.html'),
   fsar: path.join(__dirname, '../public/fsar/index.html'),
+  games: path.join(__dirname, '../public/games/index.html'),
 };
 
 /** The inline <head> script, whitespace-normalized so indentation isn't the diff. */

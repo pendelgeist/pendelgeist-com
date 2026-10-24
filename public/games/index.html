@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>
+    // Applied before first paint to avoid a flash of the wrong theme; must
+    // match the storage key/values theme.js uses. A ?theme= in the link wins,
+    // so a shared link opens in its theme (theme.js validates and saves it).
+    try {
+      var savedTheme = new URLSearchParams(location.search).get('theme') || localStorage.getItem('pendelgeist:theme');
+      if (savedTheme && savedTheme !== 'system') {
+        document.documentElement.setAttribute('data-theme', savedTheme);
+        var savedPalette = localStorage.getItem('pendelgeist:theme:palette:' + savedTheme);
+        if (savedPalette) {
+          var palette = JSON.parse(savedPalette);
+          for (var prop in palette) {
+            document.documentElement.style.setProperty(prop, palette[prop]);
+          }
+        }
+      }
+    } catch (e) {}
+  </script>
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@500;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/games/styles.css">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <title>Very Quick Game Reviews</title>
+</head>
+<body>
+  <nav>
+    <div class="nav-left">
+      <a href="/">Home</a>
+      <span class="nav-title">Very Quick Game Reviews</span>
+      <a href="#" id="infoToggle">Guide</a>
+      <a href="/vqar">Anime Reviews</a>
+    </div>
+  </nav>
+  <script type="module" src="/theme.js"></script>
+  <div class="container">
+    <div class="guidelines" id="guidelines">
+      <h3>What This Is</h3>
+      <p>First impressions of games I'm playing, usually a few hours in &mdash; the game
+        counterpart to <a href="/vqar">Very Quick Anime Reviews</a>. If I keep playing,
+        later impressions get added underneath, and the newest rating is the one that counts.</p>
+
+      <h3>Suggested Ratings</h3>
+      <p>5 &mdash; Peak, Nice Game Broh</p>
+      <p>4 &mdash; Yeah, Here's Hoping</p>
+      <p>3 &mdash; Meh, Might Load the Save Again</p>
+      <p>2 &mdash; Trash, for Second Screen Only</p>
+      <p>1 &mdash; Never, Please No More Like This Ever</p>
+      <p>0 &mdash; Dead, El-Hazard 2 Over This</p>
+
+      <h3>Sharing</h3>
+      <p>Every game's title is a link to just that review.</p>
+    </div>
+
+    <div class="section">
+      <a href="/games" class="back-link" id="backLink" hidden>&larr; All game reviews</a>
+      <h2 id="listHeading">Reviewed</h2>
+      <div id="gameReviews"><div class="loading">LOADING DATA...</div></div>
+    </div>
+  </div>
+
+  <script type="module" src="/games/app.js"></script>
+</body>
+</html>
