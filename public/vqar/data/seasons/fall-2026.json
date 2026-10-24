@@ -1115,7 +1115,36 @@
         "netflix"
       ],
       "anilistId": 195539,
-      "annId": 36864
+      "annId": 36864,
+      "anilist": {
+        "format": "ONA",
+        "genres": [
+          "Action",
+          "Drama",
+          "Sci-Fi"
+        ],
+        "tags": [
+          "Cyberpunk",
+          "Cyborg",
+          "Crime",
+          "Urban",
+          "Revenge",
+          "Dystopian",
+          "Guns",
+          "Gore",
+          "Ensemble Cast",
+          "Terrorism",
+          "Found Family",
+          "Politics",
+          "Robots",
+          "Advertisement",
+          "Body Swapping"
+        ],
+        "studios": [
+          "TRIGGER"
+        ]
+      },
+      "titleJP": "サイバーパンク: エッジランナーズ2"
     }
   ],
   "pending": [
