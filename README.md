@@ -11,6 +11,7 @@ The Worker (`src/worker.js`) also backs a small GraphQL API over the same anime 
 - `public/index.html` — homepage, links out to the other sites.
 - `public/vqar/` — Very Quick Anime Reviews, a small vanilla-JS app.
 - `public/fsar/` — Full Season Anime Reviews, the long-form counterpart to VQAR.
+- `public/games/` — Very Quick Game Reviews, first impressions of games in the VQAR spirit.
 - `public/eva-tv/` — Neon Genesis Evangelion episode timeline, a small vanilla-JS app.
 - `public/nasubi/` — a data analysis of Nasubi's *Susunu! Denpa Shonen* sweepstakes ordeal.
 - `public/vqar-stats/` — "VQAR By The Numbers", a fun stats page over the VQAR review data.
@@ -805,6 +806,55 @@ has in `test/vqar-data.test.js`, so every PR checks both automatically.
 npm run build-fsar-index              # regenerate index.json from the review files
 node scripts/build-fsar-index.js --check   # exit 1 if it's stale, write nothing
 ```
+
+## Very Quick Game Reviews page
+
+`/games` is VQAR's idea applied to games — first impressions a few hours in — without any
+of VQAR's machinery. There are few of these, so there are no seasons, filters, stats or
+generated index: every review lives in one file, `public/games/data.json`, newest activity
+first on the page. `?game=<id>` narrows the page to one review, and each title links there,
+so that's the link to share.
+
+### Review shape
+
+```json
+{
+  "reviews": [
+    {
+      "id": "final-fantasy-resonance",
+      "title": "Final Fantasy Resonance",
+      "platform": "Switch 2",
+      "review": "First paragraph.\n\nSecond paragraph.",
+      "ratingNumber": 4,
+      "ratingText": "Yeah, Here's Hoping",
+      "dateReviewed": "2026-10-24T20:15:00-04:00",
+      "hoursPlayed": 4,
+      "updates": [
+        { "review": "...", "ratingNumber": 5, "ratingText": "...", "dateReviewed": "...", "hoursPlayed": 20 }
+      ],
+      "finished": true
+    }
+  ]
+}
+```
+
+- `id`, `title`, `review`, `ratingNumber`, `ratingText` and `dateReviewed` are required;
+  `platform`, `hoursPlayed`, `updates` and `finished` are optional.
+- `review` is plain text; a blank line starts a new paragraph. Nothing in it is parsed as
+  markup.
+- `ratingNumber` is VQAR's 0–5 scale. The default labels (game-flavored versions of VQAR's)
+  are `RATING_NUMBER_LABELS` in `public/games/schema.js`; a custom `ratingText` is fine but
+  still needs the tier's number.
+- `dateReviewed` is a full timestamp with the reviewer's Eastern offset, same as VQAR —
+  stamp it with `TZ=America/New_York date +%Y-%m-%dT%H:%M:%S%:z`.
+- Playing more of a game doesn't start a new entry: append to its `updates`, oldest first.
+  Each update needs its own rating, and the latest one is the verdict that counts (it also
+  moves the game back to the top of the list).
+- `finished: true` is a bare marking for having played it through, like VQAR's
+  `finishedSeason` — only when the reviewer says so.
+
+`scripts/validateGameReviews.js` checks all of this, and `test/games-data.test.js` runs it
+over the committed file in CI.
 
 ## Shared page components
 

@@ -16,6 +16,7 @@ test('homepage links to VQAR, the GraphQL API, the AMO Kenzoku Podcast, and GitH
   assert.ok(links.includes('/vqar-stats'), 'expected a link to /vqar-stats');
   assert.ok(links.includes('/eva-tv'), 'expected a link to /eva-tv');
   assert.ok(links.includes('/nasubi'), 'expected a link to /nasubi');
+  assert.ok(links.includes('/games'), 'expected a link to /games');
   assert.ok(links.includes('/graphql'), 'expected a link to /graphql');
   assert.ok(
     links.includes('https://amokenzoku.com/podcast/'),
