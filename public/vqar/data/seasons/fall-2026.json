@@ -1104,10 +1104,19 @@
         ]
       },
       "titleJP": "恐怖コレクター"
+    },
+    {
+      "titleEN": "Cyberpunk: Edgerunners 2",
+      "ratingNumber": 5,
+      "ratingText": "Peak, Nice Ep Broh",
+      "review": "I was quite curious about this one: the first show was fabulous, so where do you go from there? At least in the first bit, it feels like a completely separate cast and story. I can't really tell if the timeline is exactly the same, but call it roughly the same, and it has a bit of a different feel to it at this point, more of an investigative, detective, journalist type story. It's also kind of interesting that, for a show set in Night City, a lot of the first section is all done during daylight, so it gives a much different feel from the first series. Overall, yep, I'm pretty excited for this show and I hope it stays as cool, interesting and unique as the first season was. If it's 80% of that, it'll still be a fabulously great show.",
+      "dateReviewed": "2026-10-24T09:58:27-04:00",
+      "streaming": [
+        "netflix"
+      ]
     }
   ],
   "pending": [
-    { "title": "Cyberpunk: Edgerunners 2", "firstEpisode": "2026-10-20", "streaming": ["netflix"] },
     { "title": "Fool Night", "firstEpisode": "2026-11-26", "streaming": ["netflix"], "netflixUrl": "https://www.netflix.com/title/81991076" },
     { "title": "Devils' Crest", "firstEpisode": "2026-11-06", "streaming": ["prime"] }
   ],
