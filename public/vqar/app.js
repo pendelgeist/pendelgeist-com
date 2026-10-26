@@ -31,6 +31,7 @@ import {
  * @property {true} [op] - optional marking: an opening worth remembering
  * @property {true} [ed] - optional marking: an ending worth remembering
  * @property {true} [finishedSeason] - optional marking: the whole season got watched, whatever the rating
+ * @property {string} [finishedDate] - optional note for the reviewer: the day the season got finished (data only, not rendered)
  * @property {string} season
  * @property {string} seasonName
  * @property {number} _timestamp

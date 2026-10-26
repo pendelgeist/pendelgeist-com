@@ -18,7 +18,7 @@ const URL_FIELDS = [...Object.values(STREAMING_URL_FIELDS), 'wikipediaUrl', 'wik
  */
 export const REVIEW_KEYS = [
   'titleEN', 'titleJP', 'airedLabel', 'ratingNumber', 'ratingText', 'review', 'dateReviewed',
-  'fullReview', 'op', 'ed', 'finishedSeason', 'watchProgress',
+  'fullReview', 'op', 'ed', 'finishedSeason', 'finishedDate', 'watchProgress',
   'anilistId', 'anilist', 'annId', 'streaming', ...URL_FIELDS,
 ];
 
@@ -390,6 +390,19 @@ export function validateSeason(season, { filename, now = Date.now() } = {}) {
     // or a rating, since a season of trash can get finished too.
     if (r.finishedSeason !== undefined && r.finishedSeason !== true) {
       issues.push(`"${label}" has a malformed finishedSeason (expected true - mark a finished season with "finishedSeason": true, or leave it out)`);
+    }
+    // The day the season got finished is a note for the reviewer's own records:
+    // a plain calendar date, only alongside the marking it belongs to.
+    if (r.finishedDate !== undefined) {
+      if (typeof r.finishedDate !== 'string' || !isCalendarDate(r.finishedDate)) {
+        issues.push(`"${label}" has a malformed finishedDate (expected a date like 2026-10-26)`);
+      } else if (r.finishedSeason !== true) {
+        issues.push(`"${label}" has a finishedDate without "finishedSeason": true`);
+      } else if (Date.parse(r.finishedDate) > now) {
+        issues.push(`"${label}" has a finishedDate in the future`);
+      } else if (typeof r.dateReviewed === 'string' && r.finishedDate < r.dateReviewed.slice(0, 10)) {
+        issues.push(`"${label}" has a finishedDate (${r.finishedDate}) before its episode-1 review (${r.dateReviewed.slice(0, 10)})`);
+      }
     }
     // A revisit's rating replaces the episode-1 one everywhere ratings are
     // sorted, filtered or counted (see effectiveRatingNumber in

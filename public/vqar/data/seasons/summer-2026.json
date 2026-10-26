@@ -708,6 +708,8 @@
       ],
       "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00378084/lets-go-kaikigumi",
       "ed": true,
+      "finishedSeason": true,
+      "finishedDate": "2026-10-26",
       "anilist": {
         "format": "TV",
         "genres": [

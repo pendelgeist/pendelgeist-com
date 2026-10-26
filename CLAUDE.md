@@ -115,6 +115,8 @@ it's the same show. README → "AniList tags".
 watched the whole season. It's a bare marking like op/ed, and it's independent of everything else.
 Don't infer it from a revisit, which may cover only an episode or two, or from a rating, since a
 season of trash can get finished too. Don't add it unless the user says so.
+Also set `"finishedDate": "YYYY-MM-DD"` (stamp with `TZ=America/New_York date +%F`) for the day they
+finished — a note for their own records, not shown on the page; it's only valid alongside `finishedSeason`.
 
 **Older shows**: a review of a show that didn't air in the season it was watched in goes in
 `seasons/older-shows.json` (`"archive": true`, `"sortKey": 0`), with an optional free-text

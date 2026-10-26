@@ -558,6 +558,28 @@ test('finishedSeason is a bare true marking, like op/ed', () => {
   }
 });
 
+test('finishedDate is an optional calendar date that needs finishedSeason and is neither future nor before the review', () => {
+  const ok = cleanSeason();
+  ok.reviewed[0].finishedSeason = true;
+  ok.reviewed[0].finishedDate = '2026-10-26';
+  assert.deepEqual(validateSeason(ok, { now: Date.parse('2026-10-27T00:00:00Z') }), []);
+
+  const bad = (mutate, note) => {
+    const season = cleanSeason();
+    season.reviewed[0].finishedSeason = true;
+    season.reviewed[0].finishedDate = '2026-10-26';
+    mutate(season.reviewed[0]);
+    const issues = validateSeason(season, { now: Date.parse('2026-10-27T00:00:00Z') });
+    assert.ok(issues.some(i => i.includes('"Cool Show"') && i.includes('finishedDate')), note);
+  };
+  for (const value of [true, 20261026, '2026-10-26T10:00:00-04:00', '2026-02-30', 'yesterday']) {
+    bad(r => { r.finishedDate = value; }, `accepted ${JSON.stringify(value)}`);
+  }
+  bad(r => { delete r.finishedSeason; }, 'accepted a date without finishedSeason');
+  bad(r => { r.finishedDate = '2026-11-01'; }, 'accepted a future date');
+  bad(r => { r.finishedDate = '1999-01-01'; }, 'accepted a date before the review');
+});
+
 test('a well-formed generated anilist object passes', () => {
   const season = cleanSeason();
   season.reviewed[0].anilistId = 154587;
