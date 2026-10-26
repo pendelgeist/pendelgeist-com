@@ -268,6 +268,11 @@ else**: a revisit doesn't imply it (one may cover only an episode or two), and a
 doesn't rule it out (a season of trash can get finished too). It shows as a "Finished season"
 pill, has its own Extras chip, and is counted on `/vqar-stats` as "Seasons Finished".
 
+It may also carry `finishedDate`, a plain calendar date like `2026-10-26` for when you finished
+— a note for your own records, kept in the data and the GraphQL `Review` type but not shown on
+`/vqar`. Validation only accepts it alongside `finishedSeason: true`, and rejects a date in the
+future or before the episode-1 review. Stamp it with `TZ=America/New_York date +%F`.
+
 `dateReviewed` on a top-level review is a full ISO 8601 **timestamp** in the reviewer's Eastern
 offset — `2026-10-08T14:30:00-04:00` (`-05:00` in winter) — not just a date. "Most recent"
 sorts on it, and a bare date would tie every review written the same day. Validation rejects a

@@ -378,6 +378,18 @@ test('finishedSeason comes through the API as a boolean', async () => {
   assert.deepEqual(result.data.currentSeason.reviewed, [{ titleEN: 'Done Show', finishedSeason: true }]);
 });
 
+test('finishedDate comes through the API as a string', async () => {
+  const assetsStub = createPathFetchStub({
+    '/vqar/data/index.json': seasonIndex,
+    '/vqar/data/seasons/summer-2026.json': {
+      ...seasons['/vqar/data/seasons/summer-2026.json'],
+      reviewed: [{ titleEN: 'Done Show', ratingText: 'Meh', dateReviewed: '2026-07-01T12:00:00Z', finishedSeason: true, finishedDate: '2026-10-26' }],
+    },
+  });
+  const result = await run('{ currentSeason { reviewed { titleEN finishedDate } } }', assetsStub);
+  assert.deepEqual(result.data.currentSeason.reviewed, [{ titleEN: 'Done Show', finishedDate: '2026-10-26' }]);
+});
+
 test('a review carries its generated AniList format, genres, tags and studios', async () => {
   const assetsStub = createPathFetchStub({
     '/vqar/data/index.json': seasonIndex,
