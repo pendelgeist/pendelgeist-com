@@ -674,8 +674,9 @@ season itself, or the picked season when a past one is selected (`spotlightSeaso
   as `/vqar`'s **To revisit** filter.
 - **Continuing Seasons Worth Watching** (`computeContinuationWatch`) — that season's full
   lineup (pending, skipped, and reviewed titles alike) cross-checked by title against shows
-  rated 4+ in an *earlier* season (judged by each season's earliest `dateReviewed`, since
-  the flattened review list carries no season order — see `seasonEarliestTimestamp`),
+  rated 4+, or finished (`finishedSeason`) at any rating, in an *earlier* season (judged
+  by each season's earliest `dateReviewed`, since the flattened review list carries no
+  season order — see `seasonEarliestTimestamp`),
   surfacing exceptions to VQAR's usual "skip continuing/returning seasons" guidance.
   Matching is a best-effort text heuristic (`normalizeBaseTitle` strips common sequel
   markers — "Season 2", "2nd Season", "Part 2", "Cour 2", roman numerals — before

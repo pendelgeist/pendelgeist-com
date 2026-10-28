@@ -447,6 +447,27 @@ test('computeContinuationWatch reads titles from object-form pending and skipped
   ]);
 });
 
+test('computeContinuationWatch counts a past show you finished the season of, whatever its rating', () => {
+  const past = {
+    id: 'past', name: 'Past', pending: [], skipped: [],
+    reviewed: [
+      { titleEN: 'Guilty Pleasure', ratingNumber: 4, ratingText: 'Yeah', dateReviewed: '2026-07-01',
+        fullReview: { review: 'x', ratingNumber: 3, ratingText: 'delicious garbage', dateReviewed: '2026-08-05' },
+        finishedSeason: true },
+      { titleEN: 'Dropped Show', ratingNumber: 3, ratingText: 'Meh', dateReviewed: '2026-07-02' },
+    ],
+  };
+  const current = {
+    id: 'now', name: 'Now', reviewed: [], pending: [],
+    skipped: [{ title: 'Guilty Pleasure Season 2', reason: 'Continuing series' }, 'Dropped Show Season 2'],
+  };
+
+  const matches = computeContinuationWatch([past, current], 'now');
+  assert.deepEqual(matches.map(m => ({ title: m.title, matchedTitle: m.matchedTitle, rating: m.rating, finished: m.finished })), [
+    { title: 'Guilty Pleasure Season 2', matchedTitle: 'Guilty Pleasure', rating: 3, finished: true },
+  ]);
+});
+
 // --- category cross-references ---
 
 const tagged = (titleEN, ratingNumber, anilist, extra = {}) =>

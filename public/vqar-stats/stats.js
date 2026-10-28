@@ -216,8 +216,9 @@ function normalizeBaseTitle(title) {
 
 /**
  * Shows in the given season's lineup (pending, skipped, or already reviewed)
- * that look like a continuing/returning season of something rated highly in
- * an *earlier* season - worth bumping up the queue even though VQAR's usual
+ * that look like a continuing/returning season of something rated highly -
+ * or watched to the end (`finishedSeason`), whatever its rating - in an
+ * *earlier* season: worth bumping up the queue even though VQAR's usual
  * guidance is to skip returning seasons. "Earlier" is judged by each
  * season's earliest `dateReviewed` (the flattened review list carries no
  * chronological), so picking an older season only checks it against
@@ -233,19 +234,21 @@ export function computeContinuationWatch(seasons, seasonId, { minRating = 4 } = 
 
   const targetEarliest = seasonEarliestTimestamp(targetSeason);
 
-  /** @type {Map<string, {title: string, seasonName: string, rating: number}>} */
+  /** @type {Map<string, {title: string, seasonName: string, rating: number|null, finished: boolean}>} */
   const bestPastByBase = new Map();
   for (const season of seasons) {
     if (String(season.id) === String(seasonId)) continue;
     if (seasonEarliestTimestamp(season) >= targetEarliest) continue; // only seasons that actually came before this one count as "the past"
     for (const r of season.reviewed ?? []) {
-      const rating = effectiveRatingNumber(r);
-      if (typeof rating !== 'number' || rating < minRating) continue;
+      const effective = effectiveRatingNumber(r);
+      const rating = typeof effective === 'number' ? effective : null;
+      const finished = r.finishedSeason === true;
+      if (!finished && (rating === null || rating < minRating)) continue;
       const base = normalizeBaseTitle(r.titleEN);
       if (!base) continue;
       const existing = bestPastByBase.get(base);
-      if (!existing || rating > existing.rating) {
-        bestPastByBase.set(base, { title: r.titleEN, seasonName: season.name, rating });
+      if (!existing || (rating ?? -1) > (existing.rating ?? -1)) {
+        bestPastByBase.set(base, { title: r.titleEN, seasonName: season.name, rating, finished });
       }
     }
   }
@@ -268,10 +271,10 @@ export function computeContinuationWatch(seasons, seasonId, { minRating = 4 } = 
     const key = `${status}::${title}`;
     if (seen.has(key)) continue;
     seen.add(key);
-    results.push({ title, status, matchedTitle: match.title, seasonName: match.seasonName, rating: match.rating });
+    results.push({ title, status, matchedTitle: match.title, seasonName: match.seasonName, rating: match.rating, finished: match.finished });
   }
 
-  return results.sort((a, b) => b.rating - a.rating || a.title.localeCompare(b.title));
+  return results.sort((a, b) => (b.rating ?? -1) - (a.rating ?? -1) || a.title.localeCompare(b.title));
 }
 
 /**
