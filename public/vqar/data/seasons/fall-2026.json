@@ -532,7 +532,13 @@
           "Studio Comet"
         ]
       },
-      "titleJP": "#ゾンビさがしてます"
+      "titleJP": "#ゾンビさがしてます",
+      "fullReview": {
+        "review": "Watched the whole first episode and I don't know, the show's OK. It's not great. It's a very lighthearted, apocalyptic world with zombies and cute people who aren't concerned with anything. I might second screen it, but probably not more than that. It looks nice, but there's nothing that's really drawing me into it.",
+        "ratingNumber": 2,
+        "ratingText": "Trash, for Second Screen Only",
+        "dateReviewed": "2026-10-29T08:12:12-04:00"
+      }
     },
     {
       "titleEN": "VERTEX FORCE",
