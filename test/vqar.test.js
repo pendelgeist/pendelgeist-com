@@ -786,19 +786,43 @@ test('Extras "To revisit" lists the 4s still waiting on a revisit', async () => 
   assert.equal(window.location.search, '?has=queue');
 });
 
-test('picking a past season keeps the current season\'s To Be Reviewed / Not Reviewing lists and counts', async () => {
+test('picking a past season shows that season\'s To Be Reviewed / Not Reviewing lists and counts', async () => {
   const fetch = createPathFetchStub({
     '/vqar/data/index.json': filterIndex,
     ...filterSeasons,
     '/vqar/data/seasons/fall-2026.json': { ...filterSeasons['/vqar/data/seasons/fall-2026.json'], pending: ['Fall Pending'], skipped: ['Fall Skipped'] },
+    '/vqar/data/seasons/summer-2026.json': { ...filterSeasons['/vqar/data/seasons/summer-2026.json'], pending: ['Summer Pending A', 'Summer Pending B'], skipped: ['Summer Skipped'] },
   });
   const { document } = await loadApp({ fetch, url: 'http://localhost/vqar/?season=summer-2026' });
   await waitFor(() => titles(document).length > 0);
   assert.deepEqual(titles(document), ['Summer Peak']);
-  assert.equal(text(document.getElementById('pendingShows')), 'Fall Pending');
-  assert.equal(text(document.getElementById('skippedShows')), 'Fall Skipped');
-  assert.equal(document.getElementById('pendingCount').textContent, '(1)');
+  assert.equal(text(document.getElementById('pendingShows')), 'Summer Pending ASummer Pending B');
+  assert.equal(text(document.getElementById('skippedShows')), 'Summer Skipped');
+  assert.equal(document.getElementById('pendingCount').textContent, '(2)');
   assert.equal(document.getElementById('skippedCount').textContent, '(1)');
+  const label = document.getElementById('pendingSeason');
+  assert.equal(label.hidden, false);
+  assert.equal(label.textContent, `· ${filterIndex.seasons.find(s => s.id === 'summer-2026').name}`);
+
+  // Back to the current season: its lists, and no season label.
+  selectSeason(document, 'fall-2026');
+  await waitFor(() => text(document.getElementById('pendingShows')) === 'Fall Pending');
+  assert.equal(text(document.getElementById('skippedShows')), 'Fall Skipped');
+  assert.equal(document.getElementById('pendingSeason').hidden, true);
+  assert.equal(document.getElementById('skippedSeason').textContent, '');
+});
+
+test('All Seasons shows the current season\'s To Be Reviewed / Not Reviewing lists', async () => {
+  const fetch = createPathFetchStub({
+    '/vqar/data/index.json': filterIndex,
+    ...filterSeasons,
+    '/vqar/data/seasons/fall-2026.json': { ...filterSeasons['/vqar/data/seasons/fall-2026.json'], pending: ['Fall Pending'], skipped: ['Fall Skipped'] },
+    '/vqar/data/seasons/summer-2026.json': { ...filterSeasons['/vqar/data/seasons/summer-2026.json'], pending: ['Summer Pending'] },
+  });
+  const { document } = await loadApp({ fetch, url: 'http://localhost/vqar/?season=all' });
+  await waitFor(() => titles(document).length === 5);
+  assert.equal(text(document.getElementById('pendingShows')), 'Fall Pending');
+  assert.equal(document.getElementById('pendingSeason').hidden, true);
 });
 
 test('a filtered URL restores season, search, sort and chips on load', async () => {
