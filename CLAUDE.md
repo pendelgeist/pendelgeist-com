@@ -150,7 +150,9 @@ Four independent consumers read that index, whose path is exported once from
 - `src/schema.js` — the GraphQL resolvers, read the same files server-side through the
   Worker's `ASSETS` binding (`makeRootValue({ assets, origin })`, wired up in
   `src/worker.js`) rather than over the network, and reshape them to add `season`/`seasonName`
-  per review, mirroring what `app.js` does on the client.
+  per review, mirroring what `app.js` does on the client. Its `recommend` query is the one
+  place the deployed site calls AniList (one request per query, via `scripts/anilistClient.js`);
+  the scoring is pure, in `src/recommend.js`, and tests pass a stub `anilistRequest`.
 - `scripts/validate-vqar.js` — a standalone consistency checker, not part of the deployed
   site; the committed data is checked by `test/vqar-data.test.js` in CI regardless. With no
   arguments it checks the committed set (`scripts/loadTargets.js` reports `committed: true`,
