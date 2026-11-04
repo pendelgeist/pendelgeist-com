@@ -47,6 +47,7 @@
             <option value="current">Current season</option>
             <option value="seasons">All seasons (summary)</option>
             <option value="bySeason">A specific season, with reviews</option>
+            <option value="recommend">Recommendations from shows someone liked</option>
             <option value="exploreFields">Explore a type's fields (introspection)</option>
           </select>
         </div>
@@ -79,6 +80,23 @@
         <li><code>seasons: [SeasonSummary!]!</code> &mdash; every season in the index (id + name only)</li>
         <li><code>currentSeason: Season</code> &mdash; the in-progress season, with full review data</li>
         <li><code>season(id: ID!): Season</code> &mdash; a specific season's full data, by id</li>
+        <li><code>recommend(titles: [String!], anilistIds: [Int!], count: Int = 2): Recommendations!</code> &mdash; picks from these reviews for someone, from up to 25 shows they liked (titles are searched on AniList)</li>
+      </ul>
+
+      <h3>Recommendations</h3>
+      <ul class="show-list">
+        <li><code>liked: [LikedShow!]!</code> &mdash; how each liked show was matched on AniList: <code>input</code>, <code>found</code>, <code>anilistId</code>, <code>title</code></li>
+        <li><code>profile: [TasteFeature!]!</code> &mdash; the genres and tags they share (<code>name</code>, <code>kind</code>, <code>weight</code> 0&ndash;1), strongest first</li>
+        <li><code>picks: [Recommendation!]!</code> &mdash; the closest 4+ reviews, chosen so they don't all overlap each other</li>
+        <li><code>hiddenGem: Recommendation</code> &mdash; the least popular remaining 5 that still shares something</li>
+      </ul>
+
+      <h3>Recommendation</h3>
+      <ul class="show-list">
+        <li><code>review: Review!</code></li>
+        <li><code>score: Float!</code> &mdash; closeness to the profile, scaled by rating, 0&ndash;1</li>
+        <li><code>popularity: Int</code> &mdash; AniList members with it on their list</li>
+        <li><code>sharedGenres: [String!]!</code>, <code>sharedTags: [String!]!</code> &mdash; what got it picked</li>
       </ul>
 
       <h3>Season</h3>

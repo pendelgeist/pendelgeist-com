@@ -27,6 +27,22 @@ const EXAMPLES = {
     }
   }
 }`,
+  recommend: `query {
+  recommend(titles: ["Death Note", "Erased", "Jujutsu Kaisen"]) {
+    liked { input found title }
+    picks {
+      score
+      sharedGenres
+      sharedTags
+      review { titleEN seasonName ratingText }
+    }
+    hiddenGem {
+      popularity
+      sharedGenres
+      review { titleEN seasonName ratingText }
+    }
+  }
+}`,
   exploreFields: `query {
   __type(name: "Season") {
     fields {

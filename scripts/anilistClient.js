@@ -1,7 +1,8 @@
 /**
- * The one way the scripts talk to AniList's public GraphQL API
- * (https://anilist.co/graphiql), shared by validate-against-anilist.js and
- * fetch-anilist-tags.js. Scripts only - the site itself never calls AniList.
+ * The one way this repo talks to AniList's public GraphQL API
+ * (https://anilist.co/graphiql), shared by validate-against-anilist.js,
+ * fetch-anilist-tags.js, and the Worker's `recommend` query (src/recommend.js).
+ * The static pages themselves never call AniList.
  */
 
 export const ANILIST_ENDPOINT = 'https://graphql.anilist.co';
