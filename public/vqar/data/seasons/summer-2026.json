@@ -777,6 +777,7 @@
         "review": "Watched two episodes of this and it's pretty fun trash. These shows are fun sometimes when they're done well and this one has enough of the crazy go hands, animation and as a fun premise so I'll watch it as a strictly trash, but delicious trash show.",
         "dateReviewed": "2026-08-05"
       },
+      "part": 1,
       "anilistId": 180136,
       "annId": 33178,
       "streaming": [
@@ -784,6 +785,8 @@
       ],
       "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00378018/the-exiled-heavy-knight-knows-how-to-game-the-system",
       "ed": true,
+      "finishedSeason": true,
+      "finishedDate": "2026-10-27",
       "anilist": {
         "format": "TV",
         "genres": [

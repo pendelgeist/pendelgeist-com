@@ -268,6 +268,16 @@ else**: a revisit doesn't imply it (one may cover only an episode or two), and a
 doesn't rule it out (a season of trash can get finished too). It shows as a "Finished season"
 pill, has its own Extras chip, and is counted on `/vqar-stats` as "Seasons Finished".
 
+**Splitting one show across seasons.** A long run that AniList lists as a single entry (say a
+26-episode show airing summer into fall) can still get a review per season when it plays like two:
+a new OP/ED, a mid-season finale. Each half is its own review in its own season file, with its own
+rating and `finishedSeason`, and each carries `part` (a whole number from 1). The later halves say
+so in `titleEN` (`"… Part 2"`), since `part` itself isn't shown. Normally the same `anilistId`
+reviewed twice is rejected as an accidental repeat, because it counts twice in every `/vqar-stats`
+number; `part` is the opt-in that says that's intended. Validation then requires every entry for
+that id to carry a distinct `part`, each in a different season. Copy the `anilist` object over (or
+rerun `npm run fetch-anilist-tags`), since it comes from the shared id.
+
 It may also carry `finishedDate`, a plain calendar date like `2026-10-26` for when you finished
 — a note for your own records, kept in the data and the GraphQL `Review` type but not shown on
 `/vqar`. Validation only accepts it alongside `finishedSeason: true`, and rejects a date in the
@@ -413,6 +423,9 @@ is a remembered reader preference (`localStorage`, like the theme). It also open
 the URL sets any filter, so a filter is never active out of sight. In the AniList rows, a value
 the other filters would leave with nothing isn't offered at all, rather than listed at "(0)",
 though a selected one always stays.
+
+To Be Reviewed / Not Reviewing follow the season picker: a past season shows its own lists, and its
+name next to each heading. Under All Seasons they're the current season's.
 
 Next to "Current Season", jump links with counts go straight to To Be Reviewed / Not Reviewing,
 opening the collapsed section on the way (as does arriving on a `#pendingSection` /

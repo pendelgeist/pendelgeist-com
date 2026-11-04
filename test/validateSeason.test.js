@@ -712,6 +712,35 @@ test('flags the same AniList id reviewed in two seasons', () => {
   assert.deepEqual(validateSeasonCollection([winter, spring]), []);
 });
 
+test('one AniList id split across seasons is allowed when every entry is a numbered part', () => {
+  const summer = { ...cleanSeason(), id: 'summer-2026', reviewed: [review({ titleEN: 'Long Show', anilistId: 180136, part: 1 })] };
+  const fall = { ...cleanSeason(), id: 'fall-2026', current: true, reviewed: [review({ titleEN: 'Long Show Part 2', anilistId: 180136, part: 2 })] };
+  assert.deepEqual(validateSeasonCollection([summer, fall]), []);
+
+  // Only one side numbered is still an accidental repeat.
+  delete summer.reviewed[0].part;
+  assert.ok(validateSeasonCollection([summer, fall]).some(i => i.includes('180136') && i.includes('reviewed more than once') && i.includes('"part"')));
+
+  summer.reviewed[0].part = 2;
+  assert.ok(validateSeasonCollection([summer, fall]).some(i => i.includes('180136') && i.includes('same part')));
+
+  // Both parts in one season isn't a split.
+  summer.reviewed[0].part = 1;
+  fall.reviewed.push(review({ titleEN: 'Long Show Part 3', anilistId: 180136, part: 3 }));
+  assert.ok(validateSeasonCollection([summer, fall]).some(i => i.includes('180136') && i.includes('same season')));
+});
+
+test('part is a whole number from 1', () => {
+  for (const value of [0, -1, 1.5, '2', true]) {
+    const season = cleanSeason();
+    season.reviewed[0].part = value;
+    assert.ok(validateSeason(season).some(i => i.includes('malformed part')), `accepted ${JSON.stringify(value)}`);
+  }
+  const season = cleanSeason();
+  season.reviewed[0].part = 2;
+  assert.ok(!validateSeason(season).some(i => i.includes('part')));
+});
+
 // --- Archive seasons (older shows) and airedLabel ---
 
 test('an archive season needs a sortKey, is a bare true marking, and is never the current season', () => {

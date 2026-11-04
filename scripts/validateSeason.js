@@ -18,7 +18,7 @@ const URL_FIELDS = [...Object.values(STREAMING_URL_FIELDS), 'wikipediaUrl', 'wik
  */
 export const REVIEW_KEYS = [
   'titleEN', 'titleJP', 'airedLabel', 'ratingNumber', 'ratingText', 'review', 'dateReviewed',
-  'fullReview', 'op', 'ed', 'finishedSeason', 'finishedDate', 'watchProgress',
+  'fullReview', 'op', 'ed', 'finishedSeason', 'finishedDate', 'watchProgress', 'part',
   'anilistId', 'anilist', 'annId', 'streaming', ...URL_FIELDS,
 ];
 
@@ -376,6 +376,9 @@ export function validateSeason(season, { filename, now = Date.now() } = {}) {
     if (r.watchProgress !== undefined && typeof r.watchProgress !== 'string') {
       issues.push(`"${label}" has a malformed watchProgress (expected a string)`);
     }
+    if (r.part !== undefined && !(Number.isInteger(r.part) && r.part >= 1)) {
+      issues.push(`"${label}" has a malformed part (expected a whole number from 1, like "part": 2)`);
+    }
     if (r.fullReview !== undefined && (typeof r.fullReview !== 'object' || r.fullReview === null || Array.isArray(r.fullReview))) {
       issues.push(`"${label}" has a malformed fullReview (expected an object)`);
     }
@@ -430,7 +433,8 @@ export function validateSeason(season, { filename, now = Date.now() } = {}) {
 
 /**
  * Checks the seasons as a set, the way build-vqar-index.js sees them: ids have
- * to be unique, no AniList id is reviewed twice, and exactly one season carries `current: true` - that flag is
+ * to be unique, no AniList id is reviewed twice (unless it's numbered parts in
+ * different seasons), and exactly one season carries `current: true` - that flag is
  * what the generated index's `currentSeason` comes from, so zero or two of them
  * is a broken index rather than a cosmetic slip.
  * @param {object[]} seasons
@@ -445,16 +449,28 @@ export function validateSeasonCollection(seasons) {
 
   // The same AniList id reviewed twice (a split-cour show, or a repeat) is
   // counted twice in every /vqar-stats number, and no title check would see it.
+  // A show deliberately split across seasons (one AniList entry, but a new
+  // OP/ED and a mid-season finale) opts in by numbering every entry with
+  // `part`: then each part is its own review, in its own season.
   const byAnilistId = new Map();
   for (const season of seasons) {
     for (const review of Array.isArray(season.reviewed) ? season.reviewed : []) {
       if (!Number.isInteger(review.anilistId)) continue;
-      const where = `"${review.titleEN}" (${season.id})`;
-      byAnilistId.set(review.anilistId, [...(byAnilistId.get(review.anilistId) ?? []), where]);
+      const entry = { where: `"${review.titleEN}" (${season.id})`, seasonId: season.id, part: review.part };
+      byAnilistId.set(review.anilistId, [...(byAnilistId.get(review.anilistId) ?? []), entry]);
     }
   }
-  for (const [id, where] of byAnilistId) {
-    if (where.length > 1) issues.push(`anilistId ${id} is reviewed more than once: ${where.join(' and ')}`);
+  for (const [id, entries] of byAnilistId) {
+    if (entries.length < 2) continue;
+    const where = entries.map(e => e.where).join(' and ');
+    const parts = entries.map(e => e.part);
+    if (!parts.every(part => Number.isInteger(part))) {
+      issues.push(`anilistId ${id} is reviewed more than once: ${where} - if it's one show split across seasons on purpose, number every entry with "part"`);
+    } else if (findDuplicates(parts).length > 0) {
+      issues.push(`anilistId ${id} has the same part more than once: ${where}`);
+    } else if (findDuplicates(entries.map(e => e.seasonId)).length > 0) {
+      issues.push(`anilistId ${id} has more than one part in the same season: ${where}`);
+    }
   }
 
   const current = seasons.filter(s => s.current === true);
