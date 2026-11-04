@@ -118,6 +118,12 @@ season of trash can get finished too. Don't add it unless the user says so.
 Also set `"finishedDate": "YYYY-MM-DD"` (stamp with `TZ=America/New_York date +%F`) for the day they
 finished — a note for their own records, not shown on the page; it's only valid alongside `finishedSeason`.
 
+**Splitting one show across seasons**: when the user wants a single AniList entry (e.g. a
+26-episode run) reviewed as two seasons, give each season its own entry with `"part": 1`,
+`"part": 2`… and `" Part 2"` on the later `titleEN`. Without `part` on every entry, the same
+`anilistId` in two seasons is rejected as an accidental repeat. Each part gets its own rating
+(ask if not given) and its own `finishedSeason`. README → "Splitting one show across seasons".
+
 **Older shows**: a review of a show that didn't air in the season it was watched in goes in
 `seasons/older-shows.json` (`"archive": true`, `"sortKey": 0`), with an optional free-text
 `airedLabel` like `"Winter 2004"`. It counts in every total and average but is left out of the
@@ -135,8 +141,8 @@ to write it at all if any season fails validation.
 Four independent consumers read that index, whose path is exported once from
 `public/vqar/data-paths.js` so it can't drift:
 - `public/vqar/app.js` — the display page, fetches client-side. Loads one season at a time,
-  on demand, plus the current season, whose To Be Reviewed / Not Reviewing lists it always
-  shows. Its chip filters (rating/streaming/extras) live in the DOM-free `filters.js`, and
+  on demand. To Be Reviewed / Not Reviewing are the picked season's lists (the current
+  season's under All Seasons, which it loads alongside). Its chip filters (rating/streaming/extras) live in the DOM-free `filters.js`, and
   every control is mirrored into the query string with `replaceState`.
 - `public/vqar-stats/app.js` — always loads *every* season, since every stat on it is an
   aggregate. Crunching lives in `stats.js`, kept pure and DOM-free so it's testable without

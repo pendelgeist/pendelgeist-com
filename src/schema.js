@@ -52,6 +52,8 @@ type Review {
   finishedSeason: Boolean
   "The date the season was finished, like 2026-10-26. Only present alongside finishedSeason."
   finishedDate: String
+  "Which part this is, for one show deliberately split into a review per season (e.g. 1 and 2). Null for an ordinary review."
+  part: Int
   "The id of the season this review belongs to."
   season: ID!
   "The display name of the season this review belongs to."

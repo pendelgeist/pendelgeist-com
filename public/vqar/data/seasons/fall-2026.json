@@ -1188,6 +1188,42 @@
         ]
       },
       "titleJP": "サイバーパンク: エッジランナーズ2"
+    },
+    {
+      "titleEN": "The Exiled Heavy Knight Knows How to Game the System Part 2",
+      "titleJP": "追放された転生重騎士はゲーム知識で無双する",
+      "ratingNumber": 3,
+      "ratingText": "Meh, Finishing the Ep",
+      "dateReviewed": "2026-11-04T07:01:18-05:00",
+      "part": 2,
+      "anilistId": 180136,
+      "annId": 33178,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00378018/the-exiled-heavy-knight-knows-how-to-game-the-system",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Action",
+          "Fantasy"
+        ],
+        "tags": [
+          "CGI",
+          "Exiled",
+          "Isekai",
+          "Male Protagonist",
+          "Class Struggle",
+          "Dungeon",
+          "Swordplay",
+          "Gore",
+          "Magic",
+          "Estranged Family"
+        ],
+        "studios": [
+          "GoHands"
+        ]
+      }
     }
   ],
   "pending": [
