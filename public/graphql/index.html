@@ -47,7 +47,8 @@
             <option value="current">Current season</option>
             <option value="seasons">All seasons (summary)</option>
             <option value="bySeason">A specific season, with reviews</option>
-            <option value="recommend">Recommendations from shows someone liked</option>
+            <option value="anilistQuery">Recommendations, step 1: the AniList query</option>
+            <option value="recommend">Recommendations, step 2: picks from AniList's result</option>
             <option value="exploreFields">Explore a type's fields (introspection)</option>
           </select>
         </div>
@@ -55,6 +56,15 @@
       <textarea id="queryInput" rows="10" spellcheck="false"></textarea>
       <button id="runQuery" type="button">Run Query</button>
       <pre id="result"></pre>
+      <div id="anilistStep" hidden>
+        <p>
+          Copy this query, run it at
+          <a href="https://anilist.co/graphiql" target="_blank" rel="noopener noreferrer">AniList's GraphiQL</a>,
+          then paste AniList's whole result into "Recommendations, step 2".
+        </p>
+        <button id="copyAnilistQuery" type="button">Copy AniList Query</button>
+        <span id="copyStatus" role="status"></span>
+      </div>
       <p>
         Not sure what fields are available? Run "Explore a type's fields" above (swap
         <code>name: "Season"</code> for <code>"Review"</code>, <code>"SubReview"</code>,
@@ -80,7 +90,8 @@
         <li><code>seasons: [SeasonSummary!]!</code> &mdash; every season in the index (id + name only)</li>
         <li><code>currentSeason: Season</code> &mdash; the in-progress season, with full review data</li>
         <li><code>season(id: ID!): Season</code> &mdash; a specific season's full data, by id</li>
-        <li><code>recommend(titles: [String!], anilistIds: [Int!], count: Int = 2): Recommendations!</code> &mdash; picks from these reviews for someone, from up to 25 shows they liked (titles are searched on AniList)</li>
+        <li><code>anilistQuery(titles: [String!], anilistIds: [Int!]): String!</code> &mdash; recommendations, step 1: the AniList query to run for up to 25 shows someone liked</li>
+        <li><code>recommend(anilistResponse: String!, count: Int = 2): Recommendations!</code> &mdash; recommendations, step 2: picks from these reviews, from AniList's result</li>
       </ul>
 
       <h3>Recommendations</h3>

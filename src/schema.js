@@ -11,8 +11,7 @@
 import { VQAR_INDEX_PATH } from '../public/vqar/data-paths.js';
 import { STREAMING_URL_FIELDS } from '../public/streaming.js';
 import { entryTitle, normalizeEntry } from '../public/vqar/list-entries.js';
-import { anilistRequest as defaultAnilistRequest } from '../scripts/anilistClient.js';
-import { recommend, fetchAniListData, candidateIds, MAX_LIKED, MAX_PICKS } from './recommend.js';
+import { recommend, buildAniListQuery, parseAniListResponse, candidateIds, MAX_LIKED, MAX_PICKS } from './recommend.js';
 
 export const typeDefs = `#graphql
 """A revisit attached to a review, after watching more of the show. Its rating
@@ -168,7 +167,7 @@ type TasteFeature {
 
 """How one of the liked shows passed to recommend was found on AniList."""
 type LikedShow {
-  "The title (or id) as it was passed in."
+  "The title as it was searched (from the query's alias, so without punctuation), or the id."
   input: String!
   "False when AniList had nothing for it; it is left out of the profile."
   found: Boolean!
@@ -208,11 +207,17 @@ type Query {
   currentSeason: Season
   "A specific season's full data, by id (e.g. \\"spring-2026\\")."
   season(id: ID!): Season
-  """Picks from these reviews for someone, from shows they liked: count close
-  matches that differ from each other, plus one hidden gem. Pass titles (each is
-  searched on AniList), AniList ids, or both, up to 25 in all. Shows they named,
-  and their sequels and prequels, are never recommended back."""
-  recommend(titles: [String!], anilistIds: [Int!], count: Int = 2): Recommendations!
+  """Recommendations, step 1: the AniList query to run at https://anilist.co/graphiql
+  for shows someone liked. Pass titles (each is searched on AniList), AniList ids,
+  or both, up to 25 in all. It's one self-contained line: paste it in as-is, then
+  pass what AniList answers to recommend. (AniList blocks requests from this
+  server, so the API can't run it itself.)"""
+  anilistQuery(titles: [String!], anilistIds: [Int!]): String!
+  """Recommendations, step 2: picks from these reviews, from the JSON AniList
+  answered anilistQuery's query with (paste it between triple quotes, as a block string).
+  count close matches that differ from each other, plus one hidden gem. Shows they
+  named, and their sequels and prequels, are never recommended back."""
+  recommend(anilistResponse: String!, count: Int = 2): Recommendations!
 }
 `;
 
@@ -239,13 +244,11 @@ function toSkippedShow(entry) {
  * query: a query naming several root fields (or the same season twice under
  * different aliases) reads each file once, and the next request still sees
  * whatever the assets currently hold.
- * @param {{ assets: { fetch: (url: URL) => Promise<Response> }, origin: string,
- *   anilistRequest?: (query: string, variables: object) => Promise<any> }} env
+ * @param {{ assets: { fetch: (url: URL) => Promise<Response> }, origin: string }} env
  *   `assets` is the Worker's ASSETS binding; `origin` is what the relative data
  *   paths get resolved against, since the binding needs an absolute URL.
- *   `anilistRequest` is how `recommend` reaches AniList (stubbed in tests).
  */
-export function makeRootValue({ assets, origin, anilistRequest = defaultAnilistRequest }) {
+export function makeRootValue({ assets, origin }) {
   /** @type {Map<string, Promise<object>>} in-flight and settled reads, keyed by path */
   const reads = new Map();
 
@@ -277,6 +280,12 @@ export function makeRootValue({ assets, origin, anilistRequest = defaultAnilistR
   }
 
   const loadIndex = () => loadJson(VQAR_INDEX_PATH, 'the season index');
+
+  /** Every review in every season, since a recommendation can come from any of them. */
+  async function loadAllReviews() {
+    const index = await loadIndex();
+    return (await Promise.all(index.seasons.map(loadSeason))).flatMap((s) => s.reviewed);
+  }
 
   /** @param {{ id: string|number, name: string, file: string }} meta */
   async function loadSeason(meta) {
@@ -311,32 +320,25 @@ export function makeRootValue({ assets, origin, anilistRequest = defaultAnilistR
       const meta = index.seasons.find((s) => String(s.id) === String(id));
       return meta ? loadSeason(meta) : null;
     },
-    async recommend({ titles, anilistIds, count }) {
+    async anilistQuery({ titles, anilistIds }) {
       const cleanTitles = [...new Set((titles ?? []).map((t) => t.trim()).filter(Boolean))];
       const ids = [...new Set(anilistIds ?? [])];
-      if (cleanTitles.length + ids.length === 0) throw new Error('recommend needs at least one title or anilistId');
-      if (cleanTitles.length + ids.length > MAX_LIKED) throw new Error(`recommend takes at most ${MAX_LIKED} liked shows`);
+      if (cleanTitles.length + ids.length === 0) throw new Error('anilistQuery needs at least one title or anilistId');
+      if (cleanTitles.length + ids.length > MAX_LIKED) throw new Error(`anilistQuery takes at most ${MAX_LIKED} liked shows`);
+      return buildAniListQuery({ titles: cleanTitles, ids, candidateIds: candidateIds(await loadAllReviews()) });
+    },
+    async recommend({ anilistResponse, count }) {
       if (count < 0 || count > MAX_PICKS) throw new Error(`count has to be between 0 and ${MAX_PICKS}`);
-
-      // Every season, since a pick can come from any of them.
-      const index = await loadIndex();
-      const reviews = (await Promise.all(index.seasons.map(loadSeason))).flatMap((s) => s.reviewed);
-
-      let anilist;
-      try {
-        anilist = await fetchAniListData(anilistRequest, { titles: cleanTitles, ids, candidateIds: candidateIds(reviews) });
-      } catch (err) {
-        throw new Error(`AniList lookup failed: ${err instanceof Error ? err.message : err}`);
-      }
-      const likedMedia = anilist.liked.map((l) => l.media).filter(Boolean);
+      const { liked, popularity } = parseAniListResponse(anilistResponse);
+      const reviews = await loadAllReviews();
       return {
-        liked: anilist.liked.map(({ input, media }) => ({
+        liked: liked.map(({ input, media }) => ({
           input,
           found: media !== null,
           anilistId: media?.id ?? null,
           title: media ? media.title?.english ?? media.title?.romaji ?? null : null,
         })),
-        ...recommend({ reviews, likedMedia, popularity: anilist.popularity, count }),
+        ...recommend({ reviews, likedMedia: liked.map((l) => l.media).filter(Boolean), popularity, count }),
       };
     },
   };

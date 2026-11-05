@@ -64,7 +64,8 @@ select:focus {
   box-shadow: var(--shadow-focus);
 }
 
-#runQuery {
+#runQuery,
+#copyAnilistQuery {
   height: 2.75rem;
   padding: 0.5rem 1.5rem;
   margin-bottom: 1rem;
@@ -78,13 +79,18 @@ select:focus {
   color: var(--color-nav-link);
 }
 
-#runQuery:hover {
+#runQuery:hover,
+#copyAnilistQuery:hover {
   border-color: var(--color-input-focus);
 }
 
 #runQuery:disabled {
   opacity: 0.6;
   cursor: default;
+}
+
+#copyStatus {
+  margin-left: 0.75rem;
 }
 
 #result {

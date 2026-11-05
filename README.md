@@ -937,7 +937,8 @@ type Query {
   seasons: [SeasonSummary!]!    # every season in the index (id + name only)
   currentSeason: Season         # the index's current season, with full review data
   season(id: ID!): Season       # a specific season's full data, by id
-  recommend(titles: [String!], anilistIds: [Int!], count: Int = 2): Recommendations!
+  anilistQuery(titles: [String!], anilistIds: [Int!]): String!       # recommendations, step 1
+  recommend(anilistResponse: String!, count: Int = 2): Recommendations!  # recommendations, step 2
 }
 ```
 
@@ -945,40 +946,37 @@ type Query {
 
 `recommend` answers "I liked these, what of yours should I watch?" from *these* reviews, not
 AniList's own recommendations, which would mostly hand back the big shows the person has already
-heard of. It lives in `src/recommend.js`, pure apart from one AniList request per query:
+heard of. It needs AniList for the liked shows' genres and tags, but **AniList blocks requests
+from Cloudflare Workers** ("You have been manually blocked"), so the API never calls it. It's two
+steps instead, with you running the AniList part:
 
-1. Each liked title is searched on AniList (or looked up by id), and their genres and tags,
-   filtered the same way as a review's generated `anilist` object, make a **taste profile**:
-   each feature weighted by the share of liked shows that carry it.
-2. **Candidates** are reviews rated 4+ (the revisit rating when there is one) that have
-   AniList data, minus the liked shows themselves and their AniList relations (sequels,
-   prequels, spin-offs). A show split into `part`s competes once, as its best part.
-3. **Picks** are scored by cosine similarity to the profile, times rating / 5, and chosen one
-   at a time with a penalty for overlapping an earlier pick (`DIVERSITY_WEIGHT`), so two picks
-   aren't the same kind of show.
-4. The **hidden gem** is the least popular remaining 5 on AniList (a 4 if no 5 is left) that
-   still shares something with the profile.
+1. **`anilistQuery(titles, anilistIds)`** returns one AniList query: a search per liked title, a
+   lookup for any ids, and the popularity of every review that could be a pick. It has no
+   variables and sits on one line, so it pastes straight into
+   [AniList's GraphiQL](https://anilist.co/graphiql). On `/graphql` the explorer shows a **Copy
+   AniList Query** button under the result, since the JSON result escapes its quotes.
+2. **`recommend(anilistResponse, count)`** takes AniList's whole result, pasted between triple
+   quotes as a block string (`anilistResponse: """{ "data": … }"""`), and does the rest.
+
+The scoring lives in `src/recommend.js`, all pure:
+
+- The liked shows' genres and tags, filtered the same way as a review's generated `anilist`
+  object, make a **taste profile**: each feature weighted by the share of liked shows that
+  carry it.
+- **Candidates** are reviews rated 4+ (the revisit rating when there is one) that have AniList
+  data, minus the liked shows themselves and their AniList relations (sequels, prequels,
+  spin-offs). A show split into `part`s competes once, as its best part.
+- **Picks** are scored by cosine similarity to the profile, times rating / 5, and chosen one at
+  a time with a penalty for overlapping an earlier pick (`DIVERSITY_WEIGHT`), so two picks
+  aren't the same kind of show.
+- The **hidden gem** is the least popular remaining 5 on AniList (a 4 if no 5 is left) that
+  still shares something with the profile.
 
 Each recommendation carries its `score`, AniList `popularity`, and the `sharedGenres`/`sharedTags`
-that got it picked, and `liked` says how each input title was matched, so a bad search (a
-"Naruto" that matched a movie) is visible; pass `anilistIds` for exact matches. Up to 25 liked
-shows and 10 picks. An AniList failure (it rate-limits at about 90 requests a minute) comes back
-as a GraphQL error. `makeRootValue` takes an `anilistRequest` so tests stub AniList the same way
-they stub `ASSETS`.
-
-```
-curl -X POST https://pendelgeist.com/graphql \
-  -H 'content-type: application/json' \
-  -d '{"query":"{ recommend(titles: [\"Death Note\", \"Erased\"]) { picks { review { titleEN } sharedTags } hiddenGem { review { titleEN } } } }"}'
-```
-
-Example request:
-
-```
-curl -X POST https://pendelgeist.com/graphql \
-  -H 'content-type: application/json' \
-  -d '{"query":"{ currentSeason { name reviewed { titleEN ratingText } } }"}'
-```
+that got it picked. `liked` says what each search matched. Its `input` comes back out of the
+query's alias (`liked0_Death_Note`), so it has no punctuation. A bad match, like a "Naruto"
+that found a movie, shows up there; rerun step 1 with that show's id in `anilistIds`. Up to
+25 liked shows and 10 picks.
 
 CORS is open on `/graphql`, so it's queryable from other origins too. Because the Worker
 now has a `main` script (`src/worker.js`) instead of serving assets only, `/graphql` is
