@@ -1,20 +1,26 @@
 /**
- * The `recommend` query: someone hands over shows they liked, and gets back
- * picks from *these* reviews, not AniList's own recommendations. AniList is
- * only used to read the liked shows' genres and tags (the same vocabulary the
- * reviews' generated `anilist` objects use) and how popular each candidate is.
+ * Recommendations from *these* reviews for someone, from shows they liked.
+ * AniList blocks requests from Cloudflare Workers, so the site never calls it:
+ * the API runs in two steps instead.
  *
- * Everything here but `fetchAniListData` is pure, so the scoring is testable
- * without a network:
- *   1. A taste profile: each genre/tag weighted by the share of liked shows
- *      carrying it.
- *   2. Candidates: reviews rated 4+ (by the revisit rating when there is one)
- *      with AniList data, minus anything the person already named and its
- *      AniList relations (sequels, prequels, spin-offs).
- *   3. Picks: the best matches, chosen one at a time with a penalty for
- *      overlapping an earlier pick, so they aren't all the same kind of show.
- *   4. A hidden gem: among the remaining 5s, the least popular on AniList that
- *      still shares something with the profile.
+ *   1. `anilistQuery` builds one self-contained AniList query (no variables,
+ *      one line, so it pastes as-is into https://anilist.co/graphiql): a search
+ *      per liked title, a lookup for liked ids, and the popularity of every
+ *      candidate review.
+ *   2. `recommend` takes the JSON AniList answered with and does the rest here.
+ *
+ * AniList only supplies the liked shows' genres and tags (the same vocabulary
+ * the reviews' generated `anilist` objects use) and the candidates'
+ * popularity. Everything in this file is pure:
+ *   - A taste profile: each genre/tag weighted by the share of liked shows
+ *     carrying it.
+ *   - Candidates: reviews rated 4+ (by the revisit rating when there is one)
+ *     with AniList data, minus anything the person already named and its
+ *     AniList relations (sequels, prequels, spin-offs).
+ *   - Picks: the best matches, chosen one at a time with a penalty for
+ *     overlapping an earlier pick, so they aren't all the same kind of show.
+ *   - A hidden gem: among the remaining 5s, the least popular on AniList that
+ *     still shares something with the profile.
  */
 
 import { anilistFields } from '../scripts/anilistTags.js';
@@ -30,75 +36,82 @@ export const MAX_LIKED = 25;
 export const MAX_PICKS = 10;
 /** How much a pick's overlap with earlier picks counts against it (0 = none, 1 = only diversity matters). */
 export const DIVERSITY_WEIGHT = 0.35;
+/** Where step 1's query gets run. */
+export const ANILIST_GRAPHIQL_URL = 'https://anilist.co/graphiql';
 
 /** AniList's `Page` caps perPage at 50. */
 const PAGE_SIZE = 50;
 
-const LIKED_FIELDS = `id
-    title { romaji english }
-    genres
-    tags { name rank isGeneralSpoiler isMediaSpoiler isAdult }
-    relations { nodes { id } }`;
+const LIKED_FIELDS = 'id title { romaji english } genres tags { name rank isGeneralSpoiler isMediaSpoiler isAdult } relations { nodes { id } }';
 
 /**
- * One AniList request covering everything the query needs: a search per liked
- * title, a lookup for liked ids given directly, and the popularity of every
- * candidate. Each piece gets an alias so the response can be split back up.
+ * A GraphQL alias for one liked title, carrying the title itself so step 2
+ * can say what each search was for: `liked0_Death_Note`.
+ * @param {number} index
+ * @param {string} title
+ */
+function likedAlias(index, title) {
+  const slug = title.normalize('NFKD').replace(/[^A-Za-z0-9]+/g, '_').replace(/^_+|_+$/g, '').slice(0, 48);
+  return slug ? `liked${index}_${slug}` : `liked${index}`;
+}
+
+/**
+ * Step 1: one self-contained AniList query covering everything step 2 needs.
+ * Values are written inline (JSON string escaping is valid GraphQL), and it's
+ * all on one line, so it can be copied straight out of a JSON response.
  * @param {{ titles: string[], ids: number[], candidateIds: number[] }} input
- * @returns {{ query: string, variables: object }}
+ * @returns {string}
  */
 export function buildAniListQuery({ titles, ids, candidateIds }) {
-  const params = [];
-  const fields = [];
-  const variables = {};
-  titles.forEach((title, i) => {
-    params.push(`$t${i}: String`);
-    variables[`t${i}`] = title;
-    fields.push(`liked${i}: Media(search: $t${i}, type: ANIME, sort: SEARCH_MATCH) { ${LIKED_FIELDS} }`);
-  });
+  const fields = titles.map((title, i) =>
+    `${likedAlias(i, title)}: Media(search: ${JSON.stringify(title)}, type: ANIME, sort: SEARCH_MATCH) { ${LIKED_FIELDS} }`);
   if (ids.length > 0) {
-    params.push('$likedIds: [Int]');
-    variables.likedIds = ids;
-    fields.push(`likedById: Page(perPage: ${PAGE_SIZE}) { media(id_in: $likedIds, type: ANIME) { ${LIKED_FIELDS} } }`);
+    fields.push(`likedById: Page(perPage: ${PAGE_SIZE}) { media(id_in: ${JSON.stringify(ids)}, type: ANIME) { ${LIKED_FIELDS} } }`);
   }
   for (let i = 0; i * PAGE_SIZE < candidateIds.length; i++) {
-    params.push(`$c${i}: [Int]`);
-    variables[`c${i}`] = candidateIds.slice(i * PAGE_SIZE, (i + 1) * PAGE_SIZE);
-    fields.push(`popularity${i}: Page(perPage: ${PAGE_SIZE}) { media(id_in: $c${i}, type: ANIME) { id popularity } }`);
+    const page = candidateIds.slice(i * PAGE_SIZE, (i + 1) * PAGE_SIZE);
+    fields.push(`popularity${i}: Page(perPage: ${PAGE_SIZE}) { media(id_in: ${JSON.stringify(page)}, type: ANIME) { id popularity } }`);
   }
-  const signature = params.length > 0 ? `(${params.join(', ')})` : '';
-  return { query: `query${signature} {\n  ${fields.join('\n  ')}\n}`, variables };
+  return `query { ${fields.join(' ')} }`;
 }
 
 /**
- * Splits a response to buildAniListQuery back into the liked shows (in the
- * order they were asked for, null where a search found nothing) and the
- * candidates' popularity.
- * @param {any} data - the response's `data`
- * @param {{ titles: string[], ids: number[] }} input
+ * Step 2's input: the JSON AniList answered step 1's query with, as pasted -
+ * the whole `{ "data": ... }` response or just its `data` object. Splits it
+ * back into the liked shows (in the order they were asked for, null media
+ * where a search found nothing) and the candidates' popularity.
+ * @param {string} text
  */
-export function parseAniListData(data, { titles, ids }) {
-  const searched = titles.map((input, i) => ({ input, media: data?.[`liked${i}`] ?? null }));
-  const byId = new Map((data?.likedById?.media ?? []).map((m) => [m.id, m]));
-  const direct = ids.map((id) => ({ input: String(id), media: byId.get(id) ?? null }));
+export function parseAniListResponse(text) {
+  let body;
+  try {
+    body = JSON.parse(text);
+  } catch (err) {
+    throw new Error(`anilistResponse isn't JSON (${err instanceof Error ? err.message : err}) - paste AniList's whole result`);
+  }
+  const data = body && typeof body === 'object' && 'data' in body ? body.data : body;
+  if (!data || typeof data !== 'object') {
+    const message = Array.isArray(body?.errors) ? body.errors.map((e) => e.message).join('; ') : 'no data in it';
+    throw new Error(`AniList's response has no results: ${message}`);
+  }
 
+  const liked = [];
   const popularity = new Map();
-  for (const [key, value] of Object.entries(data ?? {})) {
-    if (!key.startsWith('popularity')) continue;
-    for (const m of value?.media ?? []) {
-      if (typeof m.popularity === 'number') popularity.set(m.id, m.popularity);
+  for (const [key, value] of Object.entries(data)) {
+    const match = /^liked(\d+)(?:_(.*))?$/.exec(key);
+    if (match) {
+      liked.push({ order: Number(match[1]), input: (match[2] ?? key).replace(/_/g, ' '), media: value ?? null });
+    } else if (key === 'likedById') {
+      for (const media of value?.media ?? []) liked.push({ order: Infinity, input: String(media.id), media });
+    } else if (key.startsWith('popularity')) {
+      for (const m of value?.media ?? []) {
+        if (typeof m.popularity === 'number') popularity.set(m.id, m.popularity);
+      }
     }
   }
-  return { liked: [...searched, ...direct], popularity };
-}
-
-/**
- * @param {(query: string, variables: object) => Promise<any>} request
- * @param {{ titles: string[], ids: number[], candidateIds: number[] }} input
- */
-export async function fetchAniListData(request, input) {
-  const { query, variables } = buildAniListQuery(input);
-  return parseAniListData(await request(query, variables), input);
+  liked.sort((a, b) => a.order - b.order);
+  if (liked.length === 0) throw new Error("AniList's response has no liked shows in it - was it made from anilistQuery's query?");
+  return { liked: liked.map(({ input, media }) => ({ input, media })), popularity };
 }
 
 /** A genre and a tag can share a name, so features are kept apart by kind. */

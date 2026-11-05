@@ -1,9 +1,11 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { graphql, buildSchema } from 'graphql';
-import { buildAniListQuery, parseAniListData, buildProfile, recommend, candidateIds } from '../src/recommend.js';
+import { graphql, buildSchema, parse } from 'graphql';
+import fs from 'node:fs';
+import { JSDOM } from 'jsdom';
+import { buildAniListQuery, parseAniListResponse, buildProfile, recommend, candidateIds } from '../src/recommend.js';
 import { typeDefs, makeRootValue } from '../src/schema.js';
-import { createPathFetchStub } from './helpers.js';
+import { createPathFetchStub, waitFor } from './helpers.js';
 
 /** An AniList media as the liked searches return it. */
 function media(id, genres, tags = [], { relations = [], title = `Show ${id}` } = {}) {
@@ -117,34 +119,44 @@ test('candidateIds is every 4+ review with AniList data, once each', () => {
   assert.deepEqual(candidateIds(reviews), [10]);
 });
 
-test('one AniList request carries the searches, the id lookup and the popularity pages', () => {
+test('the AniList query is one self-contained line: searches, the id lookup and popularity pages', () => {
   const candidates = Array.from({ length: 60 }, (_, i) => i + 1000);
-  const { query, variables } = buildAniListQuery({ titles: ['Naruto', 'Erased'], ids: [5], candidateIds: candidates });
-  assert.match(query, /liked0: Media\(search: \$t0, type: ANIME, sort: SEARCH_MATCH\)/);
-  assert.match(query, /liked1: Media\(search: \$t1/);
-  assert.match(query, /likedById: Page/);
-  assert.match(query, /popularity0: Page/);
-  assert.match(query, /popularity1: Page/);
-  assert.equal(variables.t0, 'Naruto');
-  assert.deepEqual(variables.likedIds, [5]);
-  assert.equal(variables.c0.length, 50);
-  assert.equal(variables.c1.length, 10);
+  const query = buildAniListQuery({ titles: ['Naruto', 'Steins;Gate "0"'], ids: [5], candidateIds: candidates });
+  assert.doesNotMatch(query, /\n/);
+  assert.doesNotMatch(query, /\$/, 'no variables to fill in');
+  assert.doesNotThrow(() => parse(query), 'valid GraphQL');
+  assert.match(query, /liked0_Naruto: Media\(search: "Naruto", type: ANIME, sort: SEARCH_MATCH\)/);
+  assert.match(query, /liked1_Steins_Gate_0: Media\(search: "Steins;Gate \\"0\\""/);
+  assert.match(query, /likedById: Page\(perPage: 50\) \{ media\(id_in: \[5\]/);
+  assert.match(query, /popularity0: Page\(perPage: 50\) \{ media\(id_in: \[1000,/);
+  assert.match(query, /popularity1: Page\(perPage: 50\) \{ media\(id_in: \[1050,1051,1052,1053,1054,1055,1056,1057,1058,1059\]/);
 });
 
-test('parseAniListData splits the response back up, keeping misses in order', () => {
+test('a title with nothing alias-safe in it still gets an alias', () => {
+  assert.match(buildAniListQuery({ titles: ['進撃の巨人'], ids: [], candidateIds: [] }), /^query \{ liked0: Media/);
+});
+
+test('AniList\'s response splits back into liked shows, in order, and popularity', () => {
   const data = {
-    liked0: media(1, ['Action']),
-    liked1: null,
+    liked1_Nope: null,
+    liked0_Death_Note: media(1, ['Action']),
     likedById: { media: [media(5, ['Drama'])] },
     popularity0: { media: [{ id: 1000, popularity: 42 }] },
   };
-  const { liked: found, popularity } = parseAniListData(data, { titles: ['Naruto', 'Nope'], ids: [5, 6] });
-  assert.deepEqual(found.map((l) => [l.input, l.media?.id ?? null]), [['Naruto', 1], ['Nope', null], ['5', 5], ['6', null]]);
-  assert.equal(popularity.get(1000), 42);
+  for (const text of [JSON.stringify({ data }), JSON.stringify(data)]) {
+    const { liked: found, popularity } = parseAniListResponse(text);
+    assert.deepEqual(found.map((l) => [l.input, l.media?.id ?? null]), [['Death Note', 1], ['Nope', null], ['5', 5]]);
+    assert.equal(popularity.get(1000), 42);
+  }
 });
 
-// --- the GraphQL resolver ---
+test('a pasted response that is not usable says why', () => {
+  assert.throws(() => parseAniListResponse('{ "data": '), /isn't JSON/);
+  assert.throws(() => parseAniListResponse(JSON.stringify({ data: null, errors: [{ message: 'Too Many Requests' }] })), /no results: Too Many Requests/);
+  assert.throws(() => parseAniListResponse(JSON.stringify({ data: { Media: {} } })), /no liked shows/);
+});
 
+// --- the GraphQL resolvers ---
 const seasonIndex = {
   currentSeason: 'fall-2026',
   seasons: [
@@ -158,38 +170,49 @@ const routes = {
   '/vqar/data/seasons/spring-2026.json': { id: 'spring-2026', name: 'Spring 2026', reviewed: [review('Spring Mystery', 11, 5, ['Mystery'], ['Detective'])], pending: [], skipped: [] },
 };
 
-async function run(query, anilistRequest) {
+async function run(query) {
   const result = await graphql({
     schema: buildSchema(typeDefs),
     source: query,
-    rootValue: makeRootValue({ assets: { fetch: createPathFetchStub(routes) }, origin: 'https://pendelgeist.com', anilistRequest }),
+    rootValue: makeRootValue({ assets: { fetch: createPathFetchStub(routes) }, origin: 'https://pendelgeist.com' }),
   });
   return { ...result, data: result.data && JSON.parse(JSON.stringify(result.data)) };
 }
 
-const QUERY = `{ recommend(titles: ["Naruto", "Nothing Like This", "Death Note"], count: 1) {
+test('anilistQuery builds the AniList query over every season\'s candidates', async () => {
+  const result = await run('{ anilistQuery(titles: ["Naruto", " ", "Naruto", "Death Note"], anilistIds: [7]) }');
+  assert.equal(result.errors, undefined);
+  const query = result.data.anilistQuery;
+  assert.match(query, /liked0_Naruto: .*liked1_Death_Note: /, 'blank and repeated titles dropped');
+  assert.match(query, /id_in: \[7\]/);
+  assert.match(query, /popularity0: Page\(perPage: 50\) \{ media\(id_in: \[10,11\]/);
+});
+
+test('anilistQuery rejects an empty or oversized list', async () => {
+  assert.match((await run('{ anilistQuery(titles: [" "]) }')).errors[0].message, /at least one title/);
+  const many = JSON.stringify(Array.from({ length: 26 }, (_, i) => `Show ${i}`));
+  assert.match((await run(`{ anilistQuery(titles: ${many}) }`)).errors[0].message, /at most 25/);
+});
+
+const anilistResponse = JSON.stringify({
+  data: {
+    liked0_Naruto: media(20, ['Action'], ['Shounen'], { title: 'NARUTO' }),
+    liked1_Nothing_Like_This: null,
+    liked2_Death_Note: media(21, ['Mystery'], ['Detective'], { title: 'Death Note' }),
+    popularity0: { media: [{ id: 10, popularity: 1000 }, { id: 11, popularity: 10 }] },
+  },
+});
+
+const QUERY = `{ recommend(count: 1, anilistResponse: """${anilistResponse}""") {
   liked { input found anilistId title }
   profile { name kind weight }
   picks { score sharedGenres review { titleEN season seasonName } }
   hiddenGem { popularity review { titleEN season } }
 } }`;
 
-test('recommend searches AniList once and picks across every season', async () => {
-  const calls = [];
-  const anilistRequest = async (query, variables) => {
-    calls.push({ query, variables });
-    return {
-      liked0: media(20, ['Action'], ['Shounen'], { title: 'NARUTO' }),
-      liked1: null,
-      liked2: media(21, ['Mystery'], ['Detective'], { title: 'Death Note' }),
-      popularity0: { media: [{ id: 10, popularity: 1000 }, { id: 11, popularity: 10 }] },
-    };
-  };
-  const result = await run(QUERY, anilistRequest);
+test('recommend picks across every season from a pasted AniList response', async () => {
+  const result = await run(QUERY);
   assert.equal(result.errors, undefined);
-  assert.equal(calls.length, 1);
-  assert.deepEqual(calls[0].variables.c0.sort(), [10, 11]);
-
   const { liked: found, picks, hiddenGem, profile } = result.data.recommend;
   assert.deepEqual(found, [
     { input: 'Naruto', found: true, anilistId: 20, title: 'NARUTO' },
@@ -198,26 +221,59 @@ test('recommend searches AniList once and picks across every season', async () =
   ]);
   assert.equal(profile.length, 4);
   assert.equal(picks.length, 1);
-  assert.equal(picks[0].review.seasonName.length > 0, true);
   // Both match equally, so the pick is the first by title and the other is the gem.
   assert.equal(picks[0].review.titleEN, 'Fall Action');
+  assert.equal(picks[0].review.seasonName, 'Fall 2026');
   assert.deepEqual(hiddenGem, { popularity: 10, review: { titleEN: 'Spring Mystery', season: 'spring-2026' } });
 });
 
-test('recommend reports an AniList failure as a GraphQL error', async () => {
-  const result = await run(QUERY, async () => { throw new Error('Too Many Requests'); });
-  assert.match(result.errors[0].message, /AniList lookup failed: Too Many Requests/);
+test('recommend reports an unusable response or count as a GraphQL error', async () => {
+  assert.match((await run('{ recommend(anilistResponse: "nope") { picks { score } } }')).errors[0].message, /isn't JSON/);
+  assert.match((await run(`{ recommend(count: 11, anilistResponse: """${anilistResponse}""") { picks { score } } }`)).errors[0].message, /count has to be/);
 });
 
-test('recommend rejects an empty or oversized request before calling AniList', async () => {
-  let called = false;
-  const anilistRequest = async () => { called = true; return {}; };
-  const empty = await run('{ recommend(titles: [" "]) { picks { score } } }', anilistRequest);
-  assert.match(empty.errors[0].message, /at least one title/);
-  const many = JSON.stringify(Array.from({ length: 26 }, (_, i) => `Show ${i}`));
-  const tooMany = await run(`{ recommend(titles: ${many}) { picks { score } } }`, anilistRequest);
-  assert.match(tooMany.errors[0].message, /at most 25/);
-  const badCount = await run('{ recommend(titles: ["A"], count: 11) { picks { score } } }', anilistRequest);
-  assert.match(badCount.errors[0].message, /count has to be/);
-  assert.equal(called, false);
+// --- the explorer page's step-1 copy button ---
+
+async function loadExplorer(fetch, clipboard) {
+  const html = fs.readFileSync(new URL('../public/graphql/index.html', import.meta.url), 'utf-8');
+  const dom = new JSDOM(html, { url: 'http://localhost/graphql/', runScripts: 'outside-only' });
+  global.document = dom.window.document;
+  global.fetch = fetch;
+  Object.defineProperty(globalThis, 'navigator', { value: { clipboard }, configurable: true });
+  await import(`${new URL('../public/graphql/app.js', import.meta.url)}?t=${Date.now()}${Math.random()}`);
+  return dom.window.document;
+}
+
+test('the explorer offers a copy button for step 1\'s AniList query, and only then', async () => {
+  const anilistQuery = 'query { liked0_Naruto: Media(search: "Naruto") { id } }';
+  let body = { data: { anilistQuery } };
+  const fetch = async () => ({ json: async () => body });
+  const copied = [];
+  const document = await loadExplorer(fetch, { writeText: async (text) => { copied.push(text); } });
+  const step = document.getElementById('anilistStep');
+  assert.equal(step.hidden, true);
+
+  document.getElementById('runQuery').click();
+  await waitFor(() => !step.hidden);
+  document.getElementById('copyAnilistQuery').click();
+  await waitFor(() => copied.length === 1);
+  assert.equal(copied[0], anilistQuery, 'the query itself, not its JSON-escaped form');
+  assert.equal(document.getElementById('copyStatus').textContent, 'Copied.');
+
+  body = { data: { seasons: [] } };
+  document.getElementById('runQuery').click();
+  await waitFor(() => document.getElementById('result').textContent.includes('seasons'));
+  assert.equal(step.hidden, true);
+});
+
+test('without clipboard access, the AniList query lands in the editor, selected', async () => {
+  const anilistQuery = 'query { liked0_Naruto: Media(search: "Naruto") { id } }';
+  const fetch = async () => ({ json: async () => ({ data: { anilistQuery } }) });
+  const document = await loadExplorer(fetch, { writeText: async () => { throw new Error('denied'); } });
+  document.getElementById('runQuery').click();
+  await waitFor(() => !document.getElementById('anilistStep').hidden);
+  document.getElementById('copyAnilistQuery').click();
+  await waitFor(() => document.getElementById('copyStatus').textContent !== '');
+  assert.equal(document.getElementById('queryInput').value, anilistQuery);
+  assert.match(document.getElementById('copyStatus').textContent, /in the editor/);
 });

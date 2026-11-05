@@ -27,8 +27,13 @@ const EXAMPLES = {
     }
   }
 }`,
+  anilistQuery: `query {
+  anilistQuery(titles: ["Death Note", "Erased", "Jujutsu Kaisen"])
+}`,
   recommend: `query {
-  recommend(titles: ["Death Note", "Erased", "Jujutsu Kaisen"]) {
+  recommend(anilistResponse: """
+PASTE ANILIST'S WHOLE RESULT HERE
+""") {
     liked { input found title }
     picks {
       score
@@ -63,7 +68,13 @@ const dom = {
   queryInput: document.getElementById('queryInput'),
   runQuery: document.getElementById('runQuery'),
   result: document.getElementById('result'),
+  anilistStep: document.getElementById('anilistStep'),
+  copyAnilistQuery: document.getElementById('copyAnilistQuery'),
+  copyStatus: document.getElementById('copyStatus'),
 };
+
+/** The AniList query from the last anilistQuery result, ready to copy; '' when there isn't one. */
+let anilistQueryText = '';
 
 dom.examplePicker.addEventListener('change', () => {
   dom.queryInput.value = EXAMPLES[dom.examplePicker.value] ?? '';
@@ -77,6 +88,7 @@ async function runQuery() {
 
   dom.runQuery.disabled = true;
   dom.result.textContent = 'Loading...';
+  showAnilistStep(null);
   try {
     const response = await fetch(ENDPOINT, {
       method: 'POST',
@@ -85,11 +97,38 @@ async function runQuery() {
     });
     const body = await response.json();
     dom.result.textContent = JSON.stringify(body, null, 2);
+    showAnilistStep(body?.data?.anilistQuery);
   } catch (err) {
     dom.result.textContent = `Request failed: ${err.message}`;
   } finally {
     dom.runQuery.disabled = false;
   }
 }
+
+/**
+ * Recommendations step 1 answers with an AniList query as a JSON string, whose
+ * quotes come out escaped in the result above - so it gets a copy button that
+ * copies the query itself.
+ * @param {unknown} query
+ */
+function showAnilistStep(query) {
+  anilistQueryText = typeof query === 'string' ? query : '';
+  if (dom.anilistStep) dom.anilistStep.hidden = !anilistQueryText;
+  if (dom.copyStatus) dom.copyStatus.textContent = '';
+}
+
+dom.copyAnilistQuery?.addEventListener('click', async () => {
+  if (!anilistQueryText) return;
+  try {
+    await navigator.clipboard.writeText(anilistQueryText);
+    dom.copyStatus.textContent = 'Copied.';
+  } catch {
+    // No clipboard access (an insecure context, or permission denied): put
+    // the query in the editor, selected, to copy by hand.
+    dom.queryInput.value = anilistQueryText;
+    dom.queryInput.select();
+    dom.copyStatus.textContent = 'Couldn\'t copy - it\'s in the editor above, selected.';
+  }
+});
 
 dom.queryInput.value = EXAMPLES.current;
