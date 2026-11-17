@@ -583,6 +583,41 @@
           "Seven"
         ]
       }
+    },
+    {
+      "titleEN": "MEKAKUCITY ACTORS",
+      "titleJP": "メカクシティアクターズ",
+      "airedLabel": "Spring 2014",
+      "ratingNumber": 1,
+      "ratingText": "Never, Please No More Like This Ever",
+      "review": "Don't remember.",
+      "dateReviewed": "2014-04-20T08:41:00-04:00",
+      "anilistId": 20541,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GYP8PZ5QY/mekakucity-actors",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Comedy",
+          "Romance",
+          "Sci-Fi",
+          "Supernatural"
+        ],
+        "tags": [
+          "Super Power",
+          "Ensemble Cast",
+          "Found Family",
+          "Urban Fantasy",
+          "Achronological Order",
+          "Primarily Teen Cast",
+          "Vocal Synth"
+        ],
+        "studios": [
+          "Shaft"
+        ]
+      }
     }
   ],
   "pending": [],
