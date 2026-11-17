@@ -618,6 +618,93 @@
           "Shaft"
         ]
       }
+    },
+    {
+      "titleEN": "Chaika -The Coffin Princess-",
+      "titleJP": "棺姫のチャイカ",
+      "airedLabel": "Spring 2014",
+      "ratingNumber": 2,
+      "ratingText": "Trash, for Second Screen Only",
+      "review": "Don't remember.",
+      "dateReviewed": "2014-04-20T10:58:00-04:00",
+      "anilistId": 20462,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GYZX2XE46/chaika-the-coffin-princess",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Action",
+          "Adventure",
+          "Comedy",
+          "Fantasy"
+        ],
+        "tags": [
+          "Magic",
+          "Fugitive",
+          "Female Protagonist",
+          "Guns",
+          "Amnesia",
+          "Travel",
+          "Urban",
+          "Anti-Hero",
+          "Swordplay"
+        ],
+        "studios": [
+          "bones"
+        ]
+      }
+    },
+    {
+      "titleEN": "Pretty Guardian Sailor Moon Crystal",
+      "titleJP": "美少女戦士セーラームーンCrystal",
+      "airedLabel": "Summer 2014",
+      "ratingNumber": 2,
+      "ratingText": "Trash, for Second Screen Only",
+      "review": "Don't remember it really, but it's nowhere near the original show.",
+      "dateReviewed": "2014-10-01T18:38:00-04:00",
+      "anilistId": 14751,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GYX019NPR/pretty-guardian-sailor-moon-crystal",
+      "anilist": {
+        "format": "ONA",
+        "genres": [
+          "Action",
+          "Fantasy",
+          "Mahou Shoujo",
+          "Romance"
+        ],
+        "tags": [
+          "Magic",
+          "Coming of Age",
+          "Female Protagonist",
+          "Henshin",
+          "Shoujo",
+          "Urban Fantasy",
+          "Parenthood",
+          "Mythology",
+          "War",
+          "Lost Civilization",
+          "Space",
+          "Found Family",
+          "Primarily Female Cast",
+          "Super Power",
+          "Space Opera",
+          "Aliens",
+          "Fairy Tale",
+          "Primarily Teen Cast",
+          "Demons",
+          "Superhero",
+          "Bullying",
+          "Body Horror"
+        ],
+        "studios": [
+          "Toei Animation"
+        ]
+      }
     }
   ],
   "pending": [],
