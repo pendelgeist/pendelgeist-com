@@ -481,6 +481,46 @@
           "TRIGGER"
         ]
       }
+    },
+    {
+      "titleEN": "Oreimo",
+      "titleJP": "俺の妹がこんなに可愛いわけがない",
+      "airedLabel": "Fall 2010",
+      "ratingNumber": 3,
+      "ratingText": "Meh, Finishing the Ep",
+      "review": "Meh?",
+      "dateReviewed": "2014-03-04T23:14:00-05:00",
+      "anilistId": 8769,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GYQ4WX036/oreimo",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Comedy",
+          "Slice of Life"
+        ],
+        "tags": [
+          "Otaku Culture",
+          "Heterosexual",
+          "Tsundere",
+          "Urban",
+          "Primarily Female Cast",
+          "Primarily Teen Cast",
+          "Writing",
+          "Male Protagonist",
+          "Kuudere",
+          "Cosplay",
+          "Female Harem",
+          "Coming of Age",
+          "Chuunibyou",
+          "Family Life"
+        ],
+        "studios": [
+          "AIC Build"
+        ]
+      }
     }
   ],
   "pending": [],
