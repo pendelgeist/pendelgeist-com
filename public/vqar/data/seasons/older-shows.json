@@ -521,6 +521,38 @@
           "AIC Build"
         ]
       }
+    },
+    {
+      "titleEN": "Time of Eve",
+      "titleJP": "イヴの時間 Are you enjoying the time of EVE ?",
+      "airedLabel": "Summer 2008",
+      "ratingNumber": 2,
+      "ratingText": "Trash, for Second Screen Only",
+      "review": "I don't really remember.",
+      "dateReviewed": "2014-03-16T23:20:00-04:00",
+      "anilistId": 3167,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GYDQ42286/time-of-eve",
+      "anilist": {
+        "format": "ONA",
+        "genres": [
+          "Sci-Fi",
+          "Slice of Life"
+        ],
+        "tags": [
+          "Robots",
+          "Artificial Intelligence",
+          "Philosophy",
+          "Bar",
+          "Male Protagonist",
+          "Urban"
+        ],
+        "studios": [
+          "Studio Rikka"
+        ]
+      }
     }
   ],
   "pending": [],
