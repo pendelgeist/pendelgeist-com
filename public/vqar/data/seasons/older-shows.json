@@ -153,6 +153,44 @@
           "P.A.WORKS"
         ]
       }
+    },
+    {
+      "titleEN": "Durarara!!",
+      "titleJP": "デュラララ!!",
+      "airedLabel": "Winter 2010",
+      "ratingNumber": 5,
+      "ratingText": "Peak, Nice Ep Broh",
+      "review": "This show oozes cool, and having not watched it in quite a long time I still remember many bits of it, so that's good.",
+      "dateReviewed": "2012-10-25T18:43:00-04:00",
+      "anilistId": 6746,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/G619XVNEY/durarara",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Action",
+          "Mystery",
+          "Supernatural"
+        ],
+        "tags": [
+          "Urban Fantasy",
+          "Gangs",
+          "Urban",
+          "Ensemble Cast",
+          "Dullahan",
+          "Delinquents",
+          "Achronological Order",
+          "Crime",
+          "Female Protagonist",
+          "School",
+          "Mythology"
+        ],
+        "studios": [
+          "Brain's Base"
+        ]
+      }
     }
   ],
   "pending": [],
