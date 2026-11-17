@@ -268,6 +268,37 @@
           "Shaft"
         ]
       }
+    },
+    {
+      "titleEN": "Ixion Saga DT",
+      "titleJP": "イクシオン サーガ DT",
+      "airedLabel": "Fall 2012",
+      "ratingNumber": 1,
+      "ratingText": "Never, Please No More Like This Ever",
+      "review": "I literally am not sure this was a show.",
+      "dateReviewed": "2013-04-26T14:45:00-04:00",
+      "anilistId": 14765,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GRDQKP57Y/ixion-saga-dt",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Action",
+          "Comedy",
+          "Fantasy"
+        ],
+        "tags": [
+          "Isekai",
+          "Parody",
+          "Male Protagonist",
+          "Transgender"
+        ],
+        "studios": [
+          "Brain's Base"
+        ]
+      }
     }
   ],
   "pending": [],
