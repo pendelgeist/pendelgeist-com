@@ -390,6 +390,42 @@
           "WIT STUDIO"
         ]
       }
+    },
+    {
+      "titleEN": "Arpeggio of Blue Steel",
+      "titleJP": "蒼き鋼のアルペジオ",
+      "airedLabel": "Fall 2013",
+      "ratingNumber": 4,
+      "ratingText": "Yeah, Here's Hoping",
+      "review": "Solid show that I quite liked.",
+      "dateReviewed": "2013-10-26T12:59:00-04:00",
+      "anilistId": 18893,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GR9PXZ3J6/arpeggio-of-blue-steel",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Action",
+          "Sci-Fi"
+        ],
+        "tags": [
+          "Full CGI",
+          "Ships",
+          "Post-Apocalyptic",
+          "War",
+          "Primarily Teen Cast",
+          "Artificial Intelligence",
+          "Dystopian",
+          "Male Protagonist",
+          "Military",
+          "Tsundere"
+        ],
+        "studios": [
+          "SANZIGEN"
+        ]
+      }
     }
   ],
   "pending": [],
