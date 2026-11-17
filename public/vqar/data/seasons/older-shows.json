@@ -299,6 +299,52 @@
           "Brain's Base"
         ]
       }
+    },
+    {
+      "titleEN": "Gargantia on the Verdurous Planet",
+      "titleJP": "翠星のガルガンティア",
+      "airedLabel": "Spring 2013",
+      "ratingNumber": 3,
+      "ratingText": "Meh, Finishing the Ep",
+      "review": "I vaguely remember this show. Probably fine.",
+      "dateReviewed": "2013-06-05T21:31:00-04:00",
+      "anilistId": 16524,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GR49G1GE6/gargantia-on-the-verdurous-planet",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Action",
+          "Adventure",
+          "Mecha",
+          "Sci-Fi"
+        ],
+        "tags": [
+          "Environmental",
+          "Lost Civilization",
+          "Artificial Intelligence",
+          "Post-Apocalyptic",
+          "Ships",
+          "Male Protagonist",
+          "Real Robot",
+          "Language Barrier",
+          "Isekai",
+          "Military",
+          "Aliens",
+          "Pirates",
+          "Super Robot",
+          "Space",
+          "Tanned Skin",
+          "Heterosexual",
+          "Philosophy",
+          "CGI"
+        ],
+        "studios": [
+          "Production I.G"
+        ]
+      }
     }
   ],
   "pending": [],
