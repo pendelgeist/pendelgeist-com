@@ -553,6 +553,36 @@
           "Studio Rikka"
         ]
       }
+    },
+    {
+      "titleEN": "Strange+",
+      "titleJP": "ストレンジ・プラス",
+      "airedLabel": "Winter 2014",
+      "ratingNumber": 1,
+      "ratingText": "Never, Please No More Like This Ever",
+      "review": "Don't remember.",
+      "dateReviewed": "2014-04-04T22:36:00-04:00",
+      "anilistId": 20490,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GRGGVKZWR/strange",
+      "anilist": {
+        "format": "TV_SHORT",
+        "genres": [
+          "Comedy",
+          "Slice of Life"
+        ],
+        "tags": [
+          "Josei",
+          "Slapstick",
+          "Parody",
+          "Detective"
+        ],
+        "studios": [
+          "Seven"
+        ]
+      }
     }
   ],
   "pending": [],
