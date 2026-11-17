@@ -191,6 +191,39 @@
           "Brain's Base"
         ]
       }
+    },
+    {
+      "titleEN": "THE UNLIMITED Hyobu Kyosuke",
+      "titleJP": "絶対可憐チルドレン THE UNLIMITED 兵部京介",
+      "airedLabel": "Winter 2013",
+      "ratingNumber": 1,
+      "ratingText": "Never, Please No More Like This Ever",
+      "review": "I literally do not remember anything about this show.",
+      "dateReviewed": "2013-02-13T13:40:00-05:00",
+      "anilistId": 16005,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GRWEMM83R/the-unlimited-hyobu-kyosuke",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Action",
+          "Sci-Fi"
+        ],
+        "tags": [
+          "Super Power",
+          "Anti-Hero",
+          "Mafia",
+          "Espionage",
+          "Class Struggle",
+          "Fugitive",
+          "Male Protagonist"
+        ],
+        "studios": [
+          "Manglobe"
+        ]
+      }
     }
   ],
   "pending": [],
