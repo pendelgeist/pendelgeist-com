@@ -345,6 +345,51 @@
           "Production I.G"
         ]
       }
+    },
+    {
+      "titleEN": "Attack on Titan",
+      "titleJP": "進撃の巨人",
+      "airedLabel": "Spring 2013",
+      "ratingNumber": 4,
+      "ratingText": "Yeah, Here's Hoping",
+      "review": "Really great first season, but I never finished it.",
+      "dateReviewed": "2013-06-24T13:12:00-04:00",
+      "anilistId": 16498,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GR751KNZY/attack-on-titan",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Action",
+          "Drama",
+          "Fantasy",
+          "Mystery"
+        ],
+        "tags": [
+          "Revenge",
+          "Kaiju",
+          "Military",
+          "Male Protagonist",
+          "Primarily Teen Cast",
+          "Post-Apocalyptic",
+          "Survival",
+          "Gore",
+          "Dystopian",
+          "Steampunk",
+          "Swordplay",
+          "Ensemble Cast",
+          "Orphan",
+          "Shounen",
+          "Kuudere",
+          "Coming of Age",
+          "Medieval"
+        ],
+        "studios": [
+          "WIT STUDIO"
+        ]
+      }
     }
   ],
   "pending": [],
