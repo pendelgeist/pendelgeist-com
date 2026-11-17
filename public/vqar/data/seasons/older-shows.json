@@ -426,6 +426,61 @@
           "SANZIGEN"
         ]
       }
+    },
+    {
+      "titleEN": "Kill la Kill",
+      "titleJP": "キルラキル",
+      "airedLabel": "Fall 2013",
+      "ratingNumber": 4,
+      "ratingText": "Yeah, Here's Hoping",
+      "review": "This show is a wild trip, probably a 5 except I haven't ever finished watching it.",
+      "dateReviewed": "2014-02-23T09:26:00-05:00",
+      "anilistId": 18679,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GY8VM43GY/kill-la-kill",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Action",
+          "Comedy",
+          "Ecchi"
+        ],
+        "tags": [
+          "Henshin",
+          "Female Protagonist",
+          "Revenge",
+          "Nudity",
+          "Class Struggle",
+          "Surreal Comedy",
+          "Parody",
+          "Dystopian",
+          "Super Power",
+          "Tomboy",
+          "Ojou-sama",
+          "Coming of Age",
+          "School",
+          "Primarily Teen Cast",
+          "Found Family",
+          "Orphan",
+          "Psychosexual",
+          "Military",
+          "Cult",
+          "Cosmic Horror",
+          "Tokusatsu",
+          "Meta",
+          "Bullying",
+          "Tsundere",
+          "Delinquents",
+          "Villainess",
+          "Urban Fantasy",
+          "Ensemble Cast"
+        ],
+        "studios": [
+          "TRIGGER"
+        ]
+      }
     }
   ],
   "pending": [],
