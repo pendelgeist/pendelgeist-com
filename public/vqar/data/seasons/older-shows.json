@@ -1076,6 +1076,50 @@
           "Satelight"
         ]
       }
+    },
+    {
+      "titleEN": "Kaguya-sama: Love is War",
+      "titleJP": "かぐや様は告らせたい～天才たちの恋愛頭脳戦～",
+      "airedLabel": "Winter 2019",
+      "ratingNumber": 3,
+      "ratingText": "Meh, Finishing the Ep",
+      "review": "It's a very nicely animated show that's got plenty of fun stuff in it. It drags a bit long, and somehow there's 200+ chapters of the manga.",
+      "dateReviewed": "2022-03-29T17:19:00-04:00",
+      "anilistId": 101921,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GRJ0J828Y/kaguya-sama-love-is-war",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Comedy",
+          "Psychological",
+          "Romance",
+          "Slice of Life"
+        ],
+        "tags": [
+          "School",
+          "Heterosexual",
+          "Tsundere",
+          "Primarily Teen Cast",
+          "School Club",
+          "Surreal Comedy",
+          "Kuudere",
+          "Ojou-sama",
+          "Episodic",
+          "Slapstick",
+          "Parody",
+          "Female Protagonist",
+          "Seinen",
+          "Male Protagonist",
+          "Meta",
+          "Ensemble Cast"
+        ],
+        "studios": [
+          "A-1 Pictures"
+        ]
+      }
     }
   ],
   "pending": [],
