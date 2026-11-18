@@ -1317,6 +1317,60 @@
           "Bandai Namco Pictures"
         ]
       }
+    },
+    {
+      "titleEN": "SPY x FAMILY",
+      "titleJP": "SPY×FAMILY",
+      "airedLabel": "Spring 2022",
+      "ratingNumber": 4,
+      "ratingText": "Yeah, Here's Hoping",
+      "review": "It's a quite nicely done show. But that's the truth about anything that Kazuhiro Furuhashi directs; it'll be the best possible version of that thing you'll see.",
+      "dateReviewed": "2022-04-12T06:32:00-04:00",
+      "anilistId": 140960,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/G4PH0WXVJ/spy-x-family",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Action",
+          "Comedy",
+          "Slice of Life",
+          "Supernatural"
+        ],
+        "tags": [
+          "Espionage",
+          "Family Life",
+          "Found Family",
+          "Fake Relationship",
+          "Parenthood",
+          "Assassins",
+          "Conspiracy",
+          "Adoption",
+          "Male Protagonist",
+          "Female Protagonist",
+          "Urban",
+          "Slapstick",
+          "Crime",
+          "Super Power",
+          "Foreign",
+          "Shounen",
+          "School",
+          "Ensemble Cast",
+          "Heterosexual",
+          "Surreal Comedy",
+          "Episodic",
+          "Parody",
+          "Politics",
+          "Cohabitation",
+          "Unrequited Love"
+        ],
+        "studios": [
+          "CloverWorks",
+          "WIT STUDIO"
+        ]
+      }
     }
   ],
   "pending": [],
