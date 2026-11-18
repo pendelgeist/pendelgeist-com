@@ -1517,6 +1517,52 @@
           "project No.9"
         ]
       }
+    },
+    {
+      "titleEN": "86 EIGHTY-SIX",
+      "titleJP": "86－エイティシックス－",
+      "airedLabel": "Spring 2021",
+      "ratingNumber": 5,
+      "ratingText": "Peak, Nice Ep Broh",
+      "review": "I wanted to give this a lower rating but it's actually pretty great.",
+      "dateReviewed": "2022-05-28T21:17:00-04:00",
+      "anilistId": 116589,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GVDHX8DM5/86-eighty-six",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Action",
+          "Drama",
+          "Mecha",
+          "Sci-Fi"
+        ],
+        "tags": [
+          "War",
+          "Class Struggle",
+          "Military",
+          "Dystopian",
+          "Survival",
+          "Ensemble Cast",
+          "Politics",
+          "Female Protagonist",
+          "Proxy Battle",
+          "Guns",
+          "Robots",
+          "Male Protagonist",
+          "Philosophy",
+          "Real Robot",
+          "Primarily Teen Cast",
+          "Artificial Intelligence",
+          "Achronological Order",
+          "CGI"
+        ],
+        "studios": [
+          "A-1 Pictures"
+        ]
+      }
     }
   ],
   "pending": [],
