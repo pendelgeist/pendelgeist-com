@@ -1442,6 +1442,41 @@
           "Felix Film"
         ]
       }
+    },
+    {
+      "titleEN": "Tomodachi Game",
+      "titleJP": "トモダチゲーム",
+      "airedLabel": "Spring 2022",
+      "ratingNumber": 5,
+      "ratingText": "Peak, Nice Ep Broh",
+      "review": "Fabulous death game.",
+      "dateReviewed": "2022-04-20T06:36:00-04:00",
+      "anilistId": 141014,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GJ0H7QX0Z/tomodachi-game",
+      "anilist": {
+        "format": "ONA",
+        "genres": [
+          "Drama",
+          "Mystery",
+          "Psychological",
+          "Thriller"
+        ],
+        "tags": [
+          "Survival",
+          "Male Protagonist",
+          "Anti-Hero",
+          "Shounen",
+          "Death Game",
+          "Gambling",
+          "Ensemble Cast"
+        ],
+        "studios": [
+          "Okuruto Noboru"
+        ]
+      }
     }
   ],
   "pending": [],
