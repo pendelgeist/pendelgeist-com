@@ -1282,6 +1282,41 @@
           "Kinema Citrus"
         ]
       }
+    },
+    {
+      "titleEN": "BIRDIE WING -Golf Girls' Story-",
+      "titleJP": "BIRDIE WING -Golf Girls' Story-",
+      "airedLabel": "Spring 2022",
+      "ratingNumber": 5,
+      "ratingText": "Peak, Nice Ep Broh",
+      "review": "Season 1 is completely outlandishly wonderful. S2 just skip it; they only made one season, and it's beautifully ridiculous.",
+      "dateReviewed": "2022-04-06T19:29:00-04:00",
+      "anilistId": 140830,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GNVHKN714/birdie-wing-golf-girls-story",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Drama",
+          "Slice of Life",
+          "Sports"
+        ],
+        "tags": [
+          "Golf",
+          "Female Protagonist",
+          "Primarily Female Cast",
+          "Primarily Teen Cast",
+          "Gambling",
+          "Class Struggle",
+          "Mafia",
+          "Gangs"
+        ],
+        "studios": [
+          "Bandai Namco Pictures"
+        ]
+      }
     }
   ],
   "pending": [],
