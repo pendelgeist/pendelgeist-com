@@ -747,6 +747,138 @@
           "A-1 Pictures"
         ]
       }
+    },
+    {
+      "titleEN": "I'm Standing on a Million Lives",
+      "titleJP": "100万の命の上に俺は立っている",
+      "airedLabel": "Fall 2020",
+      "ratingNumber": 1,
+      "ratingText": "Never, Please No More Like This Ever",
+      "review": "Stoopid.",
+      "dateReviewed": "2022-02-19T09:37:00-05:00",
+      "anilistId": 116242,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/G6Q9GGE26/im-standing-on-a-million-lives",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Action",
+          "Drama",
+          "Fantasy"
+        ],
+        "tags": [
+          "Isekai",
+          "Survival",
+          "Shounen",
+          "Body Horror",
+          "Magic",
+          "Primarily Teen Cast",
+          "Male Protagonist",
+          "Philosophy",
+          "Ensemble Cast",
+          "Death Game",
+          "Otaku Culture",
+          "Goblin",
+          "Primarily Female Cast",
+          "Female Harem",
+          "Coming of Age"
+        ],
+        "studios": [
+          "Maho Film"
+        ]
+      }
+    },
+    {
+      "titleEN": "Life With an Ordinary Guy Who Reincarnated Into a Total Fantasy Knockout",
+      "titleJP": "異世界美少女受肉おじさんと",
+      "airedLabel": "Winter 2022",
+      "ratingNumber": 3,
+      "ratingText": "Meh, Finishing the Ep",
+      "review": "Modestly fun.",
+      "dateReviewed": "2022-02-22T18:29:00-05:00",
+      "anilistId": 134252,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GQWH0M90V/life-with-an-ordinary-guy-who-reincarnated-into-a-total-fantasy-knockout",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Adventure",
+          "Comedy",
+          "Fantasy",
+          "Romance"
+        ],
+        "tags": [
+          "Parody",
+          "Gender Bending",
+          "Isekai",
+          "Slapstick",
+          "Satire",
+          "Primarily Adult Cast",
+          "LGBTQ+ Themes",
+          "Gods",
+          "Magic",
+          "Shounen",
+          "Heterosexual",
+          "Meta",
+          "Boys' Love"
+        ],
+        "studios": [
+          "OLM"
+        ]
+      }
+    },
+    {
+      "titleEN": "That Time I Got Reincarnated as a Slime",
+      "titleJP": "転生したらスライムだった件",
+      "airedLabel": "Fall 2018",
+      "ratingNumber": 2,
+      "ratingText": "Trash, for Second Screen Only",
+      "review": "Dumb fun.",
+      "dateReviewed": "2022-02-22T18:31:00-05:00",
+      "anilistId": 101280,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GYZJ43JMR/that-time-i-got-reincarnated-as-a-slime",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Action",
+          "Adventure",
+          "Comedy",
+          "Fantasy"
+        ],
+        "tags": [
+          "Isekai",
+          "Magic",
+          "Found Family",
+          "Super Power",
+          "Shapeshifting",
+          "Economics",
+          "Medieval",
+          "Ensemble Cast",
+          "Clone",
+          "Politics",
+          "Monster Boy",
+          "Henshin",
+          "Travel",
+          "Fairy",
+          "Male Protagonist",
+          "Monster Girl",
+          "Demons",
+          "Goblin",
+          "Femboy",
+          "Shounen",
+          "Creature Taming"
+        ],
+        "studios": [
+          "8-bit"
+        ]
+      }
     }
   ],
   "pending": [],
