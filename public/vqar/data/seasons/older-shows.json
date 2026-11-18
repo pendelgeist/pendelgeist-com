@@ -1563,6 +1563,43 @@
           "A-1 Pictures"
         ]
       }
+    },
+    {
+      "titleEN": "Inferno Cop",
+      "titleJP": "インフェルノコップ",
+      "airedLabel": "Fall 2012",
+      "ratingNumber": 5,
+      "ratingText": "Peak, Nice Ep Broh",
+      "review": "Ludicrous stupid-jork anime at its jorkiest.",
+      "dateReviewed": "2022-06-28T18:48:00-04:00",
+      "anilistId": 16774,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GYE5KVMNR/inferno-cop",
+      "anilist": {
+        "format": "ONA",
+        "genres": [
+          "Action",
+          "Comedy"
+        ],
+        "tags": [
+          "Parody",
+          "Police",
+          "Surreal Comedy",
+          "Primarily Male Cast",
+          "Skeleton",
+          "Male Protagonist",
+          "Tokusatsu",
+          "Foreign",
+          "Cars",
+          "Urban Fantasy"
+        ],
+        "studios": [
+          "CoMix Wave",
+          "TRIGGER"
+        ]
+      }
     }
   ],
   "pending": [],
