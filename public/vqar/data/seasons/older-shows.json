@@ -1405,6 +1405,43 @@
           "Studio 3Hz"
         ]
       }
+    },
+    {
+      "titleEN": "Aharen-san wa Hakarenai",
+      "titleJP": "阿波連さんははかれない",
+      "airedLabel": "Spring 2022",
+      "ratingNumber": 3,
+      "ratingText": "Meh, Finishing the Ep",
+      "review": "It's a nicely done teen non-romantic romance.",
+      "dateReviewed": "2022-04-20T06:26:00-04:00",
+      "anilistId": 137281,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GNVHKN72N/aharen-san-wa-hakarenai",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Comedy",
+          "Romance",
+          "Slice of Life"
+        ],
+        "tags": [
+          "Kuudere",
+          "School",
+          "Surreal Comedy",
+          "Slapstick",
+          "Male Protagonist",
+          "Primarily Teen Cast",
+          "Episodic",
+          "Heterosexual",
+          "Female Protagonist",
+          "Parody"
+        ],
+        "studios": [
+          "Felix Film"
+        ]
+      }
     }
   ],
   "pending": [],
