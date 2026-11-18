@@ -1748,6 +1748,47 @@
           "bones"
         ]
       }
+    },
+    {
+      "titleEN": "Mobile Suit Gundam: The Witch from Mercury",
+      "titleJP": "機動戦士ガンダム 水星の魔女",
+      "airedLabel": "Fall 2022",
+      "ratingNumber": 5,
+      "ratingText": "Peak, Nice Ep Broh",
+      "review": "It's Revolutionary Girl Utena IN SPACE. What's not to love about that. Nicely done and a cool take in the Gundam universe.",
+      "dateReviewed": "2022-10-11T18:30:00-04:00",
+      "anilistId": 139274,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/G79H2307W/mobile-suit-gundam-the-witch-from-mercury",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Action",
+          "Drama",
+          "Mecha",
+          "Sci-Fi"
+        ],
+        "tags": [
+          "Class Struggle",
+          "Real Robot",
+          "Female Protagonist",
+          "Space",
+          "School",
+          "Primarily Teen Cast",
+          "Politics",
+          "Artificial Intelligence",
+          "Super Robot",
+          "Yuri",
+          "Guns",
+          "Conspiracy",
+          "Boarding School"
+        ],
+        "studios": [
+          "Sunrise"
+        ]
+      }
     }
   ],
   "pending": [],
