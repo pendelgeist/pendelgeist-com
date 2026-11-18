@@ -1837,6 +1837,48 @@
           "MAPPA"
         ]
       }
+    },
+    {
+      "titleEN": "BOCCHI THE ROCK!",
+      "titleJP": "ぼっち・ざ・ろっく！",
+      "airedLabel": "Fall 2022",
+      "ratingNumber": 5,
+      "ratingText": "Peak, Nice Ep Broh",
+      "review": "I bought the blu-rays and changed my CR avatar to Bocchi.",
+      "dateReviewed": "2022-12-06T02:45:00-05:00",
+      "anilistId": 130003,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GXJHM3P19/bocchi-the-rock",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Comedy",
+          "Music",
+          "Slice of Life"
+        ],
+        "tags": [
+          "Band",
+          "Female Protagonist",
+          "Primarily Female Cast",
+          "Primarily Teen Cast",
+          "Rock Music",
+          "Coming of Age",
+          "Cute Girls Doing Cute Things",
+          "Hikikomori",
+          "Rehabilitation",
+          "Surreal Comedy",
+          "Meta",
+          "Mixed Media",
+          "Seinen",
+          "Slapstick",
+          "Yuri"
+        ],
+        "studios": [
+          "CloverWorks"
+        ]
+      }
     }
   ],
   "pending": [],
