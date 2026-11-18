@@ -1477,6 +1477,46 @@
           "Okuruto Noboru"
         ]
       }
+    },
+    {
+      "titleEN": "Love After World Domination",
+      "titleJP": "恋は世界征服のあとで",
+      "airedLabel": "Spring 2022",
+      "ratingNumber": 4,
+      "ratingText": "Yeah, Here's Hoping",
+      "review": "Well done show, just nicely executed.",
+      "dateReviewed": "2022-04-28T19:03:00-04:00",
+      "anilistId": 132010,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GEXH3WG78/love-after-world-domination",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Action",
+          "Comedy",
+          "Romance",
+          "Supernatural"
+        ],
+        "tags": [
+          "Tokusatsu",
+          "Parody",
+          "Heterosexual",
+          "Superhero",
+          "Female Protagonist",
+          "Male Protagonist",
+          "Henshin",
+          "Anthropomorphism",
+          "Urban Fantasy",
+          "Gyaru",
+          "Primarily Teen Cast",
+          "Animals"
+        ],
+        "studios": [
+          "project No.9"
+        ]
+      }
     }
   ],
   "pending": [],
