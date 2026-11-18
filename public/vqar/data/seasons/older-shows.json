@@ -1231,6 +1231,57 @@
           "TMS Entertainment"
         ]
       }
+    },
+    {
+      "titleEN": "The Rising of the Shield Hero",
+      "titleJP": "盾の勇者の成り上がり",
+      "airedLabel": "Winter 2019",
+      "ratingNumber": 3,
+      "ratingText": "Meh, Finishing the Ep",
+      "review": "Another hero isekai. S1 is pretty good, S2 was complete trash, S3 seemed better but I was out on it at this point. It's got all the waifus and has some good twists.",
+      "dateReviewed": "2022-04-06T18:46:00-04:00",
+      "anilistId": 99263,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/G6W4QKX0R/the-rising-of-the-shield-hero",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Action",
+          "Adventure",
+          "Fantasy"
+        ],
+        "tags": [
+          "Isekai",
+          "Male Protagonist",
+          "Travel",
+          "Medieval",
+          "Revenge",
+          "Magic",
+          "Exiled",
+          "Politics",
+          "Anti-Hero",
+          "Kemonomimi",
+          "Bullying",
+          "Henshin",
+          "Swordplay",
+          "Spearplay",
+          "Matriarchy",
+          "Female Harem",
+          "Ojou-sama",
+          "Slavery",
+          "Villainess",
+          "Language Barrier",
+          "Tsundere",
+          "Prison",
+          "Fugitive",
+          "Found Family"
+        ],
+        "studios": [
+          "Kinema Citrus"
+        ]
+      }
     }
   ],
   "pending": [],
