@@ -1197,6 +1197,40 @@
           "MAPPA"
         ]
       }
+    },
+    {
+      "titleEN": "Burning Kabaddi",
+      "titleJP": "灼熱カバディ",
+      "airedLabel": "Spring 2021",
+      "ratingNumber": 4,
+      "ratingText": "Yeah, Here's Hoping",
+      "review": "A great sports anime that dives into the world of a sport I had no idea existed; now I know quite a bit about Kabaddi.",
+      "dateReviewed": "2022-04-05T06:33:00-04:00",
+      "anilistId": 120859,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/G9VHN9W5J/burning-kabaddi",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Action",
+          "Drama",
+          "Sports"
+        ],
+        "tags": [
+          "School Club",
+          "Athletics",
+          "Primarily Male Cast",
+          "Male Protagonist",
+          "Shounen",
+          "Fitness",
+          "Primarily Teen Cast"
+        ],
+        "studios": [
+          "TMS Entertainment"
+        ]
+      }
     }
   ],
   "pending": [],
