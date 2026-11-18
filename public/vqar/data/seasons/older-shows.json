@@ -1159,6 +1159,44 @@
           "Kyoto Animation"
         ]
       }
+    },
+    {
+      "titleEN": "Yuri!!! on ICE",
+      "titleJP": "ユーリ!!! on ICE",
+      "airedLabel": "Fall 2016",
+      "ratingNumber": 4,
+      "ratingText": "Yeah, Here's Hoping",
+      "review": "A fun show; well done and I can see why it's been quite popular.",
+      "dateReviewed": "2022-04-01T16:13:00-04:00",
+      "anilistId": 21709,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GY2PEJ0MY/yuri-on-ice",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Comedy",
+          "Drama",
+          "Sports"
+        ],
+        "tags": [
+          "Ice Sports",
+          "Primarily Male Cast",
+          "Male Protagonist",
+          "Foreign",
+          "Boys' Love",
+          "Bisexual",
+          "Primarily Adult Cast",
+          "Rotoscoping",
+          "Ballet",
+          "Cute Boys Doing Cute Things",
+          "Coming of Age"
+        ],
+        "studios": [
+          "MAPPA"
+        ]
+      }
     }
   ],
   "pending": [],
