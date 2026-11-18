@@ -1120,6 +1120,45 @@
           "A-1 Pictures"
         ]
       }
+    },
+    {
+      "titleEN": "Nichijou - My Ordinary Life",
+      "titleJP": "日常",
+      "airedLabel": "Spring 2011",
+      "ratingNumber": 5,
+      "ratingText": "Peak, Nice Ep Broh",
+      "review": "What a lovely show. I took my sweet time watching this show and didn't start it until quite a while after its broadcast. It's got all the fun aspects of Azumanga Daioh without the S-tier cringe.",
+      "dateReviewed": "2022-04-01T15:48:00-04:00",
+      "anilistId": 10165,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GR24PVM76/nichijou-my-ordinary-life",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Comedy",
+          "Slice of Life"
+        ],
+        "tags": [
+          "Surreal Comedy",
+          "Slapstick",
+          "Episodic",
+          "Female Protagonist",
+          "School",
+          "Ensemble Cast",
+          "Primarily Teen Cast",
+          "Primarily Female Cast",
+          "Parody",
+          "Cute Girls Doing Cute Things",
+          "Achronological Order",
+          "Robots",
+          "Camping"
+        ],
+        "studios": [
+          "Kyoto Animation"
+        ]
+      }
     }
   ],
   "pending": [],
