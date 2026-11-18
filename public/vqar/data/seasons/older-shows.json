@@ -1671,6 +1671,44 @@
           "Science SARU"
         ]
       }
+    },
+    {
+      "titleEN": "Lycoris Recoil",
+      "titleJP": "リコリス・リコイル",
+      "airedLabel": "Summer 2022",
+      "ratingNumber": 5,
+      "ratingText": "Peak, Nice Ep Broh",
+      "review": "Quite the enjoyable romp.",
+      "dateReviewed": "2022-08-19T13:39:00-04:00",
+      "anilistId": 143270,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/G1XHJV2X9/lycoris-recoil",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Action",
+          "Slice of Life"
+        ],
+        "tags": [
+          "Female Protagonist",
+          "Primarily Female Cast",
+          "Guns",
+          "Found Family",
+          "Urban",
+          "Work",
+          "Kuudere",
+          "Orphan",
+          "Yuri",
+          "Restaurant",
+          "LGBTQ+ Themes",
+          "Ensemble Cast"
+        ],
+        "studios": [
+          "A-1 Pictures"
+        ]
+      }
     }
   ],
   "pending": [],
