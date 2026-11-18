@@ -1600,6 +1600,45 @@
           "TRIGGER"
         ]
       }
+    },
+    {
+      "titleEN": "Black Summoner",
+      "titleJP": "黒の召喚士",
+      "airedLabel": "Summer 2022",
+      "ratingNumber": 2,
+      "ratingText": "Trash, for Second Screen Only",
+      "review": "Forgettable.",
+      "dateReviewed": "2022-08-08T07:14:00-04:00",
+      "anilistId": 145260,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GVDHX8JJE/black-summoner",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Action",
+          "Adventure",
+          "Fantasy"
+        ],
+        "tags": [
+          "Isekai",
+          "Magic",
+          "Male Protagonist",
+          "Creature Taming",
+          "Memory Manipulation",
+          "Female Harem",
+          "Gods",
+          "Elf",
+          "Slavery",
+          "Demons",
+          "CGI",
+          "Found Family"
+        ],
+        "studios": [
+          "Satelight"
+        ]
+      }
     }
   ],
   "pending": [],
