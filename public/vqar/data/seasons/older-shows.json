@@ -951,6 +951,55 @@
           "Studio DEEN"
         ]
       }
+    },
+    {
+      "titleEN": "ODDTAXI",
+      "titleJP": "オッドタクシー",
+      "airedLabel": "Spring 2021",
+      "ratingNumber": 5,
+      "ratingText": "Peak, Nice Ep Broh",
+      "review": "Superb, see our podcast episode on it.",
+      "dateReviewed": "2022-03-06T13:52:00-05:00",
+      "anilistId": 128547,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/G4PH0WPV2/oddtaxi",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Drama",
+          "Mystery",
+          "Psychological",
+          "Thriller"
+        ],
+        "tags": [
+          "Crime",
+          "Anthropomorphism",
+          "Urban",
+          "Animals",
+          "Ensemble Cast",
+          "Primarily Adult Cast",
+          "Male Protagonist",
+          "Work",
+          "Noir",
+          "Satire",
+          "Gangs",
+          "Yakuza",
+          "Primarily Animal Cast",
+          "Amnesia",
+          "Fugitive",
+          "Cars",
+          "Idol",
+          "Police",
+          "Hip-hop Music",
+          "Philosophy"
+        ],
+        "studios": [
+          "OLM",
+          "P.I.C.S."
+        ]
+      }
     }
   ],
   "pending": [],
