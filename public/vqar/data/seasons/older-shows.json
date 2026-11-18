@@ -1789,6 +1789,54 @@
           "Sunrise"
         ]
       }
+    },
+    {
+      "titleEN": "Chainsaw Man",
+      "titleJP": "チェンソーマン",
+      "airedLabel": "Fall 2022",
+      "ratingNumber": 5,
+      "ratingText": "Peak, Nice Ep Broh",
+      "review": "It's a very well done adaptation of the manga.",
+      "dateReviewed": "2022-11-09T05:12:00-05:00",
+      "anilistId": 127230,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GVDHX8QNW/chainsaw-man",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Action",
+          "Drama",
+          "Horror",
+          "Supernatural"
+        ],
+        "tags": [
+          "Demons",
+          "Monster Boy",
+          "Urban Fantasy",
+          "Male Protagonist",
+          "Gore",
+          "Shapeshifting",
+          "Body Horror",
+          "Psychosexual",
+          "Henshin",
+          "Urban",
+          "Shounen",
+          "Monster Girl",
+          "Yakuza",
+          "Primarily Adult Cast",
+          "Heterosexual",
+          "Anthropomorphism",
+          "Found Family",
+          "Crime",
+          "CGI",
+          "Unrequited Love"
+        ],
+        "studios": [
+          "MAPPA"
+        ]
+      }
     }
   ],
   "pending": [],
