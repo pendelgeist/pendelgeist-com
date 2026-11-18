@@ -1639,6 +1639,38 @@
           "Satelight"
         ]
       }
+    },
+    {
+      "titleEN": "YUREI DECO",
+      "titleJP": "ユーレイデコ",
+      "airedLabel": "Summer 2022",
+      "ratingNumber": 3,
+      "ratingText": "Meh, Finishing the Ep",
+      "review": "It's got a real style and is cool.",
+      "dateReviewed": "2022-08-09T19:17:00-04:00",
+      "anilistId": 145468,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/G9VHN97PK/yurei-deco",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Mystery",
+          "Sci-Fi"
+        ],
+        "tags": [
+          "Female Protagonist",
+          "Augmented Reality",
+          "Artificial Intelligence",
+          "Detective",
+          "Satire",
+          "Cyberpunk"
+        ],
+        "studios": [
+          "Science SARU"
+        ]
+      }
     }
   ],
   "pending": [],
