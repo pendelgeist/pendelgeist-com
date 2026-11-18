@@ -879,6 +879,35 @@
           "8-bit"
         ]
       }
+    },
+    {
+      "titleEN": "I'M KODAMA KAWASHIRI",
+      "titleJP": "あたしゃ川尻こだまだよ～デンジャラスライフハッカーのただれた生活～",
+      "airedLabel": "Winter 2022",
+      "ratingNumber": 3,
+      "ratingText": "Meh, Finishing the Ep",
+      "review": "A bit off from the normal.",
+      "dateReviewed": "2022-03-03T19:14:00-05:00",
+      "anilistId": 138912,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/G79H23VD4/im-kodama-kawashiri",
+      "anilist": {
+        "format": "TV_SHORT",
+        "genres": [
+          "Slice of Life"
+        ],
+        "tags": [
+          "Airsoft",
+          "Female Protagonist",
+          "Episodic",
+          "Primarily Adult Cast"
+        ],
+        "studios": [
+          "Lapin Track"
+        ]
+      }
     }
   ],
   "pending": [],
