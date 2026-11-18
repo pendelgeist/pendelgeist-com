@@ -1371,6 +1371,40 @@
           "WIT STUDIO"
         ]
       }
+    },
+    {
+      "titleEN": "Healer Girl",
+      "titleJP": "ヒーラー・ガール",
+      "airedLabel": "Spring 2022",
+      "ratingNumber": 5,
+      "ratingText": "Peak, Nice Ep Broh",
+      "review": "I really love this show. It's quite well executed, interesting characters, great setting. Nice healing anime.",
+      "dateReviewed": "2022-04-19T16:50:00-04:00",
+      "anilistId": 133412,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GXJHM37WP/healer-girl",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Music",
+          "Slice of Life",
+          "Supernatural"
+        ],
+        "tags": [
+          "Primarily Female Cast",
+          "Musical Theater",
+          "Female Protagonist",
+          "Cute Girls Doing Cute Things",
+          "Magic",
+          "Iyashikei",
+          "Primarily Teen Cast"
+        ],
+        "studios": [
+          "Studio 3Hz"
+        ]
+      }
     }
   ],
   "pending": [],
