@@ -1962,6 +1962,54 @@
           "C2C"
         ]
       }
+    },
+    {
+      "titleEN": "Mob Psycho 100",
+      "titleJP": "モブサイコ100",
+      "airedLabel": "Summer 2016",
+      "ratingNumber": 4,
+      "ratingText": "Yeah, Here's Hoping",
+      "review": "Very pretty show. Fun concept.",
+      "dateReviewed": "2023-02-27T12:45:00-05:00",
+      "anilistId": 21507,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GY190DKQR/mob-psycho-100",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Action",
+          "Comedy",
+          "Drama",
+          "Psychological",
+          "Slice of Life",
+          "Supernatural"
+        ],
+        "tags": [
+          "Super Power",
+          "Coming of Age",
+          "Urban Fantasy",
+          "Ghost",
+          "Philosophy",
+          "Primarily Teen Cast",
+          "Surreal Comedy",
+          "Exorcism",
+          "Male Protagonist",
+          "Parody",
+          "Urban",
+          "Satire",
+          "Shounen",
+          "Primarily Male Cast",
+          "Disability",
+          "School",
+          "Slapstick",
+          "Demons"
+        ],
+        "studios": [
+          "bones"
+        ]
+      }
     }
   ],
   "pending": [],
