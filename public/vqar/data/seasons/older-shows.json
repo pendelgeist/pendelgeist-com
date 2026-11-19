@@ -2048,6 +2048,52 @@
           "Toei Animation"
         ]
       }
+    },
+    {
+      "titleEN": "MASHLE: MAGIC AND MUSCLES",
+      "titleJP": "マッシュル-MASHLE-",
+      "airedLabel": "Spring 2023",
+      "ratingNumber": 2,
+      "ratingText": "Trash, for Second Screen Only",
+      "review": "It's fine. OP 2 by Creepy Nuts is S-tier.",
+      "dateReviewed": "2023-04-17T00:24:00-04:00",
+      "anilistId": 151801,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GDKHZEP8W/mashle-magic-and-muscles",
+      "op": true,
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Action",
+          "Comedy",
+          "Fantasy"
+        ],
+        "tags": [
+          "Magic",
+          "Male Protagonist",
+          "Shounen",
+          "Parody",
+          "School",
+          "Fitness",
+          "Slapstick",
+          "Primarily Teen Cast",
+          "Super Power",
+          "Dragons",
+          "Primarily Male Cast",
+          "Kuudere",
+          "Aromantic",
+          "Food",
+          "Adoption",
+          "Battle Royale",
+          "Asexual",
+          "Medieval"
+        ],
+        "studios": [
+          "A-1 Pictures"
+        ]
+      }
     }
   ],
   "pending": [],
