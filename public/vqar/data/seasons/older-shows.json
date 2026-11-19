@@ -2952,6 +2952,44 @@
           "GoHands"
         ]
       }
+    },
+    {
+      "titleEN": "Catch Me at the Ballpark!",
+      "titleJP": "ボールパークでつかまえて！",
+      "airedLabel": "Spring 2025",
+      "ratingNumber": 5,
+      "ratingText": "Peak, Nice Ep Broh",
+      "review": "Is there anything better than a good show about the behind the scenes people for a mid-tier NPB team? No! Also this ED is great.",
+      "dateReviewed": "2025-04-03T12:16:00-04:00",
+      "anilistId": 184279,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GVDHX85EQ/catch-me-at-the-ballpark",
+      "ed": true,
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Comedy",
+          "Romance",
+          "Slice of Life",
+          "Sports"
+        ],
+        "tags": [
+          "Ensemble Cast",
+          "Seinen",
+          "Work",
+          "Baseball",
+          "Iyashikei",
+          "Female Protagonist",
+          "Episodic",
+          "Gyaru",
+          "Primarily Adult Cast"
+        ],
+        "studios": [
+          "EMT Squared"
+        ]
+      }
     }
   ],
   "pending": [],
