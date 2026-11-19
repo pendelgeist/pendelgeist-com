@@ -2424,6 +2424,309 @@
           "MAPPA"
         ]
       }
+    },
+    {
+      "titleEN": "Snack Basue",
+      "titleJP": "スナックバス江",
+      "airedLabel": "Winter 2024",
+      "ratingNumber": 4,
+      "ratingText": "Yeah, Here's Hoping",
+      "review": "Totally ridiculous and quite fun and out there.",
+      "dateReviewed": "2024-02-13T06:08:00-05:00",
+      "anilistId": 166093,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GDKHZEJ1K/snack-basue",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Comedy"
+        ],
+        "tags": [
+          "Bar",
+          "Parody",
+          "Episodic",
+          "Female Protagonist",
+          "Seinen",
+          "Meta",
+          "Surreal Comedy",
+          "Slapstick",
+          "Primarily Adult Cast"
+        ],
+        "studios": [
+          "Studio PuYUKAI"
+        ]
+      }
+    },
+    {
+      "titleEN": "Brave Bang Bravern!",
+      "titleJP": "勇気爆発バーンブレイバーン",
+      "airedLabel": "Winter 2024",
+      "ratingNumber": 5,
+      "ratingText": "Peak, Nice Ep Broh",
+      "review": "Oh man, this is a show that we need and didn't even know it.",
+      "dateReviewed": "2024-02-14T06:19:00-05:00",
+      "anilistId": 165598,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GEXH3W217/brave-bang-bravern",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Action",
+          "Comedy",
+          "Mecha",
+          "Sci-Fi"
+        ],
+        "tags": [
+          "Super Robot",
+          "Parody",
+          "Male Protagonist",
+          "Military",
+          "Meta",
+          "LGBTQ+ Themes",
+          "Primarily Adult Cast",
+          "Aliens",
+          "Foreign",
+          "War",
+          "Found Family",
+          "Real Robot",
+          "CGI"
+        ],
+        "studios": [
+          "CygamesPictures"
+        ]
+      }
+    },
+    {
+      "titleEN": "JUNI TAISEN: ZODIAC WAR",
+      "titleJP": "十二大戦",
+      "airedLabel": "Fall 2017",
+      "ratingNumber": 3,
+      "ratingText": "Meh, Finishing the Ep",
+      "review": "I like this show more than it gets crapped on for the ending.",
+      "dateReviewed": "2024-04-03T12:49:00-04:00",
+      "anilistId": 98443,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/G6K51X9GY/juni-taisen-zodiac-war",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Action",
+          "Thriller"
+        ],
+        "tags": [
+          "Battle Royale",
+          "Death Game",
+          "Ensemble Cast",
+          "War",
+          "Urban",
+          "Martial Arts",
+          "Urban Fantasy",
+          "Tanned Skin",
+          "Orphan",
+          "Kemonomimi",
+          "Necromancy",
+          "Super Power",
+          "Military",
+          "Swordplay",
+          "Monster Boy",
+          "Monster Girl",
+          "Gore",
+          "Primarily Adult Cast",
+          "Animals",
+          "Anti-Hero",
+          "Crossdressing"
+        ],
+        "studios": [
+          "Graphinica"
+        ]
+      }
+    },
+    {
+      "titleEN": "Kaiju No. 8",
+      "titleJP": "怪獣８号",
+      "airedLabel": "Spring 2024",
+      "ratingNumber": 3,
+      "ratingText": "Meh, Finishing the Ep",
+      "review": "Solid SJ action version of the manga.",
+      "dateReviewed": "2024-04-15T18:27:00-04:00",
+      "anilistId": 153288,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GG5H5XQ7D/kaiju-no-8",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Action",
+          "Sci-Fi"
+        ],
+        "tags": [
+          "Kaiju",
+          "Monster Boy",
+          "Shapeshifting",
+          "Male Protagonist",
+          "Super Power",
+          "Shounen",
+          "Henshin",
+          "Urban Fantasy",
+          "Military",
+          "Rescue",
+          "Work",
+          "Primarily Adult Cast",
+          "Guns",
+          "Gore",
+          "Tokusatsu",
+          "Kuudere",
+          "Body Horror"
+        ],
+        "studios": [
+          "Production I.G"
+        ]
+      }
+    },
+    {
+      "titleEN": "BARTENDER Glass of God",
+      "titleJP": "バーテンダー 神のグラス",
+      "airedLabel": "Spring 2024",
+      "ratingNumber": 3,
+      "ratingText": "Meh, Finishing the Ep",
+      "review": "Cocktail battle anime, nice jerb.",
+      "dateReviewed": "2024-05-21T12:34:00-04:00",
+      "anilistId": 155890,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GVDHX85DV/bartender-glass-of-god",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Drama",
+          "Slice of Life"
+        ],
+        "tags": [
+          "Work",
+          "Bar",
+          "Iyashikei",
+          "Seinen",
+          "Male Protagonist",
+          "Philosophy",
+          "Primarily Adult Cast",
+          "Food",
+          "Educational"
+        ],
+        "studios": [
+          "Liber"
+        ]
+      }
+    },
+    {
+      "titleEN": "Bakemonogatari",
+      "titleJP": "化物語",
+      "airedLabel": "Summer 2009",
+      "ratingNumber": 4,
+      "ratingText": "Yeah, Here's Hoping",
+      "review": "Quite well done and boy is this show hard to stream T_T",
+      "dateReviewed": "2024-06-07T12:11:00-04:00",
+      "anilistId": 5081,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/G69PXP1EY/bakemonogatari",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Comedy",
+          "Drama",
+          "Mystery",
+          "Psychological",
+          "Romance",
+          "Supernatural"
+        ],
+        "tags": [
+          "Youkai",
+          "Urban Fantasy",
+          "Ensemble Cast",
+          "Surreal Comedy",
+          "Male Protagonist",
+          "Philosophy",
+          "Coming of Age",
+          "Vampire",
+          "Primarily Female Cast",
+          "Satire",
+          "Heterosexual",
+          "Primarily Teen Cast",
+          "Meta",
+          "Curses",
+          "Psychosexual",
+          "Monster Girl",
+          "Mixed Media",
+          "Exorcism",
+          "Parody",
+          "Gods",
+          "Rotoscoping",
+          "Love Triangle",
+          "Yandere",
+          "Tomboy"
+        ],
+        "studios": [
+          "Shaft"
+        ]
+      }
+    },
+    {
+      "titleEN": "Berserk: The Golden Age Arc - Memorial Edition",
+      "titleJP": "ベルセルク 黄金時代篇 MEMORIAL EDITION",
+      "airedLabel": "Fall 2022",
+      "ratingNumber": 2,
+      "ratingText": "Trash, for Second Screen Only",
+      "review": "AAAAARRRRGGGHHH!!!!! Dammit, this should be the best thing. I love the Shiro Sagisu OST, and the visuals and editing are better than the original version but so much of it still doesn't look great. We have a whole AMO Kenzoku episode on it going into much more detail. Watch Berserk 97, read the manga.",
+      "dateReviewed": "2024-08-28T12:08:00-04:00",
+      "anilistId": 155011,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/G24H1N8XX/berserk-the-golden-age-arc-memorial-edition",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Action",
+          "Adventure",
+          "Drama",
+          "Fantasy",
+          "Horror",
+          "Supernatural"
+        ],
+        "tags": [
+          "Seinen",
+          "Primarily Adult Cast",
+          "Swordplay",
+          "Gore",
+          "War",
+          "Male Protagonist",
+          "Military",
+          "Class Struggle",
+          "Medieval",
+          "Travel",
+          "Philosophy",
+          "Primarily Male Cast",
+          "Politics",
+          "CGI",
+          "Anti-Hero",
+          "Nudity",
+          "Tomboy",
+          "Tsundere",
+          "Tanned Skin"
+        ],
+        "studios": [
+          "Studio 4°C"
+        ]
+      }
     }
   ],
   "pending": [],
