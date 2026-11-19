@@ -3022,6 +3022,606 @@
           "SANZIGEN"
         ]
       }
+    },
+    {
+      "titleEN": "TASUKETSU -Fate of the Majority-",
+      "titleJP": "多数欠",
+      "airedLabel": "Summer 2024",
+      "ratingNumber": 1,
+      "ratingText": "Never, Please No More Like This Ever",
+      "review": "Bad.",
+      "dateReviewed": "2025-01-07T17:51:00-05:00",
+      "anilistId": 174070,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/G4PH0WJMN/tasuketsu-fate-of-the-majority",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Action",
+          "Mystery",
+          "Thriller"
+        ],
+        "tags": [
+          "Death Game",
+          "Super Power",
+          "Primarily Teen Cast",
+          "Male Protagonist"
+        ],
+        "studios": [
+          "Satelight"
+        ]
+      }
+    },
+    {
+      "titleEN": "Mobile Suit Gundam",
+      "titleJP": "機動戦士ガンダム",
+      "airedLabel": "Spring 1979",
+      "ratingNumber": 5,
+      "ratingText": "Peak, Nice Ep Broh",
+      "review": "Yes.",
+      "dateReviewed": "2025-03-02T20:21:00-05:00",
+      "anilistId": 80,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GKEH2G9XV/mobile-suit-gundam",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Drama",
+          "Mecha",
+          "Sci-Fi"
+        ],
+        "tags": [
+          "War",
+          "Military",
+          "Real Robot",
+          "Space",
+          "Space Opera",
+          "Travel",
+          "Politics",
+          "Coming of Age",
+          "Foreign",
+          "Primarily Teen Cast",
+          "Ensemble Cast",
+          "Male Protagonist",
+          "Aviation",
+          "Tanks",
+          "Anti-Hero"
+        ],
+        "studios": [
+          "Sunrise"
+        ]
+      }
+    },
+    {
+      "titleEN": "My Hero Academia: Vigilantes",
+      "titleJP": "ヴィジランテ -僕のヒーローアカデミア ILLEGALS-",
+      "airedLabel": "Spring 2025",
+      "ratingNumber": 4,
+      "ratingText": "Yeah, Here's Hoping",
+      "review": "Season 1 is lovely, season 2 is not as good but not bad.",
+      "dateReviewed": "2025-04-21T13:06:00-04:00",
+      "anilistId": 185736,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/G79H23ZQ3/my-hero-academia-vigilantes",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Action",
+          "Adventure",
+          "Drama",
+          "Fantasy"
+        ],
+        "tags": [
+          "Urban Fantasy",
+          "Urban",
+          "Superhero",
+          "Super Power",
+          "Shounen",
+          "Crime",
+          "Male Protagonist",
+          "Idol",
+          "Anti-Hero",
+          "Fugitive"
+        ],
+        "studios": [
+          "bones film"
+        ]
+      }
+    },
+    {
+      "titleEN": "Umamusume: Pretty Derby",
+      "titleJP": "ウマ娘 プリティーダービー",
+      "airedLabel": "Spring 2018",
+      "ratingNumber": 4,
+      "ratingText": "Yeah, Here's Hoping",
+      "review": "I'm a musumaniac.",
+      "dateReviewed": "2025-07-25T06:25:00-04:00",
+      "anilistId": 98514,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GR79P2816/umamusume-pretty-derby",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Drama",
+          "Music",
+          "Slice of Life",
+          "Sports"
+        ],
+        "tags": [
+          "Athletics",
+          "Kemonomimi",
+          "Female Protagonist",
+          "Primarily Female Cast",
+          "Primarily Teen Cast",
+          "Cute Girls Doing Cute Things",
+          "Gambling",
+          "Boarding School",
+          "Ensemble Cast",
+          "Kuudere",
+          "Isekai"
+        ],
+        "studios": [
+          "P.A.WORKS"
+        ]
+      }
+    },
+    {
+      "titleEN": "WITCH WATCH",
+      "titleJP": "ウィッチウォッチ",
+      "airedLabel": "Spring 2025",
+      "ratingNumber": 2,
+      "ratingText": "Trash, for Second Screen Only",
+      "review": "It's fun.",
+      "dateReviewed": "2025-08-28T12:30:00-04:00",
+      "anilistId": 180367,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/G5PHNM9P0/witch-watch",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Comedy",
+          "Drama",
+          "Fantasy",
+          "Romance",
+          "Slice of Life",
+          "Supernatural"
+        ],
+        "tags": [
+          "Witch",
+          "Magic",
+          "Slapstick",
+          "Episodic",
+          "Surreal Comedy",
+          "Cohabitation",
+          "Found Family",
+          "Primarily Teen Cast",
+          "Heterosexual",
+          "Urban Fantasy",
+          "Parody",
+          "Female Protagonist",
+          "Ensemble Cast",
+          "Otaku Culture",
+          "Meta",
+          "Male Protagonist",
+          "Youkai",
+          "Shounen",
+          "Urban"
+        ],
+        "studios": [
+          "Bibury Animation Studios"
+        ]
+      }
+    },
+    {
+      "titleEN": "Uglymug, Epicfighter",
+      "titleJP": "ブサメンガチファイター",
+      "airedLabel": "Summer 2025",
+      "ratingNumber": 2,
+      "ratingText": "Trash, for Second Screen Only",
+      "review": "Stupid, fine.",
+      "dateReviewed": "2025-09-11T18:18:00-04:00",
+      "anilistId": 184575,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GNVHKN9VK/uglymug-epicfighter",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Adventure",
+          "Fantasy"
+        ],
+        "tags": [
+          "Isekai",
+          "Seinen",
+          "Male Protagonist",
+          "Super Power",
+          "Surreal Comedy",
+          "Body Image"
+        ],
+        "studios": [
+          "WHITE FOX"
+        ]
+      }
+    },
+    {
+      "titleEN": "Clevatess",
+      "titleJP": "クレバテス-魔獣の王と赤子と屍の勇者-",
+      "airedLabel": "Summer 2025",
+      "ratingNumber": 3,
+      "ratingText": "Meh, Finishing the Ep",
+      "review": "I'm still not sure on this show. I go back and forth so much if it's really cool, or not good or just a bad Berserk clone or something else.",
+      "dateReviewed": "2025-09-16T18:07:00-04:00",
+      "anilistId": 178869,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/G8DHV78ZM/clevatess",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Action",
+          "Drama",
+          "Fantasy"
+        ],
+        "tags": [
+          "Monster Boy",
+          "Female Protagonist",
+          "Tomboy",
+          "Medieval",
+          "Magic",
+          "Orphan",
+          "Revenge",
+          "Adoption",
+          "Parenthood",
+          "Primarily Adult Cast",
+          "Swordplay",
+          "Anti-Hero",
+          "Demons",
+          "Shapeshifting",
+          "Slavery",
+          "Body Horror",
+          "Gore",
+          "Found Family"
+        ],
+        "studios": [
+          "Lay-duce"
+        ]
+      }
+    },
+    {
+      "titleEN": "Detectives These Days Are Crazy!",
+      "titleJP": "まったく最近の探偵ときたら",
+      "airedLabel": "Summer 2025",
+      "ratingNumber": 5,
+      "ratingText": "Peak, Nice Ep Broh",
+      "review": "Now this is what I call anime!",
+      "dateReviewed": "2025-09-17T07:32:00-04:00",
+      "anilistId": 180460,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/G79H23Z93/detectives-these-days-are-crazy",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Comedy",
+          "Mystery"
+        ],
+        "tags": [
+          "Surreal Comedy",
+          "Slapstick",
+          "Detective",
+          "Episodic",
+          "Ensemble Cast",
+          "Crime",
+          "Seinen",
+          "Urban"
+        ],
+        "studios": [
+          "LIDENFILMS"
+        ]
+      }
+    },
+    {
+      "titleEN": "Solo Camping for Two",
+      "titleJP": "ふたりソロキャンプ",
+      "airedLabel": "Summer 2025",
+      "ratingNumber": 3,
+      "ratingText": "Meh, Finishing the Ep",
+      "review": "Fun concept, you learn a bunch about outdoorsing in Japan.",
+      "dateReviewed": "2025-09-18T12:51:00-04:00",
+      "anilistId": 185965,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/G3KHEVDZ8/solo-camping-for-two",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Romance",
+          "Slice of Life"
+        ],
+        "tags": [
+          "Camping",
+          "Educational",
+          "Outdoor Activities",
+          "Food",
+          "Primarily Adult Cast",
+          "Seinen",
+          "Male Protagonist"
+        ],
+        "studios": [
+          "SynergySP"
+        ]
+      }
+    },
+    {
+      "titleEN": "Assassination Classroom",
+      "titleJP": "暗殺教室",
+      "airedLabel": "Winter 2015",
+      "ratingNumber": 3,
+      "ratingText": "Meh, Finishing the Ep",
+      "review": "Fun show.",
+      "dateReviewed": "2025-09-29T07:37:00-04:00",
+      "anilistId": 20755,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GRE59JGX6/assassination-classroom",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Action",
+          "Comedy",
+          "Drama",
+          "Supernatural"
+        ],
+        "tags": [
+          "Assassins",
+          "School",
+          "Primarily Teen Cast",
+          "Teacher",
+          "Shounen",
+          "Ensemble Cast",
+          "Aliens",
+          "Anti-Hero",
+          "Episodic",
+          "Super Power",
+          "Male Protagonist",
+          "Guns"
+        ],
+        "studios": [
+          "Lerche"
+        ]
+      }
+    },
+    {
+      "titleEN": "Ruri Rocks",
+      "titleJP": "瑠璃の宝石",
+      "airedLabel": "Summer 2025",
+      "ratingNumber": 5,
+      "ratingText": "Peak, Nice Ep Broh",
+      "review": "So excellent and I learned so much about rocks!",
+      "dateReviewed": "2025-10-03T18:24:00-04:00",
+      "anilistId": 180929,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/G4PH0WJ2V/ruri-rocks",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Adventure",
+          "Slice of Life"
+        ],
+        "tags": [
+          "Outdoor Activities",
+          "Primarily Female Cast",
+          "Cute Girls Doing Cute Things",
+          "Educational",
+          "Female Protagonist",
+          "Environmental",
+          "Wilderness",
+          "Iyashikei",
+          "Seinen",
+          "Episodic",
+          "College",
+          "Work",
+          "Mountaineering"
+        ],
+        "studios": [
+          "Studio Bind"
+        ]
+      }
+    },
+    {
+      "titleEN": "May I Ask for One Final Thing?",
+      "titleJP": "最後にひとつだけお願いしてもよろしいでしょうか",
+      "airedLabel": "Fall 2025",
+      "ratingNumber": 3,
+      "ratingText": "Meh, Finishing the Ep",
+      "review": "Perfectly done show about punching jerks in the face.",
+      "dateReviewed": "2025-10-21T22:30:00-04:00",
+      "anilistId": 181447,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GW4HM7WQ5/may-i-ask-for-one-final-thing",
+      "anilist": {
+        "format": "ONA",
+        "genres": [
+          "Action",
+          "Comedy",
+          "Drama",
+          "Fantasy",
+          "Romance"
+        ],
+        "tags": [
+          "Female Protagonist",
+          "Heterosexual",
+          "Revenge",
+          "Ojou-sama",
+          "Villainess",
+          "Royal Affairs",
+          "Shoujo",
+          "Religion",
+          "Magic",
+          "Medieval"
+        ],
+        "studios": [
+          "LIDENFILMS"
+        ]
+      }
+    },
+    {
+      "titleEN": "Yano-kun's Ordinary Days",
+      "titleJP": "矢野くんの普通の日々",
+      "airedLabel": "Fall 2025",
+      "ratingNumber": 3,
+      "ratingText": "Meh, Finishing the Ep",
+      "review": "Nice high school romance.",
+      "dateReviewed": "2025-10-22T12:10:00-04:00",
+      "anilistId": 183965,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00362335/yano-kuns-ordinary-days",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Comedy",
+          "Romance",
+          "Slice of Life"
+        ],
+        "tags": [
+          "Seinen",
+          "Primarily Teen Cast",
+          "Female Protagonist",
+          "School",
+          "Heterosexual",
+          "Urban",
+          "Iyashikei"
+        ],
+        "studios": [
+          "Ajiado"
+        ]
+      }
+    },
+    {
+      "titleEN": "You Don't Know Gunma Yet",
+      "titleJP": "お前はまだグンマを知らない",
+      "airedLabel": "Spring 2018",
+      "ratingNumber": 5,
+      "ratingText": "Peak, Nice Ep Broh",
+      "review": "Best regional promo anime ever. I learned so much about Gunma in a total of ~25 minutes for the whole season!",
+      "dateReviewed": "2026-01-22T12:47:00-05:00",
+      "anilistId": 101042,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GYG512QDY/you-dont-know-gunma-yet",
+      "anilist": {
+        "format": "TV_SHORT",
+        "genres": [
+          "Comedy"
+        ],
+        "tags": [
+          "Male Protagonist",
+          "School",
+          "Episodic"
+        ],
+        "studios": [
+          "Asahi Production"
+        ]
+      }
+    },
+    {
+      "titleEN": "Tower of God",
+      "titleJP": "神之塔 -Tower of God-",
+      "airedLabel": "Spring 2020",
+      "ratingNumber": 1,
+      "ratingText": "Never, Please No More Like This Ever",
+      "review": "More like tower of slog, amirite.",
+      "dateReviewed": "2026-02-12T13:05:00-05:00",
+      "anilistId": 115230,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/G6J0G49DR/tower-of-god",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Action",
+          "Adventure",
+          "Drama",
+          "Fantasy",
+          "Mystery"
+        ],
+        "tags": [
+          "Super Power",
+          "Male Protagonist",
+          "Conspiracy",
+          "Magic",
+          "Ensemble Cast",
+          "Cultivation",
+          "Shounen",
+          "Battle Royale",
+          "Coming of Age"
+        ],
+        "studios": [
+          "Telecom Animation Film"
+        ]
+      }
+    },
+    {
+      "titleEN": "Takopi's Original Sin",
+      "titleJP": "タコピーの原罪",
+      "airedLabel": "Summer 2025",
+      "ratingNumber": 4,
+      "ratingText": "Yeah, Here's Hoping",
+      "review": "Very good. Very dark. See the AMO Kenzoku episode for a real breakdown.",
+      "dateReviewed": "2026-04-24T14:13:00-04:00",
+      "anilistId": 185407,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GKEH2G0X4/takopis-original-sin",
+      "anilist": {
+        "format": "ONA",
+        "genres": [
+          "Drama",
+          "Psychological",
+          "Sci-Fi"
+        ],
+        "tags": [
+          "Denpa",
+          "Bullying",
+          "Primarily Child Cast",
+          "Aliens",
+          "Female Protagonist",
+          "Philosophy",
+          "School",
+          "Revenge",
+          "Shapeshifting",
+          "Ensemble Cast",
+          "Rural",
+          "Urban Fantasy"
+        ],
+        "studios": [
+          "ENISHIYA"
+        ]
+      }
     }
   ],
   "pending": [],
