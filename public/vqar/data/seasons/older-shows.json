@@ -2304,6 +2304,724 @@
           "MAPPA"
         ]
       }
+    },
+    {
+      "titleEN": "Solo Leveling",
+      "titleJP": "俺だけレベルアップな件",
+      "airedLabel": "Winter 2024",
+      "ratingNumber": 2,
+      "ratingText": "Trash, for Second Screen Only",
+      "review": "It's fine.",
+      "dateReviewed": "2024-01-16T07:58:00-05:00",
+      "anilistId": 151807,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GDKHZEJ0K/solo-leveling",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Action",
+          "Adventure",
+          "Fantasy"
+        ],
+        "tags": [
+          "Dungeon",
+          "Male Protagonist",
+          "Urban Fantasy",
+          "Super Power",
+          "Magic",
+          "Cultivation",
+          "Survival",
+          "Shounen",
+          "Gore",
+          "Swordplay"
+        ],
+        "studios": [
+          "A-1 Pictures"
+        ]
+      }
+    },
+    {
+      "titleEN": "Metallic Rouge",
+      "titleJP": "メタリックルージュ",
+      "airedLabel": "Winter 2024",
+      "ratingNumber": 2,
+      "ratingText": "Trash, for Second Screen Only",
+      "review": "Dammit. I really wanted this show to be better than it was.",
+      "dateReviewed": "2024-01-19T11:54:00-05:00",
+      "anilistId": 162985,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/G24H1NWMJ/metallic-rouge",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Action",
+          "Mystery",
+          "Sci-Fi"
+        ],
+        "tags": [
+          "Robots",
+          "Artificial Intelligence",
+          "Cyberpunk",
+          "Henshin",
+          "Female Protagonist",
+          "Primarily Adult Cast",
+          "Tanned Skin",
+          "Assassins",
+          "Super Power",
+          "Fugitive",
+          "Dystopian",
+          "Urban",
+          "Martial Arts",
+          "Crime",
+          "Tokusatsu",
+          "Class Struggle",
+          "Space",
+          "Espionage",
+          "Guns"
+        ],
+        "studios": [
+          "bones"
+        ]
+      }
+    },
+    {
+      "titleEN": "BUCCHIGIRI?!",
+      "titleJP": "ぶっちぎり?!",
+      "airedLabel": "Winter 2024",
+      "ratingNumber": 2,
+      "ratingText": "Trash, for Second Screen Only",
+      "review": "This show looked nice but wasn't actually that great.",
+      "dateReviewed": "2024-02-08T06:19:00-05:00",
+      "anilistId": 165254,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/G5PHNM985/bucchigiri",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Action",
+          "Supernatural"
+        ],
+        "tags": [
+          "Martial Arts",
+          "Delinquents",
+          "Primarily Teen Cast",
+          "Gangs",
+          "School",
+          "Magic",
+          "Mythology",
+          "Primarily Male Cast",
+          "Male Protagonist",
+          "Unrequited Love",
+          "Heterosexual"
+        ],
+        "studios": [
+          "MAPPA"
+        ]
+      }
+    },
+    {
+      "titleEN": "Snack Basue",
+      "titleJP": "スナックバス江",
+      "airedLabel": "Winter 2024",
+      "ratingNumber": 4,
+      "ratingText": "Yeah, Here's Hoping",
+      "review": "Totally ridiculous and quite fun and out there.",
+      "dateReviewed": "2024-02-13T06:08:00-05:00",
+      "anilistId": 166093,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GDKHZEJ1K/snack-basue",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Comedy"
+        ],
+        "tags": [
+          "Bar",
+          "Parody",
+          "Episodic",
+          "Female Protagonist",
+          "Seinen",
+          "Meta",
+          "Surreal Comedy",
+          "Slapstick",
+          "Primarily Adult Cast"
+        ],
+        "studios": [
+          "Studio PuYUKAI"
+        ]
+      }
+    },
+    {
+      "titleEN": "Brave Bang Bravern!",
+      "titleJP": "勇気爆発バーンブレイバーン",
+      "airedLabel": "Winter 2024",
+      "ratingNumber": 5,
+      "ratingText": "Peak, Nice Ep Broh",
+      "review": "Oh man, this is a show that we need and didn't even know it.",
+      "dateReviewed": "2024-02-14T06:19:00-05:00",
+      "anilistId": 165598,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GEXH3W217/brave-bang-bravern",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Action",
+          "Comedy",
+          "Mecha",
+          "Sci-Fi"
+        ],
+        "tags": [
+          "Super Robot",
+          "Parody",
+          "Male Protagonist",
+          "Military",
+          "Meta",
+          "LGBTQ+ Themes",
+          "Primarily Adult Cast",
+          "Aliens",
+          "Foreign",
+          "War",
+          "Found Family",
+          "Real Robot",
+          "CGI"
+        ],
+        "studios": [
+          "CygamesPictures"
+        ]
+      }
+    },
+    {
+      "titleEN": "JUNI TAISEN: ZODIAC WAR",
+      "titleJP": "十二大戦",
+      "airedLabel": "Fall 2017",
+      "ratingNumber": 3,
+      "ratingText": "Meh, Finishing the Ep",
+      "review": "I like this show more than it gets crapped on for the ending.",
+      "dateReviewed": "2024-04-03T12:49:00-04:00",
+      "anilistId": 98443,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/G6K51X9GY/juni-taisen-zodiac-war",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Action",
+          "Thriller"
+        ],
+        "tags": [
+          "Battle Royale",
+          "Death Game",
+          "Ensemble Cast",
+          "War",
+          "Urban",
+          "Martial Arts",
+          "Urban Fantasy",
+          "Tanned Skin",
+          "Orphan",
+          "Kemonomimi",
+          "Necromancy",
+          "Super Power",
+          "Military",
+          "Swordplay",
+          "Monster Boy",
+          "Monster Girl",
+          "Gore",
+          "Primarily Adult Cast",
+          "Animals",
+          "Anti-Hero",
+          "Crossdressing"
+        ],
+        "studios": [
+          "Graphinica"
+        ]
+      }
+    },
+    {
+      "titleEN": "Kaiju No. 8",
+      "titleJP": "怪獣８号",
+      "airedLabel": "Spring 2024",
+      "ratingNumber": 3,
+      "ratingText": "Meh, Finishing the Ep",
+      "review": "Solid SJ action version of the manga.",
+      "dateReviewed": "2024-04-15T18:27:00-04:00",
+      "anilistId": 153288,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GG5H5XQ7D/kaiju-no-8",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Action",
+          "Sci-Fi"
+        ],
+        "tags": [
+          "Kaiju",
+          "Monster Boy",
+          "Shapeshifting",
+          "Male Protagonist",
+          "Super Power",
+          "Shounen",
+          "Henshin",
+          "Urban Fantasy",
+          "Military",
+          "Rescue",
+          "Work",
+          "Primarily Adult Cast",
+          "Guns",
+          "Gore",
+          "Tokusatsu",
+          "Kuudere",
+          "Body Horror"
+        ],
+        "studios": [
+          "Production I.G"
+        ]
+      }
+    },
+    {
+      "titleEN": "BARTENDER Glass of God",
+      "titleJP": "バーテンダー 神のグラス",
+      "airedLabel": "Spring 2024",
+      "ratingNumber": 3,
+      "ratingText": "Meh, Finishing the Ep",
+      "review": "Cocktail battle anime, nice jerb.",
+      "dateReviewed": "2024-05-21T12:34:00-04:00",
+      "anilistId": 155890,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GVDHX85DV/bartender-glass-of-god",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Drama",
+          "Slice of Life"
+        ],
+        "tags": [
+          "Work",
+          "Bar",
+          "Iyashikei",
+          "Seinen",
+          "Male Protagonist",
+          "Philosophy",
+          "Primarily Adult Cast",
+          "Food",
+          "Educational"
+        ],
+        "studios": [
+          "Liber"
+        ]
+      }
+    },
+    {
+      "titleEN": "Bakemonogatari",
+      "titleJP": "化物語",
+      "airedLabel": "Summer 2009",
+      "ratingNumber": 4,
+      "ratingText": "Yeah, Here's Hoping",
+      "review": "Quite well done and boy is this show hard to stream T_T",
+      "dateReviewed": "2024-06-07T12:11:00-04:00",
+      "anilistId": 5081,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/G69PXP1EY/bakemonogatari",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Comedy",
+          "Drama",
+          "Mystery",
+          "Psychological",
+          "Romance",
+          "Supernatural"
+        ],
+        "tags": [
+          "Youkai",
+          "Urban Fantasy",
+          "Ensemble Cast",
+          "Surreal Comedy",
+          "Male Protagonist",
+          "Philosophy",
+          "Coming of Age",
+          "Vampire",
+          "Primarily Female Cast",
+          "Satire",
+          "Heterosexual",
+          "Primarily Teen Cast",
+          "Meta",
+          "Curses",
+          "Psychosexual",
+          "Monster Girl",
+          "Mixed Media",
+          "Exorcism",
+          "Parody",
+          "Gods",
+          "Rotoscoping",
+          "Love Triangle",
+          "Yandere",
+          "Tomboy"
+        ],
+        "studios": [
+          "Shaft"
+        ]
+      }
+    },
+    {
+      "titleEN": "Berserk: The Golden Age Arc - Memorial Edition",
+      "titleJP": "ベルセルク 黄金時代篇 MEMORIAL EDITION",
+      "airedLabel": "Fall 2022",
+      "ratingNumber": 2,
+      "ratingText": "Trash, for Second Screen Only",
+      "review": "AAAAARRRRGGGHHH!!!!! Dammit, this should be the best thing. I love the Shiro Sagisu OST, and the visuals and editing are better than the original version but so much of it still doesn't look great. We have a whole AMO Kenzoku episode on it going into much more detail. Watch Berserk 97, read the manga.",
+      "dateReviewed": "2024-08-28T12:08:00-04:00",
+      "anilistId": 155011,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/G24H1N8XX/berserk-the-golden-age-arc-memorial-edition",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Action",
+          "Adventure",
+          "Drama",
+          "Fantasy",
+          "Horror",
+          "Supernatural"
+        ],
+        "tags": [
+          "Seinen",
+          "Primarily Adult Cast",
+          "Swordplay",
+          "Gore",
+          "War",
+          "Male Protagonist",
+          "Military",
+          "Class Struggle",
+          "Medieval",
+          "Travel",
+          "Philosophy",
+          "Primarily Male Cast",
+          "Politics",
+          "CGI",
+          "Anti-Hero",
+          "Nudity",
+          "Tomboy",
+          "Tsundere",
+          "Tanned Skin"
+        ],
+        "studios": [
+          "Studio 4°C"
+        ]
+      }
+    },
+    {
+      "titleEN": "Why Does Nobody Remember Me in This World?",
+      "titleJP": "なぜ僕の世界を誰も覚えていないのか？",
+      "airedLabel": "Summer 2024",
+      "ratingNumber": 1,
+      "ratingText": "Never, Please No More Like This Ever",
+      "review": "Why does nobody remember this show?",
+      "dateReviewed": "2024-09-11T22:04:00-04:00",
+      "anilistId": 167419,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GJ0H7QGJE/why-does-nobody-remember-me-in-this-world",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Action",
+          "Adventure",
+          "Fantasy",
+          "Sci-Fi"
+        ],
+        "tags": [
+          "Demons",
+          "Amnesia",
+          "Post-Apocalyptic",
+          "Elf",
+          "Angels"
+        ],
+        "studios": [
+          "project No.9"
+        ]
+      }
+    },
+    {
+      "titleEN": "SHOSHIMIN: How to become Ordinary",
+      "titleJP": "小市民シリーズ",
+      "airedLabel": "Summer 2024",
+      "ratingNumber": 5,
+      "ratingText": "Peak, Nice Ep Broh",
+      "review": "Fabulous! Investigative high school detective show. Lovely.",
+      "dateReviewed": "2024-11-27T18:55:00-05:00",
+      "anilistId": 173295,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/G5PHNM94J/shoshimin-how-to-become-ordinary",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Mystery",
+          "Slice of Life"
+        ],
+        "tags": [
+          "Detective",
+          "Primarily Teen Cast",
+          "Mixed Media",
+          "Male Protagonist",
+          "Female Protagonist",
+          "Crime",
+          "School",
+          "Food",
+          "Episodic"
+        ],
+        "studios": [
+          "Lapin Track"
+        ]
+      }
+    },
+    {
+      "titleEN": "Golden Boy",
+      "titleJP": "GOLDEN BOY さすらいのお勉強野郎",
+      "airedLabel": "Fall 1995",
+      "ratingNumber": 5,
+      "ratingText": "Peak, Nice Ep Broh",
+      "review": "See the AMO Kenzoku episode on this; it's way better than the credit it got for being raunchy.",
+      "dateReviewed": "2025-01-05T10:27:00-05:00",
+      "anilistId": 268,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GR19N7DV6/golden-boy",
+      "anilist": {
+        "format": "OVA",
+        "genres": [
+          "Adventure",
+          "Comedy",
+          "Ecchi"
+        ],
+        "tags": [
+          "Episodic",
+          "Work",
+          "Satire",
+          "Male Protagonist",
+          "Seinen",
+          "Travel",
+          "Cycling",
+          "Heterosexual",
+          "Nudity",
+          "Primarily Adult Cast"
+        ],
+        "studios": [
+          "APPP"
+        ]
+      }
+    },
+    {
+      "titleEN": "Zenshu",
+      "titleJP": "全修。",
+      "airedLabel": "Winter 2025",
+      "ratingNumber": 2,
+      "ratingText": "Trash, for Second Screen Only",
+      "review": "Some parts of this show are really freaking cool; but it does not stick anything close to the landing.",
+      "dateReviewed": "2025-01-09T06:50:00-05:00",
+      "anilistId": 176273,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/G24H1NW8E/zenshu",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Action",
+          "Fantasy",
+          "Romance"
+        ],
+        "tags": [
+          "Isekai",
+          "Female Protagonist",
+          "Super Power",
+          "Drawing",
+          "Magic",
+          "Primarily Adult Cast",
+          "Ensemble Cast",
+          "Meta",
+          "Gods",
+          "Heterosexual",
+          "Anthropomorphism",
+          "Otaku Culture",
+          "Medieval",
+          "Robots"
+        ],
+        "studios": [
+          "MAPPA"
+        ]
+      }
+    },
+    {
+      "titleEN": "Shangri-La Frontier",
+      "titleJP": "シャングリラ・フロンティア",
+      "airedLabel": "Fall 2023",
+      "ratingNumber": 2,
+      "ratingText": "Trash, for Second Screen Only",
+      "review": "Solid VG-isekai show.",
+      "dateReviewed": "2025-01-23T06:43:00-05:00",
+      "anilistId": 151970,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/G79H23Z8P/shangri-la-frontier",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Action",
+          "Adventure",
+          "Comedy",
+          "Fantasy",
+          "Sci-Fi"
+        ],
+        "tags": [
+          "Video Games",
+          "Virtual World",
+          "Male Protagonist",
+          "Swordplay",
+          "Anthropomorphism",
+          "Travel",
+          "Shounen",
+          "Unrequited Love",
+          "Slapstick"
+        ],
+        "studios": [
+          "C2C"
+        ]
+      }
+    },
+    {
+      "titleEN": "Momentary Lily",
+      "titleJP": "もめんたりー・リリィ",
+      "airedLabel": "Winter 2025",
+      "ratingNumber": 3,
+      "ratingText": "Meh, Finishing the Ep",
+      "review": "I really like Go Hands style and this show has an equally crazy premise.",
+      "dateReviewed": "2025-01-28T12:08:00-05:00",
+      "anilistId": 177159,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GG5H5XQQ5/momentary-lily",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Action",
+          "Adventure",
+          "Mystery",
+          "Sci-Fi",
+          "Slice of Life"
+        ],
+        "tags": [
+          "Post-Apocalyptic",
+          "Urban",
+          "Primarily Teen Cast",
+          "Survival",
+          "Primarily Female Cast",
+          "Female Protagonist",
+          "Food",
+          "Super Power",
+          "Henshin",
+          "Swordplay",
+          "Video Games",
+          "Urban Fantasy"
+        ],
+        "studios": [
+          "GoHands"
+        ]
+      }
+    },
+    {
+      "titleEN": "Catch Me at the Ballpark!",
+      "titleJP": "ボールパークでつかまえて！",
+      "airedLabel": "Spring 2025",
+      "ratingNumber": 5,
+      "ratingText": "Peak, Nice Ep Broh",
+      "review": "Is there anything better than a good show about the behind the scenes people for a mid-tier NPB team? No! Also this ED is great.",
+      "dateReviewed": "2025-04-03T12:16:00-04:00",
+      "anilistId": 184279,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GVDHX85EQ/catch-me-at-the-ballpark",
+      "ed": true,
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Comedy",
+          "Romance",
+          "Slice of Life",
+          "Sports"
+        ],
+        "tags": [
+          "Ensemble Cast",
+          "Seinen",
+          "Work",
+          "Baseball",
+          "Iyashikei",
+          "Female Protagonist",
+          "Episodic",
+          "Gyaru",
+          "Primarily Adult Cast"
+        ],
+        "studios": [
+          "EMT Squared"
+        ]
+      }
+    },
+    {
+      "titleEN": "GUILTY GEAR",
+      "titleJP": "GUILTY GEAR STRIVE: DUAL RULERS",
+      "airedLabel": "Spring 2025",
+      "ratingNumber": 4,
+      "ratingText": "Yeah, Here's Hoping",
+      "review": "It's completely insane, the story is insane, the world is insane; so it's 100% pure Guilty Gear.",
+      "dateReviewed": "2025-04-07T13:30:00-04:00",
+      "anilistId": 178046,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GEXH3W2MZ/guilty-gear",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Action",
+          "Sci-Fi"
+        ],
+        "tags": [
+          "Super Power",
+          "Full CGI",
+          "Post-Apocalyptic",
+          "Magic",
+          "Conspiracy",
+          "Coming of Age"
+        ],
+        "studios": [
+          "SANZIGEN"
+        ]
+      }
     }
   ],
   "pending": [],
