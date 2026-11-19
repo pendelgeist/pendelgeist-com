@@ -2222,6 +2222,41 @@
           "MADHOUSE"
         ]
       }
+    },
+    {
+      "titleEN": "The Kingdoms of Ruin",
+      "titleJP": "はめつのおうこく",
+      "airedLabel": "Fall 2023",
+      "ratingNumber": 4,
+      "ratingText": "Yeah, Here's Hoping",
+      "review": "OMG. This show is nuts, brutal.",
+      "dateReviewed": "2023-11-09T07:02:00-05:00",
+      "anilistId": 160900,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GG5H5XQ14/the-kingdoms-of-ruin",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Action",
+          "Drama",
+          "Fantasy"
+        ],
+        "tags": [
+          "Revenge",
+          "Magic",
+          "Witch",
+          "Gore",
+          "Shounen",
+          "Male Protagonist",
+          "Lost Civilization",
+          "Military"
+        ],
+        "studios": [
+          "Yokohama Animation Lab"
+        ]
+      }
     }
   ],
   "pending": [],
