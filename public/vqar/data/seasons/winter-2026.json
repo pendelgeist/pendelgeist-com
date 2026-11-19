@@ -637,6 +637,10 @@
       "ratingText": "Yeah, Here's Hoping",
       "review": "Nice production values, a fun OP—it looks like it could be an interesting show. Is it probably gonna be some show that changes my life? No, but I often find I have a high-school-something show that I watch most seasons, and this one might be the one I watch this season. Solid first five minutes.",
       "dateReviewed": "2026-01-20T09:00:00-05:00",
+      "watched": {
+        "first": "2026-02-14",
+        "last": "2026-04-09"
+      },
       "anilistId": 184951,
       "annId": 34083,
       "streaming": [
@@ -717,6 +721,11 @@
       "ratingText": "Yeah, Here's Hoping",
       "review": "Actually, a fairly interesting beginning to the show. Cool musical intro—I liked the opening. I'm not quite sure how I feel about the animation style yet, but it seems to be reasonably well done. This show has potential to be interesting.",
       "dateReviewed": "2026-01-15T07:00:00-05:00",
+      "watched": {
+        "first": "2026-01-16",
+        "last": "2026-01-19",
+        "lastEpisode": 3
+      },
       "anilistId": 185514,
       "annId": 34162,
       "streaming": [
@@ -1117,6 +1126,11 @@
       "ratingText": "Yeah, Here's Hoping",
       "review": "I wasn't quite sure what to expect. I saw the first episode was an hour long, and I was, based on the title, very sus. But this show has proved to be pretty darn cool-looking. The animation is top-notch, production values across the whole thing are excellent, and the script seems pretty solid. I haven't seen any ridiculous, dumb tropes or anything yet. So I have high hopes for this show.",
       "dateReviewed": "2026-01-10T07:30:00-05:00",
+      "watched": {
+        "first": "2026-01-27",
+        "last": "2026-02-05",
+        "lastEpisode": 3
+      },
       "anilistId": 167152,
       "annId": 29058,
       "streaming": [
@@ -1298,6 +1312,10 @@
       "ratingText": "Peak, Nice Ep Broh",
       "review": "They made a show about someone running a one-person laundry shop in Atami (which is a little south of Tokyo). It's actually kind of charming and kind of cool, 'cause you get to see some of the more technical details of doing laundry, and I don't hate the first 8 minutes of it.",
       "dateReviewed": "2026-01-07T07:00:00-05:00",
+      "watched": {
+        "first": "2026-01-08",
+        "last": "2026-04-10"
+      },
       "anilistId": 194028,
       "annId": 36413,
       "streaming": [

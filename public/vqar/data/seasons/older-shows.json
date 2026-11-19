@@ -12,6 +12,10 @@
       "ratingText": "Peak, Nice Ep Broh",
       "review": "Dammit, this is still great. It still actually looks really good, which is especially hard considering the era it was made in, which was the early digital transition — there are a lot of things from that era that end up looking pretty trashy. Fabulous opening, too. It's a great episode, a great piece of Kon's work. And it's always interesting to see someone who primarily works in one medium translate to another — in this case, a film director going and doing a 13-episode TV series. So I'm very happy that we're watching/reviewing this again, and I'm definitely looking forward to seeing where this crazy show goes, one I haven't watched in over 20 years.",
       "dateReviewed": "2026-05-19T08:00:00-04:00",
+      "watched": {
+        "first": "2026-05-19",
+        "last": "2026-06-04"
+      },
       "anilistId": 323,
       "annId": 3169,
       "streaming": [
@@ -120,6 +124,10 @@
       "ratingText": "Peak, Nice Ep Broh",
       "review": "This is a show I still fondly remember watching quite a few times and would be happy to go back to.",
       "dateReviewed": "2012-10-05T18:42:00-04:00",
+      "watched": {
+        "first": "2012-10-05",
+        "last": "2013-11-11"
+      },
       "anilistId": 6547,
       "streaming": [
         "crunchyroll"
@@ -162,6 +170,10 @@
       "ratingText": "Peak, Nice Ep Broh",
       "review": "This show oozes cool, and having not watched it in quite a long time I still remember many bits of it, so that's good.",
       "dateReviewed": "2012-10-25T18:43:00-04:00",
+      "watched": {
+        "first": "2012-10-25",
+        "last": "2013-02-12"
+      },
       "anilistId": 6746,
       "streaming": [
         "crunchyroll"
@@ -200,6 +212,10 @@
       "ratingText": "Never, Please No More Like This Ever",
       "review": "I literally do not remember anything about this show.",
       "dateReviewed": "2013-02-13T13:40:00-05:00",
+      "watched": {
+        "first": "2013-02-13",
+        "last": "2013-04-15"
+      },
       "anilistId": 16005,
       "streaming": [
         "crunchyroll"
@@ -233,6 +249,10 @@
       "ratingText": "Peak, Nice Ep Broh",
       "review": "I remember this show being pretty excellent, so I'll stick with that memory.",
       "dateReviewed": "2013-02-28T12:55:00-05:00",
+      "watched": {
+        "first": "2013-02-28",
+        "last": "2013-04-14"
+      },
       "anilistId": 9756,
       "streaming": [
         "crunchyroll"
@@ -277,6 +297,10 @@
       "ratingText": "Never, Please No More Like This Ever",
       "review": "I literally am not sure this was a show.",
       "dateReviewed": "2013-04-26T14:45:00-04:00",
+      "watched": {
+        "first": "2013-04-26",
+        "last": "2013-07-04"
+      },
       "anilistId": 14765,
       "streaming": [
         "crunchyroll"
@@ -308,6 +332,10 @@
       "ratingText": "Meh, Finishing the Ep",
       "review": "I vaguely remember this show. Probably fine.",
       "dateReviewed": "2013-06-05T21:31:00-04:00",
+      "watched": {
+        "first": "2013-06-05",
+        "last": "2013-07-01"
+      },
       "anilistId": 16524,
       "streaming": [
         "crunchyroll"
@@ -354,6 +382,10 @@
       "ratingText": "Yeah, Here's Hoping",
       "review": "Really great first season, but I never finished it.",
       "dateReviewed": "2013-06-24T13:12:00-04:00",
+      "watched": {
+        "first": "2013-06-24",
+        "last": "2013-10-02"
+      },
       "anilistId": 16498,
       "streaming": [
         "crunchyroll"
@@ -399,6 +431,10 @@
       "ratingText": "Yeah, Here's Hoping",
       "review": "Solid show that I quite liked.",
       "dateReviewed": "2013-10-26T12:59:00-04:00",
+      "watched": {
+        "first": "2013-10-26",
+        "last": "2014-01-26"
+      },
       "anilistId": 18893,
       "streaming": [
         "crunchyroll"
@@ -435,6 +471,11 @@
       "ratingText": "Yeah, Here's Hoping",
       "review": "This show is a wild trip, probably a 5 except I haven't ever finished watching it.",
       "dateReviewed": "2014-02-23T09:26:00-05:00",
+      "watched": {
+        "first": "2014-02-23",
+        "last": "2014-06-07",
+        "lastEpisode": 12
+      },
       "anilistId": 18679,
       "streaming": [
         "crunchyroll"
@@ -490,6 +531,10 @@
       "ratingText": "Meh, Finishing the Ep",
       "review": "Meh?",
       "dateReviewed": "2014-03-04T23:14:00-05:00",
+      "watched": {
+        "first": "2014-03-04",
+        "last": "2014-09-10"
+      },
       "anilistId": 8769,
       "streaming": [
         "crunchyroll"
@@ -530,6 +575,10 @@
       "ratingText": "Trash, for Second Screen Only",
       "review": "I don't really remember.",
       "dateReviewed": "2014-03-16T23:20:00-04:00",
+      "watched": {
+        "first": "2014-03-16",
+        "last": "2014-04-13"
+      },
       "anilistId": 3167,
       "streaming": [
         "crunchyroll"
@@ -562,6 +611,10 @@
       "ratingText": "Trash, for Second Screen Only",
       "review": "Don't remember.",
       "dateReviewed": "2014-04-04T22:36:00-04:00",
+      "watched": {
+        "first": "2014-04-04",
+        "last": "2014-04-20"
+      },
       "anilistId": 20490,
       "streaming": [
         "crunchyroll"
@@ -592,6 +645,11 @@
       "ratingText": "Trash, for Second Screen Only",
       "review": "Don't remember.",
       "dateReviewed": "2014-04-20T08:41:00-04:00",
+      "watched": {
+        "first": "2014-04-20",
+        "last": "2014-05-04",
+        "lastEpisode": 4
+      },
       "anilistId": 20541,
       "streaming": [
         "crunchyroll"
@@ -627,6 +685,11 @@
       "ratingText": "Trash, for Second Screen Only",
       "review": "Don't remember.",
       "dateReviewed": "2014-04-20T10:58:00-04:00",
+      "watched": {
+        "first": "2014-04-20",
+        "last": "2014-11-12",
+        "lastEpisode": "S2 E2"
+      },
       "anilistId": 20462,
       "streaming": [
         "crunchyroll"
@@ -664,6 +727,11 @@
       "ratingText": "Trash, for Second Screen Only",
       "review": "Don't remember it really, but it's nowhere near the original show.",
       "dateReviewed": "2014-10-01T18:38:00-04:00",
+      "watched": {
+        "first": "2014-10-01",
+        "last": "2014-10-19",
+        "lastEpisode": 8
+      },
       "anilistId": 14751,
       "streaming": [
         "crunchyroll"
@@ -715,6 +783,10 @@
       "review": "Okay, so this is a real show here. It has some highs, some lows, and it really was a huge spawning point for this whole genre. What I would say is good here is the OST, the OP, and the overall animation quality. The first half of the first season is pretty fun, but that's like ~6 eps. The second half of the first season gets less good. Then there's eps 13-24 of season 1; boy, just terrible. The animation was still good, but it went into such weird story stuff and totally lost me. Then there's every season after that, which was just worse. So I'll give it a 3, splitting a 5 for the first few eps and a 1 for everything after that. I'm sure I'm being too kind to this show, but I'm a bit of a softie.",
       "dateReviewed": "2012-10-25T18:17:00-04:00",
       "finishedSeason": true,
+      "watched": {
+        "first": "2012-10-25",
+        "last": "2022-03-03"
+      },
       "anilistId": 11757,
       "streaming": [
         "crunchyroll"
@@ -756,6 +828,10 @@
       "ratingText": "Never, Please No More Like This Ever",
       "review": "Stoopid.",
       "dateReviewed": "2022-02-19T09:37:00-05:00",
+      "watched": {
+        "first": "2022-02-19",
+        "last": "2022-02-21"
+      },
       "anilistId": 116242,
       "streaming": [
         "crunchyroll"
@@ -798,6 +874,10 @@
       "ratingText": "Meh, Finishing the Ep",
       "review": "Modestly fun.",
       "dateReviewed": "2022-02-22T18:29:00-05:00",
+      "watched": {
+        "first": "2022-02-22",
+        "last": "2022-03-29"
+      },
       "anilistId": 134252,
       "streaming": [
         "crunchyroll"
@@ -839,6 +919,11 @@
       "ratingText": "Trash, for Second Screen Only",
       "review": "Dumb fun.",
       "dateReviewed": "2022-02-22T18:31:00-05:00",
+      "watched": {
+        "first": "2022-02-22",
+        "last": "2023-02-09",
+        "lastEpisode": 17
+      },
       "anilistId": 101280,
       "streaming": [
         "crunchyroll"
@@ -888,6 +973,11 @@
       "ratingText": "Meh, Finishing the Ep",
       "review": "A bit off from the normal.",
       "dateReviewed": "2022-03-03T19:14:00-05:00",
+      "watched": {
+        "first": "2022-03-03",
+        "last": "2022-04-22",
+        "lastEpisode": 12
+      },
       "anilistId": 138912,
       "streaming": [
         "crunchyroll"
@@ -917,6 +1007,10 @@
       "ratingText": "Meh, Finishing the Ep",
       "review": "Depravity at its peak, somehow also not terrible and terrible.",
       "dateReviewed": "2022-03-04T22:57:00-05:00",
+      "watched": {
+        "first": "2022-03-04",
+        "last": "2024-11-27"
+      },
       "anilistId": 21202,
       "streaming": [
         "crunchyroll"
@@ -960,6 +1054,10 @@
       "ratingText": "Peak, Nice Ep Broh",
       "review": "Superb, see our podcast episode on it.",
       "dateReviewed": "2022-03-06T13:52:00-05:00",
+      "watched": {
+        "first": "2022-03-06",
+        "last": "2022-03-17"
+      },
       "anilistId": 128547,
       "streaming": [
         "crunchyroll"
@@ -1009,6 +1107,11 @@
       "ratingText": "Never, Please No More Like This Ever",
       "review": "Stoopid.",
       "dateReviewed": "2022-03-19T07:19:00-04:00",
+      "watched": {
+        "first": "2022-03-19",
+        "last": "2022-03-25",
+        "lastEpisode": 10
+      },
       "anilistId": 20735,
       "streaming": [
         "crunchyroll"
@@ -1047,6 +1150,11 @@
       "ratingText": "Meh, Finishing the Ep",
       "review": "It's a much better show overall than SAO, and has way more likeable characters. I did kind of give up in the middle of S2 and didn't finish S3, but it's quite enjoyable in this VG-isekai genre.",
       "dateReviewed": "2022-03-20T08:27:00-04:00",
+      "watched": {
+        "first": "2022-03-20",
+        "last": "2022-10-03",
+        "lastEpisode": "S3 E1"
+      },
       "anilistId": 17265,
       "streaming": [
         "crunchyroll"
@@ -1085,6 +1193,10 @@
       "ratingText": "Meh, Finishing the Ep",
       "review": "It's a very nicely animated show that's got plenty of fun stuff in it. It drags a bit long, and somehow there's 200+ chapters of the manga.",
       "dateReviewed": "2022-03-29T17:19:00-04:00",
+      "watched": {
+        "first": "2022-03-29",
+        "last": "2022-08-20"
+      },
       "anilistId": 101921,
       "streaming": [
         "crunchyroll"
@@ -1129,6 +1241,10 @@
       "ratingText": "Peak, Nice Ep Broh",
       "review": "What a lovely show. I took my sweet time watching this show and didn't start it until quite a while after its broadcast. It's got all the fun aspects of Azumanga Daioh without the S-tier cringe.",
       "dateReviewed": "2022-04-01T15:48:00-04:00",
+      "watched": {
+        "first": "2022-04-01",
+        "last": "2026-11-16"
+      },
       "anilistId": 10165,
       "streaming": [
         "crunchyroll"
@@ -1168,6 +1284,11 @@
       "ratingText": "Yeah, Here's Hoping",
       "review": "A fun show; well done and I can see why it's been quite popular.",
       "dateReviewed": "2022-04-01T16:13:00-04:00",
+      "watched": {
+        "first": "2022-04-01",
+        "last": "2022-04-26",
+        "lastEpisode": 6
+      },
       "anilistId": 21709,
       "streaming": [
         "crunchyroll"
@@ -1206,6 +1327,10 @@
       "ratingText": "Yeah, Here's Hoping",
       "review": "A great sports anime that dives into the world of a sport I had no idea existed; now I know quite a bit about Kabaddi.",
       "dateReviewed": "2022-04-05T06:33:00-04:00",
+      "watched": {
+        "first": "2022-04-05",
+        "last": "2022-05-28"
+      },
       "anilistId": 120859,
       "streaming": [
         "crunchyroll"
@@ -1240,6 +1365,11 @@
       "ratingText": "Meh, Finishing the Ep",
       "review": "Another hero isekai. S1 is pretty good, S2 was complete trash, S3 seemed better but I was out on it at this point. It's got all the waifus and has some good twists.",
       "dateReviewed": "2022-04-06T18:46:00-04:00",
+      "watched": {
+        "first": "2022-04-06",
+        "last": "2024-06-04",
+        "lastEpisode": "S3 E4"
+      },
       "anilistId": 99263,
       "streaming": [
         "crunchyroll"
@@ -1291,6 +1421,11 @@
       "ratingText": "Peak, Nice Ep Broh",
       "review": "Season 1 is completely outlandishly wonderful. S2 just skip it; they only made one season, and it's beautifully ridiculous.",
       "dateReviewed": "2022-04-06T19:29:00-04:00",
+      "watched": {
+        "first": "2022-04-06",
+        "last": "2023-06-26",
+        "lastEpisode": 16
+      },
       "anilistId": 140830,
       "streaming": [
         "crunchyroll"
@@ -1326,6 +1461,10 @@
       "ratingText": "Yeah, Here's Hoping",
       "review": "It's a quite nicely done show. But that's the truth about anything that Kazuhiro Furuhashi directs; it'll be the best possible version of that thing you'll see.",
       "dateReviewed": "2022-04-12T06:32:00-04:00",
+      "watched": {
+        "first": "2022-04-12",
+        "last": "2024-05-14"
+      },
       "anilistId": 140960,
       "streaming": [
         "crunchyroll"
@@ -1380,6 +1519,10 @@
       "ratingText": "Peak, Nice Ep Broh",
       "review": "I really love this show. It's quite well executed, interesting characters, great setting. Nice healing anime.",
       "dateReviewed": "2022-04-19T16:50:00-04:00",
+      "watched": {
+        "first": "2022-04-19",
+        "last": "2022-06-23"
+      },
       "anilistId": 133412,
       "streaming": [
         "crunchyroll"
@@ -1414,6 +1557,10 @@
       "ratingText": "Meh, Finishing the Ep",
       "review": "It's a nicely done teen non-romantic romance.",
       "dateReviewed": "2022-04-20T06:26:00-04:00",
+      "watched": {
+        "first": "2022-04-20",
+        "last": "2022-06-21"
+      },
       "anilistId": 137281,
       "streaming": [
         "crunchyroll"
@@ -1451,6 +1598,10 @@
       "ratingText": "Peak, Nice Ep Broh",
       "review": "Fabulous death game.",
       "dateReviewed": "2022-04-20T06:36:00-04:00",
+      "watched": {
+        "first": "2022-04-20",
+        "last": "2022-06-22"
+      },
       "anilistId": 141014,
       "streaming": [
         "crunchyroll"
@@ -1486,6 +1637,10 @@
       "ratingText": "Yeah, Here's Hoping",
       "review": "Well done show, just nicely executed.",
       "dateReviewed": "2022-04-28T19:03:00-04:00",
+      "watched": {
+        "first": "2022-04-28",
+        "last": "2022-08-20"
+      },
       "anilistId": 132010,
       "streaming": [
         "crunchyroll"
@@ -1526,6 +1681,10 @@
       "ratingText": "Peak, Nice Ep Broh",
       "review": "I wanted to give this a lower rating but it's actually pretty great.",
       "dateReviewed": "2022-05-28T21:17:00-04:00",
+      "watched": {
+        "first": "2022-05-28",
+        "last": "2022-07-23"
+      },
       "anilistId": 116589,
       "streaming": [
         "crunchyroll"
@@ -1572,6 +1731,11 @@
       "ratingText": "Peak, Nice Ep Broh",
       "review": "Ludicrous stupid-jork anime at its jorkiest.",
       "dateReviewed": "2022-06-28T18:48:00-04:00",
+      "watched": {
+        "first": "2022-06-28",
+        "last": "2022-09-23",
+        "lastEpisode": 12
+      },
       "anilistId": 16774,
       "streaming": [
         "crunchyroll"
@@ -1609,6 +1773,10 @@
       "ratingText": "Trash, for Second Screen Only",
       "review": "Forgettable.",
       "dateReviewed": "2022-08-08T07:14:00-04:00",
+      "watched": {
+        "first": "2022-08-08",
+        "last": "2022-09-30"
+      },
       "anilistId": 145260,
       "streaming": [
         "crunchyroll"
@@ -1648,6 +1816,10 @@
       "ratingText": "Meh, Finishing the Ep",
       "review": "It's got a real style and is cool.",
       "dateReviewed": "2022-08-09T19:17:00-04:00",
+      "watched": {
+        "first": "2022-08-09",
+        "last": "2022-10-02"
+      },
       "anilistId": 145468,
       "streaming": [
         "crunchyroll"
@@ -1680,6 +1852,10 @@
       "ratingText": "Peak, Nice Ep Broh",
       "review": "Quite the enjoyable romp.",
       "dateReviewed": "2022-08-19T13:39:00-04:00",
+      "watched": {
+        "first": "2022-08-19",
+        "last": "2026-01-05"
+      },
       "anilistId": 143270,
       "streaming": [
         "crunchyroll"
@@ -1718,6 +1894,11 @@
       "ratingText": "Yeah, Here's Hoping",
       "review": "So I go all over on this show; it's super SJ, it's got weird and dumb characters and arcs. But then it's got this charm to it, and just when I think it's terrible and I'm gonna quit, the next season comes back a bit better. Cementos is the real boss hero of this world. I think this show was greatly helped by most of the seasons being 12/24 eps and then Bones would take a break, get enough manga/time/recover and then come back. So, as far as a well done SJ series that runs long enough but not too long, I like it.",
       "dateReviewed": "2022-10-03T07:35:00-04:00",
+      "watched": {
+        "first": "2022-10-03",
+        "last": "2026-05-19",
+        "lastEpisode": 170
+      },
       "anilistId": 21459,
       "streaming": [
         "crunchyroll"
@@ -1757,6 +1938,10 @@
       "ratingText": "Peak, Nice Ep Broh",
       "review": "It's Revolutionary Girl Utena IN SPACE. What's not to love about that. Nicely done and a cool take in the Gundam universe.",
       "dateReviewed": "2022-10-11T18:30:00-04:00",
+      "watched": {
+        "first": "2022-10-11",
+        "last": "2025-01-07"
+      },
       "anilistId": 139274,
       "streaming": [
         "crunchyroll"
@@ -1798,6 +1983,10 @@
       "ratingText": "Peak, Nice Ep Broh",
       "review": "It's a very well done adaptation of the manga.",
       "dateReviewed": "2022-11-09T05:12:00-05:00",
+      "watched": {
+        "first": "2022-11-09",
+        "last": "2026-06-04"
+      },
       "anilistId": 127230,
       "streaming": [
         "crunchyroll"
@@ -1846,6 +2035,10 @@
       "ratingText": "Peak, Nice Ep Broh",
       "review": "I bought the blu-rays and changed my CR avatar to Bocchi.",
       "dateReviewed": "2022-12-06T02:45:00-05:00",
+      "watched": {
+        "first": "2022-12-06",
+        "last": "2023-12-04"
+      },
       "anilistId": 130003,
       "streaming": [
         "crunchyroll"
@@ -1888,6 +2081,11 @@
       "ratingText": "Meh, Finishing the Ep",
       "review": "Fine. I really wanted to love this show, but it's a bit too wonky.",
       "dateReviewed": "2023-01-30T06:19:00-05:00",
+      "watched": {
+        "first": "2023-01-30",
+        "last": "2023-03-07",
+        "lastEpisode": 8
+      },
       "anilistId": 125869,
       "streaming": [
         "crunchyroll"
@@ -1930,6 +2128,10 @@
       "ratingText": "Trash, for Second Screen Only",
       "review": "I don't remember this show at all.",
       "dateReviewed": "2023-01-31T06:47:00-05:00",
+      "watched": {
+        "first": "2023-01-31",
+        "last": "2023-05-01"
+      },
       "anilistId": 144092,
       "streaming": [
         "crunchyroll"
@@ -1971,6 +2173,11 @@
       "ratingText": "Yeah, Here's Hoping",
       "review": "Very pretty show. Fun concept.",
       "dateReviewed": "2023-02-27T12:45:00-05:00",
+      "watched": {
+        "first": "2023-02-27",
+        "last": "2023-05-23",
+        "lastEpisode": 9
+      },
       "anilistId": 21507,
       "streaming": [
         "crunchyroll"
@@ -2019,6 +2226,11 @@
       "ratingText": "Peak, Nice Ep Broh",
       "review": "What a fabulous thing to exist.",
       "dateReviewed": "2023-03-17T06:57:00-04:00",
+      "watched": {
+        "first": "2023-03-17",
+        "last": "2025-02-18",
+        "lastEpisode": 13
+      },
       "anilistId": 1000,
       "streaming": [
         "crunchyroll"
@@ -2057,6 +2269,10 @@
       "ratingText": "Trash, for Second Screen Only",
       "review": "It's fine. OP 2 by Creepy Nuts is S-tier.",
       "dateReviewed": "2023-04-17T00:24:00-04:00",
+      "watched": {
+        "first": "2023-04-17",
+        "last": "2025-06-16"
+      },
       "anilistId": 151801,
       "streaming": [
         "crunchyroll"
@@ -2105,6 +2321,10 @@
       "ratingText": "Peak, Nice Ep Broh",
       "review": "Somehow they took the most depraved show and spun off this really charming side show.",
       "dateReviewed": "2023-04-19T00:53:00-04:00",
+      "watched": {
+        "first": "2023-04-19",
+        "last": "2023-07-17"
+      },
       "anilistId": 150075,
       "streaming": [
         "crunchyroll"
@@ -2147,6 +2367,10 @@
       "ratingText": "Yeah, Here's Hoping",
       "review": "Pretty good.",
       "dateReviewed": "2023-08-25T13:08:00-04:00",
+      "watched": {
+        "first": "2023-08-25",
+        "last": "2023-11-16"
+      },
       "anilistId": 162983,
       "streaming": [
         "crunchyroll"
@@ -2192,6 +2416,10 @@
       "ratingText": "Peak, Nice Ep Broh",
       "review": "Plenty of good reasons this show is critically loved and very popular.",
       "dateReviewed": "2023-11-03T07:00:00-04:00",
+      "watched": {
+        "first": "2023-11-03",
+        "last": "2024-07-17"
+      },
       "anilistId": 154587,
       "streaming": [
         "crunchyroll"
@@ -2233,6 +2461,10 @@
       "ratingText": "Yeah, Here's Hoping",
       "review": "OMG. This show is nuts, brutal.",
       "dateReviewed": "2023-11-09T07:02:00-05:00",
+      "watched": {
+        "first": "2023-11-09",
+        "last": "2023-12-26"
+      },
       "anilistId": 160900,
       "streaming": [
         "crunchyroll"
@@ -2268,6 +2500,11 @@
       "ratingText": "Meh, Finishing the Ep",
       "review": "I started and stopped several times. I was coerced by my bestie because she loves it. She’s also 13.\n\nI think the show itself is (at least up to ep 18) a shallow clone of Naruto, but without some of the charm and innocence.\n\nIt’s exceedingly well produced by the A-Team at MAPPA. But I don’t care about it that much. I’d rather read Naruto or watch MHA (My Hero Academia).\n\nOr read / watch Chainsawman if you want the same MAT (MAPPA A-Team).\n\nSo, is it bad? No. Do I care about it and what happens? Not really. But at least it looks nice and has some fun fights.\n\nHowever, OMG it suffers so much from the modern Shonen Jump problem where they have to have all these terms and abilities and all this stuff built and expositioned so much. Think back to the beginnings of Naruto - it stays simple for many volumes and gradually adds to the complexity of the rules and world and ninja mechanics.\n\nCSM does go a bit deeper in the modern SJ over depth but… that one is so much more about the characters and they are just more fun.\n\nI’ve been told that “it gets good in season2!” But I’ve been told that about shows for my entire life (and told others) and you know what? That’s the Origin Story of my VQAR (very quick anime reviews). No, you don’t get 10 hours to “get good”. Just be good from the start.\n\nAnd an addendum: I have now watched up through ep ~40. It's still exceedingly well produced, animated, drawn. I still don't really understand the world, but at least it looks nice.",
       "dateReviewed": "2023-12-26T11:31:00-05:00",
+      "watched": {
+        "first": "2023-12-26",
+        "last": "2026-11-13",
+        "lastEpisode": 36
+      },
       "anilistId": 113415,
       "streaming": [
         "crunchyroll"
@@ -2315,6 +2552,10 @@
       "ratingText": "Trash, for Second Screen Only",
       "review": "It's fine.",
       "dateReviewed": "2024-01-16T07:58:00-05:00",
+      "watched": {
+        "first": "2024-01-16",
+        "last": "2025-04-01"
+      },
       "anilistId": 151807,
       "streaming": [
         "crunchyroll"
@@ -2352,6 +2593,10 @@
       "ratingText": "Trash, for Second Screen Only",
       "review": "Dammit. I really wanted this show to be better than it was.",
       "dateReviewed": "2024-01-19T11:54:00-05:00",
+      "watched": {
+        "first": "2024-01-19",
+        "last": "2024-04-10"
+      },
       "anilistId": 162985,
       "streaming": [
         "crunchyroll"
@@ -2398,6 +2643,10 @@
       "ratingText": "Trash, for Second Screen Only",
       "review": "This show looked nice but wasn't actually that great.",
       "dateReviewed": "2024-02-08T06:19:00-05:00",
+      "watched": {
+        "first": "2024-02-08",
+        "last": "2024-04-09"
+      },
       "anilistId": 165254,
       "streaming": [
         "crunchyroll"
@@ -2435,6 +2684,10 @@
       "ratingText": "Yeah, Here's Hoping",
       "review": "Totally ridiculous and quite fun and out there.",
       "dateReviewed": "2024-02-13T06:08:00-05:00",
+      "watched": {
+        "first": "2024-02-13",
+        "last": "2024-05-01"
+      },
       "anilistId": 166093,
       "streaming": [
         "crunchyroll"
@@ -2469,6 +2722,10 @@
       "ratingText": "Peak, Nice Ep Broh",
       "review": "Oh man, this is a show that we need and didn't even know it.",
       "dateReviewed": "2024-02-14T06:19:00-05:00",
+      "watched": {
+        "first": "2024-02-14",
+        "last": "2024-04-25"
+      },
       "anilistId": 165598,
       "streaming": [
         "crunchyroll"
@@ -2510,6 +2767,10 @@
       "ratingText": "Meh, Finishing the Ep",
       "review": "I like this show more than it gets crapped on for the ending.",
       "dateReviewed": "2024-04-03T12:49:00-04:00",
+      "watched": {
+        "first": "2024-04-03",
+        "last": "2024-04-27"
+      },
       "anilistId": 98443,
       "streaming": [
         "crunchyroll"
@@ -2557,6 +2818,11 @@
       "ratingText": "Meh, Finishing the Ep",
       "review": "Solid SJ action version of the manga.",
       "dateReviewed": "2024-04-15T18:27:00-04:00",
+      "watched": {
+        "first": "2024-04-15",
+        "last": "2026-08-10",
+        "lastEpisode": "S2 E1"
+      },
       "anilistId": 153288,
       "streaming": [
         "crunchyroll"
@@ -2600,6 +2866,10 @@
       "ratingText": "Meh, Finishing the Ep",
       "review": "Cocktail battle anime, nice jerb.",
       "dateReviewed": "2024-05-21T12:34:00-04:00",
+      "watched": {
+        "first": "2024-05-21",
+        "last": "2025-01-18"
+      },
       "anilistId": 155890,
       "streaming": [
         "crunchyroll"
@@ -2635,6 +2905,11 @@
       "ratingText": "Yeah, Here's Hoping",
       "review": "Quite well done and boy is this show hard to stream T_T",
       "dateReviewed": "2024-06-07T12:11:00-04:00",
+      "watched": {
+        "first": "2024-06-07",
+        "last": "2026-02-15",
+        "lastEpisode": 6
+      },
       "anilistId": 5081,
       "streaming": [
         "crunchyroll"
@@ -2689,6 +2964,10 @@
       "ratingText": "Trash, for Second Screen Only",
       "review": "AAAAARRRRGGGHHH!!!!! Dammit, this should be the best thing. I love the Shiro Sagisu OST, and the visuals and editing are better than the original version but so much of it still doesn't look great. We have a whole AMO Kenzoku episode on it going into much more detail. Watch Berserk 97, read the manga.",
       "dateReviewed": "2024-08-28T12:08:00-04:00",
+      "watched": {
+        "first": "2024-08-28",
+        "last": "2024-10-10"
+      },
       "anilistId": 155011,
       "streaming": [
         "crunchyroll"
@@ -2738,6 +3017,10 @@
       "ratingText": "Never, Please No More Like This Ever",
       "review": "Why does nobody remember this show?",
       "dateReviewed": "2024-09-11T22:04:00-04:00",
+      "watched": {
+        "first": "2024-09-11",
+        "last": "2024-12-20"
+      },
       "anilistId": 167419,
       "streaming": [
         "crunchyroll"
@@ -2771,6 +3054,10 @@
       "ratingText": "Peak, Nice Ep Broh",
       "review": "Fabulous! Investigative high school detective show. Lovely.",
       "dateReviewed": "2024-11-27T18:55:00-05:00",
+      "watched": {
+        "first": "2024-11-27",
+        "last": "2025-06-19"
+      },
       "anilistId": 173295,
       "streaming": [
         "crunchyroll"
@@ -2806,6 +3093,10 @@
       "ratingText": "Peak, Nice Ep Broh",
       "review": "See the AMO Kenzoku episode on this; it's way better than the credit it got for being raunchy.",
       "dateReviewed": "2025-01-05T10:27:00-05:00",
+      "watched": {
+        "first": "2025-01-05",
+        "last": "2025-01-08"
+      },
       "anilistId": 268,
       "streaming": [
         "crunchyroll"
@@ -2843,6 +3134,10 @@
       "ratingText": "Trash, for Second Screen Only",
       "review": "Some parts of this show are really freaking cool; but it does not stick anything close to the landing.",
       "dateReviewed": "2025-01-09T06:50:00-05:00",
+      "watched": {
+        "first": "2025-01-09",
+        "last": "2025-03-23"
+      },
       "anilistId": 176273,
       "streaming": [
         "crunchyroll"
@@ -2884,6 +3179,10 @@
       "ratingText": "Trash, for Second Screen Only",
       "review": "Solid VG-isekai show.",
       "dateReviewed": "2025-01-23T06:43:00-05:00",
+      "watched": {
+        "first": "2025-01-23",
+        "last": "2025-04-26"
+      },
       "anilistId": 151970,
       "streaming": [
         "crunchyroll"
@@ -2922,6 +3221,10 @@
       "ratingText": "Meh, Finishing the Ep",
       "review": "I really like Go Hands style and this show has an equally crazy premise.",
       "dateReviewed": "2025-01-28T12:08:00-05:00",
+      "watched": {
+        "first": "2025-01-28",
+        "last": "2025-04-15"
+      },
       "anilistId": 177159,
       "streaming": [
         "crunchyroll"
@@ -2963,6 +3266,10 @@
       "ratingText": "Peak, Nice Ep Broh",
       "review": "Is there anything better than a good show about the behind the scenes people for a mid-tier NPB team? No! Also this ED is great.",
       "dateReviewed": "2025-04-03T12:16:00-04:00",
+      "watched": {
+        "first": "2025-04-03",
+        "last": "2025-07-23"
+      },
       "anilistId": 184279,
       "streaming": [
         "crunchyroll"
@@ -3001,6 +3308,10 @@
       "ratingText": "Yeah, Here's Hoping",
       "review": "It's completely insane, the story is insane, the world is insane; so it's 100% pure Guilty Gear.",
       "dateReviewed": "2025-04-07T13:30:00-04:00",
+      "watched": {
+        "first": "2025-04-07",
+        "last": "2025-06-09"
+      },
       "anilistId": 178046,
       "streaming": [
         "crunchyroll"
@@ -3033,6 +3344,9 @@
       "ratingText": "Never, Please No More Like This Ever",
       "review": "Bad.",
       "dateReviewed": "2025-01-07T17:51:00-05:00",
+      "watched": {
+        "first": "2025-01-07"
+      },
       "anilistId": 174070,
       "streaming": [
         "crunchyroll"
@@ -3064,6 +3378,11 @@
       "ratingText": "Peak, Nice Ep Broh",
       "review": "Yes.",
       "dateReviewed": "2025-03-02T20:21:00-05:00",
+      "watched": {
+        "first": "2025-03-02",
+        "last": "2025-03-11",
+        "lastEpisode": 6
+      },
       "anilistId": 80,
       "streaming": [
         "crunchyroll"
@@ -3106,6 +3425,10 @@
       "ratingText": "Yeah, Here's Hoping",
       "review": "Season 1 is lovely, season 2 is not as good but not bad.",
       "dateReviewed": "2025-04-21T13:06:00-04:00",
+      "watched": {
+        "first": "2025-04-21",
+        "last": "2026-03-31"
+      },
       "anilistId": 185736,
       "streaming": [
         "crunchyroll"
@@ -3144,6 +3467,10 @@
       "ratingText": "Yeah, Here's Hoping",
       "review": "I'm a musumaniac.",
       "dateReviewed": "2025-07-25T06:25:00-04:00",
+      "watched": {
+        "first": "2025-07-25",
+        "last": "2025-08-18"
+      },
       "anilistId": 98514,
       "streaming": [
         "crunchyroll"
@@ -3183,6 +3510,11 @@
       "ratingText": "Trash, for Second Screen Only",
       "review": "It's fun.",
       "dateReviewed": "2025-08-28T12:30:00-04:00",
+      "watched": {
+        "first": "2025-08-28",
+        "last": "2026-05-06",
+        "lastEpisode": 9
+      },
       "anilistId": 180367,
       "streaming": [
         "crunchyroll"
@@ -3232,6 +3564,10 @@
       "ratingText": "Trash, for Second Screen Only",
       "review": "Stupid, fine.",
       "dateReviewed": "2025-09-11T18:18:00-04:00",
+      "watched": {
+        "first": "2025-09-11",
+        "last": "2025-10-03"
+      },
       "anilistId": 184575,
       "streaming": [
         "crunchyroll"
@@ -3264,6 +3600,10 @@
       "ratingText": "Meh, Finishing the Ep",
       "review": "I'm still not sure on this show. I go back and forth so much if it's really cool, or not good or just a bad Berserk clone or something else.",
       "dateReviewed": "2025-09-16T18:07:00-04:00",
+      "watched": {
+        "first": "2025-09-16",
+        "last": "2026-01-23"
+      },
       "anilistId": 178869,
       "streaming": [
         "crunchyroll"
@@ -3309,6 +3649,10 @@
       "ratingText": "Peak, Nice Ep Broh",
       "review": "Now this is what I call anime!",
       "dateReviewed": "2025-09-17T07:32:00-04:00",
+      "watched": {
+        "first": "2025-09-17",
+        "last": "2026-02-15"
+      },
       "anilistId": 180460,
       "streaming": [
         "crunchyroll"
@@ -3343,6 +3687,11 @@
       "ratingText": "Meh, Finishing the Ep",
       "review": "Fun concept, you learn a bunch about outdoorsing in Japan.",
       "dateReviewed": "2025-09-18T12:51:00-04:00",
+      "watched": {
+        "first": "2025-09-18",
+        "last": "2026-04-08",
+        "lastEpisode": 13
+      },
       "anilistId": 185965,
       "streaming": [
         "crunchyroll"
@@ -3376,6 +3725,11 @@
       "ratingText": "Meh, Finishing the Ep",
       "review": "Fun show.",
       "dateReviewed": "2025-09-29T07:37:00-04:00",
+      "watched": {
+        "first": "2025-09-29",
+        "last": "2026-04-04",
+        "lastEpisode": 16
+      },
       "anilistId": 20755,
       "streaming": [
         "crunchyroll"
@@ -3416,6 +3770,10 @@
       "ratingText": "Peak, Nice Ep Broh",
       "review": "So excellent and I learned so much about rocks!",
       "dateReviewed": "2025-10-03T18:24:00-04:00",
+      "watched": {
+        "first": "2025-10-03",
+        "last": "2026-08-21"
+      },
       "anilistId": 180929,
       "streaming": [
         "crunchyroll"
@@ -3455,6 +3813,10 @@
       "ratingText": "Meh, Finishing the Ep",
       "review": "Perfectly done show about punching jerks in the face.",
       "dateReviewed": "2025-10-21T22:30:00-04:00",
+      "watched": {
+        "first": "2025-10-21",
+        "last": "2026-02-10"
+      },
       "anilistId": 181447,
       "streaming": [
         "crunchyroll"
@@ -3494,6 +3856,10 @@
       "ratingText": "Meh, Finishing the Ep",
       "review": "Nice high school romance.",
       "dateReviewed": "2025-10-22T12:10:00-04:00",
+      "watched": {
+        "first": "2025-10-22",
+        "last": "2026-01-07"
+      },
       "anilistId": 183965,
       "streaming": [
         "crunchyroll"
@@ -3528,6 +3894,10 @@
       "ratingText": "Peak, Nice Ep Broh",
       "review": "Best regional promo anime ever. I learned so much about Gunma in a total of ~25 minutes for the whole season!",
       "dateReviewed": "2026-01-22T12:47:00-05:00",
+      "watched": {
+        "first": "2026-01-22",
+        "last": "2026-06-09"
+      },
       "anilistId": 101042,
       "streaming": [
         "crunchyroll"
@@ -3556,6 +3926,11 @@
       "ratingText": "Never, Please No More Like This Ever",
       "review": "More like tower of slog, amirite.",
       "dateReviewed": "2026-02-12T13:05:00-05:00",
+      "watched": {
+        "first": "2026-02-12",
+        "last": "2026-03-29",
+        "lastEpisode": 8
+      },
       "anilistId": 115230,
       "streaming": [
         "crunchyroll"
@@ -3594,6 +3969,10 @@
       "ratingText": "Yeah, Here's Hoping",
       "review": "Very good. Very dark. See the AMO Kenzoku episode for a real breakdown.",
       "dateReviewed": "2026-04-24T14:13:00-04:00",
+      "watched": {
+        "first": "2026-04-24",
+        "last": "2026-05-08"
+      },
       "anilistId": 185407,
       "streaming": [
         "crunchyroll"
@@ -3633,6 +4012,11 @@
       "ratingText": "Yeah, Here's Hoping",
       "review": "Pretty great volleyball anime.",
       "dateReviewed": "2022-04-05T12:30:00-04:00",
+      "watched": {
+        "first": "2022-04-05",
+        "last": "2022-04-28",
+        "lastEpisode": 7
+      },
       "anilistId": 20464,
       "streaming": [
         "crunchyroll"
@@ -3668,6 +4052,10 @@
       "ratingText": "Yeah, Here's Hoping",
       "review": "Fun show. Not anime, but it's on CR so I'll include it here.",
       "dateReviewed": "2022-08-22T06:57:00-04:00",
+      "watched": {
+        "first": "2022-08-22",
+        "last": "2023-05-15"
+      },
       "streaming": [
         "crunchyroll"
       ],
