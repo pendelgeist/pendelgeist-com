@@ -2341,6 +2341,52 @@
           "A-1 Pictures"
         ]
       }
+    },
+    {
+      "titleEN": "Metallic Rouge",
+      "titleJP": "メタリックルージュ",
+      "airedLabel": "Winter 2024",
+      "ratingNumber": 2,
+      "ratingText": "Trash, for Second Screen Only",
+      "review": "Dammit. I really wanted this show to be better than it was.",
+      "dateReviewed": "2024-01-19T11:54:00-05:00",
+      "anilistId": 162985,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/G24H1NWMJ/metallic-rouge",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Action",
+          "Mystery",
+          "Sci-Fi"
+        ],
+        "tags": [
+          "Robots",
+          "Artificial Intelligence",
+          "Cyberpunk",
+          "Henshin",
+          "Female Protagonist",
+          "Primarily Adult Cast",
+          "Tanned Skin",
+          "Assassins",
+          "Super Power",
+          "Fugitive",
+          "Dystopian",
+          "Urban",
+          "Martial Arts",
+          "Crime",
+          "Tokusatsu",
+          "Class Struggle",
+          "Space",
+          "Espionage",
+          "Guns"
+        ],
+        "studios": [
+          "bones"
+        ]
+      }
     }
   ],
   "pending": [],
