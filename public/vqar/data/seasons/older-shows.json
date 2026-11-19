@@ -2760,6 +2760,41 @@
           "project No.9"
         ]
       }
+    },
+    {
+      "titleEN": "SHOSHIMIN: How to become Ordinary",
+      "titleJP": "小市民シリーズ",
+      "airedLabel": "Summer 2024",
+      "ratingNumber": 5,
+      "ratingText": "Peak, Nice Ep Broh",
+      "review": "Fabulous! Investigative high school detective show. Lovely.",
+      "dateReviewed": "2024-11-27T18:55:00-05:00",
+      "anilistId": 173295,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/G5PHNM94J/shoshimin-how-to-become-ordinary",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Mystery",
+          "Slice of Life"
+        ],
+        "tags": [
+          "Detective",
+          "Primarily Teen Cast",
+          "Mixed Media",
+          "Male Protagonist",
+          "Female Protagonist",
+          "Crime",
+          "School",
+          "Food",
+          "Episodic"
+        ],
+        "studios": [
+          "Lapin Track"
+        ]
+      }
     }
   ],
   "pending": [],
