@@ -790,7 +790,6 @@
         "review": "Watched two episodes of this and it's pretty fun trash. These shows are fun sometimes when they're done well and this one has enough of the crazy go hands, animation and as a fun premise so I'll watch it as a strictly trash, but delicious trash show.",
         "dateReviewed": "2026-08-05"
       },
-      "part": 1,
       "anilistId": 180136,
       "annId": 33178,
       "streaming": [
@@ -800,6 +799,11 @@
       "ed": true,
       "finishedSeason": true,
       "finishedDate": "2026-10-27",
+      "watched": {
+        "first": "2026-07-21",
+        "last": "2026-11-13",
+        "lastEpisode": 16
+      },
       "anilist": {
         "format": "TV",
         "genres": [
