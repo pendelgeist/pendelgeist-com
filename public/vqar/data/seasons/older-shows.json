@@ -2832,6 +2832,47 @@
           "APPP"
         ]
       }
+    },
+    {
+      "titleEN": "Zenshu",
+      "titleJP": "全修。",
+      "airedLabel": "Winter 2025",
+      "ratingNumber": 2,
+      "ratingText": "Trash, for Second Screen Only",
+      "review": "Some parts of this show are really freaking cool; but it does not stick anything close to the landing.",
+      "dateReviewed": "2025-01-09T06:50:00-05:00",
+      "anilistId": 176273,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/G24H1NW8E/zenshu",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Action",
+          "Fantasy",
+          "Romance"
+        ],
+        "tags": [
+          "Isekai",
+          "Female Protagonist",
+          "Super Power",
+          "Drawing",
+          "Magic",
+          "Primarily Adult Cast",
+          "Ensemble Cast",
+          "Meta",
+          "Gods",
+          "Heterosexual",
+          "Anthropomorphism",
+          "Otaku Culture",
+          "Medieval",
+          "Robots"
+        ],
+        "studios": [
+          "MAPPA"
+        ]
+      }
     }
   ],
   "pending": [],
