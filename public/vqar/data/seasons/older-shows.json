@@ -2010,6 +2010,44 @@
           "bones"
         ]
       }
+    },
+    {
+      "titleEN": "Captain Harlock",
+      "titleJP": "宇宙海賊キャプテンハーロック",
+      "airedLabel": "Spring 1978",
+      "ratingNumber": 5,
+      "ratingText": "Peak, Nice Ep Broh",
+      "review": "What a fabulous thing to exist.",
+      "dateReviewed": "2023-03-17T06:57:00-04:00",
+      "anilistId": 1000,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GYGGPD73Y/captain-harlock",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Action",
+          "Adventure",
+          "Drama",
+          "Sci-Fi"
+        ],
+        "tags": [
+          "Space Opera",
+          "Pirates",
+          "Anti-Hero",
+          "Aliens",
+          "Space",
+          "Episodic",
+          "Seinen",
+          "Fugitive",
+          "Primarily Adult Cast",
+          "Male Protagonist"
+        ],
+        "studios": [
+          "Toei Animation"
+        ]
+      }
     }
   ],
   "pending": [],
