@@ -2990,6 +2990,38 @@
           "EMT Squared"
         ]
       }
+    },
+    {
+      "titleEN": "GUILTY GEAR",
+      "titleJP": "GUILTY GEAR STRIVE: DUAL RULERS",
+      "airedLabel": "Spring 2025",
+      "ratingNumber": 4,
+      "ratingText": "Yeah, Here's Hoping",
+      "review": "It's completely insane, the story is insane, the world is insane; so it's 100% pure Guilty Gear.",
+      "dateReviewed": "2025-04-07T13:30:00-04:00",
+      "anilistId": 178046,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GEXH3W2MZ/guilty-gear",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Action",
+          "Sci-Fi"
+        ],
+        "tags": [
+          "Super Power",
+          "Full CGI",
+          "Post-Apocalyptic",
+          "Magic",
+          "Conspiracy",
+          "Coming of Age"
+        ],
+        "studios": [
+          "SANZIGEN"
+        ]
+      }
     }
   ],
   "pending": [],
