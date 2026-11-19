@@ -2181,6 +2181,47 @@
           "Lapin Track"
         ]
       }
+    },
+    {
+      "titleEN": "Frieren: Beyond Journey's End",
+      "titleJP": "葬送のフリーレン",
+      "airedLabel": "Fall 2023",
+      "ratingNumber": 5,
+      "ratingText": "Peak, Nice Ep Broh",
+      "review": "Plenty of good reasons this show is critically loved and very popular.",
+      "dateReviewed": "2023-11-03T07:00:00-04:00",
+      "anilistId": 154587,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GG5H5XQX4/frieren-beyond-journeys-end",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Adventure",
+          "Drama",
+          "Fantasy"
+        ],
+        "tags": [
+          "Travel",
+          "Magic",
+          "Elf",
+          "Female Protagonist",
+          "Philosophy",
+          "Medieval",
+          "Found Family",
+          "Kuudere",
+          "Demons",
+          "Shounen",
+          "Foreign",
+          "Iyashikei",
+          "Adoption",
+          "Rural"
+        ],
+        "studios": [
+          "MADHOUSE"
+        ]
+      }
     }
   ],
   "pending": [],
