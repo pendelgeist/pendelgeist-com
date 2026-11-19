@@ -1,5 +1,6 @@
 import { STREAMING_SERVICES, STREAMING_URL_FIELDS } from '../public/streaming.js';
 import { LIST_ENTRY_KEYS, entryTitle } from '../public/vqar/list-entries.js';
+import { opEdProblem } from '../public/vqar/oped.js';
 import { normalizeTitle } from './anilistMatch.js';
 
 /**
@@ -18,12 +19,15 @@ const URL_FIELDS = [...Object.values(STREAMING_URL_FIELDS), 'wikipediaUrl', 'wik
  */
 export const REVIEW_KEYS = [
   'titleEN', 'titleJP', 'airedLabel', 'ratingNumber', 'ratingText', 'review', 'dateReviewed',
-  'fullReview', 'op', 'ed', 'finishedSeason', 'finishedDate', 'watchProgress', 'part',
+  'fullReview', 'op', 'ed', 'finishedSeason', 'finishedDate', 'watched', 'watchProgress', 'part',
   'anilistId', 'anilist', 'annId', 'streaming', ...URL_FIELDS,
 ];
 
 /** Every key a `fullReview` (a revisit) may carry; checked against the GraphQL `SubReview` too. */
 export const FULL_REVIEW_KEYS = ['ratingNumber', 'ratingText', 'review', 'dateReviewed'];
+
+/** Every key a review's `watched` object may carry; checked against the GraphQL `Watched` type too. */
+export const WATCHED_KEYS = ['first', 'last', 'lastEpisode'];
 
 /** `dateReviewed` is a full ISO 8601 timestamp (UTC `Z` or a `±hh:mm` offset) so same-day reviews order by time. */
 const TIMESTAMP_PATTERN = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(\.\d+)?(Z|[+-]\d{2}:\d{2})$/;
@@ -193,6 +197,56 @@ function revisitDateIssues(label, review, now) {
   }
   if (typeof review.dateReviewed === 'string' && value.slice(0, 10) < review.dateReviewed.slice(0, 10)) {
     issues.push(`"${label}" has a fullReview.dateReviewed (${value.slice(0, 10)}) before its episode-1 review (${review.dateReviewed.slice(0, 10)})`);
+  }
+  return issues;
+}
+
+/**
+ * Problems with a review's `watched` record: when the reviewer watched the
+ * first episode, the last one, and (for a show they didn't finish) which
+ * episode that was. Dates are a plain calendar date or a full timestamp, shown
+ * exactly as written.
+ * @param {string} label
+ * @param {any} watched
+ * @param {number} now
+ * @returns {string[]}
+ */
+function watchedIssues(label, watched, now) {
+  if (typeof watched !== 'object' || watched === null || Array.isArray(watched)) {
+    return [`"${label}" has a malformed watched (expected an object like { "first": "2026-04-01", "last": "2026-06-10" })`];
+  }
+  const issues = [];
+  for (const key of Object.keys(watched)) {
+    if (!WATCHED_KEYS.includes(key)) {
+      issues.push(`"${label}" has a watched with an unknown field "${key}" (expected one of ${WATCHED_KEYS.join(', ')})`);
+    }
+  }
+  if (watched.first === undefined) issues.push(`"${label}" has a watched without a first date`);
+
+  const dateOk = {};
+  for (const key of ['first', 'last']) {
+    const value = watched[key];
+    if (value === undefined) continue;
+    const isStamp = typeof value === 'string' && TIMESTAMP_PATTERN.test(value);
+    if (typeof value !== 'string' || !((isCalendarDate(value)) || (isStamp && !Number.isNaN(Date.parse(value))))) {
+      issues.push(`"${label}" has a watched.${key} that is neither a date like 2026-04-01 nor a timestamp`);
+      continue;
+    }
+    dateOk[key] = true;
+    if (isStamp) issues.push(...timestampIssues(label, `watched.${key}`, value, now));
+    else if (Date.parse(value) > now) issues.push(`"${label}" has a watched.${key} in the future`);
+  }
+  if (dateOk.first && dateOk.last && watched.last.slice(0, 10) < watched.first.slice(0, 10)) {
+    issues.push(`"${label}" has a watched.last (${watched.last.slice(0, 10)}) before its watched.first (${watched.first.slice(0, 10)})`);
+  }
+
+  // The last episode reached: a number (12.5 for a special is fine), or free
+  // text like "S2 E6" for a show that ran across several seasons.
+  const ep = watched.lastEpisode;
+  if (ep !== undefined) {
+    const numeric = typeof ep === 'number' && Number.isFinite(ep) && ep > 0;
+    const text = typeof ep === 'string' && ep.trim() !== '';
+    if (!numeric && !text) issues.push(`"${label}" has a malformed watched.lastEpisode (expected a positive number like 24, or text like "S2 E6")`);
   }
   return issues;
 }
@@ -382,13 +436,15 @@ export function validateSeason(season, { filename, now = Date.now() } = {}) {
     if (r.fullReview !== undefined && (typeof r.fullReview !== 'object' || r.fullReview === null || Array.isArray(r.fullReview))) {
       issues.push(`"${label}" has a malformed fullReview (expected an object)`);
     }
-    // A liked OP/ED is a bare marking - no rating, no note - so it's either
-    // `true` or left out entirely.
+    // A liked OP/ED is a bare marking - no rating, no note. It's `true`, or a
+    // list of the OP/ED numbers liked (a season can have several), or left out.
     for (const key of ['op', 'ed']) {
-      if (r[key] !== undefined && r[key] !== true) {
-        issues.push(`"${label}" has a malformed ${key} (expected true - mark a liked ${key.toUpperCase()} with "${key}": true, or leave it out)`);
+      const problem = r[key] === undefined ? null : opEdProblem(r[key]);
+      if (problem) {
+        issues.push(`"${label}" has a malformed ${key} (${problem}) - mark a liked ${key.toUpperCase()} with "${key}": true or "${key}": [1, 2], or leave it out`);
       }
     }
+    if (r.watched !== undefined) issues.push(...watchedIssues(label, r.watched, now));
     // Same for having watched the whole season - independent of a revisit
     // or a rating, since a season of trash can get finished too.
     if (r.finishedSeason !== undefined && r.finishedSeason !== true) {

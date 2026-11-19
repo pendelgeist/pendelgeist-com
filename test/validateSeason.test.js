@@ -763,3 +763,61 @@ test('airedLabel is a non-empty string', () => {
   season.reviewed.push(review({ airedLabel: 'Winter 2004' }));
   assert.deepEqual(validateSeason(season), []);
 });
+
+test('op and ed can name the numbered openings/endings that were liked', () => {
+  const season = cleanSeason();
+  season.reviewed[0].op = [1, 2];
+  season.reviewed[0].ed = [3];
+  assert.deepEqual(validateSeason(season), []);
+});
+
+test('flags a malformed list of op/ed numbers', () => {
+  for (const value of [[], [0], [1.5], ['1'], [2, 2], [true], [[1]]]) {
+    const season = cleanSeason();
+    season.reviewed[0].op = value;
+    const issues = validateSeason(season);
+    assert.ok(issues.some(i => i.includes('"Cool Show"') && i.includes('malformed op')), `accepted ${JSON.stringify(value)}`);
+  }
+});
+
+test('a well-formed watched record does not trigger a false positive', () => {
+  const season = cleanSeason();
+  season.reviewed[0].watched = { first: '2026-04-01', last: '2026-06-10' };
+  season.reviewed.push({
+    titleEN: 'Unfinished Show', ratingNumber: 3, ratingText: 'Finish Ep', dateReviewed: '2026-04-02T08:00:00-04:00',
+    watched: { first: '2026-04-02T08:00:00-04:00', last: '2026-05-01T20:15:00-04:00', lastEpisode: 6 },
+  });
+  season.reviewed.push({
+    titleEN: 'Several Seasons Show', ratingNumber: 3, ratingText: 'Finish Ep', dateReviewed: '2026-04-03T08:00:00-04:00',
+    watched: { first: '2026-04-03', last: '2026-05-02', lastEpisode: 'S2 E6' },
+  });
+  season.reviewed.push({
+    titleEN: 'Still Watching Show', ratingNumber: 3, ratingText: 'Finish Ep', dateReviewed: '2026-04-04T08:00:00-04:00',
+    watched: { first: '2026-04-04' },
+  });
+  assert.deepEqual(validateSeason(season), []);
+});
+
+test('flags a malformed watched record', () => {
+  const bad = [
+    ['not an object', 'a string', /malformed watched/],
+    ['an array', ['2026-04-01'], /malformed watched/],
+    ['no first date', { last: '2026-06-10' }, /without a first date/],
+    ['an unknown field', { first: '2026-04-01', ended: '2026-06-10' }, /unknown field "ended"/],
+    ['a bad first date', { first: 'April 1st' }, /watched\.first that is neither/],
+    ['an impossible date', { first: '2026-02-31' }, /watched\.first that is neither/],
+    ['a bad last date', { first: '2026-04-01', last: 20260610 }, /watched\.last that is neither/],
+    ['a last before the first', { first: '2026-06-10', last: '2026-04-01' }, /before its watched\.first/],
+    ['a date in the future', { first: '2099-01-01' }, /watched\.first in the future/],
+    ['a UTC timestamp', { first: '2026-04-01T12:00:00Z' }, /not Eastern time/],
+    ['a zero last episode', { first: '2026-04-01', lastEpisode: 0 }, /malformed watched\.lastEpisode/],
+    ['a blank last episode', { first: '2026-04-01', lastEpisode: ' ' }, /malformed watched\.lastEpisode/],
+    ['an object as the last episode', { first: '2026-04-01', lastEpisode: { n: 3 } }, /malformed watched\.lastEpisode/],
+  ];
+  for (const [what, watched, pattern] of bad) {
+    const season = cleanSeason();
+    season.reviewed[0].watched = watched;
+    const issues = validateSeason(season);
+    assert.ok(issues.some(i => i.includes('"Cool Show"') && pattern.test(i)), `accepted ${what}: ${JSON.stringify(issues)}`);
+  }
+});

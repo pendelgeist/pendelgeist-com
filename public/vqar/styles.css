@@ -417,7 +417,8 @@ article:hover {
 }
 
 .entry-published,
-.entry-aired {
+.entry-aired,
+.entry-watched {
   font-size: 0.72rem;
   font-weight: lighter;
   color: var(--color-muted);

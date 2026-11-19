@@ -2,6 +2,7 @@ import { VQAR_INDEX_PATH } from './data-paths.js';
 import { effectiveRatingNumber } from './rating.js';
 import { createStreamingRow, STREAMING_SERVICES } from '../streaming.js';
 import { normalizeEntry } from './list-entries.js';
+import { isLikedOpEd, likedLabel } from './oped.js';
 import { createExternalLinks } from '../external-links.js';
 import {
   RATING_VALUES, HAS_OPTIONS, FORMAT_LABELS, emptyChipFilters, ratingChipLabel, reviewValues, matchesChipFilters,
@@ -19,6 +20,13 @@ import {
  */
 
 /**
+ * @typedef {Object} Watched
+ * @property {string} first - when the first episode was watched: a date (2026-04-01) or a timestamp
+ * @property {string} [last] - when the last episode was watched
+ * @property {number|string} [lastEpisode] - the last episode reached, for a show that wasn't finished (24, or "S2 E6")
+ */
+
+/**
  * @typedef {Object} Review
  * @property {string} titleEN
  * @property {string} titleJP
@@ -28,10 +36,11 @@ import {
  * @property {string} review
  * @property {string} dateReviewed
  * @property {SubReview} [fullReview] - optional full-series re-review
- * @property {true} [op] - optional marking: an opening worth remembering
- * @property {true} [ed] - optional marking: an ending worth remembering
+ * @property {true|number[]} [op] - optional marking: an opening worth remembering, `true` or the numbers liked ([1, 2])
+ * @property {true|number[]} [ed] - optional marking: an ending worth remembering, `true` or the numbers liked ([3])
  * @property {true} [finishedSeason] - optional marking: the whole season got watched, whatever the rating
  * @property {string} [finishedDate] - optional note for the reviewer: the day the season got finished (data only, not rendered)
+ * @property {Watched} [watched] - optional: when the first and last episodes were watched, and the last episode reached
  * @property {string} season
  * @property {string} seasonName
  * @property {number} _timestamp
@@ -96,6 +105,20 @@ const SORTERS = {
  * @param {string} value
  */
 const displayDate = (value) => value.slice(0, 10);
+
+/**
+ * The "Watched" line: the day the first episode was watched, through the day
+ * the last was (one date when they match, or when there is no last), and the
+ * episode it got to when that's noted.
+ * @param {Watched} w
+ */
+const watchedText = (w) => {
+  const first = displayDate(w.first);
+  const last = w.last ? displayDate(w.last) : first;
+  let text = last === first ? first : `${first} \u2013 ${last}`;
+  if (w.lastEpisode !== undefined) text += ` (through ${typeof w.lastEpisode === 'number' ? `ep ${w.lastEpisode}` : w.lastEpisode})`;
+  return `Watched: ${text}`;
+};
 
 const dom = {
   infoToggle: document.getElementById('infoToggle'),
@@ -389,6 +412,13 @@ function createReviewArticle(r) {
     meta.appendChild(aired);
   }
 
+  if (r.watched?.first) {
+    const watched = document.createElement('span');
+    watched.className = 'entry-watched';
+    watched.textContent = watchedText(r.watched);
+    meta.appendChild(watched);
+  }
+
   if (r.watchProgress) {
     const progress = document.createElement('span');
     progress.className = 'entry-progress';
@@ -396,8 +426,12 @@ function createReviewArticle(r) {
     meta.appendChild(progress);
   }
 
-  for (const [key, text, kind] of [['finishedSeason', 'Finished season', 'finished'], ['op', 'Liked OP', 'oped'], ['ed', 'Liked ED', 'oped']]) {
-    if (!r[key]) continue;
+  for (const [text, kind, on] of [
+    ['Finished season', 'finished', Boolean(r.finishedSeason)],
+    [likedLabel('OP', r.op), 'oped', isLikedOpEd(r.op)],
+    [likedLabel('ED', r.ed), 'oped', isLikedOpEd(r.ed)],
+  ]) {
+    if (!on) continue;
     const mark = document.createElement('span');
     mark.className = `entry-mark entry-mark-${kind}`;
     mark.textContent = text;

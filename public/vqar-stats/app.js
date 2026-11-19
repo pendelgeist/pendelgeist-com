@@ -284,8 +284,8 @@ function renderSeasonSpotlight(seasons, reviews, seasonId) {
 
 function renderOpEd(reviews) {
   const s = computeOpEdHighlights(reviews);
-  const cols = ['Title', 'Season'];
-  const row = r => [r.titleEN ?? 'Untitled', r.seasonName];
+  const cols = ['Title', 'Season', 'Which'];
+  const row = r => [r.titleEN ?? 'Untitled', r.seasonName, r.which];
   renderDataTable(dom.topOps, cols, s.likedOps.map(row));
   renderDataTable(dom.topEds, cols, s.likedEds.map(row));
 }

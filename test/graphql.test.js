@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { graphql, buildSchema } from 'graphql';
 import { typeDefs, makeRootValue } from '../src/schema.js';
 import { createPathFetchStub } from './helpers.js';
-import { REVIEW_KEYS, FULL_REVIEW_KEYS } from '../scripts/validateSeason.js';
+import { REVIEW_KEYS, FULL_REVIEW_KEYS, WATCHED_KEYS } from '../scripts/validateSeason.js';
 import { LIST_ENTRY_KEYS } from '../public/vqar/list-entries.js';
 
 // Mirrors the index/season file shapes used by test/vqar.test.js.
@@ -366,6 +366,48 @@ test('a liked OP/ED comes through the API as a boolean', async () => {
   assert.deepEqual(result.data.currentSeason.reviewed, [{ titleEN: 'Bop Show', op: true, ed: null }]);
 });
 
+test('numbered OP/ED likings come through as booleans plus the numbers', async () => {
+  const assetsStub = createPathFetchStub({
+    '/vqar/data/index.json': seasonIndex,
+    '/vqar/data/seasons/summer-2026.json': {
+      ...seasons['/vqar/data/seasons/summer-2026.json'],
+      reviewed: [
+        { titleEN: 'Numbered', ratingText: 'Meh', dateReviewed: '2026-07-01T12:00:00Z', op: [2, 1], ed: [3] },
+        { titleEN: 'Bare', ratingText: 'Meh', dateReviewed: '2026-07-02T12:00:00Z', op: true },
+        { titleEN: 'Neither', ratingText: 'Meh', dateReviewed: '2026-07-03T12:00:00Z' },
+      ],
+    },
+  });
+  const result = await run('{ currentSeason { reviewed { titleEN op opNumbers ed edNumbers } } }', assetsStub);
+  assert.deepEqual(result.data.currentSeason.reviewed, [
+    { titleEN: 'Numbered', op: true, opNumbers: [1, 2], ed: true, edNumbers: [3] },
+    { titleEN: 'Bare', op: true, opNumbers: null, ed: null, edNumbers: null },
+    { titleEN: 'Neither', op: null, opNumbers: null, ed: null, edNumbers: null },
+  ]);
+});
+
+test('a watched record comes through the API, with the last episode as text', async () => {
+  const assetsStub = createPathFetchStub({
+    '/vqar/data/index.json': seasonIndex,
+    '/vqar/data/seasons/summer-2026.json': {
+      ...seasons['/vqar/data/seasons/summer-2026.json'],
+      reviewed: [
+        { titleEN: 'Done', ratingText: 'Meh', dateReviewed: '2026-07-01T12:00:00Z', watched: { first: '2026-04-01', last: '2026-06-10' } },
+        { titleEN: 'Partway', ratingText: 'Meh', dateReviewed: '2026-07-02T12:00:00Z', watched: { first: '2026-04-02', last: '2026-05-01', lastEpisode: 6 } },
+        { titleEN: 'Seasons', ratingText: 'Meh', dateReviewed: '2026-07-03T12:00:00Z', watched: { first: '2026-04-03', lastEpisode: 'S2 E6' } },
+        { titleEN: 'Unrecorded', ratingText: 'Meh', dateReviewed: '2026-07-04T12:00:00Z' },
+      ],
+    },
+  });
+  const result = await run('{ currentSeason { reviewed { titleEN watched { first last lastEpisode } } } }', assetsStub);
+  assert.deepEqual(result.data.currentSeason.reviewed, [
+    { titleEN: 'Done', watched: { first: '2026-04-01', last: '2026-06-10', lastEpisode: null } },
+    { titleEN: 'Partway', watched: { first: '2026-04-02', last: '2026-05-01', lastEpisode: '6' } },
+    { titleEN: 'Seasons', watched: { first: '2026-04-03', last: null, lastEpisode: 'S2 E6' } },
+    { titleEN: 'Unrecorded', watched: null },
+  ]);
+});
+
 test('finishedSeason comes through the API as a boolean', async () => {
   const assetsStub = createPathFetchStub({
     '/vqar/data/index.json': seasonIndex,
@@ -412,8 +454,12 @@ test('a review carries its generated AniList format, genres, tags and studios', 
 
 const fieldNames = (type) => Object.keys(schema.getType(type).getFields());
 
-test('Review exposes exactly the keys validation allows, plus the season it was read from', () => {
-  assert.deepEqual(fieldNames('Review').sort(), [...REVIEW_KEYS, 'season', 'seasonName'].sort());
+test('Review exposes exactly the keys validation allows, plus the season it was read from and the numbered OP/EDs', () => {
+  assert.deepEqual(fieldNames('Review').sort(), [...REVIEW_KEYS, 'season', 'seasonName', 'opNumbers', 'edNumbers'].sort());
+});
+
+test('Watched exposes exactly the keys a review\'s watched record may carry', () => {
+  assert.deepEqual(fieldNames('Watched').sort(), [...WATCHED_KEYS].sort());
 });
 
 test('SubReview exposes exactly the keys a fullReview may carry', () => {

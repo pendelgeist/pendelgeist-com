@@ -8,6 +8,7 @@
 import { effectiveRatingNumber, awaitingRevisit, HOPING_RATING, RATING_NUMBER_LABELS } from '../vqar/rating.js';
 import { entryTitle } from '../vqar/list-entries.js';
 import { reviewValues } from '../vqar/filters.js';
+import { isLikedOpEd, whichLabel } from '../vqar/oped.js';
 
 /** @typedef {import('../vqar/app.js').SeasonData} SeasonData */
 
@@ -62,8 +63,8 @@ export function computeGlanceStats(seasons, reviews) {
     seasonsCovered: seasons.filter(s => s.archive !== true && (s.reviewed ?? []).length > 0).length,
     avgRating,
     fullReReviews: reviews.filter(r => r.fullReview).length,
-    likedOps: reviews.filter(r => r.op === true).length,
-    likedEds: reviews.filter(r => r.ed === true).length,
+    likedOps: reviews.filter(r => isLikedOpEd(r.op)).length,
+    likedEds: reviews.filter(r => isLikedOpEd(r.ed)).length,
     finishedSeasons: reviews.filter(r => r.finishedSeason === true).length,
     anilistCoveragePct: reviews.length ? Math.round((withAnilist / reviews.length) * 100) : null,
     busiestSeasonName: busiest?.seasonName ?? null,
@@ -279,18 +280,19 @@ export function computeContinuationWatch(seasons, seasonId, { minRating = 4 } = 
 
 /**
  * Every liked OP and ED. A liking is a bare `"op": true` / `"ed": true`
- * marking with no rating to rank by, so it's every one of them, uncapped,
- * by title.
+ * marking (or a list of the numbered ones, `"op": [1, 2]`) with no rating to
+ * rank by, so it's every one of them, uncapped, by title. `which` says which
+ * OP/ED when the marking numbered them, and is "-" when it didn't.
  * @param {ReturnType<typeof flattenReviews>} reviews
  */
 export function computeOpEdHighlights(reviews) {
-  const liked = (key) => reviews
-    .filter(r => r[key] === true)
-    .map(r => ({ titleEN: r.titleEN, seasonName: r.seasonName }))
+  const liked = (key, kind) => reviews
+    .filter(r => isLikedOpEd(r[key]))
+    .map(r => ({ titleEN: r.titleEN, seasonName: r.seasonName, which: whichLabel(kind, r[key]) }))
     .sort((a, b) => (a.titleEN ?? '').localeCompare(b.titleEN ?? ''));
 
-  const likedOps = liked('op');
-  const likedEds = liked('ed');
+  const likedOps = liked('op', 'OP');
+  const likedEds = liked('ed', 'ED');
   return { opCount: likedOps.length, edCount: likedEds.length, likedOps, likedEds };
 }
 
@@ -359,7 +361,7 @@ export function computeCategoryRatings(reviews, dimension, { minShows = MIN_CATE
       revisitShift: shifts.length ? shifts.reduce((a, b) => a + b, 0) / shifts.length : null,
       revisits: shifts.length,
       finished: shows.filter(r => r.finishedSeason === true).length,
-      likedOpEd: shows.filter(r => r.op === true || r.ed === true).length,
+      likedOpEd: shows.filter(r => isLikedOpEd(r.op) || isLikedOpEd(r.ed)).length,
     };
   });
 
