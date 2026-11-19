@@ -37,8 +37,8 @@ The Worker (`src/worker.js`) also backs a small GraphQL API over the same anime 
   page-specific style here.
 - `public/vqar/data-paths.js` — the path to the VQAR season index, the one thing
   `public/vqar/app.js`, `public/vqar-stats/app.js`, and `src/schema.js` all need to agree on.
-- `public/vqar/oped.js` — what a liked OP/ED is: `true`, or a list of the numbers liked
-  (`[1, 2]`). `/vqar`, `/vqar-stats`, the GraphQL schema and the validator all read it through here.
+- `public/vqar/oped.js` — what a liked OP/ED is: always a list of the numbers liked (`[1]`,
+  `[1, 2]`). `/vqar`, `/vqar-stats`, the GraphQL schema and the validator all read it through here.
 - `public/vqar/rating.js` — the other thing they have to agree on: which rating counts once
   a show has both an episode-1 rating and a full-series re-review, and each tier's default
   label (`RATING_NUMBER_LABELS`).
@@ -259,12 +259,12 @@ extras:
   filtering and every `/vqar-stats` number, so validation rejects a revisit saved without one
   rather than let the old rating quietly stand.
 - `op` / `ed` — marks an opening/ending you liked, for finding it again later. A season can have
-  several OPs or EDs, so say which: `"op": [2]` is OP 2, `"ed": [1, 3]` is EDs 1 and 3; `true`
-  means "liked one, didn't note which". It's a bare marking, with no rating or note: anything but
-  `true` or a list of distinct whole numbers from 1 is rejected, and an OP/ED you didn't note is
-  simply left out. `/vqar` shows it as a "Liked OP 2"/"Liked ED" pill, `/vqar-stats` lists the
-  numbers in a "Which" column, and the GraphQL `Review` type has `op`/`ed` as Booleans (true when
-  anything was liked) with the numbers in `opNumbers`/`edNumbers`.
+  several OPs or EDs, so it always names the number(s): `"op": [2]` is OP 2, `"ed": [1, 3]` is EDs
+  1 and 3 (`[1]` when the show only had one). It's a bare marking, with no rating or note: a bare
+  `true`, or anything but a list of distinct whole numbers from 1, is rejected, and an OP/ED you
+  didn't note is simply left out. `/vqar` shows it as a "Liked OP 2"/"Liked ED 1, 3" pill,
+  `/vqar-stats` lists the numbers in a "Which" column, and the GraphQL `Review` type has
+  `op`/`ed` as Booleans (true when anything was liked) with the numbers in `opNumbers`/`edNumbers`.
 
 A review of a show from outside the season (see "Older shows") may carry `airedLabel`, free
 text for when it first aired, such as `"Winter 2004"`.

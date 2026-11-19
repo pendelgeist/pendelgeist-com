@@ -62,7 +62,7 @@ behavior, it moves into a shared module at `public/` root rather than being copi
 | `public/data-table.js` | `/nasubi`, `/vqar-stats` | the sortable table, stat-tile grid, and bar chart |
 | `public/vqar/data-paths.js` | `/vqar`, `/vqar-stats`, `src/schema.js` | the path to the VQAR season index |
 | `public/vqar/list-entries.js` | `/vqar`, `/vqar-stats`, `src/schema.js`, `scripts/` | a `pending`/`skipped` entry is a title string *or* an object with optional notes; read titles through `entryTitle` |
-| `public/vqar/oped.js` | `/vqar`, `/vqar-stats`, `src/schema.js`, `scripts/validateSeason.js` | a liked OP/ED is `true` *or* a list of the numbers liked (`[1, 2]`); read it through `isLikedOpEd`/`opEdNumbers`, never `=== true` |
+| `public/vqar/oped.js` | `/vqar`, `/vqar-stats`, `src/schema.js`, `scripts/validateSeason.js` | a liked OP/ED is always a list of the numbers liked (`[1]`, `[1, 2]`), never a bare `true`; read it through `isLikedOpEd`/`opEdNumbers`, never `=== true` |
 | `public/vqar/rating.js` | `/vqar`, `/vqar-stats` | which rating wins once a show has both an ep-1 rating and a re-review, which shows are still waiting on a revisit (`awaitingRevisit`), and each tier's default label |
 
 Each has its own test file. Adding a shared module is the right move when a second page
@@ -100,10 +100,10 @@ every `/vqar-stats` number (`effectiveRatingNumber` in `public/vqar/rating.js`).
 saved without one would quietly leave the old rating standing, so `scripts/validateSeason.js`
 rejects it.
 
-**Liking an OP/ED**: set `"op"` / `"ed"` on the show's entry. A season can have several, so say
-which: `"op": [2]` (OP 2), `"ed": [1, 3]`. `true` still means "liked it, didn't note which". That's
-the whole marking: no rating, note or date, and validation rejects anything but `true` or a
-list of distinct whole numbers from 1. When the user says which OP/ED, use the numbers.
+**Liking an OP/ED**: set `"op"` / `"ed"` on the show's entry. A season can have several, so it
+always names the number(s): `"op": [2]` (OP 2), `"ed": [1, 3]`. If the user doesn't say which,
+use `[1]`. That's the whole marking: no rating, note or date, and validation rejects a bare
+`true` or anything but a list of distinct whole numbers from 1.
 
 **Watched dates**: `"watched": { "first": "2026-04-01", "last": "2026-06-10" }` records when the
 first and last episodes were watched. Dates are a plain calendar date (Eastern, from the watch

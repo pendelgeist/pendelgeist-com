@@ -436,12 +436,13 @@ export function validateSeason(season, { filename, now = Date.now() } = {}) {
     if (r.fullReview !== undefined && (typeof r.fullReview !== 'object' || r.fullReview === null || Array.isArray(r.fullReview))) {
       issues.push(`"${label}" has a malformed fullReview (expected an object)`);
     }
-    // A liked OP/ED is a bare marking - no rating, no note. It's `true`, or a
-    // list of the OP/ED numbers liked (a season can have several), or left out.
+    // A liked OP/ED is a bare marking - no rating, no note - and always names
+    // the OP/ED number(s) liked, since a season can have several. Left out
+    // entirely when nothing was liked.
     for (const key of ['op', 'ed']) {
       const problem = r[key] === undefined ? null : opEdProblem(r[key]);
       if (problem) {
-        issues.push(`"${label}" has a malformed ${key} (${problem}) - mark a liked ${key.toUpperCase()} with "${key}": true or "${key}": [1, 2], or leave it out`);
+        issues.push(`"${label}" has a malformed ${key} (${problem}) - mark a liked ${key.toUpperCase()} with "${key}": [1] (or [1, 2]), or leave it out`);
       }
     }
     if (r.watched !== undefined) issues.push(...watchedIssues(label, r.watched, now));

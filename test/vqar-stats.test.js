@@ -20,9 +20,9 @@ const seasons = [
   {
     id: 'summer-2026', name: 'Summer 2026',
     reviewed: [
-      { titleEN: 'Peak Show', ratingNumber: 5, ratingText: 'Peak', review: 'An excellent episode all around', dateReviewed: '2026-07-01', anilistId: 111, op: true },
+      { titleEN: 'Peak Show', ratingNumber: 5, ratingText: 'Peak', review: 'An excellent episode all around', dateReviewed: '2026-07-01', anilistId: 111, op: [1] },
       { titleEN: 'Meh Show', ratingNumber: 3, ratingText: 'Meh', review: 'Just fine, nothing special here', dateReviewed: '2026-07-05', fullReview: { ratingNumber: 5, ratingText: 'Peak', review: 'Turned out great after all' } },
-      { titleEN: 'Trash Show', ratingNumber: 1, ratingText: 'Trash', review: 'Rough episode, animation was bad', dateReviewed: '2026-07-10', ed: true, finishedSeason: true },
+      { titleEN: 'Trash Show', ratingNumber: 1, ratingText: 'Trash', review: 'Rough episode, animation was bad', dateReviewed: '2026-07-10', ed: [1], finishedSeason: true },
     ],
     pending: ['Pending Show'],
     skipped: [],
@@ -118,8 +118,8 @@ test('computeOpEdHighlights lists the liked OPs and EDs, with their season', () 
   const s = computeOpEdHighlights(reviews);
   assert.equal(s.opCount, 1);
   assert.equal(s.edCount, 1);
-  assert.deepEqual(s.likedOps, [{ titleEN: 'Peak Show', seasonName: 'Summer 2026', which: '-' }]);
-  assert.deepEqual(s.likedEds, [{ titleEN: 'Trash Show', seasonName: 'Summer 2026', which: '-' }]);
+  assert.deepEqual(s.likedOps, [{ titleEN: 'Peak Show', seasonName: 'Summer 2026', which: 'OP 1' }]);
+  assert.deepEqual(s.likedEds, [{ titleEN: 'Trash Show', seasonName: 'Summer 2026', which: 'ED 1' }]);
 });
 
 test('numbered OP/ED likings count like bare ones, and say which OP/ED they were', () => {
@@ -128,14 +128,14 @@ test('numbered OP/ED likings count like bare ones, and say which OP/ED they were
     reviewed: [
       { titleEN: 'Two OPs', ratingText: 'Meh', review: '', dateReviewed: '2026-07-01', op: [1, 2] },
       { titleEN: 'Third ED', ratingText: 'Meh', review: '', dateReviewed: '2026-07-02', ed: [3] },
-      { titleEN: 'Both Bare', ratingText: 'Meh', review: '', dateReviewed: '2026-07-03', op: true, ed: true },
+      { titleEN: 'One Each', ratingText: 'Meh', review: '', dateReviewed: '2026-07-03', op: [1], ed: [1] },
       { titleEN: 'Neither', ratingText: 'Meh', review: '', dateReviewed: '2026-07-04' },
     ],
     pending: [], skipped: [],
   }]);
   const s = computeOpEdHighlights(numbered);
-  assert.deepEqual(s.likedOps.map(r => [r.titleEN, r.which]), [['Both Bare', '-'], ['Two OPs', 'OP 1, 2']]);
-  assert.deepEqual(s.likedEds.map(r => [r.titleEN, r.which]), [['Both Bare', '-'], ['Third ED', 'ED 3']]);
+  assert.deepEqual(s.likedOps.map(r => [r.titleEN, r.which]), [['One Each', 'OP 1'], ['Two OPs', 'OP 1, 2']]);
+  assert.deepEqual(s.likedEds.map(r => [r.titleEN, r.which]), [['One Each', 'ED 1'], ['Third ED', 'ED 3']]);
   assert.equal(s.opCount, 2);
   assert.equal(s.edCount, 2);
 });
@@ -143,7 +143,7 @@ test('numbered OP/ED likings count like bare ones, and say which OP/ED they were
 test('computeOpEdHighlights lists every liked OP by title, with no top-N cap', () => {
   const liked = flattenReviews([{
     id: 'summer-2026', name: 'Summer 2026',
-    reviewed: ['F', 'B', 'D', 'A', 'E', 'C', 'G'].map(t => ({ titleEN: `Show ${t}`, ratingText: 'Meh', review: '', dateReviewed: '2026-07-01', op: true })),
+    reviewed: ['F', 'B', 'D', 'A', 'E', 'C', 'G'].map(t => ({ titleEN: `Show ${t}`, ratingText: 'Meh', review: '', dateReviewed: '2026-07-01', op: [1] })),
     pending: [], skipped: [],
   }]);
   const s = computeOpEdHighlights(liked);
@@ -497,7 +497,7 @@ const categorySeasons = [
     reviewed: [
       tagged('Isekai A', 1, { format: 'TV', genres: ['Fantasy'], tags: ['Isekai'], studios: ['GoHands'] }, { streaming: ['crunchyroll'] }),
       tagged('Isekai B', 0, { format: 'TV', genres: ['Fantasy'], tags: ['Isekai'], studios: ['GoHands'] }, { streaming: ['crunchyroll'], finishedSeason: true }),
-      tagged('Romcom A', 5, { format: 'ONA', genres: ['Comedy', 'Romance'], tags: ['School'], studios: ['MAPPA'] }, { op: true }),
+      tagged('Romcom A', 5, { format: 'ONA', genres: ['Comedy', 'Romance'], tags: ['School'], studios: ['MAPPA'] }, { op: [1] }),
     ],
     pending: [], skipped: [],
   },

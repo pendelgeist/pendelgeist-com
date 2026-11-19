@@ -248,8 +248,8 @@ test('a full-series re-review renders as an addendum, and a liked OP/ED as a mar
         review: 'great start',
         dateReviewed: '2026-07-01',
         fullReview: { ratingNumber: 5, ratingText: 'Nice Ep Broh', review: 'stuck the landing', dateReviewed: '2026-09-20' },
-        op: true,
-        ed: true,
+        op: [1],
+        ed: [1],
       }],
       pending: [],
       skipped: [],
@@ -261,7 +261,7 @@ test('a full-series re-review renders as an addendum, and a liked OP/ED as a mar
   assert.deepEqual(labels, ['Revisit']);
   assert.match(document.getElementById('reviewedShows').textContent, /stuck the landing/);
   const marks = [...document.querySelectorAll('.entry-mark')].map((el) => el.textContent);
-  assert.deepEqual(marks, ['Liked OP', 'Liked ED']);
+  assert.deepEqual(marks, ['Liked OP 1', 'Liked ED 1']);
 });
 
 test('numbered OP/ED likings name the numbers in their markings', async () => {
@@ -754,7 +754,7 @@ const filterSeasons = {
       { titleEN: 'Peak Show', ratingNumber: 5, ratingText: 'Peak', review: '', dateReviewed: '2026-10-04', streaming: ['crunchyroll'] },
       { titleEN: 'Hidive Show', ratingNumber: 4, ratingText: 'Hoping', review: '', dateReviewed: '2026-10-03', streaming: ['hidive'] },
       { titleEN: 'Grower', ratingNumber: 3, ratingText: 'Meh', review: '', dateReviewed: '2026-10-02', streaming: ['crunchyroll'], fullReview: { ratingNumber: 5, ratingText: 'Peak' } },
-      { titleEN: 'Trash Show', ratingNumber: 2, ratingText: 'Trash', review: 'bad OP', dateReviewed: '2026-10-01', streaming: ['crunchyroll'], op: true },
+      { titleEN: 'Trash Show', ratingNumber: 2, ratingText: 'Trash', review: 'bad OP', dateReviewed: '2026-10-01', streaming: ['crunchyroll'], op: [1] },
     ],
     pending: [],
     skipped: [],
@@ -1204,7 +1204,7 @@ test('with site data blocked, the filters toggle still works', async () => {
 });
 
 test('the reviewer\'s own markings and the AniList line are told apart by class', async () => {
-  const { document } = await loadApp({ fetch: anilistRoutes([{ ...isekaiTrash, op: true, finishedSeason: true }]) });
+  const { document } = await loadApp({ fetch: anilistRoutes([{ ...isekaiTrash, op: [1], finishedSeason: true }]) });
   await waitFor(() => showTitles(document).length === 1);
   const marks = [...document.querySelectorAll('.entry-mark')].map((el) => el.className);
   assert.deepEqual(marks, ['entry-mark entry-mark-finished', 'entry-mark entry-mark-oped']);

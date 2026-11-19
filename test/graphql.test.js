@@ -359,7 +359,7 @@ test('a liked OP/ED comes through the API as a boolean', async () => {
     '/vqar/data/index.json': seasonIndex,
     '/vqar/data/seasons/summer-2026.json': {
       ...seasons['/vqar/data/seasons/summer-2026.json'],
-      reviewed: [{ titleEN: 'Bop Show', ratingText: 'Meh', dateReviewed: '2026-07-01T12:00:00Z', op: true }],
+      reviewed: [{ titleEN: 'Bop Show', ratingText: 'Meh', dateReviewed: '2026-07-01T12:00:00Z', op: [1] }],
     },
   });
   const result = await run('{ currentSeason { reviewed { titleEN op ed } } }', assetsStub);
@@ -373,7 +373,7 @@ test('numbered OP/ED likings come through as booleans plus the numbers', async (
       ...seasons['/vqar/data/seasons/summer-2026.json'],
       reviewed: [
         { titleEN: 'Numbered', ratingText: 'Meh', dateReviewed: '2026-07-01T12:00:00Z', op: [2, 1], ed: [3] },
-        { titleEN: 'Bare', ratingText: 'Meh', dateReviewed: '2026-07-02T12:00:00Z', op: true },
+        { titleEN: 'First', ratingText: 'Meh', dateReviewed: '2026-07-02T12:00:00Z', op: [1] },
         { titleEN: 'Neither', ratingText: 'Meh', dateReviewed: '2026-07-03T12:00:00Z' },
       ],
     },
@@ -381,7 +381,7 @@ test('numbered OP/ED likings come through as booleans plus the numbers', async (
   const result = await run('{ currentSeason { reviewed { titleEN op opNumbers ed edNumbers } } }', assetsStub);
   assert.deepEqual(result.data.currentSeason.reviewed, [
     { titleEN: 'Numbered', op: true, opNumbers: [1, 2], ed: true, edNumbers: [3] },
-    { titleEN: 'Bare', op: true, opNumbers: null, ed: null, edNumbers: null },
+    { titleEN: 'First', op: true, opNumbers: [1], ed: null, edNumbers: null },
     { titleEN: 'Neither', op: null, opNumbers: null, ed: null, edNumbers: null },
   ]);
 });

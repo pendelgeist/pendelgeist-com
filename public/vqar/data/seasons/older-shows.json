@@ -3275,7 +3275,9 @@
         "crunchyroll"
       ],
       "crunchyrollUrl": "https://www.crunchyroll.com/series/GVDHX85EQ/catch-me-at-the-ballpark",
-      "ed": true,
+      "ed": [
+        1
+      ],
       "anilist": {
         "format": "TV",
         "genres": [

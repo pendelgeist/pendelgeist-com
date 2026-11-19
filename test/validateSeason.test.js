@@ -372,8 +372,8 @@ test('a well-formed fullReview and liked op/ed do not trigger a false positive',
     ratingText: 'Finish Ep',
     dateReviewed: '2026-04-02T08:00:00-04:00',
     fullReview: { ratingNumber: 5, ratingText: 'Nice Ep Broh', review: 'great', dateReviewed: '2026-06-01T08:00:00-04:00' },
-    op: true,
-    ed: true,
+    op: [1],
+    ed: [2],
   });
 
   assert.deepEqual(validateSeason(season), []);
@@ -529,8 +529,8 @@ test('flags a fullReview ratingNumber outside the 0-5 tiers', () => {
 
 // A liked OP/ED is a bare marking now - the old rated/annotated object shape
 // is rejected, so a session can't quietly reintroduce it.
-test('flags an op/ed that is anything but true', () => {
-  for (const value of [{ ratingText: 'Honorable Mention' }, false, 'yes', 1]) {
+test('flags an op/ed that is not a list of numbers - a bare true included', () => {
+  for (const value of [{ ratingText: 'Honorable Mention' }, true, false, 'yes', 1]) {
     const season = cleanSeason();
     season.reviewed.push({
       titleEN: 'Old-Shape OP Show',
