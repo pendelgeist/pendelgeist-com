@@ -13,6 +13,7 @@
 
 import { effectiveRatingNumber, awaitingRevisit, RATING_NUMBER_LABELS } from './rating.js';
 import { STREAMING_SERVICES } from '../streaming.js';
+import { isLikedOpEd } from './oped.js';
 
 /** @typedef {'rating'|'on'|'has'|'format'|'genre'|'tag'|'studio'} ChipDimension */
 /** @typedef {Record<ChipDimension, Set<string>>} ChipFilters */
@@ -101,7 +102,7 @@ export function reviewValues(dimension, review) {
     if (after > before) values.push('up');
     if (after < before) values.push('down');
   }
-  if (review.op || review.ed) values.push('oped');
+  if (isLikedOpEd(review.op) || isLikedOpEd(review.ed)) values.push('oped');
   if (review.finishedSeason === true) values.push('finished');
   return values;
 }

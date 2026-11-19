@@ -264,6 +264,58 @@ test('a full-series re-review renders as an addendum, and a liked OP/ED as a mar
   assert.deepEqual(marks, ['Liked OP', 'Liked ED']);
 });
 
+test('numbered OP/ED likings name the numbers in their markings', async () => {
+  const fetch = createPathFetchStub({
+    '/vqar/data/index.json': seasonIndex,
+    '/vqar/data/seasons/summer-2026.json': {
+      id: 'summer-2026',
+      name: 'Summer 2026',
+      reviewed: [{
+        titleEN: 'Many Songs Show', ratingNumber: 4, ratingText: 'Finish Ep', review: 'catchy', dateReviewed: '2026-07-01',
+        op: [2, 1], ed: [3],
+      }],
+      pending: [],
+      skipped: [],
+    },
+  });
+  const { document } = await loadApp({ fetch });
+
+  const marks = [...document.querySelectorAll('.entry-mark')].map((el) => el.textContent);
+  assert.deepEqual(marks, ['Liked OP 1, 2', 'Liked ED 3']);
+});
+
+test('a review with a watched record shows when it was watched, and how far it got', async () => {
+  const fetch = createPathFetchStub({
+    '/vqar/data/index.json': seasonIndex,
+    '/vqar/data/seasons/summer-2026.json': {
+      id: 'summer-2026',
+      name: 'Summer 2026',
+      reviewed: [
+        { titleEN: 'Whole Run', ratingNumber: 4, ratingText: 'Finish Ep', review: 'a', dateReviewed: '2026-07-01T12:00:00-04:00', watched: { first: '2026-04-01', last: '2026-06-10' } },
+        { titleEN: 'Partway', ratingNumber: 4, ratingText: 'Finish Ep', review: 'b', dateReviewed: '2026-07-02T12:00:00-04:00', watched: { first: '2026-04-02T21:30:00-04:00', last: '2026-05-01', lastEpisode: 6 } },
+        { titleEN: 'Several Seasons', ratingNumber: 4, ratingText: 'Finish Ep', review: 'c', dateReviewed: '2026-07-03T12:00:00-04:00', watched: { first: '2026-04-03', last: '2026-05-02', lastEpisode: 'S2 E6' } },
+        { titleEN: 'One Day', ratingNumber: 4, ratingText: 'Finish Ep', review: 'd', dateReviewed: '2026-07-04T12:00:00-04:00', watched: { first: '2026-04-04' } },
+        { titleEN: 'Unrecorded', ratingNumber: 4, ratingText: 'Finish Ep', review: 'e', dateReviewed: '2026-07-05T12:00:00-04:00' },
+      ],
+      pending: [],
+      skipped: [],
+    },
+  });
+  const { document } = await loadApp({ fetch });
+
+  const byTitle = Object.fromEntries([...document.querySelectorAll('#reviewedShows article')].map((el) => [
+    el.querySelector('.entry-title')?.textContent.trim(),
+    el.querySelector('.entry-watched')?.textContent ?? null,
+  ]));
+  assert.deepEqual(byTitle, {
+    'Whole Run': 'Watched: 2026-04-01 \u2013 2026-06-10',
+    'Partway': 'Watched: 2026-04-02 \u2013 2026-05-01 (through ep 6)',
+    'Several Seasons': 'Watched: 2026-04-03 \u2013 2026-05-02 (through S2 E6)',
+    'One Day': 'Watched: 2026-04-04',
+    'Unrecorded': null,
+  });
+});
+
 test('a review renders a link per reference site it has, in a fixed order', async () => {
   const fetch = createPathFetchStub({
     '/vqar/data/index.json': seasonIndex,

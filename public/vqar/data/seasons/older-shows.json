@@ -2062,7 +2062,9 @@
         "crunchyroll"
       ],
       "crunchyrollUrl": "https://www.crunchyroll.com/series/GDKHZEP8W/mashle-magic-and-muscles",
-      "op": true,
+      "op": [
+        2
+      ],
       "anilist": {
         "format": "TV",
         "genres": [

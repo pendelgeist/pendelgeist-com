@@ -118,8 +118,26 @@ test('computeOpEdHighlights lists the liked OPs and EDs, with their season', () 
   const s = computeOpEdHighlights(reviews);
   assert.equal(s.opCount, 1);
   assert.equal(s.edCount, 1);
-  assert.deepEqual(s.likedOps, [{ titleEN: 'Peak Show', seasonName: 'Summer 2026' }]);
-  assert.deepEqual(s.likedEds, [{ titleEN: 'Trash Show', seasonName: 'Summer 2026' }]);
+  assert.deepEqual(s.likedOps, [{ titleEN: 'Peak Show', seasonName: 'Summer 2026', which: '-' }]);
+  assert.deepEqual(s.likedEds, [{ titleEN: 'Trash Show', seasonName: 'Summer 2026', which: '-' }]);
+});
+
+test('numbered OP/ED likings count like bare ones, and say which OP/ED they were', () => {
+  const numbered = flattenReviews([{
+    id: 'summer-2026', name: 'Summer 2026',
+    reviewed: [
+      { titleEN: 'Two OPs', ratingText: 'Meh', review: '', dateReviewed: '2026-07-01', op: [1, 2] },
+      { titleEN: 'Third ED', ratingText: 'Meh', review: '', dateReviewed: '2026-07-02', ed: [3] },
+      { titleEN: 'Both Bare', ratingText: 'Meh', review: '', dateReviewed: '2026-07-03', op: true, ed: true },
+      { titleEN: 'Neither', ratingText: 'Meh', review: '', dateReviewed: '2026-07-04' },
+    ],
+    pending: [], skipped: [],
+  }]);
+  const s = computeOpEdHighlights(numbered);
+  assert.deepEqual(s.likedOps.map(r => [r.titleEN, r.which]), [['Both Bare', '-'], ['Two OPs', 'OP 1, 2']]);
+  assert.deepEqual(s.likedEds.map(r => [r.titleEN, r.which]), [['Both Bare', '-'], ['Third ED', 'ED 3']]);
+  assert.equal(s.opCount, 2);
+  assert.equal(s.edCount, 2);
 });
 
 test('computeOpEdHighlights lists every liked OP by title, with no top-N cap', () => {

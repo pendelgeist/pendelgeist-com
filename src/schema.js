@@ -11,6 +11,7 @@
 import { VQAR_INDEX_PATH } from '../public/vqar/data-paths.js';
 import { STREAMING_URL_FIELDS } from '../public/streaming.js';
 import { entryTitle, normalizeEntry } from '../public/vqar/list-entries.js';
+import { isLikedOpEd, opEdNumbers } from '../public/vqar/oped.js';
 import { recommend, buildAniListQuery, parseAniListResponse, candidateIds, MAX_LIKED, MAX_PICKS } from './recommend.js';
 
 export const typeDefs = `#graphql
@@ -45,10 +46,14 @@ type Review {
   review: String
   dateReviewed: String
   fullReview: SubReview
-  "True when the opening was marked as one worth remembering."
+  "True when an opening was marked as one worth remembering."
   op: Boolean
-  "True when the ending was marked as one worth remembering."
+  "The numbers of the openings marked as worth remembering (a season can have several); null when none were numbered."
+  opNumbers: [Int!]
+  "True when an ending was marked as one worth remembering."
   ed: Boolean
+  "The numbers of the endings marked as worth remembering; null when none were numbered."
+  edNumbers: [Int!]
   "True when the whole season was watched - independent of any re-review or rating."
   finishedSeason: Boolean
   "The date the season was finished, like 2026-10-26. Only present alongside finishedSeason."
@@ -85,6 +90,18 @@ type Review {
   youtubeUrl: String
   "Optional, free-text note on how far a revisit actually got (e.g. Ep 3)."
   watchProgress: String
+  "When the show was watched: the first episode, the last, and the last episode reached. Null when not recorded."
+  watched: Watched
+}
+
+"""When a show was watched, from the first episode to the last."""
+type Watched {
+  "When the first episode was watched: a date like 2026-04-01, or a timestamp."
+  first: String!
+  "When the last episode was watched, in the same form. Null when the same as first, or not recorded."
+  last: String
+  "The last episode reached, for a show that wasn't finished: a number like 24, or text like S2 E6."
+  lastEpisode: String
 }
 
 """A show still waiting to be reviewed, with whatever pre-season notes were committed for it."""
@@ -227,6 +244,29 @@ function urlFields(entry) {
 }
 
 /** @param {import('../public/vqar/list-entries.js').ListEntry} entry */
+/**
+ * A season file's review as the API serves it: `op`/`ed` are Booleans (liked or
+ * not) with the numbered ones in `opNumbers`/`edNumbers`, and a `watched`
+ * record's `lastEpisode` (a number or text in the data) is always a String.
+ * @param {any} r
+ * @param {string} season
+ * @param {string} seasonName
+ */
+function toReview(r, season, seasonName) {
+  const opNumbers = opEdNumbers(r.op);
+  const edNumbers = opEdNumbers(r.ed);
+  return {
+    ...r,
+    season,
+    seasonName,
+    op: isLikedOpEd(r.op) ? true : undefined,
+    ed: isLikedOpEd(r.ed) ? true : undefined,
+    opNumbers: opNumbers.length ? opNumbers : null,
+    edNumbers: edNumbers.length ? edNumbers : null,
+    watched: r.watched && { ...r.watched, lastEpisode: r.watched.lastEpisode == null ? null : String(r.watched.lastEpisode) },
+  };
+}
+
 function toPendingShow(entry) {
   const { title, streaming, firstEpisode, availableNow, ...rest } = normalizeEntry(entry);
   return { title, streaming: streaming ?? [], firstEpisode: firstEpisode ?? null, availableNow: availableNow === true, ...urlFields(rest) };
@@ -297,7 +337,7 @@ export function makeRootValue({ assets, origin }) {
       name,
       number: data.number ?? null,
       archive: data.archive === true,
-      reviewed: (data.reviewed ?? []).map((r) => ({ ...r, season: id, seasonName: name })),
+      reviewed: (data.reviewed ?? []).map((r) => toReview(r, id, name)),
       pending: (data.pending ?? []).map(entryTitle),
       skipped: (data.skipped ?? []).map(entryTitle),
       pendingShows: (data.pending ?? []).map(toPendingShow),

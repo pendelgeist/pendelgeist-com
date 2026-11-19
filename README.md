@@ -37,6 +37,8 @@ The Worker (`src/worker.js`) also backs a small GraphQL API over the same anime 
   page-specific style here.
 - `public/vqar/data-paths.js` — the path to the VQAR season index, the one thing
   `public/vqar/app.js`, `public/vqar-stats/app.js`, and `src/schema.js` all need to agree on.
+- `public/vqar/oped.js` — what a liked OP/ED is: `true`, or a list of the numbers liked
+  (`[1, 2]`). `/vqar`, `/vqar-stats`, the GraphQL schema and the validator all read it through here.
 - `public/vqar/rating.js` — the other thing they have to agree on: which rating counts once
   a show has both an episode-1 rating and a full-series re-review, and each tier's default
   label (`RATING_NUMBER_LABELS`).
@@ -256,9 +258,13 @@ extras:
   `ratingNumber` (0–5) and `ratingText`: that rating replaces the episode-1 one in sorting,
   filtering and every `/vqar-stats` number, so validation rejects a revisit saved without one
   rather than let the old rating quietly stand.
-- `op` / `ed` — `true` marks an opening/ending you liked, for finding it again later. It's a
-  bare marking, with no rating or note: anything but `true` is rejected, and an OP/ED you
-  didn't note is simply left out. `/vqar` shows it as a "Liked OP"/"Liked ED" pill.
+- `op` / `ed` — marks an opening/ending you liked, for finding it again later. A season can have
+  several OPs or EDs, so say which: `"op": [2]` is OP 2, `"ed": [1, 3]` is EDs 1 and 3; `true`
+  means "liked one, didn't note which". It's a bare marking, with no rating or note: anything but
+  `true` or a list of distinct whole numbers from 1 is rejected, and an OP/ED you didn't note is
+  simply left out. `/vqar` shows it as a "Liked OP 2"/"Liked ED" pill, `/vqar-stats` lists the
+  numbers in a "Which" column, and the GraphQL `Review` type has `op`/`ed` as Booleans (true when
+  anything was liked) with the numbers in `opNumbers`/`edNumbers`.
 
 A review of a show from outside the season (see "Older shows") may carry `airedLabel`, free
 text for when it first aired, such as `"Winter 2004"`.
@@ -322,6 +328,17 @@ A review may also carry an optional `crunchyrollUrl`, `hidiveUrl`, `netflixUrl`,
 `primeUrl` and/or `youtubeUrl` (a direct link to the show's page, channel or playlist on that
 service) — whichever of these are present makes the matching badge ("CR", "HD", "NF", "HU", "PV",
 "YT") itself clickable. The OceanVeil badge stays non-clickable; there's no equivalent field for it.
+
+A review may also carry `watched`, when you actually watched the show: `{ "first": "2026-04-01",
+"last": "2026-06-10" }` for the days the first and last episodes were watched. Each is a plain
+calendar date, or a timestamp in your Eastern offset like `dateReviewed`; they're shown exactly as
+written, validation rejects one in the future or a `last` before the `first`, and a UTC timestamp is
+rejected like it is for `dateReviewed`. `first` is required and `last` is optional (leave it out
+while still watching). For a show you didn't finish add `lastEpisode`, the episode you reached: a
+number like `6`, or text like `"S2 E6"` when it ran across several seasons. It is separate from
+`dateReviewed` (when the review was written) and `finishedDate`. `/vqar` shows it as
+"Watched: 2026-04-01 – 2026-06-10 (through ep 6)", and the GraphQL `Review` type has a `watched`
+object with `first`, `last` and `lastEpisode` (always text).
 
 A review may also carry an optional `watchProgress` (a free-text string, e.g. `"Ep 3"`) —
 a silly personal tracker for how far a 4/5 ("Yeah") revisit candidate actually got before
