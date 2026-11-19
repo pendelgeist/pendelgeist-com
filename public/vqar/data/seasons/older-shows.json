@@ -2304,6 +2304,43 @@
           "MAPPA"
         ]
       }
+    },
+    {
+      "titleEN": "Solo Leveling",
+      "titleJP": "俺だけレベルアップな件",
+      "airedLabel": "Winter 2024",
+      "ratingNumber": 2,
+      "ratingText": "Trash, for Second Screen Only",
+      "review": "It's fine.",
+      "dateReviewed": "2024-01-16T07:58:00-05:00",
+      "anilistId": 151807,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GDKHZEJ0K/solo-leveling",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Action",
+          "Adventure",
+          "Fantasy"
+        ],
+        "tags": [
+          "Dungeon",
+          "Male Protagonist",
+          "Urban Fantasy",
+          "Super Power",
+          "Magic",
+          "Cultivation",
+          "Survival",
+          "Shounen",
+          "Gore",
+          "Swordplay"
+        ],
+        "studios": [
+          "A-1 Pictures"
+        ]
+      }
     }
   ],
   "pending": [],
