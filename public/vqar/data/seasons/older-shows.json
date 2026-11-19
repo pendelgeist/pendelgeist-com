@@ -2387,6 +2387,43 @@
           "bones"
         ]
       }
+    },
+    {
+      "titleEN": "BUCCHIGIRI?!",
+      "titleJP": "ぶっちぎり?!",
+      "airedLabel": "Winter 2024",
+      "ratingNumber": 2,
+      "ratingText": "Trash, for Second Screen Only",
+      "review": "This show looked nice but wasn't actually that great.",
+      "dateReviewed": "2024-02-08T06:19:00-05:00",
+      "anilistId": 165254,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/G5PHNM985/bucchigiri",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Action",
+          "Supernatural"
+        ],
+        "tags": [
+          "Martial Arts",
+          "Delinquents",
+          "Primarily Teen Cast",
+          "Gangs",
+          "School",
+          "Magic",
+          "Mythology",
+          "Primarily Male Cast",
+          "Male Protagonist",
+          "Unrequited Love",
+          "Heterosexual"
+        ],
+        "studios": [
+          "MAPPA"
+        ]
+      }
     }
   ],
   "pending": [],
