@@ -3622,6 +3622,54 @@
           "ENISHIYA"
         ]
       }
+    },
+    {
+      "titleEN": "Haikyu!!",
+      "titleJP": "ハイキュー!!",
+      "airedLabel": "Spring 2014",
+      "ratingNumber": 4,
+      "ratingText": "Yeah, Here's Hoping",
+      "review": "Pretty great volleyball anime.",
+      "dateReviewed": "2022-04-05T12:30:00-04:00",
+      "anilistId": 20464,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GY8VM8MWY/haikyu",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Comedy",
+          "Drama",
+          "Sports"
+        ],
+        "tags": [
+          "Volleyball",
+          "School Club",
+          "Male Protagonist",
+          "Primarily Male Cast",
+          "Shounen",
+          "Ensemble Cast",
+          "Primarily Teen Cast",
+          "School",
+          "Coming of Age",
+          "Anti-Hero"
+        ],
+        "studios": [
+          "Production I.G"
+        ]
+      }
+    },
+    {
+      "titleEN": "Anime Crimes Division",
+      "ratingNumber": 4,
+      "ratingText": "Yeah, Here's Hoping",
+      "review": "Fun show. Not anime, but it's on CR so I'll include it here.",
+      "dateReviewed": "2022-08-22T06:57:00-04:00",
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GREX5KEXY/anime-crimes-division"
     }
   ],
   "pending": [],
