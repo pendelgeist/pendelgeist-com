@@ -1921,6 +1921,47 @@
           "Signal.MD"
         ]
       }
+    },
+    {
+      "titleEN": "Handyman Saitou in Another World",
+      "titleJP": "便利屋斎藤さん、異世界に行く",
+      "airedLabel": "Winter 2023",
+      "ratingNumber": 2,
+      "ratingText": "Trash, for Second Screen Only",
+      "review": "I don't remember this show at all.",
+      "dateReviewed": "2023-01-31T06:47:00-05:00",
+      "anilistId": 144092,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GMEHME849/handyman-saitou-in-another-world",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Adventure",
+          "Comedy",
+          "Fantasy",
+          "Slice of Life"
+        ],
+        "tags": [
+          "Primarily Adult Cast",
+          "Isekai",
+          "Male Protagonist",
+          "Magic",
+          "Fairy",
+          "Ensemble Cast",
+          "Dungeon",
+          "Swordplay",
+          "Seinen",
+          "Episodic",
+          "Surreal Comedy",
+          "Ninja",
+          "Found Family"
+        ],
+        "studios": [
+          "C2C"
+        ]
+      }
     }
   ],
   "pending": [],
