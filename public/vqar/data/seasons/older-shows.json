@@ -2094,6 +2094,48 @@
           "A-1 Pictures"
         ]
       }
+    },
+    {
+      "titleEN": "KONOSUBA - An Explosion on This Wonderful World!",
+      "titleJP": "この素晴らしい世界に爆焔を！",
+      "airedLabel": "Spring 2023",
+      "ratingNumber": 5,
+      "ratingText": "Peak, Nice Ep Broh",
+      "review": "Somehow they took the most depraved show and spun off this really charming side show.",
+      "dateReviewed": "2023-04-19T00:53:00-04:00",
+      "anilistId": 150075,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GJ0H7Q5V7/konosuba-an-explosion-on-this-wonderful-world",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Adventure",
+          "Comedy",
+          "Fantasy"
+        ],
+        "tags": [
+          "Female Protagonist",
+          "Chuunibyou",
+          "Magic",
+          "Primarily Female Cast",
+          "Primarily Teen Cast",
+          "Slapstick",
+          "Parody",
+          "Witch",
+          "Travel",
+          "Rural",
+          "Demons",
+          "School",
+          "Tsundere",
+          "Cute Girls Doing Cute Things",
+          "Medieval"
+        ],
+        "studios": [
+          "Drive"
+        ]
+      }
     }
   ],
   "pending": [],
