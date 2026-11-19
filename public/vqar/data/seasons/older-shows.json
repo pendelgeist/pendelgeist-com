@@ -2136,6 +2136,51 @@
           "Drive"
         ]
       }
+    },
+    {
+      "titleEN": "Undead Murder Farce",
+      "titleJP": "アンデッドガール・マーダーファルス",
+      "airedLabel": "Summer 2023",
+      "ratingNumber": 4,
+      "ratingText": "Yeah, Here's Hoping",
+      "review": "Pretty good.",
+      "dateReviewed": "2023-08-25T13:08:00-04:00",
+      "anilistId": 162983,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GMEHME7XV/undead-murder-farce",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Drama",
+          "Mystery",
+          "Supernatural"
+        ],
+        "tags": [
+          "Detective",
+          "Monster Girl",
+          "Monster Boy",
+          "Historical",
+          "Travel",
+          "Youkai",
+          "Female Protagonist",
+          "Foreign",
+          "Male Protagonist",
+          "Primarily Adult Cast",
+          "Crime",
+          "Revenge",
+          "Urban Fantasy",
+          "Demons",
+          "Fairy Tale",
+          "Gore",
+          "Vampire",
+          "Rural"
+        ],
+        "studios": [
+          "Lapin Track"
+        ]
+      }
     }
   ],
   "pending": [],
