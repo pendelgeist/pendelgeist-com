@@ -2911,6 +2911,47 @@
           "C2C"
         ]
       }
+    },
+    {
+      "titleEN": "Momentary Lily",
+      "titleJP": "もめんたりー・リリィ",
+      "airedLabel": "Winter 2025",
+      "ratingNumber": 3,
+      "ratingText": "Meh, Finishing the Ep",
+      "review": "I really like Go Hands style and this show has an equally crazy premise.",
+      "dateReviewed": "2025-01-28T12:08:00-05:00",
+      "anilistId": 177159,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GG5H5XQQ5/momentary-lily",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Action",
+          "Adventure",
+          "Mystery",
+          "Sci-Fi",
+          "Slice of Life"
+        ],
+        "tags": [
+          "Post-Apocalyptic",
+          "Urban",
+          "Primarily Teen Cast",
+          "Survival",
+          "Primarily Female Cast",
+          "Female Protagonist",
+          "Food",
+          "Super Power",
+          "Henshin",
+          "Swordplay",
+          "Video Games",
+          "Urban Fantasy"
+        ],
+        "studios": [
+          "GoHands"
+        ]
+      }
     }
   ],
   "pending": [],
