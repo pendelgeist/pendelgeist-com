@@ -2727,6 +2727,39 @@
           "Studio 4°C"
         ]
       }
+    },
+    {
+      "titleEN": "Why Does Nobody Remember Me in This World?",
+      "titleJP": "なぜ僕の世界を誰も覚えていないのか？",
+      "airedLabel": "Summer 2024",
+      "ratingNumber": 1,
+      "ratingText": "Never, Please No More Like This Ever",
+      "review": "Why does nobody remember this show?",
+      "dateReviewed": "2024-09-11T22:04:00-04:00",
+      "anilistId": 167419,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GJ0H7QGJE/why-does-nobody-remember-me-in-this-world",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Action",
+          "Adventure",
+          "Fantasy",
+          "Sci-Fi"
+        ],
+        "tags": [
+          "Demons",
+          "Amnesia",
+          "Post-Apocalyptic",
+          "Elf",
+          "Angels"
+        ],
+        "studios": [
+          "project No.9"
+        ]
+      }
     }
   ],
   "pending": [],
