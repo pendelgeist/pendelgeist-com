@@ -2873,6 +2873,44 @@
           "MAPPA"
         ]
       }
+    },
+    {
+      "titleEN": "Shangri-La Frontier",
+      "titleJP": "シャングリラ・フロンティア",
+      "airedLabel": "Fall 2023",
+      "ratingNumber": 2,
+      "ratingText": "Trash, for Second Screen Only",
+      "review": "Solid VG-isekai show.",
+      "dateReviewed": "2025-01-23T06:43:00-05:00",
+      "anilistId": 151970,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/G79H23Z8P/shangri-la-frontier",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Action",
+          "Adventure",
+          "Comedy",
+          "Fantasy",
+          "Sci-Fi"
+        ],
+        "tags": [
+          "Video Games",
+          "Virtual World",
+          "Male Protagonist",
+          "Swordplay",
+          "Anthropomorphism",
+          "Travel",
+          "Shounen",
+          "Unrequited Love",
+          "Slapstick"
+        ],
+        "studios": [
+          "C2C"
+        ]
+      }
     }
   ],
   "pending": [],
