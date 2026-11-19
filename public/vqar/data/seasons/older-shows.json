@@ -1879,6 +1879,431 @@
           "CloverWorks"
         ]
       }
+    },
+    {
+      "titleEN": "The Fire Hunter",
+      "titleJP": "火狩りの王",
+      "airedLabel": "Winter 2023",
+      "ratingNumber": 3,
+      "ratingText": "Meh, Finishing the Ep",
+      "review": "Fine. I really wanted to love this show, but it's a bit too wonky.",
+      "dateReviewed": "2023-01-30T06:19:00-05:00",
+      "anilistId": 125869,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GJ0H7Q5X9/the-fire-hunter",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Action",
+          "Adventure",
+          "Drama",
+          "Fantasy",
+          "Mystery"
+        ],
+        "tags": [
+          "Female Protagonist",
+          "Steampunk",
+          "Post-Apocalyptic",
+          "Animals",
+          "Class Struggle",
+          "Philosophy",
+          "Wilderness",
+          "Male Protagonist",
+          "Environmental",
+          "Rural",
+          "Conspiracy",
+          "Swordplay",
+          "Gods"
+        ],
+        "studios": [
+          "Signal.MD"
+        ]
+      }
+    },
+    {
+      "titleEN": "Handyman Saitou in Another World",
+      "titleJP": "便利屋斎藤さん、異世界に行く",
+      "airedLabel": "Winter 2023",
+      "ratingNumber": 2,
+      "ratingText": "Trash, for Second Screen Only",
+      "review": "I don't remember this show at all.",
+      "dateReviewed": "2023-01-31T06:47:00-05:00",
+      "anilistId": 144092,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GMEHME849/handyman-saitou-in-another-world",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Adventure",
+          "Comedy",
+          "Fantasy",
+          "Slice of Life"
+        ],
+        "tags": [
+          "Primarily Adult Cast",
+          "Isekai",
+          "Male Protagonist",
+          "Magic",
+          "Fairy",
+          "Ensemble Cast",
+          "Dungeon",
+          "Swordplay",
+          "Seinen",
+          "Episodic",
+          "Surreal Comedy",
+          "Ninja",
+          "Found Family"
+        ],
+        "studios": [
+          "C2C"
+        ]
+      }
+    },
+    {
+      "titleEN": "Mob Psycho 100",
+      "titleJP": "モブサイコ100",
+      "airedLabel": "Summer 2016",
+      "ratingNumber": 4,
+      "ratingText": "Yeah, Here's Hoping",
+      "review": "Very pretty show. Fun concept.",
+      "dateReviewed": "2023-02-27T12:45:00-05:00",
+      "anilistId": 21507,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GY190DKQR/mob-psycho-100",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Action",
+          "Comedy",
+          "Drama",
+          "Psychological",
+          "Slice of Life",
+          "Supernatural"
+        ],
+        "tags": [
+          "Super Power",
+          "Coming of Age",
+          "Urban Fantasy",
+          "Ghost",
+          "Philosophy",
+          "Primarily Teen Cast",
+          "Surreal Comedy",
+          "Exorcism",
+          "Male Protagonist",
+          "Parody",
+          "Urban",
+          "Satire",
+          "Shounen",
+          "Primarily Male Cast",
+          "Disability",
+          "School",
+          "Slapstick",
+          "Demons"
+        ],
+        "studios": [
+          "bones"
+        ]
+      }
+    },
+    {
+      "titleEN": "Captain Harlock",
+      "titleJP": "宇宙海賊キャプテンハーロック",
+      "airedLabel": "Spring 1978",
+      "ratingNumber": 5,
+      "ratingText": "Peak, Nice Ep Broh",
+      "review": "What a fabulous thing to exist.",
+      "dateReviewed": "2023-03-17T06:57:00-04:00",
+      "anilistId": 1000,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GYGGPD73Y/captain-harlock",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Action",
+          "Adventure",
+          "Drama",
+          "Sci-Fi"
+        ],
+        "tags": [
+          "Space Opera",
+          "Pirates",
+          "Anti-Hero",
+          "Aliens",
+          "Space",
+          "Episodic",
+          "Seinen",
+          "Fugitive",
+          "Primarily Adult Cast",
+          "Male Protagonist"
+        ],
+        "studios": [
+          "Toei Animation"
+        ]
+      }
+    },
+    {
+      "titleEN": "MASHLE: MAGIC AND MUSCLES",
+      "titleJP": "マッシュル-MASHLE-",
+      "airedLabel": "Spring 2023",
+      "ratingNumber": 2,
+      "ratingText": "Trash, for Second Screen Only",
+      "review": "It's fine. OP 2 by Creepy Nuts is S-tier.",
+      "dateReviewed": "2023-04-17T00:24:00-04:00",
+      "anilistId": 151801,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GDKHZEP8W/mashle-magic-and-muscles",
+      "op": true,
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Action",
+          "Comedy",
+          "Fantasy"
+        ],
+        "tags": [
+          "Magic",
+          "Male Protagonist",
+          "Shounen",
+          "Parody",
+          "School",
+          "Fitness",
+          "Slapstick",
+          "Primarily Teen Cast",
+          "Super Power",
+          "Dragons",
+          "Primarily Male Cast",
+          "Kuudere",
+          "Aromantic",
+          "Food",
+          "Adoption",
+          "Battle Royale",
+          "Asexual",
+          "Medieval"
+        ],
+        "studios": [
+          "A-1 Pictures"
+        ]
+      }
+    },
+    {
+      "titleEN": "KONOSUBA - An Explosion on This Wonderful World!",
+      "titleJP": "この素晴らしい世界に爆焔を！",
+      "airedLabel": "Spring 2023",
+      "ratingNumber": 5,
+      "ratingText": "Peak, Nice Ep Broh",
+      "review": "Somehow they took the most depraved show and spun off this really charming side show.",
+      "dateReviewed": "2023-04-19T00:53:00-04:00",
+      "anilistId": 150075,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GJ0H7Q5V7/konosuba-an-explosion-on-this-wonderful-world",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Adventure",
+          "Comedy",
+          "Fantasy"
+        ],
+        "tags": [
+          "Female Protagonist",
+          "Chuunibyou",
+          "Magic",
+          "Primarily Female Cast",
+          "Primarily Teen Cast",
+          "Slapstick",
+          "Parody",
+          "Witch",
+          "Travel",
+          "Rural",
+          "Demons",
+          "School",
+          "Tsundere",
+          "Cute Girls Doing Cute Things",
+          "Medieval"
+        ],
+        "studios": [
+          "Drive"
+        ]
+      }
+    },
+    {
+      "titleEN": "Undead Murder Farce",
+      "titleJP": "アンデッドガール・マーダーファルス",
+      "airedLabel": "Summer 2023",
+      "ratingNumber": 4,
+      "ratingText": "Yeah, Here's Hoping",
+      "review": "Pretty good.",
+      "dateReviewed": "2023-08-25T13:08:00-04:00",
+      "anilistId": 162983,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GMEHME7XV/undead-murder-farce",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Drama",
+          "Mystery",
+          "Supernatural"
+        ],
+        "tags": [
+          "Detective",
+          "Monster Girl",
+          "Monster Boy",
+          "Historical",
+          "Travel",
+          "Youkai",
+          "Female Protagonist",
+          "Foreign",
+          "Male Protagonist",
+          "Primarily Adult Cast",
+          "Crime",
+          "Revenge",
+          "Urban Fantasy",
+          "Demons",
+          "Fairy Tale",
+          "Gore",
+          "Vampire",
+          "Rural"
+        ],
+        "studios": [
+          "Lapin Track"
+        ]
+      }
+    },
+    {
+      "titleEN": "Frieren: Beyond Journey's End",
+      "titleJP": "葬送のフリーレン",
+      "airedLabel": "Fall 2023",
+      "ratingNumber": 5,
+      "ratingText": "Peak, Nice Ep Broh",
+      "review": "Plenty of good reasons this show is critically loved and very popular.",
+      "dateReviewed": "2023-11-03T07:00:00-04:00",
+      "anilistId": 154587,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GG5H5XQX4/frieren-beyond-journeys-end",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Adventure",
+          "Drama",
+          "Fantasy"
+        ],
+        "tags": [
+          "Travel",
+          "Magic",
+          "Elf",
+          "Female Protagonist",
+          "Philosophy",
+          "Medieval",
+          "Found Family",
+          "Kuudere",
+          "Demons",
+          "Shounen",
+          "Foreign",
+          "Iyashikei",
+          "Adoption",
+          "Rural"
+        ],
+        "studios": [
+          "MADHOUSE"
+        ]
+      }
+    },
+    {
+      "titleEN": "The Kingdoms of Ruin",
+      "titleJP": "はめつのおうこく",
+      "airedLabel": "Fall 2023",
+      "ratingNumber": 4,
+      "ratingText": "Yeah, Here's Hoping",
+      "review": "OMG. This show is nuts, brutal.",
+      "dateReviewed": "2023-11-09T07:02:00-05:00",
+      "anilistId": 160900,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GG5H5XQ14/the-kingdoms-of-ruin",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Action",
+          "Drama",
+          "Fantasy"
+        ],
+        "tags": [
+          "Revenge",
+          "Magic",
+          "Witch",
+          "Gore",
+          "Shounen",
+          "Male Protagonist",
+          "Lost Civilization",
+          "Military"
+        ],
+        "studios": [
+          "Yokohama Animation Lab"
+        ]
+      }
+    },
+    {
+      "titleEN": "JUJUTSU KAISEN",
+      "titleJP": "呪術廻戦",
+      "airedLabel": "Fall 2020",
+      "ratingNumber": 3,
+      "ratingText": "Meh, Finishing the Ep",
+      "review": "I started and stopped several times. I was coerced by my bestie because she loves it. She’s also 13.\n\nI think the show itself is (at least up to ep 18) a shallow clone of Naruto, but without some of the charm and innocence.\n\nIt’s exceedingly well produced by the A-Team at MAPPA. But I don’t care about it that much. I’d rather read Naruto or watch MHA (My Hero Academia).\n\nOr read / watch Chainsawman if you want the same MAT (MAPPA A-Team).\n\nSo, is it bad? No. Do I care about it and what happens? Not really. But at least it looks nice and has some fun fights.\n\nHowever, OMG it suffers so much from the modern Shonen Jump problem where they have to have all these terms and abilities and all this stuff built and expositioned so much. Think back to the beginnings of Naruto - it stays simple for many volumes and gradually adds to the complexity of the rules and world and ninja mechanics.\n\nCSM does go a bit deeper in the modern SJ over depth but… that one is so much more about the characters and they are just more fun.\n\nI’ve been told that “it gets good in season2!” But I’ve been told that about shows for my entire life (and told others) and you know what? That’s the Origin Story of my VQAR (very quick anime reviews). No, you don’t get 10 hours to “get good”. Just be good from the start.\n\nAnd an addendum: I have now watched up through ep ~40. It's still exceedingly well produced, animated, drawn. I still don't really understand the world, but at least it looks nice.",
+      "dateReviewed": "2023-12-26T11:31:00-05:00",
+      "anilistId": 113415,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GRDV0019R/jujutsu-kaisen",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Action",
+          "Drama",
+          "Supernatural"
+        ],
+        "tags": [
+          "Urban Fantasy",
+          "Shounen",
+          "Curses",
+          "Super Power",
+          "Youkai",
+          "Male Protagonist",
+          "Exorcism",
+          "Primarily Teen Cast",
+          "Dissociative Identities",
+          "Demons",
+          "Orphan",
+          "Urban",
+          "Body Horror",
+          "Primarily Male Cast",
+          "Magic",
+          "Martial Arts",
+          "Ensemble Cast",
+          "Gore",
+          "Anthropomorphism",
+          "School"
+        ],
+        "studios": [
+          "MAPPA"
+        ]
+      }
     }
   ],
   "pending": [],
