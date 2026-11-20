@@ -1265,3 +1265,93 @@ test('the reviewer\'s own markings and the AniList line are told apart by class'
   assert.deepEqual(marks, ['entry-mark entry-mark-finished', 'entry-mark entry-mark-oped']);
   assert.ok(document.querySelector('.entry-anilist'));
 });
+
+// --- Aired: browsing by when shows aired ---
+
+const airedIndex = {
+  currentSeason: 'fall-2026',
+  seasons: [
+    { id: 'fall-2026', name: 'Fall 2026', file: '/vqar/data/seasons/fall-2026.json' },
+    { id: 'summer-2026', name: 'Summer 2026', file: '/vqar/data/seasons/summer-2026.json' },
+    { id: 'backlog', name: 'Backlog', file: '/vqar/data/seasons/backlog.json' },
+  ],
+  aired: [
+    { id: 'fall-2026', name: 'Fall 2026', shows: 1, seasons: ['fall-2026'] },
+    { id: 'summer-2026', name: 'Summer 2026', shows: 1, seasons: ['summer-2026'] },
+    { id: 'spring-2010', name: 'Spring 2010', shows: 2, seasons: ['fall-2026', 'backlog'] },
+  ],
+};
+
+function airedRoutes() {
+  return createPathFetchStub({
+    '/vqar/data/index.json': airedIndex,
+    '/vqar/data/seasons/fall-2026.json': makeSeason({
+      id: 'fall-2026', name: 'Fall 2026', current: true,
+      shows: [
+        makeShow({ titleEN: 'Fall Show', ratingNumber: 3, dateReviewed: '2026-10-02T12:00:00-04:00', aired: { season: 'fall', year: 2026 } }),
+        makeShow({ titleEN: 'Old Show Picked Up Live', ratingNumber: 4, dateReviewed: '2026-10-01T12:00:00-04:00', aired: { season: 'spring', year: 2010 } }),
+      ],
+      toReview: [], notReviewing: [],
+    }),
+    '/vqar/data/seasons/summer-2026.json': makeSeason({
+      id: 'summer-2026', name: 'Summer 2026',
+      shows: [makeShow({ titleEN: 'Summer Show', ratingNumber: 3, dateReviewed: '2026-07-01T12:00:00-04:00', aired: { season: 'summer', year: 2026 } })],
+      toReview: [], notReviewing: [],
+    }),
+    '/vqar/data/seasons/backlog.json': makeSeason({
+      id: 'backlog', name: 'Backlog', sortKey: 0,
+      shows: [makeShow({ titleEN: 'Backlog Classic', reviews: [{ ratingNumber: 5, dateReviewed: '2026-11-01T12:00:00-05:00' }], aired: { season: 'spring', year: 2010 } })],
+      toReview: [], notReviewing: [],
+    }),
+  });
+}
+
+function selectAired(document, value) {
+  const select = document.getElementById('airedFilter');
+  select.value = value;
+  select.dispatchEvent(new document.defaultView.Event('change'));
+}
+
+test('the Aired dropdown lists every season shows aired in, newest first, with how many', async () => {
+  const { document } = await loadApp({ fetch: airedRoutes() });
+  await waitFor(() => titles(document).length > 0);
+  const options = [...document.getElementById('airedFilter').options].map((o) => [o.value, o.textContent]);
+  assert.deepEqual(options, [
+    ['', 'Any Time'],
+    ['fall-2026', 'Fall 2026 (1)'],
+    ['summer-2026', 'Summer 2026 (1)'],
+    ['spring-2010', 'Spring 2010 (2)'],
+  ]);
+});
+
+test('picking an aired season browses every season file that holds one, loading only those', async () => {
+  const fetch = airedRoutes();
+  const { document, window } = await loadApp({ fetch });
+  await waitFor(() => titles(document).length > 0);
+  fetch.calls.length = 0;
+
+  selectAired(document, 'spring-2010');
+  await waitFor(() => titles(document).length === 2);
+
+  assert.equal(document.getElementById('seasonFilter').value, 'all');
+  assert.deepEqual(titles(document).map((t) => t.replace(/AniList.*$/, '')), ['Backlog Classic', 'Old Show Picked Up Live']);
+  // Fall is already loaded, and Summer holds nothing from Spring 2010.
+  assert.deepEqual(fetch.calls, ['/vqar/data/seasons/backlog.json']);
+  assert.equal(window.location.search, '?season=all&aired=spring-2010');
+  assert.equal(document.getElementById('resultCount').textContent, '2 reviews');
+
+  selectAired(document, '');
+  await waitFor(() => titles(document).length === 4);
+});
+
+test('an ?aired= link opens on that aired season, and an unknown one is ignored', async () => {
+  const { document } = await loadApp({ fetch: airedRoutes(), url: 'http://localhost/vqar/?season=all&aired=summer-2026' });
+  await waitFor(() => titles(document).length > 0);
+  assert.equal(document.getElementById('airedFilter').value, 'summer-2026');
+  assert.deepEqual(titles(document).map((t) => t.replace(/AniList.*$/, '')), ['Summer Show']);
+
+  const unknown = await loadApp({ fetch: airedRoutes(), url: 'http://localhost/vqar/?aired=winter-1850' });
+  await waitFor(() => titles(unknown.document).length > 0);
+  assert.equal(unknown.document.getElementById('airedFilter').value, '');
+  assert.equal(titles(unknown.document).length, 2);
+});
