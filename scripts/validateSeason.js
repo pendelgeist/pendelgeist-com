@@ -1,6 +1,8 @@
 import { STREAMING_SERVICES, STREAMING_URL_FIELDS } from '../public/streaming.js';
 import { LIST_ENTRY_KEYS, entryTitle } from '../public/vqar/list-entries.js';
 import { opEdProblem } from '../public/vqar/oped.js';
+import { isDay, isMoment, easternOffset, dayOf } from '../public/dates.js';
+import { seasonSortKey, isLineup } from '../public/vqar/seasons.js';
 import { normalizeTitle } from './anilistMatch.js';
 
 /**
@@ -8,7 +10,7 @@ import { normalizeTitle } from './anilistMatch.js';
  * so a typo (`curent`, `fullReveiw`) is rejected rather than quietly doing
  * nothing on the page, in the stats and in the API.
  */
-export const SEASON_KEYS = ['id', 'name', 'number', 'current', 'archive', 'sortKey', 'reviewed', 'pending', 'skipped'];
+export const SEASON_KEYS = ['id', 'name', 'current', 'sortKey', 'shows', 'toReview', 'notReviewing'];
 
 const URL_FIELDS = [...Object.values(STREAMING_URL_FIELDS), 'wikipediaUrl', 'wikipediaJaUrl'];
 
@@ -26,22 +28,8 @@ export const REVIEW_KEYS = [
 /** Every key a `fullReview` (a revisit) may carry; checked against the GraphQL `SubReview` too. */
 export const FULL_REVIEW_KEYS = ['ratingNumber', 'ratingText', 'review', 'dateReviewed'];
 
-/** Every key a review's `watched` object may carry; checked against the GraphQL `Watched` type too. */
-export const WATCHED_KEYS = ['first', 'last', 'lastEpisode'];
-
-/** `dateReviewed` is a full ISO 8601 timestamp (UTC `Z` or a `±hh:mm` offset) so same-day reviews order by time. */
-const TIMESTAMP_PATTERN = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(\.\d+)?(Z|[+-]\d{2}:\d{2})$/;
-
-const EASTERN_OFFSET_FORMAT = new Intl.DateTimeFormat('en-US', { timeZone: 'America/New_York', timeZoneName: 'longOffset' });
-
-/**
- * The reviewer's UTC offset at a moment: `-04:00` in daylight time, `-05:00` otherwise.
- * @param {number} instant - epoch milliseconds
- */
-function easternOffset(instant) {
-  const zone = EASTERN_OFFSET_FORMAT.formatToParts(instant).find(part => part.type === 'timeZoneName')?.value ?? '';
-  return zone.replace('GMT', '');
-}
+/** Every key a show's `watched` object may carry; checked against the GraphQL `Watched` type too. */
+export const WATCHED_KEYS = ['from', 'to', 'season', 'episode'];
 
 /**
  * Problems with one review timestamp: not stamped in the reviewer's Eastern
@@ -49,7 +37,7 @@ function easternOffset(instant) {
  * evening review on tomorrow's date), or in the future.
  * @param {string} label - how to name the owner in a message
  * @param {string} field - `dateReviewed`, or `fullReview.dateReviewed`
- * @param {string} value - already known to match TIMESTAMP_PATTERN and parse
+ * @param {string} value - already known to be a moment (see isMoment in public/dates.js)
  * @param {number} now - epoch milliseconds
  * @returns {string[]}
  */
@@ -67,46 +55,6 @@ function timestampIssues(label, field, value, now) {
 
 const STREAMING_KEYS = new Set(Object.keys(STREAMING_SERVICES));
 
-/** `firstEpisode` on a pending entry is a plain calendar date, shown exactly as written. */
-const DATE_PATTERN = /^(\d{4})-(\d{2})-(\d{2})$/;
-
-/** @param {string} value */
-function isCalendarDate(value) {
-  const match = DATE_PATTERN.exec(value);
-  if (!match) return false;
-  const [, year, month, day] = match.map(Number);
-  const date = new Date(Date.UTC(year, month - 1, day));
-  return date.getUTCFullYear() === year && date.getUTCMonth() === month - 1 && date.getUTCDate() === day;
-}
-
-// Season ids are `<season>-<year>` ("spring-2026"), which is what
-// scripts/build-vqar-index.js sorts the generated index by - a directory
-// listing would put spring before winter. A season whose id doesn't follow the
-// pattern has to say where it goes with an explicit numeric `sortKey`.
-const SEASON_ORDER = { winter: 0, spring: 1, summer: 2, fall: 3, autumn: 3 };
-
-/**
- * @param {string} id
- * @returns {number|null} a comparable rank (higher = more recent), or null if
- *   the id doesn't parse as `<season>-<year>`
- */
-export function parseSeasonId(id) {
-  const match = /^([a-z]+)-(\d{4})$/.exec(String(id));
-  if (!match) return null;
-  const [, season, year] = match;
-  const order = SEASON_ORDER[season];
-  return order === undefined ? null : Number(year) * 10 + order;
-}
-
-/**
- * Where a season sorts, newest first. Prefers an explicit `sortKey` so a season
- * whose id doesn't parse still has a home.
- * @param {object} season
- */
-export function seasonSortKey(season) {
-  return typeof season.sortKey === 'number' ? season.sortKey : parseSeasonId(season.id);
-}
-
 /** @param {string[]} list */
 function findDuplicates(list) {
   const seen = new Set();
@@ -119,12 +67,12 @@ function findDuplicates(list) {
 }
 
 /**
- * Checks the entries of one `pending` or `skipped` list: each is a non-empty
+ * Checks the entries of one `toReview` or `notReviewing` list: each is a non-empty
  * title string or an object with a title, only the keys that list allows, and
  * well-formed optional notes. Titles are checked here too, since the duplicate
  * and cross-list checks rely on them being strings.
  * @param {unknown[]} list
- * @param {'pending'|'skipped'} listName
+ * @param {'toReview'|'notReviewing'} listName
  * @returns {string[]}
  */
 function validateListEntries(list, listName) {
@@ -155,14 +103,14 @@ function validateListEntries(list, listName) {
         }
       }
     }
-    if (entry.firstEpisode !== undefined && (typeof entry.firstEpisode !== 'string' || !isCalendarDate(entry.firstEpisode))) {
-      issues.push(`${where} in ${listName} has a malformed firstEpisode (expected a date like 2026-10-08)`);
+    if (entry.premieres !== undefined && !isDay(entry.premieres)) {
+      issues.push(`${where} in ${listName} has a malformed premieres (expected a day like 2026-10-08)`);
     }
     if (entry.availableNow !== undefined && typeof entry.availableNow !== 'boolean') {
       issues.push(`${where} in ${listName} has a malformed availableNow (expected a boolean)`);
     }
-    if (entry.availableNow === true && entry.firstEpisode !== undefined) {
-      issues.push(`${where} in ${listName} is marked availableNow but also has a firstEpisode (use one or the other)`);
+    if (entry.availableNow === true && entry.premieres !== undefined) {
+      issues.push(`${where} in ${listName} is marked availableNow but also has a premieres (use one or the other)`);
     }
     if (entry.reason !== undefined && (typeof entry.reason !== 'string' || entry.reason.trim() === '')) {
       issues.push(`${where} in ${listName} has a malformed reason (expected a non-empty string)`);
@@ -177,9 +125,9 @@ function validateListEntries(list, listName) {
 }
 
 /**
- * A revisit's date is optional, and can be a plain calendar date or a full
- * timestamp (a revisit is often logged by the day). Either way it has to be
- * real, not in the future, and not before the episode-1 review it follows.
+ * A revisit's date is optional, and like every review date it's a moment - a
+ * timestamp in the reviewer's Eastern offset - not in the future, and not
+ * before the episode-1 review it follows.
  * @param {string} label
  * @param {any} review
  * @param {number} now
@@ -188,24 +136,21 @@ function validateListEntries(list, listName) {
 function revisitDateIssues(label, review, now) {
   const value = review.fullReview.dateReviewed;
   if (value === undefined) return [];
-  if (typeof value !== 'string' || !(isCalendarDate(value) || (TIMESTAMP_PATTERN.test(value) && !Number.isNaN(Date.parse(value))))) {
-    return [`"${label}" has a fullReview.dateReviewed that is neither a date like 2026-10-08 nor a timestamp`];
+  if (!isMoment(value)) {
+    return [`"${label}" has a fullReview.dateReviewed that isn't a timestamp like 2026-10-08T12:00:00-04:00`];
   }
-  const issues = TIMESTAMP_PATTERN.test(value) ? timestampIssues(label, 'fullReview.dateReviewed', value, now) : [];
-  if (!TIMESTAMP_PATTERN.test(value) && Date.parse(value) > now) {
-    issues.push(`"${label}" has a fullReview.dateReviewed in the future`);
-  }
-  if (typeof review.dateReviewed === 'string' && value.slice(0, 10) < review.dateReviewed.slice(0, 10)) {
-    issues.push(`"${label}" has a fullReview.dateReviewed (${value.slice(0, 10)}) before its episode-1 review (${review.dateReviewed.slice(0, 10)})`);
+  const issues = timestampIssues(label, 'fullReview.dateReviewed', value, now);
+  if (typeof review.dateReviewed === 'string' && dayOf(value) < dayOf(review.dateReviewed)) {
+    issues.push(`"${label}" has a fullReview.dateReviewed (${dayOf(value)}) before its episode-1 review (${dayOf(review.dateReviewed)})`);
   }
   return issues;
 }
 
 /**
- * Problems with a review's `watched` record: when the reviewer watched the
- * first episode, the last one, and (for a show they didn't finish) which
- * episode that was. Dates are a plain calendar date or a full timestamp, shown
- * exactly as written.
+ * Problems with a show's `watched` record: the day the reviewer watched the
+ * first episode (`from`), the day of the last (`to`), and - for a show they
+ * didn't finish - the episode they reached, with its `season` when the show
+ * ran across several. Both dates are days, shown exactly as written.
  * @param {string} label
  * @param {any} watched
  * @param {number} now
@@ -213,7 +158,7 @@ function revisitDateIssues(label, review, now) {
  */
 function watchedIssues(label, watched, now) {
   if (typeof watched !== 'object' || watched === null || Array.isArray(watched)) {
-    return [`"${label}" has a malformed watched (expected an object like { "first": "2026-04-01", "last": "2026-06-10" })`];
+    return [`"${label}" has a malformed watched (expected an object like { "from": "2026-04-01", "to": "2026-06-10" })`];
   }
   const issues = [];
   for (const key of Object.keys(watched)) {
@@ -221,32 +166,36 @@ function watchedIssues(label, watched, now) {
       issues.push(`"${label}" has a watched with an unknown field "${key}" (expected one of ${WATCHED_KEYS.join(', ')})`);
     }
   }
-  if (watched.first === undefined) issues.push(`"${label}" has a watched without a first date`);
+  if (watched.from === undefined) issues.push(`"${label}" has a watched without a from day`);
 
-  const dateOk = {};
-  for (const key of ['first', 'last']) {
+  const dayOk = {};
+  for (const key of ['from', 'to']) {
     const value = watched[key];
     if (value === undefined) continue;
-    const isStamp = typeof value === 'string' && TIMESTAMP_PATTERN.test(value);
-    if (typeof value !== 'string' || !((isCalendarDate(value)) || (isStamp && !Number.isNaN(Date.parse(value))))) {
-      issues.push(`"${label}" has a watched.${key} that is neither a date like 2026-04-01 nor a timestamp`);
+    if (!isDay(value)) {
+      issues.push(`"${label}" has a watched.${key} that isn't a day like 2026-04-01`);
       continue;
     }
-    dateOk[key] = true;
-    if (isStamp) issues.push(...timestampIssues(label, `watched.${key}`, value, now));
-    else if (Date.parse(value) > now) issues.push(`"${label}" has a watched.${key} in the future`);
+    dayOk[key] = true;
+    if (Date.parse(value) > now) issues.push(`"${label}" has a watched.${key} in the future`);
   }
-  if (dateOk.first && dateOk.last && watched.last.slice(0, 10) < watched.first.slice(0, 10)) {
-    issues.push(`"${label}" has a watched.last (${watched.last.slice(0, 10)}) before its watched.first (${watched.first.slice(0, 10)})`);
+  if (dayOk.from && dayOk.to && watched.to < watched.from) {
+    issues.push(`"${label}" has a watched.to (${watched.to}) before its watched.from (${watched.from})`);
   }
 
-  // The last episode reached: a number (12.5 for a special is fine), or free
-  // text like "S2 E6" for a show that ran across several seasons.
-  const ep = watched.lastEpisode;
-  if (ep !== undefined) {
-    const numeric = typeof ep === 'number' && Number.isFinite(ep) && ep > 0;
-    const text = typeof ep === 'string' && ep.trim() !== '';
-    if (!numeric && !text) issues.push(`"${label}" has a malformed watched.lastEpisode (expected a positive number like 24, or text like "S2 E6")`);
+  // The last episode reached: a number (12.5 for a special is fine), with the
+  // season it's in for a show that ran across several - both numbers, never
+  // text, so they can be compared and counted.
+  const { season, episode } = watched;
+  if (episode !== undefined && !(typeof episode === 'number' && Number.isFinite(episode) && episode > 0)) {
+    issues.push(`"${label}" has a malformed watched.episode (expected a positive number like 24)`);
+  }
+  if (season !== undefined) {
+    if (!(Number.isInteger(season) && season >= 1)) {
+      issues.push(`"${label}" has a malformed watched.season (expected a whole number from 1)`);
+    } else if (episode === undefined) {
+      issues.push(`"${label}" has a watched.season without a watched.episode - the season says which run the episode is in`);
+    }
   }
   return issues;
 }
@@ -285,11 +234,11 @@ function anilistIssues(label, review) {
 
 /**
  * Checks a single season's data for internal consistency: a show shouldn't be
- * reviewed and still sitting in pending/skipped, shouldn't be in both pending
- * and skipped, and shouldn't be listed twice in the same list. Also flags
+ * reviewed and still sitting in toReview/notReviewing, shouldn't be in both
+ * lists, and shouldn't be listed twice in the same list. Also flags
  * reviews missing required fields or with an unparseable date, and that the
  * season can identify and order itself in the generated index.
- * @param {object} season - a SeasonData object ({ id, name, reviewed, pending, skipped })
+ * @param {object} season - a SeasonData object ({ id, name, shows, toReview, notReviewing })
  * @param {{ filename?: string, now?: number }} [options] - `filename` cross-checks `id` against the file it came from;
  *   `now` (epoch ms, default the current time) is what a review's date is checked against for being in the future
  * @returns {string[]} human-readable issues found; empty if the data is clean
@@ -302,10 +251,7 @@ export function validateSeason(season, { filename, now = Date.now() } = {}) {
       issues.push(`season has an unknown field "${key}" (expected one of ${SEASON_KEYS.join(', ')})`);
     }
   }
-  if (season.number !== undefined && !Number.isInteger(season.number)) {
-    issues.push('season has a malformed number (expected an integer)');
-  }
-  for (const key of ['reviewed', 'pending', 'skipped']) {
+  for (const key of ['shows', 'toReview', 'notReviewing']) {
     if (season[key] !== undefined && !Array.isArray(season[key])) {
       issues.push(`season has a malformed ${key} (expected an array)`);
     }
@@ -318,7 +264,7 @@ export function validateSeason(season, { filename, now = Date.now() } = {}) {
       issues.push(`season id "${season.id}" doesn't match its filename "${filename}"`);
     }
     if (seasonSortKey(season) === null) {
-      issues.push(`season id "${season.id}" isn't a "<season>-<year>" id, so it needs an explicit numeric sortKey to order the index`);
+      issues.push(`season id "${season.id}" isn't a "<season>-<year>" lineup id, so it needs an explicit numeric sortKey to order the index`);
     }
   }
   if (typeof season.name !== 'string' || season.name === '') {
@@ -330,44 +276,40 @@ export function validateSeason(season, { filename, now = Date.now() } = {}) {
   if (season.sortKey !== undefined && typeof season.sortKey !== 'number') {
     issues.push('season has a malformed sortKey (expected a number)');
   }
-  // An archive season (older shows, reviewed out of their airing season) is a
-  // bare marking like op/ed. It is never the current season, whose pending and
-  // skipped lists the page always shows.
-  if (season.archive !== undefined && season.archive !== true) {
-    issues.push('season has a malformed archive (expected true - mark an older-shows season with "archive": true, or leave it out)');
+  // The current season is the one being reviewed live, so it has to be a
+  // lineup - never a shelf like the Backlog.
+  if (season.current === true && typeof season.id === 'string' && !isLineup(season)) {
+    issues.push(`season "${season.id}" is marked current, but only a lineup (an id like "spring-2026") can be the current season`);
   }
-  if (season.archive === true && season.current === true) {
-    issues.push('season is marked both archive and current - the current season has to be a real airing season');
-  }
-  const reviewed = Array.isArray(season.reviewed) ? season.reviewed : [];
-  const pendingEntries = Array.isArray(season.pending) ? season.pending : [];
-  const skippedEntries = Array.isArray(season.skipped) ? season.skipped : [];
-  issues.push(...validateListEntries(pendingEntries, 'pending'), ...validateListEntries(skippedEntries, 'skipped'));
+  const shows = Array.isArray(season.shows) ? season.shows : [];
+  const toReviewEntries = Array.isArray(season.toReview) ? season.toReview : [];
+  const notReviewingEntries = Array.isArray(season.notReviewing) ? season.notReviewing : [];
+  issues.push(...validateListEntries(toReviewEntries, 'toReview'), ...validateListEntries(notReviewingEntries, 'notReviewing'));
   // Entries may be strings or objects; everything below compares titles.
-  const pending = pendingEntries.map(entryTitle).filter(t => typeof t === 'string' && t !== '');
-  const skipped = skippedEntries.map(entryTitle).filter(t => typeof t === 'string' && t !== '');
+  const toReview = toReviewEntries.map(entryTitle).filter(t => typeof t === 'string' && t !== '');
+  const notReviewing = notReviewingEntries.map(entryTitle).filter(t => typeof t === 'string' && t !== '');
 
-  const reviewedTitles = reviewed.map(r => r.titleEN);
-  const reviewedSet = new Set(reviewedTitles);
-  const pendingSet = new Set(pending);
-  const skippedSet = new Set(skipped);
+  const showTitles = shows.map(r => r.titleEN);
+  const showSet = new Set(showTitles);
+  const toReviewSet = new Set(toReview);
+  const notReviewingSet = new Set(notReviewing);
 
-  for (const title of reviewedSet) {
-    if (pendingSet.has(title)) issues.push(`"${title}" is reviewed but still listed in pending`);
-    if (skippedSet.has(title)) issues.push(`"${title}" is reviewed but also listed in skipped`);
+  for (const title of showSet) {
+    if (toReviewSet.has(title)) issues.push(`"${title}" is reviewed but still listed in toReview`);
+    if (notReviewingSet.has(title)) issues.push(`"${title}" is reviewed but also listed in notReviewing`);
   }
-  for (const title of pendingSet) {
-    if (skippedSet.has(title)) issues.push(`"${title}" is in both pending and skipped`);
+  for (const title of toReviewSet) {
+    if (notReviewingSet.has(title)) issues.push(`"${title}" is in both toReview and notReviewing`);
   }
 
-  for (const dupe of findDuplicates(reviewedTitles)) issues.push(`"${dupe}" appears more than once in reviewed`);
-  for (const dupe of findDuplicates(pending)) issues.push(`"${dupe}" appears more than once in pending`);
-  for (const dupe of findDuplicates(skipped)) issues.push(`"${dupe}" appears more than once in skipped`);
+  for (const dupe of findDuplicates(showTitles)) issues.push(`"${dupe}" appears more than once in shows`);
+  for (const dupe of findDuplicates(toReview)) issues.push(`"${dupe}" appears more than once in toReview`);
+  for (const dupe of findDuplicates(notReviewing)) issues.push(`"${dupe}" appears more than once in notReviewing`);
 
   // The exact-title checks above miss a show that differs only in case or
   // punctuation ("Show!" vs "show"), so compare the loosely normalized titles too.
   const byLooseTitle = new Map();
-  for (const title of [...reviewedSet, ...pendingSet, ...skippedSet]) {
+  for (const title of [...showSet, ...toReviewSet, ...notReviewingSet]) {
     const key = normalizeTitle(title);
     if (key !== '') byLooseTitle.set(key, new Set([...(byLooseTitle.get(key) ?? []), title]));
   }
@@ -377,9 +319,9 @@ export function validateSeason(season, { filename, now = Date.now() } = {}) {
     }
   }
 
-  reviewed.forEach((r, i) => {
-    const label = r.titleEN || `reviewed[${i}]`;
-    if (!r.titleEN) issues.push(`reviewed[${i}] is missing titleEN`);
+  shows.forEach((r, i) => {
+    const label = r.titleEN || `shows[${i}]`;
+    if (!r.titleEN) issues.push(`shows[${i}] is missing titleEN`);
     for (const key of Object.keys(r)) {
       if (!REVIEW_KEYS.includes(key)) {
         issues.push(`"${label}" has an unknown field "${key}" (a typo? expected one of ${REVIEW_KEYS.join(', ')})`);
@@ -393,7 +335,7 @@ export function validateSeason(season, { filename, now = Date.now() } = {}) {
     }
     if (!r.dateReviewed || Number.isNaN(Date.parse(r.dateReviewed))) {
       issues.push(`"${label}" has a missing or unparseable dateReviewed`);
-    } else if (!TIMESTAMP_PATTERN.test(r.dateReviewed)) {
+    } else if (!isMoment(r.dateReviewed)) {
       issues.push(`"${label}" has a dateReviewed without a time (expected a timestamp like 2026-04-01T18:30:00-04:00)`);
     } else {
       issues.push(...timestampIssues(label, 'dateReviewed', r.dateReviewed, now));
@@ -454,14 +396,14 @@ export function validateSeason(season, { filename, now = Date.now() } = {}) {
     // The day the season got finished is a note for the reviewer's own records:
     // a plain calendar date, only alongside the marking it belongs to.
     if (r.finishedDate !== undefined) {
-      if (typeof r.finishedDate !== 'string' || !isCalendarDate(r.finishedDate)) {
+      if (!isDay(r.finishedDate)) {
         issues.push(`"${label}" has a malformed finishedDate (expected a date like 2026-10-26)`);
       } else if (r.finishedSeason !== true) {
         issues.push(`"${label}" has a finishedDate without "finishedSeason": true`);
       } else if (Date.parse(r.finishedDate) > now) {
         issues.push(`"${label}" has a finishedDate in the future`);
-      } else if (typeof r.dateReviewed === 'string' && r.finishedDate < r.dateReviewed.slice(0, 10)) {
-        issues.push(`"${label}" has a finishedDate (${r.finishedDate}) before its episode-1 review (${r.dateReviewed.slice(0, 10)})`);
+      } else if (typeof r.dateReviewed === 'string' && r.finishedDate < dayOf(r.dateReviewed)) {
+        issues.push(`"${label}" has a finishedDate (${r.finishedDate}) before its episode-1 review (${dayOf(r.dateReviewed)})`);
       }
     }
     // A revisit's rating replaces the episode-1 one everywhere ratings are
@@ -511,7 +453,7 @@ export function validateSeasonCollection(seasons) {
   // `part`: then each part is its own review, in its own season.
   const byAnilistId = new Map();
   for (const season of seasons) {
-    for (const review of Array.isArray(season.reviewed) ? season.reviewed : []) {
+    for (const review of Array.isArray(season.shows) ? season.shows : []) {
       if (!Number.isInteger(review.anilistId)) continue;
       const entry = { where: `"${review.titleEN}" (${season.id})`, seasonId: season.id, part: review.part };
       byAnilistId.set(review.anilistId, [...(byAnilistId.get(review.anilistId) ?? []), entry]);

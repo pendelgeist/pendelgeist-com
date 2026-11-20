@@ -3,7 +3,8 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
-import { validateSeason, validateSeasonCollection, parseSeasonId, seasonSortKey } from '../scripts/validateSeason.js';
+import { validateSeason, validateSeasonCollection } from '../scripts/validateSeason.js';
+import { seasonSortKey } from '../public/vqar/seasons.js';
 import { readSeasons, buildIndex, serializeIndex, seasonPath, INDEX_PATH } from '../scripts/build-vqar-index.js';
 import { resolveTargets } from '../scripts/loadTargets.js';
 import { readJsonFiles } from '../scripts/indexFile.js';
@@ -50,14 +51,14 @@ test('the index names a current season that it also lists', () => {
 
 // --- Ordering ---
 
-test('an archive season with sortKey 0 sorts after every real season', () => {
+test('a shelf with sortKey 0 sorts after every lineup', () => {
   const ordered = buildIndex([
-    { id: 'older-shows', name: 'Older Shows', sortKey: 0, archive: true },
+    { id: 'backlog', name: 'Backlog', sortKey: 0 },
     { id: 'winter-2026', name: 'Winter 2026' },
     { id: 'fall-2025', name: 'Fall 2025' },
   ]).seasons.map((s) => s.id);
 
-  assert.deepEqual(ordered, ['winter-2026', 'fall-2025', 'older-shows']);
+  assert.deepEqual(ordered, ['winter-2026', 'fall-2025', 'backlog']);
 });
 
 test('seasons run newest first, across the year boundary', () => {
@@ -93,13 +94,6 @@ test('buildIndex refuses to order a season it has no key for, rather than guessi
     () => buildIndex([{ id: 'summer-2026', name: 'Summer 2026' }, { id: 'the-lost-year', name: 'Lost' }]),
     /Cannot order season "the-lost-year"/
   );
-});
-
-test('parseSeasonId rejects ids it cannot order', () => {
-  assert.equal(typeof parseSeasonId('winter-2026'), 'number');
-  assert.equal(parseSeasonId('midsummer-2026'), null, 'unknown season name');
-  assert.equal(parseSeasonId('summer-26'), null, 'two-digit year');
-  assert.equal(parseSeasonId('summer2026'), null, 'no separator');
 });
 
 // --- The validator itself ---

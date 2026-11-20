@@ -4,7 +4,7 @@ import { entryTitle, normalizeEntry, LIST_ENTRY_KEYS } from '../public/vqar/list
 
 test('entryTitle reads a plain string or an object entry', () => {
   assert.equal(entryTitle('Plain Show'), 'Plain Show');
-  assert.equal(entryTitle({ title: 'Detailed Show', firstEpisode: '2026-10-08' }), 'Detailed Show');
+  assert.equal(entryTitle({ title: 'Detailed Show', premieres: '2026-10-08' }), 'Detailed Show');
   assert.equal(entryTitle(undefined), undefined);
   assert.equal(entryTitle({}), undefined);
 });
@@ -18,9 +18,9 @@ test('normalizeEntry always returns the object shape, without mutating the origi
   assert.equal(original.title, 'Detailed Show');
 });
 
-test('pending and skipped each allow their own optional fields', () => {
-  assert.ok(LIST_ENTRY_KEYS.pending.includes('firstEpisode'));
-  assert.ok(!LIST_ENTRY_KEYS.pending.includes('reason'));
-  assert.ok(LIST_ENTRY_KEYS.skipped.includes('reason'));
-  assert.ok(!LIST_ENTRY_KEYS.skipped.includes('firstEpisode'));
+test('toReview and notReviewing each allow their own optional fields', () => {
+  assert.ok(LIST_ENTRY_KEYS.toReview.includes('premieres'));
+  assert.ok(!LIST_ENTRY_KEYS.toReview.includes('reason'));
+  assert.ok(LIST_ENTRY_KEYS.notReviewing.includes('reason'));
+  assert.ok(!LIST_ENTRY_KEYS.notReviewing.includes('premieres'));
 });

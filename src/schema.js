@@ -12,6 +12,7 @@ import { VQAR_INDEX_PATH } from '../public/vqar/data-paths.js';
 import { STREAMING_URL_FIELDS } from '../public/streaming.js';
 import { entryTitle, normalizeEntry } from '../public/vqar/list-entries.js';
 import { isLikedOpEd, opEdNumbers } from '../public/vqar/oped.js';
+import { isLineup } from '../public/vqar/seasons.js';
 import { recommend, buildAniListQuery, parseAniListResponse, candidateIds, MAX_LIKED, MAX_PICKS } from './recommend.js';
 
 export const typeDefs = `#graphql
@@ -96,22 +97,24 @@ type Review {
 
 """When a show was watched, from the first episode to the last."""
 type Watched {
-  "When the first episode was watched: a date like 2026-04-01, or a timestamp."
-  first: String!
-  "When the last episode was watched, in the same form. Null when the same as first, or not recorded."
-  last: String
-  "The last episode reached, for a show that wasn't finished: a number like 24, or text like S2 E6."
-  lastEpisode: String
+  "The day the first episode was watched, like 2026-04-01."
+  from: String!
+  "The day the last episode was watched. Null when the same as from, or not recorded."
+  to: String
+  "Which season the episode is in, for a show that ran across several. Null otherwise."
+  season: Int
+  "The last episode reached, for a show that wasn't finished (12.5 for a special). Null when not recorded."
+  episode: Float
 }
 
-"""A show still waiting to be reviewed, with whatever pre-season notes were committed for it."""
-type PendingShow {
+"""A show in a lineup still waiting to be reviewed, with whatever pre-season notes were committed for it."""
+type ToReviewShow {
   title: String!
   "Streaming service keys the show is on (e.g. crunchyroll, netflix); empty when none are recorded."
   streaming: [String!]!
-  "Optional date of the first episode, YYYY-MM-DD."
-  firstEpisode: String
-  "True when the show is already out (used in place of firstEpisode)."
+  "Optional day the first episode premieres, YYYY-MM-DD."
+  premieres: String
+  "True when the show is already out (used in place of premieres)."
   availableNow: Boolean!
   "Optional direct link to the show's Crunchyroll page."
   crunchyrollUrl: String
@@ -127,8 +130,8 @@ type PendingShow {
   youtubeUrl: String
 }
 
-"""A show that won't be reviewed, with whatever notes were committed about why."""
-type SkippedShow {
+"""A show in a lineup that won't be reviewed, with whatever notes were committed about why."""
+type NotReviewingShow {
   title: String!
   "Optional short reason it isn't being reviewed."
   reason: String
@@ -148,23 +151,21 @@ type SkippedShow {
   youtubeUrl: String
 }
 
-"""One anime season: its reviewed shows, plus titles still pending or skipped."""
+"""A season file: a lineup reviewed live (its shows, plus titles still to review or not being reviewed), or a shelf like the Backlog."""
 type Season {
   id: ID!
   name: String!
-  "Optional MAL season id, purely informational."
-  number: Int
-  "True for a shelf of older shows reviewed outside their airing season rather than a real season; it is left out of per-season trends."
-  archive: Boolean!
-  reviewed: [Review!]!
-  "Titles still to be reviewed; see pendingShows for streaming and premiere info."
-  pending: [String!]!
-  "Titles that won't be reviewed; see skippedShows for the reason and streaming info."
-  skipped: [String!]!
-  "The same shows as pending, with the optional streaming service keys and first-episode date."
-  pendingShows: [PendingShow!]!
-  "The same shows as skipped, with the optional reason and streaming info."
-  skippedShows: [SkippedShow!]!
+  "True for a lineup - a season reviewed live, with an id like spring-2026. False for a shelf like the Backlog, which per-season trends leave out."
+  lineup: Boolean!
+  shows: [Review!]!
+  "Titles still to be reviewed; see toReviewShows for streaming and premiere info."
+  toReview: [String!]!
+  "Titles that won't be reviewed; see notReviewingShows for the reason and streaming info."
+  notReviewing: [String!]!
+  "The same shows as toReview, with the optional streaming service keys and premiere day."
+  toReviewShows: [ToReviewShow!]!
+  "The same shows as notReviewing, with the optional reason and streaming info."
+  notReviewingShows: [NotReviewingShow!]!
 }
 
 """A season as listed in the index, without its full review data."""
@@ -243,11 +244,9 @@ function urlFields(entry) {
   return Object.fromEntries(Object.values(STREAMING_URL_FIELDS).map((key) => [key, entry[key] ?? null]));
 }
 
-/** @param {import('../public/vqar/list-entries.js').ListEntry} entry */
 /**
  * A season file's review as the API serves it: `op`/`ed` are Booleans (liked or
- * not) with the numbered ones in `opNumbers`/`edNumbers`, and a `watched`
- * record's `lastEpisode` (a number or text in the data) is always a String.
+ * not), with the numbered ones in `opNumbers`/`edNumbers`.
  * @param {any} r
  * @param {string} season
  * @param {string} seasonName
@@ -263,17 +262,17 @@ function toReview(r, season, seasonName) {
     ed: isLikedOpEd(r.ed) ? true : undefined,
     opNumbers: opNumbers.length ? opNumbers : null,
     edNumbers: edNumbers.length ? edNumbers : null,
-    watched: r.watched && { ...r.watched, lastEpisode: r.watched.lastEpisode == null ? null : String(r.watched.lastEpisode) },
   };
 }
 
-function toPendingShow(entry) {
-  const { title, streaming, firstEpisode, availableNow, ...rest } = normalizeEntry(entry);
-  return { title, streaming: streaming ?? [], firstEpisode: firstEpisode ?? null, availableNow: availableNow === true, ...urlFields(rest) };
+/** @param {import('../public/vqar/list-entries.js').ListEntry} entry */
+function toToReviewShow(entry) {
+  const { title, streaming, premieres, availableNow, ...rest } = normalizeEntry(entry);
+  return { title, streaming: streaming ?? [], premieres: premieres ?? null, availableNow: availableNow === true, ...urlFields(rest) };
 }
 
 /** @param {import('../public/vqar/list-entries.js').ListEntry} entry */
-function toSkippedShow(entry) {
+function toNotReviewingShow(entry) {
   const { title, streaming, reason, ...rest } = normalizeEntry(entry);
   return { title, reason: reason ?? null, streaming: streaming ?? [], ...urlFields(rest) };
 }
@@ -324,7 +323,7 @@ export function makeRootValue({ assets, origin }) {
   /** Every review in every season, since a recommendation can come from any of them. */
   async function loadAllReviews() {
     const index = await loadIndex();
-    return (await Promise.all(index.seasons.map(loadSeason))).flatMap((s) => s.reviewed);
+    return (await Promise.all(index.seasons.map(loadSeason))).flatMap((s) => s.shows);
   }
 
   /** @param {{ id: string|number, name: string, file: string }} meta */
@@ -335,13 +334,12 @@ export function makeRootValue({ assets, origin }) {
     return {
       id,
       name,
-      number: data.number ?? null,
-      archive: data.archive === true,
-      reviewed: (data.reviewed ?? []).map((r) => toReview(r, id, name)),
-      pending: (data.pending ?? []).map(entryTitle),
-      skipped: (data.skipped ?? []).map(entryTitle),
-      pendingShows: (data.pending ?? []).map(toPendingShow),
-      skippedShows: (data.skipped ?? []).map(toSkippedShow),
+      lineup: isLineup(id),
+      shows: (data.shows ?? []).map((r) => toReview(r, id, name)),
+      toReview: (data.toReview ?? []).map(entryTitle),
+      notReviewing: (data.notReviewing ?? []).map(entryTitle),
+      toReviewShows: (data.toReview ?? []).map(toToReviewShow),
+      notReviewingShows: (data.notReviewing ?? []).map(toNotReviewingShow),
     };
   }
 

@@ -4,7 +4,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import {
-  anilistFields, fetchMediaByIds, mediaFromResponses, applyAnilistFields, replaceReviewed, BATCH_SIZE, MIN_TAG_RANK,
+  anilistFields, fetchMediaByIds, mediaFromResponses, applyAnilistFields, replaceShows, BATCH_SIZE, MIN_TAG_RANK,
   searchQueries, searchText, seasonFilter, searchResultsFromResponses, applySearchResults, SEARCH_BATCH_SIZE,
 } from '../scripts/anilistTags.js';
 import { titlesLikelyMatch } from '../scripts/anilistMatch.js';
@@ -76,41 +76,41 @@ test('applyAnilistFields sets only `anilist`, and reports the shows it could not
   assert.deepEqual(result.updated, ['Tagged']);
   assert.deepEqual(result.noId, ['No Id']);
   assert.deepEqual(result.notFound, ['Gone From AniList']);
-  assert.equal(result.reviewed[0].review, 'kept as is');
-  assert.deepEqual(result.reviewed[0].anilist.tags, ['Isekai', 'Male Protagonist']);
+  assert.equal(result.shows[0].review, 'kept as is');
+  assert.deepEqual(result.shows[0].anilist.tags, ['Isekai', 'Male Protagonist']);
   // A show AniList didn't return keeps what it had, rather than losing it.
-  assert.deepEqual(result.reviewed[2].anilist.genres, ['Drama']);
+  assert.deepEqual(result.shows[2].anilist.genres, ['Drama']);
 
-  const again = applyAnilistFields({ reviewed: result.reviewed }, new Map([[101, media]]));
+  const again = applyAnilistFields({ shows: result.shows }, new Map([[101, media]]));
   assert.deepEqual(again.updated, []);
   assert.equal(again.unchanged, 1);
 });
 
-test('replaceReviewed leaves every committed season file byte-for-byte as it was', () => {
+test('replaceShows leaves every committed season file byte-for-byte as it was', () => {
   for (const file of fs.readdirSync(SEASONS_DIR).filter(f => f.endsWith('.json'))) {
     const raw = fs.readFileSync(path.join(SEASONS_DIR, file), 'utf-8');
-    assert.equal(replaceReviewed(raw, JSON.parse(raw).reviewed), raw, file);
+    assert.equal(replaceShows(raw, JSON.parse(raw).shows), raw, file);
   }
 });
 
-test('replaceReviewed rewrites only the reviewed block, keeping compact lines elsewhere as written', () => {
+test('replaceShows rewrites only the shows block, keeping compact lines elsewhere as written', () => {
   const raw = [
     '{',
     '  "id": "fall-2026",',
-    '  "reviewed": [',
+    '  "shows": [',
     '    {',
     '      "titleEN": "A"',
     '    }',
     '  ],',
-    '  "pending": [',
-    '    { "title": "Compact", "firstEpisode": "2026-10-20" }',
+    '  "toReview": [',
+    '    { "title": "Compact", "premieres": "2026-10-20" }',
     '  ]',
     '}',
     '',
   ].join('\n');
-  const next = replaceReviewed(raw, [{ titleEN: 'A', anilist: { genres: ['Comedy'], tags: [], studios: [] } }]);
-  assert.deepEqual(JSON.parse(next).reviewed[0].anilist.genres, ['Comedy']);
-  assert.ok(next.includes('    { "title": "Compact", "firstEpisode": "2026-10-20" }'));
+  const next = replaceShows(raw, [{ titleEN: 'A', anilist: { genres: ['Comedy'], tags: [], studios: [] } }]);
+  assert.deepEqual(JSON.parse(next).shows[0].anilist.genres, ['Comedy']);
+  assert.ok(next.includes('    { "title": "Compact", "premieres": "2026-10-20" }'));
   assert.ok(next.endsWith('  ]\n}\n'));
 });
 
@@ -163,14 +163,14 @@ test('linking sets the id, the native title and the tags, holds back unlike titl
   assert.deepEqual(out.linked, ['Overgeared', 'Has A Title']);
   assert.deepEqual(out.unsure.map(u => u.alias), ['fall_2026__1']);
   assert.deepEqual(out.notFound.map(n => n.title), ['Nowhere To Be Found']);
-  assert.equal(out.reviewed[0].anilistId, 10);
-  assert.equal(out.reviewed[0].titleJP, 'テムパル');
-  assert.deepEqual(out.reviewed[0].anilist.genres, ['Action']);
-  assert.equal(out.reviewed[1].anilistId, undefined);
-  assert.equal(out.reviewed[3].titleJP, '既存');
+  assert.equal(out.shows[0].anilistId, 10);
+  assert.equal(out.shows[0].titleJP, 'テムパル');
+  assert.deepEqual(out.shows[0].anilist.genres, ['Action']);
+  assert.equal(out.shows[1].anilistId, undefined);
+  assert.equal(out.shows[3].titleJP, '既存');
 
   const accepted = applySearchResults(season, results, { titlesLikelyMatch, accept: new Set(['fall_2026__1']) });
-  assert.equal(accepted.reviewed[1].anilistId, 11);
+  assert.equal(accepted.shows[1].anilistId, 11);
 });
 
 test('--any-season searches drop the season filter', () => {

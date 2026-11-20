@@ -1,8 +1,7 @@
 {
   "id": "summer-2026",
   "name": "Summer 2026",
-  "number": 2603,
-  "reviewed": [
+  "shows": [
     {
       "titleEN": "The Ghost in the Shell",
       "titleJP": "攻殻機動隊 THE GHOST IN THE SHELL",
@@ -125,7 +124,7 @@
         "ratingNumber": 2,
         "ratingText": "not my steamed buns",
         "review": "So I'm back and continue to watch more and I'm halfway through the first episode and it's very nicely produced and everything but for reason call it my fault I'm just not interested in it at all",
-        "dateReviewed": "2026-08-03"
+        "dateReviewed": "2026-08-03T12:00:00-04:00"
       },
       "anilistId": 103303,
       "annId": 37941,
@@ -366,8 +365,8 @@
       "review": "OK so I did not have on my bingo board Kinema Citrus doing a 15th anniversary anime project as a version of the little mermaid and just totally killing it. This is a fabulous first episode. Everything was top-notch. I'm very curious where the rest of the show is going, but if just the first episode is great then that's worth the price of admission.",
       "dateReviewed": "2026-07-25T08:00:00-04:00",
       "watched": {
-        "first": "2026-09-22",
-        "lastEpisode": 2
+        "from": "2026-09-22",
+        "episode": 2
       },
       "anilistId": 177637,
       "annId": 32739,
@@ -408,15 +407,15 @@
       "review": "Well, I didn't mean to, but I did end up watching the entire first episode, so I guess that's something. I've been curious about it because it's a show about fighting games that was supposed to have a lot of actual game content, and they did a pretty good job delivering on that. The rest of the show is a nice-looking, well-done girls' high school dormitory show — it looks good, character designs are nice and clean, everything's well done. I feel like this could be my kind of trash show for the season, because it does a good job with fun fighting-game content and teaching the Japanese terms for a bunch of things, plus more details on fighting-game terminology and how to do things. It was fun.",
       "dateReviewed": "2026-07-24T08:00:00-04:00",
       "watched": {
-        "first": "2026-08-05",
-        "last": "2026-08-07",
-        "lastEpisode": 5
+        "from": "2026-08-05",
+        "to": "2026-08-07",
+        "episode": 5
       },
       "fullReview": {
         "ratingNumber": 4,
         "ratingText": "solid ranging, good hit confirm",
         "review": "Finished two up to the show and it's pretty fun if I'm gonna watch a girls high school show I'd like to have it be dispersed with a bunch of fun streetfighter stuff. I also think it's pretty hilarious that everyone in the show goes so overboard comically injuring themselves doing ridiculous things like punching themselves in the face or jumping through windows so it's pretty fun show nicely produced characters are are fun. They definitely care about winning at streetfighter so it's a good summer show.",
-        "dateReviewed": "2026-08-06"
+        "dateReviewed": "2026-08-06T12:00:00-04:00"
       },
       "anilistId": 128757,
       "annId": 34922,
@@ -708,7 +707,7 @@
         "ratingNumber": 4,
         "ratingText": "Yeah, Here's Hoping",
         "review": "So I watched three episodes of the four that have broadcast this thus far, and it's very fun. Good show. Definitely definitely a fun dorky show that takes itself appropriately and seriously. Nice production stuff throughout. I think it'll be a fun kind of low effort show for the season.",
-        "dateReviewed": "2026-07-31"
+        "dateReviewed": "2026-07-31T12:00:00-04:00"
       },
       "anilistId": 200230,
       "annId": 37911,
@@ -722,8 +721,8 @@
       "finishedSeason": true,
       "finishedDate": "2026-10-26",
       "watched": {
-        "first": "2026-07-30",
-        "last": "2026-10-26"
+        "from": "2026-07-30",
+        "to": "2026-10-26"
       },
       "anilist": {
         "format": "TV",
@@ -790,7 +789,7 @@
         "ratingNumber": 3,
         "ratingText": "delicious garbage",
         "review": "Watched two episodes of this and it's pretty fun trash. These shows are fun sometimes when they're done well and this one has enough of the crazy go hands, animation and as a fun premise so I'll watch it as a strictly trash, but delicious trash show.",
-        "dateReviewed": "2026-08-05"
+        "dateReviewed": "2026-08-05T12:00:00-04:00"
       },
       "anilistId": 180136,
       "annId": 33178,
@@ -802,9 +801,9 @@
         1
       ],
       "watched": {
-        "first": "2026-07-21",
-        "last": "2026-11-13",
-        "lastEpisode": 16
+        "from": "2026-07-21",
+        "to": "2026-11-13",
+        "episode": 16
       },
       "anilist": {
         "format": "TV",
@@ -906,9 +905,9 @@
       "review": "Smoking is back, baby! Between this and Yani Neko, it's all over the place. But this show was way better than that one. In fact, I watched the entire first episode, and it was fabulous — nicely done, good characters, interesting premise, no exposition, yet it still gave a clear sense of everything that was going on. Just a fabulous first episode. Seems like this show is kind of a halfway point between spring and summer, and the episodes are 15 minutes, so I'm quite looking forward to watching the rest of this.",
       "dateReviewed": "2026-07-20T09:00:00-04:00",
       "watched": {
-        "first": "2026-08-07",
-        "last": "2026-11-02",
-        "lastEpisode": 9
+        "from": "2026-08-07",
+        "to": "2026-11-02",
+        "episode": 9
       },
       "anilistId": 196187,
       "annId": 37088,
@@ -995,14 +994,14 @@
       "review": "Geez, this is definitely a mix of cute and heartbreaking, at least in the first part of the episode. I don't mind the exposition here, at least at this point, because it feels very much like a fairy-tale narration.\nI'm still not quite sure exactly where the show is going or what it's going to do, but it's been done fairly well, and it's a little bit different in that it's got a bunch of talking magical creatures as the main characters, at least at this point — and, as is reasonable, humans are the enemy.",
       "dateReviewed": "2026-07-15T08:30:00-04:00",
       "watched": {
-        "first": "2026-07-30",
-        "lastEpisode": 2
+        "from": "2026-07-30",
+        "episode": 2
       },
       "fullReview": {
         "ratingNumber": 2,
         "ratingText": "Trash, for Second Screen Only",
         "review": "So I watched two episodes of the show and it's super second screen material definitely nothing more than that. I don't know. I guess it's pleasant but there's nothing that makes me feel like I really care about anything that happens in any episode",
-        "dateReviewed": "2026-07-30"
+        "dateReviewed": "2026-07-30T12:00:00-04:00"
       },
       "anilistId": 186863,
       "annId": 34782,
@@ -1224,14 +1223,14 @@
       "review": "OK, so I started watching, and then I paused it and 10 minutes had passed. I'll definitely take that as a good sign. It's kind of interesting — it's about some folks who are new at college, meeting up at a mixer, I guess, and the hook is that one of the people at the party is blind. It goes from there. The production's decent enough — it actually seems to be done with a reasonable amount of care put into it in places, and the script seems pretty good, so I'm definitely going to finish the episode, since I'm already about halfway into it and curious to see where it goes. I think the characters seem realistic and interesting enough, so I definitely like the show more than I was expecting to, based on the length of the title.",
       "dateReviewed": "2026-07-14T08:30:00-04:00",
       "watched": {
-        "first": "2026-08-06",
-        "last": "2026-09-23"
+        "from": "2026-08-06",
+        "to": "2026-09-23"
       },
       "fullReview": {
         "ratingNumber": 4,
         "ratingText": "I dictate all of my reviews",
         "review": "Watched don’t show up so it’s a pretty charming show so the first little bit definitely continues to demonstrate what the overall show is so I like it. It’s a nice easy-going college romance that has some interesting stuff with the blind handicapped aspect to it definitely isn’t interesting it take that puts things out into an accessibility level and they cover things I think not being blind, but having dealt with a little bit and some pretty good presentation of the things so I like it. I think it’s a show that’s worth watching",
-        "dateReviewed": "2026-08-06"
+        "dateReviewed": "2026-08-06T12:00:00-04:00"
       },
       "anilistId": 202269,
       "annId": 38002,
@@ -1297,15 +1296,15 @@
       "review": "So I'm not quite sure where this is going — it might end up being a kind of high school assassin-romance thing — but particularly in comparison to the last few shows I watched, production values seem pretty decent. It started off without a giant pile of exposition; there was a little bit of monologue exposition, but it wasn't too crazy. Overall, I'm kind of curious to see where it goes, so I might finish this episode. I'm not anticipating it's going to be something super great, but it might be worth a second-screen watch, at least to finish the episode and see if it does anything cool that makes me want to keep watching.",
       "dateReviewed": "2026-07-14T09:30:00-04:00",
       "watched": {
-        "first": "2026-08-04",
-        "last": "2026-08-05",
-        "lastEpisode": 4
+        "from": "2026-08-04",
+        "to": "2026-08-05",
+        "episode": 4
       },
       "fullReview": {
         "ratingNumber": 2,
         "ratingText": "I want to watch you on second screen",
         "review": "I watched 3 1/2 episode of the show and it’s it’s quite fine but it’s also another orphan girl assassination show and this one has magic and all the things. The production value stay really high throughout. It’s a fine show, but it’s not one of those types of shows that capture me. Sometimes they do this one didn’t so for me, it’s more of a strictly second screen.",
-        "dateReviewed": "2026-08-05"
+        "dateReviewed": "2026-08-05T12:00:00-04:00"
       },
       "anilistId": 187260,
       "annId": 34913,
@@ -1415,15 +1414,15 @@
       "review": "Very stylistically done — the production looks kind of cheap at first, but I don't think it is. I think it's literally just trying interesting stylistic choices.\nOh man, that manga shop looks super nice. I love it.\nDefinitely appreciate that they're putting a bit more effort into the subs on CR lately, so that's appreciated — the manga that's in there actually looks pretty good, like quite a bit like real manga.\nClearly they got licensing for a lot of this manga stuff, because they've got the real covers, really nicely rendered and everything in there, which is cool. So I'm five minutes in, and I'm not quite sure what the show is actually going to be, but it's got me curious about what it's going to be and where it's going.",
       "dateReviewed": "2026-07-10T08:00:00-04:00",
       "watched": {
-        "first": "2026-08-01",
-        "last": "2026-08-10",
-        "lastEpisode": 4
+        "from": "2026-08-01",
+        "to": "2026-08-10",
+        "episode": 4
       },
       "fullReview": {
         "ratingNumber": 4,
         "ratingText": "here's hoping they have a horror manga episode",
         "review": "Watch two episodes of the show and it's a pretty lovely put together homage to manga creation production stays nice and clean throughout. You get to see a girl becomes obsessed with Manga attempts to produce and make things it's it's very nicely done there's lots of co-production and sponsorship with tons of real mango so you see all the cool long spines pains buildings covers everything which is really nicely a nice touch to a thing that's about having it do that. Here's hoping to show stays interesting.",
-        "dateReviewed": "2026-08-04"
+        "dateReviewed": "2026-08-04T12:00:00-04:00"
       },
       "anilistId": 188525,
       "annId": 35280,
@@ -1663,7 +1662,7 @@
         "ratingNumber": 4,
         "ratingText": "feels the same as smoking a pack of unfiltered camel 100s",
         "review": "So I came back to this show was my first one of the season and I have ended up watching the first two episodes and probably gonna keep watching it now why why is that it? My thesis is that it’s not the show that we want but it is the show that we deserve for the year 2026. It is thoroughly depressing depraved. The characters have no redeeming value and yet we are entertained. So it’s definitely going to be my cigarette show of the season.",
-        "dateReviewed": "2026-08-03"
+        "dateReviewed": "2026-08-03T12:00:00-04:00"
       },
       "anilistId": 207141,
       "annId": 38401,
@@ -1709,8 +1708,8 @@
       }
     }
   ],
-  "pending": [],
-  "skipped": [
+  "toReview": [],
+  "notReviewing": [
     "Hell Mode: The Hardcore Gamer Dominates in Another World with Garbage Balancing Season 2",
     "Bungo Stray Dogs Wan! 2",
     "Hana-Kimi Season 2",

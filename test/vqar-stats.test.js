@@ -172,16 +172,21 @@ test('computeRevisitCandidates finds current-season 4/5s without a fullReview, e
   assert.deepEqual(candidates.map(r => r.titleEN), ['Worth Revisiting']);
 });
 
-test('computeSeasonCoverage counts reviewed out of reviewed + pending, ignoring skipped shows', () => {
-  assert.deepEqual(computeSeasonCoverage([seasons[0]]), { reviewed: 3, pending: 1, total: 4, pct: 75 });
+test('computeSeasonCoverage counts reviewed out of reviewed + to review, ignoring not-reviewing shows', () => {
+  assert.deepEqual(computeSeasonCoverage([seasons[0]]), { reviewed: 3, toReview: 1, total: 4, pct: 75 });
   const all = computeSeasonCoverage(seasons);
-  assert.equal(all.total, all.reviewed + all.pending);
+  assert.equal(all.total, all.reviewed + all.toReview);
   assert.equal(all.total, 7);
 });
 
-test('computeSeasonCoverage has no percentage when nothing is reviewed or pending', () => {
-  assert.deepEqual(computeSeasonCoverage([{ id: 'x', name: 'X', reviewed: [], pending: [], skipped: [] }]),
-    { reviewed: 0, pending: 0, total: 0, pct: null });
+test('computeSeasonCoverage has no percentage when nothing is reviewed or to review', () => {
+  assert.deepEqual(computeSeasonCoverage([makeSeason({ id: 'fall-2026', name: 'Fall 2026', shows: [], toReview: [], notReviewing: [] })]),
+    { reviewed: 0, toReview: 0, total: 0, pct: null });
+});
+
+test('computeSeasonCoverage leaves a shelf like the Backlog out', () => {
+  assert.deepEqual(computeSeasonCoverage([makeSeason({ id: 'backlog', name: 'Backlog', sortKey: 0, shows: [makeShow({ titleEN: 'Old Show', ratingNumber: 4 })], toReview: [], notReviewing: [] })]),
+    { reviewed: 0, toReview: 0, total: 0, pct: null });
 });
 
 test('computeContinuationWatch matches sequel-marker titles in the current season against highly-rated past shows', () => {
@@ -207,7 +212,7 @@ test('computeContinuationWatch matches sequel-marker titles in the current seaso
     matches.map(m => ({ title: m.title, status: m.status, matchedTitle: m.matchedTitle })),
     [
       { title: 'Great Show II', status: 'reviewed', matchedTitle: 'Great Show' },
-      { title: 'Great Show Season 2', status: 'pending', matchedTitle: 'Great Show' },
+      { title: 'Great Show Season 2', status: 'toReview', matchedTitle: 'Great Show' },
     ]
   );
   assert.ok(matches.every(m => m.seasonName === 'Past Season' && m.rating === 5));
@@ -318,14 +323,14 @@ test('picking a season in the filter scopes every stat and the glance grid to ju
   assert.equal(bestRows[0], 'Fine Show');
 });
 
-test('Review Coverage shows reviewed out of reviewed + pending, and follows the season filter', async () => {
+test('Review Coverage shows reviewed out of reviewed + to review, and follows the season filter', async () => {
   const { document } = await loadApp();
   const text = () => document.querySelector('#coverageBar .coverage-summary').textContent;
   const bar = () => document.querySelector('#coverageBar [role="progressbar"]');
 
   assert.equal(document.getElementById('coverageSeasonName').textContent, 'All Seasons');
   assert.match(text(), /^6 of 7 shows reviewed \(86%\)$/);
-  assert.equal(document.querySelector('#coverageBar .vs-prose').textContent, '6 reviewed · 1 pending');
+  assert.equal(document.querySelector('#coverageBar .vs-prose').textContent, '6 reviewed · 1 to be reviewed');
   assert.equal(bar().getAttribute('aria-valuenow'), '6');
   assert.equal(bar().getAttribute('aria-valuemax'), '7');
 
@@ -448,7 +453,7 @@ test('changing the season filter updates the "?season=" URL param, without addin
   assert.equal(new URL(window.location.href).searchParams.get('season'), null);
 });
 
-test('computeContinuationWatch reads titles from object-form pending and skipped entries', () => {
+test('computeContinuationWatch reads titles from object-form toReview and notReviewing entries', () => {
   const past = makeSeason({
     id: 'past', name: 'Past', toReview: [], notReviewing: [],
     shows: [makeShow({ titleEN: 'Great Show', ratingNumber: 5, ratingText: 'Nice Ep Broh', dateReviewed: '2025-01-01T00:00:00Z' })],
@@ -461,8 +466,8 @@ test('computeContinuationWatch reads titles from object-form pending and skipped
 
   const matches = computeContinuationWatch([past, current], 'now');
   assert.deepEqual(matches.map(m => [m.title, m.status]).sort(), [
-    ['Great Show 3rd Season', 'skipped'],
-    ['Great Show Season 2', 'pending'],
+    ['Great Show 3rd Season', 'notReviewing'],
+    ['Great Show Season 2', 'toReview'],
   ]);
 });
 
@@ -698,10 +703,10 @@ test('Hope Check drops the per-season table once the filter picks one season', a
   assert.equal(document.getElementById('revisitLink').hidden, true);
 });
 
-// --- An archive season (older shows) is a shelf, not a point in time ---
+// --- A shelf like the Backlog is not a point in time ---
 
 const shelf = makeSeason({
-  id: 'older-shows', name: 'Older Shows', archive: true,
+  id: 'backlog', name: 'Backlog', sortKey: 0,
   shows: [
     makeShow({ titleEN: 'Old Classic', ratingNumber: 4, ratingText: 'Yeah', dateReviewed: '2026-03-01', anilist: { format: 'TV', genres: ['Drama'], tags: [], studios: [] } }),
     makeShow({ titleEN: 'Old Favorite', ratingNumber: 5, ratingText: 'Peak', dateReviewed: '2026-03-02', anilist: { format: 'TV', genres: ['Drama'], tags: [], studios: [] } }),
@@ -712,7 +717,7 @@ const shelf = makeSeason({
 const withShelf = [...seasons, shelf];
 const shelfReviews = flattenReviews(withShelf);
 
-test('older-shows reviews still count in the totals, ratings and Hall of Fame', () => {
+test('Backlog reviews still count in the totals, ratings and Hall of Fame', () => {
   const s = computeGlanceStats(withShelf, shelfReviews);
   assert.equal(s.totalReviews, 9);
   assert.equal(s.avgRating, (5 + 5 + 1 + 3 + 2 + 4 + 5 + 5) / 8);
@@ -720,7 +725,7 @@ test('older-shows reviews still count in the totals, ratings and Hall of Fame', 
   assert.equal(computeRatingDistribution(shelfReviews).find(d => d.ratingNumber === 4).count, 1);
 });
 
-test('older-shows is not a season in the trends, coverage, busiest-season or season counts', () => {
+test('the Backlog is not a season in the trends, coverage, busiest-season or season counts', () => {
   assert.deepEqual(computeRatingsOverTime(shelfReviews).map(s => s.seasonName), ['Spring 2026', 'Summer 2026']);
 
   const s = computeGlanceStats(withShelf, shelfReviews);

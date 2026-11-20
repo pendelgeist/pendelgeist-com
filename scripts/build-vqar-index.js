@@ -16,7 +16,8 @@
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { readJsonFiles, serializeIndex, syncIndexFile } from './indexFile.js';
-import { validateSeason, validateSeasonCollection, seasonSortKey } from './validateSeason.js';
+import { validateSeason, validateSeasonCollection } from './validateSeason.js';
+import { seasonSortKey } from '../public/vqar/seasons.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 export const DATA_DIR = path.join(__dirname, '../public/vqar/data');

@@ -293,7 +293,7 @@ test('a review with a watched record shows when it was watched, and how far it g
       name: 'Summer 2026',
       shows: [
         makeShow({ titleEN: 'Whole Run', ratingNumber: 4, ratingText: 'Finish Ep', text: 'a', dateReviewed: '2026-07-01T12:00:00-04:00', watched: { from: '2026-04-01', to: '2026-06-10' } }),
-        makeShow({ titleEN: 'Partway', ratingNumber: 4, ratingText: 'Finish Ep', text: 'b', dateReviewed: '2026-07-02T12:00:00-04:00', watched: { from: '2026-04-02T21:30:00-04:00', to: '2026-05-01', episode: 6 } }),
+        makeShow({ titleEN: 'Partway', ratingNumber: 4, ratingText: 'Finish Ep', text: 'b', dateReviewed: '2026-07-02T12:00:00-04:00', watched: { from: '2026-04-02', to: '2026-05-01', episode: 6 } }),
         makeShow({ titleEN: 'Several Seasons', ratingNumber: 4, ratingText: 'Finish Ep', text: 'c', dateReviewed: '2026-07-03T12:00:00-04:00', watched: { from: '2026-04-03', to: '2026-05-02', season: 2, episode: 6 } }),
         makeShow({ titleEN: 'One Day', ratingNumber: 4, ratingText: 'Finish Ep', text: 'd', dateReviewed: '2026-07-04T12:00:00-04:00', watched: { from: '2026-04-04' } }),
         makeShow({ titleEN: 'Unrecorded', ratingNumber: 4, ratingText: 'Finish Ep', text: 'e', dateReviewed: '2026-07-05T12:00:00-04:00' }),
@@ -863,6 +863,22 @@ test('picking a past season shows that season\'s To Be Reviewed / Not Reviewing 
   assert.equal(text(document.getElementById('skippedShows')), 'Fall Skipped');
   assert.equal(document.getElementById('pendingSeason').hidden, true);
   assert.equal(document.getElementById('skippedSeason').textContent, '');
+});
+
+test('an old ?season=older-shows link opens the Backlog, which took its place', async () => {
+  const fetch = createPathFetchStub({
+    '/vqar/data/index.json': { ...filterIndex, seasons: [...filterIndex.seasons, { id: 'backlog', name: 'Backlog', file: '/vqar/data/seasons/backlog.json' }] },
+    ...filterSeasons,
+    '/vqar/data/seasons/backlog.json': makeSeason({
+      id: 'backlog', name: 'Backlog', sortKey: 0,
+      shows: [makeShow({ titleEN: 'Old Classic', ratingNumber: 5, ratingText: 'Peak', text: '', dateReviewed: '2026-03-01' })],
+      toReview: [], notReviewing: [],
+    }),
+  });
+  const { document } = await loadApp({ fetch, url: 'http://localhost/vqar/?season=older-shows' });
+  await waitFor(() => titles(document).length > 0);
+  assert.equal(document.getElementById('seasonFilter').value, 'backlog');
+  assert.deepEqual(titles(document), ['Old Classic']);
 });
 
 test('All Seasons shows the current season\'s To Be Reviewed / Not Reviewing lists', async () => {

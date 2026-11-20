@@ -2,6 +2,7 @@ import { VQAR_INDEX_PATH } from './data-paths.js';
 import { effectiveRatingNumber } from './rating.js';
 import { createStreamingRow, STREAMING_SERVICES } from '../streaming.js';
 import { normalizeEntry } from './list-entries.js';
+import { dayOf } from '../dates.js';
 import { isLikedOpEd, likedLabel } from './oped.js';
 import { createExternalLinks } from '../external-links.js';
 import {
@@ -21,16 +22,17 @@ import {
 
 /**
  * @typedef {Object} Watched
- * @property {string} first - when the first episode was watched: a date (2026-04-01) or a timestamp
- * @property {string} [last] - when the last episode was watched
- * @property {number|string} [lastEpisode] - the last episode reached, for a show that wasn't finished (24, or "S2 E6")
+ * @property {string} from - the day the first episode was watched (2026-04-01)
+ * @property {string} [to] - the day the last episode was watched
+ * @property {number} [season] - which season `episode` is in, for a show that ran across several
+ * @property {number} [episode] - the last episode reached, for a show that wasn't finished
  */
 
 /**
  * @typedef {Object} Review
  * @property {string} titleEN
  * @property {string} titleJP
- * @property {string} [airedLabel] - optional free text for when an older show first aired (e.g. "Winter 2004")
+ * @property {string} [airedLabel] - optional free text for when a Backlog show first aired (e.g. "Winter 2004")
  * @property {number} ratingNumber
  * @property {string} ratingText
  * @property {string} review
@@ -68,9 +70,9 @@ import {
  * @typedef {Object} SeasonData
  * @property {string|number} id
  * @property {string} name
- * @property {Review[]} reviewed
- * @property {import('./list-entries.js').ListEntry[]} pending
- * @property {import('./list-entries.js').ListEntry[]} skipped
+ * @property {Review[]} shows
+ * @property {import('./list-entries.js').ListEntry[]} toReview
+ * @property {import('./list-entries.js').ListEntry[]} notReviewing
  */
 
 /**
@@ -102,21 +104,20 @@ const SORTERS = {
 /**
  * `dateReviewed` is a timestamp for ordering; readers just see the date, as
  * written (so a `-07:00` offset shows the reviewer's own day, not UTC's).
- * @param {string} value
  */
-const displayDate = (value) => value.slice(0, 10);
+const displayDate = dayOf;
 
 /**
  * The "Watched" line: the day the first episode was watched, through the day
  * the last was (one date when they match, or when there is no last), and the
- * episode it got to when that's noted.
+ * episode it got to when that's noted - "S2 E6" for a show that ran across
+ * several seasons.
  * @param {Watched} w
  */
 const watchedText = (w) => {
-  const first = displayDate(w.first);
-  const last = w.last ? displayDate(w.last) : first;
-  let text = last === first ? first : `${first} \u2013 ${last}`;
-  if (w.lastEpisode !== undefined) text += ` (through ${typeof w.lastEpisode === 'number' ? `ep ${w.lastEpisode}` : w.lastEpisode})`;
+  const to = w.to ?? w.from;
+  let text = to === w.from ? w.from : `${w.from} \u2013 ${to}`;
+  if (w.episode !== undefined) text += ` (through ${w.season === undefined ? `ep ${w.episode}` : `S${w.season} E${w.episode}`})`;
   return `Watched: ${text}`;
 };
 
@@ -236,7 +237,7 @@ function buildReviewsForLoadedSeasons(seasonIds) {
     const season = seasonDataById.get(id);
     if (!season) return [];
     const seasonRank = seasonIndex.seasons.findIndex(m => String(m.id) === id);
-    return (season.reviewed ?? []).map((r, index) => ({
+    return (season.shows ?? []).map((r, index) => ({
       ...r,
       season: id,
       seasonName: season.name,
@@ -274,8 +275,8 @@ async function loadForCurrentFilter() {
   // failed list season just leaves its lists showing "None".
   loadErrors = failed.filter(m => metasNeeded.includes(m));
   renderReviews();
-  renderList(dom.pendingShows, 'pending');
-  renderList(dom.skippedShows, 'skipped');
+  renderList(dom.pendingShows, 'toReview');
+  renderList(dom.skippedShows, 'notReviewing');
 }
 
 async function loadData() {
@@ -412,7 +413,7 @@ function createReviewArticle(r) {
     meta.appendChild(aired);
   }
 
-  if (r.watched?.first) {
+  if (r.watched?.from) {
     const watched = document.createElement('span');
     watched.className = 'entry-watched';
     watched.textContent = watchedText(r.watched);
@@ -528,10 +529,14 @@ function searchableFields(r) {
  * you can hand someone. Anything missing or unrecognized falls back to the
  * page's default: the current season, no search, Most Recent, no chips.
  */
+/** Season ids that were renamed, so a link made before still lands on the same season. */
+const RENAMED_SEASONS = { 'older-shows': 'backlog' };
+
 function applyStateFromUrl() {
   const params = new URLSearchParams(location.search);
   if (dom.seasonFilter) {
-    const season = params.get('season');
+    const asked = params.get('season');
+    const season = asked !== null && asked in RENAMED_SEASONS ? RENAMED_SEASONS[asked] : asked;
     const known = [...dom.seasonFilter.options].some(option => option.value === season);
     dom.seasonFilter.value = known && season ? season : currentSeasonId;
   }
@@ -790,12 +795,12 @@ function renderList(container, key) {
   if (!container) return;
 
   const season = seasonDataById.get(listSeasonId);
-  const countEl = key === 'pending' ? dom.pendingCount : dom.skippedCount;
+  const countEl = key === 'toReview' ? dom.pendingCount : dom.skippedCount;
   if (countEl) countEl.textContent = Array.isArray(season?.[key]) ? `(${season[key].length})` : '';
 
   // A past season's lists say whose they are; the current season's are the
   // page's default, already named up top.
-  const seasonLabel = key === 'pending' ? dom.pendingSeason : dom.skippedSeason;
+  const seasonLabel = key === 'toReview' ? dom.pendingSeason : dom.skippedSeason;
   if (seasonLabel) {
     const pastName = listSeasonId !== currentSeasonId
       ? seasonIndex?.seasons.find(s => String(s.id) === listSeasonId)?.name ?? ''
@@ -812,7 +817,7 @@ function renderList(container, key) {
   }
 
   const shows = season[key].map(toShow);
-  container.replaceChildren(...(key === 'pending' ? pendingItems(shows) : skippedItems(shows)));
+  container.replaceChildren(...(key === 'toReview' ? pendingItems(shows) : skippedItems(shows)));
 }
 
 /**
@@ -878,19 +883,19 @@ function renderGroup(heading, rows) {
  * @param {import('./list-entries.js').ListEntryDetails[]} shows
  */
 function pendingItems(shows) {
-  if (!shows.some(show => show.firstEpisode || show.availableNow)) return shows.map(show => renderShowRow(show));
+  if (!shows.some(show => show.premieres || show.availableNow)) return shows.map(show => renderShowRow(show));
 
   /** @type {Map<string, import('./list-entries.js').ListEntryDetails[]>} */
   const byDate = new Map();
   for (const show of shows) {
-    if (show.availableNow || !show.firstEpisode) continue;
-    byDate.set(show.firstEpisode, [...(byDate.get(show.firstEpisode) ?? []), show]);
+    if (show.availableNow || !show.premieres) continue;
+    byDate.set(show.premieres, [...(byDate.get(show.premieres) ?? []), show]);
   }
 
   const groups = [
     { heading: 'Available now', shows: shows.filter(show => show.availableNow) },
     ...[...byDate.keys()].sort().map(date => ({ heading: displayPremiere(date), shows: byDate.get(date) ?? [] })),
-    { heading: 'Date TBD', shows: shows.filter(show => !show.availableNow && !show.firstEpisode) },
+    { heading: 'Date TBD', shows: shows.filter(show => !show.availableNow && !show.premieres) },
   ].filter(group => group.shows.length > 0);
 
   return groups.map(group => renderGroup(group.heading, group.shows.map(show => renderShowRow(show))));

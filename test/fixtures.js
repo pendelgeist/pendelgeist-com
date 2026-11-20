@@ -26,8 +26,7 @@ function reviewFields({ ratingNumber, ratingText, text, dateReviewed }) {
  * @param {{ from?: string, to?: string, season?: number, episode?: number, finished?: boolean }} watched
  */
 function watchedFields({ from, to, season, episode }) {
-  const lastEpisode = episode === undefined ? undefined : season === undefined ? episode : `S${season} E${episode}`;
-  return defined({ first: from, last: to, lastEpisode });
+  return defined({ from, to, season, episode });
 }
 
 /**
@@ -58,29 +57,13 @@ export function makeShow(spec) {
 }
 
 /**
- * A to-review entry: a plain title, or an object with optional notes
- * (`premieres` for the first episode's date).
- * @param {string | Record<string, any>} entry
- */
-function toReviewEntry(entry) {
-  if (typeof entry === 'string') return entry;
-  const { premieres, ...rest } = entry;
-  return defined({ ...rest, firstEpisode: premieres });
-}
-
-/**
  * A season: `shows` (reviewed), `toReview` and `notReviewing`. Other keys
  * (`id`, `name`, `current`, `sortKey`...) pass through, so a test can spread
  * one built season into another and override just its lists.
  * @param {Record<string, any>} spec
  */
 export function makeSeason(spec) {
-  const { shows, toReview, notReviewing, ...rest } = spec;
-  const out = { ...rest };
-  if (shows !== undefined) out.reviewed = shows;
-  if (toReview !== undefined) out.pending = Array.isArray(toReview) ? toReview.map(toReviewEntry) : toReview;
-  if (notReviewing !== undefined) out.skipped = notReviewing;
-  return out;
+  return { ...spec };
 }
 
 /**
