@@ -159,6 +159,26 @@ test('"Most recent" orders by the time of day, whatever the order in the file', 
   assert.deepEqual(titles(document), ['Evening', 'Noon', 'Morning']);
 });
 
+test('"Most recent" follows a show\'s latest review, so a revisit brings an older show back up', async () => {
+  const fetch = createPathFetchStub({
+    ...routes(),
+    '/vqar/data/seasons/summer-2026.json': makeSeason({
+      ...seasons['/vqar/data/seasons/summer-2026.json'],
+      shows: [
+        makeShow({ titleEN: 'Newer First Impression', ratingNumber: 3, dateReviewed: '2026-07-10T09:00:00-04:00' }),
+        makeShow({
+          titleEN: 'Revisited Lately', ratingNumber: 4, dateReviewed: '2026-07-01T09:00:00-04:00',
+          revisit: { ratingNumber: 5, dateReviewed: '2026-09-01T09:00:00-04:00' },
+        }),
+      ],
+    }),
+  });
+  const { document } = await loadApp({ fetch });
+  await waitFor(() => titles(document).length === 2);
+
+  assert.deepEqual(titles(document), ['Revisited Lately', 'Newer First Impression']);
+});
+
 test('a timestamped dateReviewed is shown as just its date', async () => {
   const fetch = createPathFetchStub({
     ...routes(),
@@ -236,7 +256,7 @@ test('a season data load failure (e.g. a stale path in the index) is shown on th
   assert.match(document.getElementById('reviewedShows').textContent, /Summer 2026/);
 });
 
-test('a full-series re-review renders as an addendum, and a liked OP/ED as a marking', async () => {
+test('a later review renders as an addendum, each review labeled with its stage, and a liked OP/ED as a marking', async () => {
   const fetch = createPathFetchStub({
     '/vqar/data/index.json': seasonIndex,
     '/vqar/data/seasons/summer-2026.json': makeSeason({
@@ -259,7 +279,8 @@ test('a full-series re-review renders as an addendum, and a liked OP/ED as a mar
   const { document } = await loadApp({ fetch });
 
   const labels = [...document.querySelectorAll('.entry-addendum-label')].map((el) => el.textContent);
-  assert.deepEqual(labels, ['Revisit']);
+  assert.deepEqual(labels, ['First impression', 'Revisit']);
+  assert.equal(document.querySelector('.entry-addendum .entry-rating').textContent, 'Nice Ep Broh');
   assert.match(document.getElementById('reviewedShows').textContent, /stuck the landing/);
   const marks = [...document.querySelectorAll('.entry-mark')].map((el) => el.textContent);
   assert.deepEqual(marks, ['Liked OP 1', 'Liked ED 1']);
@@ -474,15 +495,23 @@ test('hidiveUrl and netflixUrl make their badges clickable links, same as crunch
   assert.equal(yt.tagName, 'SPAN');
 });
 
-test('a review with watchProgress renders it in the entry meta; one without does not', async () => {
+test('a review says how far in it was written, and a lone first impression carries no stage label', async () => {
   const fetch = createPathFetchStub({
     '/vqar/data/index.json': seasonIndex,
     '/vqar/data/seasons/summer-2026.json': makeSeason({
       id: 'summer-2026',
       name: 'Summer 2026',
       shows: [
-        makeShow({ titleEN: 'Revisited Show', ratingText: 'Yeah', dateReviewed: '2026-07-01', watchProgress: 'Ep 3' }),
-        makeShow({ titleEN: 'Untouched Show', ratingText: 'Yeah', dateReviewed: '2026-07-02' }),
+        makeShow({ titleEN: 'Backfilled Show', reviews: [{ episodes: 12, ratingNumber: 3, text: 'caught up', dateReviewed: '2026-07-03T12:00:00-04:00' }] }),
+        makeShow({
+          titleEN: 'Finished Show',
+          reviews: [
+            { episodes: 1, ratingNumber: 4, dateReviewed: '2026-07-01T12:00:00-04:00' },
+            { episodes: 12, final: true, ratingNumber: 5, dateReviewed: '2026-07-02T12:00:00-04:00' },
+          ],
+          watched: { from: '2026-07-01', finished: true },
+        }),
+        makeShow({ titleEN: 'Untouched Show', ratingNumber: 3, dateReviewed: '2026-06-30' }),
       ],
       toReview: [],
       notReviewing: [],
@@ -490,9 +519,18 @@ test('a review with watchProgress renders it in the entry meta; one without does
   });
   const { document } = await loadApp({ fetch });
 
-  const badges = [...document.querySelectorAll('.entry-progress')];
-  assert.equal(badges.length, 1);
-  assert.equal(badges[0].textContent, 'Progress: Ep 3');
+  const card = (title) => [...document.querySelectorAll('#reviewedShows article')].find((a) => a.querySelector('.entry-title').textContent.startsWith(title));
+  const labels = (title) => [...card(title).querySelectorAll('.entry-addendum-label')].map((el) => el.textContent);
+  const badges = (title) => [...card(title).querySelectorAll('.entry-progress')].map((el) => el.textContent);
+
+  assert.deepEqual(labels('Backfilled Show'), ['Review']);
+  assert.deepEqual(badges('Backfilled Show'), ['12 eps in']);
+  assert.deepEqual(labels('Finished Show'), ['First impression', 'Final']);
+  assert.deepEqual(badges('Finished Show'), ['12 eps in']);
+  assert.deepEqual(labels('Untouched Show'), []);
+  assert.deepEqual(badges('Untouched Show'), []);
+  // No ratingText of its own: the tier's label.
+  assert.equal(card('Untouched Show').querySelector('.entry-rating').textContent, 'Meh, Finishing the Ep');
 });
 
 test('each review card carries its effective rating for styles to key off, a revisit\'s once there is one', async () => {
@@ -503,7 +541,7 @@ test('each review card carries its effective rating for styles to key off, a rev
       name: 'Summer 2026',
       shows: [
         makeShow({ titleEN: 'Dead On Arrival', ratingNumber: 0, ratingText: 'Dead', dateReviewed: '2026-07-03' }),
-        makeShow({ titleEN: 'Turned Around', ratingNumber: 4, ratingText: 'Yeah', dateReviewed: '2026-07-02', revisit: { ratingNumber: 5, ratingText: 'Peak', text: 'x' } }),
+        makeShow({ titleEN: 'Turned Around', ratingNumber: 4, ratingText: 'Yeah', dateReviewed: '2026-07-02', revisit: { ratingNumber: 5, ratingText: 'Peak', text: 'x', dateReviewed: '2026-07-02T12:00:00-04:00' } }),
         makeShow({ titleEN: 'Unrated', ratingText: 'Custom', dateReviewed: '2026-07-01' }),
       ],
       toReview: [],
@@ -516,15 +554,15 @@ test('each review card carries its effective rating for styles to key off, a rev
   assert.deepEqual(ratings, ['0', '5', undefined]);
 });
 
-test('an older show shows when it aired, and a search for that finds it', async () => {
+test('a show that aired outside its lineup says when, and a search for that finds it', async () => {
   const fetch = createPathFetchStub({
     '/vqar/data/index.json': seasonIndex,
     '/vqar/data/seasons/summer-2026.json': makeSeason({
       id: 'summer-2026',
       name: 'Summer 2026',
       shows: [
-        makeShow({ titleEN: 'Old Classic', ratingText: 'Peak', dateReviewed: '2026-07-01', airedLabel: 'Winter 2004' }),
-        makeShow({ titleEN: 'New Show', ratingText: 'Meh', dateReviewed: '2026-07-02' }),
+        makeShow({ titleEN: 'Old Classic', ratingText: 'Peak', dateReviewed: '2026-07-01', aired: { season: 'winter', year: 2004 } }),
+        makeShow({ titleEN: 'New Show', ratingText: 'Meh', dateReviewed: '2026-07-02', aired: { season: 'summer', year: 2026 } }),
       ],
       toReview: [],
       notReviewing: [],
@@ -1013,7 +1051,7 @@ test('a show whose season was finished is marked, and the Extras chip filters to
       id: 'summer-2026',
       name: 'Summer 2026',
       shows: [
-        makeShow({ titleEN: 'Finished Show', ratingNumber: 4, ratingText: 'Hoping', text: '', dateReviewed: '2026-07-02', finishedSeason: true }),
+        makeShow({ titleEN: 'Finished Show', ratingNumber: 4, ratingText: 'Hoping', text: '', dateReviewed: '2026-07-02', watched: { from: '2026-07-02', finished: true } }),
         makeShow({ titleEN: 'Dropped Show', ratingNumber: 4, ratingText: 'Hoping', text: '', dateReviewed: '2026-07-01' }),
       ],
       toReview: [],
@@ -1221,7 +1259,7 @@ test('with site data blocked, the filters toggle still works', async () => {
 });
 
 test('the reviewer\'s own markings and the AniList line are told apart by class', async () => {
-  const { document } = await loadApp({ fetch: anilistRoutes([{ ...isekaiTrash, op: [1], finishedSeason: true }]) });
+  const { document } = await loadApp({ fetch: anilistRoutes([{ ...isekaiTrash, op: [1], watched: { from: '2026-07-03', finished: true } }]) });
   await waitFor(() => showTitles(document).length === 1);
   const marks = [...document.querySelectorAll('.entry-mark')].map((el) => el.className);
   assert.deepEqual(marks, ['entry-mark entry-mark-finished', 'entry-mark entry-mark-oped']);

@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { graphql, buildSchema } from 'graphql';
 import { typeDefs, makeRootValue } from '../src/schema.js';
 import { createPathFetchStub } from './helpers.js';
-import { REVIEW_KEYS, FULL_REVIEW_KEYS, WATCHED_KEYS } from '../scripts/validateSeason.js';
+import { SHOW_KEYS, REVIEW_KEYS, WATCHED_KEYS, AIRED_KEYS } from '../scripts/validateSeason.js';
 import { LIST_ENTRY_KEYS } from '../public/vqar/list-entries.js';
 import { makeSeason, makeShow } from './fixtures.js';
 
@@ -215,26 +215,41 @@ test('hidiveUrl and netflixUrl pass through when set on a review', async () => {
   ]);
 });
 
-test('watchProgress passes through when set on a review, and is null when absent', async () => {
+test('a show lists every review with its stage, and its current rating is the latest review\'s', async () => {
   const assetsStub = createPathFetchStub({
     '/vqar/data/index.json': seasonIndex,
     '/vqar/data/seasons/summer-2026.json': makeSeason({
       id: 'summer-2026',
       name: 'Summer 2026',
-      shows: [makeShow({ titleEN: 'Revisited Show', ratingText: 'Yeah', dateReviewed: '2026-07-01', watchProgress: 'Ep 3' })],
+      shows: [
+        makeShow({
+          titleEN: 'Revisited Show', ratingNumber: 4, ratingText: 'Hoping hard', text: 'start', dateReviewed: '2026-07-01T12:00:00-04:00',
+          revisit: { episodes: 6, ratingNumber: 5, text: 'better', dateReviewed: '2026-08-01T12:00:00-04:00' },
+        }),
+        makeShow({ titleEN: 'Backfilled Show', reviews: [{ final: true, ratingNumber: 3, text: 'all of it', dateReviewed: '2026-08-02T12:00:00-04:00' }], watched: { from: '2020-01-01', finished: true } }),
+      ],
       toReview: [],
       notReviewing: [],
     }),
-    '/vqar/data/seasons/spring-2026.json': seasons['/vqar/data/seasons/spring-2026.json'],
   });
 
-  const result = await run('{ currentSeason { shows { titleEN watchProgress } } }', assetsStub);
+  const result = await run('{ currentSeason { shows { titleEN ratingNumber ratingText reviews { stage episodes final ratingNumber ratingText text dateReviewed } watched { finished } } } }', assetsStub);
   assert.equal(result.errors, undefined);
-  assert.deepEqual(result.data.currentSeason.shows, [{ titleEN: 'Revisited Show', watchProgress: 'Ep 3' }]);
-
-  const result2 = await run('{ season(id: "spring-2026") { shows { watchProgress } } }');
-  assert.equal(result2.errors, undefined);
-  assert.deepEqual(result2.data.season.shows, []);
+  assert.deepEqual(result.data.currentSeason.shows, [
+    {
+      titleEN: 'Revisited Show', ratingNumber: 5, ratingText: 'Peak, Nice Ep Broh',
+      reviews: [
+        { stage: 'first', episodes: 1, final: null, ratingNumber: 4, ratingText: 'Hoping hard', text: 'start', dateReviewed: '2026-07-01T12:00:00-04:00' },
+        { stage: 'revisit', episodes: 6, final: null, ratingNumber: 5, ratingText: 'Peak, Nice Ep Broh', text: 'better', dateReviewed: '2026-08-01T12:00:00-04:00' },
+      ],
+      watched: null,
+    },
+    {
+      titleEN: 'Backfilled Show', ratingNumber: 3, ratingText: 'Meh, Finishing the Ep',
+      reviews: [{ stage: 'final', episodes: null, final: true, ratingNumber: 3, ratingText: 'Meh, Finishing the Ep', text: 'all of it', dateReviewed: '2026-08-02T12:00:00-04:00' }],
+      watched: { finished: true },
+    },
+  ]);
 });
 
 test('a failed asset read surfaces as a GraphQL error instead of throwing', async () => {
@@ -409,30 +424,6 @@ test('a watched record comes through the API, its season and episode as numbers'
   ]);
 });
 
-test('finishedSeason comes through the API as a boolean', async () => {
-  const assetsStub = createPathFetchStub({
-    '/vqar/data/index.json': seasonIndex,
-    '/vqar/data/seasons/summer-2026.json': makeSeason({
-      ...seasons['/vqar/data/seasons/summer-2026.json'],
-      shows: [makeShow({ titleEN: 'Done Show', ratingText: 'Meh', dateReviewed: '2026-07-01T12:00:00Z', finishedSeason: true })],
-    }),
-  });
-  const result = await run('{ currentSeason { shows { titleEN finishedSeason } } }', assetsStub);
-  assert.deepEqual(result.data.currentSeason.shows, [{ titleEN: 'Done Show', finishedSeason: true }]);
-});
-
-test('finishedDate comes through the API as a string', async () => {
-  const assetsStub = createPathFetchStub({
-    '/vqar/data/index.json': seasonIndex,
-    '/vqar/data/seasons/summer-2026.json': makeSeason({
-      ...seasons['/vqar/data/seasons/summer-2026.json'],
-      shows: [makeShow({ titleEN: 'Done Show', ratingText: 'Meh', dateReviewed: '2026-07-01T12:00:00Z', finishedSeason: true, finishedDate: '2026-10-26' })],
-    }),
-  });
-  const result = await run('{ currentSeason { shows { titleEN finishedDate } } }', assetsStub);
-  assert.deepEqual(result.data.currentSeason.shows, [{ titleEN: 'Done Show', finishedDate: '2026-10-26' }]);
-});
-
 test('a review carries its generated AniList format, genres, tags and studios', async () => {
   const assetsStub = createPathFetchStub({
     '/vqar/data/index.json': seasonIndex,
@@ -455,16 +446,20 @@ test('a review carries its generated AniList format, genres, tags and studios', 
 
 const fieldNames = (type) => Object.keys(schema.getType(type).getFields());
 
-test('Review exposes exactly the keys validation allows, plus the season it was read from and the numbered OP/EDs', () => {
-  assert.deepEqual(fieldNames('Review').sort(), [...REVIEW_KEYS, 'season', 'seasonName', 'opNumbers', 'edNumbers'].sort());
+test('Show exposes exactly the keys validation allows, plus the season it was read from, its current rating and the numbered OP/EDs', () => {
+  assert.deepEqual(fieldNames('Show').sort(), [...SHOW_KEYS, 'season', 'seasonName', 'ratingNumber', 'ratingText', 'opNumbers', 'edNumbers'].sort());
+});
+
+test('Review exposes exactly the keys a review may carry, plus its stage', () => {
+  assert.deepEqual(fieldNames('Review').sort(), [...REVIEW_KEYS, 'stage'].sort());
+});
+
+test('Aired exposes exactly the keys a show\'s aired may carry', () => {
+  assert.deepEqual(fieldNames('Aired').sort(), [...AIRED_KEYS].sort());
 });
 
 test('Watched exposes exactly the keys a review\'s watched record may carry', () => {
   assert.deepEqual(fieldNames('Watched').sort(), [...WATCHED_KEYS].sort());
-});
-
-test('SubReview exposes exactly the keys a fullReview may carry', () => {
-  assert.deepEqual(fieldNames('SubReview').sort(), [...FULL_REVIEW_KEYS].sort());
 });
 
 test('ToReviewShow and NotReviewingShow expose exactly the keys their list entries may carry', () => {
@@ -472,7 +467,7 @@ test('ToReviewShow and NotReviewingShow expose exactly the keys their list entri
   assert.deepEqual(fieldNames('NotReviewingShow').sort(), [...LIST_ENTRY_KEYS.notReviewing].sort());
 });
 
-test('Season.lineup is true for a season reviewed live and false for the Backlog shelf; airedLabel passes through', async () => {
+test('Season.lineup is true for a season reviewed live and false for the Backlog shelf; aired passes through', async () => {
   const assetsStub = createPathFetchStub({
     '/vqar/data/index.json': {
       currentSeason: 'summer-2026',
@@ -487,20 +482,22 @@ test('Season.lineup is true for a season reviewed live and false for the Backlog
       name: 'Backlog',
       sortKey: 0,
       shows: [
-        makeShow({ titleEN: 'Paranoia Agent', ratingNumber: 5, ratingText: 'Peak', dateReviewed: '2026-05-19T08:00:00-04:00', airedLabel: 'Winter 2004' }),
-        makeShow({ titleEN: 'Untagged Old Show', ratingNumber: 3, ratingText: 'Meh', dateReviewed: '2026-05-20T08:00:00-04:00' }),
+        makeShow({ titleEN: 'Paranoia Agent', ratingNumber: 5, ratingText: 'Peak', dateReviewed: '2026-05-19T08:00:00-04:00', aired: { season: 'winter', year: 2004 } }),
+        makeShow({ titleEN: 'Untagged Old Show', ratingNumber: 3, ratingText: 'Meh', dateReviewed: '2026-05-20T08:00:00-04:00', aired: { year: 1990 } }),
+        makeShow({ titleEN: 'Undated Old Show', ratingNumber: 3, dateReviewed: '2026-05-21T08:00:00-04:00' }),
       ],
       toReview: [],
       notReviewing: [],
     }),
   });
 
-  const result = await run('{ currentSeason { lineup } backlog: season(id: "backlog") { lineup shows { titleEN airedLabel season } } }', assetsStub);
+  const result = await run('{ currentSeason { lineup } backlog: season(id: "backlog") { lineup shows { titleEN aired { season year } season } } }', assetsStub);
   assert.equal(result.errors, undefined);
   assert.equal(result.data.currentSeason.lineup, true);
   assert.equal(result.data.backlog.lineup, false);
   assert.deepEqual(result.data.backlog.shows, [
-    { titleEN: 'Paranoia Agent', airedLabel: 'Winter 2004', season: 'backlog' },
-    { titleEN: 'Untagged Old Show', airedLabel: null, season: 'backlog' },
+    { titleEN: 'Paranoia Agent', aired: { season: 'winter', year: 2004 }, season: 'backlog' },
+    { titleEN: 'Untagged Old Show', aired: { season: null, year: 1990 }, season: 'backlog' },
+    { titleEN: 'Undated Old Show', aired: null, season: 'backlog' },
   ]);
 });

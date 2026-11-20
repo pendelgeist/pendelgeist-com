@@ -7,7 +7,12 @@ const EXAMPLES = {
     shows {
       titleEN
       ratingText
-      review
+      reviews {
+        stage
+        ratingText
+        text
+        dateReviewed
+      }
     }
   }
 }`,
@@ -23,7 +28,12 @@ const EXAMPLES = {
     shows {
       titleEN
       ratingText
-      review
+      reviews {
+        stage
+        ratingText
+        text
+        dateReviewed
+      }
     }
   }
 }`,
@@ -39,12 +49,12 @@ PASTE ANILIST'S WHOLE RESULT HERE
       score
       sharedGenres
       sharedTags
-      review { titleEN seasonName ratingText }
+      show { titleEN seasonName ratingText }
     }
     hiddenGem {
       popularity
       sharedGenres
-      review { titleEN seasonName ratingText }
+      show { titleEN seasonName ratingText }
     }
   }
 }`,

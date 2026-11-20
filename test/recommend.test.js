@@ -54,8 +54,8 @@ test('picks are 4+ matches, best first, and never the liked shows or their relat
     review('No Overlap', 13, 5, ['Sports'], ['Baseball']),
   ];
   const likedWithSequel = [{ ...liked[0], relations: { nodes: [{ id: 99 }] } }, liked[1], liked[2]];
-  const result = recommend({ reviews, likedMedia: likedWithSequel, count: 5 });
-  const titles = result.picks.map((p) => p.review.titleEN);
+  const result = recommend({ shows: reviews, likedMedia: likedWithSequel, count: 5 });
+  const titles = result.picks.map((p) => p.show.titleEN);
   assert.equal(titles[0], 'Close Match');
   assert.ok(titles.includes('Revisited Up'), 'the revisit rating is the one that counts');
   for (const excluded of ['Liked Itself', 'Its Sequel', 'Rated Three', 'No Overlap']) {
@@ -71,7 +71,7 @@ test('the second pick favors a different kind of show over a near-copy of the fi
     review('Action B', 11, 5, ['Action', 'Supernatural'], ['Shounen', 'Super Power']),
     review('Mystery', 12, 5, ['Mystery', 'Thriller', 'Psychological'], ['Detective']),
   ];
-  const titles = recommend({ reviews, likedMedia: liked, count: 2 }).picks.map((p) => p.review.titleEN);
+  const titles = recommend({ shows: reviews, likedMedia: liked, count: 2 }).picks.map((p) => p.show.titleEN);
   assert.deepEqual(titles, ['Action A', 'Mystery']);
 });
 
@@ -80,7 +80,7 @@ test('a show split into parts is picked once, by its best part', () => {
     review('Long Show', 10, 4, ['Action'], ['Shounen'], { part: 1 }),
     review('Long Show Part 2', 10, 5, ['Action'], ['Shounen'], { part: 2 }),
   ];
-  const titles = recommend({ reviews, likedMedia: liked, count: 3 }).picks.map((p) => p.review.titleEN);
+  const titles = recommend({ shows: reviews, likedMedia: liked, count: 3 }).picks.map((p) => p.show.titleEN);
   assert.deepEqual(titles, ['Long Show Part 2']);
 });
 
@@ -93,20 +93,20 @@ test('the hidden gem is the least popular remaining 5 that shares something', ()
     review('Obscure, Unrelated', 14, 5, ['Sports'], []),
   ];
   const popularity = new Map([[10, 500000], [11, 90000], [12, 1200], [13, 50], [14, 10]]);
-  const result = recommend({ reviews, likedMedia: liked, popularity, count: 1 });
-  assert.deepEqual(result.picks.map((p) => p.review.titleEN), ['Big Hit']);
-  assert.equal(result.hiddenGem.review.titleEN, 'Obscure Five');
+  const result = recommend({ shows: reviews, likedMedia: liked, popularity, count: 1 });
+  assert.deepEqual(result.picks.map((p) => p.show.titleEN), ['Big Hit']);
+  assert.equal(result.hiddenGem.show.titleEN, 'Obscure Five');
   assert.equal(result.hiddenGem.popularity, 1200);
 });
 
 test('with no 5 left, the hidden gem falls back to a 4; with nothing left, it is null', () => {
   const reviews = [review('Pick', 10, 5, ['Action'], []), review('Four', 11, 4, ['Action'], [])];
-  assert.equal(recommend({ reviews, likedMedia: liked, count: 1 }).hiddenGem.review.titleEN, 'Four');
-  assert.equal(recommend({ reviews, likedMedia: liked, count: 2 }).hiddenGem, null);
+  assert.equal(recommend({ shows: reviews, likedMedia: liked, count: 1 }).hiddenGem.show.titleEN, 'Four');
+  assert.equal(recommend({ shows: reviews, likedMedia: liked, count: 2 }).hiddenGem, null);
 });
 
 test('nothing found on AniList means no profile and no picks, not an error', () => {
-  const result = recommend({ reviews: [review('Pick', 10, 5, ['Action'], [])], likedMedia: [], count: 2 });
+  const result = recommend({ shows: [review('Pick', 10, 5, ['Action'], [])], likedMedia: [], count: 2 });
   assert.deepEqual(result, { profile: [], picks: [], hiddenGem: null });
 });
 
@@ -207,8 +207,8 @@ const anilistResponse = JSON.stringify({
 const QUERY = `{ recommend(count: 1, anilistResponse: """${anilistResponse}""") {
   liked { input found anilistId title }
   profile { name kind weight }
-  picks { score sharedGenres review { titleEN season seasonName } }
-  hiddenGem { popularity review { titleEN season } }
+  picks { score sharedGenres show { titleEN season seasonName } }
+  hiddenGem { popularity show { titleEN season } }
 } }`;
 
 test('recommend picks across every season from a pasted AniList response', async () => {
@@ -223,9 +223,9 @@ test('recommend picks across every season from a pasted AniList response', async
   assert.equal(profile.length, 4);
   assert.equal(picks.length, 1);
   // Both match equally, so the pick is the first by title and the other is the gem.
-  assert.equal(picks[0].review.titleEN, 'Fall Action');
-  assert.equal(picks[0].review.seasonName, 'Fall 2026');
-  assert.deepEqual(hiddenGem, { popularity: 10, review: { titleEN: 'Spring Mystery', season: 'spring-2026' } });
+  assert.equal(picks[0].show.titleEN, 'Fall Action');
+  assert.equal(picks[0].show.seasonName, 'Fall 2026');
+  assert.deepEqual(hiddenGem, { popularity: 10, show: { titleEN: 'Spring Mystery', season: 'spring-2026' } });
 });
 
 test('recommend reports an unusable response or count as a GraphQL error', async () => {

@@ -23,7 +23,7 @@ const seasons = [
     shows: [
       makeShow({ titleEN: 'Peak Show', ratingNumber: 5, ratingText: 'Peak', text: 'An excellent episode all around', dateReviewed: '2026-07-01', anilistId: 111, op: [1] }),
       makeShow({ titleEN: 'Meh Show', ratingNumber: 3, ratingText: 'Meh', text: 'Just fine, nothing special here', dateReviewed: '2026-07-05', revisit: { ratingNumber: 5, ratingText: 'Peak', text: 'Turned out great after all' } }),
-      makeShow({ titleEN: 'Trash Show', ratingNumber: 1, ratingText: 'Trash', text: 'Rough episode, animation was bad', dateReviewed: '2026-07-10', ed: [1], finishedSeason: true }),
+      makeShow({ titleEN: 'Trash Show', ratingNumber: 1, ratingText: 'Trash', text: 'Rough episode, animation was bad', dateReviewed: '2026-07-10', ed: [1], watched: { from: '2026-07-01', finished: true } }),
     ],
     toReview: ['Pending Show'],
     notReviewing: [],
@@ -477,7 +477,7 @@ test('computeContinuationWatch counts a past show you finished the season of, wh
     shows: [
       makeShow({ titleEN: 'Guilty Pleasure', ratingNumber: 4, ratingText: 'Yeah', dateReviewed: '2026-07-01',
         revisit: { text: 'x', ratingNumber: 3, ratingText: 'delicious garbage', dateReviewed: '2026-08-05' },
-        finishedSeason: true }),
+        watched: { from: '2026-07-01', finished: true } }),
       makeShow({ titleEN: 'Dropped Show', ratingNumber: 3, ratingText: 'Meh', dateReviewed: '2026-07-02' }),
     ],
   });
@@ -502,7 +502,7 @@ const categorySeasons = [
     id: 'summer-2026', name: 'Summer 2026',
     shows: [
       tagged('Isekai A', 1, { format: 'TV', genres: ['Fantasy'], tags: ['Isekai'], studios: ['GoHands'] }, { streaming: ['crunchyroll'] }),
-      tagged('Isekai B', 0, { format: 'TV', genres: ['Fantasy'], tags: ['Isekai'], studios: ['GoHands'] }, { streaming: ['crunchyroll'], finishedSeason: true }),
+      tagged('Isekai B', 0, { format: 'TV', genres: ['Fantasy'], tags: ['Isekai'], studios: ['GoHands'] }, { streaming: ['crunchyroll'], watched: { from: '2026-07-01', finished: true } }),
       tagged('Romcom A', 5, { format: 'ONA', genres: ['Comedy', 'Romance'], tags: ['School'], studios: ['MAPPA'] }, { op: [1] }),
     ],
     toReview: [], notReviewing: [],

@@ -14,7 +14,7 @@
  * popularity. Everything in this file is pure:
  *   - A taste profile: each genre/tag weighted by the share of liked shows
  *     carrying it.
- *   - Candidates: reviews rated 4+ (by the revisit rating when there is one)
+ *   - Candidates: shows rated 4+ (by their latest review's rating)
  *     with AniList data, minus anything the person already named and its
  *     AniList relations (sequels, prequels, spin-offs).
  *   - Picks: the best matches, chosen one at a time with a penalty for
@@ -162,12 +162,12 @@ function jaccard(a, b) {
 /**
  * Picks and a hidden gem from the reviews, for the given liked shows.
  * @param {object} options
- * @param {any[]} options.reviews - flattened reviews, each with `season`/`seasonName`
+ * @param {any[]} options.shows - flattened shows, each with `season`/`seasonName`
  * @param {any[]} options.likedMedia - AniList media for the liked shows that were found
  * @param {Map<number, number>} [options.popularity] - AniList popularity by id
  * @param {number} [options.count] - how many picks
  */
-export function recommend({ reviews, likedMedia, popularity = new Map(), count = 2 }) {
+export function recommend({ shows, likedMedia, popularity = new Map(), count = 2 }) {
   const profile = buildProfile(likedMedia);
   const weights = new Map(profile.map((p) => [featureKey(p.kind, p.name), p.weight]));
   const profileNorm = Math.sqrt(profile.reduce((sum, p) => sum + p.weight ** 2, 0));
@@ -181,7 +181,7 @@ export function recommend({ reviews, likedMedia, popularity = new Map(), count =
   }
 
   const candidates = [];
-  for (const review of reviews) {
+  for (const review of shows) {
     const rating = effectiveRatingNumber(review);
     if (typeof rating !== 'number' || rating < MIN_PICK_RATING) continue;
     if (!review.anilist || !Number.isInteger(review.anilistId) || known.has(review.anilistId)) continue;
@@ -230,7 +230,7 @@ export function recommend({ reviews, likedMedia, popularity = new Map(), count =
   const describe = (c) => {
     const shared = profile.filter((p) => c.features.has(featureKey(p.kind, p.name)));
     return {
-      review: c.review,
+      show: c.review,
       score: Math.round(c.score * 1000) / 1000,
       popularity: popularity.get(c.review.anilistId) ?? null,
       sharedGenres: shared.filter((p) => p.kind === 'genre').map((p) => p.name),

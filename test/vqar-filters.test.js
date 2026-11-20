@@ -9,8 +9,8 @@ import {
 const ep1Only = makeShow({ titleEN: 'A', ratingNumber: 4, streaming: ['crunchyroll'] });
 const ratedUp = makeShow({ titleEN: 'B', ratingNumber: 3, revisit: { ratingNumber: 5 }, streaming: ['hidive', 'crunchyroll'] });
 const ratedDown = makeShow({ titleEN: 'C', ratingNumber: 4, revisit: { ratingNumber: 2 }, op: [1] });
-const revisitNoRating = makeShow({ titleEN: 'D', ratingNumber: 1, revisit: { text: 'still bad' }, streaming: ['netflix'] });
-const reviews = [ep1Only, ratedUp, ratedDown, revisitNoRating];
+const revisitHeld = makeShow({ titleEN: 'D', ratingNumber: 1, revisit: { ratingNumber: 1, text: 'still bad' }, streaming: ['netflix'] });
+const reviews = [ep1Only, ratedUp, ratedDown, revisitHeld];
 
 /** @param {Partial<Record<'rating'|'on'|'has', string[]>>} selection */
 function filters(selection) {
@@ -28,17 +28,17 @@ test('rating chips are labeled with the tier number and the first word of its de
   assert.equal(ratingChipLabel('0'), '0 Dead');
 });
 
-test('a review is filed under its revisit rating once it has one, like Highest Rating sorts it', () => {
+test('a show is filed under its latest review\'s rating, like Highest Rating sorts it', () => {
   assert.deepEqual(reviewValues('rating', ep1Only), ['4']);
   assert.deepEqual(reviewValues('rating', ratedUp), ['5']);
-  assert.deepEqual(reviewValues('rating', revisitNoRating), ['1']);
+  assert.deepEqual(reviewValues('rating', revisitHeld), ['1']);
 });
 
 test('Extras: a revisit, which way it moved the rating, and OP/ED notes', () => {
   assert.deepEqual(reviewValues('has', ep1Only), ['queue']);
   assert.deepEqual(reviewValues('has', ratedUp), ['revisit', 'up']);
   assert.deepEqual(reviewValues('has', ratedDown), ['revisit', 'down', 'oped']);
-  assert.deepEqual(reviewValues('has', revisitNoRating), ['revisit']);
+  assert.deepEqual(reviewValues('has', revisitHeld), ['revisit']);
 });
 
 test('nothing selected filters nothing', () => {
@@ -76,8 +76,8 @@ test('the query string round-trips, in a fixed order, dropping values that are n
 });
 
 test('Extras: finishing the season is its own chip, independent of having a revisit', () => {
-  assert.deepEqual(reviewValues('has', { titleEN: 'E', ratingNumber: 3, finishedSeason: true }), ['finished']);
-  assert.deepEqual(reviewValues('has', { ...ratedUp, finishedSeason: true }), ['revisit', 'up', 'finished']);
+  assert.deepEqual(reviewValues('has', makeShow({ titleEN: 'E', ratingNumber: 3, watched: { from: '2026-04-01', finished: true } })), ['finished']);
+  assert.deepEqual(reviewValues('has', { ...ratedUp, watched: { from: '2026-04-01', finished: true } }), ['revisit', 'up', 'finished']);
   assert.deepEqual([...chipFiltersFromParams(new URLSearchParams('has=finished')).has], ['finished']);
 });
 
@@ -110,8 +110,10 @@ test('open-ended rows take any value from the URL and serialize alphabetically; 
 });
 
 test('Extras "To revisit": an episode-1 4 with no revisit yet, and nothing else', () => {
-  assert.deepEqual(reviewValues('has', { titleEN: 'H', ratingNumber: 4 }), ['queue']);
-  assert.deepEqual(reviewValues('has', { titleEN: 'P', ratingNumber: 5 }), []);
-  assert.deepEqual(reviewValues('has', { titleEN: 'M', ratingNumber: 3 }), []);
+  assert.deepEqual(reviewValues('has', makeShow({ titleEN: 'H', ratingNumber: 4 })), ['queue']);
+  assert.deepEqual(reviewValues('has', makeShow({ titleEN: 'P', ratingNumber: 5 })), []);
+  assert.deepEqual(reviewValues('has', makeShow({ titleEN: 'M', ratingNumber: 3 })), []);
+  // A backfill rated 4 was reviewed after a stretch of the show, so there's no first impression to follow up.
+  assert.deepEqual(reviewValues('has', makeShow({ titleEN: 'B', reviews: [{ episodes: 12, ratingNumber: 4 }] })), []);
   assert.deepEqual(reviewValues('has', ratedDown), ['revisit', 'down', 'oped']);
 });

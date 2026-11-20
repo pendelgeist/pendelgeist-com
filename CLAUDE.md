@@ -65,7 +65,9 @@ behavior, it moves into a shared module at `public/` root rather than being copi
 | `public/vqar/data-paths.js` | `/vqar`, `/vqar-stats`, `src/schema.js` | the path to the VQAR season index |
 | `public/vqar/list-entries.js` | `/vqar`, `/vqar-stats`, `src/schema.js`, `scripts/` | a `toReview`/`notReviewing` entry is a title string *or* an object with optional notes; read titles through `entryTitle` |
 | `public/vqar/oped.js` | `/vqar`, `/vqar-stats`, `src/schema.js`, `scripts/validateSeason.js` | a liked OP/ED is always a list of the numbers liked (`[1]`, `[1, 2]`), never a bare `true`; read it through `isLikedOpEd`/`opEdNumbers`, never `=== true` |
-| `public/vqar/rating.js` | `/vqar`, `/vqar-stats` | which rating wins once a show has both an ep-1 rating and a re-review, which shows are still waiting on a revisit (`awaitingRevisit`), and each tier's default label |
+| `public/vqar/reviews.js` | `/vqar`, `/vqar-stats`, `src/schema.js` | a show's `reviews` list: each review's derived stage (`reviewStage`), the current one, the first impression, and how the rating moved since (`ratingShift`) |
+| `public/vqar/rating.js` | `/vqar`, `/vqar-stats`, `src/` | the show's rating is its latest review's (`effectiveRatingNumber`), a review's label falls back to its tier's (`ratingText`), which shows are still waiting on a revisit (`awaitingRevisit`) |
+| `public/vqar/aired.js` | `/vqar`, `scripts/validateSeason.js` | when a show first aired: its label, and whether it differs from the lineup it sits in (`airedDiffers`) |
 
 Each has its own test file. Adding a shared module is the right move when a second page
 needs the same behavior — don't copy the function.
@@ -83,30 +85,40 @@ Two fields exist only so that index can be generated rather than hand-maintained
 ordered newest-first by parsing `<season>-<year>` out of the id, with an explicit numeric
 `sortKey` as the escape hatch for an id that doesn't fit.
 
+**Shows and reviews** (README → "Glossary", "Show shape"): each entry in `shows` is a **show**,
+with every review of it in `reviews`, oldest first. A review is `{ episodes?, final?, ratingNumber,
+ratingText?, text, dateReviewed }`. Its **stage** is derived, never stored: `episodes: 1` is the
+first impression, a later one is a revisit, `final: true` is the verdict on the whole run, and a
+first review with no episode-1 basis (a backfill) is just a review. The latest review's rating is
+the show's everywhere. Leave `ratingText` out unless the user wrote a custom label; it falls back
+to the tier's.
+
 **Editing a season**: edit `public/vqar/data/seasons/<id>.json`, run `npm run build-vqar-index`,
-run `npm test`. Adding a review = appending to that season's `shows` array (only `titleEN`,
-`ratingNumber`, `ratingText`, `dateReviewed` are required; `dateReviewed` is a full timestamp with the reviewer's Eastern offset like
+run `npm test`. A first impression = appending a show to that season's `shows`:
+`{ "titleEN": "...", "reviews": [{ "episodes": 1, "ratingNumber": 3, "text": "...", "dateReviewed": "..." }] }`.
+`dateReviewed` is a full timestamp with the reviewer's Eastern offset like
 `2026-10-08T10:30:00-04:00` — stamp it with `TZ=America/New_York date +%Y-%m-%dT%H:%M:%S%:z`, not
 `date -u`: the page shows the date exactly as written, so a UTC stamp puts an evening review on
-tomorrow's date. "Most recent" sorts on it) and removing the title from `toReview`/`notReviewing` if
-it was there.
+tomorrow's date. Remove the title from `toReview`/`notReviewing` if it was there.
 
 **Dates** come in two forms (`public/dates.js`, README → "Dates"): a **day**, `YYYY-MM-DD`
-Eastern, for anything where only the day matters (`watched.from`/`to`, `premieres`,
-`finishedDate`; stamp with `TZ=America/New_York date +%F`), and a **moment**, an Eastern-offset
-timestamp, for when a review was written (`dateReviewed`, including a `fullReview`'s). A backfilled
-review whose time isn't known gets noon Eastern that day (`easternMoment(day)`), never midnight.
+Eastern, for anything where only the day matters (`watched.from`/`to`, `premieres`; stamp with
+`TZ=America/New_York date +%F`), and a **moment**, an Eastern-offset timestamp, for when a review
+was written (every `dateReviewed`). A review whose time isn't known gets noon Eastern that day
+(`easternMoment(day)`), never midnight.
 
-**Re-reviewing a show** (a revisit after watching more of it): add a `fullReview` object to
-that show's existing entry — `review`, `ratingNumber`, `ratingText`, `dateReviewed` (a moment). Don't
-start a new entry. **If the user hasn't given a rating, ask for one before saving.** Offer the
+**Re-reviewing a show** (after watching more of it): append a review to that show's existing
+`reviews` — `ratingNumber`, `text`, `dateReviewed` (a moment), plus `episodes` when the user says
+how far in they are, or `final: true` for their verdict once they've finished it (which needs
+`watched.finished`). Don't start a new entry, even for a second cour in a later season: a show
+stays where it was first reviewed, and the same `anilistId` in two files is rejected. **If the
+user hasn't given a rating, ask for one before saving.** Offer the
 six tiers (5 Peak, Nice Ep Broh / 4 Yeah, Here's Hoping / 3 Meh, Finishing the Ep / 2 Trash, for
 Second Screen Only / 1 Never, Please No More Like This Ever / 0 Dead, El-Hazard 2 Over This). A
-custom `ratingText` is fine, but it still needs the tier's `ratingNumber`. The revisit's
-`ratingNumber` replaces the episode-1 one in "Highest Rating" sorting, the rating filter, and
-every `/vqar-stats` number (`effectiveRatingNumber` in `public/vqar/rating.js`). A revisit
-saved without one would quietly leave the old rating standing, so `scripts/validateSeason.js`
-rejects it.
+custom `ratingText` is fine, but it still needs the tier's `ratingNumber`. The latest review's
+`ratingNumber` is the show's in "Highest Rating" sorting, the rating filter, and every
+`/vqar-stats` number (`effectiveRatingNumber` in `public/vqar/rating.js`), so
+`scripts/validateSeason.js` rejects a review without one.
 
 **Liking an OP/ED**: set `"op"` / `"ed"` on the show's entry. A season can have several, so it
 always names the number(s): `"op": [2]` (OP 2), `"ed": [1, 3]`. If the user doesn't say which,
@@ -117,37 +129,31 @@ use `[1]`. That's the whole marking: no rating, note or date, and validation rej
 the first and last episodes were watched (days, never timestamps; Eastern, from the watch
 history). For a show that wasn't finished add `"episode"`, the last one reached (`6`), plus
 `"season"` for a multi-season run (`"season": 2, "episode": 6`); both are numbers, never text.
-`from` is required, `to` optional.
-It's independent of `dateReviewed` (when the review was written) and of `finishedDate`.
+`from` is required, `to` optional. It's independent of `dateReviewed` (when a review was written).
 
-**AniList tags**: a review's `anilist` object (format/genres/tags/studios) is generated by
+**AniList tags**: a show's `anilist` object (format/genres/tags/studios) is generated by
 `npm run fetch-anilist-tags` from its `anilistId`, and the script overwrites it on every run, so
-never hand-edit it. After adding a review with an `anilistId`, rerun the script. If AniList is
+never hand-edit it. After adding a show with an `anilistId`, rerun the script. If AniList is
 unreachable from here, run the `--print-queries` queries by hand, or ask the user to, and import
-the results with `--from`. A review with no `anilistId` yet gets linked by search instead:
-`--print-search-queries`, then `--link-from=…`. That sets `anilistId`, the tags, and `titleJP` from
-AniList's native title. Never `--accept` a match the script reports as unsure without checking that
+the results with `--from`. The script also fills in a show's `aired` (`{ "season": "spring",
+"year": 2010 }`, or `{ "year": 2026 }`) where it has none, and never overwrites one. A show with no
+`anilistId` yet gets linked by search instead: `--print-search-queries`, then `--link-from=…`.
+That sets `anilistId`, the tags, `aired`, and `titleJP` from AniList's native title. Never `--accept` a match the script reports as unsure without checking that
 it's the same show. README → "AniList tags".
 
-**Finishing a season**: set `"finishedSeason": true` on the show's entry when the user says they
-watched the whole season. It's a bare marking like op/ed, and it's independent of everything else.
+**Finishing a show**: set `"finished": true` in the show's `watched` when the user says they
+watched the whole thing. It's a bare marking like op/ed, and it's independent of everything else.
 Don't infer it from a revisit, which may cover only an episode or two, or from a rating, since a
-season of trash can get finished too. Don't add it unless the user says so.
-Also set `"finishedDate": "YYYY-MM-DD"` (stamp with `TZ=America/New_York date +%F`) for the day they
-finished — a note for their own records, not shown on the page; it's only valid alongside `finishedSeason`.
-
-**Splitting one show across seasons**: when the user wants a single AniList entry (e.g. a
-26-episode run) reviewed as two seasons, give each season its own entry with `"part": 1`,
-`"part": 2`… and `" Part 2"` on the later `titleEN`. Without `part` on every entry, the same
-`anilistId` in two seasons is rejected as an accidental repeat. Each part gets its own rating
-(ask if not given) and its own `finishedSeason`. README → "Splitting one show across seasons".
+season of trash can get finished too. Don't add it unless the user says so. A `final` review
+requires it.
 
 **Lineups and the Backlog**: a season file whose id is `<season>-<year>` is a **lineup**, an
 anime season reviewed live; any other id is a **shelf** (`isLineup` in `public/vqar/seasons.js`
 decides, so there's no flag to keep in step). A review of a show that didn't air in the season it
-was watched in goes on the one shelf, `seasons/backlog.json` (`"sortKey": 0`), with an optional
-free-text `airedLabel` like `"Winter 2004"`. It counts in every total and average but is left out
-of the per-season stats (`_lineup` in `public/vqar-stats/stats.js`), and can't be `current`.
+was watched in goes on the one shelf, `seasons/backlog.json` (`"sortKey": 0`); its `aired` says
+when it aired. It counts in every total and average but is left out of the per-season stats
+(`_lineup` in `public/vqar-stats/stats.js`, which also needs a first impression), and can't be
+`current`.
 README → "Lineups and the Backlog".
 
 **Starting a season**: add `seasons/<season>-<year>.json` with a matching `id`, a `name`,
@@ -170,7 +176,8 @@ Four independent consumers read that index, whose path is exported once from
 - `src/schema.js` — the GraphQL resolvers, read the same files server-side through the
   Worker's `ASSETS` binding (`makeRootValue({ assets, origin })`, wired up in
   `src/worker.js`) rather than over the network, and reshape them to add `season`/`seasonName`
-  per review, mirroring what `app.js` does on the client. Its recommendations are two
+  and the current rating per `Show`, and a `stage` per `Review`, mirroring what `app.js` does on
+  the client. Its recommendations are two
   steps, because AniList blocks requests from Cloudflare Workers, so the site never calls it:
   `anilistQuery` builds a query for the user to run at anilist.co, and `recommend` takes the
   pasted result. The scoring is pure, in `src/recommend.js`. README → "Recommendations".
@@ -207,14 +214,16 @@ VQAR-style season id, and episode counts are optional.
 ### Game reviews
 
 `/games` (Very Quick Game Reviews) is first impressions of games, VQAR-style but deliberately
-small: one committed file, `public/games/data.json`, no generated index, no filters. Shape and
-helpers are in `public/games/schema.js`; `scripts/validateGameReviews.js` checks the file and
-`test/games-data.test.js` runs it in CI. Required per review: `id` (slug, used in the
-shareable `?game=<id>` link), `title`, `review`, `ratingNumber` (VQAR's 0–5 tiers), `ratingText`,
-`dateReviewed` (Eastern-offset timestamp, stamped the same way as VQAR's). Optional: `platform`,
-`hoursPlayed`, `finished: true`. Playing more = append to the game's `updates` array (oldest
-first, each with its own rating; the latest one counts) — don't start a new entry. **If the
-user hasn't given a rating, ask for one before saving.** README → "Very Quick Game Reviews page".
+small: one committed file, `public/games/data.json` (`{ "games": [...] }`), no generated index, no
+filters. Shape and helpers are in `public/games/schema.js`; `scripts/validateGameReviews.js` checks
+the file and `test/games-data.test.js` runs it in CI. A game is shaped like a VQAR show: `id` (slug,
+used in the shareable `?game=<id>` link), `title`, optional `platform`, `reviews` (oldest first),
+and `"played": { "finished": true }` only when the user says they finished it. Each review needs
+`text`, `ratingNumber` (VQAR's 0–5 tiers) and `dateReviewed` (Eastern-offset timestamp, stamped the
+same way as VQAR's); `ratingText` (only for a custom label), `hoursPlayed` and `final: true` (the
+last review, once finished) are optional. Playing more = append to the game's `reviews` (the
+latest one counts) — don't start a new entry. **If the user hasn't given a rating, ask for one
+before saving.** README → "Very Quick Game Reviews page".
 
 ### Other pages
 
@@ -301,8 +310,9 @@ where `fetch` takes a string.
 
 Fixtures for shows, seasons and games come from the builders in `test/fixtures.js`
 (`makeShow`, `makeSeason`, `makeGame`): a test describes the data in its vocabulary (`text`,
-`revisit`, `shows`, `toReview`, `notReviewing`, `premieres`, `watched.from`...) and the builder
-turns that into the data's actual shape. Don't hand-write the data shape in a page, stats or API
+`revisit`, `reviews`, `shows`, `toReview`, `notReviewing`, `premieres`, `watched.from`...) and the
+builder turns that into the data's actual shape. A show's rating fields given straight on
+`makeShow` are its first impression (`episodes: 1`); pass `reviews` to write the list exactly. Don't hand-write the data shape in a page, stats or API
 test — when the shape changes, only the builders should have to. A builder never adds a field
 the test didn't give, and `test/fixtures.test.js` checks that what they build passes the real
 validators. Validator tests, which are about the shape itself, are the exception.

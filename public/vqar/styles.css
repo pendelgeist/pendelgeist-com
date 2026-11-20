@@ -424,10 +424,9 @@ article:hover {
   color: var(--color-muted);
 }
 
-/* A little badge for the "made it to ep X" revisit tracker - deliberately
- * playful (pill shape, accent-colored) rather than matching the plain-text
- * rating/date fields either side of it, since it's just a fun personal note,
- * not part of the review itself. */
+/* How far in a review was written ("12 eps in") - a pill, accent-colored,
+ * rather than matching the plain-text rating/date fields either side of it,
+ * the same badge /games uses for hours played. */
 .entry-progress {
   padding: 0.1rem 0.5rem;
   font-size: 0.72rem;
@@ -502,7 +501,7 @@ article:hover {
   content: '\2713  ';
 }
 
-/* Follow-up notes: full-series re-reviews */
+/* A show's later reviews: revisits and the final verdict */
 
 .entry-addendum {
   margin-top: 0.75rem;

@@ -12,6 +12,7 @@
  */
 
 import { effectiveRatingNumber, awaitingRevisit, RATING_NUMBER_LABELS } from './rating.js';
+import { firstImpression, laterReviews } from './reviews.js';
 import { STREAMING_SERVICES } from '../streaming.js';
 import { isLikedOpEd } from './oped.js';
 
@@ -78,7 +79,7 @@ export function ratingChipLabel(value) {
  * effectiveRatingNumber, so a revisit's rating wins - the same number
  * "Highest Rating" sorts on.
  * @param {ChipDimension} dimension
- * @param {import('./app.js').Review} review
+ * @param {import('./app.js').Show} review
  * @returns {string[]}
  */
 export function reviewValues(dimension, review) {
@@ -95,22 +96,27 @@ export function reviewValues(dimension, review) {
   if (dimension === 'studio') return review.anilist?.studios ?? [];
   const values = [];
   if (awaitingRevisit(review)) values.push('queue');
-  if (review.fullReview) values.push('revisit');
-  const before = review.ratingNumber;
-  const after = review.fullReview?.ratingNumber;
-  if (typeof before === 'number' && typeof after === 'number') {
-    if (after > before) values.push('up');
-    if (after < before) values.push('down');
+  // Revisited: a first impression with something written after it. The
+  // rating moved if the latest review's differs from the first impression's.
+  const first = firstImpression(review);
+  if (first && laterReviews(review).length > 0) {
+    values.push('revisit');
+    const before = first.ratingNumber;
+    const after = effectiveRatingNumber(review);
+    if (typeof before === 'number' && typeof after === 'number') {
+      if (after > before) values.push('up');
+      if (after < before) values.push('down');
+    }
   }
   if (isLikedOpEd(review.op) || isLikedOpEd(review.ed)) values.push('oped');
-  if (review.finishedSeason === true) values.push('finished');
+  if (review.watched?.finished === true) values.push('finished');
   return values;
 }
 
 /**
  * Whether a review passes every row's selection, optionally ignoring one row -
  * which is how a row's own chip counts are taken (see chipCounts).
- * @param {import('./app.js').Review} review
+ * @param {import('./app.js').Show} review
  * @param {ChipFilters} filters
  * @param {ChipDimension} [except]
  */
@@ -127,7 +133,7 @@ export function matchesChipFilters(review, filters, except) {
  * *other* row's selection but not this row's own, so the numbers on a row
  * stay put as chips in it are toggled, and each one says what adding it
  * would bring in.
- * @param {import('./app.js').Review[]} reviews
+ * @param {import('./app.js').Show[]} reviews
  * @param {ChipFilters} filters
  * @param {ChipDimension} dimension
  * @returns {Map<string, number>}

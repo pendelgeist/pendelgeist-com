@@ -13,16 +13,34 @@ import { STREAMING_URL_FIELDS } from '../public/streaming.js';
 import { entryTitle, normalizeEntry } from '../public/vqar/list-entries.js';
 import { isLikedOpEd, opEdNumbers } from '../public/vqar/oped.js';
 import { isLineup } from '../public/vqar/seasons.js';
+import { reviewStage, reviewsOf } from '../public/vqar/reviews.js';
+import { effectiveRatingNumber, currentRatingText, ratingText } from '../public/vqar/rating.js';
 import { recommend, buildAniListQuery, parseAniListResponse, candidateIds, MAX_LIKED, MAX_PICKS } from './recommend.js';
 
 export const typeDefs = `#graphql
-"""A revisit attached to a review, after watching more of the show. Its rating
-replaces the episode-1 one."""
-type SubReview {
+"""One review of a show. Its stage is derived from what it was based on."""
+type Review {
+  """first (a first impression, written after episode 1), revisit (a later review),
+  final (the verdict on the whole run, once it's finished), or review (a first
+  review with no episode-1 basis, like one written after watching a stretch of it)."""
+  stage: String!
+  "How many episodes it was based on. Null when not recorded."
+  episodes: Int
+  "True for the verdict on the whole run; it's always the last review."
+  final: Boolean
   ratingNumber: Float
+  "The rating label: the review's own text, or its tier's default when it didn't write one."
   ratingText: String
-  review: String
+  text: String
+  "When it was written, a timestamp in the reviewer's Eastern offset."
   dateReviewed: String
+}
+
+"""When a show first aired, from AniList."""
+type Aired {
+  "winter, spring, summer or fall. Null when AniList has only a year."
+  season: String
+  year: Int!
 }
 
 """A show's AniList metadata, generated from its anilistId by scripts/fetch-anilist-tags.js."""
@@ -36,17 +54,18 @@ type AniListInfo {
   studios: [String!]!
 }
 
-"""A single-episode review of a show, plus optional follow-up notes."""
-type Review {
+"""A show, with every review written about it."""
+type Show {
   titleEN: String!
   titleJP: String
-  "Optional free text for when an older show first aired, e.g. \\"Winter 2004\\"."
-  airedLabel: String
+  "When it first aired, from AniList. Null when AniList has no date for it."
+  aired: Aired
+  "Every review of it, oldest first; the latest is the current verdict."
+  reviews: [Review!]!
+  "The current rating: the latest review's."
   ratingNumber: Float
+  "The current rating's label: the latest review's own text, or its tier's default."
   ratingText: String
-  review: String
-  dateReviewed: String
-  fullReview: SubReview
   "True when an opening was marked as one worth remembering."
   op: Boolean
   "The numbers of the openings marked as worth remembering (a season can have several); null when none were numbered."
@@ -55,19 +74,13 @@ type Review {
   ed: Boolean
   "The numbers of the endings marked as worth remembering; null when none were numbered."
   edNumbers: [Int!]
-  "True when the whole season was watched - independent of any re-review or rating."
-  finishedSeason: Boolean
-  "The date the season was finished, like 2026-10-26. Only present alongside finishedSeason."
-  finishedDate: String
-  "Which part this is, for one show deliberately split into a review per season (e.g. 1 and 2). Null for an ordinary review."
-  part: Int
-  "The id of the season this review belongs to."
+  "The id of the season file the show is listed in."
   season: ID!
-  "The display name of the season this review belongs to."
+  "The display name of that season."
   seasonName: String!
   "Optional AniList media id, for linking out to the show's AniList page."
   anilistId: Int
-  "Format, genres, tags and studios from AniList; null when the review has no anilistId."
+  "Format, genres, tags and studios from AniList; null when the show has no anilistId."
   anilist: AniListInfo
   "Optional Anime News Network encyclopedia id, for linking out to the show's ANN page."
   annId: Int
@@ -89,9 +102,7 @@ type Review {
   primeUrl: String
   "Optional direct link to the show's YouTube channel or playlist; makes the YT streaming badge clickable."
   youtubeUrl: String
-  "Optional, free-text note on how far a revisit actually got (e.g. Ep 3)."
-  watchProgress: String
-  "When the show was watched: the first episode, the last, and the last episode reached. Null when not recorded."
+  "When the show was watched: the first episode, the last, the last episode reached, and whether it got finished. Null when not recorded."
   watched: Watched
 }
 
@@ -105,6 +116,8 @@ type Watched {
   season: Int
   "The last episode reached, for a show that wasn't finished (12.5 for a special). Null when not recorded."
   episode: Float
+  "True when the whole thing was watched - independent of any review or rating."
+  finished: Boolean
 }
 
 """A show in a lineup still waiting to be reviewed, with whatever pre-season notes were committed for it."""
@@ -157,7 +170,7 @@ type Season {
   name: String!
   "True for a lineup - a season reviewed live, with an id like spring-2026. False for a shelf like the Backlog, which per-season trends leave out."
   lineup: Boolean!
-  shows: [Review!]!
+  shows: [Show!]!
   "Titles still to be reviewed; see toReviewShows for streaming and premiere info."
   toReview: [String!]!
   "Titles that won't be reviewed; see notReviewingShows for the reason and streaming info."
@@ -194,10 +207,10 @@ type LikedShow {
   title: String
 }
 
-"""One recommended review, and why it was picked."""
+"""One recommended show, and why it was picked."""
 type Recommendation {
-  review: Review!
-  "How close the review is to the taste profile, scaled by its rating, 0 to 1."
+  show: Show!
+  "How close the show is to the taste profile, scaled by its current rating, 0 to 1."
   score: Float!
   "The show's AniList popularity (members with it on their list), when AniList returned one."
   popularity: Int
@@ -212,7 +225,7 @@ type Recommendations {
   liked: [LikedShow!]!
   "The genres and tags the liked shows have in common, strongest first."
   profile: [TasteFeature!]!
-  "The closest 4+ reviews, chosen so they don't all overlap each other."
+  "The closest shows rated 4+, chosen so they don't all overlap each other."
   picks: [Recommendation!]!
   "The least popular remaining 5 (or 4, if no 5 is left) that still shares something with the profile."
   hiddenGem: Recommendation
@@ -231,7 +244,7 @@ type Query {
   pass what AniList answers to recommend. (AniList blocks requests from this
   server, so the API can't run it itself.)"""
   anilistQuery(titles: [String!], anilistIds: [Int!]): String!
-  """Recommendations, step 2: picks from these reviews, from the JSON AniList
+  """Recommendations, step 2: picks from the reviewed shows, from the JSON AniList
   answered anilistQuery's query with (paste it between triple quotes, as a block string).
   count close matches that differ from each other, plus one hidden gem. Shows they
   named, and their sequels and prequels, are never recommended back."""
@@ -245,19 +258,25 @@ function urlFields(entry) {
 }
 
 /**
- * A season file's review as the API serves it: `op`/`ed` are Booleans (liked or
- * not), with the numbered ones in `opNumbers`/`edNumbers`.
+ * A season file's show as the API serves it: each review with its derived
+ * stage and its rating label filled in, the current rating on the show itself,
+ * and `op`/`ed` as Booleans (liked or not), with the numbered ones in
+ * `opNumbers`/`edNumbers`.
  * @param {any} r
  * @param {string} season
  * @param {string} seasonName
  */
-function toReview(r, season, seasonName) {
+function toShow(r, season, seasonName) {
   const opNumbers = opEdNumbers(r.op);
   const edNumbers = opEdNumbers(r.ed);
+  const reviews = reviewsOf(r);
   return {
     ...r,
     season,
     seasonName,
+    reviews: reviews.map((review, i) => ({ ...review, stage: reviewStage(reviews, i), ratingText: ratingText(review) })),
+    ratingNumber: effectiveRatingNumber(r) ?? null,
+    ratingText: currentRatingText(r) || null,
     op: isLikedOpEd(r.op) ? true : undefined,
     ed: isLikedOpEd(r.ed) ? true : undefined,
     opNumbers: opNumbers.length ? opNumbers : null,
@@ -320,8 +339,8 @@ export function makeRootValue({ assets, origin }) {
 
   const loadIndex = () => loadJson(VQAR_INDEX_PATH, 'the season index');
 
-  /** Every review in every season, since a recommendation can come from any of them. */
-  async function loadAllReviews() {
+  /** Every show in every season, since a recommendation can come from any of them. */
+  async function loadAllShows() {
     const index = await loadIndex();
     return (await Promise.all(index.seasons.map(loadSeason))).flatMap((s) => s.shows);
   }
@@ -335,7 +354,7 @@ export function makeRootValue({ assets, origin }) {
       id,
       name,
       lineup: isLineup(id),
-      shows: (data.shows ?? []).map((r) => toReview(r, id, name)),
+      shows: (data.shows ?? []).map((r) => toShow(r, id, name)),
       toReview: (data.toReview ?? []).map(entryTitle),
       notReviewing: (data.notReviewing ?? []).map(entryTitle),
       toReviewShows: (data.toReview ?? []).map(toToReviewShow),
@@ -363,12 +382,12 @@ export function makeRootValue({ assets, origin }) {
       const ids = [...new Set(anilistIds ?? [])];
       if (cleanTitles.length + ids.length === 0) throw new Error('anilistQuery needs at least one title or anilistId');
       if (cleanTitles.length + ids.length > MAX_LIKED) throw new Error(`anilistQuery takes at most ${MAX_LIKED} liked shows`);
-      return buildAniListQuery({ titles: cleanTitles, ids, candidateIds: candidateIds(await loadAllReviews()) });
+      return buildAniListQuery({ titles: cleanTitles, ids, candidateIds: candidateIds(await loadAllShows()) });
     },
     async recommend({ anilistResponse, count }) {
       if (count < 0 || count > MAX_PICKS) throw new Error(`count has to be between 0 and ${MAX_PICKS}`);
       const { liked, popularity } = parseAniListResponse(anilistResponse);
-      const reviews = await loadAllReviews();
+      const shows = await loadAllShows();
       return {
         liked: liked.map(({ input, media }) => ({
           input,
@@ -376,7 +395,7 @@ export function makeRootValue({ assets, origin }) {
           anilistId: media?.id ?? null,
           title: media ? media.title?.english ?? media.title?.romaji ?? null : null,
         })),
-        ...recommend({ reviews, likedMedia: liked.map((l) => l.media).filter(Boolean), popularity, count }),
+        ...recommend({ shows, likedMedia: liked.map((l) => l.media).filter(Boolean), popularity, count }),
       };
     },
   };

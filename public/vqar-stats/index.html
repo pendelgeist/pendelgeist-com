@@ -51,7 +51,7 @@
         cross-checked against shows you loved in earlier seasons. Pick a past season in the filter and the
         spotlight switches to that season instead. Below that, numbers at a glance, then a handful of curated
         angles on the data (rating distribution, ratings over time, best/worst rated, how "Finish Ep" shows held
-        up on a full re-review, OP/ED favorites) &mdash; the Season filter scopes those sections to one season
+        up on a revisit, OP/ED favorites) &mdash; the Season filter scopes those sections to one season
         instead of the full history. Looking for a specific review? Head back to <a href="/vqar">VQAR</a> for
         that season, or query the data directly via <a href="/graphql">GraphQL</a>.</p>
       <h3>Linking to a season</h3>
@@ -91,7 +91,7 @@
       <div class="vs-two-col">
         <div>
           <h3>Revisit Candidates</h3>
-          <p class="vs-prose">4/5s ("Yeah") that haven't gotten a full-series re-review yet &mdash; the ones you liked enough to go back to.</p>
+          <p class="vs-prose">4/5s ("Yeah") that haven't been reviewed again yet &mdash; the ones you liked enough to go back to.</p>
           <div id="revisitList"><div class="loading">LOADING&hellip;</div></div>
           <p class="vs-note"><a id="revisitLink" href="/vqar?has=queue" hidden>See them on VQAR</a></p>
         </div>
@@ -122,7 +122,7 @@
     <section class="section" id="tasteProfileSection">
       <h2>Taste Profile</h2>
       <p class="vs-prose">How you rate, broken down by AniList genre, studio, tag and format, and by
-        streaming service. A revisit's rating counts once a show has one, and anything with fewer than
+        streaming service. A show's latest review sets its rating, and anything with fewer than
         3 shows is left out. Click a name to see those shows on VQAR.</p>
       <div class="vs-switch" role="group" aria-label="Break your ratings down by" id="tasteSwitch"></div>
       <div id="tasteTable"></div>
@@ -157,7 +157,7 @@
 
     <section class="section" id="secondImpressionsSection">
       <h2>Second Impressions</h2>
-      <p class="vs-prose">How the episode-1 verdict compares to the eventual full-series re-review.</p>
+      <p class="vs-prose">How the episode-1 verdict compares to the latest review after it.</p>
       <div id="secondImpressionsStats" class="stat-grid"></div>
       <div id="secondImpressionsTable"></div>
     </section>
