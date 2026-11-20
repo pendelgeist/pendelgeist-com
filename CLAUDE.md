@@ -288,6 +288,14 @@ other pages build their own loader the same way in their own test file.
 `test/graphql.test.js`/`test/worker.test.js` — same route table, and the binding takes a URL
 where `fetch` takes a string.
 
+Fixtures for shows, seasons and games come from the builders in `test/fixtures.js`
+(`makeShow`, `makeSeason`, `makeGame`): a test describes the data in its vocabulary (`text`,
+`revisit`, `shows`, `toReview`, `notReviewing`, `premieres`, `watched.from`...) and the builder
+turns that into the data's actual shape. Don't hand-write the data shape in a page, stats or API
+test — when the shape changes, only the builders should have to. A builder never adds a field
+the test didn't give, and `test/fixtures.test.js` checks that what they build passes the real
+validators. Validator tests, which are about the shape itself, are the exception.
+
 Committed data (`public/vqar/data/`, `public/fsar/data/`, `public/nasubi/data/`) is validated
 by its own test rather than a manually-run script, since CI can check it. No separate test
 build — the same ES modules that ship to the browser are imported directly into the test

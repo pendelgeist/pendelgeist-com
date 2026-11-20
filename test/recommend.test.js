@@ -6,6 +6,7 @@ import { JSDOM } from 'jsdom';
 import { buildAniListQuery, parseAniListResponse, buildProfile, recommend, candidateIds } from '../src/recommend.js';
 import { typeDefs, makeRootValue } from '../src/schema.js';
 import { createPathFetchStub, waitFor } from './helpers.js';
+import { makeSeason, makeShow } from './fixtures.js';
 
 /** An AniList media as the liked searches return it. */
 function media(id, genres, tags = [], { relations = [], title = `Show ${id}` } = {}) {
@@ -20,7 +21,7 @@ function media(id, genres, tags = [], { relations = [], title = `Show ${id}` } =
 
 /** A review with a generated `anilist` object. */
 function review(titleEN, anilistId, ratingNumber, genres, tags = [], extra = {}) {
-  return { titleEN, anilistId, ratingNumber, ratingText: 'x', dateReviewed: '2026-07-01T08:00:00-04:00', anilist: { genres, tags, studios: [] }, season: 'summer-2026', seasonName: 'Summer 2026', ...extra };
+  return makeShow({ titleEN, anilistId, ratingNumber, ratingText: 'x', dateReviewed: '2026-07-01T08:00:00-04:00', anilist: { genres, tags, studios: [] }, season: 'summer-2026', seasonName: 'Summer 2026', ...extra });
 }
 
 const liked = [
@@ -49,7 +50,7 @@ test('picks are 4+ matches, best first, and never the liked shows or their relat
     review('Its Sequel', 99, 5, ['Action', 'Supernatural'], ['Shounen']),
     review('Close Match', 10, 5, ['Action', 'Supernatural'], ['Shounen']),
     review('Rated Three', 11, 3, ['Action', 'Supernatural'], ['Shounen']),
-    review('Revisited Up', 12, 3, ['Mystery', 'Thriller'], ['Detective'], { fullReview: { ratingNumber: 4 } }),
+    review('Revisited Up', 12, 3, ['Mystery', 'Thriller'], ['Detective'], { revisit: { ratingNumber: 4 } }),
     review('No Overlap', 13, 5, ['Sports'], ['Baseball']),
   ];
   const likedWithSequel = [{ ...liked[0], relations: { nodes: [{ id: 99 }] } }, liked[1], liked[2]];
@@ -114,7 +115,7 @@ test('candidateIds is every 4+ review with AniList data, once each', () => {
     review('A', 10, 5, ['Action']),
     review('A Part 2', 10, 4, ['Action']),
     review('Low', 11, 2, ['Action']),
-    { titleEN: 'No Tags', anilistId: 12, ratingNumber: 5 },
+    makeShow({ titleEN: 'No Tags', anilistId: 12, ratingNumber: 5 }),
   ];
   assert.deepEqual(candidateIds(reviews), [10]);
 });
@@ -166,8 +167,8 @@ const seasonIndex = {
 };
 const routes = {
   '/vqar/data/index.json': seasonIndex,
-  '/vqar/data/seasons/fall-2026.json': { id: 'fall-2026', name: 'Fall 2026', reviewed: [review('Fall Action', 10, 5, ['Action'], ['Shounen'])], pending: [], skipped: [] },
-  '/vqar/data/seasons/spring-2026.json': { id: 'spring-2026', name: 'Spring 2026', reviewed: [review('Spring Mystery', 11, 5, ['Mystery'], ['Detective'])], pending: [], skipped: [] },
+  '/vqar/data/seasons/fall-2026.json': makeSeason({ id: 'fall-2026', name: 'Fall 2026', shows: [review('Fall Action', 10, 5, ['Action'], ['Shounen'])], toReview: [], notReviewing: [] }),
+  '/vqar/data/seasons/spring-2026.json': makeSeason({ id: 'spring-2026', name: 'Spring 2026', shows: [review('Spring Mystery', 11, 5, ['Mystery'], ['Detective'])], toReview: [], notReviewing: [] }),
 };
 
 async function run(query) {

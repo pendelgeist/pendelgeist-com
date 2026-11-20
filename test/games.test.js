@@ -5,6 +5,7 @@ import path from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { JSDOM } from 'jsdom';
 import { createPathFetchStub } from './helpers.js';
+import { makeGame } from './fixtures.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const INDEX_HTML_PATH = path.join(__dirname, '../public/games/index.html');
@@ -12,28 +13,24 @@ const APP_JS_PATH = path.join(__dirname, '../public/games/app.js');
 
 const sampleData = {
   reviews: [
-    {
+    makeGame({
       id: 'older-game',
       title: 'Older Game',
       platform: 'PC',
-      review: 'First paragraph.\n\nSecond <b>paragraph</b>.',
-      ratingNumber: 3,
-      ratingText: 'Meh, Might Load the Save Again',
-      dateReviewed: '2026-09-01T21:30:00-04:00',
-      hoursPlayed: 2,
-      updates: [
-        { review: 'It got better.', ratingNumber: 5, ratingText: 'Peak, Nice Game Broh', dateReviewed: '2026-10-20T22:00:00-04:00', hoursPlayed: 30 },
+      reviews: [
+        { text: 'First paragraph.\n\nSecond <b>paragraph</b>.', ratingNumber: 3, ratingText: 'Meh, Might Load the Save Again', dateReviewed: '2026-09-01T21:30:00-04:00', hoursPlayed: 2 },
+        { text: 'It got better.', ratingNumber: 5, ratingText: 'Peak, Nice Game Broh', dateReviewed: '2026-10-20T22:00:00-04:00', hoursPlayed: 30 },
       ],
-      finished: true,
-    },
-    {
+      played: { finished: true },
+    }),
+    makeGame({
       id: 'newer-game',
       title: 'Newer Game',
-      review: 'Just started.',
+      text: 'Just started.',
       ratingNumber: 4,
       ratingText: "Yeah, Here's Hoping",
       dateReviewed: '2026-10-10T23:45:00-04:00',
-    },
+    }),
   ],
 };
 

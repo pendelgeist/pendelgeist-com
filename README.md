@@ -1012,7 +1012,9 @@ npm run deploy  # wrangler deploy
 
 Tests (`test/`) run against the real `app.js` and `index.html` with a mocked
 `fetch`/`localStorage` via jsdom — see `test/helpers.js` for the page loaders (`loadApp`,
-`loadFsarApp`) and stubs (`createPathFetchStub`, `createLocalStorageStub`). The shared
+`loadFsarApp`) and stubs (`createPathFetchStub`, `createLocalStorageStub`), and
+`test/fixtures.js` for the fixture builders (`makeShow`, `makeSeason`, `makeGame`), which keep
+test data in step with the data's shape so a shape change lands in one place. The shared
 modules under `public/` get plain unit tests of their own, since they need nothing but a
 jsdom `document`. The GraphQL schema/resolvers
 (`test/graphql.test.js`) and the Worker's routing (`test/worker.test.js`) are tested the

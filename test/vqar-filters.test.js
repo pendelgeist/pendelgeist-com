@@ -1,14 +1,15 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
+import { makeShow } from './fixtures.js';
 import {
   emptyChipFilters, ratingChipLabel, reviewValues, matchesChipFilters, chipCounts,
   activeChipCount, chipFiltersFromParams, writeChipFiltersToParams,
 } from '../public/vqar/filters.js';
 
-const ep1Only = { titleEN: 'A', ratingNumber: 4, streaming: ['crunchyroll'] };
-const ratedUp = { titleEN: 'B', ratingNumber: 3, fullReview: { ratingNumber: 5 }, streaming: ['hidive', 'crunchyroll'] };
-const ratedDown = { titleEN: 'C', ratingNumber: 4, fullReview: { ratingNumber: 2 }, op: [1] };
-const revisitNoRating = { titleEN: 'D', ratingNumber: 1, fullReview: { review: 'still bad' }, streaming: ['netflix'] };
+const ep1Only = makeShow({ titleEN: 'A', ratingNumber: 4, streaming: ['crunchyroll'] });
+const ratedUp = makeShow({ titleEN: 'B', ratingNumber: 3, revisit: { ratingNumber: 5 }, streaming: ['hidive', 'crunchyroll'] });
+const ratedDown = makeShow({ titleEN: 'C', ratingNumber: 4, revisit: { ratingNumber: 2 }, op: [1] });
+const revisitNoRating = makeShow({ titleEN: 'D', ratingNumber: 1, revisit: { text: 'still bad' }, streaming: ['netflix'] });
 const reviews = [ep1Only, ratedUp, ratedDown, revisitNoRating];
 
 /** @param {Partial<Record<'rating'|'on'|'has', string[]>>} selection */
@@ -80,11 +81,11 @@ test('Extras: finishing the season is its own chip, independent of having a revi
   assert.deepEqual([...chipFiltersFromParams(new URLSearchParams('has=finished')).has], ['finished']);
 });
 
-const tagged = {
+const tagged = makeShow({
   titleEN: 'T', ratingNumber: 1,
   anilist: { format: 'TV', genres: ['Action', 'Fantasy'], tags: ['Isekai', 'Male Protagonist'], studios: ['GoHands'] },
-};
-const untagged = { titleEN: 'U', ratingNumber: 1 };
+});
+const untagged = makeShow({ titleEN: 'U', ratingNumber: 1 });
 
 test('Format, Genre, Tag and Studio come from the generated anilist object', () => {
   assert.deepEqual(reviewValues('format', tagged), ['TV']);

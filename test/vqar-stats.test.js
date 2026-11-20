@@ -11,32 +11,33 @@ import {
   computeRevisitCandidates, computeContinuationWatch, computeSeasonCoverage, computeHopeCheck,
 } from '../public/vqar-stats/stats.js';
 import { createPathFetchStub } from './helpers.js';
+import { makeSeason, makeShow } from './fixtures.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 // --- stats.js: pure computation ---
 
 const seasons = [
-  {
+  makeSeason({
     id: 'summer-2026', name: 'Summer 2026',
-    reviewed: [
-      { titleEN: 'Peak Show', ratingNumber: 5, ratingText: 'Peak', review: 'An excellent episode all around', dateReviewed: '2026-07-01', anilistId: 111, op: [1] },
-      { titleEN: 'Meh Show', ratingNumber: 3, ratingText: 'Meh', review: 'Just fine, nothing special here', dateReviewed: '2026-07-05', fullReview: { ratingNumber: 5, ratingText: 'Peak', review: 'Turned out great after all' } },
-      { titleEN: 'Trash Show', ratingNumber: 1, ratingText: 'Trash', review: 'Rough episode, animation was bad', dateReviewed: '2026-07-10', ed: [1], finishedSeason: true },
+    shows: [
+      makeShow({ titleEN: 'Peak Show', ratingNumber: 5, ratingText: 'Peak', text: 'An excellent episode all around', dateReviewed: '2026-07-01', anilistId: 111, op: [1] }),
+      makeShow({ titleEN: 'Meh Show', ratingNumber: 3, ratingText: 'Meh', text: 'Just fine, nothing special here', dateReviewed: '2026-07-05', revisit: { ratingNumber: 5, ratingText: 'Peak', text: 'Turned out great after all' } }),
+      makeShow({ titleEN: 'Trash Show', ratingNumber: 1, ratingText: 'Trash', text: 'Rough episode, animation was bad', dateReviewed: '2026-07-10', ed: [1], finishedSeason: true }),
     ],
-    pending: ['Pending Show'],
-    skipped: [],
-  },
-  {
+    toReview: ['Pending Show'],
+    notReviewing: [],
+  }),
+  makeSeason({
     id: 'spring-2026', name: 'Spring 2026',
-    reviewed: [
-      { titleEN: 'Fine Show', ratingNumber: 3, ratingText: 'Meh', review: 'Perfectly fine, nothing special', dateReviewed: '2026-04-01' },
-      { titleEN: 'Great Show', ratingNumber: 4, ratingText: 'Yeah', review: 'Great animation and great story', dateReviewed: '2026-04-15', fullReview: { ratingNumber: 2, ratingText: 'Trash', review: 'It fell apart badly' } },
-      { titleEN: 'No Rating Show', ratingText: 'Custom Rating', review: 'Unrated but noted', dateReviewed: '2026-04-20' },
+    shows: [
+      makeShow({ titleEN: 'Fine Show', ratingNumber: 3, ratingText: 'Meh', text: 'Perfectly fine, nothing special', dateReviewed: '2026-04-01' }),
+      makeShow({ titleEN: 'Great Show', ratingNumber: 4, ratingText: 'Yeah', text: 'Great animation and great story', dateReviewed: '2026-04-15', revisit: { ratingNumber: 2, ratingText: 'Trash', text: 'It fell apart badly' } }),
+      makeShow({ titleEN: 'No Rating Show', ratingText: 'Custom Rating', text: 'Unrated but noted', dateReviewed: '2026-04-20' }),
     ],
-    pending: [],
-    skipped: ['Skipped Show'],
-  },
+    toReview: [],
+    notReviewing: ['Skipped Show'],
+  }),
 ];
 
 const reviews = flattenReviews(seasons);
@@ -108,7 +109,7 @@ test('computeSecondImpressions compares episode-1 rating to full-series re-revie
 });
 
 test('computeSecondImpressions is empty when nothing has a full re-review', () => {
-  const s = computeSecondImpressions(flattenReviews([{ id: 'x', name: 'X', reviewed: [{ titleEN: 'A', ratingNumber: 3, ratingText: 'Meh', dateReviewed: '2026-01-01' }] }]));
+  const s = computeSecondImpressions(flattenReviews([makeSeason({ id: 'x', name: 'X', shows: [makeShow({ titleEN: 'A', ratingNumber: 3, ratingText: 'Meh', dateReviewed: '2026-01-01' })] })]));
   assert.equal(s.total, 0);
   assert.equal(s.avgDelta, null);
   assert.deepEqual(s.swings, []);
@@ -123,16 +124,16 @@ test('computeOpEdHighlights lists the liked OPs and EDs, with their season', () 
 });
 
 test('numbered OP/ED likings count like bare ones, and say which OP/ED they were', () => {
-  const numbered = flattenReviews([{
+  const numbered = flattenReviews([makeSeason({
     id: 'summer-2026', name: 'Summer 2026',
-    reviewed: [
-      { titleEN: 'Two OPs', ratingText: 'Meh', review: '', dateReviewed: '2026-07-01', op: [1, 2] },
-      { titleEN: 'Third ED', ratingText: 'Meh', review: '', dateReviewed: '2026-07-02', ed: [3] },
-      { titleEN: 'One Each', ratingText: 'Meh', review: '', dateReviewed: '2026-07-03', op: [1], ed: [1] },
-      { titleEN: 'Neither', ratingText: 'Meh', review: '', dateReviewed: '2026-07-04' },
+    shows: [
+      makeShow({ titleEN: 'Two OPs', ratingText: 'Meh', text: '', dateReviewed: '2026-07-01', op: [1, 2] }),
+      makeShow({ titleEN: 'Third ED', ratingText: 'Meh', text: '', dateReviewed: '2026-07-02', ed: [3] }),
+      makeShow({ titleEN: 'One Each', ratingText: 'Meh', text: '', dateReviewed: '2026-07-03', op: [1], ed: [1] }),
+      makeShow({ titleEN: 'Neither', ratingText: 'Meh', text: '', dateReviewed: '2026-07-04' }),
     ],
-    pending: [], skipped: [],
-  }]);
+    toReview: [], notReviewing: [],
+  })]);
   const s = computeOpEdHighlights(numbered);
   assert.deepEqual(s.likedOps.map(r => [r.titleEN, r.which]), [['One Each', 'OP 1'], ['Two OPs', 'OP 1, 2']]);
   assert.deepEqual(s.likedEds.map(r => [r.titleEN, r.which]), [['One Each', 'ED 1'], ['Third ED', 'ED 3']]);
@@ -141,30 +142,30 @@ test('numbered OP/ED likings count like bare ones, and say which OP/ED they were
 });
 
 test('computeOpEdHighlights lists every liked OP by title, with no top-N cap', () => {
-  const liked = flattenReviews([{
+  const liked = flattenReviews([makeSeason({
     id: 'summer-2026', name: 'Summer 2026',
-    reviewed: ['F', 'B', 'D', 'A', 'E', 'C', 'G'].map(t => ({ titleEN: `Show ${t}`, ratingText: 'Meh', review: '', dateReviewed: '2026-07-01', op: [1] })),
-    pending: [], skipped: [],
-  }]);
+    shows: ['F', 'B', 'D', 'A', 'E', 'C', 'G'].map(t => makeShow({ titleEN: `Show ${t}`, ratingText: 'Meh', text: '', dateReviewed: '2026-07-01', op: [1] })),
+    toReview: [], notReviewing: [],
+  })]);
   const s = computeOpEdHighlights(liked);
   assert.deepEqual(s.likedOps.map(r => r.titleEN), ['A', 'B', 'C', 'D', 'E', 'F', 'G'].map(t => `Show ${t}`));
 });
 
 test('computeRevisitCandidates finds current-season 4/5s without a fullReview, excluding 5/5s and already-revisited ones', () => {
   const currentSeasonReviews = flattenReviews([
-    {
+    makeSeason({
       id: 'current-season', name: 'Current Season',
-      reviewed: [
-        { titleEN: 'Worth Revisiting', ratingNumber: 4, ratingText: 'Yeah', dateReviewed: '2026-07-01' },
-        { titleEN: 'Already Revisited', ratingNumber: 4, ratingText: 'Yeah', dateReviewed: '2026-07-02', fullReview: { ratingNumber: 5, ratingText: 'Peak', dateReviewed: '2026-08-01' } },
-        { titleEN: 'Already Peak', ratingNumber: 5, ratingText: 'Peak', dateReviewed: '2026-07-03' },
-        { titleEN: 'Just Meh', ratingNumber: 3, ratingText: 'Meh', dateReviewed: '2026-07-04' },
+      shows: [
+        makeShow({ titleEN: 'Worth Revisiting', ratingNumber: 4, ratingText: 'Yeah', dateReviewed: '2026-07-01' }),
+        makeShow({ titleEN: 'Already Revisited', ratingNumber: 4, ratingText: 'Yeah', dateReviewed: '2026-07-02', revisit: { ratingNumber: 5, ratingText: 'Peak', dateReviewed: '2026-08-01' } }),
+        makeShow({ titleEN: 'Already Peak', ratingNumber: 5, ratingText: 'Peak', dateReviewed: '2026-07-03' }),
+        makeShow({ titleEN: 'Just Meh', ratingNumber: 3, ratingText: 'Meh', dateReviewed: '2026-07-04' }),
       ],
-    },
-    {
+    }),
+    makeSeason({
       id: 'other-season', name: 'Other Season',
-      reviewed: [{ titleEN: 'Other Season 4/5', ratingNumber: 4, ratingText: 'Yeah', dateReviewed: '2026-01-01' }],
-    },
+      shows: [makeShow({ titleEN: 'Other Season 4/5', ratingNumber: 4, ratingText: 'Yeah', dateReviewed: '2026-01-01' })],
+    }),
   ]);
 
   const candidates = computeRevisitCandidates(currentSeasonReviews, 'current-season');
@@ -185,19 +186,19 @@ test('computeSeasonCoverage has no percentage when nothing is reviewed or pendin
 
 test('computeContinuationWatch matches sequel-marker titles in the current season against highly-rated past shows', () => {
   const seasonsWithSequels = [
-    {
+    makeSeason({
       id: 'past-season', name: 'Past Season',
-      reviewed: [
-        { titleEN: 'Great Show', ratingNumber: 5, ratingText: 'Peak', dateReviewed: '2026-01-01' },
-        { titleEN: 'Fine Show', ratingNumber: 3, ratingText: 'Meh', dateReviewed: '2026-01-02' },
+      shows: [
+        makeShow({ titleEN: 'Great Show', ratingNumber: 5, ratingText: 'Peak', dateReviewed: '2026-01-01' }),
+        makeShow({ titleEN: 'Fine Show', ratingNumber: 3, ratingText: 'Meh', dateReviewed: '2026-01-02' }),
       ],
-    },
-    {
+    }),
+    makeSeason({
       id: 'current-season', name: 'Current Season',
-      pending: ['Great Show Season 2', 'Unrelated New Show'],
-      skipped: ['Fine Show 2nd Season'],
-      reviewed: [{ titleEN: 'Great Show II', ratingNumber: 4, ratingText: 'Yeah', dateReviewed: '2026-07-01' }],
-    },
+      toReview: ['Great Show Season 2', 'Unrelated New Show'],
+      notReviewing: ['Fine Show 2nd Season'],
+      shows: [makeShow({ titleEN: 'Great Show II', ratingNumber: 4, ratingText: 'Yeah', dateReviewed: '2026-07-01' })],
+    }),
   ];
 
   const matches = computeContinuationWatch(seasonsWithSequels, 'current-season');
@@ -216,8 +217,8 @@ test('computeContinuationWatch returns nothing when the current season id is unk
   assert.deepEqual(computeContinuationWatch(seasons, 'no-such-season'), []);
 
   const lowRatedPast = [
-    { id: 'past', name: 'Past', reviewed: [{ titleEN: 'Fine Show', ratingNumber: 3, ratingText: 'Meh', dateReviewed: '2026-01-01' }] },
-    { id: 'current', name: 'Current', pending: ['Fine Show Season 2'], skipped: [], reviewed: [] },
+    makeSeason({ id: 'past', name: 'Past', shows: [makeShow({ titleEN: 'Fine Show', ratingNumber: 3, ratingText: 'Meh', dateReviewed: '2026-01-01' })] }),
+    makeSeason({ id: 'current', name: 'Current', toReview: ['Fine Show Season 2'], notReviewing: [], shows: [] }),
   ];
   assert.deepEqual(computeContinuationWatch(lowRatedPast, 'current'), []);
 });
@@ -393,21 +394,21 @@ test('Season Spotlight defaults to the current season for "All Seasons", then fo
   // of Spring's "Spring Revisit". This lets the test tell apart "spotlight
   // always shows the current season" from "spotlight follows the filter,
   // re-anchoring what counts as 'the past' to whichever season is picked".
-  const fall = {
+  const fall = makeSeason({
     id: 'fall-2025', name: 'Fall 2025',
-    reviewed: [{ titleEN: 'Great Show', ratingNumber: 5, ratingText: 'Peak', dateReviewed: '2025-10-01' }],
-    pending: [], skipped: [],
-  };
-  const spring = {
+    shows: [makeShow({ titleEN: 'Great Show', ratingNumber: 5, ratingText: 'Peak', dateReviewed: '2025-10-01' })],
+    toReview: [], notReviewing: [],
+  });
+  const spring = makeSeason({
     id: 'spring-2026', name: 'Spring 2026',
-    reviewed: [{ titleEN: 'Spring Revisit', ratingNumber: 4, ratingText: 'Yeah', dateReviewed: '2026-04-01' }],
-    pending: ['Great Show Season 2'], skipped: [],
-  };
-  const summer = {
+    shows: [makeShow({ titleEN: 'Spring Revisit', ratingNumber: 4, ratingText: 'Yeah', dateReviewed: '2026-04-01' })],
+    toReview: ['Great Show Season 2'], notReviewing: [],
+  });
+  const summer = makeSeason({
     id: 'summer-2026', name: 'Summer 2026',
-    reviewed: [{ titleEN: 'Summer Revisit', ratingNumber: 4, ratingText: 'Yeah', dateReviewed: '2026-07-01' }],
-    pending: ['Spring Revisit Season 2'], skipped: [],
-  };
+    shows: [makeShow({ titleEN: 'Summer Revisit', ratingNumber: 4, ratingText: 'Yeah', dateReviewed: '2026-07-01' })],
+    toReview: ['Spring Revisit Season 2'], notReviewing: [],
+  });
   const fetch = createPathFetchStub({
     '/vqar/data/index.json': spotlightSeasons,
     '/vqar/data/seasons/fall-2025.json': fall,
@@ -448,15 +449,15 @@ test('changing the season filter updates the "?season=" URL param, without addin
 });
 
 test('computeContinuationWatch reads titles from object-form pending and skipped entries', () => {
-  const past = {
-    id: 'past', name: 'Past', pending: [], skipped: [],
-    reviewed: [{ titleEN: 'Great Show', ratingNumber: 5, ratingText: 'Nice Ep Broh', dateReviewed: '2025-01-01T00:00:00Z' }],
-  };
-  const current = {
-    id: 'now', name: 'Now', reviewed: [],
-    pending: [{ title: 'Great Show Season 2', firstEpisode: '2026-10-08' }],
-    skipped: [{ title: 'Great Show 3rd Season', reason: 'no time' }],
-  };
+  const past = makeSeason({
+    id: 'past', name: 'Past', toReview: [], notReviewing: [],
+    shows: [makeShow({ titleEN: 'Great Show', ratingNumber: 5, ratingText: 'Nice Ep Broh', dateReviewed: '2025-01-01T00:00:00Z' })],
+  });
+  const current = makeSeason({
+    id: 'now', name: 'Now', shows: [],
+    toReview: [{ title: 'Great Show Season 2', premieres: '2026-10-08' }],
+    notReviewing: [{ title: 'Great Show 3rd Season', reason: 'no time' }],
+  });
 
   const matches = computeContinuationWatch([past, current], 'now');
   assert.deepEqual(matches.map(m => [m.title, m.status]).sort(), [
@@ -466,19 +467,19 @@ test('computeContinuationWatch reads titles from object-form pending and skipped
 });
 
 test('computeContinuationWatch counts a past show you finished the season of, whatever its rating', () => {
-  const past = {
-    id: 'past', name: 'Past', pending: [], skipped: [],
-    reviewed: [
-      { titleEN: 'Guilty Pleasure', ratingNumber: 4, ratingText: 'Yeah', dateReviewed: '2026-07-01',
-        fullReview: { review: 'x', ratingNumber: 3, ratingText: 'delicious garbage', dateReviewed: '2026-08-05' },
-        finishedSeason: true },
-      { titleEN: 'Dropped Show', ratingNumber: 3, ratingText: 'Meh', dateReviewed: '2026-07-02' },
+  const past = makeSeason({
+    id: 'past', name: 'Past', toReview: [], notReviewing: [],
+    shows: [
+      makeShow({ titleEN: 'Guilty Pleasure', ratingNumber: 4, ratingText: 'Yeah', dateReviewed: '2026-07-01',
+        revisit: { text: 'x', ratingNumber: 3, ratingText: 'delicious garbage', dateReviewed: '2026-08-05' },
+        finishedSeason: true }),
+      makeShow({ titleEN: 'Dropped Show', ratingNumber: 3, ratingText: 'Meh', dateReviewed: '2026-07-02' }),
     ],
-  };
-  const current = {
-    id: 'now', name: 'Now', reviewed: [], pending: [],
-    skipped: [{ title: 'Guilty Pleasure Season 2', reason: 'Continuing series' }, 'Dropped Show Season 2'],
-  };
+  });
+  const current = makeSeason({
+    id: 'now', name: 'Now', shows: [], toReview: [],
+    notReviewing: [{ title: 'Guilty Pleasure Season 2', reason: 'Continuing series' }, 'Dropped Show Season 2'],
+  });
 
   const matches = computeContinuationWatch([past, current], 'now');
   assert.deepEqual(matches.map(m => ({ title: m.title, matchedTitle: m.matchedTitle, rating: m.rating, finished: m.finished })), [
@@ -489,28 +490,28 @@ test('computeContinuationWatch counts a past show you finished the season of, wh
 // --- category cross-references ---
 
 const tagged = (titleEN, ratingNumber, anilist, extra = {}) =>
-  ({ titleEN, ratingNumber, ratingText: 'x', review: '', dateReviewed: '2026-07-01', anilistId: 1, anilist: { genres: [], tags: [], studios: [], ...anilist }, ...extra });
+  makeShow({ titleEN, ratingNumber, ratingText: 'x', text: '', dateReviewed: '2026-07-01', anilistId: 1, anilist: { genres: [], tags: [], studios: [], ...anilist }, ...extra });
 
 const categorySeasons = [
-  {
+  makeSeason({
     id: 'summer-2026', name: 'Summer 2026',
-    reviewed: [
+    shows: [
       tagged('Isekai A', 1, { format: 'TV', genres: ['Fantasy'], tags: ['Isekai'], studios: ['GoHands'] }, { streaming: ['crunchyroll'] }),
       tagged('Isekai B', 0, { format: 'TV', genres: ['Fantasy'], tags: ['Isekai'], studios: ['GoHands'] }, { streaming: ['crunchyroll'], finishedSeason: true }),
       tagged('Romcom A', 5, { format: 'ONA', genres: ['Comedy', 'Romance'], tags: ['School'], studios: ['MAPPA'] }, { op: [1] }),
     ],
-    pending: [], skipped: [],
-  },
-  {
+    toReview: [], notReviewing: [],
+  }),
+  makeSeason({
     id: 'spring-2026', name: 'Spring 2026',
-    reviewed: [
+    shows: [
       // Revisited 2 -> 4: counts as a 4, and as a +2 shift.
-      tagged('Isekai C', 2, { format: 'TV', genres: ['Fantasy', 'Comedy'], tags: ['Isekai'], studios: ['MAPPA'] }, { fullReview: { ratingNumber: 4, ratingText: 'y' }, dateReviewed: '2026-04-01' }),
+      tagged('Isekai C', 2, { format: 'TV', genres: ['Fantasy', 'Comedy'], tags: ['Isekai'], studios: ['MAPPA'] }, { revisit: { ratingNumber: 4, ratingText: 'y' }, dateReviewed: '2026-04-01' }),
       tagged('Romcom B', 4, { format: 'TV', genres: ['Comedy', 'Romance'], tags: ['School'], studios: ['MAPPA'] }, { dateReviewed: '2026-04-02' }),
-      { titleEN: 'Untagged', ratingNumber: 3, ratingText: 'x', review: '', dateReviewed: '2026-04-03' },
+      makeShow({ titleEN: 'Untagged', ratingNumber: 3, ratingText: 'x', text: '', dateReviewed: '2026-04-03' }),
     ],
-    pending: [], skipped: [],
-  },
+    toReview: [], notReviewing: [],
+  }),
 ];
 const categoryReviews = flattenReviews(categorySeasons);
 
@@ -623,26 +624,26 @@ test('picking one season scopes the category sections and hides Genre by Season'
 
 // --- Hope Check ---
 
-const hope = (titleEN, after, extra = {}) => ({
+const hope = (titleEN, after, extra = {}) => makeShow({
   titleEN, ratingNumber: 4, ratingText: 'Yeah', dateReviewed: '2026-07-01',
-  ...(after === undefined ? {} : { fullReview: { ratingNumber: after, ratingText: 'x' } }), ...extra,
+  ...(after === undefined ? {} : { revisit: { ratingNumber: after, ratingText: 'x' } }), ...extra,
 });
 
 const hopeSeasons = [
-  {
+  makeSeason({
     id: 'summer-2026', name: 'Summer 2026',
-    reviewed: [hope('Rose', 5), hope('Fell', 2), hope('Waiting'), { titleEN: 'Peak', ratingNumber: 5, ratingText: 'Peak', dateReviewed: '2026-07-01' }],
-    pending: [], skipped: [],
-  },
-  {
+    shows: [hope('Rose', 5), hope('Fell', 2), hope('Waiting'), makeShow({ titleEN: 'Peak', ratingNumber: 5, ratingText: 'Peak', dateReviewed: '2026-07-01' })],
+    toReview: [], notReviewing: [],
+  }),
+  makeSeason({
     id: 'spring-2026', name: 'Spring 2026',
-    reviewed: [
+    shows: [
       hope('Held', 4, { dateReviewed: '2026-04-01' }),
       // A 3 that grew isn't a dashed or kept hope - it never was one.
-      { titleEN: 'Grower', ratingNumber: 3, ratingText: 'Meh', dateReviewed: '2026-04-02', fullReview: { ratingNumber: 5, ratingText: 'Peak' } },
+      makeShow({ titleEN: 'Grower', ratingNumber: 3, ratingText: 'Meh', dateReviewed: '2026-04-02', revisit: { ratingNumber: 5, ratingText: 'Peak' } }),
     ],
-    pending: [], skipped: [],
-  },
+    toReview: [], notReviewing: [],
+  }),
 ];
 
 test('computeHopeCheck follows episode-1 4s: rose, held, fell or still waiting, overall and per season in airing order', () => {
@@ -658,7 +659,7 @@ test('computeHopeCheck follows episode-1 4s: rose, held, fell or still waiting, 
 });
 
 test('computeHopeCheck has no held-up share before any 4 is revisited', () => {
-  const h = computeHopeCheck(flattenReviews([{ id: 'x', name: 'X', reviewed: [hope('Waiting')] }]));
+  const h = computeHopeCheck(flattenReviews([makeSeason({ id: 'x', name: 'X', shows: [hope('Waiting')] })]));
   assert.equal(h.heldShare, null);
   assert.equal(h.waiting, 1);
 });
@@ -699,15 +700,15 @@ test('Hope Check drops the per-season table once the filter picks one season', a
 
 // --- An archive season (older shows) is a shelf, not a point in time ---
 
-const shelf = {
+const shelf = makeSeason({
   id: 'older-shows', name: 'Older Shows', archive: true,
-  reviewed: [
-    { titleEN: 'Old Classic', ratingNumber: 4, ratingText: 'Yeah', dateReviewed: '2026-03-01', anilist: { format: 'TV', genres: ['Drama'], tags: [], studios: [] } },
-    { titleEN: 'Old Favorite', ratingNumber: 5, ratingText: 'Peak', dateReviewed: '2026-03-02', anilist: { format: 'TV', genres: ['Drama'], tags: [], studios: [] } },
-    { titleEN: 'Old Pick', ratingNumber: 5, ratingText: 'Peak', dateReviewed: '2026-03-03' },
+  shows: [
+    makeShow({ titleEN: 'Old Classic', ratingNumber: 4, ratingText: 'Yeah', dateReviewed: '2026-03-01', anilist: { format: 'TV', genres: ['Drama'], tags: [], studios: [] } }),
+    makeShow({ titleEN: 'Old Favorite', ratingNumber: 5, ratingText: 'Peak', dateReviewed: '2026-03-02', anilist: { format: 'TV', genres: ['Drama'], tags: [], studios: [] } }),
+    makeShow({ titleEN: 'Old Pick', ratingNumber: 5, ratingText: 'Peak', dateReviewed: '2026-03-03' }),
   ],
-  pending: [], skipped: [],
-};
+  toReview: [], notReviewing: [],
+});
 const withShelf = [...seasons, shelf];
 const shelfReviews = flattenReviews(withShelf);
 
