@@ -46,3 +46,38 @@ export function airedDiffers(show, seasonId) {
   if (!airedLabel(show.aired)) return false;
   return !isLineup(seasonId) || airedSeasonId(show.aired) !== seasonId;
 }
+
+/**
+ * The key a show is browsed under in the Aired view: its aired season's id
+ * (`spring-2010`), or just the year (`2026`) when AniList has no season for
+ * it. Null when it has no `aired` at all.
+ * @param {{ season?: string, year?: number }|undefined} aired
+ * @returns {string|null}
+ */
+export function airedKey(aired) {
+  if (!aired || !Number.isInteger(aired.year)) return null;
+  return airedSeasonId(aired) ?? String(aired.year);
+}
+
+/**
+ * Where an aired key sorts, higher meaning more recent: by year, then season,
+ * with a year-only key after that year's seasons.
+ * @param {string} key - from airedKey
+ * @returns {number}
+ */
+export function airedKeyRank(key) {
+  const match = /^(?:([a-z]+)-)?(\d{4})$/.exec(key);
+  if (!match) return -Infinity;
+  const order = match[1] ? AIRED_SEASONS.indexOf(match[1]) : -1;
+  return Number(match[2]) * 10 + order;
+}
+
+/**
+ * How to show an aired key: "Spring 2010", or "2026".
+ * @param {string} key - from airedKey
+ */
+export function airedKeyLabel(key) {
+  const match = /^(?:([a-z]+)-)?(\d{4})$/.exec(key);
+  if (!match) return key;
+  return airedLabel(match[1] ? { season: match[1], year: Number(match[2]) } : { year: Number(match[2]) });
+}

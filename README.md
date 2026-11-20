@@ -206,9 +206,17 @@ currently being reviewed. `public/vqar/app.js` loads the index first
   "currentSeason": "spring-2026",
   "seasons": [
     { "id": "spring-2026", "name": "Spring 2026", "file": "/vqar/data/seasons/spring-2026.json" }
+  ],
+  "aired": [
+    { "id": "spring-2026", "name": "Spring 2026", "shows": 42, "seasons": ["spring-2026"] },
+    { "id": "winter-2004", "name": "Winter 2004", "shows": 1, "seasons": ["spring-2026"] }
   ]
 }
 ```
+
+`aired` lists every season the shows aired in, newest first (a show AniList knows only the year
+of is listed under the year alone, like `"2026"`), with how many shows and which season files hold
+them. That's what lets `/vqar`'s Aired view load just those files (see "Filtering and linking").
 
 Never hand-edit `index.json` — regenerate it with `npm run build-vqar-index` after touching
 a season file. `test/vqar-data.test.js` fails if the committed one is stale, so CI catches a
@@ -508,7 +516,15 @@ Backlog.
 
 ### Filtering and linking
 
-Besides Season / Search / Sort, `/vqar` has three rows of toggle chips: **Rating** (the 0–5
+**Season** picks the season file you browse: a lineup, the Backlog, or All Seasons. **Aired**
+browses by when shows first aired instead (`aired` on each show, see "Show shape"): pick "Spring
+2010" and the page shows every show that aired then, wherever it's filed - a lineup, or the
+Backlog. Picking one switches Season to All Seasons, and the page loads only the season files the
+index says hold such shows (`aired` in `index.json`). Season can then narrow it to one file. Like
+Season, Aired sets what's being browsed rather than filtering it, so it isn't one of the filters
+Clear Filters resets, and the review count is out of that aired season's shows.
+
+Besides Season / Aired / Search / Sort, `/vqar` has three rows of toggle chips: **Rating** (the 0–5
 tiers, labeled from `RATING_NUMBER_LABELS`), **Streaming** (only the services something in the
 selected season is on), **Extras** (to revisit, revisited, rated up/down on revisit, liked OP/ED, finished season), and
 **Format**/**Genre**/**Tag**/**Studio** from AniList (see "AniList tags" below). Within

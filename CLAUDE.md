@@ -67,7 +67,7 @@ behavior, it moves into a shared module at `public/` root rather than being copi
 | `public/vqar/oped.js` | `/vqar`, `/vqar-stats`, `src/schema.js`, `scripts/validateSeason.js` | a liked OP/ED is always a list of the numbers liked (`[1]`, `[1, 2]`), never a bare `true`; read it through `isLikedOpEd`/`opEdNumbers`, never `=== true` |
 | `public/vqar/reviews.js` | `/vqar`, `/vqar-stats`, `src/schema.js` | a show's `reviews` list: each review's derived stage (`reviewStage`), the current one, the first impression, and how the rating moved since (`ratingShift`) |
 | `public/vqar/rating.js` | `/vqar`, `/vqar-stats`, `src/` | the show's rating is its latest review's (`effectiveRatingNumber`), a review's label falls back to its tier's (`ratingText`), which shows are still waiting on a revisit (`awaitingRevisit`) |
-| `public/vqar/aired.js` | `/vqar`, `scripts/validateSeason.js` | when a show first aired: its label, and whether it differs from the lineup it sits in (`airedDiffers`) |
+| `public/vqar/aired.js` | `/vqar`, `scripts/` | when a show first aired: its label, whether it differs from the lineup it sits in (`airedDiffers`), and the key the Aired view and the index browse it under (`airedKey`) |
 
 Each has its own test file. Adding a shared module is the right move when a second page
 needs the same behavior — don't copy the function.
@@ -167,7 +167,8 @@ to write it at all if any season fails validation.
 Four independent consumers read that index, whose path is exported once from
 `public/vqar/data-paths.js` so it can't drift:
 - `public/vqar/app.js` — the display page, fetches client-side. Loads one season at a time,
-  on demand. To Be Reviewed / Not Reviewing are the picked season's lists (the current
+  on demand. Its Aired view browses by when shows aired, loading only the files the index's
+  `aired` map (generated from each show's `aired`) says hold shows from that season. To Be Reviewed / Not Reviewing are the picked season's lists (the current
   season's under All Seasons, which it loads alongside). Its chip filters (rating/streaming/extras) live in the DOM-free `filters.js`, and
   every control is mirrored into the query string with `replaceState`.
 - `public/vqar-stats/app.js` — always loads *every* season, since every stat on it is an
