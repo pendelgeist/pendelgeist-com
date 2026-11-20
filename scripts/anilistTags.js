@@ -1,7 +1,7 @@
 /**
  * The testable core of fetch-anilist-tags.js: turning AniList media into the
  * `anilist` object a review carries, batching the id lookups, and writing a
- * season file back without disturbing anything but its `reviewed` block.
+ * season file back without disturbing anything but its `shows` block.
  *
  * A review's `anilist` object is generated - it's owned by this script and
  * overwritten wholesale on every run, so never hand-edit it. Everything else
@@ -86,7 +86,7 @@ const MEDIA_FIELDS = `id
  * A GraphQL alias for one review: its season and position, so a saved
  * response can be matched back to the review it searched for.
  * @param {string} seasonId
- * @param {number} index - position in that season's `reviewed`
+ * @param {number} index - position in that season's `shows`
  */
 export function searchAlias(seasonId, index) {
   return `${String(seasonId).replace(/[^A-Za-z0-9]/g, '_')}__${index}`;
@@ -166,7 +166,7 @@ export function searchResultsFromResponses(responses) {
  * generated `anilist` object. A result whose titles don't look like the
  * review's is held back as `unsure` rather than applied - a search's top hit
  * is a guess - unless its alias is listed in `accept`.
- * @param {{ id: string, reviewed?: any[] }} season
+ * @param {{ id: string, shows?: any[] }} season
  * @param {Map<string, any|null>} results - from searchResultsFromResponses
  * @param {{ accept?: Set<string>, titlesLikelyMatch: (title: string, titles: string[]) => boolean }} options
  */
@@ -174,7 +174,7 @@ export function applySearchResults(season, results, { accept = new Set(), titles
   const linked = [];
   const unsure = [];
   const notFound = [];
-  const reviewed = (season.reviewed ?? []).map((review, index) => {
+  const shows = (season.shows ?? []).map((review, index) => {
     const alias = searchAlias(season.id, index);
     if (review.anilistId || !results.has(alias)) return review;
     const media = results.get(alias);
@@ -192,7 +192,7 @@ export function applySearchResults(season, results, { accept = new Set(), titles
     if (!review.titleJP && media.title?.native) next.titleJP = media.title.native;
     return next;
   });
-  return { reviewed, linked, unsure, notFound };
+  return { shows, linked, unsure, notFound };
 }
 
 /**
@@ -217,9 +217,9 @@ export function mediaFromResponses(responses) {
 /**
  * Sets each review's `anilist` from the fetched media. A review AniList didn't
  * return keeps whatever it had, so a lookup hiccup never erases data.
- * @param {{ reviewed?: any[] }} season
+ * @param {{ shows?: any[] }} season
  * @param {Map<number, any>} mediaById
- * @returns {{ reviewed: any[], updated: string[], unchanged: number, noId: string[], notFound: string[] }}
+ * @returns {{ shows: any[], updated: string[], unchanged: number, noId: string[], notFound: string[] }}
  */
 export function applyAnilistFields(season, mediaById) {
   const updated = [];
@@ -227,7 +227,7 @@ export function applyAnilistFields(season, mediaById) {
   const notFound = [];
   let unchanged = 0;
 
-  const reviewed = (season.reviewed ?? []).map(review => {
+  const shows = (season.shows ?? []).map(review => {
     if (!review.anilistId) {
       noId.push(review.titleEN);
       return review;
@@ -246,28 +246,28 @@ export function applyAnilistFields(season, mediaById) {
     return { ...review, anilist };
   });
 
-  return { reviewed, updated, unchanged, noId, notFound };
+  return { shows, updated, unchanged, noId, notFound };
 }
 
 /**
- * Swaps a season file's `reviewed` array for a new one, leaving every other
+ * Swaps a season file's `shows` array for a new one, leaving every other
  * byte as it was - the files don't all share one formatting (fall-2026's
- * pending list is one compact object per line), so re-serializing the whole
+ * toReview list is one compact object per line), so re-serializing the whole
  * file would reformat lines this script has no business touching.
  * @param {string} raw - the season file's text
- * @param {any[]} reviewed
+ * @param {any[]} shows
  */
-export function replaceReviewed(raw, reviewed) {
-  const marker = '\n  "reviewed": ';
+export function replaceShows(raw, shows) {
+  const marker = '\n  "shows": ';
   const start = raw.indexOf(marker);
-  if (start === -1) throw new Error('no top-level "reviewed" key');
+  if (start === -1) throw new Error('no top-level "shows" key');
   const valueStart = start + marker.length;
   const rest = raw.slice(valueStart);
   // The value ends where the next top-level key (two-space indent) or the
   // closing brace begins, less the comma separating them.
   const next = rest.search(/\n {2}"|\n\}/);
-  if (next === -1) throw new Error('could not find the end of "reviewed"');
+  if (next === -1) throw new Error('could not find the end of "shows"');
   const valueEnd = valueStart + next - (rest[next - 1] === ',' ? 1 : 0);
-  const body = JSON.stringify(reviewed, null, 2).replace(/\n/g, '\n  ');
+  const body = JSON.stringify(shows, null, 2).replace(/\n/g, '\n  ');
   return raw.slice(0, valueStart) + body + raw.slice(valueEnd);
 }

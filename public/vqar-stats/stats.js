@@ -7,26 +7,27 @@
 
 import { effectiveRatingNumber, awaitingRevisit, HOPING_RATING, RATING_NUMBER_LABELS } from '../vqar/rating.js';
 import { entryTitle } from '../vqar/list-entries.js';
+import { isLineup } from '../vqar/seasons.js';
 import { reviewValues } from '../vqar/filters.js';
 import { isLikedOpEd, whichLabel } from '../vqar/oped.js';
 
 /** @typedef {import('../vqar/app.js').SeasonData} SeasonData */
 
 /**
- * Flattens every season's `reviewed` list into one array, tagging each
+ * Flattens every season's `shows` list into one array, tagging each
  * review with its season id/name and a parsed timestamp - the same shape
  * /vqar/app.js builds client-side for its "All Seasons" view.
  * @param {SeasonData[]} seasons
  */
 export function flattenReviews(seasons) {
-  return seasons.flatMap(season => (season.reviewed ?? []).map(r => ({
+  return seasons.flatMap(season => (season.shows ?? []).map(r => ({
     ...r,
     season: String(season.id),
     seasonName: season.name,
     _timestamp: Date.parse(r.dateReviewed) || 0,
-    // An archive season (older shows) is a shelf, not a point in time, so the
-    // per-season trends below leave its reviews out.
-    _archive: season.archive === true,
+    // A shelf like the Backlog isn't a point in time, so the per-season
+    // trends below only count lineups (seasons reviewed live).
+    _lineup: isLineup(season),
   })));
 }
 
@@ -48,7 +49,7 @@ export function computeGlanceStats(seasons, reviews) {
   const avgRating = mean(numericRatings(reviews));
 
   const bySeason = new Map();
-  for (const r of reviews) if (!r._archive) bySeason.set(r.season, (bySeason.get(r.season) ?? 0) + 1);
+  for (const r of reviews) if (r._lineup) bySeason.set(r.season, (bySeason.get(r.season) ?? 0) + 1);
   let busiest = null;
   for (const [seasonId, count] of bySeason) {
     if (!busiest || count > busiest.count) {
@@ -60,7 +61,7 @@ export function computeGlanceStats(seasons, reviews) {
 
   return {
     totalReviews: reviews.length,
-    seasonsCovered: seasons.filter(s => s.archive !== true && (s.reviewed ?? []).length > 0).length,
+    seasonsCovered: seasons.filter(s => isLineup(s) && (s.shows ?? []).length > 0).length,
     avgRating,
     fullReReviews: reviews.filter(r => r.fullReview).length,
     likedOps: reviews.filter(r => isLikedOpEd(r.op)).length,
@@ -74,15 +75,15 @@ export function computeGlanceStats(seasons, reviews) {
 
 /**
  * How much of the season's reviewable lineup has been reviewed: `total` is
- * `reviewed` + `pending`. `skipped` shows are deliberately left out.
+ * `reviewed` + `toReview`. `notReviewing` shows are deliberately left out.
  * @param {SeasonData[]} seasons
  */
 export function computeSeasonCoverage(seasons) {
-  const airing = seasons.filter(s => s.archive !== true);
-  const reviewed = airing.reduce((sum, s) => sum + (s.reviewed ?? []).length, 0);
-  const pending = airing.reduce((sum, s) => sum + (s.pending ?? []).length, 0);
-  const total = reviewed + pending;
-  return { reviewed, pending, total, pct: total ? Math.round((reviewed / total) * 100) : null };
+  const lineups = seasons.filter(isLineup);
+  const reviewed = lineups.reduce((sum, s) => sum + (s.shows ?? []).length, 0);
+  const toReview = lineups.reduce((sum, s) => sum + (s.toReview ?? []).length, 0);
+  const total = reviewed + toReview;
+  return { reviewed, toReview, total, pct: total ? Math.round((reviewed / total) * 100) : null };
 }
 
 // Re-exported so existing importers of stats.js keep working; the labels live
@@ -119,7 +120,7 @@ export function computeRatingDistribution(reviews) {
 export function computeRatingsOverTime(reviews) {
   const bySeason = new Map();
   for (const r of reviews) {
-    if (r._archive) continue;
+    if (!r._lineup) continue;
     const entry = bySeason.get(r.season) ?? { season: r.season, seasonName: r.seasonName, ratings: [], earliest: Infinity };
     const rating = effectiveRatingNumber(r);
     if (typeof rating === 'number') entry.ratings.push(rating);
@@ -181,10 +182,10 @@ export function computeRevisitCandidates(reviews, seasonId) {
     .sort((a, b) => b._timestamp - a._timestamp || (a.titleEN ?? '').localeCompare(b.titleEN ?? ''));
 }
 
-/** Earliest parseable `dateReviewed` across a season's reviewed list, or Infinity if none. */
+/** Earliest parseable `dateReviewed` across a season's shows, or Infinity if none. */
 function seasonEarliestTimestamp(season) {
   let earliest = Infinity;
-  for (const r of season.reviewed ?? []) {
+  for (const r of season.shows ?? []) {
     const ts = Date.parse(r.dateReviewed);
     if (!Number.isNaN(ts) && ts < earliest) earliest = ts;
   }
@@ -216,7 +217,7 @@ function normalizeBaseTitle(title) {
 }
 
 /**
- * Shows in the given season's lineup (pending, skipped, or already reviewed)
+ * Shows in the given season's lineup (to review, not reviewing, or already reviewed)
  * that look like a continuing/returning season of something rated highly -
  * or watched to the end (`finishedSeason`), whatever its rating - in an
  * *earlier* season: worth bumping up the queue even though VQAR's usual
@@ -240,7 +241,7 @@ export function computeContinuationWatch(seasons, seasonId, { minRating = 4 } = 
   for (const season of seasons) {
     if (String(season.id) === String(seasonId)) continue;
     if (seasonEarliestTimestamp(season) >= targetEarliest) continue; // only seasons that actually came before this one count as "the past"
-    for (const r of season.reviewed ?? []) {
+    for (const r of season.shows ?? []) {
       const effective = effectiveRatingNumber(r);
       const rating = typeof effective === 'number' ? effective : null;
       const finished = r.finishedSeason === true;
@@ -256,9 +257,9 @@ export function computeContinuationWatch(seasons, seasonId, { minRating = 4 } = 
   if (bestPastByBase.size === 0) return [];
 
   const candidates = [
-    ...(targetSeason.pending ?? []).map(entry => ({ title: entryTitle(entry), status: 'pending' })),
-    ...(targetSeason.skipped ?? []).map(entry => ({ title: entryTitle(entry), status: 'skipped' })),
-    ...(targetSeason.reviewed ?? []).map(r => ({ title: r.titleEN, status: 'reviewed' })),
+    ...(targetSeason.toReview ?? []).map(entry => ({ title: entryTitle(entry), status: 'toReview' })),
+    ...(targetSeason.notReviewing ?? []).map(entry => ({ title: entryTitle(entry), status: 'notReviewing' })),
+    ...(targetSeason.shows ?? []).map(r => ({ title: r.titleEN, status: 'reviewed' })),
   ];
 
   const seen = new Set();
@@ -389,7 +390,7 @@ export function computeLovesAndHates(reviews, dimension, { n = 3, minShows = MIN
 
 /**
  * The seasons a set of reviews comes from, in airing order (by each one's
- * earliest review). Archive seasons (older shows) have no airing order, so
+ * earliest review). A shelf like the Backlog has no airing order, so
  * they aren't listed.
  * @param {ReturnType<typeof flattenReviews>} reviews
  * @returns {{ id: string, name: string }[]}
@@ -398,7 +399,7 @@ function seasonsInAiringOrder(reviews) {
   /** @type {Map<string, { id: string, name: string, first: number }>} */
   const seasonsById = new Map();
   for (const r of reviews) {
-    if (r._archive) continue;
+    if (!r._lineup) continue;
     const seen = seasonsById.get(r.season);
     if (!seen || r._timestamp < seen.first) seasonsById.set(r.season, { id: r.season, name: r.seasonName, first: r._timestamp });
   }

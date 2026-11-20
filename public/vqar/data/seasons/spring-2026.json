@@ -1,8 +1,7 @@
 {
   "id": "spring-2026",
   "name": "Spring 2026",
-  "number": 2602,
-  "reviewed": [
+  "shows": [
     {
       "titleEN": "Nippon Sangoku: The Three Nations of the Crimson Sun",
       "titleJP": "日本三國",
@@ -20,7 +19,7 @@
         "ratingNumber": 3,
         "ratingText": "Meh, Finishing the Ep",
         "review": "The show definitely has a cool visual vibe to it and good production values, but the first episode is just too dark and brutal, and I don't need that right now, so I'm gonna pass on it. But it is a cool premise, and I think a lot of it is well done. There's a lot of rotoscoping-type work in it, well done, just not something I want to dedicate my time to right now.",
-        "dateReviewed": "2026-07-04"
+        "dateReviewed": "2026-07-04T12:00:00-04:00"
       },
       "anilist": {
         "format": "ONA",
@@ -127,9 +126,9 @@
       "review": "Well, I think this show is pretty great. They actually had a small pre-opening segment, but it actually made sense and was a bit of background exposition. The opening was good. The show definitely gives me some Giant Robo vibes, and there's kaiju, and they look ridiculous, which is great — so yeah, the first part of it is cool. They do a time skip after five minutes to like ten years later, so I'm curious if it's gonna stay good, but if that's the case, the show has a high chance of being actually pretty cool. So that's my hope.",
       "dateReviewed": "2026-05-18T08:30:00-04:00",
       "watched": {
-        "first": "2026-05-18",
-        "last": "2026-08-25",
-        "lastEpisode": 6
+        "from": "2026-05-18",
+        "to": "2026-08-25",
+        "episode": 6
       },
       "anilistId": 196144,
       "annId": 37061,
@@ -143,7 +142,7 @@
         "ratingNumber": 4,
         "ratingText": "Yeah, Here's Hoping",
         "review": "This is a pretty cool premise and well done. I've liked where it's continued to go from the first little bit that I watched. It definitely has an interesting mix of 2D and 3D stuff, leaning more into the 3D, which I can completely understand why they would've done. I'm curious where the story and all the work is gonna go, but it's pretty well done, and I like it — I find the characters genuinely engaging. It's got a cool world and idea of things there, and I feel like there's more to explore. Hopefully it continues to be good; I'm only a couple episodes in and it seems that way so far.",
-        "dateReviewed": "2026-07-04"
+        "dateReviewed": "2026-07-04T12:00:00-04:00"
       },
       "anilist": {
         "format": "TV",
@@ -180,8 +179,8 @@
       "review": "It's a really nicely done show about girls at a high school that appears to have some sort of special focus, but within the first six minutes or so, I still don't really know what type of school it is — whether it's a general one or not — but it's definitely a boarding school. Madhouse did the production, and it looks really nice. It's got a good look to it, very distinct and watercolor-looking, in a good way. It's a slow-moving show, but I'm curious to see where it goes.",
       "dateReviewed": "2026-05-15T08:00:00-04:00",
       "watched": {
-        "first": "2026-06-17",
-        "lastEpisode": 1
+        "from": "2026-06-17",
+        "episode": 1
       },
       "anilistId": 177501,
       "annId": 32716,
@@ -193,7 +192,7 @@
         "ratingNumber": 2,
         "ratingText": "Trash, for Second Screen Only",
         "review": "This is another very well-done show. I think it's gonna be a compilation of stories about different girls at an artistic high school, focusing around one at a time. Very nice production, well done overall, so it's a good show. I just don't think it's something I'm super interested in watching right now, but I could be convinced otherwise, and I could see other people being really into the show, 'cause it looks like it could actually be pretty good.",
-        "dateReviewed": "2026-07-04"
+        "dateReviewed": "2026-07-04T12:00:00-04:00"
       },
       "anilist": {
         "format": "TV",
@@ -236,7 +235,7 @@
         "ratingNumber": 5,
         "ratingText": "Peak, Nice Ep Broh",
         "review": "This has been one of my biggest surprise shows of the season. I started trying to read the manga a while ago, and I just didn't quite get into it. But this anime version is fabulous. They've done such a great job taking the story, and taking rakugo — which is such a weird, very Japanese thing, a subculture even over there — and made it into this really cool drama with interesting, good characters. The production values are just great throughout; clearly it's a show that's been done with a lot of care. So I'm very happy and surprised that it's been such a great show. I'm only a few eps in now, but I'm definitely gonna keep watching through the end of the season. It's really cool to see some of these things and learn a bit about another piece of Japanese culture — another art form that I've heard of but don't really know anything about. So in that way it's kind of like a sports anime, in that you really get to learn the details of this art form, which has kind of a competition but kind of not, and how that works. It's very well done.",
-        "dateReviewed": "2026-07-04"
+        "dateReviewed": "2026-07-04T12:00:00-04:00"
       },
       "anilist": {
         "format": "TV",
@@ -274,7 +273,7 @@
         "ratingNumber": 2,
         "ratingText": "Trash, for Second Screen Only",
         "review": "I never went back to the show, and I'm OK with that. I've got enough things to watch, and it's not the sort of thing that's called me back and forced me to check it out, particularly because I don't generally watch continuing longer-form stuff on YouTube. But it's better that it's on YouTube than on Amazon or HiDive.",
-        "dateReviewed": "2026-07-04"
+        "dateReviewed": "2026-07-04T12:00:00-04:00"
       },
       "anilist": {
         "format": "TV",
@@ -444,7 +443,7 @@
         "ratingNumber": 5,
         "ratingText": "Peak, Nice Ep Broh",
         "review": "This ended up being a great Rumiko Takahashi show. I really like the setting, the characters, the animation style — it's just very well done. It definitely has some of the feel of Inuyasha, but done differently, with a different relationship between now and the main female lead. There's a lot of interesting scenarios and drama that happens, and some interesting stuff with the timeline, because it's going back to the Taisho era — so it's not going back to a time that's before anything recognizable now. I think that makes it very interesting, in that it's kind of historical fiction but adding in more fantastical elements, while also being a world you can recognize and comprehend even while being a while ago. So I've definitely enjoyed it and will keep watching the full season.",
-        "dateReviewed": "2026-07-04"
+        "dateReviewed": "2026-07-04T12:00:00-04:00"
       },
       "anilist": {
         "format": "TV",
@@ -674,8 +673,8 @@
       "review": "I wasn't sure if this was actually a real show or if it was season 85 of something, but it's a series of minute-and-a-half-long shorts done by Production I.G, and it's very charming, has a continuing story, and is a nice, refreshing thing to have in the year of our Lord 2026. So yeah, I recommend it if you want a nice, refreshing, silly thing to watch with a very catchy ending song.",
       "dateReviewed": "2026-05-08T09:30:00-04:00",
       "watched": {
-        "first": "2026-10-06",
-        "last": "2026-11-13"
+        "from": "2026-10-06",
+        "to": "2026-11-13"
       },
       "anilistId": 183231,
       "annId": 33781,
@@ -775,8 +774,8 @@
       "review": "Well, at least I'm raising my brow in curiosity about what the show is gonna be. So I don't have the highest hopes, but I'm always curious. It's got some interesting stuff going on — it's an idol show, but it also looks like it's kind of trying to be a social-commentary type show about social media overload. I like some of the stylistic choices, and some others look a little weird, like mobile-game-style 3D anime girl stuff, and then other parts are very vaporwave-looking. So I'm curious to at least see the end of the episode.",
       "dateReviewed": "2026-05-06T08:00:00-04:00",
       "watched": {
-        "first": "2026-06-12",
-        "lastEpisode": 1
+        "from": "2026-06-12",
+        "episode": 1
       },
       "anilistId": 202102,
       "annId": 37986,
@@ -788,7 +787,7 @@
         "ratingNumber": 2,
         "ratingText": "Trash, for Second Screen Only",
         "review": "The show got really weird and stayed very weird. It has kind of a Bakemonogatari style to it, but much less dialogue-driven, and leans more into monologue, trying to make a million statements about modern social media culture. I'm very confused by it. Some of the art choices and stuff are cool, but it's so disjointed and out there that it's not clear to me what they're going for. There was more I thought about after this, but it wasn't boring, and the opening, which played at the end of the episode, is pretty cool, very well done.",
-        "dateReviewed": "2026-07-04"
+        "dateReviewed": "2026-07-04T12:00:00-04:00"
       },
       "anilist": {
         "format": "TV",
@@ -954,7 +953,7 @@
         "ratingNumber": 3,
         "ratingText": "Meh, Finishing the Ep",
         "review": "Overall, this was really fun. It's a pretty ridiculous mashup of demon fighting — almost Fist of the North Star meets Dragon Ball, but with a rooster. Looks like there's gonna be a rooster team that's the only one capable of stopping demons, and humans are completely worthless. It's a pretty funny premise. I'm not sure if I'm gonna keep watching it. I like the pacing. The animation is very CG-based; it looks pretty consistent at least, and well styled. I'm not sure I love everything about it, but I can see why they did that — it lets them do some cool stuff with the demons, I think, without breaking style. But it leads to some of the characters looking very weird, though that might also just be consistent with the original manga source.",
-        "dateReviewed": "2026-07-04"
+        "dateReviewed": "2026-07-04T12:00:00-04:00"
       },
       "anilist": {
         "format": "TV",
@@ -992,9 +991,9 @@
       "review": "I was very hopeful for this show, because I love a good death-game/battle-royale-type show, and the first five minutes of this look pretty good. I'm definitely in on it, so here's hoping it ends up being cool.",
       "dateReviewed": "2026-04-28T08:00:00-04:00",
       "watched": {
-        "first": "2026-04-29",
-        "last": "2026-11-12",
-        "lastEpisode": 20
+        "from": "2026-04-29",
+        "to": "2026-11-12",
+        "episode": 20
       },
       "anilistId": 197754,
       "annId": 37594,
@@ -1006,7 +1005,7 @@
         "ratingNumber": 4,
         "ratingText": "Yeah, Here's Hoping",
         "review": "Liar Game is pretty fun. It's not my favorite thing ever, partially, I think, because the main character remains so clueless but keeps surviving anyway. But it's plainly done. It's got a Eurobeat-style opening, which always helps me, and it's a fun, ridiculous game of debt and betting and lying and everything — and it is the Liar Game. So if you're interested in any show that's called Liar Game and is a game about lying, then I definitely recommend it, it's pretty good.",
-        "dateReviewed": "2026-07-04"
+        "dateReviewed": "2026-07-04T12:00:00-04:00"
       },
       "anilist": {
         "format": "TV",
@@ -1304,8 +1303,8 @@
       "review": "So this might actually be a decent school-romance, rom-com thing. The art style is very reminiscent of Here Is Greenwood, in the best way, because that's a brilliant art style, and it features a guy who's got a crush on another guy, and it's being done in a very normal way, not for any sort of weird thrills or anything, at this point. So I'm definitely curious to see where it goes.",
       "dateReviewed": "2026-04-17T09:00:00-04:00",
       "watched": {
-        "first": "2026-06-18",
-        "last": "2026-11-17"
+        "from": "2026-06-18",
+        "to": "2026-11-17"
       },
       "anilistId": 180228,
       "annId": 33286,
@@ -1317,7 +1316,7 @@
         "ratingNumber": 5,
         "ratingText": "Peak, Nice Ep Broh",
         "review": "I finished the first two episodes of this show, and it's great. It really delivers on everything I was hoping it would, which is that it's a charming, awkward romantic comedy that's very well executed, with a consistent art style and perspective throughout. I'm very much looking forward to seeing more, and I hope the story stays good and fun and interesting, because I like what they've started out with, and I'm really hoping it continues through the end of the season. I'm a sucker for Here Is Greenwood, and this is a show that reminds me of that in such a strong way, while not being a copy or anything related to it. It definitely gives me big vibes from that, in the best possible way.",
-        "dateReviewed": "2026-07-04"
+        "dateReviewed": "2026-07-04T12:00:00-04:00"
       },
       "op": [
         1
@@ -1362,7 +1361,7 @@
         "ratingNumber": 2,
         "ratingText": "Trash, for Second Screen Only",
         "review": "This episode was pretty good, and there's a little twist at the end of it, but this is a show I'm not gonna continue watching. It's fine, just not for me, so nothing here really changed my mind on that.",
-        "dateReviewed": "2026-07-04"
+        "dateReviewed": "2026-07-04T12:00:00-04:00"
       },
       "anilist": {
         "format": "TV",
@@ -1498,8 +1497,8 @@
       "review": "All right, first review of the season, with this show that had a title that was a little off-putting. But the actual show could be OK. It's got some really interesting animation and design/aesthetic choices. I can't tell anything about the actual story or characters at this point, but I don't hate it, and I'm kind of curious to see where it goes. So I'll take that as a positive sign for a random show that looks potentially terrible, but, you know, it could be OK.",
       "dateReviewed": "2026-04-14T08:00:00-04:00",
       "watched": {
-        "first": "2026-05-08",
-        "last": "2026-09-13"
+        "from": "2026-05-08",
+        "to": "2026-09-13"
       },
       "anilistId": 206951,
       "annId": 38384,
@@ -1511,7 +1510,7 @@
         "ratingNumber": 5,
         "ratingText": "Peak, Nice Ep Broh",
         "review": "This was a show that I initially gave a \"Meh\" to, but it's actually pretty good. It's a whole bunch of differing, weird reincarnation stuff — however, the rules are pretty funny, in that, like, the main character says \"I wanna be reincarnated as a cute toe,\" and the goddess says, \"OK sure, you can do that, but there's a 500,000-year wait on getting reincarnated there.\" So then he negotiates and ends up with all these weird little things, like being reincarnated as the main heroine's rib, but somewhat sentient. It's very well done. It has a bunch of very cool, interesting animation, ranging from bits of straight-up 2D to very crayon-style to literally claymation, and some fun live-action stuff. I really like that at the end of the episode they show you how they made some of the cool segments, which I think adds to it, and it's pretty darn funny. They keep the various story jokes to two storylines per episode, so it's definitely been a very pleasantly pleasing show that I can recommend.",
-        "dateReviewed": "2026-07-04"
+        "dateReviewed": "2026-07-04T12:00:00-04:00"
       },
       "anilist": {
         "format": "TV",
@@ -1547,9 +1546,9 @@
       "review": "The show's got me curious. Cool opening song, the animation is pretty decent. It's another one where I'm not quite sure where the story is going, but it's already done a couple of different little time-leaps back and forth, so I'm definitely curious. Doesn't hurt that Production I.G is involved in this, so that's a good sign for a quality show, I think. Plus, it features a lefty, so I'll take that as a win.",
       "dateReviewed": "2026-04-14T08:30:00-04:00",
       "watched": {
-        "first": "2026-06-12",
-        "last": "2026-06-23",
-        "lastEpisode": 2
+        "from": "2026-06-12",
+        "to": "2026-06-23",
+        "episode": 2
       },
       "anilistId": 158036,
       "annId": 26678,
@@ -1561,7 +1560,7 @@
         "ratingNumber": 1,
         "ratingText": "Never, Please No More Like This Ever",
         "review": "Finished the first episode; it's fine, better than most of the things out there, and worth watching, or so. The thing I find off about it is that the main guy in the show is just such a turd of a teenager — and by that I mean someone who thinks so highly of himself and doesn't realize he's just kind of a turd. Plus, he's got a not-quite-girlfriend girlfriend who's clearly a much better organized, put-together human being, and she's willing to sink her ship as part of his flotilla — I don't know, bad analogy, but she's trying to tie herself to him, and I'm just like, oh my God, ditch that loser. OK, anyways, I'm probably not gonna watch much more than this, but that's OK. Update: watched the second episode, and the main character got to be even more insufferable, and others were just hurting, and it was just completely insufferable teenage-dirtbag nonsense, so I don't need that.",
-        "dateReviewed": "2026-07-04"
+        "dateReviewed": "2026-07-04T12:00:00-04:00"
       },
       "anilist": {
         "format": "TV",
@@ -1589,8 +1588,8 @@
       "review": "Production values are nice, but honestly, I'm kind of bored. I'm not really sure where it's going. It could be a good show, but not enough to capture me here.",
       "dateReviewed": "2026-04-14T09:00:00-04:00",
       "watched": {
-        "first": "2026-06-18",
-        "lastEpisode": 1
+        "from": "2026-06-18",
+        "episode": 1
       },
       "anilistId": 147105,
       "annId": 25496,
@@ -1635,9 +1634,9 @@
       "review": "So this is new work from Studio Bones, and from the author of Fullmetal Alchemist. I never got into Fullmetal Alchemist, so I can't really say I'm already sold. But the initial part of it seems kind of interesting — I'm actually curious to see who's doing what, and where they're going with the world they've got set up. So I think it's got good potential to be cool. I'll probably finish watching the episode.",
       "dateReviewed": "2026-04-14T09:30:00-04:00",
       "watched": {
-        "first": "2026-05-09",
-        "last": "2026-05-11",
-        "lastEpisode": 3
+        "from": "2026-05-09",
+        "to": "2026-05-11",
+        "episode": 3
       },
       "anilistId": 195600,
       "annId": 36881,
@@ -1649,7 +1648,7 @@
         "ratingNumber": 4,
         "ratingText": "Yeah, Here's Hoping",
         "review": "Watched the first several episodes of the show, and it's pretty well done. It's a cool take, kind of mixing old and new stuff in a fantastical, magical world that's also kind of grounded in reality. I'm sure it's a fun show, but for me, there was also nothing that particularly made me say \"oh man, I gotta watch the next episode.\" So I'll probably not watch the next episode.",
-        "dateReviewed": "2026-07-04"
+        "dateReviewed": "2026-07-04T12:00:00-04:00"
       },
       "anilist": {
         "format": "TV",
@@ -1721,8 +1720,8 @@
       }
     }
   ],
-  "pending": [],
-  "skipped": [
+  "toReview": [],
+  "notReviewing": [
     "Re:ZERO -Starting Life in Another World- Season 4",
     "That Time I Got Reincarnated as a Slime Season 4",
     "Classroom of the Elite 4th Season: Second Year, First Semester",

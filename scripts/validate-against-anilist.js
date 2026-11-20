@@ -11,7 +11,7 @@
  *     with a matching title (catches typos/drift if the wrong id got pasted in)
  *   - if it doesn't, searches AniList by title and suggests an `anilistId`
  *     to add when a confident match is found
- * For pending/skipped titles (nowhere to attach an id), it
+ * For toReview/notReviewing titles (nowhere to attach an id), it
  * just flags titles AniList has no confident match for, as a spelling check.
  *
  *   npm run validate-anilist                    # every committed season
@@ -127,11 +127,11 @@ async function main() {
     const issues = [];
     const suggestions = [];
 
-    for (const review of season.reviewed ?? []) {
+    for (const review of season.shows ?? []) {
       await checkReviewed(review, issues, suggestions);
       await delay(delayMs);
     }
-    for (const entry of [...(season.pending ?? []), ...(season.skipped ?? [])]) {
+    for (const entry of [...(season.toReview ?? []), ...(season.notReviewing ?? [])]) {
       const title = entryTitle(entry);
       if (!title) continue; // validate-vqar reports an entry with no title
       await checkTitleExists(title, issues);

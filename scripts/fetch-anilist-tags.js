@@ -34,7 +34,7 @@ import { SEASONS_DIR } from './build-vqar-index.js';
 import { anilistRequest } from './anilistClient.js';
 import { titlesLikelyMatch } from './anilistMatch.js';
 import {
-  fetchMediaByIds, mediaFromResponses, applyAnilistFields, replaceReviewed, searchQueries,
+  fetchMediaByIds, mediaFromResponses, applyAnilistFields, replaceShows, searchQueries,
   searchResultsFromResponses, applySearchResults, MEDIA_BY_IDS_QUERY, BATCH_SIZE,
 } from './anilistTags.js';
 
@@ -53,11 +53,11 @@ async function main() {
     return { filename, file, raw, season: JSON.parse(raw) };
   });
 
-  const ids = [...new Set(seasons.flatMap(s => (s.season.reviewed ?? []).map(r => r.anilistId).filter(Boolean)))]
+  const ids = [...new Set(seasons.flatMap(s => (s.season.shows ?? []).map(r => r.anilistId).filter(Boolean)))]
     .sort((a, b) => a - b);
 
   if (args.includes('--print-search-queries')) {
-    const entries = seasons.flatMap(({ season }) => (season.reviewed ?? [])
+    const entries = seasons.flatMap(({ season }) => (season.shows ?? [])
       .map((review, index) => ({ seasonId: season.id, index, title: review.titleEN, review }))
       .filter(entry => !entry.review.anilistId && entry.title));
     const queries = searchQueries(entries, { anySeason: args.includes('--any-season') });
@@ -84,7 +84,7 @@ async function main() {
         console.log(`  ? ${u.title} -> AniList ${u.anilistId} (${u.anilistTitles.join(' / ')}) - check it; --accept=${u.alias} to take it`);
       }
       for (const n of result.notFound) console.log(`  - ${n.title}: AniList found nothing (${n.alias})`);
-      if (result.linked.length > 0 && !dryRun) fs.writeFileSync(file, replaceReviewed(raw, result.reviewed));
+      if (result.linked.length > 0 && !dryRun) fs.writeFileSync(file, replaceShows(raw, result.shows));
     }
     if (dryRun) console.log('\n--dry-run: nothing written.');
     return;
@@ -125,7 +125,7 @@ async function main() {
     console.log(`${filename}: ${result.updated.length} updated, ${result.unchanged} unchanged`);
     for (const title of result.updated) console.log(`  ~ ${title}`);
     if (result.updated.length > 0 && !dryRun) {
-      fs.writeFileSync(file, replaceReviewed(raw, result.reviewed));
+      fs.writeFileSync(file, replaceShows(raw, result.shows));
     }
   }
 

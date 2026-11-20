@@ -4,7 +4,7 @@ const EXAMPLES = {
   current: `query {
   currentSeason {
     name
-    reviewed {
+    shows {
       titleEN
       ratingText
       review
@@ -20,7 +20,7 @@ const EXAMPLES = {
   bySeason: `query {
   season(id: "spring-2026") {
     name
-    reviewed {
+    shows {
       titleEN
       ratingText
       review

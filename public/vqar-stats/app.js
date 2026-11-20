@@ -204,7 +204,7 @@ function renderHopeCheck(reviews) {
 }
 
 /**
- * A progress bar of reviewed shows out of reviewed + pending, with both counts
+ * A progress bar of reviewed shows out of reviewed + to review, with both counts
  * labeled underneath.
  * @param {SeasonData[]} seasons
  * @param {string} label
@@ -238,7 +238,7 @@ function renderCoverage(seasons, label) {
 
   const detail = document.createElement('p');
   detail.className = 'vs-prose';
-  detail.textContent = `${c.reviewed} reviewed · ${c.pending} pending`;
+  detail.textContent = `${c.reviewed} reviewed · ${c.toReview} to be reviewed`;
 
   dom.coverageBar.replaceChildren(summary, track, detail);
 }

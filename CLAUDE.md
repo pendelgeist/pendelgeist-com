@@ -60,8 +60,10 @@ behavior, it moves into a shared module at `public/` root rather than being copi
 | `public/streaming.js` | `/vqar`, `/fsar`, `scripts/validateSeason.js` | service keys, badge + badge-row rendering |
 | `public/external-links.js` | `/vqar`, `/fsar` | the AniList/ANN/Wikipedia reference links |
 | `public/data-table.js` | `/nasubi`, `/vqar-stats` | the sortable table, stat-tile grid, and bar chart |
+| `public/dates.js` | `/vqar`, `scripts/validateSeason.js` | the two date forms: a day (`isDay`) and an Eastern moment (`isMoment`, `isEasternMoment`), plus `dayOf` and `easternMoment` |
+| `public/vqar/seasons.js` | `/vqar-stats`, `src/schema.js`, `scripts/` | what a season id means: `isLineup` (a `<season>-<year>` lineup vs. a shelf like the Backlog) and `seasonSortKey` |
 | `public/vqar/data-paths.js` | `/vqar`, `/vqar-stats`, `src/schema.js` | the path to the VQAR season index |
-| `public/vqar/list-entries.js` | `/vqar`, `/vqar-stats`, `src/schema.js`, `scripts/` | a `pending`/`skipped` entry is a title string *or* an object with optional notes; read titles through `entryTitle` |
+| `public/vqar/list-entries.js` | `/vqar`, `/vqar-stats`, `src/schema.js`, `scripts/` | a `toReview`/`notReviewing` entry is a title string *or* an object with optional notes; read titles through `entryTitle` |
 | `public/vqar/oped.js` | `/vqar`, `/vqar-stats`, `src/schema.js`, `scripts/validateSeason.js` | a liked OP/ED is always a list of the numbers liked (`[1]`, `[1, 2]`), never a bare `true`; read it through `isLikedOpEd`/`opEdNumbers`, never `=== true` |
 | `public/vqar/rating.js` | `/vqar`, `/vqar-stats` | which rating wins once a show has both an ep-1 rating and a re-review, which shows are still waiting on a revisit (`awaitingRevisit`), and each tier's default label |
 
@@ -82,15 +84,21 @@ ordered newest-first by parsing `<season>-<year>` out of the id, with an explici
 `sortKey` as the escape hatch for an id that doesn't fit.
 
 **Editing a season**: edit `public/vqar/data/seasons/<id>.json`, run `npm run build-vqar-index`,
-run `npm test`. Adding a review = appending to that season's `reviewed` array (only `titleEN`,
+run `npm test`. Adding a review = appending to that season's `shows` array (only `titleEN`,
 `ratingNumber`, `ratingText`, `dateReviewed` are required; `dateReviewed` is a full timestamp with the reviewer's Eastern offset like
 `2026-10-08T10:30:00-04:00` — stamp it with `TZ=America/New_York date +%Y-%m-%dT%H:%M:%S%:z`, not
 `date -u`: the page shows the date exactly as written, so a UTC stamp puts an evening review on
-tomorrow's date. "Most recent" sorts on it) and removing the title from `pending`/`skipped` if
+tomorrow's date. "Most recent" sorts on it) and removing the title from `toReview`/`notReviewing` if
 it was there.
 
+**Dates** come in two forms (`public/dates.js`, README → "Dates"): a **day**, `YYYY-MM-DD`
+Eastern, for anything where only the day matters (`watched.from`/`to`, `premieres`,
+`finishedDate`; stamp with `TZ=America/New_York date +%F`), and a **moment**, an Eastern-offset
+timestamp, for when a review was written (`dateReviewed`, including a `fullReview`'s). A backfilled
+review whose time isn't known gets noon Eastern that day (`easternMoment(day)`), never midnight.
+
 **Re-reviewing a show** (a revisit after watching more of it): add a `fullReview` object to
-that show's existing entry — `review`, `ratingNumber`, `ratingText`, `dateReviewed`. Don't
+that show's existing entry — `review`, `ratingNumber`, `ratingText`, `dateReviewed` (a moment). Don't
 start a new entry. **If the user hasn't given a rating, ask for one before saving.** Offer the
 six tiers (5 Peak, Nice Ep Broh / 4 Yeah, Here's Hoping / 3 Meh, Finishing the Ep / 2 Trash, for
 Second Screen Only / 1 Never, Please No More Like This Ever / 0 Dead, El-Hazard 2 Over This). A
@@ -105,10 +113,11 @@ always names the number(s): `"op": [2]` (OP 2), `"ed": [1, 3]`. If the user does
 use `[1]`. That's the whole marking: no rating, note or date, and validation rejects a bare
 `true` or anything but a list of distinct whole numbers from 1.
 
-**Watched dates**: `"watched": { "first": "2026-04-01", "last": "2026-06-10" }` records when the
-first and last episodes were watched. Dates are a plain calendar date (Eastern, from the watch
-history) or an Eastern-offset timestamp. For a show that wasn't finished add `"lastEpisode"`:
-a number (`6`) or text for a multi-season run (`"S2 E6"`). `first` is required, `last` optional.
+**Watched dates**: `"watched": { "from": "2026-04-01", "to": "2026-06-10" }` records the days
+the first and last episodes were watched (days, never timestamps; Eastern, from the watch
+history). For a show that wasn't finished add `"episode"`, the last one reached (`6`), plus
+`"season"` for a multi-season run (`"season": 2, "episode": 6`); both are numbers, never text.
+`from` is required, `to` optional.
 It's independent of `dateReviewed` (when the review was written) and of `finishedDate`.
 
 **AniList tags**: a review's `anilist` object (format/genres/tags/studios) is generated by
@@ -133,14 +142,16 @@ finished — a note for their own records, not shown on the page; it's only vali
 `anilistId` in two seasons is rejected as an accidental repeat. Each part gets its own rating
 (ask if not given) and its own `finishedSeason`. README → "Splitting one show across seasons".
 
-**Older shows**: a review of a show that didn't air in the season it was watched in goes in
-`seasons/older-shows.json` (`"archive": true`, `"sortKey": 0`), with an optional free-text
-`airedLabel` like `"Winter 2004"`. It counts in every total and average but is left out of the
-per-season stats (`_archive` in `public/vqar-stats/stats.js`), and can't be `current`. README →
-"Older shows".
+**Lineups and the Backlog**: a season file whose id is `<season>-<year>` is a **lineup**, an
+anime season reviewed live; any other id is a **shelf** (`isLineup` in `public/vqar/seasons.js`
+decides, so there's no flag to keep in step). A review of a show that didn't air in the season it
+was watched in goes on the one shelf, `seasons/backlog.json` (`"sortKey": 0`), with an optional
+free-text `airedLabel` like `"Winter 2004"`. It counts in every total and average but is left out
+of the per-season stats (`_lineup` in `public/vqar-stats/stats.js`), and can't be `current`.
+README → "Lineups and the Backlog".
 
 **Starting a season**: add `seasons/<season>-<year>.json` with a matching `id`, a `name`,
-`"current": true`, and empty `reviewed`/`pending`/`skipped` — then **remove `current` from the
+`"current": true`, and empty `shows`/`toReview`/`notReviewing` — then **remove `current` from the
 previous season**, since exactly one may carry it. Rebuild the index and run the tests. Full
 runbook, with the shape of each field, is in the README under "Starting a new season".
 

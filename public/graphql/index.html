@@ -114,24 +114,24 @@
       <ul class="show-list">
         <li><code>id: ID!</code></li>
         <li><code>name: String!</code></li>
-        <li><code>number: Int</code> &mdash; optional MAL season id</li>
-        <li><code>reviewed: [Review!]!</code></li>
-        <li><code>pending: [String!]!</code></li>
-        <li><code>skipped: [String!]!</code></li>
-        <li><code>pendingShows: [PendingShow!]!</code> &mdash; the pending shows with their optional streaming and first-episode info</li>
-        <li><code>skippedShows: [SkippedShow!]!</code> &mdash; the skipped shows with their optional reason and streaming info</li>
+        <li><code>lineup: Boolean!</code> &mdash; true for a season reviewed live (an id like <code>spring-2026</code>), false for a shelf like the Backlog</li>
+        <li><code>shows: [Review!]!</code></li>
+        <li><code>toReview: [String!]!</code></li>
+        <li><code>notReviewing: [String!]!</code></li>
+        <li><code>toReviewShows: [ToReviewShow!]!</code> &mdash; the shows still to review, with their optional streaming and premiere info</li>
+        <li><code>notReviewingShows: [NotReviewingShow!]!</code> &mdash; the shows not being reviewed, with their optional reason and streaming info</li>
       </ul>
 
-      <h3>PendingShow</h3>
+      <h3>ToReviewShow</h3>
       <ul class="show-list">
         <li><code>title: String!</code></li>
         <li><code>streaming: [String!]!</code> &mdash; service keys, empty when none are recorded</li>
-        <li><code>firstEpisode: String</code> &mdash; optional, <code>YYYY-MM-DD</code></li>
+        <li><code>premieres: String</code> &mdash; optional, the day the first episode premieres, <code>YYYY-MM-DD</code></li>
         <li><code>availableNow: Boolean!</code> &mdash; true when the show is already out</li>
         <li><code>crunchyrollUrl</code>, <code>hidiveUrl</code>, <code>netflixUrl</code>, <code>huluUrl</code>, <code>primeUrl</code>, <code>youtubeUrl</code>: <code>String</code> &mdash; optional direct links</li>
       </ul>
 
-      <h3>SkippedShow</h3>
+      <h3>NotReviewingShow</h3>
       <ul class="show-list">
         <li><code>title: String!</code></li>
         <li><code>reason: String</code> &mdash; optional short reason it isn't being reviewed</li>
@@ -153,6 +153,14 @@
         <li><code>season: ID!</code> &mdash; id of the season this review belongs to</li>
         <li><code>seasonName: String!</code> &mdash; display name of that season</li>
         <li><code>anilistId: Int</code> &mdash; optional AniList media id, when set</li>
+        <li><code>watched: Watched</code> &mdash; when the show was watched, null when not recorded</li>
+      </ul>
+
+      <h3>Watched</h3>
+      <ul class="show-list">
+        <li><code>from: String!</code> &mdash; the day the first episode was watched, <code>YYYY-MM-DD</code></li>
+        <li><code>to: String</code> &mdash; the day the last one was</li>
+        <li><code>season: Int</code>, <code>episode: Float</code> &mdash; the last episode reached, for a show that wasn't finished</li>
       </ul>
 
       <h3>SubReview</h3>
