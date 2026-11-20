@@ -104,8 +104,8 @@
 
       <h3>Recommendation</h3>
       <ul class="show-list">
-        <li><code>review: Review!</code></li>
-        <li><code>score: Float!</code> &mdash; closeness to the profile, scaled by rating, 0&ndash;1</li>
+        <li><code>show: Show!</code></li>
+        <li><code>score: Float!</code> &mdash; closeness to the profile, scaled by the current rating, 0&ndash;1</li>
         <li><code>popularity: Int</code> &mdash; AniList members with it on their list</li>
         <li><code>sharedGenres: [String!]!</code>, <code>sharedTags: [String!]!</code> &mdash; what got it picked</li>
       </ul>
@@ -115,7 +115,7 @@
         <li><code>id: ID!</code></li>
         <li><code>name: String!</code></li>
         <li><code>lineup: Boolean!</code> &mdash; true for a season reviewed live (an id like <code>spring-2026</code>), false for a shelf like the Backlog</li>
-        <li><code>shows: [Review!]!</code></li>
+        <li><code>shows: [Show!]!</code></li>
         <li><code>toReview: [String!]!</code></li>
         <li><code>notReviewing: [String!]!</code></li>
         <li><code>toReviewShows: [ToReviewShow!]!</code> &mdash; the shows still to review, with their optional streaming and premiere info</li>
@@ -139,21 +139,35 @@
         <li><code>crunchyrollUrl</code>, <code>hidiveUrl</code>, <code>netflixUrl</code>, <code>huluUrl</code>, <code>primeUrl</code>, <code>youtubeUrl</code>: <code>String</code> &mdash; optional direct links</li>
       </ul>
 
-      <h3>Review</h3>
+      <h3>Show</h3>
       <ul class="show-list">
         <li><code>titleEN: String!</code></li>
         <li><code>titleJP: String</code></li>
-        <li><code>ratingNumber: Float</code></li>
-        <li><code>ratingText: String</code></li>
-        <li><code>review: String</code></li>
-        <li><code>dateReviewed: String</code></li>
-        <li><code>fullReview: SubReview</code> &mdash; full-series re-review, once a "Finish Ep"-rated show is actually finished</li>
-        <li><code>op: SubReview</code> &mdash; opening callout</li>
-        <li><code>ed: SubReview</code> &mdash; ending callout</li>
-        <li><code>season: ID!</code> &mdash; id of the season this review belongs to</li>
+        <li><code>aired: Aired</code> &mdash; when it first aired, from AniList</li>
+        <li><code>reviews: [Review!]!</code> &mdash; every review of it, oldest first</li>
+        <li><code>ratingNumber: Float</code>, <code>ratingText: String</code> &mdash; the current rating: the latest review's</li>
+        <li><code>op: Boolean</code>, <code>ed: Boolean</code> &mdash; true when an opening/ending was liked; the numbers are in <code>opNumbers</code>/<code>edNumbers</code></li>
+        <li><code>watched: Watched</code> &mdash; when the show was watched, null when not recorded</li>
+        <li><code>season: ID!</code> &mdash; id of the season file it's listed in</li>
         <li><code>seasonName: String!</code> &mdash; display name of that season</li>
         <li><code>anilistId: Int</code> &mdash; optional AniList media id, when set</li>
-        <li><code>watched: Watched</code> &mdash; when the show was watched, null when not recorded</li>
+      </ul>
+
+      <h3>Review</h3>
+      <ul class="show-list">
+        <li><code>stage: String!</code> &mdash; <code>first</code> (a first impression, after episode 1), <code>revisit</code>, <code>final</code> (the verdict once it's finished), or <code>review</code> (a first review with no episode-1 basis)</li>
+        <li><code>episodes: Int</code> &mdash; how many episodes it was based on</li>
+        <li><code>final: Boolean</code></li>
+        <li><code>ratingNumber: Float</code></li>
+        <li><code>ratingText: String</code> &mdash; the review's own label, or its tier's default</li>
+        <li><code>text: String</code></li>
+        <li><code>dateReviewed: String</code></li>
+      </ul>
+
+      <h3>Aired</h3>
+      <ul class="show-list">
+        <li><code>season: String</code> &mdash; <code>winter</code>, <code>spring</code>, <code>summer</code> or <code>fall</code>; null when AniList has only a year</li>
+        <li><code>year: Int!</code></li>
       </ul>
 
       <h3>Watched</h3>
@@ -161,14 +175,7 @@
         <li><code>from: String!</code> &mdash; the day the first episode was watched, <code>YYYY-MM-DD</code></li>
         <li><code>to: String</code> &mdash; the day the last one was</li>
         <li><code>season: Int</code>, <code>episode: Float</code> &mdash; the last episode reached, for a show that wasn't finished</li>
-      </ul>
-
-      <h3>SubReview</h3>
-      <ul class="show-list">
-        <li><code>ratingNumber: Float</code></li>
-        <li><code>ratingText: String</code></li>
-        <li><code>review: String</code></li>
-        <li><code>dateReviewed: String</code></li>
+        <li><code>finished: Boolean</code> &mdash; true when the whole thing was watched</li>
       </ul>
     </details>
   </div>

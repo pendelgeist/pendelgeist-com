@@ -5,7 +5,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import {
   anilistFields, fetchMediaByIds, mediaFromResponses, applyAnilistFields, replaceShows, BATCH_SIZE, MIN_TAG_RANK,
-  searchQueries, searchText, seasonFilter, searchResultsFromResponses, applySearchResults, SEARCH_BATCH_SIZE,
+  searchQueries, searchText, seasonFilter, searchResultsFromResponses, applySearchResults, SEARCH_BATCH_SIZE, airedFromMedia,
 } from '../scripts/anilistTags.js';
 import { titlesLikelyMatch } from '../scripts/anilistMatch.js';
 import { makeSeason, makeShow } from './fixtures.js';
@@ -76,7 +76,7 @@ test('applyAnilistFields sets only `anilist`, and reports the shows it could not
   assert.deepEqual(result.updated, ['Tagged']);
   assert.deepEqual(result.noId, ['No Id']);
   assert.deepEqual(result.notFound, ['Gone From AniList']);
-  assert.equal(result.shows[0].review, 'kept as is');
+  assert.equal(result.shows[0].reviews[0].text, 'kept as is');
   assert.deepEqual(result.shows[0].anilist.tags, ['Isekai', 'Male Protagonist']);
   // A show AniList didn't return keeps what it had, rather than losing it.
   assert.deepEqual(result.shows[2].anilist.genres, ['Drama']);
@@ -84,6 +84,29 @@ test('applyAnilistFields sets only `anilist`, and reports the shows it could not
   const again = applyAnilistFields({ shows: result.shows }, new Map([[101, media]]));
   assert.deepEqual(again.updated, []);
   assert.equal(again.unchanged, 1);
+});
+
+test('aired comes from AniList only where a show has none, so a hand fix sticks', () => {
+  const aired = { ...media, season: 'SPRING', seasonYear: 2010 };
+  const season = makeSeason({
+    shows: [
+      makeShow({ titleEN: 'Needs It', titleJP: 'JP', anilistId: 101 }),
+      makeShow({ titleEN: 'Has One', anilistId: 101, aired: { season: 'winter', year: 2011 } }),
+    ],
+  });
+  const result = applyAnilistFields(season, new Map([[101, aired]]));
+  assert.deepEqual(result.shows[0].aired, { season: 'spring', year: 2010 });
+  assert.deepEqual(Object.keys(result.shows[0]).slice(0, 3), ['titleEN', 'titleJP', 'aired'], 'next to the titles, where it is written by hand');
+  assert.deepEqual(result.shows[1].aired, { season: 'winter', year: 2011 });
+
+  // Once filled, a rerun has nothing to change.
+  assert.equal(applyAnilistFields({ shows: result.shows }, new Map([[101, aired]])).unchanged, 2);
+});
+
+test('airedFromMedia falls back to a year alone, and to nothing', () => {
+  assert.deepEqual(airedFromMedia({ season: 'FALL', seasonYear: 2026 }), { season: 'fall', year: 2026 });
+  assert.deepEqual(airedFromMedia({ season: null, seasonYear: null, startDate: { year: 2026 } }), { year: 2026 });
+  assert.equal(airedFromMedia({ season: null, seasonYear: null, startDate: { year: null } }), undefined);
 });
 
 test('replaceShows leaves every committed season file byte-for-byte as it was', () => {

@@ -1,7 +1,8 @@
 import { STREAMING_SERVICES, STREAMING_URL_FIELDS } from '../public/streaming.js';
 import { LIST_ENTRY_KEYS, entryTitle } from '../public/vqar/list-entries.js';
 import { opEdProblem } from '../public/vqar/oped.js';
-import { isDay, isMoment, easternOffset, dayOf } from '../public/dates.js';
+import { isDay, isMoment, easternOffset } from '../public/dates.js';
+import { AIRED_SEASONS } from '../public/vqar/aired.js';
 import { seasonSortKey, isLineup } from '../public/vqar/seasons.js';
 import { normalizeTitle } from './anilistMatch.js';
 
@@ -15,28 +16,30 @@ export const SEASON_KEYS = ['id', 'name', 'current', 'sortKey', 'shows', 'toRevi
 const URL_FIELDS = [...Object.values(STREAMING_URL_FIELDS), 'wikipediaUrl', 'wikipediaJaUrl'];
 
 /**
- * Every key a review may carry. test/graphql.test.js checks the GraphQL `Review`
+ * Every key a show may carry. test/graphql.test.js checks the GraphQL `Show`
  * type against this list (plus the `season`/`seasonName` the API adds), so the
  * schema can't drift from what validation lets through.
  */
-export const REVIEW_KEYS = [
-  'titleEN', 'titleJP', 'airedLabel', 'ratingNumber', 'ratingText', 'review', 'dateReviewed',
-  'fullReview', 'op', 'ed', 'finishedSeason', 'finishedDate', 'watched', 'watchProgress', 'part',
+export const SHOW_KEYS = [
+  'titleEN', 'titleJP', 'aired', 'reviews', 'watched', 'op', 'ed',
   'anilistId', 'anilist', 'annId', 'streaming', ...URL_FIELDS,
 ];
 
-/** Every key a `fullReview` (a revisit) may carry; checked against the GraphQL `SubReview` too. */
-export const FULL_REVIEW_KEYS = ['ratingNumber', 'ratingText', 'review', 'dateReviewed'];
+/** Every key one of a show's `reviews` may carry; checked against the GraphQL `Review` type too. */
+export const REVIEW_KEYS = ['episodes', 'final', 'ratingNumber', 'ratingText', 'text', 'dateReviewed'];
 
 /** Every key a show's `watched` object may carry; checked against the GraphQL `Watched` type too. */
-export const WATCHED_KEYS = ['from', 'to', 'season', 'episode'];
+export const WATCHED_KEYS = ['from', 'to', 'season', 'episode', 'finished'];
+
+/** Every key a show's `aired` object may carry; checked against the GraphQL `Aired` type too. */
+export const AIRED_KEYS = ['season', 'year'];
 
 /**
  * Problems with one review timestamp: not stamped in the reviewer's Eastern
  * offset (the page shows the date exactly as written, so a UTC stamp can put an
  * evening review on tomorrow's date), or in the future.
  * @param {string} label - how to name the owner in a message
- * @param {string} field - `dateReviewed`, or `fullReview.dateReviewed`
+ * @param {string} field - e.g. `reviews[1].dateReviewed`
  * @param {string} value - already known to be a moment (see isMoment in public/dates.js)
  * @param {number} now - epoch milliseconds
  * @returns {string[]}
@@ -125,23 +128,108 @@ function validateListEntries(list, listName) {
 }
 
 /**
- * A revisit's date is optional, and like every review date it's a moment - a
- * timestamp in the reviewer's Eastern offset - not in the future, and not
- * before the episode-1 review it follows.
+ * Problems with a show's `reviews`: each one well-formed, and the list telling
+ * a story that makes sense - oldest first, at most one first impression and
+ * only at the start, never fewer episodes than the review before it, and a
+ * final verdict only last and only once the show is marked finished. The
+ * stages these rules protect are derived, not stored (see
+ * public/vqar/reviews.js), so a list that broke them would be labeled wrong.
  * @param {string} label
- * @param {any} review
+ * @param {any} show
  * @param {number} now
  * @returns {string[]}
  */
-function revisitDateIssues(label, review, now) {
-  const value = review.fullReview.dateReviewed;
-  if (value === undefined) return [];
-  if (!isMoment(value)) {
-    return [`"${label}" has a fullReview.dateReviewed that isn't a timestamp like 2026-10-08T12:00:00-04:00`];
+function reviewsIssues(label, show, now) {
+  const { reviews } = show;
+  if (!Array.isArray(reviews) || reviews.length === 0) {
+    return [`"${label}" needs a reviews list with at least one review`];
   }
-  const issues = timestampIssues(label, 'fullReview.dateReviewed', value, now);
-  if (typeof review.dateReviewed === 'string' && dayOf(value) < dayOf(review.dateReviewed)) {
-    issues.push(`"${label}" has a fullReview.dateReviewed (${dayOf(value)}) before its episode-1 review (${dayOf(review.dateReviewed)})`);
+  const issues = [];
+  let previous = null;
+  reviews.forEach((review, i) => {
+    const where = `reviews[${i}]`;
+    if (typeof review !== 'object' || review === null || Array.isArray(review)) {
+      issues.push(`"${label}" has a malformed ${where} (expected an object)`);
+      previous = null;
+      return;
+    }
+    for (const key of Object.keys(review)) {
+      if (!REVIEW_KEYS.includes(key)) {
+        issues.push(`"${label}" has a ${where} with an unknown field "${key}" (a typo? expected one of ${REVIEW_KEYS.join(', ')})`);
+      }
+    }
+    // Sorting, the rating chips and every /vqar-stats number read this, so a
+    // string, a decimal or a 7 would quietly drop the show out of them.
+    if (!Number.isInteger(review.ratingNumber) || review.ratingNumber < 0 || review.ratingNumber > 5) {
+      issues.push(`"${label}" has a ${where} without a ratingNumber from 0 to 5 (a whole number) - ask for the rating, since the latest review's is the show's rating everywhere`);
+    }
+    if (review.ratingText !== undefined && (typeof review.ratingText !== 'string' || review.ratingText.trim() === '')) {
+      issues.push(`"${label}" has a malformed ${where}.ratingText (expected a non-empty string, or leave it out for the tier's own label)`);
+    }
+    if (review.text !== undefined && typeof review.text !== 'string') {
+      issues.push(`"${label}" has a malformed ${where}.text (expected a string)`);
+    }
+    if (review.dateReviewed === undefined) {
+      issues.push(`"${label}" has a ${where} without a dateReviewed`);
+    } else if (!isMoment(review.dateReviewed)) {
+      issues.push(`"${label}" has a ${where}.dateReviewed that isn't a timestamp like 2026-04-01T18:30:00-04:00`);
+    } else {
+      issues.push(...timestampIssues(label, `${where}.dateReviewed`, review.dateReviewed, now));
+      if (previous && isMoment(previous.dateReviewed) && Date.parse(review.dateReviewed) < Date.parse(previous.dateReviewed)) {
+        issues.push(`"${label}" has a ${where} dated before the review ahead of it - reviews are listed oldest first`);
+      }
+    }
+    if (review.episodes !== undefined) {
+      if (!(Number.isInteger(review.episodes) && review.episodes >= 1)) {
+        issues.push(`"${label}" has a malformed ${where}.episodes (expected a whole number from 1)`);
+      } else {
+        if (review.episodes === 1 && i > 0) {
+          issues.push(`"${label}" has a first impression (episodes: 1) at ${where} - there's at most one, and it comes first`);
+        }
+        if (Number.isInteger(previous?.episodes) && review.episodes < previous.episodes) {
+          issues.push(`"${label}" has a ${where} based on fewer episodes (${review.episodes}) than the review before it (${previous.episodes})`);
+        }
+        const { watched } = show;
+        if (typeof watched?.episode === 'number' && watched.season === undefined && review.episodes > watched.episode) {
+          issues.push(`"${label}" has a ${where} based on ${review.episodes} episodes, past the watched.episode reached (${watched.episode})`);
+        }
+      }
+    }
+    if (review.final !== undefined) {
+      if (review.final !== true) {
+        issues.push(`"${label}" has a malformed ${where}.final (expected true, or leave it out)`);
+      } else {
+        if (i !== reviews.length - 1) issues.push(`"${label}" has a final review at ${where} that isn't the last one`);
+        if (show.watched?.finished !== true) {
+          issues.push(`"${label}" has a final review but isn't marked finished - set "watched": { ..., "finished": true }`);
+        }
+      }
+    }
+    previous = review;
+  });
+  return issues;
+}
+
+/**
+ * Problems with a show's `aired`: when it first aired, from AniList - a
+ * season and year, or just a year when AniList has no season for it.
+ * @param {string} label
+ * @param {any} aired
+ * @returns {string[]}
+ */
+function airedIssues(label, aired) {
+  if (typeof aired !== 'object' || aired === null || Array.isArray(aired)) {
+    return [`"${label}" has a malformed aired (expected an object like { "season": "spring", "year": 2010 })`];
+  }
+  const issues = [];
+  for (const key of Object.keys(aired)) {
+    if (!AIRED_KEYS.includes(key)) issues.push(`"${label}" has an aired with an unknown field "${key}" (expected one of ${AIRED_KEYS.join(', ')})`);
+  }
+  if (!(Number.isInteger(aired.year) && aired.year >= 1900 && aired.year <= 2100)) {
+    issues.push(`"${label}" has a malformed aired.year (expected a year like 2010)`);
+  }
+  if (aired.season !== undefined && !AIRED_SEASONS.includes(aired.season)) {
+    issues.push(`"${label}" has a malformed aired.season (expected one of ${AIRED_SEASONS.join(', ')}, or leave it out)`);
   }
   return issues;
 }
@@ -196,6 +284,11 @@ function watchedIssues(label, watched, now) {
     } else if (episode === undefined) {
       issues.push(`"${label}" has a watched.season without a watched.episode - the season says which run the episode is in`);
     }
+  }
+  // Having watched the whole thing is a bare marking, independent of any
+  // review or rating, since a season of trash can get finished too.
+  if (watched.finished !== undefined && watched.finished !== true) {
+    issues.push(`"${label}" has a malformed watched.finished (expected true, or leave it out)`);
   }
   return issues;
 }
@@ -323,26 +416,12 @@ export function validateSeason(season, { filename, now = Date.now() } = {}) {
     const label = r.titleEN || `shows[${i}]`;
     if (!r.titleEN) issues.push(`shows[${i}] is missing titleEN`);
     for (const key of Object.keys(r)) {
-      if (!REVIEW_KEYS.includes(key)) {
-        issues.push(`"${label}" has an unknown field "${key}" (a typo? expected one of ${REVIEW_KEYS.join(', ')})`);
+      if (!SHOW_KEYS.includes(key)) {
+        issues.push(`"${label}" has an unknown field "${key}" (a typo? expected one of ${SHOW_KEYS.join(', ')})`);
       }
     }
-    if (!r.ratingText) issues.push(`"${label}" is missing ratingText`);
-    // Sorting, the rating chips and every /vqar-stats number read this one, so a
-    // string, a decimal or a 7 would quietly drop the show out of them.
-    if (!Number.isInteger(r.ratingNumber) || r.ratingNumber < 0 || r.ratingNumber > 5) {
-      issues.push(`"${label}" needs a ratingNumber from 0 to 5 (a whole number)`);
-    }
-    if (!r.dateReviewed || Number.isNaN(Date.parse(r.dateReviewed))) {
-      issues.push(`"${label}" has a missing or unparseable dateReviewed`);
-    } else if (!isMoment(r.dateReviewed)) {
-      issues.push(`"${label}" has a dateReviewed without a time (expected a timestamp like 2026-04-01T18:30:00-04:00)`);
-    } else {
-      issues.push(...timestampIssues(label, 'dateReviewed', r.dateReviewed, now));
-    }
-    if (r.airedLabel !== undefined && (typeof r.airedLabel !== 'string' || r.airedLabel.trim() === '')) {
-      issues.push(`"${label}" has a malformed airedLabel (expected a non-empty string like "Winter 2004")`);
-    }
+    issues.push(...reviewsIssues(label, r, now));
+    if (r.aired !== undefined) issues.push(...airedIssues(label, r.aired));
     if (r.anilistId !== undefined && !Number.isInteger(r.anilistId)) {
       issues.push(`"${label}" has a malformed anilistId (expected an integer)`);
     }
@@ -369,15 +448,6 @@ export function validateSeason(season, { filename, now = Date.now() } = {}) {
       }
     }
     if (r.anilist !== undefined) issues.push(...anilistIssues(label, r));
-    if (r.watchProgress !== undefined && typeof r.watchProgress !== 'string') {
-      issues.push(`"${label}" has a malformed watchProgress (expected a string)`);
-    }
-    if (r.part !== undefined && !(Number.isInteger(r.part) && r.part >= 1)) {
-      issues.push(`"${label}" has a malformed part (expected a whole number from 1, like "part": 2)`);
-    }
-    if (r.fullReview !== undefined && (typeof r.fullReview !== 'object' || r.fullReview === null || Array.isArray(r.fullReview))) {
-      issues.push(`"${label}" has a malformed fullReview (expected an object)`);
-    }
     // A liked OP/ED is a bare marking - no rating, no note - and always names
     // the OP/ED number(s) liked, since a season can have several. Left out
     // entirely when nothing was liked.
@@ -388,43 +458,6 @@ export function validateSeason(season, { filename, now = Date.now() } = {}) {
       }
     }
     if (r.watched !== undefined) issues.push(...watchedIssues(label, r.watched, now));
-    // Same for having watched the whole season - independent of a revisit
-    // or a rating, since a season of trash can get finished too.
-    if (r.finishedSeason !== undefined && r.finishedSeason !== true) {
-      issues.push(`"${label}" has a malformed finishedSeason (expected true - mark a finished season with "finishedSeason": true, or leave it out)`);
-    }
-    // The day the season got finished is a note for the reviewer's own records:
-    // a plain calendar date, only alongside the marking it belongs to.
-    if (r.finishedDate !== undefined) {
-      if (!isDay(r.finishedDate)) {
-        issues.push(`"${label}" has a malformed finishedDate (expected a date like 2026-10-26)`);
-      } else if (r.finishedSeason !== true) {
-        issues.push(`"${label}" has a finishedDate without "finishedSeason": true`);
-      } else if (Date.parse(r.finishedDate) > now) {
-        issues.push(`"${label}" has a finishedDate in the future`);
-      } else if (typeof r.dateReviewed === 'string' && r.finishedDate < dayOf(r.dateReviewed)) {
-        issues.push(`"${label}" has a finishedDate (${r.finishedDate}) before its episode-1 review (${dayOf(r.dateReviewed)})`);
-      }
-    }
-    // A revisit's rating replaces the episode-1 one everywhere ratings are
-    // sorted, filtered or counted (see effectiveRatingNumber in
-    // public/vqar/rating.js), so one saved without a rating would silently
-    // leave the old rating standing.
-    const revisit = r.fullReview;
-    if (revisit && typeof revisit === 'object' && !Array.isArray(revisit)) {
-      for (const key of Object.keys(revisit)) {
-        if (!FULL_REVIEW_KEYS.includes(key)) {
-          issues.push(`"${label}" has a fullReview with an unknown field "${key}" (expected one of ${FULL_REVIEW_KEYS.join(', ')})`);
-        }
-      }
-      issues.push(...revisitDateIssues(label, r, now));
-      if (!Number.isInteger(revisit.ratingNumber) || revisit.ratingNumber < 0 || revisit.ratingNumber > 5) {
-        issues.push(`"${label}" has a fullReview without a ratingNumber from 0 to 5 - ask for the revisit rating, since it replaces the episode-1 rating in sorting and on /vqar-stats`);
-      }
-      if (!revisit.ratingText) {
-        issues.push(`"${label}" has a fullReview without a ratingText`);
-      }
-    }
   });
 
   return issues;
@@ -432,8 +465,7 @@ export function validateSeason(season, { filename, now = Date.now() } = {}) {
 
 /**
  * Checks the seasons as a set, the way build-vqar-index.js sees them: ids have
- * to be unique, no AniList id is reviewed twice (unless it's numbered parts in
- * different seasons), and exactly one season carries `current: true` - that flag is
+ * to be unique, no AniList id is listed twice, and exactly one season carries `current: true` - that flag is
  * what the generated index's `currentSeason` comes from, so zero or two of them
  * is a broken index rather than a cosmetic slip.
  * @param {object[]} seasons
@@ -446,29 +478,19 @@ export function validateSeasonCollection(seasons) {
     issues.push(`more than one season has the id "${dupe}"`);
   }
 
-  // The same AniList id reviewed twice (a split-cour show, or a repeat) is
-  // counted twice in every /vqar-stats number, and no title check would see it.
-  // A show deliberately split across seasons (one AniList entry, but a new
-  // OP/ED and a mid-season finale) opts in by numbering every entry with
-  // `part`: then each part is its own review, in its own season.
+  // The same AniList id in two places (a second cour, or a repeat) is counted
+  // twice in every /vqar-stats number, and no title check would see it. A show
+  // stays where it was first reviewed, and later reviews join its `reviews`.
   const byAnilistId = new Map();
   for (const season of seasons) {
-    for (const review of Array.isArray(season.shows) ? season.shows : []) {
-      if (!Number.isInteger(review.anilistId)) continue;
-      const entry = { where: `"${review.titleEN}" (${season.id})`, seasonId: season.id, part: review.part };
-      byAnilistId.set(review.anilistId, [...(byAnilistId.get(review.anilistId) ?? []), entry]);
+    for (const show of Array.isArray(season.shows) ? season.shows : []) {
+      if (!Number.isInteger(show.anilistId)) continue;
+      byAnilistId.set(show.anilistId, [...(byAnilistId.get(show.anilistId) ?? []), `"${show.titleEN}" (${season.id})`]);
     }
   }
-  for (const [id, entries] of byAnilistId) {
-    if (entries.length < 2) continue;
-    const where = entries.map(e => e.where).join(' and ');
-    const parts = entries.map(e => e.part);
-    if (!parts.every(part => Number.isInteger(part))) {
-      issues.push(`anilistId ${id} is reviewed more than once: ${where} - if it's one show split across seasons on purpose, number every entry with "part"`);
-    } else if (findDuplicates(parts).length > 0) {
-      issues.push(`anilistId ${id} has the same part more than once: ${where}`);
-    } else if (findDuplicates(entries.map(e => e.seasonId)).length > 0) {
-      issues.push(`anilistId ${id} has more than one part in the same season: ${where}`);
+  for (const [id, where] of byAnilistId) {
+    if (where.length > 1) {
+      issues.push(`anilistId ${id} is listed more than once: ${where.join(' and ')} - a show stays where it was first reviewed, so add the later review to that one's reviews`);
     }
   }
 

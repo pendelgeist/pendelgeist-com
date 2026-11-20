@@ -3,9 +3,10 @@
  * `anilist` object a review carries, batching the id lookups, and writing a
  * season file back without disturbing anything but its `shows` block.
  *
- * A review's `anilist` object is generated - it's owned by this script and
- * overwritten wholesale on every run, so never hand-edit it. Everything else
- * on the review stays hand-maintained and untouched.
+ * A show's `anilist` object is generated - it's owned by this script and
+ * overwritten wholesale on every run, so never hand-edit it. Its `aired` is
+ * filled in from AniList only where it's missing, so a hand fix sticks.
+ * Everything else on the show stays hand-maintained and untouched.
  */
 
 /** Tags AniList ranks below this (a 0-100 relevance score) are noise. */
@@ -19,6 +20,9 @@ export const MEDIA_BY_IDS_QUERY = `#graphql
     Page(perPage: ${BATCH_SIZE}) {
       media(id_in: $ids, type: ANIME) {
         id
+        season
+        seasonYear
+        startDate { year }
         format
         genres
         tags { name rank isGeneralSpoiler isMediaSpoiler isAdult }
@@ -54,6 +58,33 @@ export function anilistFields(media) {
 }
 
 /**
+ * When a show first aired, from its AniList media: the season and year, or
+ * just the year when AniList has no season for it (it may have only a start
+ * date). Undefined when it has neither.
+ * @param {any} media
+ * @returns {{ season?: string, year: number } | undefined}
+ */
+export function airedFromMedia(media) {
+  if (media?.season && Number.isInteger(media.seasonYear)) return { season: media.season.toLowerCase(), year: media.seasonYear };
+  const year = media?.seasonYear ?? media?.startDate?.year;
+  return Number.isInteger(year) ? { year } : undefined;
+}
+
+/**
+ * The show with `aired` filled in from AniList if it had none, placed after
+ * its titles where it's written by hand. A show that already has one keeps it.
+ * @param {any} show
+ * @param {any} media
+ */
+function withAired(show, media) {
+  if (show.aired !== undefined) return show;
+  const aired = airedFromMedia(media);
+  if (!aired) return show;
+  const { titleEN, titleJP, ...rest } = show;
+  return { titleEN, ...(titleJP === undefined ? {} : { titleJP }), aired, ...rest };
+}
+
+/**
  * Looks up every id, BATCH_SIZE at a time, pausing between batches.
  * @param {number[]} ids
  * @param {{ request: (query: string, variables: object) => Promise<any>, delayMs?: number }} options
@@ -77,6 +108,7 @@ const MEDIA_FIELDS = `id
     title { romaji english native }
     season
     seasonYear
+    startDate { year }
     format
     genres
     tags { name rank isGeneralSpoiler isMediaSpoiler isAdult }
@@ -190,7 +222,7 @@ export function applySearchResults(season, results, { accept = new Set(), titles
     linked.push(review.titleEN);
     const next = { ...review, anilistId: media.id, anilist: anilistFields(media) };
     if (!review.titleJP && media.title?.native) next.titleJP = media.title.native;
-    return next;
+    return withAired(next, media);
   });
   return { shows, linked, unsure, notFound };
 }
@@ -215,8 +247,9 @@ export function mediaFromResponses(responses) {
 }
 
 /**
- * Sets each review's `anilist` from the fetched media. A review AniList didn't
- * return keeps whatever it had, so a lookup hiccup never erases data.
+ * Sets each show's `anilist` from the fetched media, and its `aired` where it
+ * has none. A show AniList didn't return keeps whatever it had, so a lookup
+ * hiccup never erases data.
  * @param {{ shows?: any[] }} season
  * @param {Map<number, any>} mediaById
  * @returns {{ shows: any[], updated: string[], unchanged: number, noId: string[], notFound: string[] }}
@@ -238,12 +271,13 @@ export function applyAnilistFields(season, mediaById) {
       return review;
     }
     const anilist = anilistFields(media);
-    if (JSON.stringify(anilist) === JSON.stringify(review.anilist)) {
+    const next = withAired(JSON.stringify(anilist) === JSON.stringify(review.anilist) ? review : { ...review, anilist }, media);
+    if (next === review) {
       unchanged++;
       return review;
     }
     updated.push(review.titleEN);
-    return { ...review, anilist };
+    return next;
   });
 
   return { shows, updated, unchanged, noId, notFound };

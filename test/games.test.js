@@ -12,7 +12,7 @@ const INDEX_HTML_PATH = path.join(__dirname, '../public/games/index.html');
 const APP_JS_PATH = path.join(__dirname, '../public/games/app.js');
 
 const sampleData = {
-  reviews: [
+  games: [
     makeGame({
       id: 'older-game',
       title: 'Older Game',
@@ -49,7 +49,7 @@ async function loadApp({ data = sampleData, search = '' } = {}) {
 
 const titles = (document) => [...document.querySelectorAll('.entry-title')].map((el) => el.textContent);
 
-test('lists every review, the most recently updated first', async () => {
+test('lists every game, the most recently reviewed first', async () => {
   const { document } = await loadApp();
   // Older Game's update (Oct 20) is newer than Newer Game's first impression (Oct 10).
   assert.deepEqual(titles(document), ['Older Game', 'Newer Game']);
@@ -88,6 +88,7 @@ test('a review renders its paragraphs as text, its meta, and its updates', async
   assert.equal(article.querySelector('.entry-progress').textContent, '~2 hrs in');
   assert.ok(article.querySelector('.entry-mark-finished'));
 
+  assert.equal(article.querySelector('.entry-addendum-label').textContent, 'First impression');
   const update = article.querySelector('.entry-addendum');
   assert.equal(update.querySelector('.entry-addendum-label').textContent, 'Update');
   assert.equal(update.querySelector('.entry-rating').textContent, 'Peak, Nice Game Broh');
@@ -95,7 +96,7 @@ test('a review renders its paragraphs as text, its meta, and its updates', async
   assert.equal(update.querySelector('.entry-description').textContent, 'It got better.');
 });
 
-test('the latest update sets the rating themes key off', async () => {
+test('the latest review sets the rating themes key off', async () => {
   const { document } = await loadApp();
   assert.equal(document.getElementById('older-game').dataset.rating, '5');
   assert.equal(document.getElementById('newer-game').dataset.rating, '4');
@@ -105,10 +106,28 @@ test('a review without a platform or hours leaves those out', async () => {
   const { document } = await loadApp({ search: '?game=newer-game' });
   assert.equal(document.querySelector('.entry-facts'), null);
   assert.equal(document.querySelector('.entry-progress'), null);
+  assert.equal(document.querySelector('.entry-addendum-label'), null, 'a lone review needs no stage label');
+});
+
+test('a review without its own ratingText shows its tier\'s label, and a final one says so', async () => {
+  const data = {
+    games: [makeGame({
+      id: 'done-game', title: 'Done Game',
+      reviews: [
+        { text: 'Hmm.', ratingNumber: 3, dateReviewed: '2026-09-01T21:30:00-04:00' },
+        { text: 'Beat it.', ratingNumber: 5, final: true, dateReviewed: '2026-10-01T21:30:00-04:00' },
+      ],
+      played: { finished: true },
+    })],
+  };
+  const { document } = await loadApp({ data });
+  const ratings = [...document.querySelectorAll('.entry-rating')].map((el) => el.textContent);
+  assert.deepEqual(ratings, ['Meh, Might Load the Save Again', 'Peak, Nice Game Broh']);
+  assert.equal(document.querySelector('.entry-addendum .entry-addendum-label').textContent, 'Final');
 });
 
 test('an empty list and a failed fetch each get a message', async () => {
-  const empty = await loadApp({ data: { reviews: [] } });
+  const empty = await loadApp({ data: { games: [] } });
   assert.equal(empty.document.getElementById('gameReviews').textContent, 'NO REVIEWS YET');
 
   const failed = await loadApp({ data: null });

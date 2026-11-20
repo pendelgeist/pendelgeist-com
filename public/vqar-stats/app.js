@@ -160,7 +160,7 @@ function renderSecondImpressions(reviews) {
   renderDataTable(
     dom.secondImpressionsTable,
     ['Title', 'Ep 1 Rating', 'Full Series Rating', 'Shift'],
-    s.swings.map(r => [r.titleEN ?? 'Untitled', formatRating(r.ratingNumber), formatRating(r.fullReview.ratingNumber), formatDelta(r.delta)])
+    s.swings.map(r => [r.titleEN ?? 'Untitled', formatRating(r.before), formatRating(r.after), formatDelta(r.delta)])
   );
 }
 

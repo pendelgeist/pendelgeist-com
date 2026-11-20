@@ -30,6 +30,15 @@ test('a season built from every builder feature passes validation', () => {
         titleEN: 'Long Show', ratingNumber: 3, ratingText: 'Meh, Finishing the Ep', dateReviewed: '2026-07-04T08:00:00-04:00',
         watched: { from: '2026-07-04', to: '2026-08-21', season: 2, episode: 6 },
       }),
+      makeShow({
+        titleEN: 'Finished Show', aired: { season: 'spring', year: 2010 }, dateReviewed: '2026-07-05T08:00:00-04:00', ratingNumber: 4,
+        revisit: { episodes: 6, ratingNumber: 4, dateReviewed: '2026-07-20T08:00:00-04:00' },
+        watched: { from: '2026-07-05', to: '2026-08-22', finished: true },
+      }),
+      makeShow({
+        titleEN: 'Backfilled Show', reviews: [{ episodes: 12, final: true, ratingNumber: 5, text: 'all of it', dateReviewed: '2026-11-01T08:00:00-05:00' }],
+        watched: { from: '2012-10-05', to: '2013-01-01', finished: true },
+      }),
     ],
     toReview: ['Plain Pending', { title: 'Dated Pending', premieres: '2026-07-20' }],
     notReviewing: [{ title: 'Skipped Show', reason: 'Not streaming in the US' }],
@@ -38,17 +47,16 @@ test('a season built from every builder feature passes validation', () => {
   assert.deepEqual(validateSeason(season, { now: Date.parse('2026-11-20T00:00:00Z') }), []);
 });
 
-test('a show with both review forms given at once is rejected rather than guessed at', () => {
-  assert.throws(() => makeShow({
-    titleEN: 'Too Many',
-    reviews: [{ ratingNumber: 1 }, { ratingNumber: 2 }],
-    revisit: { ratingNumber: 3 },
-  }), /at most two reviews/);
+test('a show given straight on the builder is a first impression, and a reviews list is taken as written', () => {
+  assert.equal(makeShow({ ratingNumber: 3 }).reviews[0].episodes, 1);
+  assert.equal(makeShow({ ratingNumber: 3, episodes: 6 }).reviews[0].episodes, 6);
+  assert.equal(makeShow({ ratingNumber: 3, final: true }).reviews[0].episodes, undefined);
+  assert.deepEqual(makeShow({ reviews: [{ ratingNumber: 3 }] }).reviews, [{ ratingNumber: 3 }]);
 });
 
 test('a built game, played over time and finished, passes validation', () => {
   const data = {
-    reviews: [
+    games: [
       makeGame({
         id: 'a-game',
         title: 'A Game',
@@ -59,6 +67,7 @@ test('a built game, played over time and finished, passes validation', () => {
         ],
         played: { finished: true },
       }),
+      makeGame({ id: 'b-game', title: 'B Game', text: 'Fine.', ratingNumber: 3, dateReviewed: '2026-09-02T21:30:00-04:00', hoursPlayed: 1 }),
     ],
   };
 

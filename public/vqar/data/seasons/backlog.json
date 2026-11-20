@@ -4,125 +4,19 @@
   "sortKey": 0,
   "shows": [
     {
-      "titleEN": "Paranoia Agent",
-      "titleJP": "妄想代理人",
-      "airedLabel": "Winter 2004",
-      "ratingNumber": 5,
-      "ratingText": "Peak, Nice Ep Broh",
-      "review": "Dammit, this is still great. It still actually looks really good, which is especially hard considering the era it was made in, which was the early digital transition — there are a lot of things from that era that end up looking pretty trashy. Fabulous opening, too. It's a great episode, a great piece of Kon's work. And it's always interesting to see someone who primarily works in one medium translate to another — in this case, a film director going and doing a 13-episode TV series. So I'm very happy that we're watching/reviewing this again, and I'm definitely looking forward to seeing where this crazy show goes, one I haven't watched in over 20 years.",
-      "dateReviewed": "2026-05-19T08:00:00-04:00",
-      "watched": {
-        "from": "2026-05-19",
-        "to": "2026-06-04"
-      },
-      "anilistId": 323,
-      "annId": 3169,
-      "streaming": [
-        "crunchyroll"
-      ],
-      "crunchyrollUrl": "https://www.crunchyroll.com/series/G5PHNMW8E/paranoia-agent",
-      "anilist": {
-        "format": "TV",
-        "genres": [
-          "Drama",
-          "Mystery",
-          "Psychological",
-          "Supernatural",
-          "Thriller"
-        ],
-        "tags": [
-          "Denpa",
-          "Crime",
-          "Philosophy",
-          "Detective",
-          "Urban Fantasy",
-          "Ensemble Cast",
-          "Police",
-          "Urban",
-          "Male Protagonist",
-          "Episodic",
-          "Disability",
-          "Satire",
-          "Dissociative Identities",
-          "Bullying",
-          "Female Protagonist"
-        ],
-        "studios": [
-          "MADHOUSE"
-        ]
-      }
-    },
-    {
-      "titleEN": "Tatsuki Fujimoto 17-26",
-      "titleJP": "藤本タツキ 17-26",
-      "ratingNumber": 4,
-      "ratingText": "Restored Some Faith in Humanity",
-      "review": "I finally watched an episode of this, so this is an out-of-order review. S-tier. It's fabulous. At least episode one was incredible—so well done, one of those things where you watch it and you're like, \"yeah, just make good anime and everything in the world will be better.\"",
-      "dateReviewed": "2026-01-20T07:30:00-05:00",
-      "anilistId": 198188,
-      "annId": 37753,
-      "streaming": [
-        "prime"
-      ],
-      "primeUrl": "https://www.amazon.com/gp/video/detail/B0FGHMF69K/",
-      "anilist": {
-        "format": "MOVIE",
-        "genres": [
-          "Action",
-          "Comedy",
-          "Drama",
-          "Romance",
-          "Sci-Fi",
-          "Slice of Life",
-          "Supernatural"
-        ],
-        "tags": [
-          "Episodic",
-          "Anthology",
-          "Surreal Comedy",
-          "Urban Fantasy",
-          "Female Protagonist",
-          "School",
-          "Male Protagonist",
-          "Magic",
-          "Urban",
-          "Family Life",
-          "Found Family",
-          "Aliens",
-          "Heterosexual",
-          "Dystopian",
-          "Assassins",
-          "Coastal",
-          "Monster Girl",
-          "Shapeshifting",
-          "Gender Bending",
-          "Nudity",
-          "Mermaid",
-          "Vampire",
-          "Drawing",
-          "LGBTQ+ Themes",
-          "Language Barrier",
-          "Disability",
-          "Transgender"
-        ],
-        "studios": [
-          "ZEXCS",
-          "Lapin Track",
-          "100studio",
-          "Studio Kafka",
-          "P.A.WORKS",
-          "GRAPH77"
-        ]
-      }
-    },
-    {
       "titleEN": "Angel Beats!",
       "titleJP": "Angel Beats!",
-      "airedLabel": "Spring 2010",
-      "ratingNumber": 5,
-      "ratingText": "Peak, Nice Ep Broh",
-      "review": "This is a show I still fondly remember watching quite a few times and would be happy to go back to.",
-      "dateReviewed": "2012-10-05T18:42:00-04:00",
+      "aired": {
+        "season": "spring",
+        "year": 2010
+      },
+      "reviews": [
+        {
+          "ratingNumber": 5,
+          "text": "This is a show I still fondly remember watching quite a few times and would be happy to go back to.",
+          "dateReviewed": "2026-11-17T12:05:46-05:00"
+        }
+      ],
       "watched": {
         "from": "2012-10-05",
         "to": "2013-11-11"
@@ -164,11 +58,17 @@
     {
       "titleEN": "Durarara!!",
       "titleJP": "デュラララ!!",
-      "airedLabel": "Winter 2010",
-      "ratingNumber": 5,
-      "ratingText": "Peak, Nice Ep Broh",
-      "review": "This show oozes cool, and having not watched it in quite a long time I still remember many bits of it, so that's good.",
-      "dateReviewed": "2012-10-25T18:43:00-04:00",
+      "aired": {
+        "season": "winter",
+        "year": 2010
+      },
+      "reviews": [
+        {
+          "ratingNumber": 5,
+          "text": "This show oozes cool, and having not watched it in quite a long time I still remember many bits of it, so that's good.",
+          "dateReviewed": "2026-11-17T12:07:33-05:00"
+        }
+      ],
       "watched": {
         "from": "2012-10-25",
         "to": "2013-02-12"
@@ -206,11 +106,17 @@
     {
       "titleEN": "Zettai Karen Children: THE UNLIMITED - Hyoubu Kyousuke",
       "titleJP": "絶対可憐チルドレン THE UNLIMITED 兵部京介",
-      "airedLabel": "Winter 2013",
-      "ratingNumber": 1,
-      "ratingText": "Never, Please No More Like This Ever",
-      "review": "I literally do not remember anything about this show.",
-      "dateReviewed": "2013-02-13T13:40:00-05:00",
+      "aired": {
+        "season": "winter",
+        "year": 2013
+      },
+      "reviews": [
+        {
+          "ratingNumber": 1,
+          "text": "I literally do not remember anything about this show.",
+          "dateReviewed": "2026-11-17T12:13:12-05:00"
+        }
+      ],
       "watched": {
         "from": "2013-02-13",
         "to": "2013-04-15"
@@ -243,11 +149,17 @@
     {
       "titleEN": "Puella Magi Madoka Magica",
       "titleJP": "魔法少女まどか☆マギカ",
-      "airedLabel": "Winter 2011",
-      "ratingNumber": 5,
-      "ratingText": "Peak, Nice Ep Broh",
-      "review": "I remember this show being pretty excellent, so I'll stick with that memory.",
-      "dateReviewed": "2013-02-28T12:55:00-05:00",
+      "aired": {
+        "season": "winter",
+        "year": 2011
+      },
+      "reviews": [
+        {
+          "ratingNumber": 5,
+          "text": "I remember this show being pretty excellent, so I'll stick with that memory.",
+          "dateReviewed": "2026-11-17T13:42:25-05:00"
+        }
+      ],
       "watched": {
         "from": "2013-02-28",
         "to": "2013-04-14"
@@ -291,11 +203,17 @@
     {
       "titleEN": "Ixion Saga DT",
       "titleJP": "イクシオン サーガ DT",
-      "airedLabel": "Fall 2012",
-      "ratingNumber": 1,
-      "ratingText": "Never, Please No More Like This Ever",
-      "review": "I literally am not sure this was a show.",
-      "dateReviewed": "2013-04-26T14:45:00-04:00",
+      "aired": {
+        "season": "fall",
+        "year": 2012
+      },
+      "reviews": [
+        {
+          "ratingNumber": 1,
+          "text": "I literally am not sure this was a show.",
+          "dateReviewed": "2026-11-17T13:44:21-05:00"
+        }
+      ],
       "watched": {
         "from": "2013-04-26",
         "to": "2013-07-04"
@@ -326,11 +244,17 @@
     {
       "titleEN": "Gargantia on the Verdurous Planet",
       "titleJP": "翠星のガルガンティア",
-      "airedLabel": "Spring 2013",
-      "ratingNumber": 3,
-      "ratingText": "Meh, Finishing the Ep",
-      "review": "I vaguely remember this show. Probably fine.",
-      "dateReviewed": "2013-06-05T21:31:00-04:00",
+      "aired": {
+        "season": "spring",
+        "year": 2013
+      },
+      "reviews": [
+        {
+          "ratingNumber": 3,
+          "text": "I vaguely remember this show. Probably fine.",
+          "dateReviewed": "2026-11-17T13:50:35-05:00"
+        }
+      ],
       "watched": {
         "from": "2013-06-05",
         "to": "2013-07-01"
@@ -376,11 +300,17 @@
     {
       "titleEN": "Attack on Titan",
       "titleJP": "進撃の巨人",
-      "airedLabel": "Spring 2013",
-      "ratingNumber": 4,
-      "ratingText": "Yeah, Here's Hoping",
-      "review": "Really great first season, but I never finished it.",
-      "dateReviewed": "2013-06-24T13:12:00-04:00",
+      "aired": {
+        "season": "spring",
+        "year": 2013
+      },
+      "reviews": [
+        {
+          "ratingNumber": 4,
+          "text": "Really great first season, but I never finished it.",
+          "dateReviewed": "2026-11-17T13:52:31-05:00"
+        }
+      ],
       "watched": {
         "from": "2013-06-24",
         "to": "2013-10-02"
@@ -425,11 +355,17 @@
     {
       "titleEN": "Arpeggio of Blue Steel",
       "titleJP": "蒼き鋼のアルペジオ",
-      "airedLabel": "Fall 2013",
-      "ratingNumber": 4,
-      "ratingText": "Yeah, Here's Hoping",
-      "review": "Solid show that I quite liked.",
-      "dateReviewed": "2013-10-26T12:59:00-04:00",
+      "aired": {
+        "season": "fall",
+        "year": 2013
+      },
+      "reviews": [
+        {
+          "ratingNumber": 4,
+          "text": "Solid show that I quite liked.",
+          "dateReviewed": "2026-11-17T13:53:21-05:00"
+        }
+      ],
       "watched": {
         "from": "2013-10-26",
         "to": "2014-01-26"
@@ -465,11 +401,18 @@
     {
       "titleEN": "Kill la Kill",
       "titleJP": "キルラキル",
-      "airedLabel": "Fall 2013",
-      "ratingNumber": 4,
-      "ratingText": "Yeah, Here's Hoping",
-      "review": "This show is a wild trip, probably a 5 except I haven't ever finished watching it.",
-      "dateReviewed": "2014-02-23T09:26:00-05:00",
+      "aired": {
+        "season": "fall",
+        "year": 2013
+      },
+      "reviews": [
+        {
+          "episodes": 12,
+          "ratingNumber": 4,
+          "text": "This show is a wild trip, probably a 5 except I haven't ever finished watching it.",
+          "dateReviewed": "2026-11-17T14:23:57-05:00"
+        }
+      ],
       "watched": {
         "from": "2014-02-23",
         "to": "2014-06-07",
@@ -525,11 +468,17 @@
     {
       "titleEN": "Oreimo",
       "titleJP": "俺の妹がこんなに可愛いわけがない",
-      "airedLabel": "Fall 2010",
-      "ratingNumber": 3,
-      "ratingText": "Meh, Finishing the Ep",
-      "review": "Meh?",
-      "dateReviewed": "2014-03-04T23:14:00-05:00",
+      "aired": {
+        "season": "fall",
+        "year": 2010
+      },
+      "reviews": [
+        {
+          "ratingNumber": 3,
+          "text": "Meh?",
+          "dateReviewed": "2026-11-17T14:24:54-05:00"
+        }
+      ],
       "watched": {
         "from": "2014-03-04",
         "to": "2014-09-10"
@@ -569,11 +518,17 @@
     {
       "titleEN": "Time of Eve",
       "titleJP": "イヴの時間 Are you enjoying the time of EVE ?",
-      "airedLabel": "Summer 2008",
-      "ratingNumber": 2,
-      "ratingText": "Trash, for Second Screen Only",
-      "review": "I don't really remember.",
-      "dateReviewed": "2014-03-16T23:20:00-04:00",
+      "aired": {
+        "season": "summer",
+        "year": 2008
+      },
+      "reviews": [
+        {
+          "ratingNumber": 2,
+          "text": "I don't really remember.",
+          "dateReviewed": "2026-11-17T14:45:08-05:00"
+        }
+      ],
       "watched": {
         "from": "2014-03-16",
         "to": "2014-04-13"
@@ -605,11 +560,17 @@
     {
       "titleEN": "Strange+",
       "titleJP": "ストレンジ・プラス",
-      "airedLabel": "Winter 2014",
-      "ratingNumber": 2,
-      "ratingText": "Trash, for Second Screen Only",
-      "review": "Don't remember.",
-      "dateReviewed": "2014-04-04T22:36:00-04:00",
+      "aired": {
+        "season": "winter",
+        "year": 2014
+      },
+      "reviews": [
+        {
+          "ratingNumber": 2,
+          "text": "Don't remember.",
+          "dateReviewed": "2026-11-17T15:46:40-05:00"
+        }
+      ],
       "watched": {
         "from": "2014-04-04",
         "to": "2014-04-20"
@@ -639,11 +600,18 @@
     {
       "titleEN": "MEKAKUCITY ACTORS",
       "titleJP": "メカクシティアクターズ",
-      "airedLabel": "Spring 2014",
-      "ratingNumber": 2,
-      "ratingText": "Trash, for Second Screen Only",
-      "review": "Don't remember.",
-      "dateReviewed": "2014-04-20T08:41:00-04:00",
+      "aired": {
+        "season": "spring",
+        "year": 2014
+      },
+      "reviews": [
+        {
+          "episodes": 4,
+          "ratingNumber": 2,
+          "text": "Don't remember.",
+          "dateReviewed": "2026-11-17T16:15:34-05:00"
+        }
+      ],
       "watched": {
         "from": "2014-04-20",
         "to": "2014-05-04",
@@ -679,11 +647,17 @@
     {
       "titleEN": "Chaika -The Coffin Princess-",
       "titleJP": "棺姫のチャイカ",
-      "airedLabel": "Spring 2014",
-      "ratingNumber": 2,
-      "ratingText": "Trash, for Second Screen Only",
-      "review": "Don't remember.",
-      "dateReviewed": "2014-04-20T10:58:00-04:00",
+      "aired": {
+        "season": "spring",
+        "year": 2014
+      },
+      "reviews": [
+        {
+          "ratingNumber": 2,
+          "text": "Don't remember.",
+          "dateReviewed": "2026-11-17T16:17:12-05:00"
+        }
+      ],
       "watched": {
         "from": "2014-04-20",
         "to": "2014-11-12",
@@ -722,11 +696,18 @@
     {
       "titleEN": "Pretty Guardian Sailor Moon Crystal",
       "titleJP": "美少女戦士セーラームーンCrystal",
-      "airedLabel": "Summer 2014",
-      "ratingNumber": 2,
-      "ratingText": "Trash, for Second Screen Only",
-      "review": "Don't remember it really, but it's nowhere near the original show.",
-      "dateReviewed": "2014-10-01T18:38:00-04:00",
+      "aired": {
+        "season": "summer",
+        "year": 2014
+      },
+      "reviews": [
+        {
+          "episodes": 8,
+          "ratingNumber": 2,
+          "text": "Don't remember it really, but it's nowhere near the original show.",
+          "dateReviewed": "2026-11-17T16:17:12-05:00"
+        }
+      ],
       "watched": {
         "from": "2014-10-01",
         "to": "2014-10-19",
@@ -777,15 +758,22 @@
     {
       "titleEN": "Sword Art Online",
       "titleJP": "ソードアート・オンライン",
-      "airedLabel": "Summer 2012",
-      "ratingNumber": 3,
-      "ratingText": "Meh, Finishing the Ep",
-      "review": "Okay, so this is a real show here. It has some highs, some lows, and it really was a huge spawning point for this whole genre. What I would say is good here is the OST, the OP, and the overall animation quality. The first half of the first season is pretty fun, but that's like ~6 eps. The second half of the first season gets less good. Then there's eps 13-24 of season 1; boy, just terrible. The animation was still good, but it went into such weird story stuff and totally lost me. Then there's every season after that, which was just worse. So I'll give it a 3, splitting a 5 for the first few eps and a 1 for everything after that. I'm sure I'm being too kind to this show, but I'm a bit of a softie.",
-      "dateReviewed": "2012-10-25T18:17:00-04:00",
-      "finishedSeason": true,
+      "aired": {
+        "season": "summer",
+        "year": 2012
+      },
+      "reviews": [
+        {
+          "final": true,
+          "ratingNumber": 3,
+          "text": "Okay, so this is a real show here. It has some highs, some lows, and it really was a huge spawning point for this whole genre. What I would say is good here is the OST, the OP, and the overall animation quality. The first half of the first season is pretty fun, but that's like ~6 eps. The second half of the first season gets less good. Then there's eps 13-24 of season 1; boy, just terrible. The animation was still good, but it went into such weird story stuff and totally lost me. Then there's every season after that, which was just worse. So I'll give it a 3, splitting a 5 for the first few eps and a 1 for everything after that. I'm sure I'm being too kind to this show, but I'm a bit of a softie.",
+          "dateReviewed": "2026-11-17T16:30:27-05:00"
+        }
+      ],
       "watched": {
         "from": "2012-10-25",
-        "to": "2022-03-03"
+        "to": "2022-03-03",
+        "finished": true
       },
       "anilistId": 11757,
       "streaming": [
@@ -823,11 +811,17 @@
     {
       "titleEN": "I'm Standing on a Million Lives",
       "titleJP": "100万の命の上に俺は立っている",
-      "airedLabel": "Fall 2020",
-      "ratingNumber": 1,
-      "ratingText": "Never, Please No More Like This Ever",
-      "review": "Stoopid.",
-      "dateReviewed": "2022-02-19T09:37:00-05:00",
+      "aired": {
+        "season": "fall",
+        "year": 2020
+      },
+      "reviews": [
+        {
+          "ratingNumber": 1,
+          "text": "Stoopid.",
+          "dateReviewed": "2026-11-17T22:18:05-05:00"
+        }
+      ],
       "watched": {
         "from": "2022-02-19",
         "to": "2022-02-21"
@@ -869,11 +863,17 @@
     {
       "titleEN": "Life With an Ordinary Guy Who Reincarnated Into a Total Fantasy Knockout",
       "titleJP": "異世界美少女受肉おじさんと",
-      "airedLabel": "Winter 2022",
-      "ratingNumber": 3,
-      "ratingText": "Meh, Finishing the Ep",
-      "review": "Modestly fun.",
-      "dateReviewed": "2022-02-22T18:29:00-05:00",
+      "aired": {
+        "season": "winter",
+        "year": 2022
+      },
+      "reviews": [
+        {
+          "ratingNumber": 3,
+          "text": "Modestly fun.",
+          "dateReviewed": "2026-11-17T22:18:05-05:00"
+        }
+      ],
       "watched": {
         "from": "2022-02-22",
         "to": "2022-03-29"
@@ -914,11 +914,18 @@
     {
       "titleEN": "That Time I Got Reincarnated as a Slime",
       "titleJP": "転生したらスライムだった件",
-      "airedLabel": "Fall 2018",
-      "ratingNumber": 2,
-      "ratingText": "Trash, for Second Screen Only",
-      "review": "Dumb fun.",
-      "dateReviewed": "2022-02-22T18:31:00-05:00",
+      "aired": {
+        "season": "fall",
+        "year": 2018
+      },
+      "reviews": [
+        {
+          "episodes": 17,
+          "ratingNumber": 2,
+          "text": "Dumb fun.",
+          "dateReviewed": "2026-11-17T22:18:05-05:00"
+        }
+      ],
       "watched": {
         "from": "2022-02-22",
         "to": "2023-02-09",
@@ -968,11 +975,18 @@
     {
       "titleEN": "I'M KODAMA KAWASHIRI",
       "titleJP": "あたしゃ川尻こだまだよ～デンジャラスライフハッカーのただれた生活～",
-      "airedLabel": "Winter 2022",
-      "ratingNumber": 3,
-      "ratingText": "Meh, Finishing the Ep",
-      "review": "A bit off from the normal.",
-      "dateReviewed": "2022-03-03T19:14:00-05:00",
+      "aired": {
+        "season": "winter",
+        "year": 2022
+      },
+      "reviews": [
+        {
+          "episodes": 12,
+          "ratingNumber": 3,
+          "text": "A bit off from the normal.",
+          "dateReviewed": "2026-11-17T22:18:27-05:00"
+        }
+      ],
       "watched": {
         "from": "2022-03-03",
         "to": "2022-04-22",
@@ -1002,11 +1016,17 @@
     {
       "titleEN": "Konosuba - God's Blessing on This Wonderful World!",
       "titleJP": "この素晴らしい世界に祝福を！",
-      "airedLabel": "Winter 2016",
-      "ratingNumber": 3,
-      "ratingText": "Meh, Finishing the Ep",
-      "review": "Depravity at its peak, somehow also not terrible and terrible.",
-      "dateReviewed": "2022-03-04T22:57:00-05:00",
+      "aired": {
+        "season": "winter",
+        "year": 2016
+      },
+      "reviews": [
+        {
+          "ratingNumber": 3,
+          "text": "Depravity at its peak, somehow also not terrible and terrible.",
+          "dateReviewed": "2026-11-17T22:18:56-05:00"
+        }
+      ],
       "watched": {
         "from": "2022-03-04",
         "to": "2024-11-27"
@@ -1049,11 +1069,17 @@
     {
       "titleEN": "ODDTAXI",
       "titleJP": "オッドタクシー",
-      "airedLabel": "Spring 2021",
-      "ratingNumber": 5,
-      "ratingText": "Peak, Nice Ep Broh",
-      "review": "Superb, see our podcast episode on it.",
-      "dateReviewed": "2022-03-06T13:52:00-05:00",
+      "aired": {
+        "season": "spring",
+        "year": 2021
+      },
+      "reviews": [
+        {
+          "ratingNumber": 5,
+          "text": "Superb, see our podcast episode on it.",
+          "dateReviewed": "2026-11-17T22:19:15-05:00"
+        }
+      ],
       "watched": {
         "from": "2022-03-06",
         "to": "2022-03-17"
@@ -1102,11 +1128,18 @@
     {
       "titleEN": "I Can't Understand What My Husband Is Saying",
       "titleJP": "旦那が何を言っているかわからない件",
-      "airedLabel": "Fall 2014",
-      "ratingNumber": 1,
-      "ratingText": "Never, Please No More Like This Ever",
-      "review": "Stoopid.",
-      "dateReviewed": "2022-03-19T07:19:00-04:00",
+      "aired": {
+        "season": "fall",
+        "year": 2014
+      },
+      "reviews": [
+        {
+          "episodes": 10,
+          "ratingNumber": 1,
+          "text": "Stoopid.",
+          "dateReviewed": "2026-11-17T22:19:50-05:00"
+        }
+      ],
       "watched": {
         "from": "2022-03-19",
         "to": "2022-03-25",
@@ -1145,11 +1178,17 @@
     {
       "titleEN": "Log Horizon",
       "titleJP": "ログ・ホライズン",
-      "airedLabel": "Fall 2013",
-      "ratingNumber": 3,
-      "ratingText": "Meh, Finishing the Ep",
-      "review": "It's a much better show overall than SAO, and has way more likeable characters. I did kind of give up in the middle of S2 and didn't finish S3, but it's quite enjoyable in this VG-isekai genre.",
-      "dateReviewed": "2022-03-20T08:27:00-04:00",
+      "aired": {
+        "season": "fall",
+        "year": 2013
+      },
+      "reviews": [
+        {
+          "ratingNumber": 3,
+          "text": "It's a much better show overall than SAO, and has way more likeable characters. I did kind of give up in the middle of S2 and didn't finish S3, but it's quite enjoyable in this VG-isekai genre.",
+          "dateReviewed": "2026-11-17T22:21:20-05:00"
+        }
+      ],
       "watched": {
         "from": "2022-03-20",
         "to": "2022-10-03",
@@ -1189,11 +1228,17 @@
     {
       "titleEN": "Kaguya-sama: Love is War",
       "titleJP": "かぐや様は告らせたい～天才たちの恋愛頭脳戦～",
-      "airedLabel": "Winter 2019",
-      "ratingNumber": 3,
-      "ratingText": "Meh, Finishing the Ep",
-      "review": "It's a very nicely animated show that's got plenty of fun stuff in it. It drags a bit long, and somehow there's 200+ chapters of the manga.",
-      "dateReviewed": "2022-03-29T17:19:00-04:00",
+      "aired": {
+        "season": "winter",
+        "year": 2019
+      },
+      "reviews": [
+        {
+          "ratingNumber": 3,
+          "text": "It's a very nicely animated show that's got plenty of fun stuff in it. It drags a bit long, and somehow there's 200+ chapters of the manga.",
+          "dateReviewed": "2026-11-17T22:22:06-05:00"
+        }
+      ],
       "watched": {
         "from": "2022-03-29",
         "to": "2022-08-20"
@@ -1237,11 +1282,17 @@
     {
       "titleEN": "Nichijou - My Ordinary Life",
       "titleJP": "日常",
-      "airedLabel": "Spring 2011",
-      "ratingNumber": 5,
-      "ratingText": "Peak, Nice Ep Broh",
-      "review": "What a lovely show. I took my sweet time watching this show and didn't start it until quite a while after its broadcast. It's got all the fun aspects of Azumanga Daioh without the S-tier cringe.",
-      "dateReviewed": "2022-04-01T15:48:00-04:00",
+      "aired": {
+        "season": "spring",
+        "year": 2011
+      },
+      "reviews": [
+        {
+          "ratingNumber": 5,
+          "text": "What a lovely show. I took my sweet time watching this show and didn't start it until quite a while after its broadcast. It's got all the fun aspects of Azumanga Daioh without the S-tier cringe.",
+          "dateReviewed": "2026-11-17T22:23:08-05:00"
+        }
+      ],
       "watched": {
         "from": "2022-04-01",
         "to": "2026-11-16"
@@ -1280,11 +1331,18 @@
     {
       "titleEN": "Yuri!!! on ICE",
       "titleJP": "ユーリ!!! on ICE",
-      "airedLabel": "Fall 2016",
-      "ratingNumber": 4,
-      "ratingText": "Yeah, Here's Hoping",
-      "review": "A fun show; well done and I can see why it's been quite popular.",
-      "dateReviewed": "2022-04-01T16:13:00-04:00",
+      "aired": {
+        "season": "fall",
+        "year": 2016
+      },
+      "reviews": [
+        {
+          "episodes": 6,
+          "ratingNumber": 4,
+          "text": "A fun show; well done and I can see why it's been quite popular.",
+          "dateReviewed": "2026-11-17T22:23:34-05:00"
+        }
+      ],
       "watched": {
         "from": "2022-04-01",
         "to": "2022-04-26",
@@ -1323,11 +1381,17 @@
     {
       "titleEN": "Burning Kabaddi",
       "titleJP": "灼熱カバディ",
-      "airedLabel": "Spring 2021",
-      "ratingNumber": 4,
-      "ratingText": "Yeah, Here's Hoping",
-      "review": "A great sports anime that dives into the world of a sport I had no idea existed; now I know quite a bit about Kabaddi.",
-      "dateReviewed": "2022-04-05T06:33:00-04:00",
+      "aired": {
+        "season": "spring",
+        "year": 2021
+      },
+      "reviews": [
+        {
+          "ratingNumber": 4,
+          "text": "A great sports anime that dives into the world of a sport I had no idea existed; now I know quite a bit about Kabaddi.",
+          "dateReviewed": "2026-11-17T22:24:14-05:00"
+        }
+      ],
       "watched": {
         "from": "2022-04-05",
         "to": "2022-05-28"
@@ -1361,11 +1425,17 @@
     {
       "titleEN": "The Rising of the Shield Hero",
       "titleJP": "盾の勇者の成り上がり",
-      "airedLabel": "Winter 2019",
-      "ratingNumber": 3,
-      "ratingText": "Meh, Finishing the Ep",
-      "review": "Another hero isekai. S1 is pretty good, S2 was complete trash, S3 seemed better but I was out on it at this point. It's got all the waifus and has some good twists.",
-      "dateReviewed": "2022-04-06T18:46:00-04:00",
+      "aired": {
+        "season": "winter",
+        "year": 2019
+      },
+      "reviews": [
+        {
+          "ratingNumber": 3,
+          "text": "Another hero isekai. S1 is pretty good, S2 was complete trash, S3 seemed better but I was out on it at this point. It's got all the waifus and has some good twists.",
+          "dateReviewed": "2026-11-17T22:25:27-05:00"
+        }
+      ],
       "watched": {
         "from": "2022-04-06",
         "to": "2024-06-04",
@@ -1418,11 +1488,18 @@
     {
       "titleEN": "BIRDIE WING -Golf Girls' Story-",
       "titleJP": "BIRDIE WING -Golf Girls' Story-",
-      "airedLabel": "Spring 2022",
-      "ratingNumber": 5,
-      "ratingText": "Peak, Nice Ep Broh",
-      "review": "Season 1 is completely outlandishly wonderful. S2 just skip it; they only made one season, and it's beautifully ridiculous.",
-      "dateReviewed": "2022-04-06T19:29:00-04:00",
+      "aired": {
+        "season": "spring",
+        "year": 2022
+      },
+      "reviews": [
+        {
+          "episodes": 16,
+          "ratingNumber": 5,
+          "text": "Season 1 is completely outlandishly wonderful. S2 just skip it; they only made one season, and it's beautifully ridiculous.",
+          "dateReviewed": "2026-11-17T22:26:16-05:00"
+        }
+      ],
       "watched": {
         "from": "2022-04-06",
         "to": "2023-06-26",
@@ -1458,11 +1535,17 @@
     {
       "titleEN": "SPY x FAMILY",
       "titleJP": "SPY×FAMILY",
-      "airedLabel": "Spring 2022",
-      "ratingNumber": 4,
-      "ratingText": "Yeah, Here's Hoping",
-      "review": "It's a quite nicely done show. But that's the truth about anything that Kazuhiro Furuhashi directs; it'll be the best possible version of that thing you'll see.",
-      "dateReviewed": "2022-04-12T06:32:00-04:00",
+      "aired": {
+        "season": "spring",
+        "year": 2022
+      },
+      "reviews": [
+        {
+          "ratingNumber": 4,
+          "text": "It's a quite nicely done show. But that's the truth about anything that Kazuhiro Furuhashi directs; it'll be the best possible version of that thing you'll see.",
+          "dateReviewed": "2026-11-17T22:27:02-05:00"
+        }
+      ],
       "watched": {
         "from": "2022-04-12",
         "to": "2024-05-14"
@@ -1516,11 +1599,17 @@
     {
       "titleEN": "Healer Girl",
       "titleJP": "ヒーラー・ガール",
-      "airedLabel": "Spring 2022",
-      "ratingNumber": 5,
-      "ratingText": "Peak, Nice Ep Broh",
-      "review": "I really love this show. It's quite well executed, interesting characters, great setting. Nice healing anime.",
-      "dateReviewed": "2022-04-19T16:50:00-04:00",
+      "aired": {
+        "season": "spring",
+        "year": 2022
+      },
+      "reviews": [
+        {
+          "ratingNumber": 5,
+          "text": "I really love this show. It's quite well executed, interesting characters, great setting. Nice healing anime.",
+          "dateReviewed": "2026-11-17T22:27:44-05:00"
+        }
+      ],
       "watched": {
         "from": "2022-04-19",
         "to": "2022-06-23"
@@ -1554,11 +1643,17 @@
     {
       "titleEN": "Aharen-san wa Hakarenai",
       "titleJP": "阿波連さんははかれない",
-      "airedLabel": "Spring 2022",
-      "ratingNumber": 3,
-      "ratingText": "Meh, Finishing the Ep",
-      "review": "It's a nicely done teen non-romantic romance.",
-      "dateReviewed": "2022-04-20T06:26:00-04:00",
+      "aired": {
+        "season": "spring",
+        "year": 2022
+      },
+      "reviews": [
+        {
+          "ratingNumber": 3,
+          "text": "It's a nicely done teen non-romantic romance.",
+          "dateReviewed": "2026-11-17T22:28:16-05:00"
+        }
+      ],
       "watched": {
         "from": "2022-04-20",
         "to": "2022-06-21"
@@ -1595,11 +1690,17 @@
     {
       "titleEN": "Tomodachi Game",
       "titleJP": "トモダチゲーム",
-      "airedLabel": "Spring 2022",
-      "ratingNumber": 5,
-      "ratingText": "Peak, Nice Ep Broh",
-      "review": "Fabulous death game.",
-      "dateReviewed": "2022-04-20T06:36:00-04:00",
+      "aired": {
+        "season": "spring",
+        "year": 2022
+      },
+      "reviews": [
+        {
+          "ratingNumber": 5,
+          "text": "Fabulous death game.",
+          "dateReviewed": "2026-11-17T22:28:34-05:00"
+        }
+      ],
       "watched": {
         "from": "2022-04-20",
         "to": "2022-06-22"
@@ -1634,11 +1735,17 @@
     {
       "titleEN": "Love After World Domination",
       "titleJP": "恋は世界征服のあとで",
-      "airedLabel": "Spring 2022",
-      "ratingNumber": 4,
-      "ratingText": "Yeah, Here's Hoping",
-      "review": "Well done show, just nicely executed.",
-      "dateReviewed": "2022-04-28T19:03:00-04:00",
+      "aired": {
+        "season": "spring",
+        "year": 2022
+      },
+      "reviews": [
+        {
+          "ratingNumber": 4,
+          "text": "Well done show, just nicely executed.",
+          "dateReviewed": "2026-11-17T22:28:53-05:00"
+        }
+      ],
       "watched": {
         "from": "2022-04-28",
         "to": "2022-08-20"
@@ -1678,11 +1785,17 @@
     {
       "titleEN": "86 EIGHTY-SIX",
       "titleJP": "86－エイティシックス－",
-      "airedLabel": "Spring 2021",
-      "ratingNumber": 5,
-      "ratingText": "Peak, Nice Ep Broh",
-      "review": "I wanted to give this a lower rating but it's actually pretty great.",
-      "dateReviewed": "2022-05-28T21:17:00-04:00",
+      "aired": {
+        "season": "spring",
+        "year": 2021
+      },
+      "reviews": [
+        {
+          "ratingNumber": 5,
+          "text": "I wanted to give this a lower rating but it's actually pretty great.",
+          "dateReviewed": "2026-11-18T15:09:54-05:00"
+        }
+      ],
       "watched": {
         "from": "2022-05-28",
         "to": "2022-07-23"
@@ -1728,11 +1841,18 @@
     {
       "titleEN": "Inferno Cop",
       "titleJP": "インフェルノコップ",
-      "airedLabel": "Fall 2012",
-      "ratingNumber": 5,
-      "ratingText": "Peak, Nice Ep Broh",
-      "review": "Ludicrous stupid-jork anime at its jorkiest.",
-      "dateReviewed": "2022-06-28T18:48:00-04:00",
+      "aired": {
+        "season": "fall",
+        "year": 2012
+      },
+      "reviews": [
+        {
+          "episodes": 12,
+          "ratingNumber": 5,
+          "text": "Ludicrous stupid-jork anime at its jorkiest.",
+          "dateReviewed": "2026-11-18T15:10:16-05:00"
+        }
+      ],
       "watched": {
         "from": "2022-06-28",
         "to": "2022-09-23",
@@ -1770,11 +1890,17 @@
     {
       "titleEN": "Black Summoner",
       "titleJP": "黒の召喚士",
-      "airedLabel": "Summer 2022",
-      "ratingNumber": 2,
-      "ratingText": "Trash, for Second Screen Only",
-      "review": "Forgettable.",
-      "dateReviewed": "2022-08-08T07:14:00-04:00",
+      "aired": {
+        "season": "summer",
+        "year": 2022
+      },
+      "reviews": [
+        {
+          "ratingNumber": 2,
+          "text": "Forgettable.",
+          "dateReviewed": "2026-11-18T15:10:32-05:00"
+        }
+      ],
       "watched": {
         "from": "2022-08-08",
         "to": "2022-09-30"
@@ -1813,11 +1939,17 @@
     {
       "titleEN": "YUREI DECO",
       "titleJP": "ユーレイデコ",
-      "airedLabel": "Summer 2022",
-      "ratingNumber": 3,
-      "ratingText": "Meh, Finishing the Ep",
-      "review": "It's got a real style and is cool.",
-      "dateReviewed": "2022-08-09T19:17:00-04:00",
+      "aired": {
+        "season": "summer",
+        "year": 2022
+      },
+      "reviews": [
+        {
+          "ratingNumber": 3,
+          "text": "It's got a real style and is cool.",
+          "dateReviewed": "2026-11-18T15:10:49-05:00"
+        }
+      ],
       "watched": {
         "from": "2022-08-09",
         "to": "2022-10-02"
@@ -1849,11 +1981,17 @@
     {
       "titleEN": "Lycoris Recoil",
       "titleJP": "リコリス・リコイル",
-      "airedLabel": "Summer 2022",
-      "ratingNumber": 5,
-      "ratingText": "Peak, Nice Ep Broh",
-      "review": "Quite the enjoyable romp.",
-      "dateReviewed": "2022-08-19T13:39:00-04:00",
+      "aired": {
+        "season": "summer",
+        "year": 2022
+      },
+      "reviews": [
+        {
+          "ratingNumber": 5,
+          "text": "Quite the enjoyable romp.",
+          "dateReviewed": "2026-11-18T15:11:03-05:00"
+        }
+      ],
       "watched": {
         "from": "2022-08-19",
         "to": "2026-01-05"
@@ -1891,11 +2029,18 @@
     {
       "titleEN": "My Hero Academia",
       "titleJP": "僕のヒーローアカデミア",
-      "airedLabel": "Spring 2016",
-      "ratingNumber": 4,
-      "ratingText": "Yeah, Here's Hoping",
-      "review": "So I go all over on this show; it's super SJ, it's got weird and dumb characters and arcs. But then it's got this charm to it, and just when I think it's terrible and I'm gonna quit, the next season comes back a bit better. Cementos is the real boss hero of this world. I think this show was greatly helped by most of the seasons being 12/24 eps and then Bones would take a break, get enough manga/time/recover and then come back. So, as far as a well done SJ series that runs long enough but not too long, I like it.",
-      "dateReviewed": "2022-10-03T07:35:00-04:00",
+      "aired": {
+        "season": "spring",
+        "year": 2016
+      },
+      "reviews": [
+        {
+          "episodes": 170,
+          "ratingNumber": 4,
+          "text": "So I go all over on this show; it's super SJ, it's got weird and dumb characters and arcs. But then it's got this charm to it, and just when I think it's terrible and I'm gonna quit, the next season comes back a bit better. Cementos is the real boss hero of this world. I think this show was greatly helped by most of the seasons being 12/24 eps and then Bones would take a break, get enough manga/time/recover and then come back. So, as far as a well done SJ series that runs long enough but not too long, I like it.",
+          "dateReviewed": "2026-11-18T15:13:53-05:00"
+        }
+      ],
       "watched": {
         "from": "2022-10-03",
         "to": "2026-05-19",
@@ -1935,11 +2080,17 @@
     {
       "titleEN": "Mobile Suit Gundam: The Witch from Mercury",
       "titleJP": "機動戦士ガンダム 水星の魔女",
-      "airedLabel": "Fall 2022",
-      "ratingNumber": 5,
-      "ratingText": "Peak, Nice Ep Broh",
-      "review": "It's Revolutionary Girl Utena IN SPACE. What's not to love about that. Nicely done and a cool take in the Gundam universe.",
-      "dateReviewed": "2022-10-11T18:30:00-04:00",
+      "aired": {
+        "season": "fall",
+        "year": 2022
+      },
+      "reviews": [
+        {
+          "ratingNumber": 5,
+          "text": "It's Revolutionary Girl Utena IN SPACE. What's not to love about that. Nicely done and a cool take in the Gundam universe.",
+          "dateReviewed": "2026-11-18T15:14:42-05:00"
+        }
+      ],
       "watched": {
         "from": "2022-10-11",
         "to": "2025-01-07"
@@ -1980,11 +2131,17 @@
     {
       "titleEN": "Chainsaw Man",
       "titleJP": "チェンソーマン",
-      "airedLabel": "Fall 2022",
-      "ratingNumber": 5,
-      "ratingText": "Peak, Nice Ep Broh",
-      "review": "It's a very well done adaptation of the manga.",
-      "dateReviewed": "2022-11-09T05:12:00-05:00",
+      "aired": {
+        "season": "fall",
+        "year": 2022
+      },
+      "reviews": [
+        {
+          "ratingNumber": 5,
+          "text": "It's a very well done adaptation of the manga.",
+          "dateReviewed": "2026-11-18T15:15:07-05:00"
+        }
+      ],
       "watched": {
         "from": "2022-11-09",
         "to": "2026-06-04"
@@ -2032,11 +2189,17 @@
     {
       "titleEN": "BOCCHI THE ROCK!",
       "titleJP": "ぼっち・ざ・ろっく！",
-      "airedLabel": "Fall 2022",
-      "ratingNumber": 5,
-      "ratingText": "Peak, Nice Ep Broh",
-      "review": "I bought the blu-rays and changed my CR avatar to Bocchi.",
-      "dateReviewed": "2022-12-06T02:45:00-05:00",
+      "aired": {
+        "season": "fall",
+        "year": 2022
+      },
+      "reviews": [
+        {
+          "ratingNumber": 5,
+          "text": "I bought the blu-rays and changed my CR avatar to Bocchi.",
+          "dateReviewed": "2026-11-18T15:15:35-05:00"
+        }
+      ],
       "watched": {
         "from": "2022-12-06",
         "to": "2023-12-04"
@@ -2078,11 +2241,18 @@
     {
       "titleEN": "The Fire Hunter",
       "titleJP": "火狩りの王",
-      "airedLabel": "Winter 2023",
-      "ratingNumber": 3,
-      "ratingText": "Meh, Finishing the Ep",
-      "review": "Fine. I really wanted to love this show, but it's a bit too wonky.",
-      "dateReviewed": "2023-01-30T06:19:00-05:00",
+      "aired": {
+        "season": "winter",
+        "year": 2023
+      },
+      "reviews": [
+        {
+          "episodes": 8,
+          "ratingNumber": 3,
+          "text": "Fine. I really wanted to love this show, but it's a bit too wonky.",
+          "dateReviewed": "2026-11-19T08:54:21-05:00"
+        }
+      ],
       "watched": {
         "from": "2023-01-30",
         "to": "2023-03-07",
@@ -2125,11 +2295,17 @@
     {
       "titleEN": "Handyman Saitou in Another World",
       "titleJP": "便利屋斎藤さん、異世界に行く",
-      "airedLabel": "Winter 2023",
-      "ratingNumber": 2,
-      "ratingText": "Trash, for Second Screen Only",
-      "review": "I don't remember this show at all.",
-      "dateReviewed": "2023-01-31T06:47:00-05:00",
+      "aired": {
+        "season": "winter",
+        "year": 2023
+      },
+      "reviews": [
+        {
+          "ratingNumber": 2,
+          "text": "I don't remember this show at all.",
+          "dateReviewed": "2026-11-19T08:55:26-05:00"
+        }
+      ],
       "watched": {
         "from": "2023-01-31",
         "to": "2023-05-01"
@@ -2170,11 +2346,18 @@
     {
       "titleEN": "Mob Psycho 100",
       "titleJP": "モブサイコ100",
-      "airedLabel": "Summer 2016",
-      "ratingNumber": 4,
-      "ratingText": "Yeah, Here's Hoping",
-      "review": "Very pretty show. Fun concept.",
-      "dateReviewed": "2023-02-27T12:45:00-05:00",
+      "aired": {
+        "season": "summer",
+        "year": 2016
+      },
+      "reviews": [
+        {
+          "episodes": 9,
+          "ratingNumber": 4,
+          "text": "Very pretty show. Fun concept.",
+          "dateReviewed": "2026-11-19T08:59:18-05:00"
+        }
+      ],
       "watched": {
         "from": "2023-02-27",
         "to": "2023-05-23",
@@ -2223,11 +2406,18 @@
     {
       "titleEN": "Captain Harlock",
       "titleJP": "宇宙海賊キャプテンハーロック",
-      "airedLabel": "Spring 1978",
-      "ratingNumber": 5,
-      "ratingText": "Peak, Nice Ep Broh",
-      "review": "What a fabulous thing to exist.",
-      "dateReviewed": "2023-03-17T06:57:00-04:00",
+      "aired": {
+        "season": "spring",
+        "year": 1978
+      },
+      "reviews": [
+        {
+          "episodes": 13,
+          "ratingNumber": 5,
+          "text": "What a fabulous thing to exist.",
+          "dateReviewed": "2026-11-19T09:03:06-05:00"
+        }
+      ],
       "watched": {
         "from": "2023-03-17",
         "to": "2025-02-18",
@@ -2266,11 +2456,17 @@
     {
       "titleEN": "MASHLE: MAGIC AND MUSCLES",
       "titleJP": "マッシュル-MASHLE-",
-      "airedLabel": "Spring 2023",
-      "ratingNumber": 2,
-      "ratingText": "Trash, for Second Screen Only",
-      "review": "It's fine. OP 2 by Creepy Nuts is S-tier.",
-      "dateReviewed": "2023-04-17T00:24:00-04:00",
+      "aired": {
+        "season": "spring",
+        "year": 2023
+      },
+      "reviews": [
+        {
+          "ratingNumber": 2,
+          "text": "It's fine. OP 2 by Creepy Nuts is S-tier.",
+          "dateReviewed": "2026-11-19T09:20:39-05:00"
+        }
+      ],
       "watched": {
         "from": "2023-04-17",
         "to": "2025-06-16"
@@ -2318,11 +2514,17 @@
     {
       "titleEN": "KONOSUBA - An Explosion on This Wonderful World!",
       "titleJP": "この素晴らしい世界に爆焔を！",
-      "airedLabel": "Spring 2023",
-      "ratingNumber": 5,
-      "ratingText": "Peak, Nice Ep Broh",
-      "review": "Somehow they took the most depraved show and spun off this really charming side show.",
-      "dateReviewed": "2023-04-19T00:53:00-04:00",
+      "aired": {
+        "season": "spring",
+        "year": 2023
+      },
+      "reviews": [
+        {
+          "ratingNumber": 5,
+          "text": "Somehow they took the most depraved show and spun off this really charming side show.",
+          "dateReviewed": "2026-11-19T09:21:02-05:00"
+        }
+      ],
       "watched": {
         "from": "2023-04-19",
         "to": "2023-07-17"
@@ -2364,11 +2566,17 @@
     {
       "titleEN": "Undead Murder Farce",
       "titleJP": "アンデッドガール・マーダーファルス",
-      "airedLabel": "Summer 2023",
-      "ratingNumber": 4,
-      "ratingText": "Yeah, Here's Hoping",
-      "review": "Pretty good.",
-      "dateReviewed": "2023-08-25T13:08:00-04:00",
+      "aired": {
+        "season": "summer",
+        "year": 2023
+      },
+      "reviews": [
+        {
+          "ratingNumber": 4,
+          "text": "Pretty good.",
+          "dateReviewed": "2026-11-19T09:21:15-05:00"
+        }
+      ],
       "watched": {
         "from": "2023-08-25",
         "to": "2023-11-16"
@@ -2413,11 +2621,17 @@
     {
       "titleEN": "Frieren: Beyond Journey's End",
       "titleJP": "葬送のフリーレン",
-      "airedLabel": "Fall 2023",
-      "ratingNumber": 5,
-      "ratingText": "Peak, Nice Ep Broh",
-      "review": "Plenty of good reasons this show is critically loved and very popular.",
-      "dateReviewed": "2023-11-03T07:00:00-04:00",
+      "aired": {
+        "season": "fall",
+        "year": 2023
+      },
+      "reviews": [
+        {
+          "ratingNumber": 5,
+          "text": "Plenty of good reasons this show is critically loved and very popular.",
+          "dateReviewed": "2026-11-19T09:21:55-05:00"
+        }
+      ],
       "watched": {
         "from": "2023-11-03",
         "to": "2024-07-17"
@@ -2458,11 +2672,17 @@
     {
       "titleEN": "The Kingdoms of Ruin",
       "titleJP": "はめつのおうこく",
-      "airedLabel": "Fall 2023",
-      "ratingNumber": 4,
-      "ratingText": "Yeah, Here's Hoping",
-      "review": "OMG. This show is nuts, brutal.",
-      "dateReviewed": "2023-11-09T07:02:00-05:00",
+      "aired": {
+        "season": "fall",
+        "year": 2023
+      },
+      "reviews": [
+        {
+          "ratingNumber": 4,
+          "text": "OMG. This show is nuts, brutal.",
+          "dateReviewed": "2026-11-19T09:22:23-05:00"
+        }
+      ],
       "watched": {
         "from": "2023-11-09",
         "to": "2023-12-26"
@@ -2497,11 +2717,18 @@
     {
       "titleEN": "JUJUTSU KAISEN",
       "titleJP": "呪術廻戦",
-      "airedLabel": "Fall 2020",
-      "ratingNumber": 3,
-      "ratingText": "Meh, Finishing the Ep",
-      "review": "I started and stopped several times. I was coerced by my bestie because she loves it. She’s also 13.\n\nI think the show itself is (at least up to ep 18) a shallow clone of Naruto, but without some of the charm and innocence.\n\nIt’s exceedingly well produced by the A-Team at MAPPA. But I don’t care about it that much. I’d rather read Naruto or watch MHA (My Hero Academia).\n\nOr read / watch Chainsawman if you want the same MAT (MAPPA A-Team).\n\nSo, is it bad? No. Do I care about it and what happens? Not really. But at least it looks nice and has some fun fights.\n\nHowever, OMG it suffers so much from the modern Shonen Jump problem where they have to have all these terms and abilities and all this stuff built and expositioned so much. Think back to the beginnings of Naruto - it stays simple for many volumes and gradually adds to the complexity of the rules and world and ninja mechanics.\n\nCSM does go a bit deeper in the modern SJ over depth but… that one is so much more about the characters and they are just more fun.\n\nI’ve been told that “it gets good in season2!” But I’ve been told that about shows for my entire life (and told others) and you know what? That’s the Origin Story of my VQAR (very quick anime reviews). No, you don’t get 10 hours to “get good”. Just be good from the start.\n\nAnd an addendum: I have now watched up through ep ~40. It's still exceedingly well produced, animated, drawn. I still don't really understand the world, but at least it looks nice.",
-      "dateReviewed": "2023-12-26T11:31:00-05:00",
+      "aired": {
+        "season": "fall",
+        "year": 2020
+      },
+      "reviews": [
+        {
+          "episodes": 40,
+          "ratingNumber": 3,
+          "text": "I started and stopped several times. I was coerced by my bestie because she loves it. She’s also 13.\n\nI think the show itself is (at least up to ep 18) a shallow clone of Naruto, but without some of the charm and innocence.\n\nIt’s exceedingly well produced by the A-Team at MAPPA. But I don’t care about it that much. I’d rather read Naruto or watch MHA (My Hero Academia).\n\nOr read / watch Chainsawman if you want the same MAT (MAPPA A-Team).\n\nSo, is it bad? No. Do I care about it and what happens? Not really. But at least it looks nice and has some fun fights.\n\nHowever, OMG it suffers so much from the modern Shonen Jump problem where they have to have all these terms and abilities and all this stuff built and expositioned so much. Think back to the beginnings of Naruto - it stays simple for many volumes and gradually adds to the complexity of the rules and world and ninja mechanics.\n\nCSM does go a bit deeper in the modern SJ over depth but… that one is so much more about the characters and they are just more fun.\n\nI’ve been told that “it gets good in season2!” But I’ve been told that about shows for my entire life (and told others) and you know what? That’s the Origin Story of my VQAR (very quick anime reviews). No, you don’t get 10 hours to “get good”. Just be good from the start.\n\nAnd an addendum: I have now watched up through ep ~40. It's still exceedingly well produced, animated, drawn. I still don't really understand the world, but at least it looks nice.",
+          "dateReviewed": "2026-11-19T09:25:06-05:00"
+        }
+      ],
       "watched": {
         "from": "2023-12-26",
         "to": "2026-11-13",
@@ -2549,11 +2776,17 @@
     {
       "titleEN": "Solo Leveling",
       "titleJP": "俺だけレベルアップな件",
-      "airedLabel": "Winter 2024",
-      "ratingNumber": 2,
-      "ratingText": "Trash, for Second Screen Only",
-      "review": "It's fine.",
-      "dateReviewed": "2024-01-16T07:58:00-05:00",
+      "aired": {
+        "season": "winter",
+        "year": 2024
+      },
+      "reviews": [
+        {
+          "ratingNumber": 2,
+          "text": "It's fine.",
+          "dateReviewed": "2026-11-19T11:49:05-05:00"
+        }
+      ],
       "watched": {
         "from": "2024-01-16",
         "to": "2025-04-01"
@@ -2590,11 +2823,17 @@
     {
       "titleEN": "Metallic Rouge",
       "titleJP": "メタリックルージュ",
-      "airedLabel": "Winter 2024",
-      "ratingNumber": 2,
-      "ratingText": "Trash, for Second Screen Only",
-      "review": "Dammit. I really wanted this show to be better than it was.",
-      "dateReviewed": "2024-01-19T11:54:00-05:00",
+      "aired": {
+        "season": "winter",
+        "year": 2024
+      },
+      "reviews": [
+        {
+          "ratingNumber": 2,
+          "text": "Dammit. I really wanted this show to be better than it was.",
+          "dateReviewed": "2026-11-19T11:49:50-05:00"
+        }
+      ],
       "watched": {
         "from": "2024-01-19",
         "to": "2024-04-10"
@@ -2640,11 +2879,17 @@
     {
       "titleEN": "BUCCHIGIRI?!",
       "titleJP": "ぶっちぎり?!",
-      "airedLabel": "Winter 2024",
-      "ratingNumber": 2,
-      "ratingText": "Trash, for Second Screen Only",
-      "review": "This show looked nice but wasn't actually that great.",
-      "dateReviewed": "2024-02-08T06:19:00-05:00",
+      "aired": {
+        "season": "winter",
+        "year": 2024
+      },
+      "reviews": [
+        {
+          "ratingNumber": 2,
+          "text": "This show looked nice but wasn't actually that great.",
+          "dateReviewed": "2026-11-19T11:50:29-05:00"
+        }
+      ],
       "watched": {
         "from": "2024-02-08",
         "to": "2024-04-09"
@@ -2681,11 +2926,17 @@
     {
       "titleEN": "Snack Basue",
       "titleJP": "スナックバス江",
-      "airedLabel": "Winter 2024",
-      "ratingNumber": 4,
-      "ratingText": "Yeah, Here's Hoping",
-      "review": "Totally ridiculous and quite fun and out there.",
-      "dateReviewed": "2024-02-13T06:08:00-05:00",
+      "aired": {
+        "season": "winter",
+        "year": 2024
+      },
+      "reviews": [
+        {
+          "ratingNumber": 4,
+          "text": "Totally ridiculous and quite fun and out there.",
+          "dateReviewed": "2026-11-19T11:55:08-05:00"
+        }
+      ],
       "watched": {
         "from": "2024-02-13",
         "to": "2024-05-01"
@@ -2719,11 +2970,17 @@
     {
       "titleEN": "Brave Bang Bravern!",
       "titleJP": "勇気爆発バーンブレイバーン",
-      "airedLabel": "Winter 2024",
-      "ratingNumber": 5,
-      "ratingText": "Peak, Nice Ep Broh",
-      "review": "Oh man, this is a show that we need and didn't even know it.",
-      "dateReviewed": "2024-02-14T06:19:00-05:00",
+      "aired": {
+        "season": "winter",
+        "year": 2024
+      },
+      "reviews": [
+        {
+          "ratingNumber": 5,
+          "text": "Oh man, this is a show that we need and didn't even know it.",
+          "dateReviewed": "2026-11-19T11:55:08-05:00"
+        }
+      ],
       "watched": {
         "from": "2024-02-14",
         "to": "2024-04-25"
@@ -2764,11 +3021,17 @@
     {
       "titleEN": "JUNI TAISEN: ZODIAC WAR",
       "titleJP": "十二大戦",
-      "airedLabel": "Fall 2017",
-      "ratingNumber": 3,
-      "ratingText": "Meh, Finishing the Ep",
-      "review": "I like this show more than it gets crapped on for the ending.",
-      "dateReviewed": "2024-04-03T12:49:00-04:00",
+      "aired": {
+        "season": "fall",
+        "year": 2017
+      },
+      "reviews": [
+        {
+          "ratingNumber": 3,
+          "text": "I like this show more than it gets crapped on for the ending.",
+          "dateReviewed": "2026-11-19T11:55:08-05:00"
+        }
+      ],
       "watched": {
         "from": "2024-04-03",
         "to": "2024-04-27"
@@ -2815,11 +3078,17 @@
     {
       "titleEN": "Kaiju No. 8",
       "titleJP": "怪獣８号",
-      "airedLabel": "Spring 2024",
-      "ratingNumber": 3,
-      "ratingText": "Meh, Finishing the Ep",
-      "review": "Solid SJ action version of the manga.",
-      "dateReviewed": "2024-04-15T18:27:00-04:00",
+      "aired": {
+        "season": "spring",
+        "year": 2024
+      },
+      "reviews": [
+        {
+          "ratingNumber": 3,
+          "text": "Solid SJ action version of the manga.",
+          "dateReviewed": "2026-11-19T11:55:08-05:00"
+        }
+      ],
       "watched": {
         "from": "2024-04-15",
         "to": "2026-08-10",
@@ -2864,11 +3133,17 @@
     {
       "titleEN": "BARTENDER Glass of God",
       "titleJP": "バーテンダー 神のグラス",
-      "airedLabel": "Spring 2024",
-      "ratingNumber": 3,
-      "ratingText": "Meh, Finishing the Ep",
-      "review": "Cocktail battle anime, nice jerb.",
-      "dateReviewed": "2024-05-21T12:34:00-04:00",
+      "aired": {
+        "season": "spring",
+        "year": 2024
+      },
+      "reviews": [
+        {
+          "ratingNumber": 3,
+          "text": "Cocktail battle anime, nice jerb.",
+          "dateReviewed": "2026-11-19T11:55:08-05:00"
+        }
+      ],
       "watched": {
         "from": "2024-05-21",
         "to": "2025-01-18"
@@ -2903,11 +3178,18 @@
     {
       "titleEN": "Bakemonogatari",
       "titleJP": "化物語",
-      "airedLabel": "Summer 2009",
-      "ratingNumber": 4,
-      "ratingText": "Yeah, Here's Hoping",
-      "review": "Quite well done and boy is this show hard to stream T_T",
-      "dateReviewed": "2024-06-07T12:11:00-04:00",
+      "aired": {
+        "season": "summer",
+        "year": 2009
+      },
+      "reviews": [
+        {
+          "episodes": 6,
+          "ratingNumber": 4,
+          "text": "Quite well done and boy is this show hard to stream T_T",
+          "dateReviewed": "2026-11-19T11:55:08-05:00"
+        }
+      ],
       "watched": {
         "from": "2024-06-07",
         "to": "2026-02-15",
@@ -2962,11 +3244,17 @@
     {
       "titleEN": "Berserk: The Golden Age Arc - Memorial Edition",
       "titleJP": "ベルセルク 黄金時代篇 MEMORIAL EDITION",
-      "airedLabel": "Fall 2022",
-      "ratingNumber": 2,
-      "ratingText": "Trash, for Second Screen Only",
-      "review": "AAAAARRRRGGGHHH!!!!! Dammit, this should be the best thing. I love the Shiro Sagisu OST, and the visuals and editing are better than the original version but so much of it still doesn't look great. We have a whole AMO Kenzoku episode on it going into much more detail. Watch Berserk 97, read the manga.",
-      "dateReviewed": "2024-08-28T12:08:00-04:00",
+      "aired": {
+        "season": "fall",
+        "year": 2022
+      },
+      "reviews": [
+        {
+          "ratingNumber": 2,
+          "text": "AAAAARRRRGGGHHH!!!!! Dammit, this should be the best thing. I love the Shiro Sagisu OST, and the visuals and editing are better than the original version but so much of it still doesn't look great. We have a whole AMO Kenzoku episode on it going into much more detail. Watch Berserk 97, read the manga.",
+          "dateReviewed": "2026-11-19T11:55:08-05:00"
+        }
+      ],
       "watched": {
         "from": "2024-08-28",
         "to": "2024-10-10"
@@ -3015,11 +3303,17 @@
     {
       "titleEN": "Why Does Nobody Remember Me in This World?",
       "titleJP": "なぜ僕の世界を誰も覚えていないのか？",
-      "airedLabel": "Summer 2024",
-      "ratingNumber": 1,
-      "ratingText": "Never, Please No More Like This Ever",
-      "review": "Why does nobody remember this show?",
-      "dateReviewed": "2024-09-11T22:04:00-04:00",
+      "aired": {
+        "season": "summer",
+        "year": 2024
+      },
+      "reviews": [
+        {
+          "ratingNumber": 1,
+          "text": "Why does nobody remember this show?",
+          "dateReviewed": "2026-11-19T11:55:21-05:00"
+        }
+      ],
       "watched": {
         "from": "2024-09-11",
         "to": "2024-12-20"
@@ -3052,11 +3346,17 @@
     {
       "titleEN": "SHOSHIMIN: How to become Ordinary",
       "titleJP": "小市民シリーズ",
-      "airedLabel": "Summer 2024",
-      "ratingNumber": 5,
-      "ratingText": "Peak, Nice Ep Broh",
-      "review": "Fabulous! Investigative high school detective show. Lovely.",
-      "dateReviewed": "2024-11-27T18:55:00-05:00",
+      "aired": {
+        "season": "summer",
+        "year": 2024
+      },
+      "reviews": [
+        {
+          "ratingNumber": 5,
+          "text": "Fabulous! Investigative high school detective show. Lovely.",
+          "dateReviewed": "2026-11-19T11:55:36-05:00"
+        }
+      ],
       "watched": {
         "from": "2024-11-27",
         "to": "2025-06-19"
@@ -3091,11 +3391,17 @@
     {
       "titleEN": "Golden Boy",
       "titleJP": "GOLDEN BOY さすらいのお勉強野郎",
-      "airedLabel": "Fall 1995",
-      "ratingNumber": 5,
-      "ratingText": "Peak, Nice Ep Broh",
-      "review": "See the AMO Kenzoku episode on this; it's way better than the credit it got for being raunchy.",
-      "dateReviewed": "2025-01-05T10:27:00-05:00",
+      "aired": {
+        "season": "fall",
+        "year": 1995
+      },
+      "reviews": [
+        {
+          "ratingNumber": 5,
+          "text": "See the AMO Kenzoku episode on this; it's way better than the credit it got for being raunchy.",
+          "dateReviewed": "2026-11-19T11:56:24-05:00"
+        }
+      ],
       "watched": {
         "from": "2025-01-05",
         "to": "2025-01-08"
@@ -3132,11 +3438,17 @@
     {
       "titleEN": "Zenshu",
       "titleJP": "全修。",
-      "airedLabel": "Winter 2025",
-      "ratingNumber": 2,
-      "ratingText": "Trash, for Second Screen Only",
-      "review": "Some parts of this show are really freaking cool; but it does not stick anything close to the landing.",
-      "dateReviewed": "2025-01-09T06:50:00-05:00",
+      "aired": {
+        "season": "winter",
+        "year": 2025
+      },
+      "reviews": [
+        {
+          "ratingNumber": 2,
+          "text": "Some parts of this show are really freaking cool; but it does not stick anything close to the landing.",
+          "dateReviewed": "2026-11-19T11:56:51-05:00"
+        }
+      ],
       "watched": {
         "from": "2025-01-09",
         "to": "2025-03-23"
@@ -3177,11 +3489,17 @@
     {
       "titleEN": "Shangri-La Frontier",
       "titleJP": "シャングリラ・フロンティア",
-      "airedLabel": "Fall 2023",
-      "ratingNumber": 2,
-      "ratingText": "Trash, for Second Screen Only",
-      "review": "Solid VG-isekai show.",
-      "dateReviewed": "2025-01-23T06:43:00-05:00",
+      "aired": {
+        "season": "fall",
+        "year": 2023
+      },
+      "reviews": [
+        {
+          "ratingNumber": 2,
+          "text": "Solid VG-isekai show.",
+          "dateReviewed": "2026-11-19T11:57:12-05:00"
+        }
+      ],
       "watched": {
         "from": "2025-01-23",
         "to": "2025-04-26"
@@ -3219,11 +3537,17 @@
     {
       "titleEN": "Momentary Lily",
       "titleJP": "もめんたりー・リリィ",
-      "airedLabel": "Winter 2025",
-      "ratingNumber": 3,
-      "ratingText": "Meh, Finishing the Ep",
-      "review": "I really like Go Hands style and this show has an equally crazy premise.",
-      "dateReviewed": "2025-01-28T12:08:00-05:00",
+      "aired": {
+        "season": "winter",
+        "year": 2025
+      },
+      "reviews": [
+        {
+          "ratingNumber": 3,
+          "text": "I really like Go Hands style and this show has an equally crazy premise.",
+          "dateReviewed": "2026-11-19T11:57:31-05:00"
+        }
+      ],
       "watched": {
         "from": "2025-01-28",
         "to": "2025-04-15"
@@ -3264,11 +3588,17 @@
     {
       "titleEN": "Catch Me at the Ballpark!",
       "titleJP": "ボールパークでつかまえて！",
-      "airedLabel": "Spring 2025",
-      "ratingNumber": 5,
-      "ratingText": "Peak, Nice Ep Broh",
-      "review": "Is there anything better than a good show about the behind the scenes people for a mid-tier NPB team? No! Also this ED is great.",
-      "dateReviewed": "2025-04-03T12:16:00-04:00",
+      "aired": {
+        "season": "spring",
+        "year": 2025
+      },
+      "reviews": [
+        {
+          "ratingNumber": 5,
+          "text": "Is there anything better than a good show about the behind the scenes people for a mid-tier NPB team? No! Also this ED is great.",
+          "dateReviewed": "2026-11-19T11:58:39-05:00"
+        }
+      ],
       "watched": {
         "from": "2025-04-03",
         "to": "2025-07-23"
@@ -3308,11 +3638,17 @@
     {
       "titleEN": "GUILTY GEAR",
       "titleJP": "GUILTY GEAR STRIVE: DUAL RULERS",
-      "airedLabel": "Spring 2025",
-      "ratingNumber": 4,
-      "ratingText": "Yeah, Here's Hoping",
-      "review": "It's completely insane, the story is insane, the world is insane; so it's 100% pure Guilty Gear.",
-      "dateReviewed": "2025-04-07T13:30:00-04:00",
+      "aired": {
+        "season": "spring",
+        "year": 2025
+      },
+      "reviews": [
+        {
+          "ratingNumber": 4,
+          "text": "It's completely insane, the story is insane, the world is insane; so it's 100% pure Guilty Gear.",
+          "dateReviewed": "2026-11-19T11:59:12-05:00"
+        }
+      ],
       "watched": {
         "from": "2025-04-07",
         "to": "2025-06-09"
@@ -3344,11 +3680,17 @@
     {
       "titleEN": "TASUKETSU -Fate of the Majority-",
       "titleJP": "多数欠",
-      "airedLabel": "Summer 2024",
-      "ratingNumber": 1,
-      "ratingText": "Never, Please No More Like This Ever",
-      "review": "Bad.",
-      "dateReviewed": "2025-01-07T17:51:00-05:00",
+      "aired": {
+        "season": "summer",
+        "year": 2024
+      },
+      "reviews": [
+        {
+          "ratingNumber": 1,
+          "text": "Bad.",
+          "dateReviewed": "2026-11-19T12:18:27-05:00"
+        }
+      ],
       "watched": {
         "from": "2025-01-07"
       },
@@ -3378,11 +3720,18 @@
     {
       "titleEN": "Mobile Suit Gundam",
       "titleJP": "機動戦士ガンダム",
-      "airedLabel": "Spring 1979",
-      "ratingNumber": 5,
-      "ratingText": "Peak, Nice Ep Broh",
-      "review": "Yes.",
-      "dateReviewed": "2025-03-02T20:21:00-05:00",
+      "aired": {
+        "season": "spring",
+        "year": 1979
+      },
+      "reviews": [
+        {
+          "episodes": 6,
+          "ratingNumber": 5,
+          "text": "Yes.",
+          "dateReviewed": "2026-11-19T12:18:27-05:00"
+        }
+      ],
       "watched": {
         "from": "2025-03-02",
         "to": "2025-03-11",
@@ -3425,11 +3774,17 @@
     {
       "titleEN": "My Hero Academia: Vigilantes",
       "titleJP": "ヴィジランテ -僕のヒーローアカデミア ILLEGALS-",
-      "airedLabel": "Spring 2025",
-      "ratingNumber": 4,
-      "ratingText": "Yeah, Here's Hoping",
-      "review": "Season 1 is lovely, season 2 is not as good but not bad.",
-      "dateReviewed": "2025-04-21T13:06:00-04:00",
+      "aired": {
+        "season": "spring",
+        "year": 2025
+      },
+      "reviews": [
+        {
+          "ratingNumber": 4,
+          "text": "Season 1 is lovely, season 2 is not as good but not bad.",
+          "dateReviewed": "2026-11-19T12:18:27-05:00"
+        }
+      ],
       "watched": {
         "from": "2025-04-21",
         "to": "2026-03-31"
@@ -3467,11 +3822,17 @@
     {
       "titleEN": "Umamusume: Pretty Derby",
       "titleJP": "ウマ娘 プリティーダービー",
-      "airedLabel": "Spring 2018",
-      "ratingNumber": 4,
-      "ratingText": "Yeah, Here's Hoping",
-      "review": "I'm a musumaniac.",
-      "dateReviewed": "2025-07-25T06:25:00-04:00",
+      "aired": {
+        "season": "spring",
+        "year": 2018
+      },
+      "reviews": [
+        {
+          "ratingNumber": 4,
+          "text": "I'm a musumaniac.",
+          "dateReviewed": "2026-11-19T12:18:27-05:00"
+        }
+      ],
       "watched": {
         "from": "2025-07-25",
         "to": "2025-08-18"
@@ -3510,11 +3871,18 @@
     {
       "titleEN": "WITCH WATCH",
       "titleJP": "ウィッチウォッチ",
-      "airedLabel": "Spring 2025",
-      "ratingNumber": 2,
-      "ratingText": "Trash, for Second Screen Only",
-      "review": "It's fun.",
-      "dateReviewed": "2025-08-28T12:30:00-04:00",
+      "aired": {
+        "season": "spring",
+        "year": 2025
+      },
+      "reviews": [
+        {
+          "episodes": 9,
+          "ratingNumber": 2,
+          "text": "It's fun.",
+          "dateReviewed": "2026-11-19T12:18:27-05:00"
+        }
+      ],
       "watched": {
         "from": "2025-08-28",
         "to": "2026-05-06",
@@ -3564,11 +3932,17 @@
     {
       "titleEN": "Uglymug, Epicfighter",
       "titleJP": "ブサメンガチファイター",
-      "airedLabel": "Summer 2025",
-      "ratingNumber": 2,
-      "ratingText": "Trash, for Second Screen Only",
-      "review": "Stupid, fine.",
-      "dateReviewed": "2025-09-11T18:18:00-04:00",
+      "aired": {
+        "season": "summer",
+        "year": 2025
+      },
+      "reviews": [
+        {
+          "ratingNumber": 2,
+          "text": "Stupid, fine.",
+          "dateReviewed": "2026-11-19T12:18:27-05:00"
+        }
+      ],
       "watched": {
         "from": "2025-09-11",
         "to": "2025-10-03"
@@ -3600,11 +3974,17 @@
     {
       "titleEN": "Clevatess",
       "titleJP": "クレバテス-魔獣の王と赤子と屍の勇者-",
-      "airedLabel": "Summer 2025",
-      "ratingNumber": 3,
-      "ratingText": "Meh, Finishing the Ep",
-      "review": "I'm still not sure on this show. I go back and forth so much if it's really cool, or not good or just a bad Berserk clone or something else.",
-      "dateReviewed": "2025-09-16T18:07:00-04:00",
+      "aired": {
+        "season": "summer",
+        "year": 2025
+      },
+      "reviews": [
+        {
+          "ratingNumber": 3,
+          "text": "I'm still not sure on this show. I go back and forth so much if it's really cool, or not good or just a bad Berserk clone or something else.",
+          "dateReviewed": "2026-11-19T12:18:27-05:00"
+        }
+      ],
       "watched": {
         "from": "2025-09-16",
         "to": "2026-01-23"
@@ -3649,11 +4029,17 @@
     {
       "titleEN": "Detectives These Days Are Crazy!",
       "titleJP": "まったく最近の探偵ときたら",
-      "airedLabel": "Summer 2025",
-      "ratingNumber": 5,
-      "ratingText": "Peak, Nice Ep Broh",
-      "review": "Now this is what I call anime!",
-      "dateReviewed": "2025-09-17T07:32:00-04:00",
+      "aired": {
+        "season": "summer",
+        "year": 2025
+      },
+      "reviews": [
+        {
+          "ratingNumber": 5,
+          "text": "Now this is what I call anime!",
+          "dateReviewed": "2026-11-19T12:18:27-05:00"
+        }
+      ],
       "watched": {
         "from": "2025-09-17",
         "to": "2026-02-15"
@@ -3687,11 +4073,18 @@
     {
       "titleEN": "Solo Camping for Two",
       "titleJP": "ふたりソロキャンプ",
-      "airedLabel": "Summer 2025",
-      "ratingNumber": 3,
-      "ratingText": "Meh, Finishing the Ep",
-      "review": "Fun concept, you learn a bunch about outdoorsing in Japan.",
-      "dateReviewed": "2025-09-18T12:51:00-04:00",
+      "aired": {
+        "season": "summer",
+        "year": 2025
+      },
+      "reviews": [
+        {
+          "episodes": 13,
+          "ratingNumber": 3,
+          "text": "Fun concept, you learn a bunch about outdoorsing in Japan.",
+          "dateReviewed": "2026-11-19T12:18:27-05:00"
+        }
+      ],
       "watched": {
         "from": "2025-09-18",
         "to": "2026-04-08",
@@ -3725,11 +4118,18 @@
     {
       "titleEN": "Assassination Classroom",
       "titleJP": "暗殺教室",
-      "airedLabel": "Winter 2015",
-      "ratingNumber": 3,
-      "ratingText": "Meh, Finishing the Ep",
-      "review": "Fun show.",
-      "dateReviewed": "2025-09-29T07:37:00-04:00",
+      "aired": {
+        "season": "winter",
+        "year": 2015
+      },
+      "reviews": [
+        {
+          "episodes": 16,
+          "ratingNumber": 3,
+          "text": "Fun show.",
+          "dateReviewed": "2026-11-19T12:18:27-05:00"
+        }
+      ],
       "watched": {
         "from": "2025-09-29",
         "to": "2026-04-04",
@@ -3770,11 +4170,17 @@
     {
       "titleEN": "Ruri Rocks",
       "titleJP": "瑠璃の宝石",
-      "airedLabel": "Summer 2025",
-      "ratingNumber": 5,
-      "ratingText": "Peak, Nice Ep Broh",
-      "review": "So excellent and I learned so much about rocks!",
-      "dateReviewed": "2025-10-03T18:24:00-04:00",
+      "aired": {
+        "season": "summer",
+        "year": 2025
+      },
+      "reviews": [
+        {
+          "ratingNumber": 5,
+          "text": "So excellent and I learned so much about rocks!",
+          "dateReviewed": "2026-11-19T12:18:27-05:00"
+        }
+      ],
       "watched": {
         "from": "2025-10-03",
         "to": "2026-08-21"
@@ -3813,11 +4219,17 @@
     {
       "titleEN": "May I Ask for One Final Thing?",
       "titleJP": "最後にひとつだけお願いしてもよろしいでしょうか",
-      "airedLabel": "Fall 2025",
-      "ratingNumber": 3,
-      "ratingText": "Meh, Finishing the Ep",
-      "review": "Perfectly done show about punching jerks in the face.",
-      "dateReviewed": "2025-10-21T22:30:00-04:00",
+      "aired": {
+        "season": "fall",
+        "year": 2025
+      },
+      "reviews": [
+        {
+          "ratingNumber": 3,
+          "text": "Perfectly done show about punching jerks in the face.",
+          "dateReviewed": "2026-11-19T12:18:27-05:00"
+        }
+      ],
       "watched": {
         "from": "2025-10-21",
         "to": "2026-02-10"
@@ -3856,11 +4268,17 @@
     {
       "titleEN": "Yano-kun's Ordinary Days",
       "titleJP": "矢野くんの普通の日々",
-      "airedLabel": "Fall 2025",
-      "ratingNumber": 3,
-      "ratingText": "Meh, Finishing the Ep",
-      "review": "Nice high school romance.",
-      "dateReviewed": "2025-10-22T12:10:00-04:00",
+      "aired": {
+        "season": "fall",
+        "year": 2025
+      },
+      "reviews": [
+        {
+          "ratingNumber": 3,
+          "text": "Nice high school romance.",
+          "dateReviewed": "2026-11-19T12:18:27-05:00"
+        }
+      ],
       "watched": {
         "from": "2025-10-22",
         "to": "2026-01-07"
@@ -3894,11 +4312,17 @@
     {
       "titleEN": "You Don't Know Gunma Yet",
       "titleJP": "お前はまだグンマを知らない",
-      "airedLabel": "Spring 2018",
-      "ratingNumber": 5,
-      "ratingText": "Peak, Nice Ep Broh",
-      "review": "Best regional promo anime ever. I learned so much about Gunma in a total of ~25 minutes for the whole season!",
-      "dateReviewed": "2026-01-22T12:47:00-05:00",
+      "aired": {
+        "season": "spring",
+        "year": 2018
+      },
+      "reviews": [
+        {
+          "ratingNumber": 5,
+          "text": "Best regional promo anime ever. I learned so much about Gunma in a total of ~25 minutes for the whole season!",
+          "dateReviewed": "2026-11-19T12:18:27-05:00"
+        }
+      ],
       "watched": {
         "from": "2026-01-22",
         "to": "2026-06-09"
@@ -3926,11 +4350,18 @@
     {
       "titleEN": "Tower of God",
       "titleJP": "神之塔 -Tower of God-",
-      "airedLabel": "Spring 2020",
-      "ratingNumber": 1,
-      "ratingText": "Never, Please No More Like This Ever",
-      "review": "More like tower of slog, amirite.",
-      "dateReviewed": "2026-02-12T13:05:00-05:00",
+      "aired": {
+        "season": "spring",
+        "year": 2020
+      },
+      "reviews": [
+        {
+          "episodes": 8,
+          "ratingNumber": 1,
+          "text": "More like tower of slog, amirite.",
+          "dateReviewed": "2026-11-19T12:18:27-05:00"
+        }
+      ],
       "watched": {
         "from": "2026-02-12",
         "to": "2026-03-29",
@@ -3969,11 +4400,17 @@
     {
       "titleEN": "Takopi's Original Sin",
       "titleJP": "タコピーの原罪",
-      "airedLabel": "Summer 2025",
-      "ratingNumber": 4,
-      "ratingText": "Yeah, Here's Hoping",
-      "review": "Very good. Very dark. See the AMO Kenzoku episode for a real breakdown.",
-      "dateReviewed": "2026-04-24T14:13:00-04:00",
+      "aired": {
+        "season": "summer",
+        "year": 2025
+      },
+      "reviews": [
+        {
+          "ratingNumber": 4,
+          "text": "Very good. Very dark. See the AMO Kenzoku episode for a real breakdown.",
+          "dateReviewed": "2026-11-19T12:18:27-05:00"
+        }
+      ],
       "watched": {
         "from": "2026-04-24",
         "to": "2026-05-08"
@@ -4012,11 +4449,18 @@
     {
       "titleEN": "Haikyu!!",
       "titleJP": "ハイキュー!!",
-      "airedLabel": "Spring 2014",
-      "ratingNumber": 4,
-      "ratingText": "Yeah, Here's Hoping",
-      "review": "Pretty great volleyball anime.",
-      "dateReviewed": "2022-04-05T12:30:00-04:00",
+      "aired": {
+        "season": "spring",
+        "year": 2014
+      },
+      "reviews": [
+        {
+          "episodes": 7,
+          "ratingNumber": 4,
+          "text": "Pretty great volleyball anime.",
+          "dateReviewed": "2026-11-19T12:21:03-05:00"
+        }
+      ],
       "watched": {
         "from": "2022-04-05",
         "to": "2022-04-28",
@@ -4053,10 +4497,13 @@
     },
     {
       "titleEN": "Anime Crimes Division",
-      "ratingNumber": 4,
-      "ratingText": "Yeah, Here's Hoping",
-      "review": "Fun show. Not anime, but it's on CR so I'll include it here.",
-      "dateReviewed": "2022-08-22T06:57:00-04:00",
+      "reviews": [
+        {
+          "ratingNumber": 4,
+          "text": "Fun show. Not anime, but it's on CR so I'll include it here.",
+          "dateReviewed": "2026-11-19T12:21:03-05:00"
+        }
+      ],
       "watched": {
         "from": "2022-08-22",
         "to": "2023-05-15"

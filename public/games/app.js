@@ -9,25 +9,25 @@
  * nothing.
  */
 
-import { DATA_PATH, currentRating, lastActivity } from './schema.js';
+import { DATA_PATH, STAGE_LABELS, currentRating, gameReviewStage, lastActivity, ratingText } from './schema.js';
 
 /**
- * @typedef {Object} Impression
- * @property {string} review - paragraphs separated by a blank line
+ * @typedef {Object} Review
+ * @property {string} text - paragraphs separated by a blank line
  * @property {number} ratingNumber - 0-5, the same scale as VQAR's
- * @property {string} ratingText
+ * @property {string} [ratingText] - custom label; the tier's own otherwise
  * @property {string} dateReviewed - a timestamp with the reviewer's own offset
- * @property {number} [hoursPlayed] - roughly how far in this impression was written
+ * @property {number} [hoursPlayed] - roughly how far in this review was written
+ * @property {true} [final] - the verdict once it's finished
  */
 
 /**
- * @typedef {Impression & {
- *   id: string,
- *   title: string,
- *   platform?: string,
- *   finished?: true,
- *   updates?: Impression[],
- * }} GameReview
+ * @typedef {Object} Game
+ * @property {string} id
+ * @property {string} title
+ * @property {string} [platform]
+ * @property {Review[]} reviews - oldest first; the latest is the verdict that counts
+ * @property {{ finished?: true }} [played]
  */
 
 const TITLE = 'Very Quick Game Reviews';
@@ -57,12 +57,12 @@ function showMessage(text, className = 'loading') {
 }
 
 /** `no-cache` revalidates, so an unchanged file comes back as a 304. */
-async function loadReviews() {
+async function loadGames() {
   const response = await fetch(DATA_PATH, { cache: 'no-cache' });
   if (!response.ok) throw new Error(`HTTP ${response.status} loading the reviews`);
   const data = await response.json();
-  if (!Array.isArray(data?.reviews)) throw new Error('Invalid review data format');
-  return /** @type {GameReview[]} */ (data.reviews);
+  if (!Array.isArray(data?.games)) throw new Error('Invalid review data format');
+  return /** @type {Game[]} */ (data.games);
 }
 
 /** @param {string} text */
@@ -75,9 +75,9 @@ function createParagraphs(text) {
 }
 
 /**
- * The rating/date/hours line shared by a first impression and its updates.
- * @param {Impression} impression
- * @param {string} [label] - "Update", for an update block
+ * The rating/date/hours line of one review.
+ * @param {Review} impression
+ * @param {string} [label] - its stage, when there's more than one review
  */
 function createMeta(impression, label) {
   const meta = document.createElement('div');
@@ -92,7 +92,7 @@ function createMeta(impression, label) {
 
   const rating = document.createElement('span');
   rating.className = 'entry-rating';
-  rating.textContent = impression.ratingText ?? '';
+  rating.textContent = ratingText(impression);
   meta.appendChild(rating);
 
   const published = document.createElement('span');
@@ -110,12 +110,33 @@ function createMeta(impression, label) {
   return meta;
 }
 
-/** @param {GameReview} r */
-function createReviewArticle(r) {
+/**
+ * One review: its meta line and text. A game with a single review shows it
+ * plainly; once there are more, each is labeled with its stage, and the ones
+ * after the first are set off like VQAR's revisits.
+ * @param {Review[]} reviews
+ * @param {number} index
+ */
+function createReviewBlock(reviews, index) {
+  const review = reviews[index];
+  const label = reviews.length > 1 ? STAGE_LABELS[gameReviewStage(reviews, index)] : undefined;
+  const desc = document.createElement('div');
+  desc.className = 'entry-description';
+  desc.append(...createParagraphs(review.text ?? ''));
+  const meta = createMeta(review, label);
+  if (index === 0) return [desc, meta];
+  const block = document.createElement('div');
+  block.className = 'entry-addendum';
+  block.append(meta, desc);
+  return [block];
+}
+
+/** @param {Game} game */
+function createReviewArticle(game) {
   const article = document.createElement('article');
-  article.id = r.id;
+  article.id = game.id;
   // The rating that counts, for themes to key off the way they do on /vqar.
-  const { ratingNumber: rating } = currentRating(r);
+  const { ratingNumber: rating } = currentRating(game);
   if (typeof rating === 'number') article.dataset.rating = String(rating);
 
   const body = document.createElement('div');
@@ -125,46 +146,35 @@ function createReviewArticle(r) {
   title.className = 'entry-title';
   const link = document.createElement('a');
   link.className = 'entry-permalink';
-  link.href = `/games?game=${encodeURIComponent(r.id)}`;
-  link.textContent = r.title ?? 'Untitled';
+  link.href = `/games?game=${encodeURIComponent(game.id)}`;
+  link.textContent = game.title ?? 'Untitled';
   title.appendChild(link);
+  body.append(title);
 
-  const facts = document.createElement('div');
-  facts.className = 'entry-facts';
-  facts.textContent = r.platform ? `Played on ${r.platform}` : '';
+  if (game.platform) {
+    const facts = document.createElement('div');
+    facts.className = 'entry-facts';
+    facts.textContent = `Played on ${game.platform}`;
+    body.append(facts);
+  }
 
-  const desc = document.createElement('div');
-  desc.className = 'entry-description';
-  desc.append(...createParagraphs(r.review ?? ''));
+  const reviews = game.reviews ?? [];
+  reviews.forEach((_, i) => body.append(...createReviewBlock(reviews, i)));
 
-  const meta = createMeta(r);
-  if (r.finished) {
+  if (game.played?.finished) {
+    // On the first review's meta line, where it's always been.
+    const meta = body.querySelector('.entry-meta');
     const mark = document.createElement('span');
     mark.className = 'entry-mark entry-mark-finished';
     mark.textContent = 'Finished it';
-    meta.appendChild(mark);
-  }
-
-  body.append(title);
-  if (r.platform) body.append(facts);
-  body.append(desc, meta);
-
-  for (const update of r.updates ?? []) {
-    const block = document.createElement('div');
-    block.className = 'entry-addendum';
-    block.append(createMeta(update, 'Update'));
-    const updateDesc = document.createElement('div');
-    updateDesc.className = 'entry-description';
-    updateDesc.append(...createParagraphs(update.review ?? ''));
-    block.append(updateDesc);
-    body.appendChild(block);
+    meta?.appendChild(mark);
   }
 
   article.appendChild(body);
   return article;
 }
 
-/** @param {GameReview[]} reviews */
+/** @param {Game[]} reviews */
 function render(reviews) {
   const id = new URLSearchParams(window.location.search).get('game');
 
@@ -192,7 +202,7 @@ function render(reviews) {
 
 async function init() {
   try {
-    render(await loadReviews());
+    render(await loadGames());
   } catch (error) {
     console.error('Error loading game reviews:', error);
     showMessage(`ERROR: ${error instanceof Error ? error.message : 'Unknown error'}`, 'loading loading-error');

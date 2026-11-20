@@ -44,9 +44,13 @@ The Worker (`src/worker.js`) also backs a small GraphQL API over the same anime 
   `public/vqar/app.js`, `public/vqar-stats/app.js`, and `src/schema.js` all need to agree on.
 - `public/vqar/oped.js` — what a liked OP/ED is: always a list of the numbers liked (`[1]`,
   `[1, 2]`). `/vqar`, `/vqar-stats`, the GraphQL schema and the validator all read it through here.
-- `public/vqar/rating.js` — the other thing they have to agree on: which rating counts once
-  a show has both an episode-1 rating and a full-series re-review, and each tier's default
-  label (`RATING_NUMBER_LABELS`).
+- `public/vqar/reviews.js` — a show's `reviews` list: each review's stage (first impression,
+  revisit, final, review), the current one, and the first impression. See "Show shape".
+- `public/vqar/rating.js` — the other thing they have to agree on: which rating counts (the
+  latest review's), each tier's default label (`RATING_NUMBER_LABELS`) that a review without its
+  own `ratingText` falls back to, and which shows are waiting on a revisit.
+- `public/vqar/aired.js` — when a show first aired (`aired`), how to show it, and whether it's
+  worth showing (not when it's the lineup the show sits in).
 - `src/worker.js` / `src/schema.js` — the Worker's fetch handler and GraphQL schema/resolvers.
 - `src/recommend.js` — the `recommend` query's scoring (see "Recommendations").
 
@@ -167,6 +171,31 @@ convention that keeps new components from breaking it:
 
 ## VQAR data
 
+### Glossary
+
+The same words mean the same thing in the data, the code, the pages and the API:
+
+- **Show** — one entry in a season file's `shows`: a title, plus everything written about it.
+- **Review** — one thing written about a show, at one time: a rating, text and `dateReviewed`.
+  A show's `reviews` list holds every one, oldest first.
+- **Stage** — what a review is, derived from its `episodes`/`final` and where it sits, never
+  stored: a **first impression** (`episodes: 1`), a **revisit** (any later review), a **final**
+  review (`final: true`, the verdict on the whole run), or just a **review** (a first review with
+  no episode-1 basis). See "Show shape".
+- **Current rating** — the latest review's. It's the show's rating everywhere.
+- **Backfill** — a review written after watching a stretch of a show rather than on episode 1;
+  its stage is "review".
+- **Lineup** — a season file for an anime season reviewed live (`spring-2026`). **Shelf** — any
+  other season file; the one there is is the **Backlog**.
+- **To review** / **not reviewing** — a lineup's titles still waiting for a first impression, and
+  the ones it won't get (`toReview`, `notReviewing`).
+- **Aired** — when a show first aired, from AniList. **Watched** — when you watched it, and how
+  far; **finished** means you watched the whole thing.
+- **Day** / **moment** — the two forms a date takes: `2026-04-01`, or a full Eastern timestamp.
+  See "Dates".
+
+### Season files
+
 Review data is committed to this repo, under `public/vqar/data/`: one file per season in
 `seasons/`, plus a **generated** `index.json` listing every season and naming the one
 currently being reviewed. `public/vqar/app.js` loads the index first
@@ -259,115 +288,135 @@ Every date in the season files takes one of two forms, chosen by what it records
 `public/dates.js` holds the rules for both:
 
 - A **day**, `YYYY-MM-DD` in your Eastern time, for things where only the day matters: when a
-  show was watched (`watched.from`/`to`), when it premieres (`premieres`), when you finished it
-  (`finishedDate`). Stamp one with `TZ=America/New_York date +%F`.
+  show was watched (`watched.from`/`to`), when it premieres (`premieres`). Stamp one with
+  `TZ=America/New_York date +%F`.
 - A **moment**, a full timestamp in your Eastern offset (`2026-10-08T14:30:00-04:00`, `-05:00`
-  outside daylight time), for when a review was written (`dateReviewed`, on a review and on a
-  `fullReview`), so two written the same day still sort in order. Stamp one with
+  outside daylight time), for when a review was written (each review's `dateReviewed`), so two
+  written the same day still sort in order. Stamp one with
   `TZ=America/New_York date +%Y-%m-%dT%H:%M:%S%:z`.
 
 Validation rejects the wrong form in each place, a moment in any other offset (UTC `Z`
 included), and a date in the future. Both are shown exactly as written, never converted, so the
 Eastern offset is what keeps an evening review on its own day. When only the day of a review is
-known (a backfill), use noon that day, `easternMoment(day)` in `dates.js`: noon is clear of
-either midnight, so the day can't drift.
+known, use noon that day, `easternMoment(day)` in `dates.js`: noon is clear of either
+midnight, so the day can't drift.
 
-### Review shape
+### Show shape
 
-Each entry in a season's `shows` array is a single-episode review plus three optional
-extras:
+Each entry in a season's `shows` array is a **show**, carrying every review you've written about
+it in `reviews`, oldest first:
 
-- `fullReview` — a revisit after watching more of a show (usually one rated "Yeah, Here's
-  Hoping", the tier the revisit queue counts, but any show can get one), shaped like `{ ratingNumber, ratingText, review, dateReviewed }`. It **requires** a
-  `ratingNumber` (0–5) and `ratingText`: that rating replaces the episode-1 one in sorting,
-  filtering and every `/vqar-stats` number, so validation rejects a revisit saved without one
-  rather than let the old rating quietly stand.
+```json
+{
+  "titleEN": "Angel Beats!",
+  "titleJP": "Angel Beats!",
+  "aired": { "season": "spring", "year": 2010 },
+  "reviews": [
+    { "episodes": 1, "ratingNumber": 4, "text": "…", "dateReviewed": "2026-07-21T08:00:00-04:00" },
+    { "episodes": 13, "final": true, "ratingNumber": 5, "ratingText": "Custom label", "text": "…", "dateReviewed": "2026-11-17T10:12:00-05:00" }
+  ],
+  "watched": { "from": "2026-07-20", "to": "2026-11-16", "finished": true },
+  "op": [1],
+  "anilistId": 6547,
+  "streaming": ["crunchyroll"]
+}
+```
+
+Only `titleEN` and at least one review are required. A **review** is:
+
+- `ratingNumber` (required) — a whole number 0–5. The **latest** review's is the show's rating
+  everywhere ratings are sorted, filtered or counted (`effectiveRatingNumber` in
+  `public/vqar/rating.js`), so validation rejects a review saved without one rather than let the
+  old rating quietly stand.
+- `ratingText` (optional) — your own label, like "Delicious trash". Leave it out to use the tier's
+  default (`RATING_NUMBER_LABELS`); most reviews do.
+- `text` — what you wrote.
+- `dateReviewed` (required) — when you wrote it, a moment (see "Dates"). Reviews are listed in
+  date order, and "Most recent" sorts a show by its latest review, so a revisit brings an older
+  show back to the top.
+- `episodes` (optional) — how many episodes it was based on: `1` for a first impression.
+- `final: true` (optional) — the verdict on the whole run, once you've finished it.
+
+Each review's **stage** is derived from those, never stored (`reviewStage` in
+`public/vqar/reviews.js`):
+
+| Stage | When | Shown as |
+| --- | --- | --- |
+| first impression | `episodes: 1` | no label on its own; "First impression" next to later reviews |
+| revisit | any later review that isn't final | "Revisit" |
+| final | `final: true` | "Final" |
+| review | a first review with no episode-1 basis (a backfill, written after watching a stretch of it) | "Review" |
+
+Since the labels come from the list, validation keeps it making sense: at most one first
+impression, and only first; `episodes` never goes down from one review to the next, nor past
+the `watched.episode` you reached; a `final` review is the last one, and only on a show marked
+`watched.finished`; and each review is dated no earlier than the one before it. A review based
+on more than one episode shows "12 eps in" on `/vqar`.
+
+A show rated "Yeah, Here's Hoping" (4) on its first impression, with nothing written since, is
+**waiting on a revisit** (`awaitingRevisit`): that's the "To revisit" queue. A show with no first
+impression - a backfill - is never in it.
+
+**Re-reviewing a show** means appending to its `reviews`, never starting a new entry. A show
+stays in the lineup where it was first reviewed, and every later review joins it there, a second
+cour included. That's why the same `anilistId` in two season files is rejected: it would count
+twice in every `/vqar-stats` number.
+
+Beside `reviews`, a show may carry:
+
+- `aired` — when it first aired, from AniList: `{ "season": "spring", "year": 2010 }`, or just
+  `{ "year": 2026 }` when AniList has no season for it. `npm run fetch-anilist-tags` fills it in
+  where it's missing and never overwrites one, so a hand fix sticks. `/vqar` shows "Aired: Spring
+  2010" only when it isn't the lineup the show sits in, and search finds it.
 - `op` / `ed` — marks an opening/ending you liked, for finding it again later. A season can have
   several OPs or EDs, so it always names the number(s): `"op": [2]` is OP 2, `"ed": [1, 3]` is EDs
   1 and 3 (`[1]` when the show only had one). It's a bare marking, with no rating or note: a bare
   `true`, or anything but a list of distinct whole numbers from 1, is rejected, and an OP/ED you
   didn't note is simply left out. `/vqar` shows it as a "Liked OP 2"/"Liked ED 1, 3" pill,
-  `/vqar-stats` lists the numbers in a "Which" column, and the GraphQL `Review` type has
+  `/vqar-stats` lists the numbers in a "Which" column, and the GraphQL `Show` type has
   `op`/`ed` as Booleans (true when anything was liked) with the numbers in `opNumbers`/`edNumbers`.
 
-A review on the Backlog (see "Lineups and the Backlog") may carry `airedLabel`, free
-text for when it first aired, such as `"Winter 2004"`.
-
-A review may also carry `finishedSeason: true` — you watched the whole season. It's the same
-kind of bare marking (anything but `true` is rejected), and it's **independent of everything
-else**: a revisit doesn't imply it (one may cover only an episode or two), and a low rating
-doesn't rule it out (a season of trash can get finished too). It shows as a "Finished season"
-pill, has its own Extras chip, and is counted on `/vqar-stats` as "Seasons Finished".
-
-**Splitting one show across seasons.** A long run that AniList lists as a single entry (say a
-26-episode show airing summer into fall) can still get a review per season when it plays like two:
-a new OP/ED, a mid-season finale. Each half is its own review in its own season file, with its own
-rating and `finishedSeason`, and each carries `part` (a whole number from 1). The later halves say
-so in `titleEN` (`"… Part 2"`), since `part` itself isn't shown. Normally the same `anilistId`
-reviewed twice is rejected as an accidental repeat, because it counts twice in every `/vqar-stats`
-number; `part` is the opt-in that says that's intended. Validation then requires every entry for
-that id to carry a distinct `part`, each in a different season. Copy the `anilist` object over (or
-rerun `npm run fetch-anilist-tags`), since it comes from the shared id.
-
-It may also carry `finishedDate`, a day like `2026-10-26` for when you finished
-— a note for your own records, kept in the data and the GraphQL `Review` type but not shown on
-`/vqar`. Validation only accepts it alongside `finishedSeason: true`, and rejects a date in the
-future or before the episode-1 review. Stamp it with `TZ=America/New_York date +%F`.
-
-`dateReviewed` on a top-level review is a full ISO 8601 **timestamp** in the reviewer's Eastern
-offset — `2026-10-08T14:30:00-04:00` (`-05:00` in winter) — not just a date. "Most recent"
-sorts on it, and a bare date would tie every review written the same day. Validation rejects a
-date with no time, one in any other offset (UTC `Z` included), and one in the future. The page
-shows only the date part, exactly as written, so the Eastern offset keeps the reviewer's own
-day. When adding a review, stamp it with `TZ=America/New_York date +%Y-%m-%dT%H:%M:%S%:z` —
-not `date -u`, since a UTC stamp shows tomorrow's date for anything reviewed after 8pm
-Eastern. A `fullReview`'s `dateReviewed` is a moment by the same rules, and can't be earlier than
-its episode-1 review.
-
-All three are optional and independent — add whichever applies whenever you get to it.
-
-A review may also carry an optional `anilistId` (an AniList media id, e.g. `154587`) —
+A show may also carry an optional `anilistId` (an AniList media id, e.g. `154587`) —
 purely for linking out to that show's AniList page from VQAR and the GraphQL API. Full
 show metadata (synopsis, episode counts, community scores) intentionally lives on AniList
 rather than being duplicated into these files; see "Validating against AniList" below for
 finding the right id.
 
-A review may also carry an optional `annId` (an Anime News Network encyclopedia id, e.g.
+A show may also carry an optional `annId` (an Anime News Network encyclopedia id, e.g.
 `22622`) — same idea as `anilistId`, but links out to the show's ANN encyclopedia page
 instead. Add it by hand; there's no automated lookup for it like `validate-against-anilist.js`.
 
-A review may also carry optional `wikipediaUrl` and `wikipediaJaUrl` — the full article
+A show may also carry optional `wikipediaUrl` and `wikipediaJaUrl` — the full article
 URLs, rather than ids the way `anilistId`/`annId` work, because Wikipedia keys on the
 article title and the two language editions rarely agree about what it is. Both render as
 outbound links next to AniList and ANN. The Japanese article is worth carrying separately:
 it is routinely far more detailed on staff and broadcast history. Hand-maintained, no
 automated lookup.
 
-A review may also carry an optional `streaming` array of service keys (`crunchyroll`,
+A show may also carry an optional `streaming` array of service keys (`crunchyroll`,
 `hidive`, `youtube`, `netflix`, `hulu`, `prime`, `oceanveil`) the show is available on, e.g.
 `["crunchyroll", "hulu"]` — renders as small badges on the entry. Purely informational and
 hand-maintained; there's no live lookup, so it'll drift if a show leaves a service.
 
-A review may also carry an optional `crunchyrollUrl`, `hidiveUrl`, `netflixUrl`, `huluUrl`,
+A show may also carry an optional `crunchyrollUrl`, `hidiveUrl`, `netflixUrl`, `huluUrl`,
 `primeUrl` and/or `youtubeUrl` (a direct link to the show's page, channel or playlist on that
 service) — whichever of these are present makes the matching badge ("CR", "HD", "NF", "HU", "PV",
 "YT") itself clickable. The OceanVeil badge stays non-clickable; there's no equivalent field for it.
 
-A review may also carry `watched`, when you actually watched the show: `{ "from": "2026-04-01",
+A show may also carry `watched`, when you actually watched it: `{ "from": "2026-04-01",
 "to": "2026-06-10" }` for the days the first and last episodes were watched. Both are days (see
 "Dates"); validation rejects one in the future or a `to` before the `from`. `from` is required and
 `to` is optional (leave it out while still watching). For a show you didn't finish add `episode`,
 the last episode you reached (a number, `12.5` for a special is fine), plus `season` when it ran
 across several (`"season": 2, "episode": 6` is S2 E6). Both are numbers, never text, so they can be
-counted. It is separate from `dateReviewed` (when the review was written) and `finishedDate`.
-`/vqar` shows it as "Watched: 2026-04-01 – 2026-06-10 (through ep 6)", and the GraphQL `Review`
-type has a `watched` object with the same four fields.
-
-A review may also carry an optional `watchProgress` (a free-text string, e.g. `"Ep 3"`) —
-a silly personal tracker for how far a 4/5 ("Yeah") revisit candidate actually got before
-either finishing (graduating to a `fullReview`) or stalling out again. Purely for your own
-amusement; not required, and `/vqar-stats`' Revisit Candidates list stays title-only
-regardless - it only shows up alongside the rest of a review on `/vqar` itself.
+counted. Add `"finished": true` when you watched the whole thing - a bare marking (anything but
+`true` is rejected) that's **independent of everything else**: a revisit doesn't imply it (one
+may cover only an episode or two), and a low rating doesn't rule it out (a season of trash can get
+finished too). Only mark it when you say you finished. It shows as a "Finished season" pill, has
+its own Extras chip, is counted on `/vqar-stats` as "Seasons Finished", and is what a `final`
+review requires. `watched` is separate from `dateReviewed` (when a review was written). `/vqar`
+shows it as "Watched: 2026-04-01 – 2026-06-10 (through ep 6)", and the GraphQL `Show` type has a
+`watched` object with the same five fields.
 
 ### Editing a season
 
@@ -380,10 +429,12 @@ npm test
 git commit -am "Add <show> to Summer 2026"
 ```
 
-Adding a review means appending an object to that season's `shows` array — see "Review
-shape" above for every field it can carry, of which only `titleEN`, `ratingNumber`
-(a whole number 0–5), `ratingText` and `dateReviewed` (a timestamp) are required. If the show was sitting in `toReview` or `notReviewing`, remove it
-from there in the same edit; validation flags a title that's in both.
+Reviewing a new show means appending a show to that season's `shows` array, with its first
+impression as the one review: `{ "titleEN": "...", "reviews": [{ "episodes": 1, "ratingNumber": 3,
+"text": "...", "dateReviewed": "2026-10-08T14:30:00-04:00" }] }` — see "Show shape" above for
+everything else it can carry. If the show was sitting in `toReview` or `notReviewing`, remove it
+from there in the same edit; validation flags a title that's in both. Reviewing it again means
+appending to its `reviews`.
 
 `git` is the update mechanism now, so there's no push step and no token to keep around.
 
@@ -442,16 +493,18 @@ A season file is one of two things, and its id says which (`isLineup` in
 - A **shelf** is any other id. There's one, `seasons/backlog.json` (`"sortKey": 0`, so it sorts
   after every lineup and comes last in the Season dropdown as "Backlog"): a review of a show that
   didn't air in the season you watched it in (an old classic) goes there. Add it to `shows` like
-  any other (newest first, by convention), with an optional `airedLabel`, free text for when it
-  first aired — `"airedLabel": "Winter 2004"` shows on the card as "Aired: Winter 2004" and is
-  found by search.
+  any other (newest first, by convention); its `aired` (from AniList) shows on the card as
+  "Aired: Winter 2004" and is found by search. Most Backlog shows are backfills, reviewed after
+  watching a stretch of the show rather than on episode 1, so their one review is a "review"
+  rather than a first impression.
 
-A Backlog review still counts everywhere a review counts (totals, average rating, rating
+A Backlog show still counts everywhere a show counts (totals, average rating, rating
 distribution, Hall of Fame, genre and studio averages), but the Backlog isn't a season for the
 per-season stats on `/vqar-stats`: the ratings-over-time chart, genre-by-season, Hope Check by
-season, "seasons covered", busiest season and the coverage tile all leave it out. Validation
-rejects `current` on it. The GraphQL API tells the two apart with `Season.lineup`, and exposes
-`airedLabel` as `Review.airedLabel`. An old `?season=older-shows` link still opens the Backlog.
+season, "seasons covered", busiest season and the coverage tile all leave it out - as they do
+any lineup show without a first impression. Validation rejects `current` on it. The GraphQL API
+tells the two apart with `Season.lineup`. An old `?season=older-shows` link still opens the
+Backlog.
 
 ### Filtering and linking
 
@@ -489,12 +542,14 @@ and an unrecognized value falls back to the default on load.
 `scripts/validate-vqar.js` runs the same checks `npm test` does, on demand. It flags a show
 that's reviewed but still left in toReview/notReviewing, a show listed in both toReview and
 notReviewing, duplicate entries within the same list (or titles that differ only in case or
-punctuation), reviews missing required fields, with an out-of-range `ratingNumber`, an unknown
-field (a typo like `finshedSeason`) or a date that is unparseable, not in Eastern time or in
-the future, the same AniList id reviewed in two seasons, and a season that can't identify or
-order itself. The allowed review keys live in `REVIEW_KEYS` in `scripts/validateSeason.js`,
-and `test/graphql.test.js` checks the GraphQL `Review` type against that list. Its one job the test
-can't do is checking a file that isn't committed yet.
+punctuation), a show with no reviews, a review missing its rating or date or with an
+out-of-range `ratingNumber`, a reviews list whose stages wouldn't make sense (see "Show shape"),
+an unknown field (a typo like `fullReveiw`, or a field the reviews list replaced) or a date that
+is unparseable, not in Eastern time or in the future, the same AniList id listed in two seasons,
+and a season that can't identify or order itself. The allowed keys live in `SHOW_KEYS`,
+`REVIEW_KEYS`, `WATCHED_KEYS` and `AIRED_KEYS` in `scripts/validateSeason.js`, and
+`test/graphql.test.js` checks the GraphQL `Show`, `Review`, `Watched` and `Aired` types against
+those lists. Its one job the test can't do is checking a file that isn't committed yet.
 
 ```
 npm run validate-vqar                  # checks every committed season
@@ -519,15 +574,16 @@ npm run validate-anilist -- --delay=2500    # slow down if AniList starts rate-l
 
 ### AniList tags (format, genres, tags, studios)
 
-Each review with an `anilistId` can carry a **generated** `anilist` object:
+Each show with an `anilistId` can carry a **generated** `anilist` object:
 
 ```json
 "anilist": { "format": "TV", "genres": ["Action", "Fantasy"], "tags": ["Isekai", "Male Protagonist"], "studios": ["GoHands"] }
 ```
 
 `scripts/fetch-anilist-tags.js` fills it in, 50 shows per AniList request, and owns it outright:
-every run overwrites it, so never hand-edit it. It never touches the rest of a review, and it
-rewrites only a season file's `shows` block, so the other lists keep the formatting they were
+every run overwrites it, so never hand-edit it. It also fills in a show's `aired` from AniList's
+season and year, but only where the show has none, so a hand fix sticks. It never touches the rest
+of a show, and it rewrites only a season file's `shows` block, so the other lists keep the formatting they were
 written in. AniList's genres are a fixed set of about 19; its **tags** are the fine-grained ones
 ("Isekai" is a tag, not a genre). Only tags AniList ranks at least 60% relevant are kept, and
 spoiler and adult tags are dropped. The site never calls AniList: the data is committed like any
@@ -573,8 +629,8 @@ outlined pill, each tag a `#hashtag`. Every value links to the current view narr
 while a modified click opens the link as usual. The line stays muted, so it's visibly apart
 from the reviewer's own markings (♪ Liked OP/ED, ✓ Finished season), which are accent-coloured
 pills. GraphQL exposes the same object as
-`Review.anilist`. `scripts/validateSeason.js` checks its shape. It also rejects `anilist` data
-on a review with no `anilistId` to have generated it from, and a comma in any value, since the
+`Show.anilist`. `scripts/validateSeason.js` checks its shape. It also rejects `anilist` data
+on a show with no `anilistId` to have generated it from, and a comma in any value, since the
 filter URLs separate values with commas.
 
 ## Evangelion page
@@ -683,14 +739,13 @@ unit-testable without a DOM or a live data fetch — see `test/vqar-stats.test.j
 
 Sections rendered from those functions: a numbers-at-a-glance stat grid, a rating
 distribution bar chart (ordered low to high), average rating per season over time,
-best/worst-rated shows, "Second Impressions" (how a `fullReview` re-review's rating compares
-to the original episode-1 rating — a swing metric unique to VQAR's data shape), and every
-liked OP and ED (uncapped, by title, since a marking has no rating to rank by). Only reviews with a numeric `ratingNumber` count toward averages/rankings —
-a `ratingText`-only entry is still valid, just excluded from those. Once a review has a
-`fullReview`, its rating supersedes the original episode-1 `ratingNumber` everywhere ratings
-get aggregated or ranked (averages, the distribution chart, Hall of Fame, Continuing Seasons
-Worth Watching) — `computeSecondImpressions` is the one exception, since it exists specifically
-to compare the two. `/vqar`'s own "Highest/Lowest Rating" sort follows the same rule. "Ratings
+best/worst-rated shows, "Second Impressions" (how the latest review's rating compares to the
+first impression's — a swing metric unique to VQAR's data shape, `ratingShift` in
+`public/vqar/reviews.js`), and every
+liked OP and ED (uncapped, by title, since a marking has no rating to rank by). A show's latest
+review sets its rating everywhere ratings get aggregated or ranked (averages, the distribution
+chart, Hall of Fame, Continuing Seasons Worth Watching) — `computeSecondImpressions` is the one
+exception, since it exists specifically to compare the first impression with what came after. `/vqar`'s own "Highest/Lowest Rating" sort follows the same rule. "Ratings
 Over Time" hides itself whenever the current view (e.g. the season filter) covers just one
 season, since a trend needs more than one point on it. There's no raw review browser/search on
 this page — that's what `/vqar` (per-season) and `/graphql` (query anything) are for.
@@ -712,9 +767,9 @@ rather than a verdict, and tracks how those turned out: how many got a revisit, 
 held at 4 or fell, the share that held up (rose or held), and how many are still waiting. Totals as
 tiles, plus a per-season table when more than one season is in view. Each "still waiting" count
 links to `/vqar`'s **To revisit** Extras chip (`?has=queue`) for that season, as does Revisit
-Candidates. All three count by `awaitingRevisit` in `public/vqar/rating.js` - an episode-1 4 with
-no `fullReview` - so they can't disagree. Nothing is marked by hand: a show leaves the queue when
-its revisit is saved.
+Candidates. All three count by `awaitingRevisit` in `public/vqar/rating.js` - a first impression
+rated 4 with nothing after it - so they can't disagree. Nothing is marked by hand: a show leaves
+the queue when its next review is saved.
 
 Categories with fewer than `MIN_CATEGORY_SHOWS` (3) shows are left out, so one show can't decide a
 ranking, and the table notes how many were. Shows are categorised by the same `reviewValues` as
@@ -728,12 +783,12 @@ season itself, or the picked season when a past one is selected (`spotlightSeaso
 `applySeasonFilter()`):
 
 - **Revisit Candidates** (`computeRevisitCandidates`) — that season's 4/5s ("Yeah") that
-  haven't gotten a `fullReview` yet (`awaitingRevisit`), i.e. shows liked enough on episode 1
+  haven't been reviewed again yet (`awaitingRevisit`), i.e. shows liked enough on episode 1
   to be worth actually going back and finishing/re-reviewing, with a link to the same list
   as `/vqar`'s **To revisit** filter.
 - **Continuing Seasons Worth Watching** (`computeContinuationWatch`) — that season's full
   lineup (to review, not reviewing, and reviewed titles alike) cross-checked by title against shows
-  rated 4+, or finished (`finishedSeason`) at any rating, in an *earlier* season (judged
+  rated 4+, or finished (`watched.finished`) at any rating, in an *earlier* season (judged
   by each season's earliest `dateReviewed`, since the flattened review list carries no
   season order — see `seasonEarliestTimestamp`),
   surfacing exceptions to VQAR's usual "skip continuing/returning seasons" guidance.
@@ -876,47 +931,48 @@ node scripts/build-fsar-index.js --check   # exit 1 if it's stale, write nothing
 
 `/games` is VQAR's idea applied to games — first impressions a few hours in — without any
 of VQAR's machinery. There are few of these, so there are no seasons, filters, stats or
-generated index: every review lives in one file, `public/games/data.json`, newest activity
-first on the page. `?game=<id>` narrows the page to one review, and each title links there,
+generated index: every game lives in one file, `public/games/data.json`, newest activity
+first on the page. `?game=<id>` narrows the page to one game, and each title links there,
 so that's the link to share.
 
-### Review shape
+### Game shape
+
+A game is shaped like a VQAR show: its reviews in a `reviews` list, oldest first.
 
 ```json
 {
-  "reviews": [
+  "games": [
     {
       "id": "final-fantasy-resonance",
       "title": "Final Fantasy Resonance",
       "platform": "Switch 2",
-      "review": "First paragraph.\n\nSecond paragraph.",
-      "ratingNumber": 4,
-      "ratingText": "Yeah, Here's Hoping",
-      "dateReviewed": "2026-10-24T20:15:00-04:00",
-      "hoursPlayed": 4,
-      "updates": [
-        { "review": "...", "ratingNumber": 5, "ratingText": "...", "dateReviewed": "...", "hoursPlayed": 20 }
+      "reviews": [
+        { "hoursPlayed": 4, "ratingNumber": 4, "text": "First paragraph.\n\nSecond paragraph.", "dateReviewed": "2026-10-24T20:15:00-04:00" },
+        { "hoursPlayed": 40, "final": true, "ratingNumber": 5, "ratingText": "Custom label", "text": "...", "dateReviewed": "..." }
       ],
-      "finished": true
+      "played": { "finished": true }
     }
   ]
 }
 ```
 
-- `id`, `title`, `review`, `ratingNumber`, `ratingText` and `dateReviewed` are required;
-  `platform`, `hoursPlayed`, `updates` and `finished` are optional.
-- `review` is plain text; a blank line starts a new paragraph. Nothing in it is parsed as
+- `id`, `title` and at least one review are required; `platform` and `played` are optional.
+- Each review needs `text`, `ratingNumber` and `dateReviewed`; `ratingText`, `hoursPlayed` and
+  `final` are optional.
+- `text` is plain text; a blank line starts a new paragraph. Nothing in it is parsed as
   markup.
 - `ratingNumber` is VQAR's 0–5 scale. The default labels (game-flavored versions of VQAR's)
-  are `RATING_NUMBER_LABELS` in `public/games/schema.js`; a custom `ratingText` is fine but
-  still needs the tier's number.
+  are `RATING_NUMBER_LABELS` in `public/games/schema.js`; leave `ratingText` out to use one, or
+  write your own, which still needs the tier's number.
 - `dateReviewed` is a full timestamp with the reviewer's Eastern offset, same as VQAR —
   stamp it with `TZ=America/New_York date +%Y-%m-%dT%H:%M:%S%:z`.
-- Playing more of a game doesn't start a new entry: append to its `updates`, oldest first.
-  Each update needs its own rating, and the latest one is the verdict that counts (it also
-  moves the game back to the top of the list).
-- `finished: true` is a bare marking for having played it through, like VQAR's
-  `finishedSeason` — only when the reviewer says so.
+- Playing more of a game doesn't start a new entry: append to its `reviews`, in date order.
+  Each needs its own rating, and the latest one is the verdict that counts (it also moves the
+  game back to the top of the list). The first is labeled "First impression", the ones after
+  it "Update", and a `final: true` one - always last, and only once the game is marked finished -
+  "Final".
+- `played: { "finished": true }` is a bare marking for having played it through, like VQAR's
+  `watched.finished` — only when the reviewer says so.
 
 `scripts/validateGameReviews.js` checks all of this, and `test/games-data.test.js` runs it
 over the committed file in CI.
@@ -968,8 +1024,9 @@ Worker. Both routes are handled by `src/worker.js`, which otherwise just forward
 other request to the static assets — the VQAR page itself is untouched and still fetches
 the same files directly, client-side.
 
-The API reads the same index + per-season files documented above, reshaping each review to
-add its `season`/`seasonName`, the way `public/vqar/app.js` does on the client.
+The API reads the same index + per-season files documented above, reshaping each show to add
+its `season`/`seasonName` and current `ratingNumber`/`ratingText`, and each of its `reviews` to
+add its `stage` and fill in its `ratingText`, the way `public/vqar/app.js` does on the client.
 
 Because that data is served from this Worker's own assets, the resolvers read it through
 the `ASSETS` binding (`makeRootValue({ assets, origin })`) rather than fetching it over the
@@ -1008,9 +1065,8 @@ The scoring lives in `src/recommend.js`, all pure:
 - The liked shows' genres and tags, filtered the same way as a review's generated `anilist`
   object, make a **taste profile**: each feature weighted by the share of liked shows that
   carry it.
-- **Candidates** are reviews rated 4+ (the revisit rating when there is one) that have AniList
-  data, minus the liked shows themselves and their AniList relations (sequels, prequels,
-  spin-offs). A show split into `part`s competes once, as its best part.
+- **Candidates** are shows rated 4+ (by their latest review) that have AniList data, minus the
+  liked shows themselves and their AniList relations (sequels, prequels, spin-offs).
 - **Picks** are scored by cosine similarity to the profile, times rating / 5, and chosen one at
   a time with a penalty for overlapping an earlier pick (`DIVERSITY_WEIGHT`), so two picks
   aren't the same kind of show.

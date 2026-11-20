@@ -10,6 +10,7 @@ import { entryTitle } from '../vqar/list-entries.js';
 import { isLineup } from '../vqar/seasons.js';
 import { reviewValues } from '../vqar/filters.js';
 import { isLikedOpEd, whichLabel } from '../vqar/oped.js';
+import { currentReview, firstImpression, laterReviews, ratingShift, reviewsOf } from '../vqar/reviews.js';
 
 /** @typedef {import('../vqar/app.js').SeasonData} SeasonData */
 
@@ -24,10 +25,14 @@ export function flattenReviews(seasons) {
     ...r,
     season: String(season.id),
     seasonName: season.name,
-    _timestamp: Date.parse(r.dateReviewed) || 0,
+    // The latest review's date, for "most recent" orderings, and the first's,
+    // for placing the season the show was reviewed in.
+    _timestamp: Date.parse(currentReview(r)?.dateReviewed ?? '') || 0,
+    _firstTimestamp: Date.parse(reviewsOf(r)[0]?.dateReviewed ?? '') || 0,
     // A shelf like the Backlog isn't a point in time, so the per-season
-    // trends below only count lineups (seasons reviewed live).
-    _lineup: isLineup(season),
+    // trends below only count lineups (seasons reviewed live) - and within
+    // one, shows that got a first impression as it aired.
+    _lineup: isLineup(season) && firstImpression(r) !== undefined,
   })));
 }
 
@@ -63,10 +68,10 @@ export function computeGlanceStats(seasons, reviews) {
     totalReviews: reviews.length,
     seasonsCovered: seasons.filter(s => isLineup(s) && (s.shows ?? []).length > 0).length,
     avgRating,
-    fullReReviews: reviews.filter(r => r.fullReview).length,
+    fullReReviews: reviews.filter(r => firstImpression(r) && laterReviews(r).length > 0).length,
     likedOps: reviews.filter(r => isLikedOpEd(r.op)).length,
     likedEds: reviews.filter(r => isLikedOpEd(r.ed)).length,
-    finishedSeasons: reviews.filter(r => r.finishedSeason === true).length,
+    finishedSeasons: reviews.filter(r => r.watched?.finished === true).length,
     anilistCoveragePct: reviews.length ? Math.round((withAnilist / reviews.length) * 100) : null,
     busiestSeasonName: busiest?.seasonName ?? null,
     busiestSeasonCount: busiest?.count ?? null,
@@ -124,7 +129,7 @@ export function computeRatingsOverTime(reviews) {
     const entry = bySeason.get(r.season) ?? { season: r.season, seasonName: r.seasonName, ratings: [], earliest: Infinity };
     const rating = effectiveRatingNumber(r);
     if (typeof rating === 'number') entry.ratings.push(rating);
-    if (r._timestamp && r._timestamp < entry.earliest) entry.earliest = r._timestamp;
+    if (r._firstTimestamp && r._firstTimestamp < entry.earliest) entry.earliest = r._firstTimestamp;
     bySeason.set(r.season, entry);
   }
   return [...bySeason.values()]
@@ -146,14 +151,15 @@ export function computeHallOfFame(reviews, n = 5) {
 }
 
 /**
- * How ratings shift between an episode-1 impression and the eventual
- * full-series re-review, for shows that got one.
+ * How ratings shift between an episode-1 impression and the latest review
+ * after it, for shows that got one (see ratingShift).
  * @param {ReturnType<typeof flattenReviews>} reviews
  */
 export function computeSecondImpressions(reviews) {
   const withDelta = reviews
-    .filter(r => typeof r.ratingNumber === 'number' && typeof r.fullReview?.ratingNumber === 'number')
-    .map(r => ({ ...r, delta: r.fullReview.ratingNumber - r.ratingNumber }));
+    .map(r => ({ r, shift: ratingShift(r) }))
+    .filter(({ shift }) => shift !== null)
+    .map(({ r, shift }) => ({ ...r, before: shift.before, after: shift.after, delta: shift.after - shift.before }));
 
   const deltas = withDelta.map(r => r.delta);
   const swings = [...withDelta].sort((a, b) => Math.abs(b.delta) - Math.abs(a.delta)).slice(0, 5);
@@ -169,7 +175,7 @@ export function computeSecondImpressions(reviews) {
 }
 
 /**
- * A season's 4/5s ("Yeah") that haven't been given a `fullReview` yet - the
+ * A season's 4/5s ("Yeah") that haven't been reviewed again yet - the
  * "I liked episode 1, I should go back and actually finish/revisit this"
  * pile (see awaitingRevisit). Excludes 5/5s (nothing to reconsider there)
  * and anything already re-reviewed (already revisited).
@@ -182,10 +188,10 @@ export function computeRevisitCandidates(reviews, seasonId) {
     .sort((a, b) => b._timestamp - a._timestamp || (a.titleEN ?? '').localeCompare(b.titleEN ?? ''));
 }
 
-/** Earliest parseable `dateReviewed` across a season's shows, or Infinity if none. */
+/** Earliest parseable `dateReviewed` across a season's reviews, or Infinity if none. */
 function seasonEarliestTimestamp(season) {
   let earliest = Infinity;
-  for (const r of season.shows ?? []) {
+  for (const r of (season.shows ?? []).flatMap(reviewsOf)) {
     const ts = Date.parse(r.dateReviewed);
     if (!Number.isNaN(ts) && ts < earliest) earliest = ts;
   }
@@ -219,7 +225,7 @@ function normalizeBaseTitle(title) {
 /**
  * Shows in the given season's lineup (to review, not reviewing, or already reviewed)
  * that look like a continuing/returning season of something rated highly -
- * or watched to the end (`finishedSeason`), whatever its rating - in an
+ * or watched to the end (`watched.finished`), whatever its rating - in an
  * *earlier* season: worth bumping up the queue even though VQAR's usual
  * guidance is to skip returning seasons. "Earlier" is judged by each
  * season's earliest `dateReviewed` (the flattened review list carries no
@@ -244,7 +250,7 @@ export function computeContinuationWatch(seasons, seasonId, { minRating = 4 } = 
     for (const r of season.shows ?? []) {
       const effective = effectiveRatingNumber(r);
       const rating = typeof effective === 'number' ? effective : null;
-      const finished = r.finishedSeason === true;
+      const finished = r.watched?.finished === true;
       if (!finished && (rating === null || rating < minRating)) continue;
       const base = normalizeBaseTitle(r.titleEN);
       if (!base) continue;
@@ -322,7 +328,7 @@ export const CATEGORY_DIMENSIONS = ['genre', 'studio', 'tag', 'format', 'on'];
  * @property {number} lowShare - fraction rated 0-1
  * @property {number|null} revisitShift - average revisit-minus-episode-1 change, over the revisits that have both; null with none
  * @property {number} revisits - how many shows that shift is over
- * @property {number} finished - shows marked finishedSeason
+ * @property {number} finished - shows marked watched.finished
  * @property {number} likedOpEd - shows with a liked OP or ED
  */
 
@@ -350,9 +356,7 @@ export function computeCategoryRatings(reviews, dimension, { minShows = MIN_CATE
 
   const all = [...byValue].map(([value, shows]) => {
     const ratings = shows.map(effectiveRatingNumber);
-    const shifts = shows
-      .filter(r => typeof r.ratingNumber === 'number' && typeof r.fullReview?.ratingNumber === 'number')
-      .map(r => r.fullReview.ratingNumber - r.ratingNumber);
+    const shifts = shows.map(ratingShift).filter(shift => shift !== null).map(({ before, after }) => after - before);
     return {
       value,
       shows: shows.length,
@@ -361,7 +365,7 @@ export function computeCategoryRatings(reviews, dimension, { minShows = MIN_CATE
       lowShare: ratings.filter(n => n <= 1).length / ratings.length,
       revisitShift: shifts.length ? shifts.reduce((a, b) => a + b, 0) / shifts.length : null,
       revisits: shifts.length,
-      finished: shows.filter(r => r.finishedSeason === true).length,
+      finished: shows.filter(r => r.watched?.finished === true).length,
       likedOpEd: shows.filter(r => isLikedOpEd(r.op) || isLikedOpEd(r.ed)).length,
     };
   });
@@ -401,7 +405,7 @@ function seasonsInAiringOrder(reviews) {
   for (const r of reviews) {
     if (!r._lineup) continue;
     const seen = seasonsById.get(r.season);
-    if (!seen || r._timestamp < seen.first) seasonsById.set(r.season, { id: r.season, name: r.seasonName, first: r._timestamp });
+    if (!seen || r._firstTimestamp < seen.first) seasonsById.set(r.season, { id: r.season, name: r.seasonName, first: r._firstTimestamp });
   }
   return [...seasonsById.values()].sort((a, b) => a.first - b.first).map(({ id, name }) => ({ id, name }));
 }
@@ -452,10 +456,10 @@ export function computeGenreBySeason(reviews, { minShows = MIN_CATEGORY_SHOWS } 
  * @returns {HopeCheckCounts & { bySeason: (HopeCheckCounts & { id: string, name: string })[] }}
  */
 export function computeHopeCheck(reviews) {
-  const hoping = reviews.filter(r => r.ratingNumber === HOPING_RATING);
+  const hoping = reviews.filter(r => firstImpression(r)?.ratingNumber === HOPING_RATING);
   /** @param {typeof hoping} shows @returns {HopeCheckCounts} */
   const count = (shows) => {
-    const after = shows.map(r => r.fullReview?.ratingNumber).filter(n => typeof n === 'number');
+    const after = shows.map(ratingShift).filter(shift => shift !== null).map(shift => shift.after);
     const rose = after.filter(n => n > HOPING_RATING).length;
     const held = after.filter(n => n === HOPING_RATING).length;
     return {
