@@ -5,6 +5,7 @@ import { typeDefs, makeRootValue } from '../src/schema.js';
 import { createPathFetchStub } from './helpers.js';
 import { REVIEW_KEYS, FULL_REVIEW_KEYS, WATCHED_KEYS } from '../scripts/validateSeason.js';
 import { LIST_ENTRY_KEYS } from '../public/vqar/list-entries.js';
+import { makeSeason, makeShow } from './fixtures.js';
 
 // Mirrors the index/season file shapes used by test/vqar.test.js.
 const seasonIndex = {
@@ -16,20 +17,20 @@ const seasonIndex = {
 };
 
 const seasons = {
-  '/vqar/data/seasons/summer-2026.json': {
+  '/vqar/data/seasons/summer-2026.json': makeSeason({
     id: 'summer-2026',
     name: 'Summer 2026',
-    reviewed: [{ titleEN: 'Summer Show', ratingNumber: 5, ratingText: 'Nice Ep Broh', review: 'great', dateReviewed: '2026-07-01' }],
-    pending: ['Pending Summer Show'],
-    skipped: [],
-  },
-  '/vqar/data/seasons/spring-2026.json': {
+    shows: [makeShow({ titleEN: 'Summer Show', ratingNumber: 5, ratingText: 'Nice Ep Broh', text: 'great', dateReviewed: '2026-07-01' })],
+    toReview: ['Pending Summer Show'],
+    notReviewing: [],
+  }),
+  '/vqar/data/seasons/spring-2026.json': makeSeason({
     id: 'spring-2026',
     name: 'Spring 2026',
-    reviewed: [],
-    pending: [],
-    skipped: ['Skipped Spring Show'],
-  },
+    shows: [],
+    toReview: [],
+    notReviewing: ['Skipped Spring Show'],
+  }),
 };
 
 function routes() {
@@ -86,13 +87,13 @@ test('season(id) returns null for an id not in the index', async () => {
 test('anilistId passes through when set on a review, and is null when absent', async () => {
   const assetsStub = createPathFetchStub({
     '/vqar/data/index.json': seasonIndex,
-    '/vqar/data/seasons/summer-2026.json': {
+    '/vqar/data/seasons/summer-2026.json': makeSeason({
       id: 'summer-2026',
       name: 'Summer 2026',
-      reviewed: [{ titleEN: 'Linked Show', ratingText: 'Meh', dateReviewed: '2026-07-01', anilistId: 154587 }],
-      pending: [],
-      skipped: [],
-    },
+      shows: [makeShow({ titleEN: 'Linked Show', ratingText: 'Meh', dateReviewed: '2026-07-01', anilistId: 154587 })],
+      toReview: [],
+      notReviewing: [],
+    }),
     '/vqar/data/seasons/spring-2026.json': seasons['/vqar/data/seasons/spring-2026.json'],
   });
 
@@ -108,19 +109,19 @@ test('anilistId passes through when set on a review, and is null when absent', a
 test('Wikipedia URLs pass through when set on a review', async () => {
   const assetsStub = createPathFetchStub({
     '/vqar/data/index.json': seasonIndex,
-    '/vqar/data/seasons/summer-2026.json': {
+    '/vqar/data/seasons/summer-2026.json': makeSeason({
       id: 'summer-2026',
       name: 'Summer 2026',
-      reviewed: [{
+      shows: [makeShow({
         titleEN: 'Documented Show',
         ratingText: 'Meh',
         dateReviewed: '2026-07-01',
         wikipediaUrl: 'https://en.wikipedia.org/wiki/Documented_Show',
         wikipediaJaUrl: 'https://ja.wikipedia.org/wiki/\u745E\u9E97',
-      }],
-      pending: [],
-      skipped: [],
-    },
+      })],
+      toReview: [],
+      notReviewing: [],
+    }),
     '/vqar/data/seasons/spring-2026.json': seasons['/vqar/data/seasons/spring-2026.json'],
   });
 
@@ -136,19 +137,19 @@ test('Wikipedia URLs pass through when set on a review', async () => {
 test('annId and streaming pass through when set on a review', async () => {
   const assetsStub = createPathFetchStub({
     '/vqar/data/index.json': seasonIndex,
-    '/vqar/data/seasons/summer-2026.json': {
+    '/vqar/data/seasons/summer-2026.json': makeSeason({
       id: 'summer-2026',
       name: 'Summer 2026',
-      reviewed: [{
+      shows: [makeShow({
         titleEN: 'Linked Show',
         ratingText: 'Meh',
         dateReviewed: '2026-07-01',
         annId: 22622,
         streaming: ['crunchyroll', 'netflix'],
-      }],
-      pending: [],
-      skipped: [],
-    },
+      })],
+      toReview: [],
+      notReviewing: [],
+    }),
     '/vqar/data/seasons/spring-2026.json': seasons['/vqar/data/seasons/spring-2026.json'],
   });
 
@@ -162,18 +163,18 @@ test('annId and streaming pass through when set on a review', async () => {
 test('crunchyrollUrl passes through when set on a review, and is null when absent', async () => {
   const assetsStub = createPathFetchStub({
     '/vqar/data/index.json': seasonIndex,
-    '/vqar/data/seasons/summer-2026.json': {
+    '/vqar/data/seasons/summer-2026.json': makeSeason({
       id: 'summer-2026',
       name: 'Summer 2026',
-      reviewed: [{
+      shows: [makeShow({
         titleEN: 'Streamed Show',
         ratingText: 'Meh',
         dateReviewed: '2026-07-01',
         crunchyrollUrl: 'https://www.crunchyroll.com/series/ABC123/streamed-show',
-      }],
-      pending: [],
-      skipped: [],
-    },
+      })],
+      toReview: [],
+      notReviewing: [],
+    }),
     '/vqar/data/seasons/spring-2026.json': seasons['/vqar/data/seasons/spring-2026.json'],
   });
 
@@ -191,19 +192,19 @@ test('crunchyrollUrl passes through when set on a review, and is null when absen
 test('hidiveUrl and netflixUrl pass through when set on a review', async () => {
   const assetsStub = createPathFetchStub({
     '/vqar/data/index.json': seasonIndex,
-    '/vqar/data/seasons/summer-2026.json': {
+    '/vqar/data/seasons/summer-2026.json': makeSeason({
       id: 'summer-2026',
       name: 'Summer 2026',
-      reviewed: [{
+      shows: [makeShow({
         titleEN: 'Streamed Show',
         ratingText: 'Meh',
         dateReviewed: '2026-07-01',
         hidiveUrl: 'https://www.hidive.com/season/streamed-show',
         netflixUrl: 'https://www.netflix.com/title/12345',
-      }],
-      pending: [],
-      skipped: [],
-    },
+      })],
+      toReview: [],
+      notReviewing: [],
+    }),
     '/vqar/data/seasons/spring-2026.json': seasons['/vqar/data/seasons/spring-2026.json'],
   });
 
@@ -217,13 +218,13 @@ test('hidiveUrl and netflixUrl pass through when set on a review', async () => {
 test('watchProgress passes through when set on a review, and is null when absent', async () => {
   const assetsStub = createPathFetchStub({
     '/vqar/data/index.json': seasonIndex,
-    '/vqar/data/seasons/summer-2026.json': {
+    '/vqar/data/seasons/summer-2026.json': makeSeason({
       id: 'summer-2026',
       name: 'Summer 2026',
-      reviewed: [{ titleEN: 'Revisited Show', ratingText: 'Yeah', dateReviewed: '2026-07-01', watchProgress: 'Ep 3' }],
-      pending: [],
-      skipped: [],
-    },
+      shows: [makeShow({ titleEN: 'Revisited Show', ratingText: 'Yeah', dateReviewed: '2026-07-01', watchProgress: 'Ep 3' })],
+      toReview: [],
+      notReviewing: [],
+    }),
     '/vqar/data/seasons/spring-2026.json': seasons['/vqar/data/seasons/spring-2026.json'],
   });
 
@@ -297,13 +298,13 @@ test('a request that failed leaves nothing behind for the next one', async () =>
 test('pendingShows and skippedShows expose the optional notes; plain strings get empty defaults', async () => {
   const assetsStub = createPathFetchStub({
     '/vqar/data/index.json': seasonIndex,
-    '/vqar/data/seasons/summer-2026.json': {
+    '/vqar/data/seasons/summer-2026.json': makeSeason({
       id: 'summer-2026',
       name: 'Summer 2026',
-      reviewed: [],
-      pending: ['Plain Pending', { title: 'Dated Pending', streaming: ['hulu'], firstEpisode: '2026-10-08' }],
-      skipped: ['Plain Skipped', { title: 'Paywalled', reason: 'Another $13/mo', streaming: ['oceanveil'] }, { title: 'No US Stream', reason: 'Not streaming in the US' }],
-    },
+      shows: [],
+      toReview: ['Plain Pending', { title: 'Dated Pending', streaming: ['hulu'], premieres: '2026-10-08' }],
+      notReviewing: ['Plain Skipped', { title: 'Paywalled', reason: 'Another $13/mo', streaming: ['oceanveil'] }, { title: 'No US Stream', reason: 'Not streaming in the US' }],
+    }),
     '/vqar/data/seasons/spring-2026.json': seasons['/vqar/data/seasons/spring-2026.json'],
   });
 
@@ -330,13 +331,13 @@ test('pendingShows and skippedShows expose the optional notes; plain strings get
 test('pendingShows and skippedShows pass the per-service links through, null when absent', async () => {
   const assetsStub = createPathFetchStub({
     '/vqar/data/index.json': seasonIndex,
-    '/vqar/data/seasons/summer-2026.json': {
+    '/vqar/data/seasons/summer-2026.json': makeSeason({
       id: 'summer-2026',
       name: 'Summer 2026',
-      reviewed: [],
-      pending: [{ title: 'Linked', streaming: ['crunchyroll'], crunchyrollUrl: 'https://www.crunchyroll.com/series/X/linked' }, 'Plain'],
-      skipped: [{ title: 'Skip Linked', netflixUrl: 'https://www.netflix.com/title/1' }],
-    },
+      shows: [],
+      toReview: [{ title: 'Linked', streaming: ['crunchyroll'], crunchyrollUrl: 'https://www.crunchyroll.com/series/X/linked' }, 'Plain'],
+      notReviewing: [{ title: 'Skip Linked', netflixUrl: 'https://www.netflix.com/title/1' }],
+    }),
     '/vqar/data/seasons/spring-2026.json': seasons['/vqar/data/seasons/spring-2026.json'],
   });
 
@@ -357,10 +358,10 @@ test('pendingShows and skippedShows pass the per-service links through, null whe
 test('a liked OP/ED comes through the API as a boolean', async () => {
   const assetsStub = createPathFetchStub({
     '/vqar/data/index.json': seasonIndex,
-    '/vqar/data/seasons/summer-2026.json': {
+    '/vqar/data/seasons/summer-2026.json': makeSeason({
       ...seasons['/vqar/data/seasons/summer-2026.json'],
-      reviewed: [{ titleEN: 'Bop Show', ratingText: 'Meh', dateReviewed: '2026-07-01T12:00:00Z', op: [1] }],
-    },
+      shows: [makeShow({ titleEN: 'Bop Show', ratingText: 'Meh', dateReviewed: '2026-07-01T12:00:00Z', op: [1] })],
+    }),
   });
   const result = await run('{ currentSeason { reviewed { titleEN op ed } } }', assetsStub);
   assert.deepEqual(result.data.currentSeason.reviewed, [{ titleEN: 'Bop Show', op: true, ed: null }]);
@@ -369,14 +370,14 @@ test('a liked OP/ED comes through the API as a boolean', async () => {
 test('numbered OP/ED likings come through as booleans plus the numbers', async () => {
   const assetsStub = createPathFetchStub({
     '/vqar/data/index.json': seasonIndex,
-    '/vqar/data/seasons/summer-2026.json': {
+    '/vqar/data/seasons/summer-2026.json': makeSeason({
       ...seasons['/vqar/data/seasons/summer-2026.json'],
-      reviewed: [
-        { titleEN: 'Numbered', ratingText: 'Meh', dateReviewed: '2026-07-01T12:00:00Z', op: [2, 1], ed: [3] },
-        { titleEN: 'First', ratingText: 'Meh', dateReviewed: '2026-07-02T12:00:00Z', op: [1] },
-        { titleEN: 'Neither', ratingText: 'Meh', dateReviewed: '2026-07-03T12:00:00Z' },
+      shows: [
+        makeShow({ titleEN: 'Numbered', ratingText: 'Meh', dateReviewed: '2026-07-01T12:00:00Z', op: [2, 1], ed: [3] }),
+        makeShow({ titleEN: 'First', ratingText: 'Meh', dateReviewed: '2026-07-02T12:00:00Z', op: [1] }),
+        makeShow({ titleEN: 'Neither', ratingText: 'Meh', dateReviewed: '2026-07-03T12:00:00Z' }),
       ],
-    },
+    }),
   });
   const result = await run('{ currentSeason { reviewed { titleEN op opNumbers ed edNumbers } } }', assetsStub);
   assert.deepEqual(result.data.currentSeason.reviewed, [
@@ -389,15 +390,15 @@ test('numbered OP/ED likings come through as booleans plus the numbers', async (
 test('a watched record comes through the API, with the last episode as text', async () => {
   const assetsStub = createPathFetchStub({
     '/vqar/data/index.json': seasonIndex,
-    '/vqar/data/seasons/summer-2026.json': {
+    '/vqar/data/seasons/summer-2026.json': makeSeason({
       ...seasons['/vqar/data/seasons/summer-2026.json'],
-      reviewed: [
-        { titleEN: 'Done', ratingText: 'Meh', dateReviewed: '2026-07-01T12:00:00Z', watched: { first: '2026-04-01', last: '2026-06-10' } },
-        { titleEN: 'Partway', ratingText: 'Meh', dateReviewed: '2026-07-02T12:00:00Z', watched: { first: '2026-04-02', last: '2026-05-01', lastEpisode: 6 } },
-        { titleEN: 'Seasons', ratingText: 'Meh', dateReviewed: '2026-07-03T12:00:00Z', watched: { first: '2026-04-03', lastEpisode: 'S2 E6' } },
-        { titleEN: 'Unrecorded', ratingText: 'Meh', dateReviewed: '2026-07-04T12:00:00Z' },
+      shows: [
+        makeShow({ titleEN: 'Done', ratingText: 'Meh', dateReviewed: '2026-07-01T12:00:00Z', watched: { from: '2026-04-01', to: '2026-06-10' } }),
+        makeShow({ titleEN: 'Partway', ratingText: 'Meh', dateReviewed: '2026-07-02T12:00:00Z', watched: { from: '2026-04-02', to: '2026-05-01', episode: 6 } }),
+        makeShow({ titleEN: 'Seasons', ratingText: 'Meh', dateReviewed: '2026-07-03T12:00:00Z', watched: { from: '2026-04-03', season: 2, episode: 6 } }),
+        makeShow({ titleEN: 'Unrecorded', ratingText: 'Meh', dateReviewed: '2026-07-04T12:00:00Z' }),
       ],
-    },
+    }),
   });
   const result = await run('{ currentSeason { reviewed { titleEN watched { first last lastEpisode } } } }', assetsStub);
   assert.deepEqual(result.data.currentSeason.reviewed, [
@@ -411,10 +412,10 @@ test('a watched record comes through the API, with the last episode as text', as
 test('finishedSeason comes through the API as a boolean', async () => {
   const assetsStub = createPathFetchStub({
     '/vqar/data/index.json': seasonIndex,
-    '/vqar/data/seasons/summer-2026.json': {
+    '/vqar/data/seasons/summer-2026.json': makeSeason({
       ...seasons['/vqar/data/seasons/summer-2026.json'],
-      reviewed: [{ titleEN: 'Done Show', ratingText: 'Meh', dateReviewed: '2026-07-01T12:00:00Z', finishedSeason: true }],
-    },
+      shows: [makeShow({ titleEN: 'Done Show', ratingText: 'Meh', dateReviewed: '2026-07-01T12:00:00Z', finishedSeason: true })],
+    }),
   });
   const result = await run('{ currentSeason { reviewed { titleEN finishedSeason } } }', assetsStub);
   assert.deepEqual(result.data.currentSeason.reviewed, [{ titleEN: 'Done Show', finishedSeason: true }]);
@@ -423,10 +424,10 @@ test('finishedSeason comes through the API as a boolean', async () => {
 test('finishedDate comes through the API as a string', async () => {
   const assetsStub = createPathFetchStub({
     '/vqar/data/index.json': seasonIndex,
-    '/vqar/data/seasons/summer-2026.json': {
+    '/vqar/data/seasons/summer-2026.json': makeSeason({
       ...seasons['/vqar/data/seasons/summer-2026.json'],
-      reviewed: [{ titleEN: 'Done Show', ratingText: 'Meh', dateReviewed: '2026-07-01T12:00:00Z', finishedSeason: true, finishedDate: '2026-10-26' }],
-    },
+      shows: [makeShow({ titleEN: 'Done Show', ratingText: 'Meh', dateReviewed: '2026-07-01T12:00:00Z', finishedSeason: true, finishedDate: '2026-10-26' })],
+    }),
   });
   const result = await run('{ currentSeason { reviewed { titleEN finishedDate } } }', assetsStub);
   assert.deepEqual(result.data.currentSeason.reviewed, [{ titleEN: 'Done Show', finishedDate: '2026-10-26' }]);
@@ -435,13 +436,13 @@ test('finishedDate comes through the API as a string', async () => {
 test('a review carries its generated AniList format, genres, tags and studios', async () => {
   const assetsStub = createPathFetchStub({
     '/vqar/data/index.json': seasonIndex,
-    '/vqar/data/seasons/summer-2026.json': {
+    '/vqar/data/seasons/summer-2026.json': makeSeason({
       ...seasons['/vqar/data/seasons/summer-2026.json'],
-      reviewed: [
-        { titleEN: 'Tagged', ratingText: 'Meh', dateReviewed: '2026-07-01T12:00:00Z', anilistId: 1, anilist: { format: 'TV', genres: ['Action'], tags: ['Isekai'], studios: ['GoHands'] } },
-        { titleEN: 'Untagged', ratingText: 'Meh', dateReviewed: '2026-07-02T12:00:00Z' },
+      shows: [
+        makeShow({ titleEN: 'Tagged', ratingText: 'Meh', dateReviewed: '2026-07-01T12:00:00Z', anilistId: 1, anilist: { format: 'TV', genres: ['Action'], tags: ['Isekai'], studios: ['GoHands'] } }),
+        makeShow({ titleEN: 'Untagged', ratingText: 'Meh', dateReviewed: '2026-07-02T12:00:00Z' }),
       ],
-    },
+    }),
   });
   const result = await run('{ currentSeason { reviewed { titleEN anilist { format genres tags studios } } } }', assetsStub);
   assert.deepEqual(result.data.currentSeason.reviewed, [
@@ -481,18 +482,18 @@ test('Season.archive is true for a shelf of older shows and false otherwise; air
       ],
     },
     '/vqar/data/seasons/summer-2026.json': seasons['/vqar/data/seasons/summer-2026.json'],
-    '/vqar/data/seasons/older-shows.json': {
+    '/vqar/data/seasons/older-shows.json': makeSeason({
       id: 'older-shows',
       name: 'Older Shows',
       sortKey: 0,
       archive: true,
-      reviewed: [
-        { titleEN: 'Paranoia Agent', ratingNumber: 5, ratingText: 'Peak', dateReviewed: '2026-05-19T08:00:00-04:00', airedLabel: 'Winter 2004' },
-        { titleEN: 'Untagged Old Show', ratingNumber: 3, ratingText: 'Meh', dateReviewed: '2026-05-20T08:00:00-04:00' },
+      shows: [
+        makeShow({ titleEN: 'Paranoia Agent', ratingNumber: 5, ratingText: 'Peak', dateReviewed: '2026-05-19T08:00:00-04:00', airedLabel: 'Winter 2004' }),
+        makeShow({ titleEN: 'Untagged Old Show', ratingNumber: 3, ratingText: 'Meh', dateReviewed: '2026-05-20T08:00:00-04:00' }),
       ],
-      pending: [],
-      skipped: [],
-    },
+      toReview: [],
+      notReviewing: [],
+    }),
   });
 
   const result = await run('{ currentSeason { archive } older: season(id: "older-shows") { archive reviewed { titleEN airedLabel season } } }', assetsStub);

@@ -1,19 +1,20 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import worker from '../src/worker.js';
+import { makeSeason } from './fixtures.js';
 
 const DATA = {
   '/vqar/data/index.json': {
     currentSeason: 'summer-2026',
     seasons: [{ id: 'summer-2026', name: 'Summer 2026', file: '/vqar/data/seasons/summer-2026.json' }],
   },
-  '/vqar/data/seasons/summer-2026.json': {
+  '/vqar/data/seasons/summer-2026.json': makeSeason({
     id: 'summer-2026',
     name: 'Summer 2026',
-    reviewed: [],
-    pending: [],
-    skipped: [],
-  },
+    shows: [],
+    toReview: [],
+    notReviewing: [],
+  }),
 };
 
 /**

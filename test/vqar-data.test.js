@@ -7,6 +7,7 @@ import { validateSeason, validateSeasonCollection, parseSeasonId, seasonSortKey 
 import { readSeasons, buildIndex, serializeIndex, seasonPath, INDEX_PATH } from '../scripts/build-vqar-index.js';
 import { resolveTargets } from '../scripts/loadTargets.js';
 import { readJsonFiles } from '../scripts/indexFile.js';
+import { makeSeason, makeShow } from './fixtures.js';
 
 // --- The committed data ---
 
@@ -105,14 +106,14 @@ test('parseSeasonId rejects ids it cannot order', () => {
 
 /** A minimal season that passes, for the negative cases to break one field at a time. */
 function validSeason(overrides = {}) {
-  return {
+  return makeSeason({
     id: 'spring-2026',
     name: 'Spring 2026',
-    reviewed: [{ titleEN: 'Cool Show', ratingNumber: 3, ratingText: 'Finish Ep', dateReviewed: '2026-04-01T08:00:00-04:00' }],
-    pending: [],
-    skipped: [],
+    shows: [makeShow({ titleEN: 'Cool Show', ratingNumber: 3, ratingText: 'Finish Ep', dateReviewed: '2026-04-01T08:00:00-04:00' })],
+    toReview: [],
+    notReviewing: [],
     ...overrides,
-  };
+  });
 }
 
 test('flags a season whose id does not match its filename', () => {
@@ -176,7 +177,7 @@ test('a draft is not failed for missing the current-season flag', () => {
   // The flag belongs to exactly one season across the whole set; a lone draft
   // has no way to satisfy that, which is why the collection check is scoped to
   // the committed set in validate-vqar.js.
-  const draft = { id: 'fall-2026', name: 'Fall 2026', reviewed: [], pending: [], skipped: [] };
+  const draft = makeSeason({ id: 'fall-2026', name: 'Fall 2026', shows: [], toReview: [], notReviewing: [] });
 
   assert.deepEqual(validateSeason(draft), []);
   assert.match(validateSeasonCollection([draft]).join('\n'), /no season is marked/);

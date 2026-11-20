@@ -8,6 +8,7 @@ import {
   searchQueries, searchText, seasonFilter, searchResultsFromResponses, applySearchResults, SEARCH_BATCH_SIZE,
 } from '../scripts/anilistTags.js';
 import { titlesLikelyMatch } from '../scripts/anilistMatch.js';
+import { makeSeason, makeShow } from './fixtures.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const SEASONS_DIR = path.join(__dirname, '../public/vqar/data/seasons');
@@ -63,13 +64,13 @@ test('mediaFromResponses takes a whole saved response or just its data, and reje
 });
 
 test('applyAnilistFields sets only `anilist`, and reports the shows it could not fill in', () => {
-  const season = {
-    reviewed: [
-      { titleEN: 'Tagged', anilistId: 101, review: 'kept as is' },
-      { titleEN: 'No Id', review: 'x' },
-      { titleEN: 'Gone From AniList', anilistId: 999, anilist: { genres: ['Drama'], tags: [], studios: [] } },
+  const season = makeSeason({
+    shows: [
+      makeShow({ titleEN: 'Tagged', anilistId: 101, text: 'kept as is' }),
+      makeShow({ titleEN: 'No Id', text: 'x' }),
+      makeShow({ titleEN: 'Gone From AniList', anilistId: 999, anilist: { genres: ['Drama'], tags: [], studios: [] } }),
     ],
-  };
+  });
   const result = applyAnilistFields(season, new Map([[101, media]]));
 
   assert.deepEqual(result.updated, ['Tagged']);
@@ -139,16 +140,16 @@ test('search results come from Page or older Media responses, and a "Not Found."
 });
 
 test('linking sets the id, the native title and the tags, holds back unlike titles, and keeps an existing titleJP', () => {
-  const season = {
+  const season = makeSeason({
     id: 'fall-2026',
-    reviewed: [
+    shows: [
       { titleEN: 'Overgeared' },
       { titleEN: 'Kanata Kara' },
       { titleEN: 'Already Linked', anilistId: 9 },
       { titleEN: 'Has A Title', titleJP: '既存' },
       { titleEN: 'Nowhere To Be Found' },
     ],
-  };
+  });
   const media = (id, english, native) => ({ ...withTags, id, title: { romaji: 'r', english, native } });
   const withTags = { format: 'TV', genres: ['Action'], tags: [], studios: { nodes: [] } };
   const results = new Map([
