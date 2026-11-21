@@ -1,0 +1,61 @@
+{
+  "id": "winter-2016",
+  "name": "Winter 2016",
+  "shows": [
+    {
+      "titleEN": "Konosuba - God's Blessing on This Wonderful World!",
+      "titleJP": "この素晴らしい世界に祝福を！",
+      "aired": {
+        "season": "winter",
+        "year": 2016
+      },
+      "reviews": [
+        {
+          "ratingNumber": 3,
+          "text": "Depravity at its peak, somehow also not terrible and terrible.",
+          "dateReviewed": "2026-11-17T22:18:56-05:00"
+        }
+      ],
+      "watched": {
+        "from": "2022-03-04",
+        "to": "2024-11-27"
+      },
+      "anilistId": 21202,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GYE5K3GQR/konosuba-gods-blessing-on-this-wonderful-world",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Adventure",
+          "Comedy",
+          "Ecchi",
+          "Fantasy"
+        ],
+        "tags": [
+          "Isekai",
+          "Satire",
+          "Parody",
+          "Ensemble Cast",
+          "Primarily Female Cast",
+          "Male Protagonist",
+          "Slapstick",
+          "Magic",
+          "Survival",
+          "Anti-Hero",
+          "Medieval",
+          "Gods",
+          "Chuunibyou",
+          "Meta",
+          "Dullahan"
+        ],
+        "studios": [
+          "Studio DEEN"
+        ]
+      }
+    }
+  ],
+  "toReview": [],
+  "notReviewing": []
+}

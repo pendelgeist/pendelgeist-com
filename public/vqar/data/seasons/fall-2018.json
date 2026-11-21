@@ -1,0 +1,69 @@
+{
+  "id": "fall-2018",
+  "name": "Fall 2018",
+  "shows": [
+    {
+      "titleEN": "That Time I Got Reincarnated as a Slime",
+      "titleJP": "転生したらスライムだった件",
+      "aired": {
+        "season": "fall",
+        "year": 2018
+      },
+      "reviews": [
+        {
+          "episodes": 17,
+          "ratingNumber": 2,
+          "text": "Dumb fun.",
+          "dateReviewed": "2026-11-17T22:18:05-05:00"
+        }
+      ],
+      "watched": {
+        "from": "2022-02-22",
+        "to": "2023-02-09",
+        "episode": 17
+      },
+      "anilistId": 101280,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GYZJ43JMR/that-time-i-got-reincarnated-as-a-slime",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Action",
+          "Adventure",
+          "Comedy",
+          "Fantasy"
+        ],
+        "tags": [
+          "Isekai",
+          "Magic",
+          "Found Family",
+          "Super Power",
+          "Shapeshifting",
+          "Economics",
+          "Medieval",
+          "Ensemble Cast",
+          "Clone",
+          "Politics",
+          "Monster Boy",
+          "Henshin",
+          "Travel",
+          "Fairy",
+          "Male Protagonist",
+          "Monster Girl",
+          "Demons",
+          "Goblin",
+          "Femboy",
+          "Shounen",
+          "Creature Taming"
+        ],
+        "studios": [
+          "8-bit"
+        ]
+      }
+    }
+  ],
+  "toReview": [],
+  "notReviewing": []
+}

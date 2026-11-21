@@ -3,49 +3,51 @@
   "name": "Spring 2014",
   "shows": [
     {
-      "titleEN": "MEKAKUCITY ACTORS",
-      "titleJP": "メカクシティアクターズ",
+      "titleEN": "Haikyu!!",
+      "titleJP": "ハイキュー!!",
       "aired": {
         "season": "spring",
         "year": 2014
       },
       "reviews": [
         {
-          "episodes": 4,
-          "ratingNumber": 2,
-          "text": "Don't remember.",
-          "dateReviewed": "2026-11-17T16:15:34-05:00"
+          "episodes": 7,
+          "ratingNumber": 4,
+          "text": "Pretty great volleyball anime.",
+          "dateReviewed": "2026-11-19T12:21:03-05:00"
         }
       ],
       "watched": {
-        "from": "2014-04-20",
-        "to": "2014-05-04",
-        "episode": 4
+        "from": "2022-04-05",
+        "to": "2022-04-28",
+        "episode": 7
       },
-      "anilistId": 20541,
+      "anilistId": 20464,
       "streaming": [
         "crunchyroll"
       ],
-      "crunchyrollUrl": "https://www.crunchyroll.com/series/GYP8PZ5QY/mekakucity-actors",
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GY8VM8MWY/haikyu",
       "anilist": {
         "format": "TV",
         "genres": [
           "Comedy",
-          "Romance",
-          "Sci-Fi",
-          "Supernatural"
+          "Drama",
+          "Sports"
         ],
         "tags": [
-          "Super Power",
+          "Volleyball",
+          "School Club",
+          "Male Protagonist",
+          "Primarily Male Cast",
+          "Shounen",
           "Ensemble Cast",
-          "Found Family",
-          "Urban Fantasy",
-          "Achronological Order",
           "Primarily Teen Cast",
-          "Vocal Synth"
+          "School",
+          "Coming of Age",
+          "Anti-Hero"
         ],
         "studios": [
-          "Shaft"
+          "Production I.G"
         ]
       }
     },
@@ -95,6 +97,53 @@
         ],
         "studios": [
           "bones"
+        ]
+      }
+    },
+    {
+      "titleEN": "MEKAKUCITY ACTORS",
+      "titleJP": "メカクシティアクターズ",
+      "aired": {
+        "season": "spring",
+        "year": 2014
+      },
+      "reviews": [
+        {
+          "episodes": 4,
+          "ratingNumber": 2,
+          "text": "Don't remember.",
+          "dateReviewed": "2026-11-17T16:15:34-05:00"
+        }
+      ],
+      "watched": {
+        "from": "2014-04-20",
+        "to": "2014-05-04",
+        "episode": 4
+      },
+      "anilistId": 20541,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GYP8PZ5QY/mekakucity-actors",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Comedy",
+          "Romance",
+          "Sci-Fi",
+          "Supernatural"
+        ],
+        "tags": [
+          "Super Power",
+          "Ensemble Cast",
+          "Found Family",
+          "Urban Fantasy",
+          "Achronological Order",
+          "Primarily Teen Cast",
+          "Vocal Synth"
+        ],
+        "studios": [
+          "Shaft"
         ]
       }
     }

@@ -1,0 +1,58 @@
+{
+  "id": "fall-2010",
+  "name": "Fall 2010",
+  "shows": [
+    {
+      "titleEN": "Oreimo",
+      "titleJP": "俺の妹がこんなに可愛いわけがない",
+      "aired": {
+        "season": "fall",
+        "year": 2010
+      },
+      "reviews": [
+        {
+          "ratingNumber": 3,
+          "text": "Meh?",
+          "dateReviewed": "2026-11-17T14:24:54-05:00"
+        }
+      ],
+      "watched": {
+        "from": "2014-03-04",
+        "to": "2014-09-10"
+      },
+      "anilistId": 8769,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GYQ4WX036/oreimo",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Comedy",
+          "Slice of Life"
+        ],
+        "tags": [
+          "Otaku Culture",
+          "Heterosexual",
+          "Tsundere",
+          "Urban",
+          "Primarily Female Cast",
+          "Primarily Teen Cast",
+          "Writing",
+          "Male Protagonist",
+          "Kuudere",
+          "Cosplay",
+          "Female Harem",
+          "Coming of Age",
+          "Chuunibyou",
+          "Family Life"
+        ],
+        "studios": [
+          "AIC Build"
+        ]
+      }
+    }
+  ],
+  "toReview": [],
+  "notReviewing": []
+}

@@ -1,0 +1,125 @@
+{
+  "id": "winter-2019",
+  "name": "Winter 2019",
+  "shows": [
+    {
+      "titleEN": "Kaguya-sama: Love is War",
+      "titleJP": "かぐや様は告らせたい～天才たちの恋愛頭脳戦～",
+      "aired": {
+        "season": "winter",
+        "year": 2019
+      },
+      "reviews": [
+        {
+          "ratingNumber": 3,
+          "text": "It's a very nicely animated show that's got plenty of fun stuff in it. It drags a bit long, and somehow there's 200+ chapters of the manga.",
+          "dateReviewed": "2026-11-17T22:22:06-05:00"
+        }
+      ],
+      "watched": {
+        "from": "2022-03-29",
+        "to": "2022-08-20"
+      },
+      "anilistId": 101921,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GRJ0J828Y/kaguya-sama-love-is-war",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Comedy",
+          "Psychological",
+          "Romance",
+          "Slice of Life"
+        ],
+        "tags": [
+          "School",
+          "Heterosexual",
+          "Tsundere",
+          "Primarily Teen Cast",
+          "School Club",
+          "Surreal Comedy",
+          "Kuudere",
+          "Ojou-sama",
+          "Episodic",
+          "Slapstick",
+          "Parody",
+          "Female Protagonist",
+          "Seinen",
+          "Male Protagonist",
+          "Meta",
+          "Ensemble Cast"
+        ],
+        "studios": [
+          "A-1 Pictures"
+        ]
+      }
+    },
+    {
+      "titleEN": "The Rising of the Shield Hero",
+      "titleJP": "盾の勇者の成り上がり",
+      "aired": {
+        "season": "winter",
+        "year": 2019
+      },
+      "reviews": [
+        {
+          "ratingNumber": 3,
+          "text": "Another hero isekai. S1 is pretty good, S2 was complete trash, S3 seemed better but I was out on it at this point. It's got all the waifus and has some good twists.",
+          "dateReviewed": "2026-11-17T22:25:27-05:00"
+        }
+      ],
+      "watched": {
+        "from": "2022-04-06",
+        "to": "2024-06-04",
+        "season": 3,
+        "episode": 4
+      },
+      "anilistId": 99263,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/G6W4QKX0R/the-rising-of-the-shield-hero",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Action",
+          "Adventure",
+          "Fantasy"
+        ],
+        "tags": [
+          "Isekai",
+          "Male Protagonist",
+          "Travel",
+          "Medieval",
+          "Revenge",
+          "Magic",
+          "Exiled",
+          "Politics",
+          "Anti-Hero",
+          "Kemonomimi",
+          "Bullying",
+          "Henshin",
+          "Swordplay",
+          "Spearplay",
+          "Matriarchy",
+          "Female Harem",
+          "Ojou-sama",
+          "Slavery",
+          "Villainess",
+          "Language Barrier",
+          "Tsundere",
+          "Prison",
+          "Fugitive",
+          "Found Family"
+        ],
+        "studios": [
+          "Kinema Citrus"
+        ]
+      }
+    }
+  ],
+  "toReview": [],
+  "notReviewing": []
+}

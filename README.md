@@ -185,7 +185,7 @@ The same words mean the same thing in the data, the code, the pages and the API:
 - **Current rating** — the latest review's. It's the show's rating everywhere.
 - **Backfill** — a review written after watching a stretch of a show rather than on episode 1;
   its stage is "review".
-- **Lineup** — a season file for an anime season you watched as it aired (`spring-2026`). **Shelf** — any
+- **Lineup** — a season file for an anime season (`spring-2026`), holding the shows that aired in it. **Shelf** — any
   other season file; the one there is is the **Backlog**.
 - **To review** / **not reviewing** — a lineup's titles still waiting for a first impression, and
   the ones it won't get (`toReview`, `notReviewing`).
@@ -223,7 +223,7 @@ a season file. `test/vqar-data.test.js` fails if the committed one is stale, so 
 forgotten rebuild.
 
 Each season file has `id`, `name`, `shows` (the reviews), `toReview` ("To Be Reviewed") and
-`notReviewing` ("Not Reviewing"). Most are **lineups**, one per anime season you watched as it aired;
+`notReviewing` ("Not Reviewing"). Most are **lineups**, one per anime season, holding the shows that aired in it;
 the Backlog is a **shelf** for everything else — see "Lineups and the Backlog" below.
 Adding a season means dropping a new file in `seasons/` and rebuilding the index; editing an
 old season never touches the others.
@@ -495,19 +495,17 @@ explicit numeric `sortKey` instead, higher meaning more recent — lineups sort 
 A season file is one of two things, and its id says which (`isLineup` in
 `public/vqar/seasons.js`), so no flag has to be kept in step with it:
 
-- A **lineup** is an anime season you watched as it aired. Its id is `<season>-<year>`
-  (`spring-2026`), which also orders it. Only a lineup can be `current`, and only lineups count
-  in the per-season stats. Most lineups were reviewed live, one first impression per show; the
-  older ones (Winter 2013 through Fall 2025) hold backfills instead: shows you started watching
-  while they aired, but reviewed years later. A show goes in the lineup it aired in when you
-  started watching it that same season.
+- A **lineup** is an anime season. Its id is `<season>-<year>` (`spring-2026`), which also
+  orders it. Only a lineup can be `current`, and only lineups count in the per-season stats. The
+  2026 lineups were reviewed live, one first impression per show; the older ones (Spring 1978
+  through Fall 2025) hold backfills: shows reviewed after watching a stretch of them, filed under
+  the season they aired in, whenever you watched them. A backfill goes in its aired season's
+  lineup (create the file if it isn't there yet). A live first impression goes in the season
+  you're reviewing, even for an older show you picked up then (Paranoia Agent is in Spring 2026);
+  its `aired` shows on the card as "Aired: Winter 2004" and is found by search.
 - A **shelf** is any other id. There's one, `seasons/backlog.json` (`"sortKey": 0`, so it sorts
-  after every lineup and comes last in the Season dropdown as "Backlog"): a show you started
-  watching after its season was over (an old classic, or a catch-up a season late) goes there.
-  Add it to `shows` like any other (newest first, by convention); its `aired` (from AniList)
-  shows on the card as "Aired: Winter 2004" and is found by search. Almost all Backlog shows are
-  backfills, reviewed after watching a stretch of the show rather than on episode 1, so their one
-  review is a "review" rather than a first impression.
+  after every lineup and comes last in the Season dropdown as "Backlog"), for a show with no aired
+  season to file it under - one AniList doesn't list (Anime Crimes Division).
 
 A Backlog show still counts everywhere a show counts (totals, average rating, rating
 distribution, Hall of Fame, genre and studio averages), but the Backlog isn't a season for the

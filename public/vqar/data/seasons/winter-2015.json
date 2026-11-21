@@ -1,0 +1,60 @@
+{
+  "id": "winter-2015",
+  "name": "Winter 2015",
+  "shows": [
+    {
+      "titleEN": "Assassination Classroom",
+      "titleJP": "暗殺教室",
+      "aired": {
+        "season": "winter",
+        "year": 2015
+      },
+      "reviews": [
+        {
+          "episodes": 16,
+          "ratingNumber": 3,
+          "text": "Fun show.",
+          "dateReviewed": "2026-11-19T12:18:27-05:00"
+        }
+      ],
+      "watched": {
+        "from": "2025-09-29",
+        "to": "2026-04-04",
+        "episode": 16
+      },
+      "anilistId": 20755,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GRE59JGX6/assassination-classroom",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Action",
+          "Comedy",
+          "Drama",
+          "Supernatural"
+        ],
+        "tags": [
+          "Assassins",
+          "School",
+          "Primarily Teen Cast",
+          "Teacher",
+          "Shounen",
+          "Ensemble Cast",
+          "Aliens",
+          "Anti-Hero",
+          "Episodic",
+          "Super Power",
+          "Male Protagonist",
+          "Guns"
+        ],
+        "studios": [
+          "Lerche"
+        ]
+      }
+    }
+  ],
+  "toReview": [],
+  "notReviewing": []
+}

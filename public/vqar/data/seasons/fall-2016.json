@@ -1,0 +1,58 @@
+{
+  "id": "fall-2016",
+  "name": "Fall 2016",
+  "shows": [
+    {
+      "titleEN": "Yuri!!! on ICE",
+      "titleJP": "ユーリ!!! on ICE",
+      "aired": {
+        "season": "fall",
+        "year": 2016
+      },
+      "reviews": [
+        {
+          "episodes": 6,
+          "ratingNumber": 4,
+          "text": "A fun show; well done and I can see why it's been quite popular.",
+          "dateReviewed": "2026-11-17T22:23:34-05:00"
+        }
+      ],
+      "watched": {
+        "from": "2022-04-01",
+        "to": "2022-04-26",
+        "episode": 6
+      },
+      "anilistId": 21709,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GY2PEJ0MY/yuri-on-ice",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Comedy",
+          "Drama",
+          "Sports"
+        ],
+        "tags": [
+          "Ice Sports",
+          "Primarily Male Cast",
+          "Male Protagonist",
+          "Foreign",
+          "Boys' Love",
+          "Bisexual",
+          "Primarily Adult Cast",
+          "Rotoscoping",
+          "Ballet",
+          "Cute Boys Doing Cute Things",
+          "Coming of Age"
+        ],
+        "studios": [
+          "MAPPA"
+        ]
+      }
+    }
+  ],
+  "toReview": [],
+  "notReviewing": []
+}

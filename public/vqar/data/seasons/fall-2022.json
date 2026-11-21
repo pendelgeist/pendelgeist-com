@@ -3,8 +3,67 @@
   "name": "Fall 2022",
   "shows": [
     {
-      "titleEN": "Mobile Suit Gundam: The Witch from Mercury",
-      "titleJP": "機動戦士ガンダム 水星の魔女",
+      "titleEN": "Berserk: The Golden Age Arc - Memorial Edition",
+      "titleJP": "ベルセルク 黄金時代篇 MEMORIAL EDITION",
+      "aired": {
+        "season": "fall",
+        "year": 2022
+      },
+      "reviews": [
+        {
+          "ratingNumber": 2,
+          "text": "AAAAARRRRGGGHHH!!!!! Dammit, this should be the best thing. I love the Shiro Sagisu OST, and the visuals and editing are better than the original version but so much of it still doesn't look great. We have a whole AMO Kenzoku episode on it going into much more detail. Watch Berserk 97, read the manga.",
+          "dateReviewed": "2026-11-19T11:55:08-05:00"
+        }
+      ],
+      "watched": {
+        "from": "2024-08-28",
+        "to": "2024-10-10"
+      },
+      "anilistId": 155011,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/G24H1N8XX/berserk-the-golden-age-arc-memorial-edition",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Action",
+          "Adventure",
+          "Drama",
+          "Fantasy",
+          "Horror",
+          "Supernatural"
+        ],
+        "tags": [
+          "Seinen",
+          "Primarily Adult Cast",
+          "Swordplay",
+          "Gore",
+          "War",
+          "Male Protagonist",
+          "Military",
+          "Class Struggle",
+          "Medieval",
+          "Travel",
+          "Philosophy",
+          "Primarily Male Cast",
+          "Politics",
+          "CGI",
+          "Anti-Hero",
+          "Nudity",
+          "Tomboy",
+          "Tsundere",
+          "Tanned Skin"
+        ],
+        "studios": [
+          "Studio 4°C"
+        ]
+      }
+    },
+    {
+      "titleEN": "BOCCHI THE ROCK!",
+      "titleJP": "ぼっち・ざ・ろっく！",
       "aired": {
         "season": "fall",
         "year": 2022
@@ -12,44 +71,45 @@
       "reviews": [
         {
           "ratingNumber": 5,
-          "text": "It's Revolutionary Girl Utena IN SPACE. What's not to love about that. Nicely done and a cool take in the Gundam universe.",
-          "dateReviewed": "2026-11-18T15:14:42-05:00"
+          "text": "I bought the blu-rays and changed my CR avatar to Bocchi.",
+          "dateReviewed": "2026-11-18T15:15:35-05:00"
         }
       ],
       "watched": {
-        "from": "2022-10-11",
-        "to": "2025-01-07"
+        "from": "2022-12-06",
+        "to": "2023-12-04"
       },
-      "anilistId": 139274,
+      "anilistId": 130003,
       "streaming": [
         "crunchyroll"
       ],
-      "crunchyrollUrl": "https://www.crunchyroll.com/series/G79H2307W/mobile-suit-gundam-the-witch-from-mercury",
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GXJHM3P19/bocchi-the-rock",
       "anilist": {
         "format": "TV",
         "genres": [
-          "Action",
-          "Drama",
-          "Mecha",
-          "Sci-Fi"
+          "Comedy",
+          "Music",
+          "Slice of Life"
         ],
         "tags": [
-          "Class Struggle",
-          "Real Robot",
+          "Band",
           "Female Protagonist",
-          "Space",
-          "School",
+          "Primarily Female Cast",
           "Primarily Teen Cast",
-          "Politics",
-          "Artificial Intelligence",
-          "Super Robot",
-          "Yuri",
-          "Guns",
-          "Conspiracy",
-          "Boarding School"
+          "Rock Music",
+          "Coming of Age",
+          "Cute Girls Doing Cute Things",
+          "Hikikomori",
+          "Rehabilitation",
+          "Surreal Comedy",
+          "Meta",
+          "Mixed Media",
+          "Seinen",
+          "Slapstick",
+          "Yuri"
         ],
         "studios": [
-          "Sunrise"
+          "CloverWorks"
         ]
       }
     },
@@ -112,8 +172,8 @@
       }
     },
     {
-      "titleEN": "BOCCHI THE ROCK!",
-      "titleJP": "ぼっち・ざ・ろっく！",
+      "titleEN": "Mobile Suit Gundam: The Witch from Mercury",
+      "titleJP": "機動戦士ガンダム 水星の魔女",
       "aired": {
         "season": "fall",
         "year": 2022
@@ -121,45 +181,44 @@
       "reviews": [
         {
           "ratingNumber": 5,
-          "text": "I bought the blu-rays and changed my CR avatar to Bocchi.",
-          "dateReviewed": "2026-11-18T15:15:35-05:00"
+          "text": "It's Revolutionary Girl Utena IN SPACE. What's not to love about that. Nicely done and a cool take in the Gundam universe.",
+          "dateReviewed": "2026-11-18T15:14:42-05:00"
         }
       ],
       "watched": {
-        "from": "2022-12-06",
-        "to": "2023-12-04"
+        "from": "2022-10-11",
+        "to": "2025-01-07"
       },
-      "anilistId": 130003,
+      "anilistId": 139274,
       "streaming": [
         "crunchyroll"
       ],
-      "crunchyrollUrl": "https://www.crunchyroll.com/series/GXJHM3P19/bocchi-the-rock",
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/G79H2307W/mobile-suit-gundam-the-witch-from-mercury",
       "anilist": {
         "format": "TV",
         "genres": [
-          "Comedy",
-          "Music",
-          "Slice of Life"
+          "Action",
+          "Drama",
+          "Mecha",
+          "Sci-Fi"
         ],
         "tags": [
-          "Band",
+          "Class Struggle",
+          "Real Robot",
           "Female Protagonist",
-          "Primarily Female Cast",
+          "Space",
+          "School",
           "Primarily Teen Cast",
-          "Rock Music",
-          "Coming of Age",
-          "Cute Girls Doing Cute Things",
-          "Hikikomori",
-          "Rehabilitation",
-          "Surreal Comedy",
-          "Meta",
-          "Mixed Media",
-          "Seinen",
-          "Slapstick",
-          "Yuri"
+          "Politics",
+          "Artificial Intelligence",
+          "Super Robot",
+          "Yuri",
+          "Guns",
+          "Conspiracy",
+          "Boarding School"
         ],
         "studios": [
-          "CloverWorks"
+          "Sunrise"
         ]
       }
     }

@@ -1,0 +1,62 @@
+{
+  "id": "spring-1979",
+  "name": "Spring 1979",
+  "shows": [
+    {
+      "titleEN": "Mobile Suit Gundam",
+      "titleJP": "機動戦士ガンダム",
+      "aired": {
+        "season": "spring",
+        "year": 1979
+      },
+      "reviews": [
+        {
+          "episodes": 6,
+          "ratingNumber": 5,
+          "text": "Yes.",
+          "dateReviewed": "2026-11-19T12:18:27-05:00"
+        }
+      ],
+      "watched": {
+        "from": "2025-03-02",
+        "to": "2025-03-11",
+        "episode": 6
+      },
+      "anilistId": 80,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GKEH2G9XV/mobile-suit-gundam",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Drama",
+          "Mecha",
+          "Sci-Fi"
+        ],
+        "tags": [
+          "War",
+          "Military",
+          "Real Robot",
+          "Space",
+          "Space Opera",
+          "Travel",
+          "Politics",
+          "Coming of Age",
+          "Foreign",
+          "Primarily Teen Cast",
+          "Ensemble Cast",
+          "Male Protagonist",
+          "Aviation",
+          "Tanks",
+          "Anti-Hero"
+        ],
+        "studios": [
+          "Sunrise"
+        ]
+      }
+    }
+  ],
+  "toReview": [],
+  "notReviewing": []
+}

@@ -1,0 +1,74 @@
+{
+  "id": "summer-2009",
+  "name": "Summer 2009",
+  "shows": [
+    {
+      "titleEN": "Bakemonogatari",
+      "titleJP": "化物語",
+      "aired": {
+        "season": "summer",
+        "year": 2009
+      },
+      "reviews": [
+        {
+          "episodes": 6,
+          "ratingNumber": 4,
+          "text": "Quite well done and boy is this show hard to stream T_T",
+          "dateReviewed": "2026-11-19T11:55:08-05:00"
+        }
+      ],
+      "watched": {
+        "from": "2024-06-07",
+        "to": "2026-02-15",
+        "episode": 6
+      },
+      "anilistId": 5081,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/G69PXP1EY/bakemonogatari",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Comedy",
+          "Drama",
+          "Mystery",
+          "Psychological",
+          "Romance",
+          "Supernatural"
+        ],
+        "tags": [
+          "Youkai",
+          "Urban Fantasy",
+          "Ensemble Cast",
+          "Surreal Comedy",
+          "Male Protagonist",
+          "Philosophy",
+          "Coming of Age",
+          "Vampire",
+          "Primarily Female Cast",
+          "Satire",
+          "Heterosexual",
+          "Primarily Teen Cast",
+          "Meta",
+          "Curses",
+          "Psychosexual",
+          "Monster Girl",
+          "Mixed Media",
+          "Exorcism",
+          "Parody",
+          "Gods",
+          "Rotoscoping",
+          "Love Triangle",
+          "Yandere",
+          "Tomboy"
+        ],
+        "studios": [
+          "Shaft"
+        ]
+      }
+    }
+  ],
+  "toReview": [],
+  "notReviewing": []
+}

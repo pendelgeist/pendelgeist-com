@@ -1,0 +1,62 @@
+{
+  "id": "winter-2011",
+  "name": "Winter 2011",
+  "shows": [
+    {
+      "titleEN": "Puella Magi Madoka Magica",
+      "titleJP": "魔法少女まどか☆マギカ",
+      "aired": {
+        "season": "winter",
+        "year": 2011
+      },
+      "reviews": [
+        {
+          "ratingNumber": 5,
+          "text": "I remember this show being pretty excellent, so I'll stick with that memory.",
+          "dateReviewed": "2026-11-17T13:42:25-05:00"
+        }
+      ],
+      "watched": {
+        "from": "2013-02-28",
+        "to": "2013-04-14"
+      },
+      "anilistId": 9756,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GRDQK39GY/puella-magi-madoka-magica",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Action",
+          "Drama",
+          "Fantasy",
+          "Mahou Shoujo",
+          "Psychological",
+          "Thriller"
+        ],
+        "tags": [
+          "Magic",
+          "Female Protagonist",
+          "Witch",
+          "Primarily Female Cast",
+          "Urban Fantasy",
+          "Primarily Teen Cast",
+          "Philosophy",
+          "Henshin",
+          "Coming of Age",
+          "Kuudere",
+          "Primarily Child Cast",
+          "Urban",
+          "Mixed Media",
+          "LGBTQ+ Themes"
+        ],
+        "studios": [
+          "Shaft"
+        ]
+      }
+    }
+  ],
+  "toReview": [],
+  "notReviewing": []
+}

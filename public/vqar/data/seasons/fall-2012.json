@@ -1,0 +1,98 @@
+{
+  "id": "fall-2012",
+  "name": "Fall 2012",
+  "shows": [
+    {
+      "titleEN": "Ixion Saga DT",
+      "titleJP": "イクシオン サーガ DT",
+      "aired": {
+        "season": "fall",
+        "year": 2012
+      },
+      "reviews": [
+        {
+          "ratingNumber": 1,
+          "text": "I literally am not sure this was a show.",
+          "dateReviewed": "2026-11-17T13:44:21-05:00"
+        }
+      ],
+      "watched": {
+        "from": "2013-04-26",
+        "to": "2013-07-04"
+      },
+      "anilistId": 14765,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GRDQKP57Y/ixion-saga-dt",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Action",
+          "Comedy",
+          "Fantasy"
+        ],
+        "tags": [
+          "Isekai",
+          "Parody",
+          "Male Protagonist",
+          "Transgender"
+        ],
+        "studios": [
+          "Brain's Base"
+        ]
+      }
+    },
+    {
+      "titleEN": "Inferno Cop",
+      "titleJP": "インフェルノコップ",
+      "aired": {
+        "season": "fall",
+        "year": 2012
+      },
+      "reviews": [
+        {
+          "episodes": 12,
+          "ratingNumber": 5,
+          "text": "Ludicrous stupid-jork anime at its jorkiest.",
+          "dateReviewed": "2026-11-18T15:10:16-05:00"
+        }
+      ],
+      "watched": {
+        "from": "2022-06-28",
+        "to": "2022-09-23",
+        "episode": 12
+      },
+      "anilistId": 16774,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GYE5KVMNR/inferno-cop",
+      "anilist": {
+        "format": "ONA",
+        "genres": [
+          "Action",
+          "Comedy"
+        ],
+        "tags": [
+          "Parody",
+          "Police",
+          "Surreal Comedy",
+          "Primarily Male Cast",
+          "Skeleton",
+          "Male Protagonist",
+          "Tokusatsu",
+          "Foreign",
+          "Cars",
+          "Urban Fantasy"
+        ],
+        "studios": [
+          "CoMix Wave",
+          "TRIGGER"
+        ]
+      }
+    }
+  ],
+  "toReview": [],
+  "notReviewing": []
+}

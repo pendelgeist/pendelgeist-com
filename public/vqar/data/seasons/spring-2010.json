@@ -1,0 +1,60 @@
+{
+  "id": "spring-2010",
+  "name": "Spring 2010",
+  "shows": [
+    {
+      "titleEN": "Angel Beats!",
+      "titleJP": "Angel Beats!",
+      "aired": {
+        "season": "spring",
+        "year": 2010
+      },
+      "reviews": [
+        {
+          "ratingNumber": 5,
+          "text": "This is a show I still fondly remember watching quite a few times and would be happy to go back to.",
+          "dateReviewed": "2026-11-17T12:05:46-05:00"
+        }
+      ],
+      "watched": {
+        "from": "2012-10-05",
+        "to": "2013-11-11"
+      },
+      "anilistId": 6547,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GY49PW7QR/angel-beats",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Action",
+          "Comedy",
+          "Drama",
+          "Supernatural"
+        ],
+        "tags": [
+          "School",
+          "Primarily Teen Cast",
+          "Kuudere",
+          "Coming of Age",
+          "Boarding School",
+          "Male Protagonist",
+          "Ensemble Cast",
+          "Slapstick",
+          "Angels",
+          "Survival",
+          "Found Family",
+          "School Club",
+          "Guns",
+          "Isekai"
+        ],
+        "studios": [
+          "P.A.WORKS"
+        ]
+      }
+    }
+  ],
+  "toReview": [],
+  "notReviewing": []
+}

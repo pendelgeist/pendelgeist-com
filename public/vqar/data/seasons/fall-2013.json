@@ -3,6 +3,123 @@
   "name": "Fall 2013",
   "shows": [
     {
+      "titleEN": "Log Horizon",
+      "titleJP": "ログ・ホライズン",
+      "aired": {
+        "season": "fall",
+        "year": 2013
+      },
+      "reviews": [
+        {
+          "ratingNumber": 3,
+          "text": "It's a much better show overall than SAO, and has way more likeable characters. I did kind of give up in the middle of S2 and didn't finish S3, but it's quite enjoyable in this VG-isekai genre.",
+          "dateReviewed": "2026-11-17T22:21:20-05:00"
+        }
+      ],
+      "watched": {
+        "from": "2022-03-20",
+        "to": "2022-10-03",
+        "season": 3,
+        "episode": 1
+      },
+      "anilistId": 17265,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GRVNMG93Y/log-horizon",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Action",
+          "Adventure",
+          "Fantasy"
+        ],
+        "tags": [
+          "Virtual World",
+          "Politics",
+          "Isekai",
+          "Video Games",
+          "Male Protagonist",
+          "Magic",
+          "Kingdom Management",
+          "Dungeon",
+          "Ensemble Cast",
+          "Found Family",
+          "Anthropomorphism"
+        ],
+        "studios": [
+          "Satelight"
+        ]
+      }
+    },
+    {
+      "titleEN": "Kill la Kill",
+      "titleJP": "キルラキル",
+      "aired": {
+        "season": "fall",
+        "year": 2013
+      },
+      "reviews": [
+        {
+          "episodes": 12,
+          "ratingNumber": 4,
+          "text": "This show is a wild trip, probably a 5 except I haven't ever finished watching it.",
+          "dateReviewed": "2026-11-17T14:23:57-05:00"
+        }
+      ],
+      "watched": {
+        "from": "2014-02-23",
+        "to": "2014-06-07",
+        "episode": 12
+      },
+      "anilistId": 18679,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GY8VM43GY/kill-la-kill",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Action",
+          "Comedy",
+          "Ecchi"
+        ],
+        "tags": [
+          "Henshin",
+          "Female Protagonist",
+          "Revenge",
+          "Nudity",
+          "Class Struggle",
+          "Surreal Comedy",
+          "Parody",
+          "Dystopian",
+          "Super Power",
+          "Tomboy",
+          "Ojou-sama",
+          "Coming of Age",
+          "School",
+          "Primarily Teen Cast",
+          "Found Family",
+          "Orphan",
+          "Psychosexual",
+          "Military",
+          "Cult",
+          "Cosmic Horror",
+          "Tokusatsu",
+          "Meta",
+          "Bullying",
+          "Tsundere",
+          "Delinquents",
+          "Villainess",
+          "Urban Fantasy",
+          "Ensemble Cast"
+        ],
+        "studios": [
+          "TRIGGER"
+        ]
+      }
+    },
+    {
       "titleEN": "Arpeggio of Blue Steel",
       "titleJP": "蒼き鋼のアルペジオ",
       "aired": {

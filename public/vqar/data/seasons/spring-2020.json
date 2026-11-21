@@ -1,0 +1,58 @@
+{
+  "id": "spring-2020",
+  "name": "Spring 2020",
+  "shows": [
+    {
+      "titleEN": "Tower of God",
+      "titleJP": "神之塔 -Tower of God-",
+      "aired": {
+        "season": "spring",
+        "year": 2020
+      },
+      "reviews": [
+        {
+          "episodes": 8,
+          "ratingNumber": 1,
+          "text": "More like tower of slog, amirite.",
+          "dateReviewed": "2026-11-19T12:18:27-05:00"
+        }
+      ],
+      "watched": {
+        "from": "2026-02-12",
+        "to": "2026-03-29",
+        "episode": 8
+      },
+      "anilistId": 115230,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/G6J0G49DR/tower-of-god",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Action",
+          "Adventure",
+          "Drama",
+          "Fantasy",
+          "Mystery"
+        ],
+        "tags": [
+          "Super Power",
+          "Male Protagonist",
+          "Conspiracy",
+          "Magic",
+          "Ensemble Cast",
+          "Cultivation",
+          "Shounen",
+          "Battle Royale",
+          "Coming of Age"
+        ],
+        "studios": [
+          "Telecom Animation Film"
+        ]
+      }
+    }
+  ],
+  "toReview": [],
+  "notReviewing": []
+}

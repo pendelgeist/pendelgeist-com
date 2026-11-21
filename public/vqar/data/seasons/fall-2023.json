@@ -3,6 +3,99 @@
   "name": "Fall 2023",
   "shows": [
     {
+      "titleEN": "Shangri-La Frontier",
+      "titleJP": "シャングリラ・フロンティア",
+      "aired": {
+        "season": "fall",
+        "year": 2023
+      },
+      "reviews": [
+        {
+          "ratingNumber": 2,
+          "text": "Solid VG-isekai show.",
+          "dateReviewed": "2026-11-19T11:57:12-05:00"
+        }
+      ],
+      "watched": {
+        "from": "2025-01-23",
+        "to": "2025-04-26"
+      },
+      "anilistId": 151970,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/G79H23Z8P/shangri-la-frontier",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Action",
+          "Adventure",
+          "Comedy",
+          "Fantasy",
+          "Sci-Fi"
+        ],
+        "tags": [
+          "Video Games",
+          "Virtual World",
+          "Male Protagonist",
+          "Swordplay",
+          "Anthropomorphism",
+          "Travel",
+          "Shounen",
+          "Unrequited Love",
+          "Slapstick"
+        ],
+        "studios": [
+          "C2C"
+        ]
+      }
+    },
+    {
+      "titleEN": "The Kingdoms of Ruin",
+      "titleJP": "はめつのおうこく",
+      "aired": {
+        "season": "fall",
+        "year": 2023
+      },
+      "reviews": [
+        {
+          "ratingNumber": 4,
+          "text": "OMG. This show is nuts, brutal.",
+          "dateReviewed": "2026-11-19T09:22:23-05:00"
+        }
+      ],
+      "watched": {
+        "from": "2023-11-09",
+        "to": "2023-12-26"
+      },
+      "anilistId": 160900,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GG5H5XQ14/the-kingdoms-of-ruin",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Action",
+          "Drama",
+          "Fantasy"
+        ],
+        "tags": [
+          "Revenge",
+          "Magic",
+          "Witch",
+          "Gore",
+          "Shounen",
+          "Male Protagonist",
+          "Lost Civilization",
+          "Military"
+        ],
+        "studios": [
+          "Yokohama Animation Lab"
+        ]
+      }
+    },
+    {
       "titleEN": "Frieren: Beyond Journey's End",
       "titleJP": "葬送のフリーレン",
       "aired": {
@@ -50,51 +143,6 @@
         ],
         "studios": [
           "MADHOUSE"
-        ]
-      }
-    },
-    {
-      "titleEN": "The Kingdoms of Ruin",
-      "titleJP": "はめつのおうこく",
-      "aired": {
-        "season": "fall",
-        "year": 2023
-      },
-      "reviews": [
-        {
-          "ratingNumber": 4,
-          "text": "OMG. This show is nuts, brutal.",
-          "dateReviewed": "2026-11-19T09:22:23-05:00"
-        }
-      ],
-      "watched": {
-        "from": "2023-11-09",
-        "to": "2023-12-26"
-      },
-      "anilistId": 160900,
-      "streaming": [
-        "crunchyroll"
-      ],
-      "crunchyrollUrl": "https://www.crunchyroll.com/series/GG5H5XQ14/the-kingdoms-of-ruin",
-      "anilist": {
-        "format": "TV",
-        "genres": [
-          "Action",
-          "Drama",
-          "Fantasy"
-        ],
-        "tags": [
-          "Revenge",
-          "Magic",
-          "Witch",
-          "Gore",
-          "Shounen",
-          "Male Protagonist",
-          "Lost Civilization",
-          "Military"
-        ],
-        "studios": [
-          "Yokohama Animation Lab"
         ]
       }
     }

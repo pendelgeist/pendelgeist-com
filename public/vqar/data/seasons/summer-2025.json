@@ -187,6 +187,104 @@
           "SynergySP"
         ]
       }
+    },
+    {
+      "titleEN": "Ruri Rocks",
+      "titleJP": "瑠璃の宝石",
+      "aired": {
+        "season": "summer",
+        "year": 2025
+      },
+      "reviews": [
+        {
+          "ratingNumber": 5,
+          "text": "So excellent and I learned so much about rocks!",
+          "dateReviewed": "2026-11-19T12:18:27-05:00"
+        }
+      ],
+      "watched": {
+        "from": "2025-10-03",
+        "to": "2026-08-21"
+      },
+      "anilistId": 180929,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/G4PH0WJ2V/ruri-rocks",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Adventure",
+          "Slice of Life"
+        ],
+        "tags": [
+          "Outdoor Activities",
+          "Primarily Female Cast",
+          "Cute Girls Doing Cute Things",
+          "Educational",
+          "Female Protagonist",
+          "Environmental",
+          "Wilderness",
+          "Iyashikei",
+          "Seinen",
+          "Episodic",
+          "College",
+          "Work",
+          "Mountaineering"
+        ],
+        "studios": [
+          "Studio Bind"
+        ]
+      }
+    },
+    {
+      "titleEN": "Takopi's Original Sin",
+      "titleJP": "タコピーの原罪",
+      "aired": {
+        "season": "summer",
+        "year": 2025
+      },
+      "reviews": [
+        {
+          "ratingNumber": 4,
+          "text": "Very good. Very dark. See the AMO Kenzoku episode for a real breakdown.",
+          "dateReviewed": "2026-11-19T12:18:27-05:00"
+        }
+      ],
+      "watched": {
+        "from": "2026-04-24",
+        "to": "2026-05-08"
+      },
+      "anilistId": 185407,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GKEH2G0X4/takopis-original-sin",
+      "anilist": {
+        "format": "ONA",
+        "genres": [
+          "Drama",
+          "Psychological",
+          "Sci-Fi"
+        ],
+        "tags": [
+          "Denpa",
+          "Bullying",
+          "Primarily Child Cast",
+          "Aliens",
+          "Female Protagonist",
+          "Philosophy",
+          "School",
+          "Revenge",
+          "Shapeshifting",
+          "Ensemble Cast",
+          "Rural",
+          "Urban Fantasy"
+        ],
+        "studios": [
+          "ENISHIYA"
+        ]
+      }
     }
   ],
   "toReview": [],

@@ -1,0 +1,167 @@
+{
+  "id": "spring-2021",
+  "name": "Spring 2021",
+  "shows": [
+    {
+      "titleEN": "ODDTAXI",
+      "titleJP": "オッドタクシー",
+      "aired": {
+        "season": "spring",
+        "year": 2021
+      },
+      "reviews": [
+        {
+          "ratingNumber": 5,
+          "text": "Superb, see our podcast episode on it.",
+          "dateReviewed": "2026-11-17T22:19:15-05:00"
+        }
+      ],
+      "watched": {
+        "from": "2022-03-06",
+        "to": "2022-03-17"
+      },
+      "anilistId": 128547,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/G4PH0WPV2/oddtaxi",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Drama",
+          "Mystery",
+          "Psychological",
+          "Thriller"
+        ],
+        "tags": [
+          "Crime",
+          "Anthropomorphism",
+          "Urban",
+          "Animals",
+          "Ensemble Cast",
+          "Primarily Adult Cast",
+          "Male Protagonist",
+          "Work",
+          "Noir",
+          "Satire",
+          "Gangs",
+          "Yakuza",
+          "Primarily Animal Cast",
+          "Amnesia",
+          "Fugitive",
+          "Cars",
+          "Idol",
+          "Police",
+          "Hip-hop Music",
+          "Philosophy"
+        ],
+        "studios": [
+          "OLM",
+          "P.I.C.S."
+        ]
+      }
+    },
+    {
+      "titleEN": "Burning Kabaddi",
+      "titleJP": "灼熱カバディ",
+      "aired": {
+        "season": "spring",
+        "year": 2021
+      },
+      "reviews": [
+        {
+          "ratingNumber": 4,
+          "text": "A great sports anime that dives into the world of a sport I had no idea existed; now I know quite a bit about Kabaddi.",
+          "dateReviewed": "2026-11-17T22:24:14-05:00"
+        }
+      ],
+      "watched": {
+        "from": "2022-04-05",
+        "to": "2022-05-28"
+      },
+      "anilistId": 120859,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/G9VHN9W5J/burning-kabaddi",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Action",
+          "Drama",
+          "Sports"
+        ],
+        "tags": [
+          "School Club",
+          "Athletics",
+          "Primarily Male Cast",
+          "Male Protagonist",
+          "Shounen",
+          "Fitness",
+          "Primarily Teen Cast"
+        ],
+        "studios": [
+          "TMS Entertainment"
+        ]
+      }
+    },
+    {
+      "titleEN": "86 EIGHTY-SIX",
+      "titleJP": "86－エイティシックス－",
+      "aired": {
+        "season": "spring",
+        "year": 2021
+      },
+      "reviews": [
+        {
+          "ratingNumber": 5,
+          "text": "I wanted to give this a lower rating but it's actually pretty great.",
+          "dateReviewed": "2026-11-18T15:09:54-05:00"
+        }
+      ],
+      "watched": {
+        "from": "2022-05-28",
+        "to": "2022-07-23"
+      },
+      "anilistId": 116589,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GVDHX8DM5/86-eighty-six",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Action",
+          "Drama",
+          "Mecha",
+          "Sci-Fi"
+        ],
+        "tags": [
+          "War",
+          "Class Struggle",
+          "Military",
+          "Dystopian",
+          "Survival",
+          "Ensemble Cast",
+          "Politics",
+          "Female Protagonist",
+          "Proxy Battle",
+          "Guns",
+          "Robots",
+          "Male Protagonist",
+          "Philosophy",
+          "Real Robot",
+          "Primarily Teen Cast",
+          "Artificial Intelligence",
+          "Achronological Order",
+          "CGI"
+        ],
+        "studios": [
+          "A-1 Pictures"
+        ]
+      }
+    }
+  ],
+  "toReview": [],
+  "notReviewing": []
+}

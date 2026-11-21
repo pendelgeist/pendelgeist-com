@@ -3,6 +3,91 @@
   "name": "Summer 2024",
   "shows": [
     {
+      "titleEN": "TASUKETSU -Fate of the Majority-",
+      "titleJP": "多数欠",
+      "aired": {
+        "season": "summer",
+        "year": 2024
+      },
+      "reviews": [
+        {
+          "ratingNumber": 1,
+          "text": "Bad.",
+          "dateReviewed": "2026-11-19T12:18:27-05:00"
+        }
+      ],
+      "watched": {
+        "from": "2025-01-07"
+      },
+      "anilistId": 174070,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/G4PH0WJMN/tasuketsu-fate-of-the-majority",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Action",
+          "Mystery",
+          "Thriller"
+        ],
+        "tags": [
+          "Death Game",
+          "Super Power",
+          "Primarily Teen Cast",
+          "Male Protagonist"
+        ],
+        "studios": [
+          "Satelight"
+        ]
+      }
+    },
+    {
+      "titleEN": "SHOSHIMIN: How to become Ordinary",
+      "titleJP": "小市民シリーズ",
+      "aired": {
+        "season": "summer",
+        "year": 2024
+      },
+      "reviews": [
+        {
+          "ratingNumber": 5,
+          "text": "Fabulous! Investigative high school detective show. Lovely.",
+          "dateReviewed": "2026-11-19T11:55:36-05:00"
+        }
+      ],
+      "watched": {
+        "from": "2024-11-27",
+        "to": "2025-06-19"
+      },
+      "anilistId": 173295,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/G5PHNM94J/shoshimin-how-to-become-ordinary",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Mystery",
+          "Slice of Life"
+        ],
+        "tags": [
+          "Detective",
+          "Primarily Teen Cast",
+          "Mixed Media",
+          "Male Protagonist",
+          "Female Protagonist",
+          "Crime",
+          "School",
+          "Food",
+          "Episodic"
+        ],
+        "studios": [
+          "Lapin Track"
+        ]
+      }
+    },
+    {
       "titleEN": "Why Does Nobody Remember Me in This World?",
       "titleJP": "なぜ僕の世界を誰も覚えていないのか？",
       "aired": {

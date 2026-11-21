@@ -1,0 +1,61 @@
+{
+  "id": "summer-2012",
+  "name": "Summer 2012",
+  "shows": [
+    {
+      "titleEN": "Sword Art Online",
+      "titleJP": "ソードアート・オンライン",
+      "aired": {
+        "season": "summer",
+        "year": 2012
+      },
+      "reviews": [
+        {
+          "final": true,
+          "ratingNumber": 3,
+          "text": "Okay, so this is a real show here. It has some highs, some lows, and it really was a huge spawning point for this whole genre. What I would say is good here is the OST, the OP, and the overall animation quality. The first half of the first season is pretty fun, but that's like ~6 eps. The second half of the first season gets less good. Then there's eps 13-24 of season 1; boy, just terrible. The animation was still good, but it went into such weird story stuff and totally lost me. Then there's every season after that, which was just worse. So I'll give it a 3, splitting a 5 for the first few eps and a 1 for everything after that. I'm sure I'm being too kind to this show, but I'm a bit of a softie.",
+          "dateReviewed": "2026-11-17T16:30:27-05:00"
+        }
+      ],
+      "watched": {
+        "from": "2012-10-25",
+        "to": "2022-03-03",
+        "finished": true
+      },
+      "anilistId": 11757,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GR49G9VP6/sword-art-online",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Action",
+          "Adventure",
+          "Fantasy",
+          "Romance"
+        ],
+        "tags": [
+          "Virtual World",
+          "Video Games",
+          "Male Protagonist",
+          "Swordplay",
+          "Heterosexual",
+          "Primarily Teen Cast",
+          "Urban Fantasy",
+          "Isekai",
+          "Primarily Female Cast",
+          "Fairy",
+          "Artificial Intelligence",
+          "Prison",
+          "Found Family"
+        ],
+        "studios": [
+          "A-1 Pictures"
+        ]
+      }
+    }
+  ],
+  "toReview": [],
+  "notReviewing": []
+}
