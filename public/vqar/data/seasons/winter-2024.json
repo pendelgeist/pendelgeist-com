@@ -1,0 +1,253 @@
+{
+  "id": "winter-2024",
+  "name": "Winter 2024",
+  "shows": [
+    {
+      "titleEN": "Solo Leveling",
+      "titleJP": "俺だけレベルアップな件",
+      "aired": {
+        "season": "winter",
+        "year": 2024
+      },
+      "reviews": [
+        {
+          "ratingNumber": 2,
+          "text": "It's fine.",
+          "dateReviewed": "2026-11-19T11:49:05-05:00"
+        }
+      ],
+      "watched": {
+        "from": "2024-01-16",
+        "to": "2025-04-01"
+      },
+      "anilistId": 151807,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GDKHZEJ0K/solo-leveling",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Action",
+          "Adventure",
+          "Fantasy"
+        ],
+        "tags": [
+          "Dungeon",
+          "Male Protagonist",
+          "Urban Fantasy",
+          "Super Power",
+          "Magic",
+          "Cultivation",
+          "Survival",
+          "Shounen",
+          "Gore",
+          "Swordplay"
+        ],
+        "studios": [
+          "A-1 Pictures"
+        ]
+      }
+    },
+    {
+      "titleEN": "Metallic Rouge",
+      "titleJP": "メタリックルージュ",
+      "aired": {
+        "season": "winter",
+        "year": 2024
+      },
+      "reviews": [
+        {
+          "ratingNumber": 2,
+          "text": "Dammit. I really wanted this show to be better than it was.",
+          "dateReviewed": "2026-11-19T11:49:50-05:00"
+        }
+      ],
+      "watched": {
+        "from": "2024-01-19",
+        "to": "2024-04-10"
+      },
+      "anilistId": 162985,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/G24H1NWMJ/metallic-rouge",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Action",
+          "Mystery",
+          "Sci-Fi"
+        ],
+        "tags": [
+          "Robots",
+          "Artificial Intelligence",
+          "Cyberpunk",
+          "Henshin",
+          "Female Protagonist",
+          "Primarily Adult Cast",
+          "Tanned Skin",
+          "Assassins",
+          "Super Power",
+          "Fugitive",
+          "Dystopian",
+          "Urban",
+          "Martial Arts",
+          "Crime",
+          "Tokusatsu",
+          "Class Struggle",
+          "Space",
+          "Espionage",
+          "Guns"
+        ],
+        "studios": [
+          "bones"
+        ]
+      }
+    },
+    {
+      "titleEN": "BUCCHIGIRI?!",
+      "titleJP": "ぶっちぎり?!",
+      "aired": {
+        "season": "winter",
+        "year": 2024
+      },
+      "reviews": [
+        {
+          "ratingNumber": 2,
+          "text": "This show looked nice but wasn't actually that great.",
+          "dateReviewed": "2026-11-19T11:50:29-05:00"
+        }
+      ],
+      "watched": {
+        "from": "2024-02-08",
+        "to": "2024-04-09"
+      },
+      "anilistId": 165254,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/G5PHNM985/bucchigiri",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Action",
+          "Supernatural"
+        ],
+        "tags": [
+          "Martial Arts",
+          "Delinquents",
+          "Primarily Teen Cast",
+          "Gangs",
+          "School",
+          "Magic",
+          "Mythology",
+          "Primarily Male Cast",
+          "Male Protagonist",
+          "Unrequited Love",
+          "Heterosexual"
+        ],
+        "studios": [
+          "MAPPA"
+        ]
+      }
+    },
+    {
+      "titleEN": "Snack Basue",
+      "titleJP": "スナックバス江",
+      "aired": {
+        "season": "winter",
+        "year": 2024
+      },
+      "reviews": [
+        {
+          "ratingNumber": 4,
+          "text": "Totally ridiculous and quite fun and out there.",
+          "dateReviewed": "2026-11-19T11:55:08-05:00"
+        }
+      ],
+      "watched": {
+        "from": "2024-02-13",
+        "to": "2024-05-01"
+      },
+      "anilistId": 166093,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GDKHZEJ1K/snack-basue",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Comedy"
+        ],
+        "tags": [
+          "Bar",
+          "Parody",
+          "Episodic",
+          "Female Protagonist",
+          "Seinen",
+          "Meta",
+          "Surreal Comedy",
+          "Slapstick",
+          "Primarily Adult Cast"
+        ],
+        "studios": [
+          "Studio PuYUKAI"
+        ]
+      }
+    },
+    {
+      "titleEN": "Brave Bang Bravern!",
+      "titleJP": "勇気爆発バーンブレイバーン",
+      "aired": {
+        "season": "winter",
+        "year": 2024
+      },
+      "reviews": [
+        {
+          "ratingNumber": 5,
+          "text": "Oh man, this is a show that we need and didn't even know it.",
+          "dateReviewed": "2026-11-19T11:55:08-05:00"
+        }
+      ],
+      "watched": {
+        "from": "2024-02-14",
+        "to": "2024-04-25"
+      },
+      "anilistId": 165598,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GEXH3W217/brave-bang-bravern",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Action",
+          "Comedy",
+          "Mecha",
+          "Sci-Fi"
+        ],
+        "tags": [
+          "Super Robot",
+          "Parody",
+          "Male Protagonist",
+          "Military",
+          "Meta",
+          "LGBTQ+ Themes",
+          "Primarily Adult Cast",
+          "Aliens",
+          "Foreign",
+          "War",
+          "Found Family",
+          "Real Robot",
+          "CGI"
+        ],
+        "studios": [
+          "CygamesPictures"
+        ]
+      }
+    }
+  ],
+  "toReview": [],
+  "notReviewing": []
+}

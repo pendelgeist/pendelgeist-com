@@ -1,0 +1,118 @@
+{
+  "id": "spring-2023",
+  "name": "Spring 2023",
+  "shows": [
+    {
+      "titleEN": "MASHLE: MAGIC AND MUSCLES",
+      "titleJP": "マッシュル-MASHLE-",
+      "aired": {
+        "season": "spring",
+        "year": 2023
+      },
+      "reviews": [
+        {
+          "ratingNumber": 2,
+          "text": "It's fine. OP 2 by Creepy Nuts is S-tier.",
+          "dateReviewed": "2026-11-19T09:20:39-05:00"
+        }
+      ],
+      "watched": {
+        "from": "2023-04-17",
+        "to": "2025-06-16"
+      },
+      "anilistId": 151801,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GDKHZEP8W/mashle-magic-and-muscles",
+      "op": [
+        2
+      ],
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Action",
+          "Comedy",
+          "Fantasy"
+        ],
+        "tags": [
+          "Magic",
+          "Male Protagonist",
+          "Shounen",
+          "Parody",
+          "School",
+          "Fitness",
+          "Slapstick",
+          "Primarily Teen Cast",
+          "Super Power",
+          "Dragons",
+          "Primarily Male Cast",
+          "Kuudere",
+          "Aromantic",
+          "Food",
+          "Adoption",
+          "Battle Royale",
+          "Asexual",
+          "Medieval"
+        ],
+        "studios": [
+          "A-1 Pictures"
+        ]
+      }
+    },
+    {
+      "titleEN": "KONOSUBA - An Explosion on This Wonderful World!",
+      "titleJP": "この素晴らしい世界に爆焔を！",
+      "aired": {
+        "season": "spring",
+        "year": 2023
+      },
+      "reviews": [
+        {
+          "ratingNumber": 5,
+          "text": "Somehow they took the most depraved show and spun off this really charming side show.",
+          "dateReviewed": "2026-11-19T09:21:02-05:00"
+        }
+      ],
+      "watched": {
+        "from": "2023-04-19",
+        "to": "2023-07-17"
+      },
+      "anilistId": 150075,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GJ0H7Q5V7/konosuba-an-explosion-on-this-wonderful-world",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Adventure",
+          "Comedy",
+          "Fantasy"
+        ],
+        "tags": [
+          "Female Protagonist",
+          "Chuunibyou",
+          "Magic",
+          "Primarily Female Cast",
+          "Primarily Teen Cast",
+          "Slapstick",
+          "Parody",
+          "Witch",
+          "Travel",
+          "Rural",
+          "Demons",
+          "School",
+          "Tsundere",
+          "Cute Girls Doing Cute Things",
+          "Medieval"
+        ],
+        "studios": [
+          "Drive"
+        ]
+      }
+    }
+  ],
+  "toReview": [],
+  "notReviewing": []
+}

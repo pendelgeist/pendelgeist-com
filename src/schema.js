@@ -164,11 +164,11 @@ type NotReviewingShow {
   youtubeUrl: String
 }
 
-"""A season file: a lineup reviewed live (its shows, plus titles still to review or not being reviewed), or a shelf like the Backlog."""
+"""A season file: a lineup watched as it aired (its shows, plus titles still to review or not being reviewed), or a shelf like the Backlog."""
 type Season {
   id: ID!
   name: String!
-  "True for a lineup - a season reviewed live, with an id like spring-2026. False for a shelf like the Backlog, which per-season trends leave out."
+  "True for a lineup - a season watched as it aired, with an id like spring-2026. False for a shelf like the Backlog, which per-season trends leave out."
   lineup: Boolean!
   shows: [Show!]!
   "Titles still to be reviewed; see toReviewShows for streaming and premiere info."

@@ -1,0 +1,48 @@
+{
+  "id": "winter-2014",
+  "name": "Winter 2014",
+  "shows": [
+    {
+      "titleEN": "Strange+",
+      "titleJP": "ストレンジ・プラス",
+      "aired": {
+        "season": "winter",
+        "year": 2014
+      },
+      "reviews": [
+        {
+          "ratingNumber": 2,
+          "text": "Don't remember.",
+          "dateReviewed": "2026-11-17T15:46:40-05:00"
+        }
+      ],
+      "watched": {
+        "from": "2014-04-04",
+        "to": "2014-04-20"
+      },
+      "anilistId": 20490,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GRGGVKZWR/strange",
+      "anilist": {
+        "format": "TV_SHORT",
+        "genres": [
+          "Comedy",
+          "Slice of Life"
+        ],
+        "tags": [
+          "Josei",
+          "Slapstick",
+          "Parody",
+          "Detective"
+        ],
+        "studios": [
+          "Seven"
+        ]
+      }
+    }
+  ],
+  "toReview": [],
+  "notReviewing": []
+}

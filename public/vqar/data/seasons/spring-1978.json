@@ -1,0 +1,58 @@
+{
+  "id": "spring-1978",
+  "name": "Spring 1978",
+  "shows": [
+    {
+      "titleEN": "Captain Harlock",
+      "titleJP": "宇宙海賊キャプテンハーロック",
+      "aired": {
+        "season": "spring",
+        "year": 1978
+      },
+      "reviews": [
+        {
+          "episodes": 13,
+          "ratingNumber": 5,
+          "text": "What a fabulous thing to exist.",
+          "dateReviewed": "2026-11-19T09:03:06-05:00"
+        }
+      ],
+      "watched": {
+        "from": "2023-03-17",
+        "to": "2025-02-18",
+        "episode": 13
+      },
+      "anilistId": 1000,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GYGGPD73Y/captain-harlock",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Action",
+          "Adventure",
+          "Drama",
+          "Sci-Fi"
+        ],
+        "tags": [
+          "Space Opera",
+          "Pirates",
+          "Anti-Hero",
+          "Aliens",
+          "Space",
+          "Episodic",
+          "Seinen",
+          "Fugitive",
+          "Primarily Adult Cast",
+          "Male Protagonist"
+        ],
+        "studios": [
+          "Toei Animation"
+        ]
+      }
+    }
+  ],
+  "toReview": [],
+  "notReviewing": []
+}

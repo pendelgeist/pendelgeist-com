@@ -1,0 +1,147 @@
+{
+  "id": "summer-2022",
+  "name": "Summer 2022",
+  "shows": [
+    {
+      "titleEN": "Black Summoner",
+      "titleJP": "黒の召喚士",
+      "aired": {
+        "season": "summer",
+        "year": 2022
+      },
+      "reviews": [
+        {
+          "ratingNumber": 2,
+          "text": "Forgettable.",
+          "dateReviewed": "2026-11-18T15:10:32-05:00"
+        }
+      ],
+      "watched": {
+        "from": "2022-08-08",
+        "to": "2022-09-30"
+      },
+      "anilistId": 145260,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GVDHX8JJE/black-summoner",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Action",
+          "Adventure",
+          "Fantasy"
+        ],
+        "tags": [
+          "Isekai",
+          "Magic",
+          "Male Protagonist",
+          "Creature Taming",
+          "Memory Manipulation",
+          "Female Harem",
+          "Gods",
+          "Elf",
+          "Slavery",
+          "Demons",
+          "CGI",
+          "Found Family"
+        ],
+        "studios": [
+          "Satelight"
+        ]
+      }
+    },
+    {
+      "titleEN": "YUREI DECO",
+      "titleJP": "ユーレイデコ",
+      "aired": {
+        "season": "summer",
+        "year": 2022
+      },
+      "reviews": [
+        {
+          "ratingNumber": 3,
+          "text": "It's got a real style and is cool.",
+          "dateReviewed": "2026-11-18T15:10:49-05:00"
+        }
+      ],
+      "watched": {
+        "from": "2022-08-09",
+        "to": "2022-10-02"
+      },
+      "anilistId": 145468,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/G9VHN97PK/yurei-deco",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Mystery",
+          "Sci-Fi"
+        ],
+        "tags": [
+          "Female Protagonist",
+          "Augmented Reality",
+          "Artificial Intelligence",
+          "Detective",
+          "Satire",
+          "Cyberpunk"
+        ],
+        "studios": [
+          "Science SARU"
+        ]
+      }
+    },
+    {
+      "titleEN": "Lycoris Recoil",
+      "titleJP": "リコリス・リコイル",
+      "aired": {
+        "season": "summer",
+        "year": 2022
+      },
+      "reviews": [
+        {
+          "ratingNumber": 5,
+          "text": "Quite the enjoyable romp.",
+          "dateReviewed": "2026-11-18T15:11:03-05:00"
+        }
+      ],
+      "watched": {
+        "from": "2022-08-19",
+        "to": "2026-01-05"
+      },
+      "anilistId": 143270,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/G1XHJV2X9/lycoris-recoil",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Action",
+          "Slice of Life"
+        ],
+        "tags": [
+          "Female Protagonist",
+          "Primarily Female Cast",
+          "Guns",
+          "Found Family",
+          "Urban",
+          "Work",
+          "Kuudere",
+          "Orphan",
+          "Yuri",
+          "Restaurant",
+          "LGBTQ+ Themes",
+          "Ensemble Cast"
+        ],
+        "studios": [
+          "A-1 Pictures"
+        ]
+      }
+    }
+  ],
+  "toReview": [],
+  "notReviewing": []
+}

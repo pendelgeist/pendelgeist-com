@@ -148,12 +148,14 @@ season of trash can get finished too. Don't add it unless the user says so. A `f
 requires it.
 
 **Lineups and the Backlog**: a season file whose id is `<season>-<year>` is a **lineup**, an
-anime season reviewed live; any other id is a **shelf** (`isLineup` in `public/vqar/seasons.js`
-decides, so there's no flag to keep in step). A review of a show that didn't air in the season it
-was watched in goes on the one shelf, `seasons/backlog.json` (`"sortKey": 0`); its `aired` says
-when it aired. It counts in every total and average but is left out of the per-season stats
-(`_lineup` in `public/vqar-stats/stats.js`, which also needs a first impression), and can't be
-`current`.
+anime season; any other id is a **shelf** (`isLineup` in `public/vqar/seasons.js` decides, so
+there's no flag to keep in step). A live first impression goes in the season being reviewed, even
+for an older show picked up then (its `aired` says when it aired). A backfill - reviewed after
+watching a stretch of a show, whenever that was - goes in the lineup of the season it aired in
+(its `aired`): create the lineup file if it doesn't exist yet (no `current`). Only a show with no
+aired season (no AniList entry) goes on the one shelf, `seasons/backlog.json` (`"sortKey": 0`). Shows with no first impression - the Backlog's, and a backfilled lineup's - count in
+every total and average but are left out of the per-season stats (`_lineup`/`liveShows` in
+`public/vqar-stats/stats.js`). The Backlog can't be `current`.
 README → "Lineups and the Backlog".
 
 **Starting a season**: add `seasons/<season>-<year>.json` with a matching `id`, a `name`,

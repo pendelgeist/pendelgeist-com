@@ -1,0 +1,100 @@
+{
+  "id": "winter-2022",
+  "name": "Winter 2022",
+  "shows": [
+    {
+      "titleEN": "Life With an Ordinary Guy Who Reincarnated Into a Total Fantasy Knockout",
+      "titleJP": "異世界美少女受肉おじさんと",
+      "aired": {
+        "season": "winter",
+        "year": 2022
+      },
+      "reviews": [
+        {
+          "ratingNumber": 3,
+          "text": "Modestly fun.",
+          "dateReviewed": "2026-11-17T22:18:05-05:00"
+        }
+      ],
+      "watched": {
+        "from": "2022-02-22",
+        "to": "2022-03-29"
+      },
+      "anilistId": 134252,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GQWH0M90V/life-with-an-ordinary-guy-who-reincarnated-into-a-total-fantasy-knockout",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Adventure",
+          "Comedy",
+          "Fantasy",
+          "Romance"
+        ],
+        "tags": [
+          "Parody",
+          "Gender Bending",
+          "Isekai",
+          "Slapstick",
+          "Satire",
+          "Primarily Adult Cast",
+          "LGBTQ+ Themes",
+          "Gods",
+          "Magic",
+          "Shounen",
+          "Heterosexual",
+          "Meta",
+          "Boys' Love"
+        ],
+        "studios": [
+          "OLM"
+        ]
+      }
+    },
+    {
+      "titleEN": "I'M KODAMA KAWASHIRI",
+      "titleJP": "あたしゃ川尻こだまだよ～デンジャラスライフハッカーのただれた生活～",
+      "aired": {
+        "season": "winter",
+        "year": 2022
+      },
+      "reviews": [
+        {
+          "episodes": 12,
+          "ratingNumber": 3,
+          "text": "A bit off from the normal.",
+          "dateReviewed": "2026-11-17T22:18:27-05:00"
+        }
+      ],
+      "watched": {
+        "from": "2022-03-03",
+        "to": "2022-04-22",
+        "episode": 12
+      },
+      "anilistId": 138912,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/G79H23VD4/im-kodama-kawashiri",
+      "anilist": {
+        "format": "TV_SHORT",
+        "genres": [
+          "Slice of Life"
+        ],
+        "tags": [
+          "Airsoft",
+          "Female Protagonist",
+          "Episodic",
+          "Primarily Adult Cast"
+        ],
+        "studios": [
+          "Lapin Track"
+        ]
+      }
+    }
+  ],
+  "toReview": [],
+  "notReviewing": []
+}

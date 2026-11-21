@@ -1,0 +1,59 @@
+{
+  "id": "spring-2016",
+  "name": "Spring 2016",
+  "shows": [
+    {
+      "titleEN": "My Hero Academia",
+      "titleJP": "僕のヒーローアカデミア",
+      "aired": {
+        "season": "spring",
+        "year": 2016
+      },
+      "reviews": [
+        {
+          "episodes": 170,
+          "ratingNumber": 4,
+          "text": "So I go all over on this show; it's super SJ, it's got weird and dumb characters and arcs. But then it's got this charm to it, and just when I think it's terrible and I'm gonna quit, the next season comes back a bit better. Cementos is the real boss hero of this world. I think this show was greatly helped by most of the seasons being 12/24 eps and then Bones would take a break, get enough manga/time/recover and then come back. So, as far as a well done SJ series that runs long enough but not too long, I like it.",
+          "dateReviewed": "2026-11-18T15:13:53-05:00"
+        }
+      ],
+      "watched": {
+        "from": "2022-10-03",
+        "to": "2026-05-19",
+        "episode": 170
+      },
+      "anilistId": 21459,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/G6NQ5DWZ6/my-hero-academia",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Action",
+          "Adventure",
+          "Comedy"
+        ],
+        "tags": [
+          "Super Power",
+          "Superhero",
+          "Shounen",
+          "Primarily Teen Cast",
+          "Male Protagonist",
+          "Crime",
+          "School",
+          "Rescue",
+          "Urban Fantasy",
+          "Ensemble Cast",
+          "Bullying",
+          "Primarily Male Cast"
+        ],
+        "studios": [
+          "bones"
+        ]
+      }
+    }
+  ],
+  "toReview": [],
+  "notReviewing": []
+}

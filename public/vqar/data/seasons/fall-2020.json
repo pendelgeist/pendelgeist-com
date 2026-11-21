@@ -1,0 +1,119 @@
+{
+  "id": "fall-2020",
+  "name": "Fall 2020",
+  "shows": [
+    {
+      "titleEN": "I'm Standing on a Million Lives",
+      "titleJP": "100万の命の上に俺は立っている",
+      "aired": {
+        "season": "fall",
+        "year": 2020
+      },
+      "reviews": [
+        {
+          "ratingNumber": 1,
+          "text": "Stoopid.",
+          "dateReviewed": "2026-11-17T22:18:05-05:00"
+        }
+      ],
+      "watched": {
+        "from": "2022-02-19",
+        "to": "2022-02-21"
+      },
+      "anilistId": 116242,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/G6Q9GGE26/im-standing-on-a-million-lives",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Action",
+          "Drama",
+          "Fantasy"
+        ],
+        "tags": [
+          "Isekai",
+          "Survival",
+          "Shounen",
+          "Body Horror",
+          "Magic",
+          "Primarily Teen Cast",
+          "Male Protagonist",
+          "Philosophy",
+          "Ensemble Cast",
+          "Death Game",
+          "Otaku Culture",
+          "Goblin",
+          "Primarily Female Cast",
+          "Female Harem",
+          "Coming of Age"
+        ],
+        "studios": [
+          "Maho Film"
+        ]
+      }
+    },
+    {
+      "titleEN": "JUJUTSU KAISEN",
+      "titleJP": "呪術廻戦",
+      "aired": {
+        "season": "fall",
+        "year": 2020
+      },
+      "reviews": [
+        {
+          "episodes": 40,
+          "ratingNumber": 3,
+          "text": "I started and stopped several times. I was coerced by my bestie because she loves it. She’s also 13.\n\nI think the show itself is (at least up to ep 18) a shallow clone of Naruto, but without some of the charm and innocence.\n\nIt’s exceedingly well produced by the A-Team at MAPPA. But I don’t care about it that much. I’d rather read Naruto or watch MHA (My Hero Academia).\n\nOr read / watch Chainsawman if you want the same MAT (MAPPA A-Team).\n\nSo, is it bad? No. Do I care about it and what happens? Not really. But at least it looks nice and has some fun fights.\n\nHowever, OMG it suffers so much from the modern Shonen Jump problem where they have to have all these terms and abilities and all this stuff built and expositioned so much. Think back to the beginnings of Naruto - it stays simple for many volumes and gradually adds to the complexity of the rules and world and ninja mechanics.\n\nCSM does go a bit deeper in the modern SJ over depth but… that one is so much more about the characters and they are just more fun.\n\nI’ve been told that “it gets good in season2!” But I’ve been told that about shows for my entire life (and told others) and you know what? That’s the Origin Story of my VQAR (very quick anime reviews). No, you don’t get 10 hours to “get good”. Just be good from the start.\n\nAnd an addendum: I have now watched up through ep ~40. It's still exceedingly well produced, animated, drawn. I still don't really understand the world, but at least it looks nice.",
+          "dateReviewed": "2026-11-19T09:25:06-05:00"
+        }
+      ],
+      "watched": {
+        "from": "2023-12-26",
+        "to": "2026-11-13",
+        "episode": 40
+      },
+      "anilistId": 113415,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GRDV0019R/jujutsu-kaisen",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Action",
+          "Drama",
+          "Supernatural"
+        ],
+        "tags": [
+          "Urban Fantasy",
+          "Shounen",
+          "Curses",
+          "Super Power",
+          "Youkai",
+          "Male Protagonist",
+          "Exorcism",
+          "Primarily Teen Cast",
+          "Dissociative Identities",
+          "Demons",
+          "Orphan",
+          "Urban",
+          "Body Horror",
+          "Primarily Male Cast",
+          "Magic",
+          "Martial Arts",
+          "Ensemble Cast",
+          "Gore",
+          "Anthropomorphism",
+          "School"
+        ],
+        "studios": [
+          "MAPPA"
+        ]
+      }
+    }
+  ],
+  "toReview": [],
+  "notReviewing": []
+}

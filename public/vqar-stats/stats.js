@@ -7,7 +7,7 @@
 
 import { effectiveRatingNumber, awaitingRevisit, HOPING_RATING, RATING_NUMBER_LABELS } from '../vqar/rating.js';
 import { entryTitle } from '../vqar/list-entries.js';
-import { isLineup } from '../vqar/seasons.js';
+import { isLineup, seasonSortKey } from '../vqar/seasons.js';
 import { reviewValues } from '../vqar/filters.js';
 import { isLikedOpEd, whichLabel } from '../vqar/oped.js';
 import { currentReview, firstImpression, laterReviews, ratingShift, reviewsOf } from '../vqar/reviews.js';
@@ -30,8 +30,8 @@ export function flattenReviews(seasons) {
     _timestamp: Date.parse(currentReview(r)?.dateReviewed ?? '') || 0,
     _firstTimestamp: Date.parse(reviewsOf(r)[0]?.dateReviewed ?? '') || 0,
     // A shelf like the Backlog isn't a point in time, so the per-season
-    // trends below only count lineups (seasons reviewed live) - and within
-    // one, shows that got a first impression as it aired.
+    // trends below only count lineups (seasons watched as they aired) - and
+    // within one, shows that got a first impression as it aired, not backfills.
     _lineup: isLineup(season) && firstImpression(r) !== undefined,
   })));
 }
@@ -66,7 +66,7 @@ export function computeGlanceStats(seasons, reviews) {
 
   return {
     totalReviews: reviews.length,
-    seasonsCovered: seasons.filter(s => isLineup(s) && (s.shows ?? []).length > 0).length,
+    seasonsCovered: seasons.filter(s => liveShows(s).length > 0).length,
     avgRating,
     fullReReviews: reviews.filter(r => firstImpression(r) && laterReviews(r).length > 0).length,
     likedOps: reviews.filter(r => isLikedOpEd(r.op)).length,
@@ -79,13 +79,24 @@ export function computeGlanceStats(seasons, reviews) {
 }
 
 /**
+ * The shows a season's per-season stats count: in a lineup, and given a first
+ * impression as they aired. A shelf like the Backlog has none, and neither
+ * does a lineup of shows watched as they aired but reviewed later (backfills).
+ * @param {SeasonData} season
+ */
+function liveShows(season) {
+  return isLineup(season) ? (season.shows ?? []).filter(show => firstImpression(show) !== undefined) : [];
+}
+
+/**
  * How much of the season's reviewable lineup has been reviewed: `total` is
- * `reviewed` + `toReview`. `notReviewing` shows are deliberately left out.
+ * `reviewed` + `toReview`. `notReviewing` shows are deliberately left out, and
+ * so are backfills (see liveShows), which never were on a to-review list.
  * @param {SeasonData[]} seasons
  */
 export function computeSeasonCoverage(seasons) {
   const lineups = seasons.filter(isLineup);
-  const reviewed = lineups.reduce((sum, s) => sum + (s.shows ?? []).length, 0);
+  const reviewed = lineups.reduce((sum, s) => sum + liveShows(s).length, 0);
   const toReview = lineups.reduce((sum, s) => sum + (s.toReview ?? []).length, 0);
   const total = reviewed + toReview;
   return { reviewed, toReview, total, pct: total ? Math.round((reviewed / total) * 100) : null };
@@ -188,6 +199,20 @@ export function computeRevisitCandidates(reviews, seasonId) {
     .sort((a, b) => b._timestamp - a._timestamp || (a.titleEN ?? '').localeCompare(b.titleEN ?? ''));
 }
 
+/**
+ * Whether season `a` came before season `b`: by their order in the index (a
+ * lineup's id, or a shelf's sortKey - the Backlog sorts before everything),
+ * since a lineup can be reviewed long after it aired. A season with no order
+ * falls back to when it was first reviewed.
+ * @param {SeasonData} a
+ * @param {SeasonData} b
+ */
+function seasonComesBefore(a, b) {
+  const [keyA, keyB] = [seasonSortKey(a), seasonSortKey(b)];
+  if (keyA !== null && keyB !== null) return keyA < keyB;
+  return seasonEarliestTimestamp(a) < seasonEarliestTimestamp(b);
+}
+
 /** Earliest parseable `dateReviewed` across a season's reviews, or Infinity if none. */
 function seasonEarliestTimestamp(season) {
   let earliest = Infinity;
@@ -227,9 +252,8 @@ function normalizeBaseTitle(title) {
  * that look like a continuing/returning season of something rated highly -
  * or watched to the end (`watched.finished`), whatever its rating - in an
  * *earlier* season: worth bumping up the queue even though VQAR's usual
- * guidance is to skip returning seasons. "Earlier" is judged by each
- * season's earliest `dateReviewed` (the flattened review list carries no
- * chronological), so picking an older season only checks it against
+ * guidance is to skip returning seasons. "Earlier" is the seasons' own order
+ * (see seasonComesBefore), so picking an older season only checks it against
  * seasons that came before it, not ones that came after. Matches by
  * `normalizeBaseTitle`, so it's necessarily heuristic rather than exact.
  * @param {SeasonData[]} seasons
@@ -240,13 +264,12 @@ export function computeContinuationWatch(seasons, seasonId, { minRating = 4 } = 
   const targetSeason = seasons.find(s => String(s.id) === String(seasonId));
   if (!targetSeason) return [];
 
-  const targetEarliest = seasonEarliestTimestamp(targetSeason);
 
   /** @type {Map<string, {title: string, seasonName: string, rating: number|null, finished: boolean}>} */
   const bestPastByBase = new Map();
   for (const season of seasons) {
     if (String(season.id) === String(seasonId)) continue;
-    if (seasonEarliestTimestamp(season) >= targetEarliest) continue; // only seasons that actually came before this one count as "the past"
+    if (!seasonComesBefore(season, targetSeason)) continue; // only seasons that actually came before this one count as "the past"
     for (const r of season.shows ?? []) {
       const effective = effectiveRatingNumber(r);
       const rating = typeof effective === 'number' ? effective : null;

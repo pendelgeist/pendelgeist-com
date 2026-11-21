@@ -1,0 +1,119 @@
+{
+  "id": "spring-2013",
+  "name": "Spring 2013",
+  "shows": [
+    {
+      "titleEN": "Gargantia on the Verdurous Planet",
+      "titleJP": "翠星のガルガンティア",
+      "aired": {
+        "season": "spring",
+        "year": 2013
+      },
+      "reviews": [
+        {
+          "ratingNumber": 3,
+          "text": "I vaguely remember this show. Probably fine.",
+          "dateReviewed": "2026-11-17T13:50:35-05:00"
+        }
+      ],
+      "watched": {
+        "from": "2013-06-05",
+        "to": "2013-07-01"
+      },
+      "anilistId": 16524,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GR49G1GE6/gargantia-on-the-verdurous-planet",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Action",
+          "Adventure",
+          "Mecha",
+          "Sci-Fi"
+        ],
+        "tags": [
+          "Environmental",
+          "Lost Civilization",
+          "Artificial Intelligence",
+          "Post-Apocalyptic",
+          "Ships",
+          "Male Protagonist",
+          "Real Robot",
+          "Language Barrier",
+          "Isekai",
+          "Military",
+          "Aliens",
+          "Pirates",
+          "Super Robot",
+          "Space",
+          "Tanned Skin",
+          "Heterosexual",
+          "Philosophy",
+          "CGI"
+        ],
+        "studios": [
+          "Production I.G"
+        ]
+      }
+    },
+    {
+      "titleEN": "Attack on Titan",
+      "titleJP": "進撃の巨人",
+      "aired": {
+        "season": "spring",
+        "year": 2013
+      },
+      "reviews": [
+        {
+          "ratingNumber": 4,
+          "text": "Really great first season, but I never finished it.",
+          "dateReviewed": "2026-11-17T13:52:31-05:00"
+        }
+      ],
+      "watched": {
+        "from": "2013-06-24",
+        "to": "2013-10-02"
+      },
+      "anilistId": 16498,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GR751KNZY/attack-on-titan",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Action",
+          "Drama",
+          "Fantasy",
+          "Mystery"
+        ],
+        "tags": [
+          "Revenge",
+          "Kaiju",
+          "Military",
+          "Male Protagonist",
+          "Primarily Teen Cast",
+          "Post-Apocalyptic",
+          "Survival",
+          "Gore",
+          "Dystopian",
+          "Steampunk",
+          "Swordplay",
+          "Ensemble Cast",
+          "Orphan",
+          "Shounen",
+          "Kuudere",
+          "Coming of Age",
+          "Medieval"
+        ],
+        "studios": [
+          "WIT STUDIO"
+        ]
+      }
+    }
+  ],
+  "toReview": [],
+  "notReviewing": []
+}

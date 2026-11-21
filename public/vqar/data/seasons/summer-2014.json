@@ -1,0 +1,70 @@
+{
+  "id": "summer-2014",
+  "name": "Summer 2014",
+  "shows": [
+    {
+      "titleEN": "Pretty Guardian Sailor Moon Crystal",
+      "titleJP": "美少女戦士セーラームーンCrystal",
+      "aired": {
+        "season": "summer",
+        "year": 2014
+      },
+      "reviews": [
+        {
+          "episodes": 8,
+          "ratingNumber": 2,
+          "text": "Don't remember it really, but it's nowhere near the original show.",
+          "dateReviewed": "2026-11-17T16:17:12-05:00"
+        }
+      ],
+      "watched": {
+        "from": "2014-10-01",
+        "to": "2014-10-19",
+        "episode": 8
+      },
+      "anilistId": 14751,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GYX019NPR/pretty-guardian-sailor-moon-crystal",
+      "anilist": {
+        "format": "ONA",
+        "genres": [
+          "Action",
+          "Fantasy",
+          "Mahou Shoujo",
+          "Romance"
+        ],
+        "tags": [
+          "Magic",
+          "Coming of Age",
+          "Female Protagonist",
+          "Henshin",
+          "Shoujo",
+          "Urban Fantasy",
+          "Parenthood",
+          "Mythology",
+          "War",
+          "Lost Civilization",
+          "Space",
+          "Found Family",
+          "Primarily Female Cast",
+          "Super Power",
+          "Space Opera",
+          "Aliens",
+          "Fairy Tale",
+          "Primarily Teen Cast",
+          "Demons",
+          "Superhero",
+          "Bullying",
+          "Body Horror"
+        ],
+        "studios": [
+          "Toei Animation"
+        ]
+      }
+    }
+  ],
+  "toReview": [],
+  "notReviewing": []
+}

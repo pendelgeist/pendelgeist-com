@@ -1,0 +1,51 @@
+{
+  "id": "winter-2013",
+  "name": "Winter 2013",
+  "shows": [
+    {
+      "titleEN": "Zettai Karen Children: THE UNLIMITED - Hyoubu Kyousuke",
+      "titleJP": "絶対可憐チルドレン THE UNLIMITED 兵部京介",
+      "aired": {
+        "season": "winter",
+        "year": 2013
+      },
+      "reviews": [
+        {
+          "ratingNumber": 1,
+          "text": "I literally do not remember anything about this show.",
+          "dateReviewed": "2026-11-17T12:13:12-05:00"
+        }
+      ],
+      "watched": {
+        "from": "2013-02-13",
+        "to": "2013-04-15"
+      },
+      "anilistId": 16005,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GRWEMM83R/the-unlimited-hyobu-kyosuke",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Action",
+          "Sci-Fi"
+        ],
+        "tags": [
+          "Super Power",
+          "Anti-Hero",
+          "Mafia",
+          "Espionage",
+          "Class Struggle",
+          "Fugitive",
+          "Male Protagonist"
+        ],
+        "studios": [
+          "Manglobe"
+        ]
+      }
+    }
+  ],
+  "toReview": [],
+  "notReviewing": []
+}

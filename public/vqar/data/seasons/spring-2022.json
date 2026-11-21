@@ -1,0 +1,305 @@
+{
+  "id": "spring-2022",
+  "name": "Spring 2022",
+  "shows": [
+    {
+      "titleEN": "BIRDIE WING -Golf Girls' Story-",
+      "titleJP": "BIRDIE WING -Golf Girls' Story-",
+      "aired": {
+        "season": "spring",
+        "year": 2022
+      },
+      "reviews": [
+        {
+          "episodes": 16,
+          "ratingNumber": 5,
+          "text": "Season 1 is completely outlandishly wonderful. S2 just skip it; they only made one season, and it's beautifully ridiculous.",
+          "dateReviewed": "2026-11-17T22:26:16-05:00"
+        }
+      ],
+      "watched": {
+        "from": "2022-04-06",
+        "to": "2023-06-26",
+        "episode": 16
+      },
+      "anilistId": 140830,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GNVHKN714/birdie-wing-golf-girls-story",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Drama",
+          "Slice of Life",
+          "Sports"
+        ],
+        "tags": [
+          "Golf",
+          "Female Protagonist",
+          "Primarily Female Cast",
+          "Primarily Teen Cast",
+          "Gambling",
+          "Class Struggle",
+          "Mafia",
+          "Gangs"
+        ],
+        "studios": [
+          "Bandai Namco Pictures"
+        ]
+      }
+    },
+    {
+      "titleEN": "SPY x FAMILY",
+      "titleJP": "SPY×FAMILY",
+      "aired": {
+        "season": "spring",
+        "year": 2022
+      },
+      "reviews": [
+        {
+          "ratingNumber": 4,
+          "text": "It's a quite nicely done show. But that's the truth about anything that Kazuhiro Furuhashi directs; it'll be the best possible version of that thing you'll see.",
+          "dateReviewed": "2026-11-17T22:27:02-05:00"
+        }
+      ],
+      "watched": {
+        "from": "2022-04-12",
+        "to": "2024-05-14"
+      },
+      "anilistId": 140960,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/G4PH0WXVJ/spy-x-family",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Action",
+          "Comedy",
+          "Slice of Life",
+          "Supernatural"
+        ],
+        "tags": [
+          "Espionage",
+          "Family Life",
+          "Found Family",
+          "Fake Relationship",
+          "Parenthood",
+          "Assassins",
+          "Conspiracy",
+          "Adoption",
+          "Male Protagonist",
+          "Female Protagonist",
+          "Urban",
+          "Slapstick",
+          "Crime",
+          "Super Power",
+          "Foreign",
+          "Shounen",
+          "School",
+          "Ensemble Cast",
+          "Heterosexual",
+          "Surreal Comedy",
+          "Episodic",
+          "Parody",
+          "Politics",
+          "Cohabitation",
+          "Unrequited Love"
+        ],
+        "studios": [
+          "CloverWorks",
+          "WIT STUDIO"
+        ]
+      }
+    },
+    {
+      "titleEN": "Healer Girl",
+      "titleJP": "ヒーラー・ガール",
+      "aired": {
+        "season": "spring",
+        "year": 2022
+      },
+      "reviews": [
+        {
+          "ratingNumber": 5,
+          "text": "I really love this show. It's quite well executed, interesting characters, great setting. Nice healing anime.",
+          "dateReviewed": "2026-11-17T22:27:44-05:00"
+        }
+      ],
+      "watched": {
+        "from": "2022-04-19",
+        "to": "2022-06-23"
+      },
+      "anilistId": 133412,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GXJHM37WP/healer-girl",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Music",
+          "Slice of Life",
+          "Supernatural"
+        ],
+        "tags": [
+          "Primarily Female Cast",
+          "Musical Theater",
+          "Female Protagonist",
+          "Cute Girls Doing Cute Things",
+          "Magic",
+          "Iyashikei",
+          "Primarily Teen Cast"
+        ],
+        "studios": [
+          "Studio 3Hz"
+        ]
+      }
+    },
+    {
+      "titleEN": "Aharen-san wa Hakarenai",
+      "titleJP": "阿波連さんははかれない",
+      "aired": {
+        "season": "spring",
+        "year": 2022
+      },
+      "reviews": [
+        {
+          "ratingNumber": 3,
+          "text": "It's a nicely done teen non-romantic romance.",
+          "dateReviewed": "2026-11-17T22:28:16-05:00"
+        }
+      ],
+      "watched": {
+        "from": "2022-04-20",
+        "to": "2022-06-21"
+      },
+      "anilistId": 137281,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GNVHKN72N/aharen-san-wa-hakarenai",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Comedy",
+          "Romance",
+          "Slice of Life"
+        ],
+        "tags": [
+          "Kuudere",
+          "School",
+          "Surreal Comedy",
+          "Slapstick",
+          "Male Protagonist",
+          "Primarily Teen Cast",
+          "Episodic",
+          "Heterosexual",
+          "Female Protagonist",
+          "Parody"
+        ],
+        "studios": [
+          "Felix Film"
+        ]
+      }
+    },
+    {
+      "titleEN": "Tomodachi Game",
+      "titleJP": "トモダチゲーム",
+      "aired": {
+        "season": "spring",
+        "year": 2022
+      },
+      "reviews": [
+        {
+          "ratingNumber": 5,
+          "text": "Fabulous death game.",
+          "dateReviewed": "2026-11-17T22:28:34-05:00"
+        }
+      ],
+      "watched": {
+        "from": "2022-04-20",
+        "to": "2022-06-22"
+      },
+      "anilistId": 141014,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GJ0H7QX0Z/tomodachi-game",
+      "anilist": {
+        "format": "ONA",
+        "genres": [
+          "Drama",
+          "Mystery",
+          "Psychological",
+          "Thriller"
+        ],
+        "tags": [
+          "Survival",
+          "Male Protagonist",
+          "Anti-Hero",
+          "Shounen",
+          "Death Game",
+          "Gambling",
+          "Ensemble Cast"
+        ],
+        "studios": [
+          "Okuruto Noboru"
+        ]
+      }
+    },
+    {
+      "titleEN": "Love After World Domination",
+      "titleJP": "恋は世界征服のあとで",
+      "aired": {
+        "season": "spring",
+        "year": 2022
+      },
+      "reviews": [
+        {
+          "ratingNumber": 4,
+          "text": "Well done show, just nicely executed.",
+          "dateReviewed": "2026-11-17T22:28:53-05:00"
+        }
+      ],
+      "watched": {
+        "from": "2022-04-28",
+        "to": "2022-08-20"
+      },
+      "anilistId": 132010,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GEXH3WG78/love-after-world-domination",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Action",
+          "Comedy",
+          "Romance",
+          "Supernatural"
+        ],
+        "tags": [
+          "Tokusatsu",
+          "Parody",
+          "Heterosexual",
+          "Superhero",
+          "Female Protagonist",
+          "Male Protagonist",
+          "Henshin",
+          "Anthropomorphism",
+          "Urban Fantasy",
+          "Gyaru",
+          "Primarily Teen Cast",
+          "Animals"
+        ],
+        "studios": [
+          "project No.9"
+        ]
+      }
+    }
+  ],
+  "toReview": [],
+  "notReviewing": []
+}

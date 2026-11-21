@@ -1,0 +1,68 @@
+{
+  "id": "summer-2016",
+  "name": "Summer 2016",
+  "shows": [
+    {
+      "titleEN": "Mob Psycho 100",
+      "titleJP": "モブサイコ100",
+      "aired": {
+        "season": "summer",
+        "year": 2016
+      },
+      "reviews": [
+        {
+          "episodes": 9,
+          "ratingNumber": 4,
+          "text": "Very pretty show. Fun concept.",
+          "dateReviewed": "2026-11-19T08:59:18-05:00"
+        }
+      ],
+      "watched": {
+        "from": "2023-02-27",
+        "to": "2023-05-23",
+        "episode": 9
+      },
+      "anilistId": 21507,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GY190DKQR/mob-psycho-100",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Action",
+          "Comedy",
+          "Drama",
+          "Psychological",
+          "Slice of Life",
+          "Supernatural"
+        ],
+        "tags": [
+          "Super Power",
+          "Coming of Age",
+          "Urban Fantasy",
+          "Ghost",
+          "Philosophy",
+          "Primarily Teen Cast",
+          "Surreal Comedy",
+          "Exorcism",
+          "Male Protagonist",
+          "Parody",
+          "Urban",
+          "Satire",
+          "Shounen",
+          "Primarily Male Cast",
+          "Disability",
+          "School",
+          "Slapstick",
+          "Demons"
+        ],
+        "studios": [
+          "bones"
+        ]
+      }
+    }
+  ],
+  "toReview": [],
+  "notReviewing": []
+}

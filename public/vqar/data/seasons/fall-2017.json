@@ -1,0 +1,65 @@
+{
+  "id": "fall-2017",
+  "name": "Fall 2017",
+  "shows": [
+    {
+      "titleEN": "JUNI TAISEN: ZODIAC WAR",
+      "titleJP": "十二大戦",
+      "aired": {
+        "season": "fall",
+        "year": 2017
+      },
+      "reviews": [
+        {
+          "ratingNumber": 3,
+          "text": "I like this show more than it gets crapped on for the ending.",
+          "dateReviewed": "2026-11-19T11:55:08-05:00"
+        }
+      ],
+      "watched": {
+        "from": "2024-04-03",
+        "to": "2024-04-27"
+      },
+      "anilistId": 98443,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/G6K51X9GY/juni-taisen-zodiac-war",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Action",
+          "Thriller"
+        ],
+        "tags": [
+          "Battle Royale",
+          "Death Game",
+          "Ensemble Cast",
+          "War",
+          "Urban",
+          "Martial Arts",
+          "Urban Fantasy",
+          "Tanned Skin",
+          "Orphan",
+          "Kemonomimi",
+          "Necromancy",
+          "Super Power",
+          "Military",
+          "Swordplay",
+          "Monster Boy",
+          "Monster Girl",
+          "Gore",
+          "Primarily Adult Cast",
+          "Animals",
+          "Anti-Hero",
+          "Crossdressing"
+        ],
+        "studios": [
+          "Graphinica"
+        ]
+      }
+    }
+  ],
+  "toReview": [],
+  "notReviewing": []
+}

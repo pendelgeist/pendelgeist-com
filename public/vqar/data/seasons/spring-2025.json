@@ -1,0 +1,209 @@
+{
+  "id": "spring-2025",
+  "name": "Spring 2025",
+  "shows": [
+    {
+      "titleEN": "My Hero Academia: Vigilantes",
+      "titleJP": "ヴィジランテ -僕のヒーローアカデミア ILLEGALS-",
+      "aired": {
+        "season": "spring",
+        "year": 2025
+      },
+      "reviews": [
+        {
+          "ratingNumber": 4,
+          "text": "Season 1 is lovely, season 2 is not as good but not bad.",
+          "dateReviewed": "2026-11-19T12:18:27-05:00"
+        }
+      ],
+      "watched": {
+        "from": "2025-04-21",
+        "to": "2026-03-31"
+      },
+      "anilistId": 185736,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/G79H23ZQ3/my-hero-academia-vigilantes",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Action",
+          "Adventure",
+          "Drama",
+          "Fantasy"
+        ],
+        "tags": [
+          "Urban Fantasy",
+          "Urban",
+          "Superhero",
+          "Super Power",
+          "Shounen",
+          "Crime",
+          "Male Protagonist",
+          "Idol",
+          "Anti-Hero",
+          "Fugitive"
+        ],
+        "studios": [
+          "bones film"
+        ]
+      }
+    },
+    {
+      "titleEN": "WITCH WATCH",
+      "titleJP": "ウィッチウォッチ",
+      "aired": {
+        "season": "spring",
+        "year": 2025
+      },
+      "reviews": [
+        {
+          "episodes": 9,
+          "ratingNumber": 2,
+          "text": "It's fun.",
+          "dateReviewed": "2026-11-19T12:18:27-05:00"
+        }
+      ],
+      "watched": {
+        "from": "2025-08-28",
+        "to": "2026-05-06",
+        "episode": 9
+      },
+      "anilistId": 180367,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/G5PHNM9P0/witch-watch",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Comedy",
+          "Drama",
+          "Fantasy",
+          "Romance",
+          "Slice of Life",
+          "Supernatural"
+        ],
+        "tags": [
+          "Witch",
+          "Magic",
+          "Slapstick",
+          "Episodic",
+          "Surreal Comedy",
+          "Cohabitation",
+          "Found Family",
+          "Primarily Teen Cast",
+          "Heterosexual",
+          "Urban Fantasy",
+          "Parody",
+          "Female Protagonist",
+          "Ensemble Cast",
+          "Otaku Culture",
+          "Meta",
+          "Male Protagonist",
+          "Youkai",
+          "Shounen",
+          "Urban"
+        ],
+        "studios": [
+          "Bibury Animation Studios"
+        ]
+      }
+    },
+    {
+      "titleEN": "GUILTY GEAR",
+      "titleJP": "GUILTY GEAR STRIVE: DUAL RULERS",
+      "aired": {
+        "season": "spring",
+        "year": 2025
+      },
+      "reviews": [
+        {
+          "ratingNumber": 4,
+          "text": "It's completely insane, the story is insane, the world is insane; so it's 100% pure Guilty Gear.",
+          "dateReviewed": "2026-11-19T11:59:12-05:00"
+        }
+      ],
+      "watched": {
+        "from": "2025-04-07",
+        "to": "2025-06-09"
+      },
+      "anilistId": 178046,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GEXH3W2MZ/guilty-gear",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Action",
+          "Sci-Fi"
+        ],
+        "tags": [
+          "Super Power",
+          "Full CGI",
+          "Post-Apocalyptic",
+          "Magic",
+          "Conspiracy",
+          "Coming of Age"
+        ],
+        "studios": [
+          "SANZIGEN"
+        ]
+      }
+    },
+    {
+      "titleEN": "Catch Me at the Ballpark!",
+      "titleJP": "ボールパークでつかまえて！",
+      "aired": {
+        "season": "spring",
+        "year": 2025
+      },
+      "reviews": [
+        {
+          "ratingNumber": 5,
+          "text": "Is there anything better than a good show about the behind the scenes people for a mid-tier NPB team? No! Also this ED is great.",
+          "dateReviewed": "2026-11-19T11:58:39-05:00"
+        }
+      ],
+      "watched": {
+        "from": "2025-04-03",
+        "to": "2025-07-23"
+      },
+      "anilistId": 184279,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GVDHX85EQ/catch-me-at-the-ballpark",
+      "ed": [
+        1
+      ],
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Comedy",
+          "Romance",
+          "Slice of Life",
+          "Sports"
+        ],
+        "tags": [
+          "Ensemble Cast",
+          "Seinen",
+          "Work",
+          "Baseball",
+          "Iyashikei",
+          "Female Protagonist",
+          "Episodic",
+          "Gyaru",
+          "Primarily Adult Cast"
+        ],
+        "studios": [
+          "EMT Squared"
+        ]
+      }
+    }
+  ],
+  "toReview": [],
+  "notReviewing": []
+}

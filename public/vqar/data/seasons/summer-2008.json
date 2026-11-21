@@ -1,0 +1,50 @@
+{
+  "id": "summer-2008",
+  "name": "Summer 2008",
+  "shows": [
+    {
+      "titleEN": "Time of Eve",
+      "titleJP": "イヴの時間 Are you enjoying the time of EVE ?",
+      "aired": {
+        "season": "summer",
+        "year": 2008
+      },
+      "reviews": [
+        {
+          "ratingNumber": 2,
+          "text": "I don't really remember.",
+          "dateReviewed": "2026-11-17T14:45:08-05:00"
+        }
+      ],
+      "watched": {
+        "from": "2014-03-16",
+        "to": "2014-04-13"
+      },
+      "anilistId": 3167,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GYDQ42286/time-of-eve",
+      "anilist": {
+        "format": "ONA",
+        "genres": [
+          "Sci-Fi",
+          "Slice of Life"
+        ],
+        "tags": [
+          "Robots",
+          "Artificial Intelligence",
+          "Philosophy",
+          "Bar",
+          "Male Protagonist",
+          "Urban"
+        ],
+        "studios": [
+          "Studio Rikka"
+        ]
+      }
+    }
+  ],
+  "toReview": [],
+  "notReviewing": []
+}

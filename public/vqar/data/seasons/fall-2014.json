@@ -1,0 +1,58 @@
+{
+  "id": "fall-2014",
+  "name": "Fall 2014",
+  "shows": [
+    {
+      "titleEN": "I Can't Understand What My Husband Is Saying",
+      "titleJP": "旦那が何を言っているかわからない件",
+      "aired": {
+        "season": "fall",
+        "year": 2014
+      },
+      "reviews": [
+        {
+          "episodes": 10,
+          "ratingNumber": 1,
+          "text": "Stoopid.",
+          "dateReviewed": "2026-11-17T22:19:50-05:00"
+        }
+      ],
+      "watched": {
+        "from": "2022-03-19",
+        "to": "2022-03-25",
+        "episode": 10
+      },
+      "anilistId": 20735,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/G65VK1N76/i-cant-understand-what-my-husband-is-saying",
+      "anilist": {
+        "format": "TV_SHORT",
+        "genres": [
+          "Comedy",
+          "Romance",
+          "Slice of Life"
+        ],
+        "tags": [
+          "Family Life",
+          "Seinen",
+          "Otaku Culture",
+          "Primarily Adult Cast",
+          "Episodic",
+          "Marriage",
+          "Male Protagonist",
+          "Female Protagonist",
+          "Heterosexual",
+          "Urban",
+          "Crossdressing"
+        ],
+        "studios": [
+          "Seven"
+        ]
+      }
+    }
+  ],
+  "toReview": [],
+  "notReviewing": []
+}

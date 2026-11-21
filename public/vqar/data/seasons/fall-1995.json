@@ -1,0 +1,55 @@
+{
+  "id": "fall-1995",
+  "name": "Fall 1995",
+  "shows": [
+    {
+      "titleEN": "Golden Boy",
+      "titleJP": "GOLDEN BOY さすらいのお勉強野郎",
+      "aired": {
+        "season": "fall",
+        "year": 1995
+      },
+      "reviews": [
+        {
+          "ratingNumber": 5,
+          "text": "See the AMO Kenzoku episode on this; it's way better than the credit it got for being raunchy.",
+          "dateReviewed": "2026-11-19T11:56:24-05:00"
+        }
+      ],
+      "watched": {
+        "from": "2025-01-05",
+        "to": "2025-01-08"
+      },
+      "anilistId": 268,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GR19N7DV6/golden-boy",
+      "anilist": {
+        "format": "OVA",
+        "genres": [
+          "Adventure",
+          "Comedy",
+          "Ecchi"
+        ],
+        "tags": [
+          "Episodic",
+          "Work",
+          "Satire",
+          "Male Protagonist",
+          "Seinen",
+          "Travel",
+          "Cycling",
+          "Heterosexual",
+          "Nudity",
+          "Primarily Adult Cast"
+        ],
+        "studios": [
+          "APPP"
+        ]
+      }
+    }
+  ],
+  "toReview": [],
+  "notReviewing": []
+}
