@@ -1511,11 +1511,49 @@
           "TRIGGER"
         ]
       }
+    },
+    {
+      "titleEN": "Devils' Crest",
+      "titleJP": "デモンズ・クレスト",
+      "aired": {
+        "season": "fall",
+        "year": 2026
+      },
+      "reviews": [
+        {
+          "episodes": 1,
+          "ratingNumber": 0,
+          "text": "Oh boy, so this one I thought I recognized the author’s name, and I looked it up and see it’s the original author of SAO. So, shockingly, it’s another mixing of a virtual reality MMO into reality. The OP was frankly pretty damn cool, and then I saw that the animation was by Production IG. Sorry, I am. Dammit. Might actually finish the first episode to see if it becomes anything, but eight minutes in and boy am I not interested in anything that goes on here. Oh, and it doesn’t help that the main four characters are elementary schoolers, so that’s already weird.\nOK, so I watched the full episode, ads and all. The only reason I did that was because this show started airing after the others, so I had a little bit more time to get in there and I just spaced out on it. TL;DR, it’s terrible. I really wish Production IG was not involved in this crap show. The definitely-best thing is the OP. The rest of it is not good for any reason.",
+          "dateReviewed": "2026-11-21T09:56:55-05:00"
+        }
+      ],
+      "streaming": [
+        "prime"
+      ],
+      "anilistId": 203275,
+      "anilist": {
+        "format": "ONA",
+        "genres": [
+          "Action",
+          "Adventure",
+          "Fantasy"
+        ],
+        "tags": [
+          "Virtual World",
+          "Video Games",
+          "Female Protagonist",
+          "Male Protagonist",
+          "Urban Fantasy",
+          "CGI"
+        ],
+        "studios": [
+          "Production I.G"
+        ]
+      }
     }
   ],
   "toReview": [
-    { "title": "Fool Night", "premieres": "2026-11-26", "streaming": ["netflix"], "netflixUrl": "https://www.netflix.com/title/81991076" },
-    { "title": "Devils' Crest", "premieres": "2026-11-06", "streaming": ["prime"] }
+    { "title": "Fool Night", "premieres": "2026-11-26", "streaming": ["netflix"], "netflixUrl": "https://www.netflix.com/title/81991076" }
   ],
   "notReviewing": [
     { "title": "The Apothecary Diaries Season 3", "reason": "Continuing series", "streaming": ["crunchyroll"], "crunchyrollUrl": "https://www.crunchyroll.com/series/G3KHEVDJ7/the-apothecary-diaries" },
