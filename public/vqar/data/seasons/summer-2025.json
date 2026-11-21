@@ -1,0 +1,194 @@
+{
+  "id": "summer-2025",
+  "name": "Summer 2025",
+  "shows": [
+    {
+      "titleEN": "Uglymug, Epicfighter",
+      "titleJP": "ブサメンガチファイター",
+      "aired": {
+        "season": "summer",
+        "year": 2025
+      },
+      "reviews": [
+        {
+          "ratingNumber": 2,
+          "text": "Stupid, fine.",
+          "dateReviewed": "2026-11-19T12:18:27-05:00"
+        }
+      ],
+      "watched": {
+        "from": "2025-09-11",
+        "to": "2025-10-03"
+      },
+      "anilistId": 184575,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GNVHKN9VK/uglymug-epicfighter",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Adventure",
+          "Fantasy"
+        ],
+        "tags": [
+          "Isekai",
+          "Seinen",
+          "Male Protagonist",
+          "Super Power",
+          "Surreal Comedy",
+          "Body Image"
+        ],
+        "studios": [
+          "WHITE FOX"
+        ]
+      }
+    },
+    {
+      "titleEN": "Clevatess",
+      "titleJP": "クレバテス-魔獣の王と赤子と屍の勇者-",
+      "aired": {
+        "season": "summer",
+        "year": 2025
+      },
+      "reviews": [
+        {
+          "ratingNumber": 3,
+          "text": "I'm still not sure on this show. I go back and forth so much if it's really cool, or not good or just a bad Berserk clone or something else.",
+          "dateReviewed": "2026-11-19T12:18:27-05:00"
+        }
+      ],
+      "watched": {
+        "from": "2025-09-16",
+        "to": "2026-01-23"
+      },
+      "anilistId": 178869,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/G8DHV78ZM/clevatess",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Action",
+          "Drama",
+          "Fantasy"
+        ],
+        "tags": [
+          "Monster Boy",
+          "Female Protagonist",
+          "Tomboy",
+          "Medieval",
+          "Magic",
+          "Orphan",
+          "Revenge",
+          "Adoption",
+          "Parenthood",
+          "Primarily Adult Cast",
+          "Swordplay",
+          "Anti-Hero",
+          "Demons",
+          "Shapeshifting",
+          "Slavery",
+          "Body Horror",
+          "Gore",
+          "Found Family"
+        ],
+        "studios": [
+          "Lay-duce"
+        ]
+      }
+    },
+    {
+      "titleEN": "Detectives These Days Are Crazy!",
+      "titleJP": "まったく最近の探偵ときたら",
+      "aired": {
+        "season": "summer",
+        "year": 2025
+      },
+      "reviews": [
+        {
+          "ratingNumber": 5,
+          "text": "Now this is what I call anime!",
+          "dateReviewed": "2026-11-19T12:18:27-05:00"
+        }
+      ],
+      "watched": {
+        "from": "2025-09-17",
+        "to": "2026-02-15"
+      },
+      "anilistId": 180460,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/G79H23Z93/detectives-these-days-are-crazy",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Comedy",
+          "Mystery"
+        ],
+        "tags": [
+          "Surreal Comedy",
+          "Slapstick",
+          "Detective",
+          "Episodic",
+          "Ensemble Cast",
+          "Crime",
+          "Seinen",
+          "Urban"
+        ],
+        "studios": [
+          "LIDENFILMS"
+        ]
+      }
+    },
+    {
+      "titleEN": "Solo Camping for Two",
+      "titleJP": "ふたりソロキャンプ",
+      "aired": {
+        "season": "summer",
+        "year": 2025
+      },
+      "reviews": [
+        {
+          "episodes": 13,
+          "ratingNumber": 3,
+          "text": "Fun concept, you learn a bunch about outdoorsing in Japan.",
+          "dateReviewed": "2026-11-19T12:18:27-05:00"
+        }
+      ],
+      "watched": {
+        "from": "2025-09-18",
+        "to": "2026-04-08",
+        "episode": 13
+      },
+      "anilistId": 185965,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/G3KHEVDZ8/solo-camping-for-two",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Romance",
+          "Slice of Life"
+        ],
+        "tags": [
+          "Camping",
+          "Educational",
+          "Outdoor Activities",
+          "Food",
+          "Primarily Adult Cast",
+          "Seinen",
+          "Male Protagonist"
+        ],
+        "studios": [
+          "SynergySP"
+        ]
+      }
+    }
+  ],
+  "toReview": [],
+  "notReviewing": []
+}

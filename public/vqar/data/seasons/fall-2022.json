@@ -1,0 +1,169 @@
+{
+  "id": "fall-2022",
+  "name": "Fall 2022",
+  "shows": [
+    {
+      "titleEN": "Mobile Suit Gundam: The Witch from Mercury",
+      "titleJP": "機動戦士ガンダム 水星の魔女",
+      "aired": {
+        "season": "fall",
+        "year": 2022
+      },
+      "reviews": [
+        {
+          "ratingNumber": 5,
+          "text": "It's Revolutionary Girl Utena IN SPACE. What's not to love about that. Nicely done and a cool take in the Gundam universe.",
+          "dateReviewed": "2026-11-18T15:14:42-05:00"
+        }
+      ],
+      "watched": {
+        "from": "2022-10-11",
+        "to": "2025-01-07"
+      },
+      "anilistId": 139274,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/G79H2307W/mobile-suit-gundam-the-witch-from-mercury",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Action",
+          "Drama",
+          "Mecha",
+          "Sci-Fi"
+        ],
+        "tags": [
+          "Class Struggle",
+          "Real Robot",
+          "Female Protagonist",
+          "Space",
+          "School",
+          "Primarily Teen Cast",
+          "Politics",
+          "Artificial Intelligence",
+          "Super Robot",
+          "Yuri",
+          "Guns",
+          "Conspiracy",
+          "Boarding School"
+        ],
+        "studios": [
+          "Sunrise"
+        ]
+      }
+    },
+    {
+      "titleEN": "Chainsaw Man",
+      "titleJP": "チェンソーマン",
+      "aired": {
+        "season": "fall",
+        "year": 2022
+      },
+      "reviews": [
+        {
+          "ratingNumber": 5,
+          "text": "It's a very well done adaptation of the manga.",
+          "dateReviewed": "2026-11-18T15:15:07-05:00"
+        }
+      ],
+      "watched": {
+        "from": "2022-11-09",
+        "to": "2026-06-04"
+      },
+      "anilistId": 127230,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GVDHX8QNW/chainsaw-man",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Action",
+          "Drama",
+          "Horror",
+          "Supernatural"
+        ],
+        "tags": [
+          "Demons",
+          "Monster Boy",
+          "Urban Fantasy",
+          "Male Protagonist",
+          "Gore",
+          "Shapeshifting",
+          "Body Horror",
+          "Psychosexual",
+          "Henshin",
+          "Urban",
+          "Shounen",
+          "Monster Girl",
+          "Yakuza",
+          "Primarily Adult Cast",
+          "Heterosexual",
+          "Anthropomorphism",
+          "Found Family",
+          "Crime",
+          "CGI",
+          "Unrequited Love"
+        ],
+        "studios": [
+          "MAPPA"
+        ]
+      }
+    },
+    {
+      "titleEN": "BOCCHI THE ROCK!",
+      "titleJP": "ぼっち・ざ・ろっく！",
+      "aired": {
+        "season": "fall",
+        "year": 2022
+      },
+      "reviews": [
+        {
+          "ratingNumber": 5,
+          "text": "I bought the blu-rays and changed my CR avatar to Bocchi.",
+          "dateReviewed": "2026-11-18T15:15:35-05:00"
+        }
+      ],
+      "watched": {
+        "from": "2022-12-06",
+        "to": "2023-12-04"
+      },
+      "anilistId": 130003,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GXJHM3P19/bocchi-the-rock",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Comedy",
+          "Music",
+          "Slice of Life"
+        ],
+        "tags": [
+          "Band",
+          "Female Protagonist",
+          "Primarily Female Cast",
+          "Primarily Teen Cast",
+          "Rock Music",
+          "Coming of Age",
+          "Cute Girls Doing Cute Things",
+          "Hikikomori",
+          "Rehabilitation",
+          "Surreal Comedy",
+          "Meta",
+          "Mixed Media",
+          "Seinen",
+          "Slapstick",
+          "Yuri"
+        ],
+        "studios": [
+          "CloverWorks"
+        ]
+      }
+    }
+  ],
+  "toReview": [],
+  "notReviewing": []
+}

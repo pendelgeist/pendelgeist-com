@@ -1,0 +1,63 @@
+{
+  "id": "summer-2023",
+  "name": "Summer 2023",
+  "shows": [
+    {
+      "titleEN": "Undead Murder Farce",
+      "titleJP": "アンデッドガール・マーダーファルス",
+      "aired": {
+        "season": "summer",
+        "year": 2023
+      },
+      "reviews": [
+        {
+          "ratingNumber": 4,
+          "text": "Pretty good.",
+          "dateReviewed": "2026-11-19T09:21:15-05:00"
+        }
+      ],
+      "watched": {
+        "from": "2023-08-25",
+        "to": "2023-11-16"
+      },
+      "anilistId": 162983,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GMEHME7XV/undead-murder-farce",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Drama",
+          "Mystery",
+          "Supernatural"
+        ],
+        "tags": [
+          "Detective",
+          "Monster Girl",
+          "Monster Boy",
+          "Historical",
+          "Travel",
+          "Youkai",
+          "Female Protagonist",
+          "Foreign",
+          "Male Protagonist",
+          "Primarily Adult Cast",
+          "Crime",
+          "Revenge",
+          "Urban Fantasy",
+          "Demons",
+          "Fairy Tale",
+          "Gore",
+          "Vampire",
+          "Rural"
+        ],
+        "studios": [
+          "Lapin Track"
+        ]
+      }
+    }
+  ],
+  "toReview": [],
+  "notReviewing": []
+}

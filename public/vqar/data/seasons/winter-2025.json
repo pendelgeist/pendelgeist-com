@@ -1,0 +1,110 @@
+{
+  "id": "winter-2025",
+  "name": "Winter 2025",
+  "shows": [
+    {
+      "titleEN": "Zenshu",
+      "titleJP": "全修。",
+      "aired": {
+        "season": "winter",
+        "year": 2025
+      },
+      "reviews": [
+        {
+          "ratingNumber": 2,
+          "text": "Some parts of this show are really freaking cool; but it does not stick anything close to the landing.",
+          "dateReviewed": "2026-11-19T11:56:51-05:00"
+        }
+      ],
+      "watched": {
+        "from": "2025-01-09",
+        "to": "2025-03-23"
+      },
+      "anilistId": 176273,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/G24H1NW8E/zenshu",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Action",
+          "Fantasy",
+          "Romance"
+        ],
+        "tags": [
+          "Isekai",
+          "Female Protagonist",
+          "Super Power",
+          "Drawing",
+          "Magic",
+          "Primarily Adult Cast",
+          "Ensemble Cast",
+          "Meta",
+          "Gods",
+          "Heterosexual",
+          "Anthropomorphism",
+          "Otaku Culture",
+          "Medieval",
+          "Robots"
+        ],
+        "studios": [
+          "MAPPA"
+        ]
+      }
+    },
+    {
+      "titleEN": "Momentary Lily",
+      "titleJP": "もめんたりー・リリィ",
+      "aired": {
+        "season": "winter",
+        "year": 2025
+      },
+      "reviews": [
+        {
+          "ratingNumber": 3,
+          "text": "I really like Go Hands style and this show has an equally crazy premise.",
+          "dateReviewed": "2026-11-19T11:57:31-05:00"
+        }
+      ],
+      "watched": {
+        "from": "2025-01-28",
+        "to": "2025-04-15"
+      },
+      "anilistId": 177159,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GG5H5XQQ5/momentary-lily",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Action",
+          "Adventure",
+          "Mystery",
+          "Sci-Fi",
+          "Slice of Life"
+        ],
+        "tags": [
+          "Post-Apocalyptic",
+          "Urban",
+          "Primarily Teen Cast",
+          "Survival",
+          "Primarily Female Cast",
+          "Female Protagonist",
+          "Food",
+          "Super Power",
+          "Henshin",
+          "Swordplay",
+          "Video Games",
+          "Urban Fantasy"
+        ],
+        "studios": [
+          "GoHands"
+        ]
+      }
+    }
+  ],
+  "toReview": [],
+  "notReviewing": []
+}

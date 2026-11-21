@@ -736,3 +736,41 @@ test('the Backlog is not a season in the trends, coverage, busiest-season or sea
   assert.deepEqual(computeGenreBySeason(shelfReviews, { minShows: 1 }).seasons.map(x => x.name), computeGenreBySeason(reviews, { minShows: 1 }).seasons.map(x => x.name));
   assert.deepEqual(computeHopeCheck(shelfReviews).bySeason.map(x => x.name), computeHopeCheck(reviews).bySeason.map(x => x.name));
 });
+
+// --- A lineup of shows watched as they aired, but reviewed later (backfills) ---
+
+const backfilledLineup = makeSeason({
+  id: 'spring-2022', name: 'Spring 2022',
+  shows: [
+    makeShow({ titleEN: 'Caught Live, Reviewed Later', reviews: [{ ratingNumber: 5, dateReviewed: '2026-11-17T12:00:00-05:00' }] }),
+    makeShow({ titleEN: 'Another One', reviews: [{ episodes: 12, ratingNumber: 3, dateReviewed: '2026-11-17T12:05:00-05:00' }] }),
+  ],
+  toReview: [], notReviewing: [],
+});
+const withBackfilledLineup = [...seasons, backfilledLineup];
+const backfilledReviews = flattenReviews(withBackfilledLineup);
+
+test('a lineup of backfills counts in the totals, but not in the per-season trends, coverage or season counts', () => {
+  const s = computeGlanceStats(withBackfilledLineup, backfilledReviews);
+  assert.equal(s.totalReviews, 8);
+  assert.equal(s.seasonsCovered, 2);
+  assert.deepEqual(computeSeasonCoverage(withBackfilledLineup), computeSeasonCoverage(seasons));
+  assert.deepEqual(computeRatingsOverTime(backfilledReviews).map(x => x.seasonName), ['Spring 2026', 'Summer 2026']);
+});
+
+test('computeContinuationWatch judges "earlier" by season order, so a lineup reviewed after the fact still counts as the past', () => {
+  const past = makeSeason({
+    id: 'spring-2022', name: 'Spring 2022',
+    shows: [makeShow({ titleEN: 'Spy Show', reviews: [{ ratingNumber: 4, dateReviewed: '2026-11-17T12:00:00-05:00' }] })],
+    toReview: [], notReviewing: [],
+  });
+  const current = makeSeason({
+    id: 'fall-2026', name: 'Fall 2026', current: true,
+    shows: [makeShow({ titleEN: 'New Show', ratingNumber: 3, dateReviewed: '2026-10-01T12:00:00-04:00' })],
+    toReview: ['Spy Show Season 3'], notReviewing: [],
+  });
+  assert.deepEqual(computeContinuationWatch([current, past], 'fall-2026').map(m => m.matchedTitle), ['Spy Show']);
+  // And not the other way round: Fall 2026 isn't Spring 2022's past.
+  const reversed = makeSeason({ ...past, toReview: ['New Show Season 2'] });
+  assert.deepEqual(computeContinuationWatch([current, reversed], 'spring-2022'), []);
+});

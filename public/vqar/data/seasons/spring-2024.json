@@ -1,0 +1,108 @@
+{
+  "id": "spring-2024",
+  "name": "Spring 2024",
+  "shows": [
+    {
+      "titleEN": "Kaiju No. 8",
+      "titleJP": "怪獣８号",
+      "aired": {
+        "season": "spring",
+        "year": 2024
+      },
+      "reviews": [
+        {
+          "ratingNumber": 3,
+          "text": "Solid SJ action version of the manga.",
+          "dateReviewed": "2026-11-19T11:55:08-05:00"
+        }
+      ],
+      "watched": {
+        "from": "2024-04-15",
+        "to": "2026-08-10",
+        "season": 2,
+        "episode": 1
+      },
+      "anilistId": 153288,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GG5H5XQ7D/kaiju-no-8",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Action",
+          "Sci-Fi"
+        ],
+        "tags": [
+          "Kaiju",
+          "Monster Boy",
+          "Shapeshifting",
+          "Male Protagonist",
+          "Super Power",
+          "Shounen",
+          "Henshin",
+          "Urban Fantasy",
+          "Military",
+          "Rescue",
+          "Work",
+          "Primarily Adult Cast",
+          "Guns",
+          "Gore",
+          "Tokusatsu",
+          "Kuudere",
+          "Body Horror"
+        ],
+        "studios": [
+          "Production I.G"
+        ]
+      }
+    },
+    {
+      "titleEN": "BARTENDER Glass of God",
+      "titleJP": "バーテンダー 神のグラス",
+      "aired": {
+        "season": "spring",
+        "year": 2024
+      },
+      "reviews": [
+        {
+          "ratingNumber": 3,
+          "text": "Cocktail battle anime, nice jerb.",
+          "dateReviewed": "2026-11-19T11:55:08-05:00"
+        }
+      ],
+      "watched": {
+        "from": "2024-05-21",
+        "to": "2025-01-18"
+      },
+      "anilistId": 155890,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GVDHX85DV/bartender-glass-of-god",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Drama",
+          "Slice of Life"
+        ],
+        "tags": [
+          "Work",
+          "Bar",
+          "Iyashikei",
+          "Seinen",
+          "Male Protagonist",
+          "Philosophy",
+          "Primarily Adult Cast",
+          "Food",
+          "Educational"
+        ],
+        "studios": [
+          "Liber"
+        ]
+      }
+    }
+  ],
+  "toReview": [],
+  "notReviewing": []
+}

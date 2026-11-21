@@ -1,0 +1,51 @@
+{
+  "id": "summer-2024",
+  "name": "Summer 2024",
+  "shows": [
+    {
+      "titleEN": "Why Does Nobody Remember Me in This World?",
+      "titleJP": "なぜ僕の世界を誰も覚えていないのか？",
+      "aired": {
+        "season": "summer",
+        "year": 2024
+      },
+      "reviews": [
+        {
+          "ratingNumber": 1,
+          "text": "Why does nobody remember this show?",
+          "dateReviewed": "2026-11-19T11:55:21-05:00"
+        }
+      ],
+      "watched": {
+        "from": "2024-09-11",
+        "to": "2024-12-20"
+      },
+      "anilistId": 167419,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GJ0H7QGJE/why-does-nobody-remember-me-in-this-world",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Action",
+          "Adventure",
+          "Fantasy",
+          "Sci-Fi"
+        ],
+        "tags": [
+          "Demons",
+          "Amnesia",
+          "Post-Apocalyptic",
+          "Elf",
+          "Angels"
+        ],
+        "studios": [
+          "project No.9"
+        ]
+      }
+    }
+  ],
+  "toReview": [],
+  "notReviewing": []
+}

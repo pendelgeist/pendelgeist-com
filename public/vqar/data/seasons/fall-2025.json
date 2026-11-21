@@ -1,0 +1,101 @@
+{
+  "id": "fall-2025",
+  "name": "Fall 2025",
+  "shows": [
+    {
+      "titleEN": "May I Ask for One Final Thing?",
+      "titleJP": "最後にひとつだけお願いしてもよろしいでしょうか",
+      "aired": {
+        "season": "fall",
+        "year": 2025
+      },
+      "reviews": [
+        {
+          "ratingNumber": 3,
+          "text": "Perfectly done show about punching jerks in the face.",
+          "dateReviewed": "2026-11-19T12:18:27-05:00"
+        }
+      ],
+      "watched": {
+        "from": "2025-10-21",
+        "to": "2026-02-10"
+      },
+      "anilistId": 181447,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GW4HM7WQ5/may-i-ask-for-one-final-thing",
+      "anilist": {
+        "format": "ONA",
+        "genres": [
+          "Action",
+          "Comedy",
+          "Drama",
+          "Fantasy",
+          "Romance"
+        ],
+        "tags": [
+          "Female Protagonist",
+          "Heterosexual",
+          "Revenge",
+          "Ojou-sama",
+          "Villainess",
+          "Royal Affairs",
+          "Shoujo",
+          "Religion",
+          "Magic",
+          "Medieval"
+        ],
+        "studios": [
+          "LIDENFILMS"
+        ]
+      }
+    },
+    {
+      "titleEN": "Yano-kun's Ordinary Days",
+      "titleJP": "矢野くんの普通の日々",
+      "aired": {
+        "season": "fall",
+        "year": 2025
+      },
+      "reviews": [
+        {
+          "ratingNumber": 3,
+          "text": "Nice high school romance.",
+          "dateReviewed": "2026-11-19T12:18:27-05:00"
+        }
+      ],
+      "watched": {
+        "from": "2025-10-22",
+        "to": "2026-01-07"
+      },
+      "anilistId": 183965,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GT00362335/yano-kuns-ordinary-days",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Comedy",
+          "Romance",
+          "Slice of Life"
+        ],
+        "tags": [
+          "Seinen",
+          "Primarily Teen Cast",
+          "Female Protagonist",
+          "School",
+          "Heterosexual",
+          "Urban",
+          "Iyashikei"
+        ],
+        "studios": [
+          "Ajiado"
+        ]
+      }
+    }
+  ],
+  "toReview": [],
+  "notReviewing": []
+}

@@ -1,0 +1,104 @@
+{
+  "id": "spring-2014",
+  "name": "Spring 2014",
+  "shows": [
+    {
+      "titleEN": "MEKAKUCITY ACTORS",
+      "titleJP": "メカクシティアクターズ",
+      "aired": {
+        "season": "spring",
+        "year": 2014
+      },
+      "reviews": [
+        {
+          "episodes": 4,
+          "ratingNumber": 2,
+          "text": "Don't remember.",
+          "dateReviewed": "2026-11-17T16:15:34-05:00"
+        }
+      ],
+      "watched": {
+        "from": "2014-04-20",
+        "to": "2014-05-04",
+        "episode": 4
+      },
+      "anilistId": 20541,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GYP8PZ5QY/mekakucity-actors",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Comedy",
+          "Romance",
+          "Sci-Fi",
+          "Supernatural"
+        ],
+        "tags": [
+          "Super Power",
+          "Ensemble Cast",
+          "Found Family",
+          "Urban Fantasy",
+          "Achronological Order",
+          "Primarily Teen Cast",
+          "Vocal Synth"
+        ],
+        "studios": [
+          "Shaft"
+        ]
+      }
+    },
+    {
+      "titleEN": "Chaika -The Coffin Princess-",
+      "titleJP": "棺姫のチャイカ",
+      "aired": {
+        "season": "spring",
+        "year": 2014
+      },
+      "reviews": [
+        {
+          "ratingNumber": 2,
+          "text": "Don't remember.",
+          "dateReviewed": "2026-11-17T16:17:12-05:00"
+        }
+      ],
+      "watched": {
+        "from": "2014-04-20",
+        "to": "2014-11-12",
+        "season": 2,
+        "episode": 2
+      },
+      "anilistId": 20462,
+      "streaming": [
+        "crunchyroll"
+      ],
+      "crunchyrollUrl": "https://www.crunchyroll.com/series/GYZX2XE46/chaika-the-coffin-princess",
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Action",
+          "Adventure",
+          "Comedy",
+          "Fantasy"
+        ],
+        "tags": [
+          "Magic",
+          "Fugitive",
+          "Female Protagonist",
+          "Guns",
+          "Amnesia",
+          "Travel",
+          "Urban",
+          "Anti-Hero",
+          "Swordplay"
+        ],
+        "studios": [
+          "bones"
+        ]
+      }
+    }
+  ],
+  "toReview": [],
+  "notReviewing": []
+}
