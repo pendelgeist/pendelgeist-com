@@ -7,7 +7,7 @@
  * Two views share the page. **Career** (All Seasons) compares and profiles:
  * a Season by Season table, taste by genre/studio/tag, and the halls across
  * everything. A **season report** (one season picked) is about that season
- * alone: its coverage and spotlight when it was reviewed live, its average
+ * alone: its coverage when it was reviewed live, its average
  * against your career's, and its own halls. Sections carry `data-view` for
  * the view they belong to; ones without it show in both, and any with
  * nothing to say in the current view is hidden rather than left empty.
@@ -26,7 +26,7 @@ import {
   flattenReviews, filterBySource, SOURCES, hasLiveLineup, computeGlanceStats, computeSeasonTable, computeDecadeTable,
   computeRatingDistribution, computeHallOfFame, computeSecondImpressions, computeOpEdHighlights,
   computeCategoryRatings, computeLovesAndHates, MIN_CATEGORY_SHOWS,
-  computeRevisitCandidates, computeContinuationWatch, computeSeasonCoverage, computeHopeCheck,
+  computeSeasonCoverage, computeHopeCheck,
 } from './stats.js';
 
 /** @typedef {import('../vqar/app.js').SeasonData} SeasonData */
@@ -43,10 +43,6 @@ const dom = {
   overTimeNote: document.getElementById('overTimeNote'),
   coverageSection: document.getElementById('coverageSection'),
   coverageBar: document.getElementById('coverageBar'),
-  spotlightSection: document.getElementById('seasonSpotlightSection'),
-  revisitList: document.getElementById('revisitList'),
-  revisitLink: document.getElementById('revisitLink'),
-  continuationList: document.getElementById('continuationList'),
   ratingDistributionChart: document.getElementById('ratingDistributionChart'),
   ratingDistributionBlurb: document.getElementById('ratingDistributionBlurb'),
   hallOfFameHeading: document.getElementById('hallOfFameHeading'),
@@ -104,21 +100,6 @@ async function getSeasonData(meta) {
  */
 function renderDataTable(container, columns, rows) {
   container.replaceChildren(createDataTable(columns, rows));
-}
-
-/**
- * @param {HTMLElement} container
- * @param {string[]} titles
- */
-function renderShowList(container, titles) {
-  const ul = document.createElement('ul');
-  ul.className = 'show-list';
-  ul.append(...titles.map(title => {
-    const li = document.createElement('li');
-    li.textContent = title;
-    return li;
-  }));
-  container.replaceChildren(ul);
 }
 
 /** @param {HTMLElement} container @param {string} message */
@@ -362,7 +343,7 @@ function renderSecondImpressions(reviews) {
 
 /**
  * /vqar's "To revisit" view of one season - the Extras chip that lists the
- * same shows as Revisit Candidates and the Hope Check's "Still waiting".
+ * same shows as the Hope Check's "Still waiting".
  * @param {string} seasonId
  */
 function queueHref(seasonId) {
@@ -402,7 +383,7 @@ function renderHopeCheck(reviews) {
   return true;
 }
 
-// --- Coverage & Spotlight (season report, live seasons only) ---
+// --- Coverage (season report, live seasons only) ---
 
 /**
  * A progress bar of reviewed shows out of reviewed + to review, with both counts
@@ -440,31 +421,6 @@ function renderCoverage(seasons) {
   detail.textContent = `${c.reviewed} reviewed · ${c.toReview} to be reviewed`;
 
   dom.coverageBar.replaceChildren(summary, track, detail);
-}
-
-/**
- * The Season Spotlight for one season: its 4/5s still waiting on a revisit,
- * and the shows in its lineup that continue something you liked earlier.
- * @param {string} seasonId
- */
-function renderSeasonSpotlight(seasonId) {
-  const revisitCandidates = computeRevisitCandidates(allReviews, seasonId);
-  if (revisitCandidates.length === 0) {
-    renderEmpty(dom.revisitList, 'No 4/5s awaiting a revisit this season.');
-  } else {
-    renderShowList(dom.revisitList, revisitCandidates.map(r => r.titleEN ?? 'Untitled'));
-  }
-  if (dom.revisitLink) {
-    dom.revisitLink.hidden = revisitCandidates.length === 0;
-    dom.revisitLink.href = queueHref(seasonId);
-  }
-
-  const continuationMatches = computeContinuationWatch(allSeasons, seasonId);
-  if (continuationMatches.length === 0) {
-    renderEmpty(dom.continuationList, "No returning favorites spotted in this season's lineup.");
-  } else {
-    renderShowList(dom.continuationList, continuationMatches.map(m => m.title));
-  }
 }
 
 // --- OP/ED ---
@@ -702,14 +658,10 @@ function applyFilters() {
     renderTasteProfile(reviews);
     renderLovesAndHates(reviews);
   } else {
-    // Coverage and the spotlight are about a season reviewed as it aired.
+    // Coverage is about a season reviewed as it aired.
     const live = season !== null && hasLiveLineup(season) && source !== 'historical';
     show(dom.coverageSection, live);
-    show(dom.spotlightSection, live);
-    if (live) {
-      renderCoverage([season]);
-      renderSeasonSpotlight(seasonId);
-    }
+    if (live) renderCoverage([season]);
   }
 }
 

@@ -8,7 +8,7 @@ import {
   flattenReviews, reviewSource, filterBySource, hasLiveLineup, computeGlanceStats, computeSeasonTable, computeDecadeTable, airedYear,
   computeRatingDistribution, computeHallOfFame, computeSecondImpressions, computeOpEdHighlights,
   computeCategoryRatings, computeLovesAndHates,
-  computeRevisitCandidates, computeContinuationWatch, computeSeasonCoverage, computeHopeCheck,
+  computeSeasonCoverage, computeHopeCheck,
 } from '../public/anime-stat-sheet/stats.js';
 import { createPathFetchStub } from './helpers.js';
 import { makeSeason, makeShow } from './fixtures.js';
@@ -157,27 +157,6 @@ test('computeOpEdHighlights lists every liked OP by title, with no top-N cap', (
   assert.deepEqual(s.likedOps.map(r => r.titleEN), ['A', 'B', 'C', 'D', 'E', 'F', 'G'].map(t => `Show ${t}`));
 });
 
-test('computeRevisitCandidates finds current-season 4/5s without a fullReview, excluding 5/5s and already-revisited ones', () => {
-  const currentSeasonReviews = flattenReviews([
-    makeSeason({
-      id: 'current-season', name: 'Current Season',
-      shows: [
-        makeShow({ titleEN: 'Worth Revisiting', ratingNumber: 4, ratingText: 'Yeah', dateReviewed: '2026-07-01' }),
-        makeShow({ titleEN: 'Already Revisited', ratingNumber: 4, ratingText: 'Yeah', dateReviewed: '2026-07-02', revisit: { ratingNumber: 5, ratingText: 'Peak', dateReviewed: '2026-08-01' } }),
-        makeShow({ titleEN: 'Already Peak', ratingNumber: 5, ratingText: 'Peak', dateReviewed: '2026-07-03' }),
-        makeShow({ titleEN: 'Just Meh', ratingNumber: 3, ratingText: 'Meh', dateReviewed: '2026-07-04' }),
-      ],
-    }),
-    makeSeason({
-      id: 'other-season', name: 'Other Season',
-      shows: [makeShow({ titleEN: 'Other Season 4/5', ratingNumber: 4, ratingText: 'Yeah', dateReviewed: '2026-01-01' })],
-    }),
-  ]);
-
-  const candidates = computeRevisitCandidates(currentSeasonReviews, 'current-season');
-  assert.deepEqual(candidates.map(r => r.titleEN), ['Worth Revisiting']);
-});
-
 test('computeSeasonCoverage counts reviewed out of reviewed + to review, ignoring not-reviewing shows', () => {
   assert.deepEqual(computeSeasonCoverage([seasons[0]]), { reviewed: 3, toReview: 1, total: 4, pct: 75 });
   const all = computeSeasonCoverage(seasons);
@@ -193,45 +172,6 @@ test('computeSeasonCoverage has no percentage when nothing is reviewed or to rev
 test('computeSeasonCoverage leaves a shelf out', () => {
   assert.deepEqual(computeSeasonCoverage([makeSeason({ id: 'backlog', name: 'Backlog', sortKey: 0, shows: [makeShow({ titleEN: 'Old Show', ratingNumber: 4 })], toReview: [], notReviewing: [] })]),
     { reviewed: 0, toReview: 0, total: 0, pct: null });
-});
-
-test('computeContinuationWatch matches sequel-marker titles in the current season against highly-rated past shows', () => {
-  const seasonsWithSequels = [
-    makeSeason({
-      id: 'past-season', name: 'Past Season',
-      shows: [
-        makeShow({ titleEN: 'Great Show', ratingNumber: 5, ratingText: 'Peak', dateReviewed: '2026-01-01' }),
-        makeShow({ titleEN: 'Fine Show', ratingNumber: 3, ratingText: 'Meh', dateReviewed: '2026-01-02' }),
-      ],
-    }),
-    makeSeason({
-      id: 'current-season', name: 'Current Season',
-      toReview: ['Great Show Season 2', 'Unrelated New Show'],
-      notReviewing: ['Fine Show 2nd Season'],
-      shows: [makeShow({ titleEN: 'Great Show II', ratingNumber: 4, ratingText: 'Yeah', dateReviewed: '2026-07-01' })],
-    }),
-  ];
-
-  const matches = computeContinuationWatch(seasonsWithSequels, 'current-season');
-  // Both matched "Great Show" at the same rating, so tiebreaker is alphabetical title.
-  assert.deepEqual(
-    matches.map(m => ({ title: m.title, status: m.status, matchedTitle: m.matchedTitle })),
-    [
-      { title: 'Great Show II', status: 'reviewed', matchedTitle: 'Great Show' },
-      { title: 'Great Show Season 2', status: 'toReview', matchedTitle: 'Great Show' },
-    ]
-  );
-  assert.ok(matches.every(m => m.seasonName === 'Past Season' && m.rating === 5));
-});
-
-test('computeContinuationWatch returns nothing when the current season id is unknown or nothing clears minRating', () => {
-  assert.deepEqual(computeContinuationWatch(seasons, 'no-such-season'), []);
-
-  const lowRatedPast = [
-    makeSeason({ id: 'past', name: 'Past', shows: [makeShow({ titleEN: 'Fine Show', ratingNumber: 3, ratingText: 'Meh', dateReviewed: '2026-01-01' })] }),
-    makeSeason({ id: 'current', name: 'Current', toReview: ['Fine Show Season 2'], notReviewing: [], shows: [] }),
-  ];
-  assert.deepEqual(computeContinuationWatch(lowRatedPast, 'current'), []);
 });
 
 
@@ -346,7 +286,9 @@ test('picking a season turns the page into that season\'s report', async () => {
   assert.deepEqual(tableRows(document, 'hallOfFameBest'), [['Fine Show']]);
 });
 
-test('each section shows only in the view it makes sense in', async () => {
+test('each section shows only in the view it makes sense in, and there is no Season Spotlight', async () => {
+  assert.equal((await loadApp()).document.getElementById('seasonSpotlightSection'), null);
+
   const { document } = await loadApp();
   const visible = () => [...document.querySelectorAll('section.section')].filter(s => !s.hidden).map(s => s.id);
 
@@ -357,7 +299,7 @@ test('each section shows only in the view it makes sense in', async () => {
 
   pickSeason(document, 'summer-2026');
   assert.deepEqual(visible(), [
-    'glanceSection', 'coverageSection', 'seasonSpotlightSection', 'ratingDistributionSection',
+    'glanceSection', 'coverageSection', 'ratingDistributionSection',
     'hallOfFameSection', 'secondImpressionsSection', 'opEdSection',
   ]);
 });
@@ -404,68 +346,6 @@ test('an unknown "?season=" value is ignored, falling back to "All Seasons"', as
   assert.equal(document.getElementById('seasonFilter').value, 'all');
 });
 
-test('renders Season Spotlight empty-state messages when the season has nothing to flag', async () => {
-  const { document } = await loadApp({ url: 'http://localhost/anime-stat-sheet/index.html?season=summer-2026' });
-
-  assert.match(document.getElementById('revisitList').textContent, /No 4\/5s awaiting a revisit/);
-  assert.match(document.getElementById('continuationList').textContent, /No returning favorites/);
-});
-
-test('Season Spotlight is part of a season\'s report, judged against the seasons before it', async () => {
-  const spotlightSeasons = {
-    currentSeason: 'summer-2026',
-    seasons: [
-      { id: 'fall-2025', name: 'Fall 2025', file: '/vqar/data/seasons/fall-2025.json' },
-      { id: 'spring-2026', name: 'Spring 2026', file: '/vqar/data/seasons/spring-2026.json' },
-      { id: 'summer-2026', name: 'Summer 2026', file: '/vqar/data/seasons/summer-2026.json' },
-    ],
-  };
-  // Fall 2025 rated "Great Show" highly; Spring 2026 has its own 4/5 ("Spring
-  // Revisit") and a returning season of Fall's "Great Show"; Summer 2026 (the
-  // current season) has its own 4/5 ("Summer Revisit") and a returning season
-  // of Spring's "Spring Revisit". This lets the test tell apart "spotlight
-  // always shows the current season" from "spotlight follows the filter,
-  // re-anchoring what counts as 'the past' to whichever season is picked".
-  const fall = makeSeason({
-    id: 'fall-2025', name: 'Fall 2025',
-    shows: [makeShow({ titleEN: 'Great Show', ratingNumber: 5, ratingText: 'Peak', dateReviewed: '2025-10-01' })],
-    toReview: [], notReviewing: [],
-  });
-  const spring = makeSeason({
-    id: 'spring-2026', name: 'Spring 2026',
-    shows: [makeShow({ titleEN: 'Spring Revisit', ratingNumber: 4, ratingText: 'Yeah', dateReviewed: '2026-04-01' })],
-    toReview: ['Great Show Season 2'], notReviewing: [],
-  });
-  const summer = makeSeason({
-    id: 'summer-2026', name: 'Summer 2026',
-    shows: [makeShow({ titleEN: 'Summer Revisit', ratingNumber: 4, ratingText: 'Yeah', dateReviewed: '2026-07-01' })],
-    toReview: ['Spring Revisit Season 2'], notReviewing: [],
-  });
-  const fetch = createPathFetchStub({
-    '/vqar/data/index.json': spotlightSeasons,
-    '/vqar/data/seasons/fall-2025.json': fall,
-    '/vqar/data/seasons/spring-2026.json': spring,
-    '/vqar/data/seasons/summer-2026.json': summer,
-  });
-
-  const { document } = await loadApp({ fetch });
-  const revisitTitles = () => [...document.querySelectorAll('#revisitList .show-list li')].map(li => li.textContent);
-  const continuationTitles = () => [...document.querySelectorAll('#continuationList .show-list li')].map(li => li.textContent);
-
-  // The career view has no spotlight: it's about one season.
-  assert.equal(document.getElementById('seasonSpotlightSection').hidden, true);
-
-  pickSeason(document, 'summer-2026');
-  assert.equal(document.getElementById('seasonSpotlightSection').hidden, false);
-  assert.deepEqual(revisitTitles(), ['Summer Revisit']);
-  assert.deepEqual(continuationTitles(), ['Spring Revisit Season 2']);
-
-  // A past season's spotlight looks only at whatever came before *it*.
-  pickSeason(document, 'spring-2026');
-  assert.deepEqual(revisitTitles(), ['Spring Revisit']);
-  assert.deepEqual(continuationTitles(), ['Great Show Season 2']);
-});
-
 test('changing the season filter updates the "?season=" URL param, without adding history entries', async () => {
   const { document, window } = await loadApp();
 
@@ -477,45 +357,6 @@ test('changing the season filter updates the "?season=" URL param, without addin
   select.value = 'all';
   select.dispatchEvent(new document.defaultView.Event('change', { bubbles: true }));
   assert.equal(new URL(window.location.href).searchParams.get('season'), null);
-});
-
-test('computeContinuationWatch reads titles from object-form toReview and notReviewing entries', () => {
-  const past = makeSeason({
-    id: 'past', name: 'Past', toReview: [], notReviewing: [],
-    shows: [makeShow({ titleEN: 'Great Show', ratingNumber: 5, ratingText: 'Nice Ep Broh', dateReviewed: '2025-01-01T00:00:00Z' })],
-  });
-  const current = makeSeason({
-    id: 'now', name: 'Now', shows: [],
-    toReview: [{ title: 'Great Show Season 2', premieres: '2026-10-08' }],
-    notReviewing: [{ title: 'Great Show 3rd Season', reason: 'no time' }],
-  });
-
-  const matches = computeContinuationWatch([past, current], 'now');
-  assert.deepEqual(matches.map(m => [m.title, m.status]).sort(), [
-    ['Great Show 3rd Season', 'notReviewing'],
-    ['Great Show Season 2', 'toReview'],
-  ]);
-});
-
-test('computeContinuationWatch counts a past show you finished the season of, whatever its rating', () => {
-  const past = makeSeason({
-    id: 'past', name: 'Past', toReview: [], notReviewing: [],
-    shows: [
-      makeShow({ titleEN: 'Guilty Pleasure', ratingNumber: 4, ratingText: 'Yeah', dateReviewed: '2026-07-01',
-        revisit: { text: 'x', ratingNumber: 3, ratingText: 'delicious garbage', dateReviewed: '2026-08-05' },
-        watched: { from: '2026-07-01', finished: true } }),
-      makeShow({ titleEN: 'Dropped Show', ratingNumber: 3, ratingText: 'Meh', dateReviewed: '2026-07-02' }),
-    ],
-  });
-  const current = makeSeason({
-    id: 'now', name: 'Now', shows: [], toReview: [],
-    notReviewing: [{ title: 'Guilty Pleasure Season 2', reason: 'Continuing series' }, 'Dropped Show Season 2'],
-  });
-
-  const matches = computeContinuationWatch([past, current], 'now');
-  assert.deepEqual(matches.map(m => ({ title: m.title, matchedTitle: m.matchedTitle, rating: m.rating, finished: m.finished })), [
-    { title: 'Guilty Pleasure Season 2', matchedTitle: 'Guilty Pleasure', rating: 3, finished: true },
-  ]);
 });
 
 // --- category cross-references ---
@@ -700,20 +541,12 @@ test('Hope Check tiles the totals and tables each season, linking its waiting co
     ['Summer 2026', '3', '2', '1', '0', '1', '50%', '1'],
   ]);
   assert.equal(document.querySelector('#hopeCheckTable td a').getAttribute('href'), '/vqar?season=summer-2026&has=queue');
-
-  // Revisit Candidates, in that season's report, links to the same view.
-  pickSeason(document, 'summer-2026');
-  const link = document.getElementById('revisitLink');
-  assert.equal(link.hidden, false);
-  assert.equal(link.getAttribute('href'), '/vqar?season=summer-2026&has=queue');
 });
 
 test('Hope Check drops the per-season table once the filter picks one season', async () => {
   const { document } = await loadApp({ fetch: hopeRoutes(), url: 'http://localhost/anime-stat-sheet/index.html?season=spring-2026' });
   await new Promise((r) => setTimeout(r, 50));
   assert.equal(document.querySelector('#hopeCheckTable table'), null);
-  // Spring's only 4 has been revisited, so there's nothing to link to.
-  assert.equal(document.getElementById('revisitLink').hidden, true);
 });
 
 // --- Live and historical reviews ---
@@ -750,7 +583,7 @@ test('the glance stats keep live and historical averages apart as well as pooled
   assert.equal(s.seasons, 3);
 });
 
-test('a season of backfills has no coverage or spotlight, and counts in the season table with no coverage', () => {
+test('a season of backfills has no coverage, and counts in the season table with no coverage', () => {
   assert.equal(hasLiveLineup(backfilledLineup), false);
   assert.equal(hasLiveLineup(seasons[0]), true);
   assert.deepEqual(computeSeasonCoverage(withBackfilledLineup), computeSeasonCoverage(seasons));
@@ -811,30 +644,12 @@ test('a "?source=" link opens narrowed, and a season with nothing of that source
   assert.ok([...document.querySelectorAll('section.section')].filter(s => !s.hidden).every(s => s.id === 'glanceSection'));
 });
 
-test('a season of backfills is measured against your historical average, with no coverage or spotlight', async () => {
+test('a season of backfills is measured against your historical average, with no coverage', async () => {
   const { document } = await loadApp({ fetch: backfillRoutes(), url: 'http://localhost/anime-stat-sheet/index.html?season=spring-2022' });
   assert.equal(glance(document)['vs. Historical Average'], '0.0');
   assert.equal(document.getElementById('coverageSection').hidden, true);
-  assert.equal(document.getElementById('seasonSpotlightSection').hidden, true);
   // Its two shows are a 5 and a 4: both halls, each with its own tier.
   assert.equal(document.getElementById('hallOfShame').hidden, false);
-});
-
-test('computeContinuationWatch judges "earlier" by season order, so a lineup reviewed after the fact still counts as the past', () => {
-  const past = makeSeason({
-    id: 'spring-2022', name: 'Spring 2022',
-    shows: [makeShow({ titleEN: 'Spy Show', reviews: [{ ratingNumber: 4, dateReviewed: '2026-11-17T12:00:00-05:00' }] })],
-    toReview: [], notReviewing: [],
-  });
-  const current = makeSeason({
-    id: 'fall-2026', name: 'Fall 2026', current: true,
-    shows: [makeShow({ titleEN: 'New Show', ratingNumber: 3, dateReviewed: '2026-10-01T12:00:00-04:00' })],
-    toReview: ['Spy Show Season 3'], notReviewing: [],
-  });
-  assert.deepEqual(computeContinuationWatch([current, past], 'fall-2026').map(m => m.matchedTitle), ['Spy Show']);
-  // And not the other way round: Fall 2026 isn't Spring 2022's past.
-  const reversed = makeSeason({ ...past, toReview: ['New Show Season 2'] });
-  assert.deepEqual(computeContinuationWatch([current, reversed], 'spring-2022'), []);
 });
 
 // --- By decade ---

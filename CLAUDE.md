@@ -62,7 +62,7 @@ behavior, it moves into a shared module at `public/` root rather than being copi
 | `public/dates.js` | `/vqar`, `scripts/validateSeason.js` | the two date forms: a day (`isDay`) and an Eastern moment (`isMoment`, `isEasternMoment`), plus `dayOf` and `easternMoment` |
 | `public/vqar/seasons.js` | `/anime-stat-sheet`, `src/schema.js`, `scripts/` | what a season id means: `isLineup` (a `<season>-<year>` lineup vs. a shelf) and `seasonSortKey` |
 | `public/vqar/data-paths.js` | `/vqar`, `/anime-stat-sheet`, `src/schema.js` | the path to the VQAR season index |
-| `public/vqar/list-entries.js` | `/vqar`, `/anime-stat-sheet`, `src/schema.js`, `scripts/` | a `toReview`/`notReviewing` entry is a title string *or* an object with optional notes; read titles through `entryTitle` |
+| `public/vqar/list-entries.js` | `/vqar`, `src/schema.js`, `scripts/` | a `toReview`/`notReviewing` entry is a title string *or* an object with optional notes; read titles through `entryTitle` |
 | `public/vqar/oped.js` | `/vqar`, `/anime-stat-sheet`, `src/schema.js`, `scripts/validateSeason.js` | a liked OP/ED is always a list of the numbers liked (`[1]`, `[1, 2]`), never a bare `true`; read it through `isLikedOpEd`/`opEdNumbers`, never `=== true` |
 | `public/vqar/reviews.js` | `/vqar`, `/anime-stat-sheet`, `src/schema.js` | a show's `reviews` list: each review's derived stage (`reviewStage`), the current one, the first impression, and how the rating moved since (`ratingShift`) |
 | `public/vqar/rating.js` | `/vqar`, `/anime-stat-sheet`, `src/` | the show's rating is its latest review's (`effectiveRatingNumber`), a review's label falls back to its tier's (`ratingText`), which shows are still waiting on a revisit (`awaitingRevisit`) |
@@ -158,7 +158,7 @@ validators, stats and API, but none exists. On the Anime Stat Sheet a show with 
 is **live** and one without (a backfill) is **historical** (`reviewSource` in
 `public/anime-stat-sheet/stats.js`); both count everywhere, and the page can narrow to either,
 since historical picks skew high. Only a season reviewed live (`hasLiveLineup`) gets a coverage
-bar and spotlight.
+bar.
 README → "Lineups and shelves".
 
 **Starting a season**: add `seasons/<season>-<year>.json` with a matching `id`, a `name`,

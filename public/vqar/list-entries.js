@@ -14,7 +14,7 @@ import { STREAMING_URL_FIELDS } from '../streaming.js';
  * episode's day (`YYYY-MM-DD`), `availableNow: true` says it's already out (instead of a date),
  * and a `crunchyrollUrl`-style field (the same ones a review takes) makes that service's
  * badge a link.
- * Shared by /vqar, /anime-stat-sheet, src/schema.js and the scripts, so the shape
+ * Shared by /vqar, src/schema.js and the scripts, so the shape
  * can't drift between them.
  */
 
