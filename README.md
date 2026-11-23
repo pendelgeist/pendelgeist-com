@@ -757,9 +757,13 @@ against your historical average, a live one against your live average, a mix aga
 for the view they belong to; ones without it show in both. A section with nothing to say in the
 current view (no revisits, no hopes, no liked OP/EDs) is hidden rather than left empty.
 
-- **Career** (All Seasons): the glance tiles; **Season by Season** (`computeSeasonTable`), one
-  sortable row per season with a review - shows, live/historical, average, share rated 4–5 and
-  0–1, and coverage for a season reviewed live - whose names open that season's report in place;
+- **Career** (All Seasons): the glance tiles; **Over Time**, a sortable table switchable
+  (`?by=decade`) between one row per season with a review (`computeSeasonTable`: shows,
+  live/historical, average, share rated 4–5 and 0–1, and coverage for a season reviewed live,
+  each name opening that season's report in place) and one row per decade (`computeDecadeTable`:
+  the same numbers plus the decade's top-rated titles). Decades go by when a show aired
+  (`airedYear`: its `aired.year`, or failing that its lineup's year), not where it's filed, so an
+  older show picked up live counts in its own decade;
   the rating distribution; the taste sections; the halls; Second Impressions; Hope Check, with a
   per-season table; and the liked OP/EDs.
 - **Season report** (one season): the glance tiles, including the "vs." comparison and the share

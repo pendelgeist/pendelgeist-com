@@ -181,6 +181,68 @@ export function computeSeasonTable(seasons, reviews) {
   });
 }
 
+/**
+ * The year a show aired: its `aired.year` from AniList, or failing that the
+ * year in its lineup's id (`spring-2026`). Null when neither says.
+ * @param {{ aired?: { year?: number }, season?: string }} review - a flattened review
+ * @returns {number|null}
+ */
+export function airedYear(review) {
+  if (Number.isInteger(review.aired?.year)) return /** @type {number} */ (review.aired?.year);
+  const match = /-(\d{4})$/.exec(review.season ?? '');
+  return match ? Number(match[1]) : null;
+}
+
+/**
+ * @typedef {Object} DecadeRow
+ * @property {number|null} decade - 1990 for the 1990s; null for shows with no aired year
+ * @property {string} label - "1990s", or "Unknown"
+ * @property {number} shows
+ * @property {number} live
+ * @property {number} historical
+ * @property {number|null} avgRating
+ * @property {number|null} highShare - fraction rated 4-5
+ * @property {number|null} lowShare - fraction rated 0-1
+ * @property {{ ratingNumber: number, titles: string[] }|null} top - every show at the decade's highest rating, by title
+ */
+
+/**
+ * One row per decade the shows in view aired in, newest first, with shows of
+ * no known year last. Grouped by when a show aired, not where it's filed, so
+ * an older show picked up live counts in its own decade.
+ * @param {ReturnType<typeof flattenReviews>} reviews
+ * @returns {DecadeRow[]}
+ */
+export function computeDecadeTable(reviews) {
+  /** @type {Map<number|null, ReturnType<typeof flattenReviews>>} */
+  const byDecade = new Map();
+  for (const r of reviews) {
+    const year = airedYear(r);
+    const decade = year === null ? null : Math.floor(year / 10) * 10;
+    byDecade.set(decade, [...(byDecade.get(decade) ?? []), r]);
+  }
+  return [...byDecade]
+    .sort(([a], [b]) => (b ?? -Infinity) - (a ?? -Infinity))
+    .map(([decade, shows]) => {
+      const ratings = numericRatings(shows);
+      const best = ratings.length ? Math.max(...ratings) : null;
+      return {
+        decade,
+        label: decade === null ? 'Unknown' : `${decade}s`,
+        shows: shows.length,
+        live: shows.filter(r => r._source === 'live').length,
+        historical: shows.filter(r => r._source === 'historical').length,
+        avgRating: mean(ratings),
+        highShare: ratings.length ? ratings.filter(n => n >= 4).length / ratings.length : null,
+        lowShare: ratings.length ? ratings.filter(n => n <= 1).length / ratings.length : null,
+        top: best === null ? null : {
+          ratingNumber: best,
+          titles: shows.filter(r => effectiveRatingNumber(r) === best).map(r => r.titleEN ?? 'Untitled').sort((a, b) => a.localeCompare(b)),
+        },
+      };
+    });
+}
+
 // Re-exported so existing importers of stats.js keep working; the labels live
 // in rating.js now that /vqar's rating filter needs them too.
 export { RATING_NUMBER_LABELS };
