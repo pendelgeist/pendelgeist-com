@@ -439,7 +439,7 @@ test('youtubeUrl is accepted on a review and a list entry, and flagged when malf
 });
 
 // The latest review's rating is the show's rating in sorting, filtering and
-// every /vqar-stats number, so saving one without a rating silently keeps the
+// every /anime-stat-sheet number, so saving one without a rating silently keeps the
 // old rating in all of those. Validation is what makes that impossible to miss.
 test('flags a later review saved without a ratingNumber, or one outside the 0-5 tiers', () => {
   for (const ratingNumber of [undefined, 6, -1, 2.5, '4']) {

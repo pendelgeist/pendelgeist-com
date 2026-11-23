@@ -1,7 +1,7 @@
 /**
  * The filters on /vqar - Rating, Streaming, Extras, plus Format, Genre, Tag
  * and Studio from a review's generated `anilist` object - kept pure and
- * DOM-free the way /vqar-stats keeps its crunching in stats.js, so the
+ * DOM-free the way /anime-stat-sheet keeps its crunching in stats.js, so the
  * matching and counting rules are testable without a page.
  *
  * One rule throughout: within a row, any selected value matches (HIDIVE *or*

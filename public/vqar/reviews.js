@@ -14,7 +14,7 @@
  *   after watching a stretch of the show, or one whose basis wasn't recorded.
  *
  * The latest review is the show's current verdict (see effectiveRatingNumber
- * in rating.js). Shared by /vqar, /vqar-stats, src/schema.js and the
+ * in rating.js). Shared by /vqar, /anime-stat-sheet, src/schema.js and the
  * validator, so the rules can't drift between them.
  */
 

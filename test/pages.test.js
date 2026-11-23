@@ -13,7 +13,7 @@ const PAGES = {
   'eva-sources': path.join(__dirname, '../public/eva-tv/sources/index.html'),
   graphql: path.join(__dirname, '../public/graphql/index.html'),
   nasubi: path.join(__dirname, '../public/nasubi/index.html'),
-  'vqar-stats': path.join(__dirname, '../public/vqar-stats/index.html'),
+  'anime-stat-sheet': path.join(__dirname, '../public/anime-stat-sheet/index.html'),
   games: path.join(__dirname, '../public/games/index.html'),
 };
 

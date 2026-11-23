@@ -13,7 +13,7 @@ test('homepage links to VQAR, the GraphQL API, the AMO Kenzoku Podcast, and GitH
 
   const links = [...document.querySelectorAll('.link-card')].map((a) => a.getAttribute('href'));
   assert.ok(links.includes('/vqar'), 'expected a link to /vqar');
-  assert.ok(links.includes('/vqar-stats'), 'expected a link to /vqar-stats');
+  assert.ok(links.includes('/anime-stat-sheet'), 'expected a link to /anime-stat-sheet');
   assert.ok(links.includes('/eva-tv'), 'expected a link to /eva-tv');
   assert.ok(links.includes('/nasubi'), 'expected a link to /nasubi');
   assert.ok(links.includes('/games'), 'expected a link to /games');

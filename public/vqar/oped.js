@@ -4,7 +4,7 @@
  * A show can have several OPs or EDs inside one season, so a liking always
  * says which: a list of the numbers liked, `[1]` or `[1, 2]`. It's left out
  * entirely when nothing was liked. Anything else - including a bare `true` -
- * is rejected by `scripts/validateSeason.js`. Shared by /vqar, /vqar-stats,
+ * is rejected by `scripts/validateSeason.js`. Shared by /vqar, /anime-stat-sheet,
  * src/schema.js and the validator, so the shape can't drift between them.
  */
 

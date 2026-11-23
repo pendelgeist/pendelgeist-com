@@ -1,6 +1,6 @@
 /**
  * The DOM-building blocks the two data-analysis pages share: a sortable table,
- * a stat-tile grid, and a single-series bar chart. /nasubi and /vqar-stats
+ * a stat-tile grid, and a single-series bar chart. /nasubi and /anime-stat-sheet
  * render the same three components from different data, so they live here
  * rather than in two copies that drift apart (they already had).
  *

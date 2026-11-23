@@ -1,8 +1,14 @@
 /**
- * Pure data-crunching over VQAR season data - no DOM, no fetch, so it's
- * testable directly and reusable if the rendering ever changes. app.js
- * fetches the index + every season (mirroring /vqar's own fetch logic)
- * and hands the resulting season array to these functions.
+ * Pure data-crunching for the Anime Stat Sheet, over VQAR season data - no
+ * DOM, no fetch, so it's testable directly and reusable if the rendering ever
+ * changes. app.js fetches the index + every season (mirroring /vqar's own
+ * fetch logic) and hands the resulting season array to these functions.
+ *
+ * Every show is either **live** - reviewed as its season aired, so it has an
+ * episode-1 first impression - or **historical**: added afterwards, from
+ * memory or after watching a stretch of it (a backfill). Historical shows tend
+ * to be ones worth remembering, so they skew high; the page lets you look at
+ * either on its own (see reviewSource and filterBySource).
  */
 
 import { effectiveRatingNumber, awaitingRevisit, HOPING_RATING, RATING_NUMBER_LABELS } from '../vqar/rating.js';
@@ -33,7 +39,31 @@ export function flattenReviews(seasons) {
     // trends below only count lineups (seasons watched as they aired) - and
     // within one, shows that got a first impression as it aired, not backfills.
     _lineup: isLineup(season) && firstImpression(r) !== undefined,
+    _source: reviewSource(r),
   })));
+}
+
+/** Which reviews the page can be narrowed to: everything, or one kind of review. */
+export const SOURCES = /** @type {const} */ (['all', 'live', 'historical']);
+
+/**
+ * Whether a show was reviewed live (it has an episode-1 first impression,
+ * written as its season aired) or added historically (a backfill, reviewed
+ * after the fact).
+ * @param {object} show
+ * @returns {'live'|'historical'}
+ */
+export function reviewSource(show) {
+  return firstImpression(show) !== undefined ? 'live' : 'historical';
+}
+
+/**
+ * The flattened reviews of one source, or all of them.
+ * @param {ReturnType<typeof flattenReviews>} reviews
+ * @param {typeof SOURCES[number]} source
+ */
+export function filterBySource(reviews, source) {
+  return source === 'live' || source === 'historical' ? reviews.filter(r => r._source === source) : reviews;
 }
 
 /** @param {number[]} nums */
@@ -46,35 +76,31 @@ function numericRatings(reviews) {
 }
 
 /**
- * The top-of-page stat-grid tiles.
- * @param {SeasonData[]} seasons
+ * The Numbers at a Glance tiles, for whatever slice of reviews is in view (a
+ * season, a source, or everything). The live and historical averages are kept
+ * apart as well as pooled, since historical picks skew high.
  * @param {ReturnType<typeof flattenReviews>} reviews
  */
-export function computeGlanceStats(seasons, reviews) {
-  const avgRating = mean(numericRatings(reviews));
-
-  const bySeason = new Map();
-  for (const r of reviews) if (r._lineup) bySeason.set(r.season, (bySeason.get(r.season) ?? 0) + 1);
-  let busiest = null;
-  for (const [seasonId, count] of bySeason) {
-    if (!busiest || count > busiest.count) {
-      busiest = { seasonName: seasons.find(s => String(s.id) === seasonId)?.name ?? seasonId, count };
-    }
-  }
-
+export function computeGlanceStats(reviews) {
+  const live = reviews.filter(r => r._source === 'live');
+  const historical = reviews.filter(r => r._source === 'historical');
+  const ratings = numericRatings(reviews);
   const withAnilist = reviews.filter(r => r.anilistId != null).length;
 
   return {
-    totalReviews: reviews.length,
-    seasonsCovered: seasons.filter(s => liveShows(s).length > 0).length,
-    avgRating,
+    shows: reviews.length,
+    live: live.length,
+    historical: historical.length,
+    avgRating: mean(ratings),
+    avgLive: mean(numericRatings(live)),
+    avgHistorical: mean(numericRatings(historical)),
+    highShare: ratings.length ? ratings.filter(n => n >= 4).length / ratings.length : null,
+    seasons: new Set(reviews.map(r => r.season)).size,
     fullReReviews: reviews.filter(r => firstImpression(r) && laterReviews(r).length > 0).length,
     likedOps: reviews.filter(r => isLikedOpEd(r.op)).length,
     likedEds: reviews.filter(r => isLikedOpEd(r.ed)).length,
     finishedSeasons: reviews.filter(r => r.watched?.finished === true).length,
     anilistCoveragePct: reviews.length ? Math.round((withAnilist / reviews.length) * 100) : null,
-    busiestSeasonName: busiest?.seasonName ?? null,
-    busiestSeasonCount: busiest?.count ?? null,
   };
 }
 
@@ -89,6 +115,18 @@ function liveShows(season) {
 }
 
 /**
+ * Whether a season was reviewed live, as it aired: a lineup with a first
+ * impression in it, or a to-review / not-reviewing list. Only such a season
+ * has a coverage bar and a spotlight; a season of backfills has neither.
+ * @param {SeasonData} season
+ */
+export function hasLiveLineup(season) {
+  return isLineup(season) && (
+    liveShows(season).length > 0 || (season.toReview ?? []).length > 0 || (season.notReviewing ?? []).length > 0
+  );
+}
+
+/**
  * How much of the season's reviewable lineup has been reviewed: `total` is
  * `reviewed` + `toReview`. `notReviewing` shows are deliberately left out, and
  * so are backfills (see liveShows), which never were on a to-review list.
@@ -100,6 +138,47 @@ export function computeSeasonCoverage(seasons) {
   const toReview = lineups.reduce((sum, s) => sum + (s.toReview ?? []).length, 0);
   const total = reviewed + toReview;
   return { reviewed, toReview, total, pct: total ? Math.round((reviewed / total) * 100) : null };
+}
+
+/**
+ * @typedef {Object} SeasonRow
+ * @property {string} id
+ * @property {string} name
+ * @property {number} shows - reviews of it in view
+ * @property {number} live
+ * @property {number} historical
+ * @property {number|null} avgRating
+ * @property {number|null} highShare - fraction rated 4-5
+ * @property {number|null} lowShare - fraction rated 0-1
+ * @property {number|null} coveragePct - of its live lineup (see computeSeasonCoverage); null for a season of backfills
+ */
+
+/**
+ * One row per season with a review in view, in the order the seasons are
+ * given (the index's, newest first) - the Season by Season table, which is
+ * how the career view compares seasons rather than pooling them.
+ * @param {SeasonData[]} seasons
+ * @param {ReturnType<typeof flattenReviews>} reviews
+ * @returns {SeasonRow[]}
+ */
+export function computeSeasonTable(seasons, reviews) {
+  return seasons.flatMap(season => {
+    const id = String(season.id);
+    const inSeason = reviews.filter(r => r.season === id);
+    if (inSeason.length === 0) return [];
+    const ratings = numericRatings(inSeason);
+    return [{
+      id,
+      name: season.name,
+      shows: inSeason.length,
+      live: inSeason.filter(r => r._source === 'live').length,
+      historical: inSeason.filter(r => r._source === 'historical').length,
+      avgRating: mean(ratings),
+      highShare: ratings.length ? ratings.filter(n => n >= 4).length / ratings.length : null,
+      lowShare: ratings.length ? ratings.filter(n => n <= 1).length / ratings.length : null,
+      coveragePct: hasLiveLineup(season) ? computeSeasonCoverage([season]).pct : null,
+    }];
+  });
 }
 
 // Re-exported so existing importers of stats.js keep working; the labels live
@@ -129,36 +208,29 @@ export function computeRatingDistribution(reviews) {
 }
 
 /**
- * Average rating per season, ordered chronologically by each season's
- * earliest review date (the flattened review list carries no season order).
+ * The Halls of Fame and Shame: every show at the highest rating in view, and
+ * every show at the lowest, each by title. Listing the whole tier rather than
+ * a top N keeps a cut-off from deciding, alphabetically, which of a pile of
+ * equal 5s make it. `shame` is null when there's only one rating in view, so
+ * the same shows aren't listed as both.
  * @param {ReturnType<typeof flattenReviews>} reviews
  */
-export function computeRatingsOverTime(reviews) {
-  const bySeason = new Map();
-  for (const r of reviews) {
-    if (!r._lineup) continue;
-    const entry = bySeason.get(r.season) ?? { season: r.season, seasonName: r.seasonName, ratings: [], earliest: Infinity };
-    const rating = effectiveRatingNumber(r);
-    if (typeof rating === 'number') entry.ratings.push(rating);
-    if (r._firstTimestamp && r._firstTimestamp < entry.earliest) entry.earliest = r._firstTimestamp;
-    bySeason.set(r.season, entry);
-  }
-  return [...bySeason.values()]
-    .map(({ season, seasonName, ratings, earliest }) => ({ season, seasonName, avgRating: mean(ratings), count: ratings.length, earliest }))
-    .sort((a, b) => a.earliest - b.earliest);
-}
-
-/**
- * Top/bottom N numerically-rated shows, title as tiebreaker.
- * @param {ReturnType<typeof flattenReviews>} reviews
- * @param {number} n
- */
-export function computeHallOfFame(reviews, n = 5) {
+export function computeHallOfFame(reviews) {
   const rated = reviews
     .map(r => ({ ...r, ratingNumber: effectiveRatingNumber(r) }))
-    .filter(r => typeof r.ratingNumber === 'number');
-  const sorted = [...rated].sort((a, b) => b.ratingNumber - a.ratingNumber || (a.titleEN ?? '').localeCompare(b.titleEN ?? ''));
-  return { best: sorted.slice(0, n), worst: sorted.slice(-n).reverse() };
+    .filter(r => typeof r.ratingNumber === 'number')
+    .sort((a, b) => (a.titleEN ?? '').localeCompare(b.titleEN ?? ''));
+  if (rated.length === 0) return { fame: null, shame: null };
+
+  const numbers = rated.map(r => r.ratingNumber);
+  /** @param {number} ratingNumber */
+  const tier = (ratingNumber) => ({
+    ratingNumber,
+    ratingText: RATING_NUMBER_LABELS[ratingNumber] ?? String(ratingNumber),
+    shows: rated.filter(r => r.ratingNumber === ratingNumber),
+  });
+  const [top, bottom] = [Math.max(...numbers), Math.min(...numbers)];
+  return { fame: tier(top), shame: top === bottom ? null : tier(bottom) };
 }
 
 /**
@@ -431,32 +503,6 @@ function seasonsInAiringOrder(reviews) {
     if (!seen || r._firstTimestamp < seen.first) seasonsById.set(r.season, { id: r.season, name: r.seasonName, first: r._firstTimestamp });
   }
   return [...seasonsById.values()].sort((a, b) => a.first - b.first).map(({ id, name }) => ({ id, name }));
-}
-
-/**
- * Each genre's average rating per season - did romance have a good spring? -
- * with seasons in airing order (by their earliest review). Genres with fewer
- * than `minShows` across every season are left out; a season with no shows
- * in a genre simply has no cell for it.
- * @param {ReturnType<typeof flattenReviews>} reviews
- * @param {{ minShows?: number }} [options]
- */
-export function computeGenreBySeason(reviews, { minShows = MIN_CATEGORY_SHOWS } = {}) {
-  const rated = reviews.filter(r => typeof effectiveRatingNumber(r) === 'number');
-  const seasons = seasonsInAiringOrder(rated);
-
-  const rows = computeCategoryRatings(rated, 'genre', { minShows }).map(({ value }) => {
-    /** @type {Record<string, { avgRating: number, shows: number }>} */
-    const cells = {};
-    for (const { id } of seasons) {
-      const ratings = rated
-        .filter(r => r.season === id && reviewValues('genre', r).includes(value))
-        .map(effectiveRatingNumber);
-      if (ratings.length) cells[id] = { avgRating: ratings.reduce((a, b) => a + b, 0) / ratings.length, shows: ratings.length };
-    }
-    return { value, cells };
-  });
-  return { seasons, rows };
 }
 
 /**
