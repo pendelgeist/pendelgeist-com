@@ -34,24 +34,11 @@
     <div class="nav-left">
       <a href="/">Home</a>
       <span class="nav-title">Nasubi's Sweepstakes Survival</span>
-      <a href="#" id="infoToggle">Guide</a>
       <a href="#browse-data">Browse Data</a>
     </div>
   </nav>
   <script type="module" src="/theme.js"></script>
   <div class="container">
-    <div class="guidelines" id="guidelines">
-      <h3>What this is</h3>
-      <p>A data-driven look at Nasubi's 11-month ordeal on <em>Susunu! Denpa Shonen</em> (1998-99) and the Korea sequel that
-        followed &mdash; every postcard, prize, and dead end, transcribed and translated from the original broadcast.</p>
-      <h3>How to read it</h3>
-      <p>Scroll top to bottom for the curated analysis: numbers at a glance, monthly trajectory, best/worst wins, category
-        breakdowns, and running commentary. Table headers are clickable to sort. Jump to <a href="#browse-data">Browse Data</a>
-        at the bottom to search the full raw dataset yourself.</p>
-      <h3>A note on the numbers</h3>
-      <p>JPY values are as declared/estimated at the time. A few entries in the source data are illegible or ambiguous
-        (marked "?" or "probably") and are left as-is rather than guessed at.</p>
-    </div>
 
     <header class="section nasubi-hero">
       <h1 id="pageTitle">Loading&hellip;</h1>
@@ -63,6 +50,7 @@
       <h2>Numbers at a Glance</h2>
       <div id="statsGlance" class="stat-grid"><div class="loading">LOADING&hellip;</div></div>
       <div id="statsBlurb" class="nasubi-prose"></div>
+      <p class="nasubi-note">JPY values are as declared or estimated at the time.</p>
     </section>
 
     <div id="japanSections"></div>
@@ -78,7 +66,7 @@
 
     <section class="section" id="browse-data">
       <h2>Browse the Raw Data</h2>
-      <p class="nasubi-prose">Every postcard batch, every prize, unfiltered. Search across Japanese and English item names.</p>
+      <p class="nasubi-prose">Every postcard batch, every prize, unfiltered. Search across Japanese and English item names. A few entries are illegible or ambiguous (marked "?" or "probably") and are left as-is rather than guessed at.</p>
       <div class="filters">
         <div class="filter-group">
           <label for="datasetSelect">Dataset</label>

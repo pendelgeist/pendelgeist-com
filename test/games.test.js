@@ -69,6 +69,13 @@ test('?game= shows just that review, with a way back to the list', async () => {
   assert.equal(document.title, 'Newer Game — Very Quick Game Reviews');
 });
 
+test('the intro shows on the list and steps aside for a single review', async () => {
+  const list = await loadApp();
+  assert.equal(list.document.getElementById('gamesIntro').hidden, false);
+  const single = await loadApp({ search: '?game=newer-game' });
+  assert.equal(single.document.getElementById('gamesIntro').hidden, true);
+});
+
 test('an unknown ?game= says so', async () => {
   const { document } = await loadApp({ search: '?game=nope' });
   assert.match(document.getElementById('gameReviews').textContent, /NO REVIEW CALLED "nope"/);

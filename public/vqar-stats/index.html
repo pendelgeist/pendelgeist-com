@@ -34,42 +34,16 @@
     <div class="nav-left">
       <a href="/">Home</a>
       <span class="nav-title">VQAR By The Numbers</span>
-      <a href="#" id="infoToggle">Guide</a>
       <a href="/vqar">Very Quick Reviews</a>
     </div>
   </nav>
   <script type="module" src="/theme.js"></script>
   <div class="container">
-    <div class="guidelines" id="guidelines">
-      <h3>What this is</h3>
-      <p>A fun data-driven look at everything logged in <a href="/vqar">Very Quick Anime Reviews</a> &mdash;
-        every rating, every season, crunched into stats. Separate page, freer format, no build step: this is
-        all computed live from the same review data VQAR itself reads.</p>
-      <h3>How to read it</h3>
-      <p>"Season Spotlight" up top tracks whichever season is picked in the Season filter below it &mdash;
-        defaulting to the current season for "All Seasons": 4/5s worth a revisit, and that season's lineup
-        cross-checked against shows you loved in earlier seasons. Pick a past season in the filter and the
-        spotlight switches to that season instead. Below that, numbers at a glance, then a handful of curated
-        angles on the data (rating distribution, ratings over time, best/worst rated, how "Finish Ep" shows held
-        up on a revisit, OP/ED favorites) &mdash; the Season filter scopes those sections to one season
-        instead of the full history. Looking for a specific review? Head back to <a href="/vqar">VQAR</a> for
-        that season, or query the data directly via <a href="/graphql">GraphQL</a>.</p>
-      <h3>Linking to a season</h3>
-      <p>Picking a season updates the URL's <code>?season=</code> query param, so the link in your address bar
-        always points at whatever's currently on screen &mdash; copy it to share that season's stats directly, or
-        append <code>?season=&lt;id&gt;</code> yourself to jump straight to one.</p>
-      <h3>A note on the numbers</h3>
-      <p>Only entries with a numeric rating count toward averages/rankings - a review can have just a
-        <code>ratingText</code> and still be perfectly valid. Data is fetched fresh on every visit, so this page
-        is only ever as current as the underlying VQAR review data. "Continuing Seasons Worth Watching" matches titles
-        by stripping common sequel markers ("Season 2", "Part 2", roman numerals, etc.) &mdash; it's a best-effort
-        text heuristic, not a real season-relation lookup, so an unconventionally-named sequel can still slip
-        through.</p>
-    </div>
 
     <header class="section vs-hero">
       <h1>VQAR By The Numbers</h1>
       <p class="vs-subtitle">A fun data analysis of Very Quick Anime Reviews</p>
+      <p class="vs-prose">Every rating and every season, computed live from the same review data <a href="/vqar">VQAR</a> reads. Want the data itself? <a href="/graphql">Query it with GraphQL</a>.</p>
     </header>
 
     <div class="filters vs-season-filters">
@@ -81,6 +55,7 @@
       </div>
     </div>
 
+    <p class="vs-note vs-filter-note">Pick a season to scope every section below to it. Under All Seasons the spotlight follows the current one.</p>
     <section class="section" id="coverageSection">
       <h2>Review Coverage: <span id="coverageSeasonName"></span></h2>
       <div id="coverageBar"></div>
@@ -99,6 +74,7 @@
           <h3>Continuing Seasons Worth Watching</h3>
           <p class="vs-prose">This season's lineup, cross-checked against shows you rated highly or finished in earlier seasons &mdash; worth an exception to "skip returning seasons."</p>
           <div id="continuationList"><div class="loading">LOADING&hellip;</div></div>
+          <p class="vs-note">Matched by title, stripping markers like "Season 2", "Part 2" and roman numerals, so an oddly named sequel can slip through.</p>
         </div>
       </div>
     </section>

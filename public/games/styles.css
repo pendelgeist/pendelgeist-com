@@ -3,39 +3,18 @@
  * a restyle of one never reaches the other. Reviews are plain <article>s, so
  * the fixed themes dress them the same way they dress /vqar's. */
 
-/* Guidelines */
+.intro {
+  margin: 0 0 1rem;
+  padding: 0.4rem 0.5rem 0;
+  font-size: 0.85rem;
+  color: var(--color-muted);
+}
 
-.guidelines {
-  box-shadow: var(--shadow-card);
-  margin-bottom: 2rem;
-  padding: 1rem;
+.intro[hidden] {
   display: none;
-  background-color: var(--color-surface);
-  border: var(--border-width) var(--border-style) var(--color-guideline-border);
-  border-radius: var(--radius-card);
 }
 
-.guidelines.show {
-  display: block;
-}
-
-.guidelines h3 {
-  font-size: 1rem;
-  font-weight: 700;
-  margin-bottom: 0.5rem;
-  margin-top: 1rem;
-  color: var(--color-accent);
-}
-
-.guidelines h3:first-child {
-  margin-top: 0;
-}
-
-.guidelines p {
-  margin: 0.25rem 0;
-}
-
-.guidelines a {
+.intro a {
   color: var(--color-accent);
 }
 

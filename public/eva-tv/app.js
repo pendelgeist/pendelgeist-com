@@ -53,8 +53,6 @@ const TYPE_LABELS = {
 };
 
 const dom = {
-  infoToggle: document.getElementById('infoToggle'),
-  guidelines: document.getElementById('guidelines'),
   timelineTrack: document.getElementById('timelineTrack'),
   timelineScroll: document.getElementById('timelineScroll'),
   detailPanel: document.getElementById('detailPanel'),
@@ -69,11 +67,6 @@ let data = null;
 let entriesById = new Map();
 /** @type {string|null} */
 let activeEntryId = null;
-
-dom.infoToggle?.addEventListener('click', (e) => {
-  e.preventDefault();
-  dom.guidelines?.classList.toggle('show');
-});
 
 // On wide screens the detail panel is always visible (see .detail-panel[hidden]
 // in eva-tv/styles.css), so it needs something to show before anything's been

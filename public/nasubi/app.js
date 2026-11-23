@@ -18,8 +18,6 @@ import { createDataTable, createBarChart, renderStatGrid, parseNumeric } from '.
 const DATA_BASE = '/nasubi/data';
 
 const dom = {
-  infoToggle: document.getElementById('infoToggle'),
-  guidelines: document.getElementById('guidelines'),
   pageTitle: document.getElementById('pageTitle'),
   pageSubtitle: document.getElementById('pageSubtitle'),
   introText: document.getElementById('introText'),
@@ -35,11 +33,6 @@ const dom = {
   dataSearch: /** @type {HTMLInputElement} */ (document.getElementById('dataSearch')),
   dataTableWrap: document.getElementById('dataTableWrap'),
 };
-
-dom.infoToggle?.addEventListener('click', (e) => {
-  e.preventDefault();
-  dom.guidelines?.classList.toggle('show');
-});
 
 /** Order the curated Japan sections render in; each key is looked up in content.json's `japan` object. */
 const JAPAN_SECTION_ORDER = [
