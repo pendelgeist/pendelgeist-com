@@ -10,7 +10,6 @@ The Worker (`src/worker.js`) also backs a small GraphQL API over the same anime 
 
 - `public/index.html` — homepage, links out to the other sites.
 - `public/vqar/` — Very Quick Anime Reviews, a small vanilla-JS app.
-- `public/fsar/` — Full Season Anime Reviews, the long-form counterpart to VQAR.
 - `public/games/` — Very Quick Game Reviews, first impressions of games in the VQAR spirit.
 - `public/eva-tv/` — Neon Genesis Evangelion episode timeline, a small vanilla-JS app.
 - `public/nasubi/` — a data analysis of Nasubi's *Susunu! Denpa Shonen* sweepstakes ordeal.
@@ -18,14 +17,14 @@ The Worker (`src/worker.js`) also backs a small GraphQL API over the same anime 
 - `public/graphql/` — a GraphQL query explorer for the API described below.
 - `public/styles.css` — shared site styles (nav, theme variables, cards, filters). Every
   page then layers its own stylesheet on top — `public/vqar/styles.css`,
-  `public/fsar/styles.css`, and so on — deliberately holding its own copy of anything
+  `public/games/styles.css`, and so on — deliberately holding its own copy of anything
   page-specific rather than sharing it.
 - `public/theme.js` / `public/theme-palette.js` — the theme picker (see below) and the
   color-math behind the two random themes, loaded by every page.
 - `public/inline-markdown.js` — the tiny `**bold**`/`*italic*`/`[text](url)` parser the
-  pages that render committed prose (`/nasubi`, `/fsar`) share.
-- `public/streaming.js` — streaming service metadata + badge rendering, shared by `/vqar`,
-  `/fsar`, and `scripts/validateSeason.js`.
+  page that renders committed prose (`/nasubi`) uses.
+- `public/streaming.js` — streaming service metadata + badge rendering, shared by `/vqar` and
+  `scripts/validateSeason.js`.
 - `public/vqar/list-entries.js` — the shape of a `toReview`/`notReviewing` list entry (a title string
   or an object with optional notes) and the helpers that read either, shared by `/vqar`,
   `/vqar-stats`, `src/schema.js` and the scripts.
@@ -33,9 +32,9 @@ The Worker (`src/worker.js`) also backs a small GraphQL API over the same anime 
   a moment, a full Eastern-offset timestamp) and the helpers that check and read them, shared by
   the pages, the GraphQL schema and the validators. See "Dates" under "VQAR data".
 - `public/vqar/seasons.js` — what a season file's id means: whether it's a lineup or a shelf
-  (see "Lineups and the Backlog"), and where it sorts.
-- `public/external-links.js` — the AniList/ANN/Wikipedia reference links, shared by `/vqar`
-  and `/fsar`, which carry the same fields for them.
+  (see "Lineups and shelves"), and where it sorts.
+- `public/external-links.js` — the AniList/ANN/Wikipedia reference links `/vqar` renders
+  from the optional fields on a review.
 - `public/data-table.js` — the sortable table, stat-tile grid, and bar chart the two
   data-analysis pages (`/nasubi`, `/vqar-stats`) both render. Only the JS is shared: each
   page keeps its own `.data-table`/`.stat-tile`/`.bar-chart` rules, like every other
@@ -186,7 +185,7 @@ The same words mean the same thing in the data, the code, the pages and the API:
 - **Backfill** — a review written after watching a stretch of a show rather than on episode 1;
   its stage is "review".
 - **Lineup** — a season file for an anime season (`spring-2026`), holding the shows that aired in it. **Shelf** — any
-  other season file; the one there is is the **Backlog**.
+  other season file (there are none at the moment).
 - **To review** / **not reviewing** — a lineup's titles still waiting for a first impression, and
   the ones it won't get (`toReview`, `notReviewing`).
 - **Aired** — when a show first aired, from AniList. **Watched** — when you watched it, and how
@@ -205,26 +204,21 @@ currently being reviewed. `public/vqar/app.js` loads the index first
 {
   "currentSeason": "spring-2026",
   "seasons": [
-    { "id": "spring-2026", "name": "Spring 2026", "file": "/vqar/data/seasons/spring-2026.json" }
-  ],
-  "aired": [
-    { "id": "spring-2026", "name": "Spring 2026", "shows": 42, "seasons": ["spring-2026"] },
-    { "id": "winter-2004", "name": "Winter 2004", "shows": 1, "seasons": ["spring-2026"] }
+    { "id": "spring-2026", "name": "Spring 2026", "file": "/vqar/data/seasons/spring-2026.json", "shows": 42 }
   ]
 }
 ```
 
-`aired` lists every season the shows aired in, newest first (a show AniList knows only the year
-of is listed under the year alone, like `"2026"`), with how many shows and which season files hold
-them. That's what lets `/vqar`'s Aired view load just those files (see "Filtering and linking").
+`shows` is how many shows the season file holds, so the Season dropdown can say "Spring 2026 (42)"
+without loading every file (see "Filtering and linking").
 
 Never hand-edit `index.json` — regenerate it with `npm run build-vqar-index` after touching
 a season file. `test/vqar-data.test.js` fails if the committed one is stale, so CI catches a
 forgotten rebuild.
 
 Each season file has `id`, `name`, `shows` (the reviews), `toReview` ("To Be Reviewed") and
-`notReviewing` ("Not Reviewing"). Most are **lineups**, one per anime season, holding the shows that aired in it;
-the Backlog is a **shelf** for everything else — see "Lineups and the Backlog" below.
+`notReviewing` ("Not Reviewing"). Every one is a **lineup**, one per anime season, holding the shows that aired in it
+— see "Lineups and shelves" below.
 Adding a season means dropping a new file in `seasons/` and rebuilding the index; editing an
 old season never touches the others.
 
@@ -280,7 +274,7 @@ Two fields exist purely so the index can be generated rather than hand-maintaine
   mis-render the page.
 - Seasons are ordered newest-first by parsing `<season>-<year>` out of the id, since the
   directory listing would put spring before winter. A season id that doesn't follow that
-  pattern (a shelf, like the Backlog) needs an explicit numeric `sortKey` instead; validation
+  pattern (a shelf) needs an explicit numeric `sortKey` instead; validation
   rejects one with neither.
 
 The index and the seasons are fetched with `cache: 'no-cache'`, which revalidates rather
@@ -490,7 +484,7 @@ A season id that isn't `<season>-<year>` is a shelf, not a lineup (see below), a
 explicit numeric `sortKey` instead, higher meaning more recent — lineups sort at
 `year * 10 + season`, so `20263` sits where a fall-2026 would.
 
-### Lineups and the Backlog
+### Lineups and shelves
 
 A season file is one of two things, and its id says which (`isLineup` in
 `public/vqar/seasons.js`), so no flag has to be kept in step with it:
@@ -502,33 +496,30 @@ A season file is one of two things, and its id says which (`isLineup` in
   the season they aired in, whenever you watched them. A backfill goes in its aired season's
   lineup (create the file if it isn't there yet). A live first impression goes in the season
   you're reviewing, even for an older show you picked up then (Paranoia Agent is in Spring 2026);
-  its `aired` shows on the card as "Aired: Winter 2004" and is found by search.
-- A **shelf** is any other id. There's one, `seasons/backlog.json` (`"sortKey": 0`, so it sorts
-  after every lineup and comes last in the Season dropdown as "Backlog"), for a show with no aired
-  season to file it under - one AniList doesn't list (Anime Crimes Division).
+  its `aired` shows on the card as "Aired: Winter 2004" and is found by search. A show with no
+  aired season to file it under (one AniList doesn't list) goes in the lineup of the season you
+  watched it in.
+- A **shelf** is any other id, with an explicit numeric `sortKey`. There aren't any right now (the
+  one there was, the Backlog, was retired), but the validators, stats and API still understand one.
 
-A Backlog show still counts everywhere a show counts (totals, average rating, rating
-distribution, Hall of Fame, genre and studio averages), but the Backlog isn't a season for the
-per-season stats on `/vqar-stats`: the ratings-over-time chart, genre-by-season, Hope Check by
-season, "seasons covered", busiest season and the coverage tile all leave it out - as they do
-any lineup show without a first impression, so a lineup of backfills is browsable but doesn't
-move those numbers. "Continuing Seasons Worth Watching" judges which seasons came earlier by this
-same order (lineups by id, the Backlog before all of them), not by review dates, since a backfilled
-lineup was reviewed long after it aired. Validation rejects `current` on it. The GraphQL API
-tells the two apart with `Season.lineup`. An old `?season=older-shows` link still opens the
-Backlog.
+A show with no first impression (a backfill) still counts everywhere a show counts (totals,
+average rating, rating distribution, Hall of Fame, genre and studio averages), but a lineup of
+them isn't a season for the per-season stats on `/vqar-stats`: the ratings-over-time chart,
+genre-by-season, Hope Check by season, "seasons covered", busiest season and the coverage tile
+all leave it out, so a lineup of backfills is browsable but doesn't move those numbers.
+"Continuing Seasons Worth Watching" judges which seasons came earlier by season order (lineups by
+id), not by review dates, since a backfilled lineup was reviewed long after it aired. The GraphQL
+API tells lineups and shelves apart with `Season.lineup`.
 
 ### Filtering and linking
 
-**Season** picks the season file you browse: a lineup, the Backlog, or All Seasons. **Aired**
-browses by when shows first aired instead (`aired` on each show, see "Show shape"): pick "Spring
-2010" and the page shows every show that aired then, wherever it's filed - a lineup, or the
-Backlog. Picking one switches Season to All Seasons, and the page loads only the season files the
-index says hold such shows (`aired` in `index.json`). Season can then narrow it to one file. Like
-Season, Aired sets what's being browsed rather than filtering it, so it isn't one of the filters
-Clear Filters resets, and the review count is out of that aired season's shows.
+**Season** picks the season file you browse, or All Seasons. Each option carries how many shows
+that season holds (`shows` in `index.json`) and All Seasons the total: "Spring 2026 (42)". It sets
+what's being browsed rather than filtering it, so it isn't one of the filters Clear Filters
+resets. An older show picked up live sits in the season it was reviewed in and says when it aired
+on its card ("Aired: Spring 2010"); search finds it by that too.
 
-Besides Season / Aired / Search / Sort, `/vqar` has three rows of toggle chips: **Rating** (the 0–5
+Besides Season / Search / Sort, `/vqar` has three rows of toggle chips: **Rating** (the 0–5
 tiers, labeled from `RATING_NUMBER_LABELS`), **Streaming** (only the services something in the
 selected season is on), **Extras** (to revisit, revisited, rated up/down on revisit, liked OP/ED, finished season), and
 **Format**/**Genre**/**Tag**/**Studio** from AniList (see "AniList tags" below). Within
@@ -553,8 +544,8 @@ Both scroll smoothly unless the reader prefers reduced motion.
 
 The matching and counting live in `public/vqar/filters.js`, DOM-free like `/vqar-stats`'
 `stats.js`, and tested in `test/vqar-filters.test.js`. Every control is mirrored into the URL
-(`/vqar?season=all&rating=4,5&on=hidive`) via `history.replaceState`, as on `/vqar-stats` and
-`/fsar`; anything at its default (the current season, Most Recent, nothing pressed) is left out,
+(`/vqar?season=all&rating=4,5&on=hidive`) via `history.replaceState`, as on `/vqar-stats`;
+anything at its default (the current season, Most Recent, nothing pressed) is left out,
 and an unrecognized value falls back to the default on load.
 
 ### Validating season data
@@ -831,122 +822,6 @@ render function in `app.js` that calls it — no committed data to regenerate, u
 The tables, stat tiles and bar charts themselves come from `public/data-table.js`, shared
 with the Nasubi page (see "Shared page components" below).
 
-## Full Season Anime Reviews page
-
-`public/fsar/` is a standalone page at `/fsar`, "Full Season Anime Reviews" — the long-form
-counterpart to VQAR. VQAR is five to ten minutes of a first episode and a one-liner on
-everything in a season; FSAR is a full writeup of a show actually watched to the end, which
-in practice means shows that were worth finishing. Plenty of them are decades old rather
-than current-season.
-
-Like VQAR and the Evangelion and Nasubi pages, the data is committed to this repo, under
-`public/fsar/data/`:
-
-- `reviews/<id>.json` — one file per review, the full writeup. One file each so a new review
-  never touches an existing one, and so a long writeup only gets downloaded when it's opened.
-- `index.json` — **generated**, not hand-written: every review's card-level metadata (i.e.
-  everything except its `sections`), which is all the list view needs. Rebuild it with
-  `npm run build-fsar-index` after adding or editing a review; `test/fsar-data.test.js`
-  fails if the committed index is stale.
-
-### Review shape
-
-`public/fsar/schema.js` is the authoritative description of the shape (and is imported by
-the page, the index builder, and the validator so the three can't drift). A review is:
-
-```json
-{
-  "id": "gunbuster",
-  "status": "done",
-  "titleEN": "Gunbuster",
-  "titleJP": "トップをねらえ！",
-  "format": "OVA",
-  "year": 1988,
-  "airedLabel": "1988-89",
-  "episodeCount": 6,
-  "episodesWatched": 6,
-  "dateReviewed": "2026-03-02",
-  "dateUpdated": "2026-03-09",
-  "verdict": { "ratingNumber": 5, "ratingText": "Peak", "oneLiner": "..." },
-  "recommendedFor": ["..."],
-  "notFor": ["..."],
-  "tags": ["mecha", "sci-fi"],
-  "availabilityNote": "Out of print in the US; secondhand disc or bust.",
-  "podcastUrl": "https://amokenzoku.com/podcast/#episode-012",
-  "podcastLabel": "AMO Kenzoku, episode 12",
-  "sections": {
-    "story": ["paragraph", "paragraph"],
-    "production": ["paragraph"],
-    "op": { "ratingText": "Peak", "body": ["paragraph"] },
-    "ed": { "ratingText": "Nice", "body": ["paragraph"] },
-    "notes": [{ "heading": "...", "body": ["paragraph"] }],
-    "spoilers": [{ "heading": "...", "body": ["paragraph"] }]
-  }
-}
-```
-
-- **`status`** is `wip` or `done`. A `wip` review is a draft still being revised — it renders
-  and stays linkable, it just wears an "In Progress" badge, since these take several passes
-  before they settle. It's also the one thing validation keys off: a `wip` review may be
-  completely empty, while a `done` one must have a `verdict.oneLiner` and at least one
-  written section.
-- **`sections`** is a fixed set, all optional. `story`/`production` are arrays of paragraphs;
-  `op`/`ed` add a `ratingText` alongside their body. New section names are rejected rather
-  than silently dropped — anything that doesn't fit goes in `notes` (free-form
-  `{ heading, body }` blocks) or `spoilers`. Keeping the layout identical across every
-  writeup is the point: a link handed to someone lands them somewhere familiar.
-- **`spoilers`** render collapsed, in their own section at the bottom, behind a "Reveal all
-  spoilers" toggle whose state is remembered per reader (`pendelgeist:fsar:spoilers` in
-  `localStorage`). Nothing spoiler-y belongs in the other sections — that separation is what
-  makes a review safe to link to someone who hasn't watched the show.
-- **`recommendedFor`/`notFor`** are structured rather than prose because pointing a specific
-  person at a specific show is the main thing these get used for.
-- **`year`/`format`/`airedLabel`** carry the release info, since these aren't organized by
-  season the way VQAR is and aren't all TV: `format` is one of TV/OVA/ONA/Movie/Special, and
-  `airedLabel` is free text (`"Summer 2025"`, `"1988-89"`) shown in place of the bare year.
-  The page's Decade filter is derived from `year`. `episodeCount`/`episodesWatched` are
-  optional and may be `null`, which older shows often want.
-- **`streaming`** (plus the matching `crunchyrollUrl`/`hidiveUrl`/`netflixUrl`/`huluUrl`/`primeUrl`/`youtubeUrl`), `anilistId`,
-  and `annId` work exactly as they do in VQAR — same keys, same badges, shared code. For a
-  show no service carries, `availabilityNote` is free text saying where it actually lives.
-- **`wikipediaUrl`/`wikipediaJaUrl`** work as they do in VQAR: full article URLs rather than
-  ids, since Wikipedia is keyed on the article title and the two language editions disagree
-  about it. Both render as outbound links in the review's facts rail alongside AniList/ANN.
-- **`podcastUrl`** (plus optional `podcastLabel` for the link text, defaulting to "Listen to
-  the episode") links a review to the [AMO Kenzoku Podcast](https://amokenzoku.com/podcast/)
-  episode covering that show. It gets its own labelled block in the facts rail rather than
-  joining the reference links: our own coverage is a different kind of link from an ANN
-  lookup, and the two are kept apart by class (`.review-podcast` vs `.review-meta`) so they
-  stay distinguishable.
-- Prose supports `**bold**`, `*italic*`, and `[text](url)` via `public/inline-markdown.js`,
-  same as the Nasubi page. It is not real Markdown.
-
-### The page
-
-One page, two views, switched on the `?show=` query param, so there's no build step or
-server routing involved:
-
-- `/fsar` — the card list, with Search / Decade / Tag / Status / Sort filters. The Decade and
-  Tag options are built from the data rather than hardcoded. Decade, tag, and status
-  selections are mirrored into the URL (via `history.replaceState`, so they don't spam
-  browser history), making a filtered list linkable too.
-- `/fsar?show=<id>` — one full review, which is the link to hand someone. Cards are real
-  `<a href>` elements, so open-in-new-tab and copy-link work; a plain left click is
-  intercepted and handled with `history.pushState` instead. Back/forward re-render the right
-  view, and a review body is fetched at most once per session.
-
-### Validating and rebuilding
-
-`scripts/validateFsarReview.js` checks one review's shape; `scripts/build-fsar-index.js`
-runs it over every file and refuses to write the index if anything is wrong. Both are
-exercised by `test/fsar-data.test.js`, which runs in CI — the same arrangement VQAR's data
-has in `test/vqar-data.test.js`, so every PR checks both automatically.
-
-```
-npm run build-fsar-index              # regenerate index.json from the review files
-node scripts/build-fsar-index.js --check   # exit 1 if it's stale, write nothing
-```
-
 ## Very Quick Game Reviews page
 
 `/games` is VQAR's idea applied to games — first impressions a few hours in — without any
@@ -1018,7 +893,7 @@ rules in its own stylesheet, so a page added later can restyle them without dist
 others — the same convention as `.filters`/`.guidelines`.
 
 `public/external-links.js` (`createExternalLinks(entry)`) does the same job for the
-AniList/ANN/Wikipedia reference links `/vqar` and `/fsar` both render from the same fields.
+AniList/ANN/Wikipedia reference links `/vqar` renders from the same fields.
 
 ## Data fetching conventions
 
@@ -1115,8 +990,7 @@ npm run deploy  # wrangler deploy
 ```
 
 Tests (`test/`) run against the real `app.js` and `index.html` with a mocked
-`fetch`/`localStorage` via jsdom — see `test/helpers.js` for the page loaders (`loadApp`,
-`loadFsarApp`) and stubs (`createPathFetchStub`, `createLocalStorageStub`), and
+`fetch`/`localStorage` via jsdom — see `test/helpers.js` for the page loaders (`loadApp`) and stubs (`createPathFetchStub`, `createLocalStorageStub`), and
 `test/fixtures.js` for the fixture builders (`makeShow`, `makeSeason`, `makeGame`), which keep
 test data in step with the data's shape so a shape change lands in one place. The shared
 modules under `public/` get plain unit tests of their own, since they need nothing but a

@@ -1,6 +1,6 @@
 /**
  * Streaming service metadata, shared by every page that renders "where can I
- * watch this" badges (/vqar, /fsar) and by scripts/validateSeason.js, which
+ * watch this" badges (/vqar) and by scripts/validateSeason.js, which
  * checks a review's `streaming` keys against this same list.
  *
  * Badge colors are the services' own brand colors, deliberately fixed rather

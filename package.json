@@ -6,7 +6,6 @@
     "test": "node --test test/*.test.js",
     "validate-vqar": "node scripts/validate-vqar.js",
     "validate-anilist": "node scripts/validate-against-anilist.js",
-    "build-fsar-index": "node scripts/build-fsar-index.js",
     "build-vqar-index": "node scripts/build-vqar-index.js",
     "dev": "wrangler dev",
     "deploy": "wrangler deploy",

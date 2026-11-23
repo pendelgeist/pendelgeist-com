@@ -14,7 +14,6 @@ const PAGES = {
   graphql: path.join(__dirname, '../public/graphql/index.html'),
   nasubi: path.join(__dirname, '../public/nasubi/index.html'),
   'vqar-stats': path.join(__dirname, '../public/vqar-stats/index.html'),
-  fsar: path.join(__dirname, '../public/fsar/index.html'),
   games: path.join(__dirname, '../public/games/index.html'),
 };
 

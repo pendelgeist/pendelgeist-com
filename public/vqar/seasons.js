@@ -4,8 +4,8 @@
  * A **lineup** is a season you watched as it aired: its id is
  * `<season>-<year>` ("spring-2026"), which is also how the generated index
  * orders lineups, newest first - a directory listing would put spring before
- * winter. Any other id is a **shelf** - the Backlog, shows watched outside a
- * lineup - which says where it sorts with an explicit numeric `sortKey`.
+ * winter. Any other id is a **shelf** - a season file for shows watched outside a
+ * lineup (none exist at the moment) - which says where it sorts with an explicit numeric `sortKey`.
  *
  * Per-season stats only make sense for lineups, so they ask `isLineup` rather
  * than a flag on the file. Shared by /vqar-stats, src/schema.js and the
@@ -38,8 +38,7 @@ export function seasonSortKey(season) {
 }
 
 /**
- * Whether a season is a lineup (watched as it aired) rather than a shelf like the
- * Backlog.
+ * Whether a season is a lineup (watched as it aired) rather than a shelf.
  * @param {{ id?: string }|string} season - a season, or just its id
  */
 export function isLineup(season) {

@@ -329,9 +329,20 @@
  * so it's set at 2rem (and 3rem for section headings) to read at about the
  * size of the surrounding text - still a 16px multiple, where the pixel font
  * stays crisp - with line-height pulled in to match. */
-:root[data-theme="ffvii"] .section h2 {
+:root[data-theme="ffvii"] .section > h2 {
   font-size: 3rem;
   font-weight: 400;
+}
+
+/* The collapsible To Be Reviewed / Not Reviewing badges (see /vqar's
+ * styles.css) are pills, not headings: at the heading's 3rem they wrap into
+ * an oval of mismatched lines. 1.5rem is on the font's 8px grid, like the
+ * phone nav, with the heading's wide letter-spacing taken back out. */
+:root[data-theme="ffvii"] .section summary h2 {
+  font-size: 1.5rem;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: 0;
 }
 
 :root[data-theme="ffvii"] .nav-left > a,
@@ -584,7 +595,10 @@
   box-shadow: none;
 }
 
-:root[data-theme="manga-shoujo"] .section h2 {
+/* Real headings only: the collapsible To Be Reviewed / Not Reviewing badges
+ * keep their pill (see /vqar's styles.css), which this would flatten into a
+ * full-width underlined line with the text against its edge. */
+:root[data-theme="manga-shoujo"] .section > h2 {
   display: block;
   padding: 0 0 0.3rem;
   background: none;
@@ -932,8 +946,18 @@
 
 /* Press Start 2P is an 8px-grid pixel font: kept to multiples of 8px so it
  * stays crisp, and given no extra letter-spacing (its glyphs carry their own). */
-:root[data-theme="gameboy"] .section h2 {
+:root[data-theme="gameboy"] .section > h2 {
   font-size: 1.5rem;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 1.5;
+}
+
+/* The collapsible To Be Reviewed / Not Reviewing badges are pills, not
+ * headings: at 1.5rem Press Start 2P wraps them into a tall oval wider than
+ * the card. 0.75rem is the size the phone nav already uses. */
+:root[data-theme="gameboy"] .section summary h2 {
+  font-size: 0.75rem;
   font-weight: 400;
   letter-spacing: 0;
   line-height: 1.5;
@@ -1175,8 +1199,8 @@ nav {
 }
 
 
-/* Streaming service badges (see public/streaming.js), shared by /vqar and
- * /fsar - deliberately fixed brand colors rather than theme custom properties
+/* Streaming service badges (see public/streaming.js), used by /vqar -
+ * deliberately fixed brand colors rather than theme custom properties
  * (except in Manga and Game Boy, which redraw them in their own palette),
  * since the point is at-a-glance recognition of the actual service regardless
  * of which site theme is active. Each pairs white (or, for Hulu's light green,

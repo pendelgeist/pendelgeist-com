@@ -311,17 +311,20 @@ input:focus, select:focus {
   display: none;
 }
 
+/* Inline-block rather than a flex row, so the title and the season label
+ * ("· Fall 1995") are one run of text that wraps like any other instead of
+ * splitting into mismatched columns on a narrow screen. */
 .section summary h2 {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
+  display: inline-block;
+  max-width: 100%;
+  box-sizing: border-box;
   margin: 0;
   padding: 0.4rem 0.9rem;
   /* A border (not just the chrome fill) so the badge stays visible even in
    * themes where --color-chrome and --color-bg are the same color (e.g. the
    * default Dark theme, or a Random roll where they land close together). */
   border: var(--border-width) var(--border-style) var(--color-section-border);
-  border-radius: 999px;
+  border-radius: 1.5rem;
   font-size: 0.8rem;
   letter-spacing: 0.1rem;
   background-color: var(--color-chrome);
@@ -330,6 +333,9 @@ input:focus, select:focus {
 
 .section summary h2::before {
   content: '\25B8';
+  display: inline-block;
+  margin-right: 0.4rem;
+  vertical-align: middle;
   font-size: 0.7rem;
   transition: transform 0.15s ease;
 }
