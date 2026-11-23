@@ -6,7 +6,7 @@ import { fileURLToPath, pathToFileURL } from 'node:url';
 import { JSDOM } from 'jsdom';
 import {
   flattenReviews, reviewSource, filterBySource, hasLiveLineup, computeGlanceStats, computeSeasonTable, computeDecadeTable, airedYear,
-  computeRatingDistribution, computeHallOfFame, computeSecondImpressions, computeOpEdHighlights,
+  computeRatingDistribution, computePeaksAndValleys, computeRevisits, computeOpEdHighlights,
   computeCategoryRatings, computeLovesAndHates,
   computeSeasonCoverage, computeHopeCheck,
 } from '../public/anime-stat-sheet/stats.js';
@@ -87,8 +87,8 @@ test('computeRatingDistribution counts by ratingNumber, ordered ascending and la
   assert.equal(dist.find(d => d.ratingNumber === 5).count, 2); // Peak Show + Meh Show's fullReview
 });
 
-test('computeHallOfFame lists every show at the top and bottom rating, by their latest review', () => {
-  const { fame, shame } = computeHallOfFame(reviews);
+test('computePeaksAndValleys lists every show at the top and bottom rating, by their latest review', () => {
+  const { peaks: fame, valleys: shame } = computePeaksAndValleys(reviews);
   // Meh Show's revisit (5) ties it with Peak Show; the whole tier is listed, by title.
   assert.equal(fame.ratingNumber, 5);
   assert.equal(fame.ratingText, 'Peak, Nice Ep Broh');
@@ -97,16 +97,16 @@ test('computeHallOfFame lists every show at the top and bottom rating, by their 
   assert.deepEqual(shame.shows.map(r => r.titleEN), ['Trash Show']);
 });
 
-test('computeHallOfFame has no Hall of Shame when only one rating is in view, and nothing with no ratings', () => {
+test('computePeaksAndValleys has no valleys when only one rating is in view, and nothing with no ratings', () => {
   const one = flattenReviews([makeSeason({ id: 'x', name: 'X', shows: [makeShow({ titleEN: 'A', ratingNumber: 4 }), makeShow({ titleEN: 'B', ratingNumber: 4 })] })]);
-  const { fame, shame } = computeHallOfFame(one);
+  const { peaks: fame, valleys: shame } = computePeaksAndValleys(one);
   assert.deepEqual(fame.shows.map(r => r.titleEN), ['A', 'B']);
   assert.equal(shame, null);
-  assert.deepEqual(computeHallOfFame([]), { fame: null, shame: null });
+  assert.deepEqual(computePeaksAndValleys([]), { peaks: null, valleys: null });
 });
 
-test('computeSecondImpressions compares episode-1 rating to full-series re-review', () => {
-  const s = computeSecondImpressions(reviews);
+test('computeRevisits compares the episode-1 rating with the latest review after it', () => {
+  const s = computeRevisits(reviews);
   assert.equal(s.total, 2);
   assert.equal(s.upgrades, 1); // Meh Show: 3 -> 5
   assert.equal(s.downgrades, 1); // Great Show: 4 -> 2
@@ -114,8 +114,8 @@ test('computeSecondImpressions compares episode-1 rating to full-series re-revie
   assert.equal(s.swings.length, 2);
 });
 
-test('computeSecondImpressions is empty when nothing has a full re-review', () => {
-  const s = computeSecondImpressions(flattenReviews([makeSeason({ id: 'x', name: 'X', shows: [makeShow({ titleEN: 'A', ratingNumber: 3, ratingText: 'Meh', dateReviewed: '2026-01-01' })] })]));
+test('computeRevisits is empty when nothing has been revisited', () => {
+  const s = computeRevisits(flattenReviews([makeSeason({ id: 'x', name: 'X', shows: [makeShow({ titleEN: 'A', ratingNumber: 3, ratingText: 'Meh', dateReviewed: '2026-01-01' })] })]));
   assert.equal(s.total, 0);
   assert.equal(s.avgDelta, null);
   assert.deepEqual(s.swings, []);
@@ -238,13 +238,13 @@ test('renders the glance stat grid from live-fetched season data', async () => {
   assert.equal(tiles['Live'], undefined);
 });
 
-test('renders a rating distribution bar chart and the halls, each listing its whole rating tier', async () => {
+test('renders Peaks & Valleys: the distribution, and every show in its top and bottom tiers', async () => {
   const { document } = await loadApp();
 
   assert.ok(document.querySelectorAll('#ratingDistributionChart .bar-fill').length > 0);
-  assert.deepEqual(tableRows(document, 'hallOfFameBest'), [['Meh Show', 'Summer 2026'], ['Peak Show', 'Summer 2026']]);
-  assert.equal(document.getElementById('hallOfFameHeading').textContent, 'Peak, Nice Ep Broh (2)');
-  assert.equal(document.getElementById('hallOfShameHeading').textContent, 'Never, Please No More Like This Ever (1)');
+  assert.deepEqual(tableRows(document, 'peaksTable'), [['Meh Show', 'Summer 2026'], ['Peak Show', 'Summer 2026']]);
+  assert.equal(document.getElementById('peaksHeading').textContent, 'Peak, Nice Ep Broh (2)');
+  assert.equal(document.getElementById('valleysHeading').textContent, 'Never, Please No More Like This Ever (1)');
 });
 
 test('shows an error message if the season index fails to load', async () => {
@@ -283,7 +283,7 @@ test('picking a season turns the page into that season\'s report', async () => {
 
   // Peak Show (Summer 2026) is out of scope; Great Show's revisit (2) puts Fine Show (3) on top.
   // A season's own halls drop the Season column, which would say the same thing on every row.
-  assert.deepEqual(tableRows(document, 'hallOfFameBest'), [['Fine Show']]);
+  assert.deepEqual(tableRows(document, 'peaksTable'), [['Fine Show']]);
 });
 
 test('each section shows only in the view it makes sense in, and there is no Season Spotlight', async () => {
@@ -293,14 +293,13 @@ test('each section shows only in the view it makes sense in, and there is no Sea
   const visible = () => [...document.querySelectorAll('section.section')].filter(s => !s.hidden).map(s => s.id);
 
   assert.deepEqual(visible(), [
-    'glanceSection', 'seasonTableSection', 'ratingDistributionSection', 'tasteProfileSection',
-    'lovesHatesSection', 'hallOfFameSection', 'secondImpressionsSection', 'hopeCheckSection', 'opEdSection',
+    'glanceSection', 'seasonTableSection', 'peaksValleysSection', 'revisitsSection',
+    'tasteProfileSection', 'lovesHatesSection', 'opEdSection',
   ]);
 
   pickSeason(document, 'summer-2026');
   assert.deepEqual(visible(), [
-    'glanceSection', 'coverageSection', 'ratingDistributionSection',
-    'hallOfFameSection', 'secondImpressionsSection', 'opEdSection',
+    'glanceSection', 'coverageSection', 'peaksValleysSection', 'revisitsSection', 'opEdSection',
   ]);
 });
 
@@ -628,8 +627,7 @@ test('the Reviews switch narrows every section to live or historical reviews, an
   assert.equal(document.querySelector('#seasonFilter option[value="summer-2026"]').textContent, 'Summer 2026 (0)');
   assert.deepEqual(tableRows(document, 'seasonTable'), [['Spring 2022', '2', '4.5', '100%', '0%']]);
   // Nothing historical has an episode-1 rating to compare against, or a hope to check.
-  assert.equal(document.getElementById('secondImpressionsSection').hidden, true);
-  assert.equal(document.getElementById('hopeCheckSection').hidden, true);
+  assert.equal(document.getElementById('revisitsSection').hidden, true);
 
   pickSource(document, 'all');
   assert.equal(new URL(window.location.href).searchParams.get('source'), null);
@@ -649,7 +647,7 @@ test('a season of backfills is measured against your historical average, with no
   assert.equal(glance(document)['vs. Historical Average'], '0.0');
   assert.equal(document.getElementById('coverageSection').hidden, true);
   // Its two shows are a 5 and a 4: both halls, each with its own tier.
-  assert.equal(document.getElementById('hallOfShame').hidden, false);
+  assert.equal(document.getElementById('valleys').hidden, false);
 });
 
 // --- By decade ---
@@ -751,4 +749,29 @@ test('a "?by=decade" link opens on the decade table, and a long list of top titl
   const [row] = tableRows(document, 'seasonTable');
   assert.equal(row[0], '2020s');
   assert.equal(row.at(-1), 'Show A, Show B, Show C +2 (5.0)');
+});
+
+// --- Revisits ---
+
+test('Revisits tiles every revisit, then the Here\'s Hoping 4s, then the biggest swings', async () => {
+  const { document } = await loadApp({ fetch: hopeRoutes() });
+  await waitForTable(document, 'swingsTable');
+  const tiles = Object.fromEntries([...document.querySelectorAll('#revisitStats .stat-tile')]
+    .map((el) => [el.querySelector('.stat-label').textContent, el.querySelector('.stat-value').textContent]));
+  // Rose 4->5, Fell 4->2, Held 4->4, Grower 3->5.
+  assert.deepEqual(tiles, { 'Revisited': '4', 'Average Shift': '+0.3', 'Went Up': '2', 'Held': '1', 'Went Down': '1' });
+  assert.equal(document.getElementById('hopeBlock').hidden, false);
+  assert.deepEqual(tableRows(document, 'swingsTable')[0], ['Fell', '4.0', '2.0', '-2.0']);
+});
+
+test('Revisits keeps the Here\'s Hoping block when every 4 is still waiting, and hides the rest', async () => {
+  const fetch = createPathFetchStub({
+    '/vqar/data/index.json': { currentSeason: 'summer-2026', seasons: [{ id: 'summer-2026', name: 'Summer 2026', file: '/vqar/data/seasons/summer-2026.json' }] },
+    '/vqar/data/seasons/summer-2026.json': makeSeason({ id: 'summer-2026', name: 'Summer 2026', shows: [hope('Waiting')], toReview: [], notReviewing: [] }),
+  });
+  const { document } = await loadApp({ fetch });
+  assert.equal(document.getElementById('revisitsSection').hidden, false);
+  assert.equal(document.getElementById('hopeBlock').hidden, false);
+  assert.equal(document.getElementById('revisitStats').hidden, true);
+  assert.equal(document.getElementById('swingsBlock').hidden, true);
 });

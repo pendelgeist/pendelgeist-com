@@ -505,7 +505,7 @@ A season file is one of two things, and its id says which (`isLineup` in
 A show with no first impression (a backfill) is a **historical** review on `/anime-stat-sheet`, and
 one with a first impression is **live**. Historical reviews count everywhere a show counts, and the
 page can be narrowed to either kind, since historical picks tend to be favorites and skew high. A
-season of backfills has no coverage bar there, and isn't a row in Hope Check by season. The GraphQL
+season of backfills has no coverage bar there, and isn't a row in Here's Hoping by season. The GraphQL
 API tells lineups and shelves apart with `Season.lineup`.
 
 ### Filtering and linking
@@ -762,21 +762,29 @@ current view (no revisits, no hopes, no liked OP/EDs) is hidden rather than left
   the same numbers plus the decade's top-rated titles). Decades go by when a show aired
   (`airedYear`: its `aired.year`, or failing that its lineup's year), not where it's filed, so an
   older show picked up live counts in its own decade;
-  the rating distribution; the taste sections; the halls; Second Impressions; Hope Check, with a
-  per-season table; and the liked OP/EDs.
+  **Peaks & Valleys**; **Revisits**, with Here's Hoping per season; the taste sections; and
+  **Liked OPs & EDs**.
 - **Season report** (one season): the glance tiles, including the "vs." comparison and the share
   rated 4–5; for a season reviewed live (`hasLiveLineup`), its **Review Coverage** bar; then the
-  distribution, halls, Second Impressions, Hope Check and liked
-  OP/EDs for that season alone, without the Season columns that would repeat it on every row.
+  Peaks & Valleys, Revisits and Liked OPs & EDs for that season alone, without the Season
+  columns that would repeat it on every row.
 
 A show's latest review sets its rating everywhere ratings get aggregated or ranked (averages, the
-distribution, the halls). `computeSecondImpressions` is the one
+Peaks & Valleys). `computeRevisits` is the one
 exception, since it exists to compare the first impression with what came after (`ratingShift` in
 `public/vqar/reviews.js`). `/vqar`'s own "Highest/Lowest Rating" sort follows the same rule.
 
-**The halls** (`computeHallOfFame`) list every show at the highest rating in view and every show
-at the lowest, rather than a top N: with dozens of equal 5s, a cut-off would only be deciding
-alphabetically who makes it. There's no Hall of Shame when only one rating is in view.
+**Peaks & Valleys** is the rating distribution with its two ends spelled out:
+`computePeaksAndValleys` lists every show at the highest rating in view and every show at the
+lowest, headed by the tier's own name ("Peak, Nice Ep Broh (37)"), rather than a top N: with dozens
+of equal 5s, a cut-off would only be deciding alphabetically who makes it. There are no valleys
+when only one rating is in view.
+
+**Revisits** answers "did it hold up?" for every show reviewed on episode 1 and again later
+(`computeRevisits`, by `ratingShift`): how many, the average shift, and how many went up, held or
+went down; then **Here's Hoping, Revisited**, the episode-1 4s among them (below); then the biggest
+swings. Each part hides itself when it has nothing to show, and the section when none of them do.
+It used to be two sections, Second Impressions and Hope Check, which measured the same thing.
 
 **Category cross-references** (career view). Both are computed live from the reviews.
 - **Taste Profile** (`computeCategoryRatings`) is one sortable table, switchable between genre,
@@ -792,7 +800,7 @@ ranking, and the table notes how many were. Shows are categorised by the same `r
 That works because `createDataTable` (`public/data-table.js`) takes `{ text, href }` cells, and its
 `MISSING` placeholder ("—") sorts last without turning a numeric column into a text one.
 
-**Hope Check** (`computeHopeCheck`) treats an episode-1 4 ("Yeah, Here's Hoping") as "watch more"
+**Here's Hoping, Revisited** (`computeHopeCheck`) treats an episode-1 4 ("Yeah, Here's Hoping") as "watch more"
 rather than a verdict, and tracks how those turned out: how many got a revisit, whether it rose to 5,
 held at 4 or fell, the share that held up (rose or held), and how many are still waiting. Totals as
 tiles, plus a per-season table when more than one season is in view. Each "still waiting" count
@@ -803,7 +811,7 @@ the queue when its next review is saved.
 
 There used to be a **Season Spotlight** in a live season's report (Revisit Candidates and
 Continuing Seasons Worth Watching). It was taken out because it had something to say for only 2 of
-50 seasons, and never for the current one: Revisit Candidates repeated Hope Check's "still
+50 seasons, and never for the current one: Revisit Candidates repeated Here's Hoping's "still
 waiting", and sequel-spotting belongs on `/vqar`'s To Be Reviewed list, if anywhere.
 
 `applyFilters()` in `app.js` re-slices the in-memory `allSeasons`/`allReviews` fetched once at load,

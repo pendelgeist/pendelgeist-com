@@ -60,6 +60,19 @@
   color: var(--color-accent);
 }
 
+/* A titled part of a section that isn't split into columns (Revisits' blocks). */
+.vs-block {
+  margin-top: 1.25rem;
+}
+
+.vs-block h3 {
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: var(--color-accent);
+}
+
 @media (max-width: 768px) {
   .vs-two-col {
     grid-template-columns: 1fr;

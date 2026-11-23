@@ -90,10 +90,40 @@
       <div id="coverageBar"></div>
     </section>
 
-    <section class="section" id="ratingDistributionSection">
-      <h2>Rating Distribution</h2>
+    <section class="section" id="peaksValleysSection">
+      <h2>Peaks &amp; Valleys</h2>
       <div id="ratingDistributionChart"></div>
       <p id="ratingDistributionBlurb" class="vs-prose"></p>
+      <p class="vs-prose">Every show at your highest rating in view, and every show at your lowest.</p>
+      <div class="vs-two-col">
+        <div>
+          <h3 id="peaksHeading">Peaks</h3>
+          <div id="peaksTable"></div>
+        </div>
+        <div id="valleys">
+          <h3 id="valleysHeading">Valleys</h3>
+          <div id="valleysTable"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="revisitsSection">
+      <h2>Revisits</h2>
+      <p class="vs-prose">Did it hold up? Every show reviewed on episode 1 and again later, by how the
+        latest review compares with the first.</p>
+      <div id="revisitStats" class="stat-grid"></div>
+      <div class="vs-block" id="hopeBlock">
+        <h3>Here's Hoping, Revisited</h3>
+        <p class="vs-prose">A 4 on episode 1 ("Yeah, Here's Hoping") means "watch more" rather than a
+          verdict. How those turned out: rose to 5, held at 4 or fell, and how many are still waiting.
+          Click a "Still waiting" count to see those shows on VQAR.</p>
+        <div id="hopeCheckStats" class="stat-grid"></div>
+        <div id="hopeCheckTable"></div>
+      </div>
+      <div class="vs-block" id="swingsBlock">
+        <h3>Biggest Swings</h3>
+        <div id="swingsTable"></div>
+      </div>
     </section>
 
     <section class="section" id="tasteProfileSection" data-view="career">
@@ -112,48 +142,16 @@
       <div class="vs-three-col" id="lovesHates"></div>
     </section>
 
-    <section class="section" id="hallOfFameSection">
-      <h2>Hall of Fame &amp; Hall of Shame</h2>
-      <p class="vs-prose">Every show at the highest rating in view, and every show at the lowest.</p>
-      <div class="vs-two-col">
-        <div>
-          <h3 id="hallOfFameHeading">Highest Rated</h3>
-          <div id="hallOfFameBest"></div>
-        </div>
-        <div id="hallOfShame">
-          <h3 id="hallOfShameHeading">Lowest Rated</h3>
-          <div id="hallOfFameWorst"></div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="secondImpressionsSection">
-      <h2>Second Impressions</h2>
-      <p class="vs-prose">How the episode-1 verdict compares to the latest review after it.</p>
-      <div id="secondImpressionsStats" class="stat-grid"></div>
-      <div id="secondImpressionsTable"></div>
-    </section>
-
-    <section class="section" id="hopeCheckSection">
-      <h2>Hope Check</h2>
-      <p class="vs-prose">A 4 on episode 1 ("Yeah, Here's Hoping") means "watch more" rather than a verdict.
-        This tracks how those hopes turned out: how many 4s got a revisit, whether the revisit held up (rose
-        to 5 or stayed at 4) or fell, and how many are still waiting. Click a "Still waiting" count to see those
-        shows on VQAR.</p>
-      <div id="hopeCheckStats" class="stat-grid"></div>
-      <div id="hopeCheckTable"></div>
-    </section>
-
     <section class="section" id="opEdSection">
-      <h2>OP/ED Hall of Fame</h2>
+      <h2>Liked OPs &amp; EDs</h2>
       <div class="vs-two-col">
         <div>
-          <h3>Liked OPs</h3>
-          <div id="topOps"></div>
+          <h3>OPs</h3>
+          <div id="likedOps"></div>
         </div>
         <div>
-          <h3>Liked EDs</h3>
-          <div id="topEds"></div>
+          <h3>EDs</h3>
+          <div id="likedEds"></div>
         </div>
       </div>
     </section>
