@@ -5,7 +5,7 @@ import path from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { JSDOM } from 'jsdom';
 import {
-  flattenReviews, reviewSource, filterBySource, hasLiveLineup, computeGlanceStats, computeSeasonTable,
+  flattenReviews, reviewSource, filterBySource, hasLiveLineup, computeGlanceStats, computeSeasonTable, computeDecadeTable, airedYear,
   computeRatingDistribution, computeHallOfFame, computeSecondImpressions, computeOpEdHighlights,
   computeCategoryRatings, computeLovesAndHates,
   computeRevisitCandidates, computeContinuationWatch, computeSeasonCoverage, computeHopeCheck,
@@ -835,4 +835,105 @@ test('computeContinuationWatch judges "earlier" by season order, so a lineup rev
   // And not the other way round: Fall 2026 isn't Spring 2022's past.
   const reversed = makeSeason({ ...past, toReview: ['New Show Season 2'] });
   assert.deepEqual(computeContinuationWatch([current, reversed], 'spring-2022'), []);
+});
+
+// --- By decade ---
+
+// Shows from three decades, filed wherever they were reviewed: an old show
+// picked up live sits in a 2026 lineup but counts in its own decade.
+const decadeSeasons = [
+  makeSeason({
+    id: 'fall-2026', name: 'Fall 2026', current: true,
+    shows: [
+      makeShow({ titleEN: 'New Show', ratingNumber: 2, dateReviewed: '2026-10-01T12:00:00-04:00', aired: { season: 'fall', year: 2026 } }),
+      makeShow({ titleEN: 'Paranoia Agent', ratingNumber: 5, dateReviewed: '2026-10-02T12:00:00-04:00', aired: { season: 'winter', year: 2004 } }),
+      makeShow({ titleEN: 'No Aired Field', ratingNumber: 3, dateReviewed: '2026-10-03T12:00:00-04:00' }),
+    ],
+    toReview: [], notReviewing: [],
+  }),
+  makeSeason({
+    id: 'spring-1979', name: 'Spring 1979',
+    shows: [
+      makeShow({ titleEN: 'Mobile Suit Gundam', reviews: [{ ratingNumber: 5, dateReviewed: '2026-11-01T12:00:00-05:00' }], aired: { season: 'spring', year: 1979 } }),
+      makeShow({ titleEN: 'Captain Harlock', reviews: [{ ratingNumber: 5, dateReviewed: '2026-11-01T12:05:00-05:00' }], aired: { season: 'spring', year: 1978 } }),
+      makeShow({ titleEN: 'Lesser Classic', reviews: [{ ratingNumber: 3, dateReviewed: '2026-11-01T12:10:00-05:00' }], aired: { year: 1977 } }),
+    ],
+    toReview: [], notReviewing: [],
+  }),
+];
+const decadeReviews = flattenReviews(decadeSeasons);
+
+test('airedYear reads aired.year, falling back to the year in the lineup id', () => {
+  const byTitle = (t) => decadeReviews.find(r => r.titleEN === t);
+  assert.equal(airedYear(byTitle('Paranoia Agent')), 2004);
+  assert.equal(airedYear(byTitle('No Aired Field')), 2026);
+  assert.equal(airedYear({ season: 'some-shelf' }), null);
+});
+
+test('computeDecadeTable groups by the decade a show aired in, newest first, with its top-rated titles', () => {
+  const rows = computeDecadeTable(decadeReviews);
+  assert.deepEqual(rows.map(r => [r.label, r.shows, r.live, r.historical]), [
+    ['2020s', 2, 2, 0],
+    ['2000s', 1, 1, 0],
+    ['1970s', 3, 0, 3],
+  ]);
+  const seventies = rows[2];
+  assert.equal(seventies.avgRating, (5 + 5 + 3) / 3);
+  assert.equal(seventies.highShare, 2 / 3);
+  assert.deepEqual(seventies.top, { ratingNumber: 5, titles: ['Captain Harlock', 'Mobile Suit Gundam'] });
+  // With no year at all, a show still counts, under "Unknown", last.
+  const unknown = computeDecadeTable(flattenReviews([makeSeason({ id: 'shelf', name: 'Shelf', sortKey: 0, shows: [makeShow({ titleEN: 'X', ratingNumber: 3 })] })]));
+  assert.deepEqual(unknown.map(r => [r.decade, r.label]), [[null, 'Unknown']]);
+});
+
+function decadeRoutes() {
+  return createPathFetchStub({
+    '/vqar/data/index.json': {
+      currentSeason: 'fall-2026',
+      seasons: [
+        { id: 'fall-2026', name: 'Fall 2026', file: '/vqar/data/seasons/fall-2026.json' },
+        { id: 'spring-1979', name: 'Spring 1979', file: '/vqar/data/seasons/spring-1979.json' },
+      ],
+    },
+    '/vqar/data/seasons/fall-2026.json': decadeSeasons[0],
+    '/vqar/data/seasons/spring-1979.json': decadeSeasons[1],
+  });
+}
+
+test('the Over Time switch regroups the career table by decade, and keeps it in the URL', async () => {
+  const { document, window } = await loadApp({ fetch: decadeRoutes() });
+  assert.deepEqual(tableRows(document, 'seasonTable').map(r => r[0]), ['Fall 2026', 'Spring 1979']);
+
+  document.querySelector('#overTimeSwitch [data-by="decade"]').click();
+  assert.equal(document.querySelector('#overTimeSwitch [data-by="decade"]').getAttribute('aria-pressed'), 'true');
+  assert.deepEqual(tableRows(document, 'seasonTable'), [
+    ['2020s', '2', '2', '0', '2.5', '0%', '0%', 'No Aired Field (3.0)'],
+    ['2000s', '1', '1', '0', '5.0', '100%', '0%', 'Paranoia Agent (5.0)'],
+    ['1970s', '3', '0', '3', '4.3', '67%', '0%', 'Captain Harlock, Mobile Suit Gundam (5.0)'],
+  ]);
+  assert.equal(new URL(window.location.href).searchParams.get('by'), 'decade');
+
+  // Narrowing the source keeps the grouping, and drops the live/historical split.
+  pickSource(document, 'historical');
+  assert.deepEqual(tableRows(document, 'seasonTable').map(r => r[0]), ['1970s']);
+  assert.equal(tableRows(document, 'seasonTable')[0].length, 6);
+
+  document.querySelector('#overTimeSwitch [data-by="season"]').click();
+  assert.equal(new URL(window.location.href).searchParams.get('by'), null);
+});
+
+test('a "?by=decade" link opens on the decade table, and a long list of top titles is shortened', async () => {
+  const many = makeSeason({
+    id: 'fall-2026', name: 'Fall 2026', current: true,
+    shows: ['A', 'B', 'C', 'D', 'E'].map(t => makeShow({ titleEN: `Show ${t}`, ratingNumber: 5, dateReviewed: '2026-10-01T12:00:00-04:00', aired: { season: 'fall', year: 2026 } })),
+    toReview: [], notReviewing: [],
+  });
+  const fetch = createPathFetchStub({
+    '/vqar/data/index.json': { currentSeason: 'fall-2026', seasons: [{ id: 'fall-2026', name: 'Fall 2026', file: '/vqar/data/seasons/fall-2026.json' }] },
+    '/vqar/data/seasons/fall-2026.json': many,
+  });
+  const { document } = await loadApp({ fetch, url: 'http://localhost/anime-stat-sheet/index.html?by=decade' });
+  const [row] = tableRows(document, 'seasonTable');
+  assert.equal(row[0], '2020s');
+  assert.equal(row.at(-1), 'Show A, Show B, Show C +2 (5.0)');
 });

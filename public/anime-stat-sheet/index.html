@@ -76,8 +76,12 @@
     </section>
 
     <section class="section" id="seasonTableSection" data-view="career">
-      <h2>Season by Season</h2>
-      <p class="vs-prose">Every season with a review, newest first. Pick a season for its report, or sort by any column.</p>
+      <h2>Over Time</h2>
+      <p class="vs-prose" id="overTimeNote">Every season with a review, newest first. Pick a season for its report, or sort by any column.</p>
+      <div class="vs-switch" role="group" aria-label="Group by" id="overTimeSwitch">
+        <button type="button" class="vs-switch-button" data-by="season" aria-pressed="true">By Season</button>
+        <button type="button" class="vs-switch-button" data-by="decade" aria-pressed="false">By Decade</button>
+      </div>
       <div id="seasonTable"></div>
     </section>
 

@@ -14,7 +14,8 @@
  *
  * Both views can be narrowed to live or historical reviews (see stats.js),
  * since historical picks skew high. Season and source are mirrored into the
- * URL (`?season=spring-2026&source=live`).
+ * URL (`?season=spring-2026&source=live`), as is the Over Time table's
+ * grouping (`?by=decade`).
  */
 
 import { VQAR_INDEX_PATH } from '../vqar/data-paths.js';
@@ -22,7 +23,7 @@ import { createDataTable, renderStatGrid, renderBarChart, MISSING } from '../dat
 import { FORMAT_LABELS } from '../vqar/filters.js';
 import { STREAMING_SERVICES } from '../streaming.js';
 import {
-  flattenReviews, filterBySource, SOURCES, hasLiveLineup, computeGlanceStats, computeSeasonTable,
+  flattenReviews, filterBySource, SOURCES, hasLiveLineup, computeGlanceStats, computeSeasonTable, computeDecadeTable,
   computeRatingDistribution, computeHallOfFame, computeSecondImpressions, computeOpEdHighlights,
   computeCategoryRatings, computeLovesAndHates, MIN_CATEGORY_SHOWS,
   computeRevisitCandidates, computeContinuationWatch, computeSeasonCoverage, computeHopeCheck,
@@ -38,6 +39,8 @@ const dom = {
   viewNote: document.getElementById('viewNote'),
   statsGlance: document.getElementById('statsGlance'),
   seasonTable: document.getElementById('seasonTable'),
+  overTimeSwitch: document.getElementById('overTimeSwitch'),
+  overTimeNote: document.getElementById('overTimeNote'),
   coverageSection: document.getElementById('coverageSection'),
   coverageBar: document.getElementById('coverageBar'),
   spotlightSection: document.getElementById('seasonSpotlightSection'),
@@ -74,6 +77,11 @@ let allSeasons = [];
 let allReviews = [];
 /** Which reviews are in view: all, live, or historical (see stats.js). */
 let source = 'all';
+/** How the career view's Over Time table groups: by season file, or by the decade shows aired in. */
+let overTimeBy = 'season';
+/** The reviews the Over Time table was last drawn from, so its switch can redraw it. */
+/** @type {Reviews} */
+let overTimeReviews = [];
 
 /**
  * `no-cache` revalidates rather than refetching, so an unchanged season comes
@@ -199,6 +207,63 @@ function renderGlanceStats(reviews, career) {
 }
 
 // --- Season by Season (career) ---
+
+const OVER_TIME_NOTES = {
+  season: 'Every season with a review, newest first. Pick a season for its report, or sort by any column.',
+  decade: 'Every show by the decade it aired, wherever it was reviewed, newest first. Sort by any column.',
+};
+
+/** @param {Reviews} reviews */
+function renderOverTime(reviews) {
+  overTimeReviews = reviews;
+  for (const button of dom.overTimeSwitch?.querySelectorAll('.vs-switch-button') ?? []) {
+    button.setAttribute('aria-pressed', String(/** @type {HTMLElement} */ (button).dataset.by === overTimeBy));
+  }
+  if (dom.overTimeNote) dom.overTimeNote.textContent = OVER_TIME_NOTES[overTimeBy];
+  if (overTimeBy === 'decade') renderDecadeTable(reviews);
+  else renderSeasonTable(reviews);
+}
+
+/**
+ * The top-rated titles of a decade, shortened past a few so the column stays
+ * readable: "A, B, C +4".
+ * @param {{ titles: string[] }} top
+ */
+function topTitles({ titles }) {
+  const shown = titles.slice(0, 3).join(', ');
+  return titles.length > 3 ? `${shown} +${titles.length - 3}` : shown;
+}
+
+/** @param {Reviews} reviews */
+function renderDecadeTable(reviews) {
+  const rows = computeDecadeTable(reviews);
+  const showSplit = source === 'all';
+  const columns = ['Decade', 'Shows'];
+  if (showSplit) columns.push('Live', 'Historical');
+  columns.push('Avg', 'Rated 4–5', 'Rated 0–1', 'Highest Rated');
+
+  renderDataTable(dom.seasonTable, columns, rows.map(r => {
+    const cells = [r.label, String(r.shows)];
+    if (showSplit) cells.push(String(r.live), String(r.historical));
+    cells.push(
+      formatRating(r.avgRating),
+      r.highShare === null ? MISSING : percent(r.highShare),
+      r.lowShare === null ? MISSING : percent(r.lowShare),
+      r.top ? `${topTitles(r.top)} (${formatRating(r.top.ratingNumber)})` : MISSING,
+    );
+    return cells;
+  }));
+}
+
+dom.overTimeSwitch?.addEventListener('click', (e) => {
+  const button = /** @type {HTMLElement|null} */ (/** @type {Element} */ (e.target).closest('.vs-switch-button'));
+  const by = button?.dataset.by;
+  if (!by || by === overTimeBy) return;
+  overTimeBy = by;
+  updateUrl();
+  renderOverTime(overTimeReviews);
+  dom.overTimeSwitch?.querySelector(`[data-by="${overTimeBy}"]`)?.focus();
+});
 
 /** @param {Reviews} reviews */
 function renderSeasonTable(reviews) {
@@ -578,6 +643,8 @@ function updateUrl() {
   else url.searchParams.set('season', season);
   if (source === 'all') url.searchParams.delete('source');
   else url.searchParams.set('source', source);
+  if (overTimeBy === 'season') url.searchParams.delete('by');
+  else url.searchParams.set('by', overTimeBy);
   history.replaceState(null, '', url);
 }
 
@@ -630,7 +697,7 @@ function applyFilters() {
   show(dom.opEdSection, renderOpEd(reviews, careerView));
 
   if (careerView) {
-    renderSeasonTable(career);
+    renderOverTime(career);
     categoryReviews = reviews;
     renderTasteProfile(reviews);
     renderLovesAndHates(reviews);
@@ -684,6 +751,7 @@ async function init() {
     const params = new URLSearchParams(location.search);
     const askedSource = params.get('source');
     source = SOURCES.includes(/** @type {any} */ (askedSource)) ? /** @type {string} */ (askedSource) : 'all';
+    overTimeBy = params.get('by') === 'decade' ? 'decade' : 'season';
     populateSeasonFilter();
     const askedSeason = params.get('season');
     if (askedSeason && [...dom.seasonFilter.options].some(o => o.value === askedSeason)) {
