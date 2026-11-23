@@ -65,7 +65,7 @@ export const HOPING_RATING = 4;
 /**
  * Whether a show is still waiting on its revisit: a first impression rated
  * HOPING_RATING with nothing after it. /vqar's "To revisit" filter and
- * /anime-stat-sheet' Revisit Candidates and Hope Check all count by this. A show
+ * /anime-stat-sheet's Hope Check both count by this. A show
  * reviewed only after watching a stretch of it (a backfill) has no first
  * impression, so it's never waiting.
  * @param {{ reviews?: object[] }} show

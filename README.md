@@ -27,7 +27,7 @@ The Worker (`src/worker.js`) also backs a small GraphQL API over the same anime 
   `scripts/validateSeason.js`.
 - `public/vqar/list-entries.js` — the shape of a `toReview`/`notReviewing` list entry (a title string
   or an object with optional notes) and the helpers that read either, shared by `/vqar`,
-  `/anime-stat-sheet`, `src/schema.js` and the scripts.
+  `src/schema.js` and the scripts.
 - `public/dates.js` — the two forms a date takes in the committed data (a day, `YYYY-MM-DD`, or
   a moment, a full Eastern-offset timestamp) and the helpers that check and read them, shared by
   the pages, the GraphQL schema and the validators. See "Dates" under "VQAR data".
@@ -505,9 +505,7 @@ A season file is one of two things, and its id says which (`isLineup` in
 A show with no first impression (a backfill) is a **historical** review on `/anime-stat-sheet`, and
 one with a first impression is **live**. Historical reviews count everywhere a show counts, and the
 page can be narrowed to either kind, since historical picks tend to be favorites and skew high. A
-season of backfills has no coverage bar or spotlight there, and isn't a row in Hope Check by season.
-"Continuing Seasons Worth Watching" judges which seasons came earlier by season order (lineups by
-id), not by review dates, since a backfilled lineup was reviewed long after it aired. The GraphQL
+season of backfills has no coverage bar there, and isn't a row in Hope Check by season. The GraphQL
 API tells lineups and shelves apart with `Season.lineup`.
 
 ### Filtering and linking
@@ -767,12 +765,12 @@ current view (no revisits, no hopes, no liked OP/EDs) is hidden rather than left
   the rating distribution; the taste sections; the halls; Second Impressions; Hope Check, with a
   per-season table; and the liked OP/EDs.
 - **Season report** (one season): the glance tiles, including the "vs." comparison and the share
-  rated 4–5; for a season reviewed live (`hasLiveLineup`), its **Review Coverage** bar and
-  **Season Spotlight**; then the distribution, halls, Second Impressions, Hope Check and liked
+  rated 4–5; for a season reviewed live (`hasLiveLineup`), its **Review Coverage** bar; then the
+  distribution, halls, Second Impressions, Hope Check and liked
   OP/EDs for that season alone, without the Season columns that would repeat it on every row.
 
 A show's latest review sets its rating everywhere ratings get aggregated or ranked (averages, the
-distribution, the halls, Continuing Seasons Worth Watching). `computeSecondImpressions` is the one
+distribution, the halls). `computeSecondImpressions` is the one
 exception, since it exists to compare the first impression with what came after (`ratingShift` in
 `public/vqar/reviews.js`). `/vqar`'s own "Highest/Lowest Rating" sort follows the same rule.
 
@@ -798,25 +796,15 @@ That works because `createDataTable` (`public/data-table.js`) takes `{ text, hre
 rather than a verdict, and tracks how those turned out: how many got a revisit, whether it rose to 5,
 held at 4 or fell, the share that held up (rose or held), and how many are still waiting. Totals as
 tiles, plus a per-season table when more than one season is in view. Each "still waiting" count
-links to `/vqar`'s **To revisit** Extras chip (`?has=queue`) for that season, as does Revisit
-Candidates. All three count by `awaitingRevisit` in `public/vqar/rating.js` - a first impression
-rated 4 with nothing after it - so they can't disagree. Nothing is marked by hand: a show leaves
+links to `/vqar`'s **To revisit** Extras chip (`?has=queue`) for that season. Both count by
+`awaitingRevisit` in `public/vqar/rating.js` - a first impression rated 4 with nothing after it -
+so they can't disagree. Nothing is marked by hand: a show leaves
 the queue when its next review is saved.
 
-**Season Spotlight** (a live season's report):
-
-- **Revisit Candidates** (`computeRevisitCandidates`) — that season's 4/5s ("Yeah") that
-  haven't been reviewed again yet (`awaitingRevisit`), i.e. shows liked enough on episode 1
-  to be worth actually going back and finishing/re-reviewing, with a link to the same list
-  as `/vqar`'s **To revisit** filter.
-- **Continuing Seasons Worth Watching** (`computeContinuationWatch`) — that season's full
-  lineup (to review, not reviewing, and reviewed titles alike) cross-checked by title against shows
-  rated 4+, or finished (`watched.finished`) at any rating, in an *earlier* season (by season
-  order, `seasonComesBefore`), surfacing exceptions to VQAR's usual "skip continuing/returning
-  seasons" guidance. Matching is a best-effort text heuristic (`normalizeBaseTitle` strips common
-  sequel markers — "Season 2", "2nd Season", "Part 2", "Cour 2", roman numerals — before
-  comparing), not a real season-relation lookup, so an unconventionally-named sequel can
-  slip through.
+There used to be a **Season Spotlight** in a live season's report (Revisit Candidates and
+Continuing Seasons Worth Watching). It was taken out because it had something to say for only 2 of
+50 seasons, and never for the current one: Revisit Candidates repeated Hope Check's "still
+waiting", and sequel-spotting belongs on `/vqar`'s To Be Reviewed list, if anywhere.
 
 `applyFilters()` in `app.js` re-slices the in-memory `allSeasons`/`allReviews` fetched once at load,
 so switching season or source never re-fetches. Both are kept in the URL via
