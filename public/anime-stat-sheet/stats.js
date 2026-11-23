@@ -269,19 +269,19 @@ export function computeRatingDistribution(reviews) {
 }
 
 /**
- * The Halls of Fame and Shame: every show at the highest rating in view, and
- * every show at the lowest, each by title. Listing the whole tier rather than
- * a top N keeps a cut-off from deciding, alphabetically, which of a pile of
- * equal 5s make it. `shame` is null when there's only one rating in view, so
- * the same shows aren't listed as both.
+ * Peaks & Valleys: every show at the highest rating in view, and every show
+ * at the lowest, each by title. Listing the whole tier rather than a top N
+ * keeps a cut-off from deciding, alphabetically, which of a pile of equal 5s
+ * make it. `valleys` is null when there's only one rating in view, so the same
+ * shows aren't listed as both.
  * @param {ReturnType<typeof flattenReviews>} reviews
  */
-export function computeHallOfFame(reviews) {
+export function computePeaksAndValleys(reviews) {
   const rated = reviews
     .map(r => ({ ...r, ratingNumber: effectiveRatingNumber(r) }))
     .filter(r => typeof r.ratingNumber === 'number')
     .sort((a, b) => (a.titleEN ?? '').localeCompare(b.titleEN ?? ''));
-  if (rated.length === 0) return { fame: null, shame: null };
+  if (rated.length === 0) return { peaks: null, valleys: null };
 
   const numbers = rated.map(r => r.ratingNumber);
   /** @param {number} ratingNumber */
@@ -291,15 +291,15 @@ export function computeHallOfFame(reviews) {
     shows: rated.filter(r => r.ratingNumber === ratingNumber),
   });
   const [top, bottom] = [Math.max(...numbers), Math.min(...numbers)];
-  return { fame: tier(top), shame: top === bottom ? null : tier(bottom) };
+  return { peaks: tier(top), valleys: top === bottom ? null : tier(bottom) };
 }
 
 /**
- * How ratings shift between an episode-1 impression and the latest review
+ * Revisits: how ratings shift between an episode-1 impression and the latest review
  * after it, for shows that got one (see ratingShift).
  * @param {ReturnType<typeof flattenReviews>} reviews
  */
-export function computeSecondImpressions(reviews) {
+export function computeRevisits(reviews) {
   const withDelta = reviews
     .map(r => ({ r, shift: ratingShift(r) }))
     .filter(({ shift }) => shift !== null)

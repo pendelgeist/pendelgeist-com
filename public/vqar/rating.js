@@ -9,7 +9,7 @@ import { currentReview, firstImpression, reviewsOf } from './reviews.js';
  * A show's rating wherever ratings get sorted, aggregated or ranked: its
  * latest review's, since that's the most informed verdict.
  *
- * `computeSecondImpressions` in ../anime-stat-sheet/stats.js is the one deliberate
+ * `computeRevisits` in ../anime-stat-sheet/stats.js is the one deliberate
  * exception - it exists specifically to compare the first impression with
  * what came after, so it reads both directly rather than going through this.
  *
@@ -65,7 +65,7 @@ export const HOPING_RATING = 4;
 /**
  * Whether a show is still waiting on its revisit: a first impression rated
  * HOPING_RATING with nothing after it. /vqar's "To revisit" filter and
- * /anime-stat-sheet's Hope Check both count by this. A show
+ * /anime-stat-sheet's Here's Hoping both count by this. A show
  * reviewed only after watching a stretch of it (a backfill) has no first
  * impression, so it's never waiting.
  * @param {{ reviews?: object[] }} show

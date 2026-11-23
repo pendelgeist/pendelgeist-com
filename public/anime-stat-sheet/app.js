@@ -5,10 +5,10 @@
  * rather than lazily like /vqar.
  *
  * Two views share the page. **Career** (All Seasons) compares and profiles:
- * a Season by Season table, taste by genre/studio/tag, and the halls across
+ * an Over Time table, taste by genre/studio/tag, and peaks and valleys across
  * everything. A **season report** (one season picked) is about that season
  * alone: its coverage when it was reviewed live, its average
- * against your career's, and its own halls. Sections carry `data-view` for
+ * against your career's, and its own peaks and valleys. Sections carry `data-view` for
  * the view they belong to; ones without it show in both, and any with
  * nothing to say in the current view is hidden rather than left empty.
  *
@@ -24,7 +24,7 @@ import { FORMAT_LABELS } from '../vqar/filters.js';
 import { STREAMING_SERVICES } from '../streaming.js';
 import {
   flattenReviews, filterBySource, SOURCES, hasLiveLineup, computeGlanceStats, computeSeasonTable, computeDecadeTable,
-  computeRatingDistribution, computeHallOfFame, computeSecondImpressions, computeOpEdHighlights,
+  computeRatingDistribution, computePeaksAndValleys, computeRevisits, computeOpEdHighlights,
   computeCategoryRatings, computeLovesAndHates, MIN_CATEGORY_SHOWS,
   computeSeasonCoverage, computeHopeCheck,
 } from './stats.js';
@@ -45,20 +45,21 @@ const dom = {
   coverageBar: document.getElementById('coverageBar'),
   ratingDistributionChart: document.getElementById('ratingDistributionChart'),
   ratingDistributionBlurb: document.getElementById('ratingDistributionBlurb'),
-  hallOfFameHeading: document.getElementById('hallOfFameHeading'),
-  hallOfFameBest: document.getElementById('hallOfFameBest'),
-  hallOfShame: document.getElementById('hallOfShame'),
-  hallOfShameHeading: document.getElementById('hallOfShameHeading'),
-  hallOfFameWorst: document.getElementById('hallOfFameWorst'),
-  secondImpressionsSection: document.getElementById('secondImpressionsSection'),
-  secondImpressionsStats: document.getElementById('secondImpressionsStats'),
-  secondImpressionsTable: document.getElementById('secondImpressionsTable'),
-  hopeCheckSection: document.getElementById('hopeCheckSection'),
+  peaksHeading: document.getElementById('peaksHeading'),
+  peaksTable: document.getElementById('peaksTable'),
+  valleys: document.getElementById('valleys'),
+  valleysHeading: document.getElementById('valleysHeading'),
+  valleysTable: document.getElementById('valleysTable'),
+  revisitsSection: document.getElementById('revisitsSection'),
+  revisitStats: document.getElementById('revisitStats'),
+  hopeBlock: document.getElementById('hopeBlock'),
   hopeCheckStats: document.getElementById('hopeCheckStats'),
   hopeCheckTable: document.getElementById('hopeCheckTable'),
+  swingsBlock: document.getElementById('swingsBlock'),
+  swingsTable: document.getElementById('swingsTable'),
   opEdSection: document.getElementById('opEdSection'),
-  topOps: document.getElementById('topOps'),
-  topEds: document.getElementById('topEds'),
+  likedOps: document.getElementById('likedOps'),
+  likedEds: document.getElementById('likedEds'),
   tasteSwitch: document.getElementById('tasteSwitch'),
   tasteTable: document.getElementById('tasteTable'),
   tasteNote: document.getElementById('tasteNote'),
@@ -178,7 +179,7 @@ function renderGlanceStats(reviews, career) {
   }
 
   tiles.push(
-    { label: 'Full Re-Reviews', value: String(s.fullReReviews) },
+    { label: 'Revisited', value: String(s.fullReReviews) },
     { label: 'Seasons Finished', value: String(s.finishedSeasons) },
     { label: 'Liked OPs', value: String(s.likedOps) },
     { label: 'Liked EDs', value: String(s.likedEds) },
@@ -282,7 +283,7 @@ dom.seasonTable?.addEventListener('click', (e) => {
   dom.viewTitle?.scrollIntoView?.({ block: 'start' });
 });
 
-// --- Rating Distribution ---
+// --- Peaks & Valleys: the distribution ---
 
 /** @param {Reviews} reviews */
 function renderRatingDistribution(reviews) {
@@ -297,60 +298,77 @@ function renderRatingDistribution(reviews) {
   }
 }
 
-// --- Halls ---
+// --- Peaks & Valleys ---
 
 /**
+ * The distribution's top and bottom tiers, spelled out as shows.
  * @param {Reviews} reviews
  * @param {boolean} withSeason - list each show's season (not in a season report, where it's the same for all)
  */
-function renderHallOfFame(reviews, withSeason) {
-  const { fame, shame } = computeHallOfFame(reviews);
+function renderPeaksAndValleys(reviews, withSeason) {
+  const { peaks, valleys } = computePeaksAndValleys(reviews);
   const cols = withSeason ? ['Title', 'Season'] : ['Title'];
   const row = r => withSeason ? [r.titleEN ?? 'Untitled', r.seasonName] : [r.titleEN ?? 'Untitled'];
-  /** @param {NonNullable<typeof fame>} tier */
+  /** @param {NonNullable<typeof peaks>} tier */
   const heading = (tier) => `${tier.ratingText} (${tier.shows.length})`;
 
-  if (fame) {
-    dom.hallOfFameHeading.textContent = heading(fame);
-    renderDataTable(dom.hallOfFameBest, cols, fame.shows.map(row));
+  if (peaks) {
+    dom.peaksHeading.textContent = heading(peaks);
+    renderDataTable(dom.peaksTable, cols, peaks.shows.map(row));
   }
-  dom.hallOfShame.hidden = !shame;
-  if (shame) {
-    dom.hallOfShameHeading.textContent = heading(shame);
-    renderDataTable(dom.hallOfFameWorst, cols, shame.shows.map(row));
+  dom.valleys.hidden = !valleys;
+  if (valleys) {
+    dom.valleysHeading.textContent = heading(valleys);
+    renderDataTable(dom.valleysTable, cols, valleys.shows.map(row));
   }
 }
 
-// --- Second Impressions & Hope Check ---
+// --- Revisits ---
 
-/** @param {Reviews} reviews @returns {boolean} whether there was anything to show */
-function renderSecondImpressions(reviews) {
-  const s = computeSecondImpressions(reviews);
-  if (s.total === 0) return false;
-  renderStatGrid(dom.secondImpressionsStats, [
-    { label: 'Full Re-Reviews Compared', value: String(s.total) },
-    { label: 'Average Shift', value: formatDelta(s.avgDelta) },
-    { label: 'Upgraded', value: String(s.upgrades) },
-    { label: 'Downgraded', value: String(s.downgrades) },
-  ]);
-  renderDataTable(
-    dom.secondImpressionsTable,
-    ['Title', 'Ep 1 Rating', 'Full Series Rating', 'Shift'],
-    s.swings.map(r => [r.titleEN ?? 'Untitled', formatRating(r.before), formatRating(r.after), formatDelta(r.delta)])
-  );
-  return true;
+/**
+ * Revisits: every show reviewed on episode 1 and again later, then the
+ * Here's Hoping 4s among them, then the biggest swings. Each part is hidden
+ * when it has nothing to say; the section, when none of them do.
+ * @param {Reviews} reviews
+ * @returns {boolean} whether there was anything to show
+ */
+function renderRevisits(reviews) {
+  const s = computeRevisits(reviews);
+  const anyHopes = renderHopeCheck(reviews);
+  dom.hopeBlock.hidden = !anyHopes;
+  dom.revisitStats.hidden = s.total === 0;
+  dom.swingsBlock.hidden = s.total === 0;
+  if (s.total > 0) {
+    renderStatGrid(dom.revisitStats, [
+      { label: 'Revisited', value: String(s.total) },
+      { label: 'Average Shift', value: formatDelta(s.avgDelta) },
+      { label: 'Went Up', value: String(s.upgrades) },
+      { label: 'Held', value: String(s.unchanged) },
+      { label: 'Went Down', value: String(s.downgrades) },
+    ]);
+    renderDataTable(
+      dom.swingsTable,
+      ['Title', 'Ep 1', 'Latest', 'Shift'],
+      s.swings.map(r => [r.titleEN ?? 'Untitled', formatRating(r.before), formatRating(r.after), formatDelta(r.delta)])
+    );
+  }
+  return s.total > 0 || anyHopes;
 }
 
 /**
  * /vqar's "To revisit" view of one season - the Extras chip that lists the
- * same shows as the Hope Check's "Still waiting".
+ * same shows as Here's Hoping's "Still waiting".
  * @param {string} seasonId
  */
 function queueHref(seasonId) {
   return `/vqar?${new URLSearchParams({ season: seasonId, has: 'queue' })}`;
 }
 
-/** @param {Reviews} reviews @returns {boolean} whether there was anything to show */
+/**
+ * The Here's Hoping block: how the episode-1 4s turned out.
+ * @param {Reviews} reviews
+ * @returns {boolean} whether there were any
+ */
 function renderHopeCheck(reviews) {
   const h = computeHopeCheck(reviews);
   if (h.hoping === 0) return false;
@@ -435,8 +453,8 @@ function renderOpEd(reviews, withSeason) {
   if (s.opCount === 0 && s.edCount === 0) return false;
   const cols = withSeason ? ['Title', 'Season', 'Which'] : ['Title', 'Which'];
   const row = r => withSeason ? [r.titleEN ?? 'Untitled', r.seasonName, r.which] : [r.titleEN ?? 'Untitled', r.which];
-  renderDataTable(dom.topOps, cols, s.likedOps.map(row));
-  renderDataTable(dom.topEds, cols, s.likedEds.map(row));
+  renderDataTable(dom.likedOps, cols, s.likedOps.map(row));
+  renderDataTable(dom.likedEds, cols, s.likedEds.map(row));
   return true;
 }
 
@@ -647,9 +665,8 @@ function applyFilters() {
 
   renderGlanceStats(reviews, careerView ? null : career);
   renderRatingDistribution(reviews);
-  renderHallOfFame(reviews, careerView);
-  show(dom.secondImpressionsSection, renderSecondImpressions(reviews));
-  show(dom.hopeCheckSection, renderHopeCheck(reviews));
+  renderPeaksAndValleys(reviews, careerView);
+  show(dom.revisitsSection, renderRevisits(reviews));
   show(dom.opEdSection, renderOpEd(reviews, careerView));
 
   if (careerView) {
