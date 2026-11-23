@@ -1,5 +1,16 @@
 /* VQAR-specific styles; shared site styles live in /styles.css */
 
+.intro {
+  margin: 0 0 0.5rem;
+  padding: 0.4rem 0.5rem 0;
+  font-size: 0.85rem;
+  color: var(--color-muted);
+}
+
+.intro a {
+  color: var(--color-accent);
+}
+
 .season-status {
   margin-bottom: 0.5rem;
   padding: 0.4rem 0.5rem;
@@ -264,38 +275,6 @@ input:focus, select:focus {
 
 .clear-filters[hidden] {
   display: none;
-}
-
-/* Guidelines */
-
-.guidelines {
-  box-shadow: var(--shadow-card);
-  margin-bottom: 2rem;
-  padding: 1rem;
-  display: none;
-  background-color: var(--color-surface);
-  border: var(--border-width) var(--border-style) var(--color-guideline-border);
-  border-radius: var(--radius-card);
-}
-
-.guidelines.show {
-  display: block;
-}
-
-.guidelines h3 {
-  font-size: 1rem;
-  font-weight: 700;
-  margin-bottom: 0.5rem;
-  margin-top: 1rem;
-  color: var(--color-accent);
-}
-
-.guidelines h3:first-child {
-  margin-top: 0;
-}
-
-.guidelines p {
-  margin: 0.25rem 0;
 }
 
 /* Collapsible sections (To Be Reviewed / Not Reviewing): a rounded badge

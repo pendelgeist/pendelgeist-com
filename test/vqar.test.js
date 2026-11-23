@@ -1281,3 +1281,24 @@ test('there is no separate Aired filter, and an old ?aired= link is ignored', as
   assert.equal(document.getElementById('seasonFilter').value, 'fall-2026');
   assert.equal(titles(document).length, 4);
 });
+
+// --- The legend: no Guide panel, the method up front and the tiers on the chips ---
+
+test('there is no Guide link or panel; a short intro says how the reviews are made', async () => {
+  const fetch = createPathFetchStub(routes());
+  const { document } = await loadApp({ fetch });
+  await waitFor(() => titles(document).length > 0);
+  assert.equal(document.getElementById('infoToggle'), null);
+  assert.equal(document.getElementById('guidelines'), null);
+  assert.match(document.querySelector('.intro').textContent, /5.10 minutes of each new show/);
+});
+
+test('each rating chip carries its tier\'s full name as a tooltip', async () => {
+  const fetch = createPathFetchStub(routes());
+  const { document } = await loadApp({ fetch });
+  await waitFor(() => titles(document).length > 0);
+  const chips = [...document.querySelectorAll('#ratingChips .filter-chip')];
+  assert.equal(chips.length, 6);
+  assert.ok(chips.some((c) => c.title === "Yeah, Here's Hoping"));
+  assert.ok(chips.every((c) => c.title));
+});

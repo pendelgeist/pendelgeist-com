@@ -1,5 +1,5 @@
 import { VQAR_INDEX_PATH } from './data-paths.js';
-import { effectiveRatingNumber, ratingText } from './rating.js';
+import { effectiveRatingNumber, ratingText, RATING_NUMBER_LABELS } from './rating.js';
 import { STAGE_LABELS, reviewStage, reviewsOf, currentReview } from './reviews.js';
 import { airedDiffers, airedLabel } from './aired.js';
 import { createStreamingRow, STREAMING_SERVICES } from '../streaming.js';
@@ -109,8 +109,6 @@ const watchedText = (w) => {
 };
 
 const dom = {
-  infoToggle: document.getElementById('infoToggle'),
-  guidelines: document.getElementById('guidelines'),
   currentSeasonName: document.getElementById('currentSeasonName'),
   seasonFilter: /** @type {HTMLSelectElement|null} */ (document.getElementById('seasonFilter')),
   searchInput: /** @type {HTMLInputElement|null} */ (document.getElementById('searchInput')),
@@ -150,11 +148,6 @@ let loadToken = 0;
 let loadErrors = [];
 /** The Rating / Streaming / Extras chip selections; see filters.js. */
 let chipFilters = emptyChipFilters();
-
-dom.infoToggle?.addEventListener('click', (e) => {
-  e.preventDefault();
-  dom.guidelines?.classList.toggle('show');
-});
 
 function showError(message) {
   if (dom.reviewedShows) {
@@ -572,12 +565,13 @@ function renderChipRow(container, dimension, options, counts) {
   const focused = /** @type {HTMLElement|null} */ (document.activeElement);
   const refocus = focused && container.contains(focused) ? focused.dataset.value : null;
 
-  const buttons = options.map(({ value, label }) => {
+  const buttons = options.map(({ value, label, title }) => {
     const button = document.createElement('button');
     button.type = 'button';
     button.className = 'filter-chip';
     button.dataset.dimension = dimension;
     button.dataset.value = value;
+    if (title) button.title = title;
     button.setAttribute('aria-pressed', String(chipFilters[dimension].has(value)));
     const count = document.createElement('span');
     count.className = 'chip-count';
@@ -643,7 +637,7 @@ function renderSelect(select, dimension, anyLabel, seasonReviews, counts) {
 function renderChips(reviews, seasonReviews) {
   const offered = new Set(seasonReviews.flatMap(r => reviewValues('on', r)));
   renderChipRow(dom.ratingChips, 'rating',
-    RATING_VALUES.map(value => ({ value, label: ratingChipLabel(value) })),
+    RATING_VALUES.map(value => ({ value, label: ratingChipLabel(value), title: RATING_NUMBER_LABELS[value] })),
     chipCounts(reviews, chipFilters, 'rating'));
   renderChipRow(dom.onChips, 'on',
     Object.entries(STREAMING_SERVICES)
