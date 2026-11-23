@@ -21,8 +21,8 @@ export function effectiveRatingNumber(show) {
 }
 
 /**
- * Default flavor text for each `ratingNumber`, taken from the "Suggested
- * Ratings" list in /vqar's guidelines. A review stores `ratingText` only when
+ * Default flavor text for each `ratingNumber`, the six tiers, shown in
+ * full as the rating chips' tooltips on /vqar. A review stores `ratingText` only when
  * it says something else (e.g. "I'd rather watch El-Hazard again") while
  * still sharing the same underlying tier, so anything that groups by tier -
  * /vqar-stats' distribution chart, /vqar's rating filter - labels it with this
