@@ -36,17 +36,11 @@ const TITLE = 'Very Quick Game Reviews';
 const displayDate = (value) => value.slice(0, 10);
 
 const dom = {
-  infoToggle: document.getElementById('infoToggle'),
-  guidelines: document.getElementById('guidelines'),
+  intro: document.getElementById('gamesIntro'),
   backLink: document.getElementById('backLink'),
   listHeading: document.getElementById('listHeading'),
   gameReviews: document.getElementById('gameReviews'),
 };
-
-dom.infoToggle?.addEventListener('click', (e) => {
-  e.preventDefault();
-  dom.guidelines?.classList.toggle('show');
-});
 
 /** @param {string} text @param {string} [className] */
 function showMessage(text, className = 'loading') {
@@ -180,6 +174,7 @@ function render(reviews) {
 
   if (id) {
     if (dom.backLink) dom.backLink.hidden = false;
+    if (dom.intro) dom.intro.hidden = true;
     if (dom.listHeading) dom.listHeading.hidden = true;
     const review = reviews.find((r) => r.id === id);
     if (!review) {

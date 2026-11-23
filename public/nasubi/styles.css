@@ -1,35 +1,5 @@
 /* Nasubi-specific styles; shared site styles live in /styles.css */
 
-.guidelines {
-  box-shadow: var(--shadow-card);
-  margin-bottom: 1.5rem;
-  padding: 1rem;
-  display: none;
-  background-color: var(--color-surface);
-  border: var(--border-width) var(--border-style) var(--color-guideline-border);
-  border-radius: var(--radius-card);
-}
-
-.guidelines.show {
-  display: block;
-}
-
-.guidelines h3 {
-  font-size: 1rem;
-  font-weight: 700;
-  margin-bottom: 0.5rem;
-  margin-top: 1rem;
-  color: var(--color-accent);
-}
-
-.guidelines h3:first-child {
-  margin-top: 0;
-}
-
-.guidelines p {
-  margin: 0.25rem 0;
-}
-
 /* Hero */
 
 .nasubi-hero {
@@ -63,6 +33,15 @@
 
 .nasubi-prose a {
   color: var(--color-accent);
+}
+
+/* A caveat under the numbers it qualifies */
+
+.nasubi-note {
+  margin: 0.5rem 0 0;
+  font-size: 0.8rem;
+  font-style: italic;
+  color: var(--color-muted);
 }
 
 /* Subsections within the Japan/Korea narrative */

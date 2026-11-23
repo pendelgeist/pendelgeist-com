@@ -19,8 +19,6 @@ import {
 /** @typedef {import('../vqar/app.js').SeasonData} SeasonData */
 
 const dom = {
-  infoToggle: document.getElementById('infoToggle'),
-  guidelines: document.getElementById('guidelines'),
   seasonFilter: /** @type {HTMLSelectElement} */ (document.getElementById('seasonFilter')),
   coverageSeasonName: document.getElementById('coverageSeasonName'),
   coverageBar: document.getElementById('coverageBar'),
@@ -48,11 +46,6 @@ const dom = {
   genreBySeasonSection: document.getElementById('genreBySeasonSection'),
   genreBySeasonTable: document.getElementById('genreBySeasonTable'),
 };
-
-dom.infoToggle?.addEventListener('click', (e) => {
-  e.preventDefault();
-  dom.guidelines?.classList.toggle('show');
-});
 
 /**
  * `no-cache` revalidates rather than refetching, so an unchanged season comes

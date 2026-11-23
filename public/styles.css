@@ -192,8 +192,7 @@
 
 /* Each section is a Windows 95 window: a navy-to-pink title bar with its
  * own minimize/maximize/close, over an opaque body. */
-:root[data-theme="vaporwave"] .section,
-:root[data-theme="vaporwave"] .guidelines {
+:root[data-theme="vaporwave"] .section {
   position: relative;
   padding: 2.25rem 0.75rem 0.75rem;
   border: 3px solid;
@@ -206,8 +205,7 @@
   box-shadow: 0 0 0 1px #000, 0 0 24px rgb(255 113 206 / 45%), 0 0 40px rgb(1 205 254 / 25%);
 }
 
-:root[data-theme="vaporwave"] .section::before,
-:root[data-theme="vaporwave"] .guidelines::before {
+:root[data-theme="vaporwave"] .section::before {
   content: 'C:\\AESTHETIC\\PENDELGEIST.EXE';
   position: absolute;
   top: 0;
@@ -223,8 +221,7 @@
   text-overflow: ellipsis;
 }
 
-:root[data-theme="vaporwave"] .section::after,
-:root[data-theme="vaporwave"] .guidelines::after {
+:root[data-theme="vaporwave"] .section::after {
   content: '_ \25A1 \2715';
   position: absolute;
   top: 0.15rem;
@@ -308,8 +305,7 @@
  * game's own dialog boxes rather than the flat --color-surface fill used
  * elsewhere on the site. */
 :root[data-theme="ffvii"] .section,
-:root[data-theme="ffvii"] article,
-:root[data-theme="ffvii"] .guidelines {
+:root[data-theme="ffvii"] article {
   /* The game's window frame: a pale silver-blue rim, not a tinted glow. */
   border: var(--border-width) var(--border-style) #c9d3ea;
   background: linear-gradient(135deg, #1c3f8f 0%, #0a1030 100%);
@@ -440,8 +436,7 @@
 }
 
 :root[data-theme="eva-01"] .section,
-:root[data-theme="eva-01"] article,
-:root[data-theme="eva-01"] .guidelines {
+:root[data-theme="eva-01"] article {
   border: var(--border-width) var(--border-style) #7b4ab3;
 }
 
@@ -489,8 +484,7 @@
   --spacing-section: 2.25rem;
 }
 
-:root[data-theme^="manga"] article,
-:root[data-theme^="manga"] .guidelines {
+:root[data-theme^="manga"] article {
   border: 1px solid #111;
   box-shadow: none;
 }
@@ -588,8 +582,7 @@
   box-shadow: none;
 }
 
-:root[data-theme="manga-shoujo"] article,
-:root[data-theme="manga-shoujo"] .guidelines {
+:root[data-theme="manga-shoujo"] article {
   border: 1px solid #333;
   border-radius: 4px;
   box-shadow: none;
@@ -698,8 +691,7 @@
   box-shadow: none;
 }
 
-:root[data-theme="manga-seinen-cinema"] article,
-:root[data-theme="manga-seinen-cinema"] .guidelines {
+:root[data-theme="manga-seinen-cinema"] article {
   border: 2px solid #111;
   background: #fff;
 }
@@ -977,8 +969,7 @@
   }
 }
 
-:root[data-theme="gameboy"] article,
-:root[data-theme="gameboy"] .guidelines {
+:root[data-theme="gameboy"] article {
   border: var(--border-width) var(--border-style) #306230;
   box-shadow: var(--shadow-card);
 }

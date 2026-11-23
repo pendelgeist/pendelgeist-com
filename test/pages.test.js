@@ -62,6 +62,25 @@ test('the pre-paint script reads the same ?theme= link parameter theme.js does',
   assert.ok(prePaintScript(PAGES.home).includes(".get('theme')"));
 });
 
+// What used to sit behind a "Guide" link is said in place on each page (an intro
+// line, a legend, a note beside what it qualifies), not in a hidden panel.
+for (const [name, htmlPath] of Object.entries(PAGES)) {
+  test(`${name} page has no Guide link or hidden guidelines panel`, () => {
+    const { document } = new JSDOM(fs.readFileSync(htmlPath, 'utf-8')).window;
+    assert.equal(document.getElementById('infoToggle'), null);
+    assert.equal(document.getElementById('guidelines'), null);
+  });
+}
+
+test('the Eva TV page shows its entry-type legend and spoiler warning up front', () => {
+  const { document } = new JSDOM(fs.readFileSync(PAGES.eva, 'utf-8')).window;
+  const legend = document.querySelector('.eva-legend');
+  for (const kind of ['character', 'fact', 'theory', 'unknowable']) {
+    assert.ok(legend.querySelector(`.legend-${kind}`), `expected a ${kind} dot in the legend`);
+  }
+  assert.match(legend.textContent, /Spoilers throughout/);
+});
+
 for (const [name, htmlPath] of Object.entries(PAGES)) {
   test(`${name} page loads the theme picker script and has a nav to attach it to`, () => {
     const html = fs.readFileSync(htmlPath, 'utf-8');

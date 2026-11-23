@@ -890,7 +890,7 @@ they can't drift the way they had:
 
 Only the JS is shared. Each page keeps its own `.data-table`/`.stat-tile`/`.bar-chart`
 rules in its own stylesheet, so a page added later can restyle them without disturbing the
-others — the same convention as `.filters`/`.guidelines`.
+others — the same convention as `.filters`/`.data-table`.
 
 `public/external-links.js` (`createExternalLinks(entry)`) does the same job for the
 AniList/ANN/Wikipedia reference links `/vqar` renders from the same fields.
