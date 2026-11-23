@@ -1,6 +1,5 @@
 /**
- * The "look this show up elsewhere" links both review pages render (/vqar and
- * /fsar), built from the same optional fields on a review.
+ * The "look this show up elsewhere" links /vqar renders, built from the same optional fields on a review.
  *
  * AniList and ANN are stored as numeric ids and expanded into URLs here, so a
  * site redesign on their end is one edit. Wikipedia is stored as the article

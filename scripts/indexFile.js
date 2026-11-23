@@ -2,10 +2,8 @@ import fs from 'node:fs';
 import path from 'node:path';
 
 /**
- * Shared mechanics behind build-vqar-index.js and build-fsar-index.js. Both
- * generate an index.json from a directory of hand-edited JSON files, and both
- * do it the same way - only the shapes they read and write differ. The data
- * flows stay independent; it's the script plumbing that's common.
+ * Shared mechanics behind build-vqar-index.js: generating an index.json from a
+ * directory of hand-edited JSON files, and checking it hasn't gone stale.
  */
 
 /**

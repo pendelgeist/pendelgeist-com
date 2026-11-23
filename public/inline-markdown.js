@@ -1,6 +1,6 @@
 /**
  * Tiny inline-markdown parser shared by the pages that render curated prose
- * from committed JSON (/nasubi, /fsar). Supports **bold**, *italic*, and
+ * from committed JSON (/nasubi). Supports **bold**, *italic*, and
  * [text](url) links - deliberately not real Markdown, just the three things
  * hand-written body text actually needs.
  *

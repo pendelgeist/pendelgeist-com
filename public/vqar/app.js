@@ -1,7 +1,7 @@
 import { VQAR_INDEX_PATH } from './data-paths.js';
 import { effectiveRatingNumber, ratingText } from './rating.js';
 import { STAGE_LABELS, reviewStage, reviewsOf, currentReview } from './reviews.js';
-import { airedDiffers, airedLabel, airedKey } from './aired.js';
+import { airedDiffers, airedLabel } from './aired.js';
 import { createStreamingRow, STREAMING_SERVICES } from '../streaming.js';
 import { normalizeEntry } from './list-entries.js';
 import { dayOf } from '../dates.js';
@@ -66,22 +66,13 @@ import {
  * @property {string|number} id
  * @property {string} name
  * @property {string} file - absolute path to this season's own data file
- */
-
-/**
- * One season shows aired in, and which season files hold them.
- * @typedef {Object} AiredMeta
- * @property {string} id - `spring-2010`, or a year alone (`2026`); see airedKey in aired.js
- * @property {string} name - "Spring 2010"
- * @property {number} shows - how many shows aired then
- * @property {string[]} seasons - ids of the season files holding them
+ * @property {number} [shows] - how many shows are reviewed in it, for the Season dropdown
  */
 
 /**
  * @typedef {Object} SeasonIndex
  * @property {string|number} currentSeason
  * @property {SeasonMeta[]} seasons
- * @property {AiredMeta[]} [aired] - newest first
  */
 
 /** @type {Record<string, (a: Show, b: Show) => number>} */
@@ -122,7 +113,6 @@ const dom = {
   guidelines: document.getElementById('guidelines'),
   currentSeasonName: document.getElementById('currentSeasonName'),
   seasonFilter: /** @type {HTMLSelectElement|null} */ (document.getElementById('seasonFilter')),
-  airedFilter: /** @type {HTMLSelectElement|null} */ (document.getElementById('airedFilter')),
   searchInput: /** @type {HTMLInputElement|null} */ (document.getElementById('searchInput')),
   sortBy: /** @type {HTMLSelectElement|null} */ (document.getElementById('sortBy')),
   filtersToggle: document.getElementById('filtersToggle'),
@@ -251,13 +241,9 @@ async function loadForCurrentFilter() {
 
   const token = ++loadToken;
   const filterValue = dom.seasonFilter.value;
-  // Browsing by when shows aired needs only the files the index says hold
-  // shows from then - usually one lineup, or the Backlog.
-  const airedMeta = selectedAired();
-  const metasNeeded = (filterValue === 'all'
+  const metasNeeded = filterValue === 'all'
     ? seasonIndex.seasons
-    : seasonIndex.seasons.filter(s => String(s.id) === filterValue))
-    .filter(s => !airedMeta || airedMeta.seasons.includes(String(s.id)));
+    : seasonIndex.seasons.filter(s => String(s.id) === filterValue);
 
   // The To Be Reviewed / Not Reviewing lists are the picked season's; with
   // All Seasons there's no one season to show, so they're the current one's,
@@ -268,24 +254,16 @@ async function loadForCurrentFilter() {
 
   showLoading('LOADING SEASON...');
   dom.seasonFilter.disabled = true;
-  if (dom.airedFilter) dom.airedFilter.disabled = true;
   const failed = await ensureSeasonsLoaded(toLoad);
   if (token !== loadToken) return; // a newer selection superseded this load
 
   dom.seasonFilter.disabled = false;
-  if (dom.airedFilter) dom.airedFilter.disabled = false;
   // Only a season the reviews come from counts as a load error here; a
   // failed list season just leaves its lists showing "None".
   loadErrors = failed.filter(m => metasNeeded.includes(m));
   renderReviews();
   renderList(dom.pendingShows, 'toReview');
   renderList(dom.skippedShows, 'notReviewing');
-}
-
-/** The Aired dropdown's pick, as listed in the index; null for Any Time. */
-function selectedAired() {
-  const id = dom.airedFilter?.value ?? '';
-  return id ? (seasonIndex?.aired ?? []).find(a => a.id === id) ?? null : null;
 }
 
 async function loadData() {
@@ -310,29 +288,20 @@ async function loadData() {
     if (dom.seasonFilter) {
       const allOption = document.createElement('option');
       allOption.value = 'all';
-      allOption.textContent = 'All Seasons';
+      const counts = seasonIndex.seasons.map(s => s.shows);
+      allOption.textContent = counts.every(Number.isInteger)
+        ? `All Seasons (${counts.reduce((sum, n) => sum + n, 0)})`
+        : 'All Seasons';
 
       const fragment = document.createDocumentFragment();
       for (const season of seasonIndex.seasons) {
         const option = document.createElement('option');
         option.value = String(season.id);
-        option.textContent = season.name;
+        option.textContent = Number.isInteger(season.shows) ? `${season.name} (${season.shows})` : season.name;
         fragment.appendChild(option);
       }
 
       dom.seasonFilter.replaceChildren(allOption, fragment);
-    }
-    if (dom.airedFilter) {
-      const anyOption = document.createElement('option');
-      anyOption.value = '';
-      anyOption.textContent = 'Any Time';
-      const options = (seasonIndex.aired ?? []).map(aired => {
-        const option = document.createElement('option');
-        option.value = aired.id;
-        option.textContent = `${aired.name} (${aired.shows})`;
-        return option;
-      });
-      dom.airedFilter.replaceChildren(anyOption, ...options);
     }
     applyStateFromUrl();
     restoreFiltersOpen();
@@ -539,20 +508,12 @@ function searchableFields(r) {
  * you can hand someone. Anything missing or unrecognized falls back to the
  * page's default: the current season, no search, Most Recent, no chips.
  */
-/** Season ids that were renamed, so a link made before still lands on the same season. */
-const RENAMED_SEASONS = { 'older-shows': 'backlog' };
-
 function applyStateFromUrl() {
   const params = new URLSearchParams(location.search);
   if (dom.seasonFilter) {
-    const asked = params.get('season');
-    const season = asked !== null && asked in RENAMED_SEASONS ? RENAMED_SEASONS[asked] : asked;
+    const season = params.get('season');
     const known = [...dom.seasonFilter.options].some(option => option.value === season);
     dom.seasonFilter.value = known && season ? season : currentSeasonId;
-  }
-  if (dom.airedFilter) {
-    const aired = params.get('aired') ?? '';
-    dom.airedFilter.value = [...dom.airedFilter.options].some(option => option.value === aired) ? aired : '';
   }
   if (dom.searchInput) dom.searchInput.value = params.get('q') ?? '';
   if (dom.sortBy) {
@@ -565,7 +526,7 @@ function applyStateFromUrl() {
 /**
  * Mirrors every control into the query string, leaving out whatever's at its
  * default so the plain /vqar URL still means "this season, unfiltered". Uses
- * replaceState, like /vqar-stats and /fsar do for their filters, so working
+ * replaceState, like /vqar-stats does for its filters, so working
  * through filters doesn't fill up browser history.
  */
 function updateUrl() {
@@ -585,7 +546,6 @@ function stateHref(filters) {
     else url.searchParams.delete(key);
   };
   setOrDelete('season', dom.seasonFilter.value, currentSeasonId);
-  setOrDelete('aired', dom.airedFilter?.value ?? '', '');
   setOrDelete('q', dom.searchInput.value.trim(), '');
   setOrDelete('sort', dom.sortBy.value, 'recent');
   writeChipFiltersToParams(url.searchParams, filters);
@@ -768,10 +728,7 @@ function renderReviews() {
   const sortBy = dom.sortBy.value;
 
   const seasonIds = season === 'all' ? [...seasonDataById.keys()] : [season];
-  // Like the Season, Aired picks what's being browsed rather than filtering
-  // it, so it narrows the total the summary counts against too.
-  const aired = dom.airedFilter?.value ?? '';
-  const reviews = buildReviewsForLoadedSeasons(seasonIds).filter(r => !aired || airedKey(r.aired) === aired);
+  const reviews = buildReviewsForLoadedSeasons(seasonIds);
 
   const searched = reviews.filter(r =>
     !searchTerm || searchableFields(r).some(field => (field ?? '').toLowerCase().includes(searchTerm))
@@ -973,12 +930,6 @@ function skippedItems(shows) {
 
 dom.searchInput?.addEventListener('input', renderReviews);
 dom.seasonFilter?.addEventListener('change', loadForCurrentFilter);
-dom.airedFilter?.addEventListener('change', () => {
-  // Shows from one aired season can sit in any season file (an old show
-  // lands in the Backlog), so picking one browses every file that holds it.
-  if (dom.airedFilter?.value && dom.seasonFilter) dom.seasonFilter.value = 'all';
-  loadForCurrentFilter();
-});
 dom.sortBy?.addEventListener('change', renderReviews);
 
 dom.filterChips?.addEventListener('click', (e) => {

@@ -5,8 +5,8 @@
  *
  * The index is what /vqar and /vqar-stats load first: it lists every season and
  * where to find it, and names the one currently being reviewed. It's generated
- * rather than hand-maintained for the same reason /fsar's index is - keeping a
- * hand-written list in sync with the files beside it is a bug waiting to happen.
+ * rather than hand-maintained - keeping a hand-written list in sync with the
+ * files beside it is a bug waiting to happen.
  * test/vqar-data.test.js fails if the committed index doesn't match a fresh build.
  *
  *   node scripts/build-vqar-index.js            # writes index.json
@@ -18,7 +18,6 @@ import { fileURLToPath } from 'node:url';
 import { readJsonFiles, serializeIndex, syncIndexFile } from './indexFile.js';
 import { validateSeason, validateSeasonCollection } from './validateSeason.js';
 import { seasonSortKey } from '../public/vqar/seasons.js';
-import { airedKey, airedKeyLabel, airedKeyRank } from '../public/vqar/aired.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 export const DATA_DIR = path.join(__dirname, '../public/vqar/data');
@@ -38,34 +37,10 @@ export function readSeasons(dir = SEASONS_DIR) {
 }
 
 /**
- * Every season shows aired in, newest first: its key (see airedKey), label,
- * how many shows aired then, and which season files hold them - so /vqar's
- * Aired view loads just those files rather than every season.
- * @param {object[]} ordered - season files, newest first
- * @returns {{ id: string, name: string, shows: number, seasons: string[] }[]}
- */
-export function buildAiredIndex(ordered) {
-  /** @type {Map<string, { shows: number, seasons: string[] }>} */
-  const byKey = new Map();
-  for (const season of ordered) {
-    for (const show of Array.isArray(season.shows) ? season.shows : []) {
-      const key = airedKey(show.aired);
-      if (key === null) continue;
-      const entry = byKey.get(key) ?? { shows: 0, seasons: [] };
-      entry.shows++;
-      if (!entry.seasons.includes(season.id)) entry.seasons.push(season.id);
-      byKey.set(key, entry);
-    }
-  }
-  return [...byKey]
-    .sort(([a], [b]) => airedKeyRank(b) - airedKeyRank(a))
-    .map(([id, { shows, seasons }]) => ({ id, name: airedKeyLabel(id), shows, seasons }));
-}
-
-/**
- * Builds the index: which season is current, an id/name/file entry for each,
- * newest first, and the seasons its shows aired in (see buildAiredIndex). Ordering comes from the season id rather than the
- * directory listing, since alphabetical order would put spring before winter.
+ * Builds the index: which season is current, and an id/name/file entry for
+ * each, newest first, with how many shows it holds (the Season dropdown's
+ * counts). Ordering comes from the season id rather than the directory
+ * listing, since alphabetical order would put spring before winter.
  * @param {object[]} seasons
  */
 export function buildIndex(seasons) {
@@ -82,8 +57,12 @@ export function buildIndex(seasons) {
   const ordered = [...seasons].sort((a, b) => seasonSortKey(b) - seasonSortKey(a));
   return {
     currentSeason: ordered.find((s) => s.current === true)?.id ?? null,
-    seasons: ordered.map((s) => ({ id: s.id, name: s.name, file: seasonPath(s.id) })),
-    aired: buildAiredIndex(ordered),
+    seasons: ordered.map((s) => ({
+      id: s.id,
+      name: s.name,
+      file: seasonPath(s.id),
+      shows: Array.isArray(s.shows) ? s.shows.length : 0,
+    })),
   };
 }
 

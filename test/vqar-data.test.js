@@ -5,7 +5,7 @@ import os from 'node:os';
 import path from 'node:path';
 import { validateSeason, validateSeasonCollection } from '../scripts/validateSeason.js';
 import { seasonSortKey } from '../public/vqar/seasons.js';
-import { readSeasons, buildIndex, buildAiredIndex, serializeIndex, seasonPath, INDEX_PATH } from '../scripts/build-vqar-index.js';
+import { readSeasons, buildIndex, serializeIndex, seasonPath, INDEX_PATH } from '../scripts/build-vqar-index.js';
 import { resolveTargets } from '../scripts/loadTargets.js';
 import { readJsonFiles } from '../scripts/indexFile.js';
 import { makeSeason, makeShow } from './fixtures.js';
@@ -72,18 +72,15 @@ test('seasons run newest first, across the year boundary', () => {
   assert.deepEqual(ordered, ['summer-2026', 'spring-2026', 'winter-2026', 'fall-2025']);
 });
 
-test('the index maps each aired season to the files holding its shows, newest first', () => {
-  const show = (titleEN, aired) => makeShow({ titleEN, ratingNumber: 3, dateReviewed: '2026-10-01T12:00:00-04:00', aired });
-  const aired = buildAiredIndex([
-    { id: 'fall-2026', shows: [show('A', { season: 'fall', year: 2026 }), show('B', { season: 'spring', year: 2010 }), show('C', { year: 2026 })] },
-    { id: 'backlog', shows: [show('D', { season: 'spring', year: 2010 }), show('E', { season: 'spring', year: 2010 }), show('F')] },
+test('the index counts the shows in each season, for the Season dropdown', () => {
+  const show = (titleEN) => makeShow({ titleEN, ratingNumber: 3, dateReviewed: '2026-10-01T12:00:00-04:00' });
+  const { seasons, aired } = buildIndex([
+    { id: 'fall-2026', name: 'Fall 2026', shows: [show('A'), show('B')] },
+    { id: 'summer-2026', name: 'Summer 2026', shows: [show('C')] },
+    { id: 'spring-2026', name: 'Spring 2026', shows: [] },
   ]);
-  assert.deepEqual(aired, [
-    { id: 'fall-2026', name: 'Fall 2026', shows: 1, seasons: ['fall-2026'] },
-    { id: '2026', name: '2026', shows: 1, seasons: ['fall-2026'] },
-    { id: 'spring-2010', name: 'Spring 2010', shows: 3, seasons: ['fall-2026', 'backlog'] },
-  ]);
-  assert.deepEqual(buildIndex([{ id: 'fall-2026', name: 'Fall 2026', shows: [] }]).aired, []);
+  assert.deepEqual(seasons.map((s) => [s.id, s.shows]), [['fall-2026', 2], ['summer-2026', 1], ['spring-2026', 0]]);
+  assert.equal(aired, undefined);
 });
 
 test('alphabetical order would be wrong, which is why the id is parsed', () => {

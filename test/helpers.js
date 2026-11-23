@@ -60,15 +60,12 @@ export async function waitFor(conditionFn, { timeout = 2000, interval = 5 } = {}
   }
 }
 
-const FSAR_INDEX_HTML_PATH = path.join(__dirname, '../public/fsar/index.html');
-const FSAR_APP_JS_PATH = path.join(__dirname, '../public/fsar/app.js');
-
 /**
  * Builds a fetch mock over a table of { pathname: jsonBody }. Requests for
  * unlisted paths resolve as a 404. Keyed on the full pathname rather than the
  * filename, since the pages fetch same-origin paths where a bare filename
  * isn't enough to tell an index request from a data request (compare
- * '/fsar/data/index.json' with '/fsar/data/reviews/<id>.json').
+ * '/vqar/data/index.json' with '/vqar/data/seasons/<id>.json').
  *
  * It stands in for the Worker's ASSETS binding in test/graphql.test.js too -
  * same route table, and the binding takes a URL where fetch takes a string.
@@ -85,27 +82,4 @@ export function createPathFetchStub(routes, { base = 'http://localhost' } = {}) 
   };
   fetchStub.calls = calls;
   return fetchStub;
-}
-
-/**
- * Loads the FSAR page DOM and (re-)imports its app.js against it. `search`
- * seeds the query string, which is how the page routes between the list view
- * and a single review.
- */
-export async function loadFsarApp({ fetch, localStorage = createLocalStorageStub(), search = '' } = {}) {
-  const html = fs.readFileSync(FSAR_INDEX_HTML_PATH, 'utf-8');
-  const dom = new JSDOM(html, { url: `http://localhost/fsar/${search}`, runScripts: 'outside-only' });
-
-  // jsdom reports window.scrollTo as "not implemented" on the virtual console;
-  // the page calls it after rendering a review, so stub it out to keep the
-  // test output clean.
-  dom.window.scrollTo = () => {};
-
-  global.window = dom.window;
-  global.document = dom.window.document;
-  global.localStorage = localStorage;
-  global.fetch = fetch;
-
-  await import(`${pathToFileURL(FSAR_APP_JS_PATH)}?t=${importCounter++}`);
-  return { window: dom.window, document: dom.window.document, localStorage };
 }

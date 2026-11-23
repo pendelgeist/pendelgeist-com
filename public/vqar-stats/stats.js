@@ -29,7 +29,7 @@ export function flattenReviews(seasons) {
     // for placing the season the show was reviewed in.
     _timestamp: Date.parse(currentReview(r)?.dateReviewed ?? '') || 0,
     _firstTimestamp: Date.parse(reviewsOf(r)[0]?.dateReviewed ?? '') || 0,
-    // A shelf like the Backlog isn't a point in time, so the per-season
+    // A shelf isn't a point in time, so the per-season
     // trends below only count lineups (seasons watched as they aired) - and
     // within one, shows that got a first impression as it aired, not backfills.
     _lineup: isLineup(season) && firstImpression(r) !== undefined,
@@ -80,7 +80,7 @@ export function computeGlanceStats(seasons, reviews) {
 
 /**
  * The shows a season's per-season stats count: in a lineup, and given a first
- * impression as they aired. A shelf like the Backlog has none, and neither
+ * impression as they aired. A shelf has none, and neither
  * does a lineup of shows watched as they aired but reviewed later (backfills).
  * @param {SeasonData} season
  */
@@ -201,7 +201,7 @@ export function computeRevisitCandidates(reviews, seasonId) {
 
 /**
  * Whether season `a` came before season `b`: by their order in the index (a
- * lineup's id, or a shelf's sortKey - the Backlog sorts before everything),
+ * lineup's id, or a shelf's sortKey - a shelf with sortKey 0 sorts before everything),
  * since a lineup can be reviewed long after it aired. A season with no order
  * falls back to when it was first reviewed.
  * @param {SeasonData} a
@@ -417,7 +417,7 @@ export function computeLovesAndHates(reviews, dimension, { n = 3, minShows = MIN
 
 /**
  * The seasons a set of reviews comes from, in airing order (by each one's
- * earliest review). A shelf like the Backlog has no airing order, so
+ * earliest review). A shelf has no airing order, so
  * they aren't listed.
  * @param {ReturnType<typeof flattenReviews>} reviews
  * @returns {{ id: string, name: string }[]}
