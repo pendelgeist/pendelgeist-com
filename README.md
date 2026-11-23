@@ -13,7 +13,7 @@ The Worker (`src/worker.js`) also backs a small GraphQL API over the same anime 
 - `public/games/` — Very Quick Game Reviews, first impressions of games in the VQAR spirit.
 - `public/eva-tv/` — Neon Genesis Evangelion episode timeline, a small vanilla-JS app.
 - `public/nasubi/` — a data analysis of Nasubi's *Susunu! Denpa Shonen* sweepstakes ordeal.
-- `public/vqar-stats/` — "VQAR By The Numbers", a fun stats page over the VQAR review data.
+- `public/anime-stat-sheet/` — the "Anime Stat Sheet": career numbers and season reports over the VQAR review data.
 - `public/graphql/` — a GraphQL query explorer for the API described below.
 - `public/styles.css` — shared site styles (nav, theme variables, cards, filters). Every
   page then layers its own stylesheet on top — `public/vqar/styles.css`,
@@ -27,7 +27,7 @@ The Worker (`src/worker.js`) also backs a small GraphQL API over the same anime 
   `scripts/validateSeason.js`.
 - `public/vqar/list-entries.js` — the shape of a `toReview`/`notReviewing` list entry (a title string
   or an object with optional notes) and the helpers that read either, shared by `/vqar`,
-  `/vqar-stats`, `src/schema.js` and the scripts.
+  `/anime-stat-sheet`, `src/schema.js` and the scripts.
 - `public/dates.js` — the two forms a date takes in the committed data (a day, `YYYY-MM-DD`, or
   a moment, a full Eastern-offset timestamp) and the helpers that check and read them, shared by
   the pages, the GraphQL schema and the validators. See "Dates" under "VQAR data".
@@ -36,13 +36,13 @@ The Worker (`src/worker.js`) also backs a small GraphQL API over the same anime 
 - `public/external-links.js` — the AniList/ANN/Wikipedia reference links `/vqar` renders
   from the optional fields on a review.
 - `public/data-table.js` — the sortable table, stat-tile grid, and bar chart the two
-  data-analysis pages (`/nasubi`, `/vqar-stats`) both render. Only the JS is shared: each
+  data-analysis pages (`/nasubi`, `/anime-stat-sheet`) both render. Only the JS is shared: each
   page keeps its own `.data-table`/`.stat-tile`/`.bar-chart` rules, like every other
   page-specific style here.
 - `public/vqar/data-paths.js` — the path to the VQAR season index, the one thing
-  `public/vqar/app.js`, `public/vqar-stats/app.js`, and `src/schema.js` all need to agree on.
+  `public/vqar/app.js`, `public/anime-stat-sheet/app.js`, and `src/schema.js` all need to agree on.
 - `public/vqar/oped.js` — what a liked OP/ED is: always a list of the numbers liked (`[1]`,
-  `[1, 2]`). `/vqar`, `/vqar-stats`, the GraphQL schema and the validator all read it through here.
+  `[1, 2]`). `/vqar`, `/anime-stat-sheet`, the GraphQL schema and the validator all read it through here.
 - `public/vqar/reviews.js` — a show's `reviews` list: each review's stage (first impression,
   revisit, final, review), the current one, and the first impression. See "Show shape".
 - `public/vqar/rating.js` — the other thing they have to agree on: which rating counts (the
@@ -250,7 +250,7 @@ Everything but `title` is optional. Validation rejects an unknown field (so a ty
 Reviewed groups shows under "Available now", then their premiere date (earliest first, undated
 shows under "Date TBD") with streaming badges at the end of each line; it stays a flat list until some show has a
 `premieres` day or is `availableNow`. Not Reviewing groups shows by their `reason` in a fixed order (below), then any other reason biggest group
-first, and any show with no reason last under "No reason given"; until some show has a reason it stays flat. `/vqar-stats` and the AniList check
+first, and any show with no reason last under "No reason given"; until some show has a reason it stays flat. `/anime-stat-sheet` and the AniList check
 only read the title. In GraphQL, `toReview` and `notReviewing` are lists of title strings; the
 extra fields are on `toReviewShows` and `notReviewingShows`.
 
@@ -362,7 +362,7 @@ impression - a backfill - is never in it.
 **Re-reviewing a show** means appending to its `reviews`, never starting a new entry. A show
 stays in the lineup where it was first reviewed, and every later review joins it there, a second
 cour included. That's why the same `anilistId` in two season files is rejected: it would count
-twice in every `/vqar-stats` number.
+twice in every `/anime-stat-sheet` number.
 
 Beside `reviews`, a show may carry:
 
@@ -375,7 +375,7 @@ Beside `reviews`, a show may carry:
   1 and 3 (`[1]` when the show only had one). It's a bare marking, with no rating or note: a bare
   `true`, or anything but a list of distinct whole numbers from 1, is rejected, and an OP/ED you
   didn't note is simply left out. `/vqar` shows it as a "Liked OP 2"/"Liked ED 1, 3" pill,
-  `/vqar-stats` lists the numbers in a "Which" column, and the GraphQL `Show` type has
+  `/anime-stat-sheet` lists the numbers in a "Which" column, and the GraphQL `Show` type has
   `op`/`ed` as Booleans (true when anything was liked) with the numbers in `opNumbers`/`edNumbers`.
 
 A show may also carry an optional `anilistId` (an AniList media id, e.g. `154587`) —
@@ -415,7 +415,7 @@ counted. Add `"finished": true` when you watched the whole thing - a bare markin
 `true` is rejected) that's **independent of everything else**: a revisit doesn't imply it (one
 may cover only an episode or two), and a low rating doesn't rule it out (a season of trash can get
 finished too). Only mark it when you say you finished. It shows as a "Finished season" pill, has
-its own Extras chip, is counted on `/vqar-stats` as "Seasons Finished", and is what a `final`
+its own Extras chip, is counted on `/anime-stat-sheet` as "Seasons Finished", and is what a `final`
 review requires. `watched` is separate from `dateReviewed` (when a review was written). `/vqar`
 shows it as "Watched: 2026-04-01 – 2026-06-10 (through ep 6)", and the GraphQL `Show` type has a
 `watched` object with the same five fields.
@@ -502,11 +502,10 @@ A season file is one of two things, and its id says which (`isLineup` in
 - A **shelf** is any other id, with an explicit numeric `sortKey`. There aren't any right now (the
   one there was, the Backlog, was retired), but the validators, stats and API still understand one.
 
-A show with no first impression (a backfill) still counts everywhere a show counts (totals,
-average rating, rating distribution, Hall of Fame, genre and studio averages), but a lineup of
-them isn't a season for the per-season stats on `/vqar-stats`: the ratings-over-time chart,
-genre-by-season, Hope Check by season, "seasons covered", busiest season and the coverage tile
-all leave it out, so a lineup of backfills is browsable but doesn't move those numbers.
+A show with no first impression (a backfill) is a **historical** review on `/anime-stat-sheet`, and
+one with a first impression is **live**. Historical reviews count everywhere a show counts, and the
+page can be narrowed to either kind, since historical picks tend to be favorites and skew high. A
+season of backfills has no coverage bar or spotlight there, and isn't a row in Hope Check by season.
 "Continuing Seasons Worth Watching" judges which seasons came earlier by season order (lineups by
 id), not by review dates, since a backfilled lineup was reviewed long after it aired. The GraphQL
 API tells lineups and shelves apart with `Season.lineup`.
@@ -542,9 +541,9 @@ opening the collapsed section on the way (as does arriving on a `#pendingSection
 `#skippedSection` link). Once you're a screen's worth down, a floating "↑ Top" button appears.
 Both scroll smoothly unless the reader prefers reduced motion.
 
-The matching and counting live in `public/vqar/filters.js`, DOM-free like `/vqar-stats`'
+The matching and counting live in `public/vqar/filters.js`, DOM-free like `/anime-stat-sheet`'
 `stats.js`, and tested in `test/vqar-filters.test.js`. Every control is mirrored into the URL
-(`/vqar?season=all&rating=4,5&on=hidive`) via `history.replaceState`, as on `/vqar-stats`;
+(`/vqar?season=all&rating=4,5&on=hidive`) via `history.replaceState`, as on `/anime-stat-sheet`;
 anything at its default (the current season, Most Recent, nothing pressed) is left out,
 and an unrecognized value falls back to the default on load.
 
@@ -732,46 +731,64 @@ against fresh output. Run `node scripts/nasubi/generate-data.js` after editing a
 regenerated — it's hand-maintained and needs updating manually if a script change shifts a
 number it quotes.
 
-## VQAR stats page
+## Anime Stat Sheet page
 
-`public/vqar-stats/` is a standalone page at `/vqar-stats`, "VQAR By The Numbers" — a fun,
-freer-format data analysis of the VQAR review data, in the spirit of the Nasubi page above
-but computed live instead of from committed JSON, since VQAR's data (unlike Nasubi's) keeps
-growing every season.
+`public/anime-stat-sheet/` is a standalone page at `/anime-stat-sheet`, the "Anime Stat Sheet":
+numbers over the VQAR review data, in the spirit of the Nasubi page above but computed live
+instead of from committed JSON, since VQAR's data keeps growing. It was "VQAR By The Numbers" at
+`/vqar-stats`; `public/_redirects` sends that path (and its `?season=`) here.
 
 `app.js` fetches the same index + every season file documented under "VQAR data" above,
-flattens every season's `shows` array into one list,
-and hands it to `stats.js` — a set of pure, DOM-free functions (`computeGlanceStats`,
-`computeRatingDistribution`, `computeRatingsOverTime`, `computeHallOfFame`,
-`computeSecondImpressions`, `computeOpEdHighlights`, `computeRevisitCandidates`,
-`computeContinuationWatch`) that each derive one stat/section from the flattened review
-list. Keeping these pure and separate from `app.js`'s fetch/render code is what makes them
-unit-testable without a DOM or a live data fetch — see `test/vqar-stats.test.js`.
+flattens every season's `shows` into one list (`flattenReviews`), and hands it to `stats.js`: pure,
+DOM-free `compute*` functions, each deriving one section from the flattened list. Keeping them
+apart from the fetch/render code is what makes them unit-testable without a DOM or a live fetch;
+see `test/anime-stat-sheet.test.js`.
 
-Sections rendered from those functions: a numbers-at-a-glance stat grid, a rating
-distribution bar chart (ordered low to high), average rating per season over time,
-best/worst-rated shows, "Second Impressions" (how the latest review's rating compares to the
-first impression's — a swing metric unique to VQAR's data shape, `ratingShift` in
-`public/vqar/reviews.js`), and every
-liked OP and ED (uncapped, by title, since a marking has no rating to rank by). A show's latest
-review sets its rating everywhere ratings get aggregated or ranked (averages, the distribution
-chart, Hall of Fame, Continuing Seasons Worth Watching) — `computeSecondImpressions` is the one
-exception, since it exists specifically to compare the first impression with what came after. `/vqar`'s own "Highest/Lowest Rating" sort follows the same rule. "Ratings
-Over Time" hides itself whenever the current view (e.g. the season filter) covers just one
-season, since a trend needs more than one point on it. There's no raw review browser/search on
-this page — that's what `/vqar` (per-season) and `/graphql` (query anything) are for.
+**Live and historical.** Every show is one or the other (`reviewSource`): **live** if it has an
+episode-1 first impression, written as its season aired, **historical** if not - a backfill,
+reviewed afterwards, often a favorite remembered rather than a show met cold. Historical reviews
+skew high, so the **Reviews** switch (All / Live / Historical, `?source=`) narrows every section
+to one kind (`filterBySource`). Under All, the career glance shows both averages side by side, and
+a season's "vs." tile compares it with the career average of its own kind: a season of backfills
+against your historical average, a live one against your live average, a mix against everything.
 
-**Category cross-references.** Three sections set your ratings against the AniList data and the
-streaming services. All three are computed live from the reviews, like everything else on the
-page, so they're always current, with nothing to pre-compute or rebuild.
+**Two views.** The Season picker (each season with its show count under the current source,
+`?season=`) switches between them. Sections carry `data-view="career"` or `data-view="season"`
+for the view they belong to; ones without it show in both. A section with nothing to say in the
+current view (no revisits, no hopes, no liked OP/EDs) is hidden rather than left empty.
+
+- **Career** (All Seasons): the glance tiles; **Season by Season** (`computeSeasonTable`), one
+  sortable row per season with a review - shows, live/historical, average, share rated 4–5 and
+  0–1, and coverage for a season reviewed live - whose names open that season's report in place;
+  the rating distribution; the taste sections; the halls; Second Impressions; Hope Check, with a
+  per-season table; and the liked OP/EDs.
+- **Season report** (one season): the glance tiles, including the "vs." comparison and the share
+  rated 4–5; for a season reviewed live (`hasLiveLineup`), its **Review Coverage** bar and
+  **Season Spotlight**; then the distribution, halls, Second Impressions, Hope Check and liked
+  OP/EDs for that season alone, without the Season columns that would repeat it on every row.
+
+A show's latest review sets its rating everywhere ratings get aggregated or ranked (averages, the
+distribution, the halls, Continuing Seasons Worth Watching). `computeSecondImpressions` is the one
+exception, since it exists to compare the first impression with what came after (`ratingShift` in
+`public/vqar/reviews.js`). `/vqar`'s own "Highest/Lowest Rating" sort follows the same rule.
+
+**The halls** (`computeHallOfFame`) list every show at the highest rating in view and every show
+at the lowest, rather than a top N: with dozens of equal 5s, a cut-off would only be deciding
+alphabetically who makes it. There's no Hall of Shame when only one rating is in view.
+
+**Category cross-references** (career view). Both are computed live from the reviews.
 - **Taste Profile** (`computeCategoryRatings`) is one sortable table, switchable between genre,
   studio, tag, format and streaming service. For each category it shows how many shows, your average
   rating, the share rated 4–5 and the share rated 0–1, the average revisit shift, and how many you
   finished or liked the OP/ED of.
 - **Loves & Hates** (`computeLovesAndHates`) gives your three best- and worst-rated genres, studios
   and tags. Short lists are split down the middle, so nothing appears as both a love and a hate.
-- **Genre by Season** (`computeGenreBySeason`) is each genre's average, season by season, in airing
-  order. It hides itself for a single season.
+
+Categories with fewer than `MIN_CATEGORY_SHOWS` (3) shows are left out, so one show can't decide a
+ranking, and the table notes how many were. Shows are categorised by the same `reviewValues` as
+`/vqar`'s filters, and every name links to `/vqar` filtered to that category.
+That works because `createDataTable` (`public/data-table.js`) takes `{ text, href }` cells, and its
+`MISSING` placeholder ("—") sorts last without turning a numeric column into a text one.
 
 **Hope Check** (`computeHopeCheck`) treats an episode-1 4 ("Yeah, Here's Hoping") as "watch more"
 rather than a verdict, and tracks how those turned out: how many got a revisit, whether it rose to 5,
@@ -782,16 +799,7 @@ Candidates. All three count by `awaitingRevisit` in `public/vqar/rating.js` - a 
 rated 4 with nothing after it - so they can't disagree. Nothing is marked by hand: a show leaves
 the queue when its next review is saved.
 
-Categories with fewer than `MIN_CATEGORY_SHOWS` (3) shows are left out, so one show can't decide a
-ranking, and the table notes how many were. Shows are categorised by the same `reviewValues` as
-`/vqar`'s filters, and every name links to `/vqar` filtered to that category in the season in view.
-That works because `createDataTable` (`public/data-table.js`) takes `{ text, href }` cells, and its
-`MISSING` placeholder ("—") sorts last without turning a numeric column into a text one.
-
-"Season Spotlight" is a pair of sections at the top of the page that track whichever season
-is currently in view — the current season when the filter is "All Seasons" or the current
-season itself, or the picked season when a past one is selected (`spotlightSeasonId` in
-`applySeasonFilter()`):
+**Season Spotlight** (a live season's report):
 
 - **Revisit Candidates** (`computeRevisitCandidates`) — that season's 4/5s ("Yeah") that
   haven't been reviewed again yet (`awaitingRevisit`), i.e. shows liked enough on episode 1
@@ -799,28 +807,22 @@ season itself, or the picked season when a past one is selected (`spotlightSeaso
   as `/vqar`'s **To revisit** filter.
 - **Continuing Seasons Worth Watching** (`computeContinuationWatch`) — that season's full
   lineup (to review, not reviewing, and reviewed titles alike) cross-checked by title against shows
-  rated 4+, or finished (`watched.finished`) at any rating, in an *earlier* season (judged
-  by each season's earliest `dateReviewed`, since the flattened review list carries no
-  season order — see `seasonEarliestTimestamp`),
-  surfacing exceptions to VQAR's usual "skip continuing/returning seasons" guidance.
-  Matching is a best-effort text heuristic (`normalizeBaseTitle` strips common sequel
-  markers — "Season 2", "2nd Season", "Part 2", "Cour 2", roman numerals — before
+  rated 4+, or finished (`watched.finished`) at any rating, in an *earlier* season (by season
+  order, `seasonComesBefore`), surfacing exceptions to VQAR's usual "skip continuing/returning
+  seasons" guidance. Matching is a best-effort text heuristic (`normalizeBaseTitle` strips common
+  sequel markers — "Season 2", "2nd Season", "Part 2", "Cour 2", roman numerals — before
   comparing), not a real season-relation lookup, so an unconventionally-named sequel can
   slip through.
 
-A Season filter above those sections (defaults to "All Seasons") re-slices the loaded
-seasons/reviews and re-runs every `compute*`/render call — including Season Spotlight's —
-against just the one picked. `applySeasonFilter()` in `app.js` does the slicing, off the same
-in-memory `allSeasons`/`allReviews` fetched once at load, so switching seasons never
-re-fetches. The selection is linkable: it's kept in sync with the URL's `?season=` query
-param via `history.replaceState` (so it doesn't spam browser history), and read back out on
-load (`seasonFromUrl()`) to pre-select a season from a shared link — an unrecognized id
-falls back to "All Seasons" rather than erroring.
+`applyFilters()` in `app.js` re-slices the in-memory `allSeasons`/`allReviews` fetched once at load,
+so switching season or source never re-fetches. Both are kept in the URL via
+`history.replaceState` (so they don't spam browser history), defaults left out, and an unrecognized
+value falls back to the default rather than erroring.
 
 Adding a new stat means adding a `compute*` function to `stats.js` (plus a test) and a
-render function in `app.js` that calls it — no committed data to regenerate, unlike Nasubi.
-The tables, stat tiles and bar charts themselves come from `public/data-table.js`, shared
-with the Nasubi page (see "Shared page components" below).
+render function in `app.js` that calls it, in the view it belongs to — no committed data to
+regenerate, unlike Nasubi. The tables, stat tiles and bar charts themselves come from
+`public/data-table.js`, shared with the Nasubi page (see "Shared page components" below).
 
 ## Very Quick Game Reviews page
 
@@ -874,7 +876,7 @@ over the committed file in CI.
 
 ## Shared page components
 
-`public/data-table.js` holds the three things `/nasubi` and `/vqar-stats` both render, so
+`public/data-table.js` holds the three things `/nasubi` and `/anime-stat-sheet` both render, so
 they can't drift the way they had:
 
 - `createDataTable(columns, rows)` — a sortable table, returned as a `.table-scroll`

@@ -36,7 +36,7 @@ Static site (`public/`) served from a Cloudflare Worker, plus a small GraphQL AP
 backed by the same data. Two independent things share one Worker:
 
 - **Static assets** (`public/`): plain HTML/CSS/vanilla-JS ES modules, no build step. There
-  are eight pages: `/` (home), `/vqar`, `/games`, `/vqar-stats`, `/nasubi`, `/eva-tv`,
+  are eight pages: `/` (home), `/vqar`, `/games`, `/anime-stat-sheet`, `/nasubi`, `/eva-tv`,
   `/eva-tv/sources`, and `/graphql`. Each loads shared `/styles.css` + `/theme.js`, then its
   own page-specific stylesheet and script.
 - **The Worker** (`src/worker.js`): only actually runs for non-GET/HEAD requests to
@@ -58,14 +58,14 @@ behavior, it moves into a shared module at `public/` root rather than being copi
 | `public/inline-markdown.js` | `/nasubi` | the `**bold**`/`*italic*`/`[text](url)` parser for committed prose |
 | `public/streaming.js` | `/vqar`, `scripts/validateSeason.js` | service keys, badge + badge-row rendering |
 | `public/external-links.js` | `/vqar` | the AniList/ANN/Wikipedia reference links |
-| `public/data-table.js` | `/nasubi`, `/vqar-stats` | the sortable table, stat-tile grid, and bar chart |
+| `public/data-table.js` | `/nasubi`, `/anime-stat-sheet` | the sortable table, stat-tile grid, and bar chart |
 | `public/dates.js` | `/vqar`, `scripts/validateSeason.js` | the two date forms: a day (`isDay`) and an Eastern moment (`isMoment`, `isEasternMoment`), plus `dayOf` and `easternMoment` |
-| `public/vqar/seasons.js` | `/vqar-stats`, `src/schema.js`, `scripts/` | what a season id means: `isLineup` (a `<season>-<year>` lineup vs. a shelf) and `seasonSortKey` |
-| `public/vqar/data-paths.js` | `/vqar`, `/vqar-stats`, `src/schema.js` | the path to the VQAR season index |
-| `public/vqar/list-entries.js` | `/vqar`, `/vqar-stats`, `src/schema.js`, `scripts/` | a `toReview`/`notReviewing` entry is a title string *or* an object with optional notes; read titles through `entryTitle` |
-| `public/vqar/oped.js` | `/vqar`, `/vqar-stats`, `src/schema.js`, `scripts/validateSeason.js` | a liked OP/ED is always a list of the numbers liked (`[1]`, `[1, 2]`), never a bare `true`; read it through `isLikedOpEd`/`opEdNumbers`, never `=== true` |
-| `public/vqar/reviews.js` | `/vqar`, `/vqar-stats`, `src/schema.js` | a show's `reviews` list: each review's derived stage (`reviewStage`), the current one, the first impression, and how the rating moved since (`ratingShift`) |
-| `public/vqar/rating.js` | `/vqar`, `/vqar-stats`, `src/` | the show's rating is its latest review's (`effectiveRatingNumber`), a review's label falls back to its tier's (`ratingText`), which shows are still waiting on a revisit (`awaitingRevisit`) |
+| `public/vqar/seasons.js` | `/anime-stat-sheet`, `src/schema.js`, `scripts/` | what a season id means: `isLineup` (a `<season>-<year>` lineup vs. a shelf) and `seasonSortKey` |
+| `public/vqar/data-paths.js` | `/vqar`, `/anime-stat-sheet`, `src/schema.js` | the path to the VQAR season index |
+| `public/vqar/list-entries.js` | `/vqar`, `/anime-stat-sheet`, `src/schema.js`, `scripts/` | a `toReview`/`notReviewing` entry is a title string *or* an object with optional notes; read titles through `entryTitle` |
+| `public/vqar/oped.js` | `/vqar`, `/anime-stat-sheet`, `src/schema.js`, `scripts/validateSeason.js` | a liked OP/ED is always a list of the numbers liked (`[1]`, `[1, 2]`), never a bare `true`; read it through `isLikedOpEd`/`opEdNumbers`, never `=== true` |
+| `public/vqar/reviews.js` | `/vqar`, `/anime-stat-sheet`, `src/schema.js` | a show's `reviews` list: each review's derived stage (`reviewStage`), the current one, the first impression, and how the rating moved since (`ratingShift`) |
+| `public/vqar/rating.js` | `/vqar`, `/anime-stat-sheet`, `src/` | the show's rating is its latest review's (`effectiveRatingNumber`), a review's label falls back to its tier's (`ratingText`), which shows are still waiting on a revisit (`awaitingRevisit`) |
 | `public/vqar/aired.js` | `/vqar`, `scripts/` | when a show first aired: its label, whether it differs from the lineup it sits in (`airedDiffers`) |
 
 Each has its own test file. Adding a shared module is the right move when a second page
@@ -116,7 +116,7 @@ six tiers (5 Peak, Nice Ep Broh / 4 Yeah, Here's Hoping / 3 Meh, Finishing the E
 Second Screen Only / 1 Never, Please No More Like This Ever / 0 Dead, El-Hazard 2 Over This). A
 custom `ratingText` is fine, but it still needs the tier's `ratingNumber`. The latest review's
 `ratingNumber` is the show's in "Highest Rating" sorting, the rating filter, and every
-`/vqar-stats` number (`effectiveRatingNumber` in `public/vqar/rating.js`), so
+`/anime-stat-sheet` number (`effectiveRatingNumber` in `public/vqar/rating.js`), so
 `scripts/validateSeason.js` rejects a review without one.
 
 **Liking an OP/ED**: set `"op"` / `"ed"` on the show's entry. A season can have several, so it
@@ -154,9 +154,11 @@ watching a stretch of a show, whenever that was - goes in the lineup of the seas
 (its `aired`): create the lineup file if it doesn't exist yet (no `current`). A show with no
 aired season (no AniList entry) goes in the lineup of the season it was watched in. There is no
 Backlog any more; a shelf (any other id, with a numeric `sortKey`) is still understood by the
-validators, stats and API, but none exists. Shows with no first impression - a backfilled
-lineup's - count in every total and average but are left out of the per-season stats
-(`_lineup`/`liveShows` in `public/vqar-stats/stats.js`).
+validators, stats and API, but none exists. On the Anime Stat Sheet a show with a first impression
+is **live** and one without (a backfill) is **historical** (`reviewSource` in
+`public/anime-stat-sheet/stats.js`); both count everywhere, and the page can narrow to either,
+since historical picks skew high. Only a season reviewed live (`hasLiveLineup`) gets a coverage
+bar and spotlight.
 README → "Lineups and shelves".
 
 **Starting a season**: add `seasons/<season>-<year>.json` with a matching `id`, a `name`,
@@ -174,9 +176,12 @@ Four independent consumers read that index, whose path is exported once from
   generated from each season file), so it never has to load a file to say it. To Be Reviewed / Not Reviewing are the picked season's lists (the current
   season's under All Seasons, which it loads alongside). Its chip filters (rating/streaming/extras) live in the DOM-free `filters.js`, and
   every control is mirrored into the query string with `replaceState`.
-- `public/vqar-stats/app.js` — always loads *every* season, since every stat on it is an
-  aggregate. Crunching lives in `stats.js`, kept pure and DOM-free so it's testable without
-  a DOM or a fetch; keep it that way.
+- `public/anime-stat-sheet/app.js` — the Anime Stat Sheet (formerly "VQAR By The Numbers" at
+  `/vqar-stats`, which `public/_redirects` still sends here). Always loads *every* season, since
+  every stat on it is an aggregate. Two views: **Career** (All Seasons) and a **season report**
+  (one season picked); each section carries `data-view="career"`/`"season"` for the view it
+  belongs to (none = both), and a Live/Historical/All switch narrows either. Crunching lives in
+  `stats.js`, kept pure and DOM-free so it's testable without a DOM or a fetch; keep it that way.
 - `src/schema.js` — the GraphQL resolvers, read the same files server-side through the
   Worker's `ASSETS` binding (`makeRootValue({ assets, origin })`, wired up in
   `src/worker.js`) rather than over the network, and reshape them to add `season`/`seasonName`

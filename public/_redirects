@@ -1,0 +1,4 @@
+# The stats page was "VQAR By The Numbers" at /vqar-stats until it became the
+# Anime Stat Sheet. Query strings (?season=) carry over on a redirect.
+/vqar-stats /anime-stat-sheet/ 301
+/vqar-stats/ /anime-stat-sheet/ 301

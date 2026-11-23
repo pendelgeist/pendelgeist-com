@@ -1,4 +1,4 @@
-/* VQAR stats page styles; shared site styles live in /styles.css. Several
+/* Anime Stat Sheet styles; shared site styles live in /styles.css. Several
    class names here intentionally mirror /nasubi/styles.css (stat-grid,
    data-table, bar-chart, filters) - same visual language for the
    same kind of "curated data analysis" page, just computed live instead of
@@ -154,6 +154,23 @@
 .vs-filter-note {
   margin: 0 0 1rem;
   padding: 0 0.5rem;
+}
+
+/* Which view the sections below belong to: "Career", or one season's report. */
+.vs-view-heading {
+  margin: 0 0 1rem;
+  padding: 0 0.5rem;
+}
+
+.vs-view-title {
+  font-family: var(--font-heading);
+  font-size: 1.6rem;
+  font-weight: 900;
+  color: var(--color-title);
+}
+
+.vs-view-heading .vs-note {
+  margin-top: 0.25rem;
 }
 
 /* "See them on VQAR" under Revisit Candidates: accent on the page
@@ -336,10 +353,47 @@
   background-color: var(--color-chrome);
 }
 
-/* A lone filter (the top-of-page season picker) shouldn't stretch to fill
-   the whole row the way .filters does when it holds several fields. */
+/* The season picker and the Reviews switch shouldn't stretch to fill the
+   whole row the way .filters does when it holds several fields. */
 .vs-season-filters {
-  grid-template-columns: minmax(200px, 320px);
+  grid-template-columns: minmax(200px, 320px) auto;
+  align-items: start;
+}
+
+@media (max-width: 560px) {
+  .vs-season-filters {
+    grid-template-columns: 1fr;
+  }
+}
+
+.filter-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--color-nav-link);
+}
+
+/* The Reviews switch sits on the filter bar's --color-chrome, where the only
+   pairing the contrast test covers is --color-nav-link: so it's drawn in
+   that, and the pressed pill inverts the same two colors. */
+.vs-source-switch {
+  margin: 0;
+  min-height: 2.75rem;
+  align-items: center;
+}
+
+.vs-source-switch .vs-switch-button {
+  border-color: var(--color-nav-link);
+  color: var(--color-nav-link);
+}
+
+.vs-source-switch .vs-switch-button[aria-pressed="true"] {
+  background-color: var(--color-nav-link);
+  color: var(--color-chrome);
+}
+
+.vs-source-switch .vs-switch-button:focus-visible {
+  outline-color: var(--color-nav-link);
 }
 
 .filter-group {

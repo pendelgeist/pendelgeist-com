@@ -8,7 +8,7 @@
  * lineup (none exist at the moment) - which says where it sorts with an explicit numeric `sortKey`.
  *
  * Per-season stats only make sense for lineups, so they ask `isLineup` rather
- * than a flag on the file. Shared by /vqar-stats, src/schema.js and the
+ * than a flag on the file. Shared by /anime-stat-sheet, src/schema.js and the
  * scripts, so the rule can't drift between them.
  */
 

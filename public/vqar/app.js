@@ -519,7 +519,7 @@ function applyStateFromUrl() {
 /**
  * Mirrors every control into the query string, leaving out whatever's at its
  * default so the plain /vqar URL still means "this season, unfiltered". Uses
- * replaceState, like /vqar-stats does for its filters, so working
+ * replaceState, like /anime-stat-sheet does for its filters, so working
  * through filters doesn't fill up browser history.
  */
 function updateUrl() {

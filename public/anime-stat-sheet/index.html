@@ -25,15 +25,15 @@
   <link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
   <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@500;700;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/styles.css">
-  <link rel="stylesheet" href="/vqar-stats/styles.css">
+  <link rel="stylesheet" href="/anime-stat-sheet/styles.css">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-  <title>VQAR By The Numbers</title>
+  <title>Anime Stat Sheet</title>
 </head>
 <body>
   <nav>
     <div class="nav-left">
       <a href="/">Home</a>
-      <span class="nav-title">VQAR By The Numbers</span>
+      <span class="nav-title">Anime Stat Sheet</span>
       <a href="/vqar">Very Quick Reviews</a>
     </div>
   </nav>
@@ -41,9 +41,9 @@
   <div class="container">
 
     <header class="section vs-hero">
-      <h1>VQAR By The Numbers</h1>
-      <p class="vs-subtitle">A fun data analysis of Very Quick Anime Reviews</p>
-      <p class="vs-prose">Every rating and every season, computed live from the same review data <a href="/vqar">VQAR</a> reads. Want the data itself? <a href="/graphql">Query it with GraphQL</a>.</p>
+      <h1>Anime Stat Sheet</h1>
+      <p class="vs-subtitle">Career numbers and season reports from Very Quick Anime Reviews</p>
+      <p class="vs-prose">Computed live from the same review data <a href="/vqar">VQAR</a> reads. Want the data itself? <a href="/graphql">Query it with GraphQL</a>.</p>
     </header>
 
     <div class="filters vs-season-filters">
@@ -53,16 +53,41 @@
           <option value="all">All Seasons</option>
         </select>
       </div>
+      <div class="filter-group">
+        <span class="filter-label" id="sourceLabel">Reviews</span>
+        <div class="vs-switch vs-source-switch" role="group" aria-labelledby="sourceLabel" id="sourceSwitch">
+          <button type="button" class="vs-switch-button" data-source="all" aria-pressed="true">All</button>
+          <button type="button" class="vs-switch-button" data-source="live" aria-pressed="false">Live</button>
+          <button type="button" class="vs-switch-button" data-source="historical" aria-pressed="false">Historical</button>
+        </div>
+      </div>
     </div>
 
-    <p class="vs-note vs-filter-note">Pick a season to scope every section below to it. Under All Seasons the spotlight follows the current one.</p>
-    <section class="section" id="coverageSection">
-      <h2>Review Coverage: <span id="coverageSeasonName"></span></h2>
+    <p class="vs-note vs-filter-note"><strong>Live</strong> reviews are first impressions written as a season aired. <strong>Historical</strong> ones were added afterwards, often favorites from memory, so they tend to rate higher. Pick one to compare like with like.</p>
+
+    <div class="vs-view-heading">
+      <h2 class="vs-view-title" id="viewTitle">Career</h2>
+      <p class="vs-note" id="viewNote"></p>
+    </div>
+
+    <section class="section" id="glanceSection">
+      <h2>Numbers at a Glance</h2>
+      <div id="statsGlance" class="stat-grid"><div class="loading">LOADING&hellip;</div></div>
+    </section>
+
+    <section class="section" id="seasonTableSection" data-view="career">
+      <h2>Season by Season</h2>
+      <p class="vs-prose">Every season with a review, newest first. Pick a season for its report, or sort by any column.</p>
+      <div id="seasonTable"></div>
+    </section>
+
+    <section class="section" id="coverageSection" data-view="season">
+      <h2>Review Coverage</h2>
       <div id="coverageBar"></div>
     </section>
 
-    <section class="section" id="seasonSpotlightSection">
-      <h2>Season Spotlight: <span id="spotlightSeasonName"></span></h2>
+    <section class="section" id="seasonSpotlightSection" data-view="season">
+      <h2>Season Spotlight</h2>
       <div class="vs-two-col">
         <div>
           <h3>Revisit Candidates</h3>
@@ -79,23 +104,13 @@
       </div>
     </section>
 
-    <section class="section">
-      <h2>Numbers at a Glance</h2>
-      <div id="statsGlance" class="stat-grid"><div class="loading">LOADING&hellip;</div></div>
-    </section>
-
     <section class="section" id="ratingDistributionSection">
       <h2>Rating Distribution</h2>
       <div id="ratingDistributionChart"></div>
       <p id="ratingDistributionBlurb" class="vs-prose"></p>
     </section>
 
-    <section class="section" id="ratingsOverTimeSection">
-      <h2>Ratings Over Time</h2>
-      <div id="ratingsOverTimeChart"></div>
-    </section>
-
-    <section class="section" id="tasteProfileSection">
+    <section class="section" id="tasteProfileSection" data-view="career">
       <h2>Taste Profile</h2>
       <p class="vs-prose">How you rate, broken down by AniList genre, studio, tag and format, and by
         streaming service. A show's latest review sets its rating, and anything with fewer than
@@ -105,27 +120,22 @@
       <p id="tasteNote" class="vs-note"></p>
     </section>
 
-    <section class="section" id="lovesHatesSection">
+    <section class="section" id="lovesHatesSection" data-view="career">
       <h2>Loves &amp; Hates</h2>
       <p class="vs-prose">Your best- and worst-rated genres, studios and tags (3+ shows each).</p>
       <div class="vs-three-col" id="lovesHates"></div>
     </section>
 
-    <section class="section" id="genreBySeasonSection">
-      <h2>Genre by Season</h2>
-      <p class="vs-prose">Your average rating for each genre, season by season (3+ shows overall).</p>
-      <div id="genreBySeasonTable"></div>
-    </section>
-
     <section class="section" id="hallOfFameSection">
       <h2>Hall of Fame &amp; Hall of Shame</h2>
+      <p class="vs-prose">Every show at the highest rating in view, and every show at the lowest.</p>
       <div class="vs-two-col">
         <div>
-          <h3>Highest Rated</h3>
+          <h3 id="hallOfFameHeading">Highest Rated</h3>
           <div id="hallOfFameBest"></div>
         </div>
-        <div>
-          <h3>Lowest Rated</h3>
+        <div id="hallOfShame">
+          <h3 id="hallOfShameHeading">Lowest Rated</h3>
           <div id="hallOfFameWorst"></div>
         </div>
       </div>
@@ -163,6 +173,6 @@
     </section>
   </div>
 
-  <script type="module" src="/vqar-stats/app.js"></script>
+  <script type="module" src="/anime-stat-sheet/app.js"></script>
 </body>
 </html>

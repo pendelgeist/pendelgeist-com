@@ -5,11 +5,11 @@ import path from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { JSDOM } from 'jsdom';
 import {
-  flattenReviews, computeGlanceStats, computeRatingDistribution, computeRatingsOverTime,
-  computeHallOfFame, computeSecondImpressions, computeOpEdHighlights,
-  computeCategoryRatings, computeLovesAndHates, computeGenreBySeason,
+  flattenReviews, reviewSource, filterBySource, hasLiveLineup, computeGlanceStats, computeSeasonTable,
+  computeRatingDistribution, computeHallOfFame, computeSecondImpressions, computeOpEdHighlights,
+  computeCategoryRatings, computeLovesAndHates,
   computeRevisitCandidates, computeContinuationWatch, computeSeasonCoverage, computeHopeCheck,
-} from '../public/vqar-stats/stats.js';
+} from '../public/anime-stat-sheet/stats.js';
 import { createPathFetchStub } from './helpers.js';
 import { makeSeason, makeShow } from './fixtures.js';
 
@@ -49,25 +49,29 @@ test('flattenReviews tags each review with season id/name and a parsed timestamp
   assert.equal(reviews.find(r => r.titleEN === 'Peak Show')._timestamp, Date.parse('2026-07-01'));
 });
 
-test('computeGlanceStats totals reviews, averages numeric ratings, and finds the busiest season', () => {
-  const s = computeGlanceStats(seasons, reviews);
-  assert.equal(s.totalReviews, 6);
-  assert.equal(s.seasonsCovered, 2);
+test('computeGlanceStats totals shows, averages numeric ratings, and counts the seasons they come from', () => {
+  const s = computeGlanceStats(reviews);
+  assert.equal(s.shows, 6);
+  assert.equal(s.live, 6);
+  assert.equal(s.historical, 0);
+  assert.equal(s.seasons, 2);
   assert.equal(s.avgRating, (5 + 5 + 1 + 3 + 2) / 5); // "No Rating Show" excluded; Meh Show/Great Show use their fullReview rating
+  assert.equal(s.avgLive, s.avgRating);
+  assert.equal(s.avgHistorical, null);
+  assert.equal(s.highShare, 2 / 5);
   assert.equal(s.fullReReviews, 2);
   assert.equal(s.likedOps, 1);
   assert.equal(s.likedEds, 1);
   assert.equal(s.finishedSeasons, 1);
-  assert.equal(s.busiestSeasonName, 'Summer 2026');
-  assert.equal(s.busiestSeasonCount, 3);
   assert.equal(s.anilistCoveragePct, Math.round((1 / 6) * 100));
 });
 
 test('computeGlanceStats handles an empty dataset without dividing by zero', () => {
-  const s = computeGlanceStats([], []);
-  assert.equal(s.totalReviews, 0);
+  const s = computeGlanceStats([]);
+  assert.equal(s.shows, 0);
   assert.equal(s.avgRating, null);
-  assert.equal(s.busiestSeasonName, null);
+  assert.equal(s.highShare, null);
+  assert.equal(s.seasons, 0);
   assert.equal(s.anilistCoveragePct, null);
 });
 
@@ -83,20 +87,22 @@ test('computeRatingDistribution counts by ratingNumber, ordered ascending and la
   assert.equal(dist.find(d => d.ratingNumber === 5).count, 2); // Peak Show + Meh Show's fullReview
 });
 
-test('computeRatingsOverTime averages rating per season, ordered by earliest review date', () => {
-  const overTime = computeRatingsOverTime(reviews);
-  assert.deepEqual(overTime.map(s => s.seasonName), ['Spring 2026', 'Summer 2026']);
-  const spring = overTime.find(s => s.seasonName === 'Spring 2026');
-  assert.equal(spring.avgRating, (3 + 2) / 2); // "No Rating Show" excluded; Great Show uses its fullReview rating (2)
-  assert.equal(spring.count, 2);
+test('computeHallOfFame lists every show at the top and bottom rating, by their latest review', () => {
+  const { fame, shame } = computeHallOfFame(reviews);
+  // Meh Show's revisit (5) ties it with Peak Show; the whole tier is listed, by title.
+  assert.equal(fame.ratingNumber, 5);
+  assert.equal(fame.ratingText, 'Peak, Nice Ep Broh');
+  assert.deepEqual(fame.shows.map(r => r.titleEN), ['Meh Show', 'Peak Show']);
+  assert.equal(shame.ratingNumber, 1);
+  assert.deepEqual(shame.shows.map(r => r.titleEN), ['Trash Show']);
 });
 
-test('computeHallOfFame ranks numerically-rated shows best and worst, by their fullReview rating once they have one', () => {
-  const { best, worst } = computeHallOfFame(reviews, 2);
-  // Meh Show's fullReview (5) ties it with Peak Show for best; alphabetical tiebreak puts it first.
-  assert.deepEqual(best.map(r => r.titleEN), ['Meh Show', 'Peak Show']);
-  // Great Show's fullReview (2) drops it out of the top ranks and into the bottom two.
-  assert.deepEqual(worst.map(r => r.titleEN), ['Trash Show', 'Great Show']);
+test('computeHallOfFame has no Hall of Shame when only one rating is in view, and nothing with no ratings', () => {
+  const one = flattenReviews([makeSeason({ id: 'x', name: 'X', shows: [makeShow({ titleEN: 'A', ratingNumber: 4 }), makeShow({ titleEN: 'B', ratingNumber: 4 })] })]);
+  const { fame, shame } = computeHallOfFame(one);
+  assert.deepEqual(fame.shows.map(r => r.titleEN), ['A', 'B']);
+  assert.equal(shame, null);
+  assert.deepEqual(computeHallOfFame([]), { fame: null, shame: null });
 });
 
 test('computeSecondImpressions compares episode-1 rating to full-series re-review', () => {
@@ -184,7 +190,7 @@ test('computeSeasonCoverage has no percentage when nothing is reviewed or to rev
     { reviewed: 0, toReview: 0, total: 0, pct: null });
 });
 
-test('computeSeasonCoverage leaves a shelf like the Backlog out', () => {
+test('computeSeasonCoverage leaves a shelf out', () => {
   assert.deepEqual(computeSeasonCoverage([makeSeason({ id: 'backlog', name: 'Backlog', sortKey: 0, shows: [makeShow({ titleEN: 'Old Show', ratingNumber: 4 })], toReview: [], notReviewing: [] })]),
     { reviewed: 0, toReview: 0, total: 0, pct: null });
 });
@@ -231,8 +237,8 @@ test('computeContinuationWatch returns nothing when the current season id is unk
 
 // --- Rendered page ---
 
-const INDEX_HTML_PATH = path.join(__dirname, '../public/vqar-stats/index.html');
-const APP_JS_PATH = path.join(__dirname, '../public/vqar-stats/app.js');
+const INDEX_HTML_PATH = path.join(__dirname, '../public/anime-stat-sheet/index.html');
+const APP_JS_PATH = path.join(__dirname, '../public/anime-stat-sheet/app.js');
 
 const seasonIndex = {
   currentSeason: 'summer-2026',
@@ -250,9 +256,11 @@ function routes() {
   };
 }
 
+const tableRows = (document, id) => [...document.querySelectorAll(`#${id} tbody tr`)].map((tr) => [...tr.children].map((td) => td.textContent));
+
 let importCounter = 0;
 
-async function loadApp({ fetch = createPathFetchStub(routes()), url = 'http://localhost/vqar-stats/index.html' } = {}) {
+async function loadApp({ fetch = createPathFetchStub(routes()), url = 'http://localhost/anime-stat-sheet/index.html' } = {}) {
   const html = fs.readFileSync(INDEX_HTML_PATH, 'utf-8');
   const dom = new JSDOM(html, { url, runScripts: 'outside-only' });
 
@@ -267,22 +275,36 @@ async function loadApp({ fetch = createPathFetchStub(routes()), url = 'http://lo
   return { document: dom.window.document, window: dom.window };
 }
 
+/** The glance tiles as { label: value }. */
+const glance = (document) => Object.fromEntries([...document.querySelectorAll('#statsGlance .stat-tile')]
+  .map(t => [t.querySelector('.stat-label').textContent, t.querySelector('.stat-value').textContent]));
+
+/** Sets the season picker and fires its change event. */
+function pickSeason(document, value) {
+  const select = /** @type {any} */ (document.getElementById('seasonFilter'));
+  select.value = value;
+  select.dispatchEvent(new document.defaultView.Event('change', { bubbles: true }));
+}
+
+const pickSource = (document, value) => document.querySelector(`#sourceSwitch [data-source="${value}"]`).click();
+
 test('renders the glance stat grid from live-fetched season data', async () => {
   const { document } = await loadApp();
-
-  const tiles = [...document.querySelectorAll('#statsGlance .stat-tile')];
-  assert.equal(tiles.length, 9);
-  const tile = (label) => tiles.find(t => t.querySelector('.stat-label').textContent === label).querySelector('.stat-value').textContent;
-  assert.equal(tile('Total Reviews'), '6');
-  assert.equal(tile('Seasons Finished'), '1');
+  const tiles = glance(document);
+  assert.equal(tiles['Shows Reviewed'], '6');
+  assert.equal(tiles['Seasons'], '2');
+  assert.equal(tiles['Seasons Finished'], '1');
+  // Every fixture show is live, so there's no live/historical split to show.
+  assert.equal(tiles['Live'], undefined);
 });
 
-test('renders a rating distribution bar chart and a hall of fame table', async () => {
+test('renders a rating distribution bar chart and the halls, each listing its whole rating tier', async () => {
   const { document } = await loadApp();
 
   assert.ok(document.querySelectorAll('#ratingDistributionChart .bar-fill').length > 0);
-  const bestRows = [...document.querySelectorAll('#hallOfFameBest tbody tr')].map(tr => tr.children[0].textContent);
-  assert.equal(bestRows[0], 'Meh Show'); // ties Peak Show at 5 via its fullReview; alphabetical tiebreak puts it first
+  assert.deepEqual(tableRows(document, 'hallOfFameBest'), [['Meh Show', 'Summer 2026'], ['Peak Show', 'Summer 2026']]);
+  assert.equal(document.getElementById('hallOfFameHeading').textContent, 'Peak, Nice Ep Broh (2)');
+  assert.equal(document.getElementById('hallOfShameHeading').textContent, 'Never, Please No More Like This Ever (1)');
 });
 
 test('shows an error message if the season index fails to load', async () => {
@@ -294,51 +316,74 @@ test('shows an error message if the season index fails to load', async () => {
   assert.match(err.textContent, /ERROR/);
 });
 
-test('season filter is populated from the index and defaults to "All Seasons"', async () => {
+test('the season picker lists each season with its show count, and defaults to the career view', async () => {
   const { document } = await loadApp();
 
   const options = [...document.querySelectorAll('#seasonFilter option')].map(o => ({ value: o.value, text: o.textContent }));
   assert.deepEqual(options, [
-    { value: 'all', text: 'All Seasons' },
-    { value: 'summer-2026', text: 'Summer 2026' },
-    { value: 'spring-2026', text: 'Spring 2026' },
+    { value: 'all', text: 'All Seasons (6)' },
+    { value: 'summer-2026', text: 'Summer 2026 (3)' },
+    { value: 'spring-2026', text: 'Spring 2026 (3)' },
   ]);
   assert.equal(document.getElementById('seasonFilter').value, 'all');
+  assert.equal(document.getElementById('viewTitle').textContent, 'Career');
 });
 
-test('picking a season in the filter scopes every stat and the glance grid to just that season', async () => {
+test('picking a season turns the page into that season\'s report', async () => {
   const { document } = await loadApp();
+  pickSeason(document, 'spring-2026');
 
-  const select = /** @type {any} */ (document.getElementById('seasonFilter'));
-  select.value = 'spring-2026';
-  select.dispatchEvent(new document.defaultView.Event('change', { bubbles: true }));
+  assert.equal(document.getElementById('viewTitle').textContent, 'Spring 2026 Season Report');
+  const tiles = glance(document);
+  assert.equal(tiles['Shows Reviewed'], '3');
+  // Spring's 2.5 against the career's (5+5+1+3+2)/5 = 3.2, both live.
+  assert.equal(tiles['vs. Live Average'], '-0.7');
+  // A career-only tile doesn't repeat the filter back.
+  assert.equal(tiles['Seasons'], undefined);
 
-  const tiles = [...document.querySelectorAll('#statsGlance .stat-tile')];
-  const totalReviewsTile = tiles.find(t => t.querySelector('.stat-label').textContent === 'Total Reviews');
-  assert.equal(totalReviewsTile.querySelector('.stat-value').textContent, '3'); // only Spring 2026's reviews
-
-  const bestRows = [...document.querySelectorAll('#hallOfFameBest tbody tr')].map(tr => tr.children[0].textContent);
-  // Peak Show (Summer 2026) is out of scope now. Great Show's fullReview rating (2) ranks
-  // it below Fine Show (3) within Spring 2026.
-  assert.equal(bestRows[0], 'Fine Show');
+  // Peak Show (Summer 2026) is out of scope; Great Show's revisit (2) puts Fine Show (3) on top.
+  // A season's own halls drop the Season column, which would say the same thing on every row.
+  assert.deepEqual(tableRows(document, 'hallOfFameBest'), [['Fine Show']]);
 });
 
-test('Review Coverage shows reviewed out of reviewed + to review, and follows the season filter', async () => {
+test('each section shows only in the view it makes sense in', async () => {
   const { document } = await loadApp();
-  const text = () => document.querySelector('#coverageBar .coverage-summary').textContent;
-  const bar = () => document.querySelector('#coverageBar [role="progressbar"]');
+  const visible = () => [...document.querySelectorAll('section.section')].filter(s => !s.hidden).map(s => s.id);
 
-  assert.equal(document.getElementById('coverageSeasonName').textContent, 'All Seasons');
-  assert.match(text(), /^6 of 7 shows reviewed \(86%\)$/);
-  assert.equal(document.querySelector('#coverageBar .vs-prose').textContent, '6 reviewed · 1 to be reviewed');
-  assert.equal(bar().getAttribute('aria-valuenow'), '6');
-  assert.equal(bar().getAttribute('aria-valuemax'), '7');
+  assert.deepEqual(visible(), [
+    'glanceSection', 'seasonTableSection', 'ratingDistributionSection', 'tasteProfileSection',
+    'lovesHatesSection', 'hallOfFameSection', 'secondImpressionsSection', 'hopeCheckSection', 'opEdSection',
+  ]);
 
-  const select = /** @type {any} */ (document.getElementById('seasonFilter'));
-  select.value = 'summer-2026';
-  select.dispatchEvent(new document.defaultView.Event('change', { bubbles: true }));
-  assert.equal(document.getElementById('coverageSeasonName').textContent, 'Summer 2026');
-  assert.match(text(), /^3 of 4 shows reviewed \(75%\)$/);
+  pickSeason(document, 'summer-2026');
+  assert.deepEqual(visible(), [
+    'glanceSection', 'coverageSection', 'seasonSpotlightSection', 'ratingDistributionSection',
+    'hallOfFameSection', 'secondImpressionsSection', 'opEdSection',
+  ]);
+});
+
+test('Review Coverage is part of a live season\'s report: reviewed out of reviewed + to review', async () => {
+  const { document } = await loadApp({ url: 'http://localhost/anime-stat-sheet/index.html?season=summer-2026' });
+  const bar = document.querySelector('#coverageBar [role="progressbar"]');
+  assert.match(document.querySelector('#coverageBar .coverage-summary').textContent, /^3 of 4 shows reviewed \(75%\)$/);
+  assert.equal(document.querySelector('#coverageBar .vs-prose').textContent, '3 reviewed · 1 to be reviewed');
+  assert.equal(bar.getAttribute('aria-valuenow'), '3');
+  assert.equal(bar.getAttribute('aria-valuemax'), '4');
+});
+
+test('Season by Season tables each season, linking to its report, which opens in place', async () => {
+  const { document, window } = await loadApp();
+  assert.deepEqual(tableRows(document, 'seasonTable'), [
+    ['Summer 2026', '3', '3', '0', '3.7', '67%', '33%', '75%'],
+    ['Spring 2026', '3', '3', '0', '2.5', '0%', '0%', '100%'],
+  ]);
+  const link = document.querySelector('#seasonTable td a');
+  assert.equal(link.getAttribute('href'), '?season=summer-2026');
+
+  link.dispatchEvent(new window.MouseEvent('click', { bubbles: true, cancelable: true, button: 0 }));
+  assert.equal(document.getElementById('seasonFilter').value, 'summer-2026');
+  assert.equal(document.getElementById('viewTitle').textContent, 'Summer 2026 Season Report');
+  assert.equal(new URL(window.location.href).searchParams.get('season'), 'summer-2026');
 });
 
 test('the nav links back to VQAR', async () => {
@@ -346,45 +391,27 @@ test('the nav links back to VQAR', async () => {
   assert.ok(document.querySelector('nav a[href="/vqar"]'));
 });
 
-test('Ratings Over Time is shown for All Seasons but hides once the filter narrows to a single season', async () => {
-  const { document } = await loadApp();
-
-  assert.equal(document.getElementById('ratingsOverTimeSection').hidden, false);
-
-  const select = /** @type {any} */ (document.getElementById('seasonFilter'));
-  select.value = 'spring-2026';
-  select.dispatchEvent(new document.defaultView.Event('change', { bubbles: true }));
-  assert.equal(document.getElementById('ratingsOverTimeSection').hidden, true);
-
-  select.value = 'all';
-  select.dispatchEvent(new document.defaultView.Event('change', { bubbles: true }));
-  assert.equal(document.getElementById('ratingsOverTimeSection').hidden, false);
-});
-
 test('a "?season=" URL pre-selects that season on load', async () => {
-  const { document } = await loadApp({ url: 'http://localhost/vqar-stats/index.html?season=spring-2026' });
+  const { document } = await loadApp({ url: 'http://localhost/anime-stat-sheet/index.html?season=spring-2026' });
 
   assert.equal(document.getElementById('seasonFilter').value, 'spring-2026');
-  const tiles = [...document.querySelectorAll('#statsGlance .stat-tile')];
-  const totalReviewsTile = tiles.find(t => t.querySelector('.stat-label').textContent === 'Total Reviews');
-  assert.equal(totalReviewsTile.querySelector('.stat-value').textContent, '3');
+  assert.equal(glance(document)['Shows Reviewed'], '3');
 });
 
 test('an unknown "?season=" value is ignored, falling back to "All Seasons"', async () => {
-  const { document } = await loadApp({ url: 'http://localhost/vqar-stats/index.html?season=nonexistent-season' });
+  const { document } = await loadApp({ url: 'http://localhost/anime-stat-sheet/index.html?season=nonexistent-season' });
 
   assert.equal(document.getElementById('seasonFilter').value, 'all');
 });
 
-test('renders Season Spotlight empty-state messages when the current season has nothing to flag', async () => {
-  const { document } = await loadApp();
+test('renders Season Spotlight empty-state messages when the season has nothing to flag', async () => {
+  const { document } = await loadApp({ url: 'http://localhost/anime-stat-sheet/index.html?season=summer-2026' });
 
-  assert.equal(document.getElementById('spotlightSeasonName').textContent, 'Summer 2026');
   assert.match(document.getElementById('revisitList').textContent, /No 4\/5s awaiting a revisit/);
   assert.match(document.getElementById('continuationList').textContent, /No returning favorites/);
 });
 
-test('Season Spotlight defaults to the current season for "All Seasons", then follows the filter to a picked past season', async () => {
+test('Season Spotlight is part of a season\'s report, judged against the seasons before it', async () => {
   const spotlightSeasons = {
     currentSeason: 'summer-2026',
     seasons: [
@@ -425,17 +452,16 @@ test('Season Spotlight defaults to the current season for "All Seasons", then fo
   const revisitTitles = () => [...document.querySelectorAll('#revisitList .show-list li')].map(li => li.textContent);
   const continuationTitles = () => [...document.querySelectorAll('#continuationList .show-list li')].map(li => li.textContent);
 
-  // "All Seasons" (the default) shows the current season, Summer 2026.
-  assert.equal(document.getElementById('spotlightSeasonName').textContent, 'Summer 2026');
+  // The career view has no spotlight: it's about one season.
+  assert.equal(document.getElementById('seasonSpotlightSection').hidden, true);
+
+  pickSeason(document, 'summer-2026');
+  assert.equal(document.getElementById('seasonSpotlightSection').hidden, false);
   assert.deepEqual(revisitTitles(), ['Summer Revisit']);
   assert.deepEqual(continuationTitles(), ['Spring Revisit Season 2']);
 
-  // Picking a past season re-anchors the spotlight to it, and to whatever came before *it*.
-  const select = /** @type {any} */ (document.getElementById('seasonFilter'));
-  select.value = 'spring-2026';
-  select.dispatchEvent(new document.defaultView.Event('change', { bubbles: true }));
-
-  assert.equal(document.getElementById('spotlightSeasonName').textContent, 'Spring 2026');
+  // A past season's spotlight looks only at whatever came before *it*.
+  pickSeason(document, 'spring-2026');
   assert.deepEqual(revisitTitles(), ['Spring Revisit']);
   assert.deepEqual(continuationTitles(), ['Great Show Season 2']);
 });
@@ -555,14 +581,6 @@ test('computeLovesAndHates never lists the same category as both a love and a ha
   assert.deepEqual(hates.map((r) => r.value), ['Isekai']);
 });
 
-test('computeGenreBySeason averages each genre per season, seasons in airing order', () => {
-  const grid = computeGenreBySeason(categoryReviews, { minShows: 2 });
-  assert.deepEqual(grid.seasons.map((s) => s.id), ['spring-2026', 'summer-2026']);
-  const comedy = grid.rows.find((r) => r.value === 'Comedy');
-  assert.deepEqual(comedy.cells, { 'spring-2026': { avgRating: 4, shows: 2 }, 'summer-2026': { avgRating: 5, shows: 1 } });
-  assert.deepEqual(grid.rows.find((r) => r.value === 'Fantasy').cells['spring-2026'], { avgRating: 4, shows: 1 });
-});
-
 function categoryRoutes() {
   return createPathFetchStub({
     '/vqar/data/index.json': seasonIndex,
@@ -575,7 +593,6 @@ async function waitForTable(document, id) {
   for (let i = 0; i < 200 && !document.querySelector(`#${id} table`); i++) await new Promise((r) => setTimeout(r, 5));
 }
 
-const tableRows = (document, id) => [...document.querySelectorAll(`#${id} tbody tr`)].map((tr) => [...tr.children].map((td) => td.textContent));
 
 test('Taste Profile tables genres by your ratings, each name linking to that genre on /vqar', async () => {
   const { document } = await loadApp({ fetch: categoryRoutes() });
@@ -606,25 +623,19 @@ test('the Taste Profile switch re-slices by studio, format or streaming service'
   assert.match(document.querySelector('#tasteTable .loading').textContent, /No services with 3\+ shows/);
 });
 
-test('Loves & Hates lists best and worst per genre/studio/tag, and Genre by Season needs more than one season', async () => {
+test('Loves & Hates lists best and worst per genre/studio/tag', async () => {
   const { document } = await loadApp({ fetch: categoryRoutes() });
   await waitForTable(document, 'lovesHates');
   const headings = [...document.querySelectorAll('#lovesHates h3')].map((h) => h.textContent);
   assert.deepEqual(headings, ['Genres', 'Studios', 'Tags']);
   assert.equal(document.querySelector('#lovesHates .vs-loves + .table-scroll td a').textContent, 'Comedy');
   assert.equal(document.querySelector('#lovesHates .vs-hates + .table-scroll td a').textContent, 'Fantasy');
-
-  assert.equal(document.getElementById('genreBySeasonSection').hidden, false);
-  assert.deepEqual(tableRows(document, 'genreBySeasonTable')[0], ['Comedy', '4.0', '5.0']);
 });
 
-test('picking one season scopes the category sections and hides Genre by Season', async () => {
-  const { document } = await loadApp({ fetch: categoryRoutes(), url: 'http://localhost/vqar-stats/index.html?season=summer-2026' });
-  await waitForTable(document, 'tasteTable').catch(() => {});
-  await new Promise((r) => setTimeout(r, 50));
-  assert.equal(document.getElementById('genreBySeasonSection').hidden, true);
-  // Summer alone has no genre with 3 shows.
-  assert.match(document.querySelector('#tasteTable .loading').textContent, /No genres with 3\+ shows/);
+test('the taste sections are the career view\'s: a season report leaves them out', async () => {
+  const { document } = await loadApp({ fetch: categoryRoutes(), url: 'http://localhost/anime-stat-sheet/index.html?season=summer-2026' });
+  assert.equal(document.getElementById('tasteProfileSection').hidden, true);
+  assert.equal(document.getElementById('lovesHatesSection').hidden, true);
 });
 
 // --- Hope Check ---
@@ -689,73 +700,124 @@ test('Hope Check tiles the totals and tables each season, linking its waiting co
     ['Summer 2026', '3', '2', '1', '0', '1', '50%', '1'],
   ]);
   assert.equal(document.querySelector('#hopeCheckTable td a').getAttribute('href'), '/vqar?season=summer-2026&has=queue');
-  // Revisit Candidates links to the same view for the season in the spotlight.
+
+  // Revisit Candidates, in that season's report, links to the same view.
+  pickSeason(document, 'summer-2026');
   const link = document.getElementById('revisitLink');
   assert.equal(link.hidden, false);
   assert.equal(link.getAttribute('href'), '/vqar?season=summer-2026&has=queue');
 });
 
 test('Hope Check drops the per-season table once the filter picks one season', async () => {
-  const { document } = await loadApp({ fetch: hopeRoutes(), url: 'http://localhost/vqar-stats/index.html?season=spring-2026' });
+  const { document } = await loadApp({ fetch: hopeRoutes(), url: 'http://localhost/anime-stat-sheet/index.html?season=spring-2026' });
   await new Promise((r) => setTimeout(r, 50));
   assert.equal(document.querySelector('#hopeCheckTable table'), null);
   // Spring's only 4 has been revisited, so there's nothing to link to.
   assert.equal(document.getElementById('revisitLink').hidden, true);
 });
 
-// --- A shelf like the Backlog is not a point in time ---
+// --- Live and historical reviews ---
 
-const shelf = makeSeason({
-  id: 'backlog', name: 'Backlog', sortKey: 0,
-  shows: [
-    makeShow({ titleEN: 'Old Classic', ratingNumber: 4, ratingText: 'Yeah', dateReviewed: '2026-03-01', anilist: { format: 'TV', genres: ['Drama'], tags: [], studios: [] } }),
-    makeShow({ titleEN: 'Old Favorite', ratingNumber: 5, ratingText: 'Peak', dateReviewed: '2026-03-02', anilist: { format: 'TV', genres: ['Drama'], tags: [], studios: [] } }),
-    makeShow({ titleEN: 'Old Pick', ratingNumber: 5, ratingText: 'Peak', dateReviewed: '2026-03-03' }),
-  ],
-  toReview: [], notReviewing: [],
-});
-const withShelf = [...seasons, shelf];
-const shelfReviews = flattenReviews(withShelf);
-
-test('Backlog reviews still count in the totals, ratings and Hall of Fame', () => {
-  const s = computeGlanceStats(withShelf, shelfReviews);
-  assert.equal(s.totalReviews, 9);
-  assert.equal(s.avgRating, (5 + 5 + 1 + 3 + 2 + 4 + 5 + 5) / 8);
-  assert.ok(computeHallOfFame(shelfReviews, 10).best.some(r => r.titleEN === 'Old Favorite'));
-  assert.equal(computeRatingDistribution(shelfReviews).find(d => d.ratingNumber === 4).count, 1);
-});
-
-test('the Backlog is not a season in the trends, coverage, busiest-season or season counts', () => {
-  assert.deepEqual(computeRatingsOverTime(shelfReviews).map(s => s.seasonName), ['Spring 2026', 'Summer 2026']);
-
-  const s = computeGlanceStats(withShelf, shelfReviews);
-  assert.equal(s.seasonsCovered, 2);
-  assert.equal(s.busiestSeasonName, 'Summer 2026');
-
-  assert.deepEqual(computeSeasonCoverage(withShelf), computeSeasonCoverage(seasons));
-  assert.deepEqual(computeGenreBySeason(shelfReviews, { minShows: 1 }).seasons.map(x => x.name), computeGenreBySeason(reviews, { minShows: 1 }).seasons.map(x => x.name));
-  assert.deepEqual(computeHopeCheck(shelfReviews).bySeason.map(x => x.name), computeHopeCheck(reviews).bySeason.map(x => x.name));
-});
-
-// --- A lineup of shows watched as they aired, but reviewed later (backfills) ---
-
+// A season reviewed live, and a lineup of backfills: shows reviewed after the
+// fact, with no episode-1 first impression - historical picks, which skew high.
 const backfilledLineup = makeSeason({
   id: 'spring-2022', name: 'Spring 2022',
   shows: [
     makeShow({ titleEN: 'Caught Live, Reviewed Later', reviews: [{ ratingNumber: 5, dateReviewed: '2026-11-17T12:00:00-05:00' }] }),
-    makeShow({ titleEN: 'Another One', reviews: [{ episodes: 12, ratingNumber: 3, dateReviewed: '2026-11-17T12:05:00-05:00' }] }),
+    makeShow({ titleEN: 'Another One', reviews: [{ episodes: 12, ratingNumber: 4, dateReviewed: '2026-11-17T12:05:00-05:00' }], op: [1] }),
   ],
   toReview: [], notReviewing: [],
 });
 const withBackfilledLineup = [...seasons, backfilledLineup];
 const backfilledReviews = flattenReviews(withBackfilledLineup);
 
-test('a lineup of backfills counts in the totals, but not in the per-season trends, coverage or season counts', () => {
-  const s = computeGlanceStats(withBackfilledLineup, backfilledReviews);
-  assert.equal(s.totalReviews, 8);
-  assert.equal(s.seasonsCovered, 2);
+test('a show is live when it has an episode-1 first impression, and historical when it doesn\'t', () => {
+  assert.equal(reviewSource(makeShow({ titleEN: 'A', ratingNumber: 3 })), 'live');
+  assert.equal(reviewSource(backfilledLineup.shows[0]), 'historical');
+  assert.equal(reviewSource(backfilledLineup.shows[1]), 'historical');
+  assert.deepEqual(filterBySource(backfilledReviews, 'historical').map(r => r.titleEN), ['Caught Live, Reviewed Later', 'Another One']);
+  assert.equal(filterBySource(backfilledReviews, 'live').length, 6);
+  assert.equal(filterBySource(backfilledReviews, 'all').length, 8);
+});
+
+test('the glance stats keep live and historical averages apart as well as pooled', () => {
+  const s = computeGlanceStats(backfilledReviews);
+  assert.equal(s.shows, 8);
+  assert.equal(s.live, 6);
+  assert.equal(s.historical, 2);
+  assert.equal(s.avgLive, (5 + 5 + 1 + 3 + 2) / 5);
+  assert.equal(s.avgHistorical, (5 + 4) / 2);
+  assert.equal(s.seasons, 3);
+});
+
+test('a season of backfills has no coverage or spotlight, and counts in the season table with no coverage', () => {
+  assert.equal(hasLiveLineup(backfilledLineup), false);
+  assert.equal(hasLiveLineup(seasons[0]), true);
   assert.deepEqual(computeSeasonCoverage(withBackfilledLineup), computeSeasonCoverage(seasons));
-  assert.deepEqual(computeRatingsOverTime(backfilledReviews).map(x => x.seasonName), ['Spring 2026', 'Summer 2026']);
+  const row = computeSeasonTable(withBackfilledLineup, backfilledReviews).find(r => r.id === 'spring-2022');
+  assert.deepEqual(row, { id: 'spring-2022', name: 'Spring 2022', shows: 2, live: 0, historical: 2, avgRating: 4.5, highShare: 1, lowShare: 0, coveragePct: null });
+  assert.deepEqual(computeHopeCheck(backfilledReviews).bySeason.map(x => x.name), computeHopeCheck(reviews).bySeason.map(x => x.name));
+});
+
+test('computeSeasonTable lists seasons in the order given, skipping any with nothing in view', () => {
+  const live = filterBySource(backfilledReviews, 'live');
+  assert.deepEqual(computeSeasonTable(withBackfilledLineup, live).map(r => r.id), ['summer-2026', 'spring-2026']);
+  assert.deepEqual(computeSeasonTable(withBackfilledLineup, backfilledReviews).map(r => r.id), ['summer-2026', 'spring-2026', 'spring-2022']);
+});
+
+function backfillRoutes() {
+  return createPathFetchStub({
+    '/vqar/data/index.json': { ...seasonIndex, seasons: [...seasonIndex.seasons, { id: 'spring-2022', name: 'Spring 2022', file: '/vqar/data/seasons/spring-2022.json' }] },
+    '/vqar/data/seasons/summer-2026.json': seasons[0],
+    '/vqar/data/seasons/spring-2026.json': seasons[1],
+    '/vqar/data/seasons/spring-2022.json': backfilledLineup,
+  });
+}
+
+test('the career glance splits live and historical when both are in view', async () => {
+  const { document } = await loadApp({ fetch: backfillRoutes() });
+  const tiles = glance(document);
+  assert.equal(tiles['Live'], '6');
+  assert.equal(tiles['Historical'], '2');
+  assert.equal(tiles['Live Average'], '3.2');
+  assert.equal(tiles['Historical Average'], '4.5');
+});
+
+test('the Reviews switch narrows every section to live or historical reviews, and says so in the URL', async () => {
+  const { document, window } = await loadApp({ fetch: backfillRoutes() });
+
+  pickSource(document, 'historical');
+  assert.equal(document.querySelector('#sourceSwitch [data-source="historical"]').getAttribute('aria-pressed'), 'true');
+  assert.equal(glance(document)['Shows Reviewed'], '2');
+  assert.equal(new URL(window.location.href).searchParams.get('source'), 'historical');
+  // The picker's counts follow the source, and the season table drops the split and the coverage.
+  assert.equal(document.querySelector('#seasonFilter option[value="spring-2022"]').textContent, 'Spring 2022 (2)');
+  assert.equal(document.querySelector('#seasonFilter option[value="summer-2026"]').textContent, 'Summer 2026 (0)');
+  assert.deepEqual(tableRows(document, 'seasonTable'), [['Spring 2022', '2', '4.5', '100%', '0%']]);
+  // Nothing historical has an episode-1 rating to compare against, or a hope to check.
+  assert.equal(document.getElementById('secondImpressionsSection').hidden, true);
+  assert.equal(document.getElementById('hopeCheckSection').hidden, true);
+
+  pickSource(document, 'all');
+  assert.equal(new URL(window.location.href).searchParams.get('source'), null);
+  assert.equal(glance(document)['Shows Reviewed'], '8');
+});
+
+test('a "?source=" link opens narrowed, and a season with nothing of that source says so', async () => {
+  const { document } = await loadApp({ fetch: backfillRoutes(), url: 'http://localhost/anime-stat-sheet/index.html?season=summer-2026&source=historical' });
+  assert.equal(document.querySelector('#sourceSwitch [aria-pressed="true"]').dataset.source, 'historical');
+  assert.equal(document.getElementById('seasonFilter').value, 'summer-2026');
+  assert.equal(document.getElementById('statsGlance').textContent, 'No historical reviews in Summer 2026.');
+  assert.ok([...document.querySelectorAll('section.section')].filter(s => !s.hidden).every(s => s.id === 'glanceSection'));
+});
+
+test('a season of backfills is measured against your historical average, with no coverage or spotlight', async () => {
+  const { document } = await loadApp({ fetch: backfillRoutes(), url: 'http://localhost/anime-stat-sheet/index.html?season=spring-2022' });
+  assert.equal(glance(document)['vs. Historical Average'], '0.0');
+  assert.equal(document.getElementById('coverageSection').hidden, true);
+  assert.equal(document.getElementById('seasonSpotlightSection').hidden, true);
+  // Its two shows are a 5 and a 4: both halls, each with its own tier.
+  assert.equal(document.getElementById('hallOfShame').hidden, false);
 });
 
 test('computeContinuationWatch judges "earlier" by season order, so a lineup reviewed after the fact still counts as the past', () => {

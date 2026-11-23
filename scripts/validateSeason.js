@@ -158,7 +158,7 @@ function reviewsIssues(label, show, now) {
         issues.push(`"${label}" has a ${where} with an unknown field "${key}" (a typo? expected one of ${REVIEW_KEYS.join(', ')})`);
       }
     }
-    // Sorting, the rating chips and every /vqar-stats number read this, so a
+    // Sorting, the rating chips and every /anime-stat-sheet number read this, so a
     // string, a decimal or a 7 would quietly drop the show out of them.
     if (!Number.isInteger(review.ratingNumber) || review.ratingNumber < 0 || review.ratingNumber > 5) {
       issues.push(`"${label}" has a ${where} without a ratingNumber from 0 to 5 (a whole number) - ask for the rating, since the latest review's is the show's rating everywhere`);
@@ -479,7 +479,7 @@ export function validateSeasonCollection(seasons) {
   }
 
   // The same AniList id in two places (a second cour, or a repeat) is counted
-  // twice in every /vqar-stats number, and no title check would see it. A show
+  // twice in every /anime-stat-sheet number, and no title check would see it. A show
   // stays where it was first reviewed, and later reviews join its `reviews`.
   const byAnilistId = new Map();
   for (const season of seasons) {

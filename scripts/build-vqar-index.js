@@ -3,7 +3,7 @@
  * Regenerates public/vqar/data/index.json from the individual season files in
  * public/vqar/data/seasons/.
  *
- * The index is what /vqar and /vqar-stats load first: it lists every season and
+ * The index is what /vqar and /anime-stat-sheet load first: it lists every season and
  * where to find it, and names the one currently being reviewed. It's generated
  * rather than hand-maintained - keeping a hand-written list in sync with the
  * files beside it is a bug waiting to happen.
