@@ -2020,8 +2020,18 @@
           "ratingText": "feels the same as smoking a pack of unfiltered camel 100s",
           "text": "So I came back to this show was my first one of the season and I have ended up watching the first two episodes and probably gonna keep watching it now why why is that it? My thesis is that it’s not the show that we want but it is the show that we deserve for the year 2026. It is thoroughly depressing depraved. The characters have no redeeming value and yet we are entertained. So it’s definitely going to be my cigarette show of the season.",
           "dateReviewed": "2026-08-03T12:00:00-04:00"
+        },
+        {
+          "final": true,
+          "ratingNumber": 5,
+          "dateReviewed": "2026-11-24T18:52:46-05:00"
         }
       ],
+      "watched": {
+        "from": "2026-07-09",
+        "to": "2026-11-24",
+        "finished": true
+      },
       "anilistId": 207141,
       "annId": 38401,
       "streaming": [
