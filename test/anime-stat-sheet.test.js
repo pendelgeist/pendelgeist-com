@@ -591,6 +591,16 @@ test('a season of backfills has no coverage, and counts in the season table with
   assert.deepEqual(computeHopeCheck(backfilledReviews).bySeason.map(x => x.name), computeHopeCheck(reviews).bySeason.map(x => x.name));
 });
 
+test('a filled-in Not Reviewing list does not make a season of backfills live', () => {
+  const filledIn = makeSeason({
+    id: 'spring-2022', name: 'Spring 2022',
+    shows: backfilledLineup.shows,
+    notReviewing: ['Everything Else That Aired', { title: 'A Sequel', reason: 'Continuing series' }],
+  });
+  assert.equal(hasLiveLineup(filledIn), false);
+  assert.equal(hasLiveLineup(makeSeason({ id: 'fall-2026', name: 'Fall 2026', toReview: ['Upcoming'] })), true);
+});
+
 test('computeSeasonTable lists seasons in the order given, skipping any with nothing in view', () => {
   const live = filterBySource(backfilledReviews, 'live');
   assert.deepEqual(computeSeasonTable(withBackfilledLineup, live).map(r => r.id), ['summer-2026', 'spring-2026']);

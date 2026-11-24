@@ -1,0 +1,96 @@
+{
+  "id": "spring-2012",
+  "name": "Spring 2012",
+  "shows": [],
+  "toReview": [],
+  "notReviewing": [
+    "Accel World",
+    "AKB0048",
+    "BeyWheelz: Powered by Beyblade",
+    "Blood-C: None-None Gekijou",
+    "C.L.A.Y.",
+    {
+      "title": "Cardfight!! Vanguard Asia Circuit",
+      "reason": "Continuing series"
+    },
+    "Dusk Maiden of Amnesia",
+    {
+      "title": "Eureka Seven AO",
+      "reason": "Continuing series"
+    },
+    {
+      "title": "Fate/Zero Season 2",
+      "reason": "Continuing series"
+    },
+    "Folktales from Japan",
+    "Galaxy Kickoff!!",
+    "Gon",
+    "Hiiro no Kakera: The Tamayori Princess Saga",
+    "himitsukesshatakanotsume.jp",
+    "Hyouka",
+    {
+      "title": "Inazuma Eleven GO: Chrono Stone",
+      "reason": "Continuing series"
+    },
+    {
+      "title": "Is this A Zombie? of the Dead",
+      "reason": "Continuing series"
+    },
+    "Jewelpet Kira☆Deco!",
+    "Jormungand",
+    "Kids on the Slope",
+    "Koi-ken! Watashitachi Anime ni Nacchatta!",
+    {
+      "title": "Kuroko's Basketball",
+      "reason": "Continuing series"
+    },
+    "Lupin the Third: The Woman Called Fujiko Mine",
+    "Medaka Box",
+    "Mysterious Girlfriend X",
+    "NARUTO Spin-Off: Rock Lee & His Ninja Pals",
+    "Natsuiro Kiseki",
+    "Ninja Hattori-kun (2012)",
+    "Nyaruko: Crawling with Love!",
+    "One Stormy Night: Secret Friends",
+    "Ozma",
+    "PES: Peace Eco Smiles",
+    {
+      "title": "Phi-Brain ~ Puzzle of God: The Orpheus Order",
+      "reason": "Continuing series"
+    },
+    "Pinky",
+    "PistStar☆",
+    "Place to Place",
+    "Pokémon Black 2 White 2: Introduction Special Movie",
+    "Polar Bear's Café",
+    {
+      "title": "Pretty Rhythm: Dear My Future",
+      "reason": "Continuing series"
+    },
+    {
+      "title": "Queen's Blade Rebellion",
+      "reason": "Continuing series"
+    },
+    {
+      "title": "Saint Seiya Omega",
+      "reason": "Continuing series"
+    },
+    "Saki -  Episode of Side A",
+    "Sankarea: Undying Love",
+    "Sengoku Collection",
+    "Shake-chan",
+    "Shining Hearts",
+    {
+      "title": "Space Brothers",
+      "reason": "Continuing series"
+    },
+    "The Four Seasons",
+    "Tsuritama",
+    "Upotte!!",
+    {
+      "title": "You and Me 2",
+      "reason": "Continuing series"
+    },
+    "Zetman"
+  ]
+}

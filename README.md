@@ -499,6 +499,13 @@ A season file is one of two things, and its id says which (`isLineup` in
   its `aired` shows on the card as "Aired: Winter 2004" and is found by search. A show with no
   aired season to file it under (one AniList doesn't list) goes in the lineup of the season you
   watched it in.
+
+  Every lineup from Winter 2010 through Fall 2025 also has its season's whole AniList lineup in
+  `notReviewing`: each Japanese TV or ONA series that aired then (adult titles left out), with
+  sequels marked `"Continuing series"` and everything else left without a reason. These were added
+  in bulk so the older seasons are complete. Reviewing one of them means moving it from
+  `notReviewing` into `shows` as a backfill. A season holding only backfills and this list still
+  counts as historical: `hasLiveLineup` ignores a `notReviewing` list on its own.
 - A **shelf** is any other id, with an explicit numeric `sortKey`. There aren't any right now (the
   one there was, the Backlog, was retired), but the validators, stats and API still understand one.
 

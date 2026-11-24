@@ -1,0 +1,50 @@
+{
+  "id": "summer-2011",
+  "name": "Summer 2011",
+  "shows": [],
+  "toReview": [],
+  "notReviewing": [
+    "A Dark Rabbit has Seven Lives",
+    {
+      "title": "Baka and Test - Summon the Beasts 2",
+      "reason": "Continuing series"
+    },
+    "Blade",
+    "Blood-C",
+    "Bunny Drop",
+    "Copihan",
+    "Croisée in a Foreign Labyrinth ~ The Animation",
+    "Heaven's Memo Pad",
+    "Horizon in the Middle of Nowhere Specials",
+    {
+      "title": "Kakko Kawaii Sengen! (ONA)",
+      "reason": "Continuing series"
+    },
+    "Kamisama Dolls",
+    "Manyu Scroll",
+    "Mayo Chiki!",
+    {
+      "title": "Natsume's Book of Friends Season 3",
+      "reason": "Continuing series"
+    },
+    "Neon The Animation",
+    "No.6",
+    {
+      "title": "Nura: Rise of the Yokai Clan - Demon Capital",
+      "reason": "Continuing series"
+    },
+    "Penguindrum",
+    "R-15",
+    "Ro-Kyu-Bu ~ Fast Break!",
+    "Sacred Seven",
+    "Sorette♥Dakara ne!",
+    "The Everyday Tales of a Cat God",
+    "The Idol Master",
+    "The Mystic Archives of Dantalian",
+    "Toei Robot Girls",
+    "Twin Angel: Twinkle Paradise",
+    "Uta no Prince Sama",
+    "Wish me mell",
+    "YuruYuri"
+  ]
+}

@@ -57,5 +57,63 @@
     }
   ],
   "toReview": [],
-  "notReviewing": []
+  "notReviewing": [
+    "Aesthetica of a Rogue Hero",
+    "Campione!",
+    "Cinnamon no Parade",
+    {
+      "title": "Dog Days Season 2",
+      "reason": "Continuing series"
+    },
+    "Ebiten: Ebisugawa's Public High School Temonbu",
+    "Gokicha!! Cockroach Girl",
+    "Good Luck Girl!",
+    "Hakuoki ~Demon of the Fleeting Blossom~ Dawn of the Shinsengumi",
+    {
+      "title": "Horizon in the Middle of Nowhere II",
+      "reason": "Continuing series"
+    },
+    "Humanity Has Declined",
+    "Joshiraku",
+    "Kingdom",
+    "Kokoro Connect",
+    "Kyou no Asuka Show",
+    {
+      "title": "Kyousougiga (2012)",
+      "reason": "Continuing series"
+    },
+    "La Storia Della Arcana Famiglia",
+    {
+      "title": "Lagrange: The Flower of Rin-ne Season 2",
+      "reason": "Continuing series"
+    },
+    "Love, Election and Chocolate",
+    {
+      "title": "Moyashimon Returns",
+      "reason": "Continuing series"
+    },
+    {
+      "title": "Muv-Luv Alternative: Total Eclipse",
+      "reason": "Continuing series"
+    },
+    "NAKAIMO - My Little Sister Is Among Them!",
+    "Natsuyuki Rendezvous",
+    {
+      "title": "Pokémon BW: Rival Destinies",
+      "reason": "Continuing series"
+    },
+    {
+      "title": "Robin with his 100 Friends Season 2",
+      "reason": "Continuing series"
+    },
+    "So, I Can't Play H!",
+    "Tanken Driland",
+    "Tari Tari",
+    "The Ambition of Oda Nobuna",
+    "Utakoi",
+    {
+      "title": "YuruYuri Season 2",
+      "reason": "Continuing series"
+    }
+  ]
 }
