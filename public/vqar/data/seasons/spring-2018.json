@@ -50,44 +50,6 @@
           "P.A.WORKS"
         ]
       }
-    },
-    {
-      "titleEN": "You Don't Know Gunma Yet",
-      "titleJP": "お前はまだグンマを知らない",
-      "aired": {
-        "season": "spring",
-        "year": 2018
-      },
-      "reviews": [
-        {
-          "ratingNumber": 5,
-          "text": "Best regional promo anime ever. I learned so much about Gunma in a total of ~25 minutes for the whole season!",
-          "dateReviewed": "2026-11-19T12:18:27-05:00"
-        }
-      ],
-      "watched": {
-        "from": "2026-01-22",
-        "to": "2026-06-09"
-      },
-      "anilistId": 101042,
-      "streaming": [
-        "crunchyroll"
-      ],
-      "crunchyrollUrl": "https://www.crunchyroll.com/series/GYG512QDY/you-dont-know-gunma-yet",
-      "anilist": {
-        "format": "TV_SHORT",
-        "genres": [
-          "Comedy"
-        ],
-        "tags": [
-          "Male Protagonist",
-          "School",
-          "Episodic"
-        ],
-        "studios": [
-          "Asahi Production"
-        ]
-      }
     }
   ],
   "toReview": [],
