@@ -1478,6 +1478,11 @@
           "dateReviewed": "2026-10-24T09:58:27-04:00"
         }
       ],
+      "watched": {
+        "from": "2026-10-24",
+        "to": "2026-11-05",
+        "episode": 1
+      },
       "streaming": [
         "netflix"
       ],
