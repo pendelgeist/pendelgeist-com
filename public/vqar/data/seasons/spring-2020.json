@@ -51,6 +51,58 @@
           "Telecom Animation Film"
         ]
       }
+    },
+    {
+      "titleEN": "Ghost in the Shell: SAC_2045",
+      "titleJP": "攻殻機動隊 SAC_2045",
+      "aired": {
+        "season": "spring",
+        "year": 2020
+      },
+      "reviews": [
+        {
+          "final": true,
+          "ratingNumber": 5,
+          "dateReviewed": "2026-11-25T07:59:39-05:00"
+        }
+      ],
+      "watched": {
+        "from": "2021-05-22",
+        "to": "2023-11-03",
+        "finished": true
+      },
+      "anilistId": 106154,
+      "anilist": {
+        "format": "ONA",
+        "genres": [
+          "Action",
+          "Mystery",
+          "Sci-Fi"
+        ],
+        "tags": [
+          "Cyberpunk",
+          "Real Robot",
+          "CGI",
+          "Full CGI",
+          "Politics",
+          "Artificial Intelligence",
+          "Robots",
+          "Military",
+          "Dystopian",
+          "Female Protagonist",
+          "Ensemble Cast",
+          "War",
+          "Urban",
+          "Seinen",
+          "Nudity",
+          "Guns",
+          "Primarily Male Cast"
+        ],
+        "studios": [
+          "Sola Digital Arts",
+          "Production I.G"
+        ]
+      }
     }
   ],
   "toReview": [],
@@ -103,10 +155,6 @@
     },
     "Future Folktales",
     "Gal & Dino",
-    {
-      "title": "Ghost in the Shell: SAC_2045",
-      "reason": "Continuing series"
-    },
     "Gleipnir",
     "Great Pretender",
     {

@@ -1,7 +1,59 @@
 {
   "id": "spring-2019",
   "name": "Spring 2019",
-  "shows": [],
+  "shows": [
+    {
+      "titleEN": "Demon Slayer: Kimetsu no Yaiba",
+      "titleJP": "鬼滅の刃",
+      "aired": {
+        "season": "spring",
+        "year": 2019
+      },
+      "reviews": [
+        {
+          "episodes": 11,
+          "ratingNumber": 3,
+          "dateReviewed": "2026-11-25T07:59:39-05:00"
+        }
+      ],
+      "watched": {
+        "from": "2022-10-12",
+        "to": "2024-02-01",
+        "episode": 11
+      },
+      "anilistId": 101922,
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Action",
+          "Adventure",
+          "Drama",
+          "Fantasy",
+          "Supernatural"
+        ],
+        "tags": [
+          "Demons",
+          "Shounen",
+          "Vampire",
+          "Swordplay",
+          "Male Protagonist",
+          "Primarily Teen Cast",
+          "Travel",
+          "Monster Girl",
+          "Revenge",
+          "Orphan",
+          "Gore",
+          "CGI",
+          "Mythology",
+          "Primarily Male Cast",
+          "Rural"
+        ],
+        "studios": [
+          "ufotable"
+        ]
+      }
+    }
+  ],
   "toReview": [],
   "notReviewing": [
     "7SEEDS",
@@ -41,7 +93,6 @@
     },
     "Carole & Tuesday",
     "Cinderella Nine",
-    "Demon Slayer: Kimetsu no Yaiba",
     "Fairy gone",
     "Fruits Basket (2019)",
     "Hitoribocchi no Marumaruseikatsu",

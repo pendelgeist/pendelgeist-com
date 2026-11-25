@@ -1,0 +1,102 @@
+{
+  "id": "spring-1998",
+  "name": "Spring 1998",
+  "shows": [
+    {
+      "titleEN": "Cardcaptor Sakura",
+      "titleJP": "カードキャプターさくら",
+      "aired": {
+        "season": "spring",
+        "year": 1998
+      },
+      "reviews": [
+        {
+          "ratingNumber": 5,
+          "dateReviewed": "2026-11-25T07:59:39-05:00"
+        }
+      ],
+      "watched": {
+        "from": "2023-02-10",
+        "to": "2024-01-13"
+      },
+      "anilistId": 232,
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Comedy",
+          "Drama",
+          "Fantasy",
+          "Mahou Shoujo",
+          "Romance"
+        ],
+        "tags": [
+          "Magic",
+          "Shoujo",
+          "Female Protagonist",
+          "Urban Fantasy",
+          "Coming of Age",
+          "Primarily Child Cast",
+          "Episodic",
+          "Family Life",
+          "School",
+          "Henshin",
+          "Tsundere",
+          "Love Triangle",
+          "LGBTQ+ Themes"
+        ],
+        "studios": [
+          "MADHOUSE"
+        ]
+      }
+    },
+    {
+      "titleEN": "Trigun",
+      "titleJP": "TRIGUN",
+      "aired": {
+        "season": "spring",
+        "year": 1998
+      },
+      "reviews": [
+        {
+          "ratingNumber": 4,
+          "dateReviewed": "2026-11-25T07:59:39-05:00"
+        }
+      ],
+      "watched": {
+        "from": "2012-06-16",
+        "episode": 1
+      },
+      "anilistId": 6,
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Action",
+          "Adventure",
+          "Comedy",
+          "Drama",
+          "Sci-Fi"
+        ],
+        "tags": [
+          "Guns",
+          "Fugitive",
+          "Male Protagonist",
+          "Philosophy",
+          "Primarily Adult Cast",
+          "Cowboys",
+          "Post-Apocalyptic",
+          "Crime",
+          "Desert",
+          "Travel",
+          "Steampunk",
+          "Episodic",
+          "Shounen"
+        ],
+        "studios": [
+          "MADHOUSE"
+        ]
+      }
+    }
+  ],
+  "toReview": [],
+  "notReviewing": []
+}

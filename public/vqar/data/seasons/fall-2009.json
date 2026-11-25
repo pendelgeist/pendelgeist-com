@@ -1,0 +1,55 @@
+{
+  "id": "fall-2009",
+  "name": "Fall 2009",
+  "shows": [
+    {
+      "titleEN": "Fairy Tail",
+      "titleJP": "FAIRY TAIL",
+      "aired": {
+        "season": "fall",
+        "year": 2009
+      },
+      "reviews": [
+        {
+          "episodes": 31,
+          "ratingNumber": 1,
+          "dateReviewed": "2026-11-25T07:59:39-05:00"
+        }
+      ],
+      "watched": {
+        "from": "2018-02-02",
+        "to": "2018-03-26",
+        "episode": 31
+      },
+      "anilistId": 6702,
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Action",
+          "Adventure",
+          "Comedy",
+          "Fantasy"
+        ],
+        "tags": [
+          "Magic",
+          "Shounen",
+          "Found Family",
+          "Ensemble Cast",
+          "Male Protagonist",
+          "Female Protagonist",
+          "Dragons",
+          "Anthropomorphism",
+          "Super Power",
+          "Work",
+          "Travel"
+        ],
+        "studios": [
+          "Satelight",
+          "A-1 Pictures"
+        ]
+      }
+    }
+  ],
+  "toReview": [],
+  "notReviewing": []
+}

@@ -62,6 +62,52 @@
           "8-bit"
         ]
       }
+    },
+    {
+      "titleEN": "Rascal Does Not Dream of Bunny Girl Senpai",
+      "titleJP": "青春ブタ野郎はバニーガール先輩の夢を見ない",
+      "aired": {
+        "season": "fall",
+        "year": 2018
+      },
+      "reviews": [
+        {
+          "ratingNumber": 4,
+          "dateReviewed": "2026-11-25T07:59:39-05:00"
+        }
+      ],
+      "watched": {
+        "from": "2021-12-21",
+        "to": "2022-07-25"
+      },
+      "anilistId": 101291,
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Comedy",
+          "Drama",
+          "Mystery",
+          "Psychological",
+          "Romance",
+          "Supernatural"
+        ],
+        "tags": [
+          "Urban Fantasy",
+          "Primarily Teen Cast",
+          "Heterosexual",
+          "Male Protagonist",
+          "Coming of Age",
+          "Kuudere",
+          "Primarily Female Cast",
+          "School",
+          "Urban",
+          "Hikikomori",
+          "Acting"
+        ],
+        "studios": [
+          "CloverWorks"
+        ]
+      }
     }
   ],
   "toReview": [],
@@ -137,7 +183,6 @@
     "My Sister, My Writer",
     "Overlord: Ple Ple Pleiades - Clementine Toubou-hen",
     "RADIANT",
-    "Rascal Does Not Dream of Bunny Girl Senpai",
     "RELEASE THE SPYCE",
     "RErideD - Derrida, who leaps through time",
     "Run with the Wind",

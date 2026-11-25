@@ -1,7 +1,46 @@
 {
   "id": "winter-2018",
   "name": "Winter 2018",
-  "shows": [],
+  "shows": [
+    {
+      "titleEN": "Pop Team Epic",
+      "titleJP": "ポプテピピック",
+      "aired": {
+        "season": "winter",
+        "year": 2018
+      },
+      "reviews": [
+        {
+          "ratingNumber": 2,
+          "dateReviewed": "2026-11-25T07:59:39-05:00"
+        }
+      ],
+      "watched": {
+        "from": "2022-10-13",
+        "episode": 1
+      },
+      "anilistId": 98549,
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Comedy"
+        ],
+        "tags": [
+          "Surreal Comedy",
+          "Episodic",
+          "Parody",
+          "Meta",
+          "Satire",
+          "Female Protagonist",
+          "Mixed Media",
+          "Seinen"
+        ],
+        "studios": [
+          "Kamikaze Douga"
+        ]
+      }
+    }
+  ],
   "toReview": [],
   "notReviewing": [
     "A Place Further Than the Universe",
@@ -54,7 +93,6 @@
       "title": "Overlord: Ple Ple Pleiades 2",
       "reason": "Continuing series"
     },
-    "Pop Team Epic",
     "Record of Grancrest War",
     "SANRIO BOYS",
     "School Babysitters",

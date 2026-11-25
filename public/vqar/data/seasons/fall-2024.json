@@ -1,7 +1,111 @@
 {
   "id": "fall-2024",
   "name": "Fall 2024",
-  "shows": [],
+  "shows": [
+    {
+      "titleEN": "DAN DA DAN",
+      "titleJP": "ダンダダン",
+      "aired": {
+        "season": "fall",
+        "year": 2024
+      },
+      "reviews": [
+        {
+          "final": true,
+          "ratingNumber": 5,
+          "dateReviewed": "2026-11-25T07:59:39-05:00"
+        }
+      ],
+      "watched": {
+        "from": "2024-10-08",
+        "to": "2025-04-08",
+        "finished": true
+      },
+      "anilistId": 171018,
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Action",
+          "Comedy",
+          "Drama",
+          "Romance",
+          "Sci-Fi",
+          "Supernatural"
+        ],
+        "tags": [
+          "Urban Fantasy",
+          "Youkai",
+          "Ghost",
+          "Aliens",
+          "Primarily Teen Cast",
+          "Surreal Comedy",
+          "Shounen",
+          "Henshin",
+          "Heterosexual",
+          "Male Protagonist",
+          "Female Protagonist",
+          "Exorcism",
+          "School",
+          "Gyaru"
+        ],
+        "studios": [
+          "Science SARU"
+        ]
+      }
+    },
+    {
+      "titleEN": "Ranma1/2 (2024)",
+      "titleJP": "らんま1/2 (2024)",
+      "aired": {
+        "season": "fall",
+        "year": 2024
+      },
+      "reviews": [
+        {
+          "episodes": 2,
+          "ratingNumber": 5,
+          "dateReviewed": "2026-11-25T07:59:39-05:00"
+        }
+      ],
+      "watched": {
+        "from": "2025-03-01",
+        "episode": 2
+      },
+      "anilistId": 178533,
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Action",
+          "Comedy",
+          "Ecchi",
+          "Romance",
+          "Slice of Life"
+        ],
+        "tags": [
+          "Gender Bending",
+          "Arranged Marriage",
+          "Martial Arts",
+          "Shapeshifting",
+          "Tsundere",
+          "Tomboy",
+          "Episodic",
+          "Slapstick",
+          "Ensemble Cast",
+          "Heterosexual",
+          "Male Protagonist",
+          "Cohabitation",
+          "School",
+          "Love Triangle",
+          "Shounen",
+          "Female Harem",
+          "Animals"
+        ],
+        "studios": [
+          "MAPPA"
+        ]
+      }
+    }
+  ],
   "toReview": [],
   "notReviewing": [
     "365 Days to the Wedding",
@@ -37,7 +141,6 @@
       "reason": "Continuing series"
     },
     "Blue Miburo",
-    "DAN DA DAN",
     "DEMON LORD 2099",
     {
       "title": "Demon Lord, Retry! R",
@@ -100,7 +203,6 @@
     "Orb: On the Movements of the Earth",
     "Plus-Sized Elf Specials",
     "Puniru is a Kawaii Slime",
-    "Ranma1/2 (2024)",
     {
       "title": "Re:ZERO -Starting Life in Another World- Season 3",
       "reason": "Continuing series"

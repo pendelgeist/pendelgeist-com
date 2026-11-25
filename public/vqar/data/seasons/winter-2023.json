@@ -106,6 +106,48 @@
           "C2C"
         ]
       }
+    },
+    {
+      "titleEN": "Junji Ito Maniac: Japanese Tales of the Macabre",
+      "titleJP": "伊藤潤二『マニアック』",
+      "aired": {
+        "season": "winter",
+        "year": 2023
+      },
+      "reviews": [
+        {
+          "ratingNumber": 2,
+          "dateReviewed": "2026-11-25T07:59:39-05:00"
+        }
+      ],
+      "watched": {
+        "from": "2024-09-05"
+      },
+      "anilistId": 150653,
+      "anilist": {
+        "format": "ONA",
+        "genres": [
+          "Drama",
+          "Horror",
+          "Mystery",
+          "Psychological",
+          "Supernatural",
+          "Thriller"
+        ],
+        "tags": [
+          "Anthology",
+          "Episodic",
+          "Cosmic Horror",
+          "Curses",
+          "Denpa",
+          "Religion",
+          "CGI",
+          "Ensemble Cast"
+        ],
+        "studios": [
+          "Studio DEEN"
+        ]
+      }
     }
   ],
   "toReview": [],
@@ -160,7 +202,6 @@
       "title": "Is It Wrong to Try to Pick Up Girls in a Dungeon? IV Part 2",
       "reason": "Continuing series"
     },
-    "Junji Ito Maniac: Japanese Tales of the Macabre",
     "Kaina of the Great Snow Sea",
     "Kubo Won't Let Me Be Invisible",
     "KUROMI'S PRETTY JOURNEY",

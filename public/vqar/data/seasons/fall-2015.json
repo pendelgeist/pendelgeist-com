@@ -1,7 +1,57 @@
 {
   "id": "fall-2015",
   "name": "Fall 2015",
-  "shows": [],
+  "shows": [
+    {
+      "titleEN": "One-Punch Man",
+      "titleJP": "ワンパンマン",
+      "aired": {
+        "season": "fall",
+        "year": 2015
+      },
+      "reviews": [
+        {
+          "episodes": 12,
+          "ratingNumber": 5,
+          "dateReviewed": "2026-11-25T07:59:39-05:00"
+        }
+      ],
+      "watched": {
+        "from": "2018-03-18",
+        "to": "2018-10-13",
+        "episode": 12
+      },
+      "anilistId": 21087,
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Action",
+          "Comedy",
+          "Sci-Fi",
+          "Supernatural"
+        ],
+        "tags": [
+          "Superhero",
+          "Super Power",
+          "Parody",
+          "Male Protagonist",
+          "Satire",
+          "Urban Fantasy",
+          "Surreal Comedy",
+          "Urban",
+          "Cyborg",
+          "Primarily Adult Cast",
+          "Kaiju",
+          "Seinen",
+          "Aliens",
+          "Anthropomorphism"
+        ],
+        "studios": [
+          "MADHOUSE"
+        ]
+      }
+    }
+  ],
   "toReview": [],
   "notReviewing": [
     {
@@ -59,10 +109,6 @@
     },
     {
       "title": "Noragami Aragoto",
-      "reason": "Continuing series"
-    },
-    {
-      "title": "One-Punch Man",
       "reason": "Continuing series"
     },
     {

@@ -48,6 +48,64 @@
           "APPP"
         ]
       }
+    },
+    {
+      "titleEN": "Neon Genesis Evangelion",
+      "titleJP": "新世紀エヴァンゲリオン",
+      "aired": {
+        "season": "fall",
+        "year": 1995
+      },
+      "reviews": [
+        {
+          "final": true,
+          "ratingNumber": 5,
+          "dateReviewed": "2026-11-25T07:59:39-05:00"
+        }
+      ],
+      "watched": {
+        "from": "2021-03-20",
+        "to": "2025-11-02",
+        "finished": true
+      },
+      "anilistId": 30,
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Action",
+          "Drama",
+          "Mecha",
+          "Mystery",
+          "Psychological",
+          "Sci-Fi"
+        ],
+        "tags": [
+          "Philosophy",
+          "Coming of Age",
+          "Super Robot",
+          "Dystopian",
+          "Post-Apocalyptic",
+          "Angels",
+          "Denpa",
+          "Primarily Teen Cast",
+          "Kaiju",
+          "Psychosexual",
+          "Male Protagonist",
+          "Conspiracy",
+          "Aliens",
+          "Military",
+          "Religion",
+          "Estranged Family",
+          "Kuudere",
+          "Tsundere",
+          "Tokusatsu",
+          "Politics"
+        ],
+        "studios": [
+          "GAINAX",
+          "Tatsunoko Production"
+        ]
+      }
     }
   ],
   "toReview": [],

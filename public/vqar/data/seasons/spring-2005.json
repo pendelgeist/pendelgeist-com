@@ -1,0 +1,63 @@
+{
+  "id": "spring-2005",
+  "name": "Spring 2005",
+  "shows": [
+    {
+      "titleEN": "Eureka Seven",
+      "titleJP": "交響詩篇エウレカセブン",
+      "aired": {
+        "season": "spring",
+        "year": 2005
+      },
+      "reviews": [
+        {
+          "ratingNumber": 4,
+          "dateReviewed": "2026-11-25T07:59:39-05:00"
+        }
+      ],
+      "watched": {
+        "from": "2016-04-29",
+        "episode": 1
+      },
+      "anilistId": 237,
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Action",
+          "Adventure",
+          "Drama",
+          "Mecha",
+          "Romance",
+          "Sci-Fi"
+        ],
+        "tags": [
+          "Environmental",
+          "Coming of Age",
+          "Politics",
+          "Found Family",
+          "Super Robot",
+          "Philosophy",
+          "Surfing",
+          "Female Protagonist",
+          "Male Protagonist",
+          "Real Robot",
+          "Cohabitation",
+          "War",
+          "Heterosexual",
+          "Military",
+          "Parenthood",
+          "Ensemble Cast",
+          "Kuudere",
+          "Aviation",
+          "Primarily Adult Cast",
+          "Cult"
+        ],
+        "studios": [
+          "bones"
+        ]
+      }
+    }
+  ],
+  "toReview": [],
+  "notReviewing": []
+}

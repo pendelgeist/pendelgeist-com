@@ -1,0 +1,60 @@
+{
+  "id": "fall-2006",
+  "name": "Fall 2006",
+  "shows": [
+    {
+      "titleEN": "Death Note",
+      "titleJP": "DEATH NOTE",
+      "aired": {
+        "season": "fall",
+        "year": 2006
+      },
+      "reviews": [
+        {
+          "ratingNumber": 4,
+          "dateReviewed": "2026-11-25T07:59:39-05:00"
+        }
+      ],
+      "watched": {
+        "from": "2024-01-23",
+        "episode": 1
+      },
+      "anilistId": 1535,
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Mystery",
+          "Psychological",
+          "Supernatural",
+          "Thriller"
+        ],
+        "tags": [
+          "Crime",
+          "Detective",
+          "Anti-Hero",
+          "Fugitive",
+          "Male Protagonist",
+          "Noir",
+          "Police",
+          "Philosophy",
+          "Primarily Adult Cast",
+          "Gods",
+          "Urban Fantasy",
+          "Primarily Male Cast",
+          "Urban",
+          "Unrequited Love",
+          "Conspiracy",
+          "Shounen",
+          "Espionage",
+          "Yandere",
+          "Youkai"
+        ],
+        "studios": [
+          "MADHOUSE"
+        ]
+      }
+    }
+  ],
+  "toReview": [],
+  "notReviewing": []
+}

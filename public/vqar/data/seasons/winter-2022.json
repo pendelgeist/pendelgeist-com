@@ -93,6 +93,88 @@
           "Lapin Track"
         ]
       }
+    },
+    {
+      "titleEN": "The Orbital Children",
+      "titleJP": "地球外少年少女",
+      "aired": {
+        "season": "winter",
+        "year": 2022
+      },
+      "reviews": [
+        {
+          "episodes": 2,
+          "ratingNumber": 2,
+          "dateReviewed": "2026-11-25T07:59:39-05:00"
+        }
+      ],
+      "watched": {
+        "from": "2022-03-20",
+        "episode": 2
+      },
+      "anilistId": 101705,
+      "anilist": {
+        "format": "ONA",
+        "genres": [
+          "Adventure",
+          "Sci-Fi"
+        ],
+        "tags": [
+          "Space",
+          "Artificial Intelligence",
+          "Survival",
+          "Conspiracy",
+          "Primarily Child Cast",
+          "Software Development",
+          "Robots",
+          "Female Protagonist",
+          "Male Protagonist",
+          "Ensemble Cast"
+        ],
+        "studios": [
+          "Production +h"
+        ]
+      }
+    },
+    {
+      "titleEN": "Kotaro Lives Alone",
+      "titleJP": "コタローは１人暮らし",
+      "aired": {
+        "season": "winter",
+        "year": 2022
+      },
+      "reviews": [
+        {
+          "ratingNumber": 3,
+          "dateReviewed": "2026-11-25T07:59:39-05:00"
+        }
+      ],
+      "watched": {
+        "from": "2022-03-20",
+        "episode": 1
+      },
+      "anilistId": 139589,
+      "anilist": {
+        "format": "ONA",
+        "genres": [
+          "Comedy",
+          "Drama",
+          "Slice of Life"
+        ],
+        "tags": [
+          "Found Family",
+          "Family Life",
+          "Primarily Adult Cast",
+          "Episodic",
+          "Coming of Age",
+          "Male Protagonist",
+          "Orphan",
+          "Seinen"
+        ],
+        "studios": [
+          "LIDENFILMS"
+        ]
+      }
     }
   ],
   "toReview": [],
@@ -122,7 +204,6 @@
       "reason": "Continuing series"
     },
     "In the Land of Leadale",
-    "Kotaro Lives Alone",
     "Kumichou Musume to Sewagakari Picture Drama",
     {
       "title": "Kyokou Suiri Mini Anime Season 2",
@@ -160,7 +241,6 @@
       "reason": "Continuing series"
     },
     "The Genius Prince's Guide to Raising a Nation Out of Debt",
-    "The Orbital Children",
     "The Strongest Sage with the Weakest Crest",
     "Tokyo 24th Ward",
     "Tribe Nine",

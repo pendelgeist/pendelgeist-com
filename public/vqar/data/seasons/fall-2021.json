@@ -1,7 +1,54 @@
 {
   "id": "fall-2021",
   "name": "Fall 2021",
-  "shows": [],
+  "shows": [
+    {
+      "titleEN": "Komi Can't Communicate",
+      "titleJP": "古見さんは、コミュ症です。",
+      "aired": {
+        "season": "fall",
+        "year": 2021
+      },
+      "reviews": [
+        {
+          "final": true,
+          "ratingNumber": 4,
+          "dateReviewed": "2026-11-25T07:59:39-05:00"
+        }
+      ],
+      "watched": {
+        "from": "2021-11-13",
+        "to": "2022-07-30",
+        "finished": true
+      },
+      "anilistId": 133965,
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Comedy",
+          "Romance",
+          "Slice of Life"
+        ],
+        "tags": [
+          "School",
+          "Kuudere",
+          "Disability",
+          "Female Protagonist",
+          "Episodic",
+          "Slapstick",
+          "Primarily Teen Cast",
+          "Male Protagonist",
+          "Coming of Age",
+          "Shounen",
+          "Heterosexual",
+          "Agender"
+        ],
+        "studios": [
+          "OLM"
+        ]
+      }
+    }
+  ],
   "toReview": [],
   "notReviewing": [
     {
@@ -46,7 +93,6 @@
       "reason": "Continuing series"
     },
     "Kaguya-sama: Love is War -Ultra Romantic- \"Yu Ishigami Wants to Chat\"",
-    "Komi Can’t Communicate",
     {
       "title": "Let's Make a Mug Too 2",
       "reason": "Continuing series"

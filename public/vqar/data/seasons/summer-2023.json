@@ -56,6 +56,59 @@
           "Lapin Track"
         ]
       }
+    },
+    {
+      "titleEN": "Zom 100: Bucket List of the Dead",
+      "titleJP": "ゾン100～ゾンビになるまでにしたい100のこと～",
+      "aired": {
+        "season": "summer",
+        "year": 2023
+      },
+      "reviews": [
+        {
+          "final": true,
+          "ratingNumber": 5,
+          "dateReviewed": "2026-11-25T07:59:39-05:00"
+        }
+      ],
+      "watched": {
+        "from": "2023-08-12",
+        "to": "2024-01-14",
+        "finished": true
+      },
+      "anilistId": 159831,
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Action",
+          "Adventure",
+          "Comedy",
+          "Horror",
+          "Supernatural"
+        ],
+        "tags": [
+          "Zombie",
+          "Post-Apocalyptic",
+          "Surreal Comedy",
+          "Survival",
+          "Male Protagonist",
+          "Revenge",
+          "Urban Fantasy",
+          "Slapstick",
+          "Primarily Adult Cast",
+          "Rehabilitation",
+          "Work",
+          "Seinen",
+          "Gore",
+          "Tsundere",
+          "Body Horror",
+          "Nudity",
+          "Agriculture"
+        ],
+        "studios": [
+          "BUG FILMS"
+        ]
+      }
     }
   ],
   "toReview": [],
@@ -177,7 +230,6 @@
       "reason": "Continuing series"
     },
     "Watashi no Oshi wa Akuyaku Reijou.: Rae to Claire ni Ichimon Ittou",
-    "YOHANE THE PARHELION -SUNSHINE in the MIRROR-",
-    "Zom 100: Bucket List of the Dead"
+    "YOHANE THE PARHELION -SUNSHINE in the MIRROR-"
   ]
 }

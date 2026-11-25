@@ -146,6 +146,55 @@
           "Shaft"
         ]
       }
+    },
+    {
+      "titleEN": "JoJo's Bizarre Adventure: Stardust Crusaders",
+      "titleJP": "ジョジョの奇妙な冒険 スターダストクルセイダース",
+      "aired": {
+        "season": "spring",
+        "year": 2014
+      },
+      "reviews": [
+        {
+          "ratingNumber": 5,
+          "dateReviewed": "2026-11-25T07:59:39-05:00"
+        }
+      ],
+      "watched": {
+        "from": "2025-10-07",
+        "to": "2026-10-17",
+        "season": 2,
+        "episode": 9
+      },
+      "anilistId": 20474,
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Action",
+          "Adventure",
+          "Supernatural"
+        ],
+        "tags": [
+          "Super Power",
+          "Foreign",
+          "Primarily Male Cast",
+          "Travel",
+          "Shounen",
+          "Male Protagonist",
+          "Urban Fantasy",
+          "Episodic",
+          "Gore",
+          "Revenge",
+          "Primarily Adult Cast",
+          "Ensemble Cast",
+          "Body Horror",
+          "Found Family",
+          "Desert"
+        ],
+        "studios": [
+          "david production"
+        ]
+      }
     }
   ],
   "toReview": [],
@@ -183,10 +232,6 @@
       "reason": "Continuing series"
     },
     "Is the Order a Rabbit?",
-    {
-      "title": "JoJo's Bizarre Adventure: Stardust Crusaders",
-      "reason": "Continuing series"
-    },
     "Kamigami no Asobi",
     "Knights of Sidonia",
     "La corda d’oro -Blue Sky-",
