@@ -52,5 +52,31 @@
     }
   ],
   "toReview": [],
-  "notReviewing": []
+  "notReviewing": [
+    "Agonashi Gen to Ore Monogatari",
+    "Baka and Test - Summon the Beasts",
+    "Chu-Bra!: Panty Appreciation Society",
+    {
+      "title": "COBRA THE ANIMATION",
+      "reason": "Continuing series"
+    },
+    "Dance in the Vampire Bund",
+    "Hanamaru Kindergarten",
+    "Heartcatch Precure!",
+    {
+      "title": "Hidamari Sketch x Hoshimittsu",
+      "reason": "Continuing series"
+    },
+    "Katanagatari",
+    "Ladies Versus Butlers",
+    {
+      "title": "Nodame Cantabile Finale",
+      "reason": "Continuing series"
+    },
+    "Okamikakushi ~ Masque of the Wolf",
+    "Omamori Himari",
+    "Sound of the Sky",
+    "Starry☆Sky",
+    "The Qwaser of Stigmata"
+  ]
 }

@@ -58,5 +58,52 @@
     }
   ],
   "toReview": [],
-  "notReviewing": []
+  "notReviewing": [
+    {
+      "title": "Bakugan: Mechtanium Surge",
+      "reason": "Continuing series"
+    },
+    "Battle Break",
+    "Beelzebub",
+    "Busou Chuugakusei: Basket Army",
+    "Cardfight Vanguard",
+    {
+      "title": "Dark Side Cat Versus",
+      "reason": "Continuing series"
+    },
+    "Dragon Crisis",
+    "Dream Eater Merry",
+    "Fractale",
+    "Freezing",
+    {
+      "title": "Ginga Tetsudou 999: Jikuu wo Koeta Energy no Tabi season.2",
+      "reason": "Continuing series"
+    },
+    "Golden★Kids",
+    "Gosick",
+    "I don't like my big brother at all!!",
+    "Infinite Stratos",
+    "Is this a Zombie?",
+    {
+      "title": "Kimi ni Todoke: From Me to You Season 2",
+      "reason": "Continuing series"
+    },
+    "Kyousougiga",
+    "Level E",
+    "Mahou Tsukai Jiji",
+    {
+      "title": "Mitsudomoe Zouryouchuu!",
+      "reason": "Continuing series"
+    },
+    "Neo Satomi Hakkenden: Satomi-chanchi no Hachi Danshi",
+    {
+      "title": "Ore no Imouto ga Konna ni Kawaii Wake ga Nai TRUE ROUTE",
+      "reason": "Continuing series"
+    },
+    "Rio: Rainbow Gate!",
+    "Shuukan Shimakou Special",
+    "Suite Precure♪",
+    "Wandering Son",
+    "Wolverine"
+  ]
 }

@@ -50,6 +50,12 @@
       "shows": 2
     },
     {
+      "id": "fall-2024",
+      "name": "Fall 2024",
+      "file": "/vqar/data/seasons/fall-2024.json",
+      "shows": 0
+    },
+    {
       "id": "summer-2024",
       "name": "Summer 2024",
       "file": "/vqar/data/seasons/summer-2024.json",
@@ -116,10 +122,28 @@
       "shows": 2
     },
     {
+      "id": "fall-2021",
+      "name": "Fall 2021",
+      "file": "/vqar/data/seasons/fall-2021.json",
+      "shows": 0
+    },
+    {
+      "id": "summer-2021",
+      "name": "Summer 2021",
+      "file": "/vqar/data/seasons/summer-2021.json",
+      "shows": 0
+    },
+    {
       "id": "spring-2021",
       "name": "Spring 2021",
       "file": "/vqar/data/seasons/spring-2021.json",
       "shows": 3
+    },
+    {
+      "id": "winter-2021",
+      "name": "Winter 2021",
+      "file": "/vqar/data/seasons/winter-2021.json",
+      "shows": 0
     },
     {
       "id": "fall-2020",
@@ -128,10 +152,40 @@
       "shows": 2
     },
     {
+      "id": "summer-2020",
+      "name": "Summer 2020",
+      "file": "/vqar/data/seasons/summer-2020.json",
+      "shows": 0
+    },
+    {
       "id": "spring-2020",
       "name": "Spring 2020",
       "file": "/vqar/data/seasons/spring-2020.json",
       "shows": 1
+    },
+    {
+      "id": "winter-2020",
+      "name": "Winter 2020",
+      "file": "/vqar/data/seasons/winter-2020.json",
+      "shows": 0
+    },
+    {
+      "id": "fall-2019",
+      "name": "Fall 2019",
+      "file": "/vqar/data/seasons/fall-2019.json",
+      "shows": 0
+    },
+    {
+      "id": "summer-2019",
+      "name": "Summer 2019",
+      "file": "/vqar/data/seasons/summer-2019.json",
+      "shows": 0
+    },
+    {
+      "id": "spring-2019",
+      "name": "Spring 2019",
+      "file": "/vqar/data/seasons/spring-2019.json",
+      "shows": 0
     },
     {
       "id": "winter-2019",
@@ -146,16 +200,46 @@
       "shows": 1
     },
     {
+      "id": "summer-2018",
+      "name": "Summer 2018",
+      "file": "/vqar/data/seasons/summer-2018.json",
+      "shows": 0
+    },
+    {
       "id": "spring-2018",
       "name": "Spring 2018",
       "file": "/vqar/data/seasons/spring-2018.json",
       "shows": 1
     },
     {
+      "id": "winter-2018",
+      "name": "Winter 2018",
+      "file": "/vqar/data/seasons/winter-2018.json",
+      "shows": 0
+    },
+    {
       "id": "fall-2017",
       "name": "Fall 2017",
       "file": "/vqar/data/seasons/fall-2017.json",
       "shows": 1
+    },
+    {
+      "id": "summer-2017",
+      "name": "Summer 2017",
+      "file": "/vqar/data/seasons/summer-2017.json",
+      "shows": 0
+    },
+    {
+      "id": "spring-2017",
+      "name": "Spring 2017",
+      "file": "/vqar/data/seasons/spring-2017.json",
+      "shows": 0
+    },
+    {
+      "id": "winter-2017",
+      "name": "Winter 2017",
+      "file": "/vqar/data/seasons/winter-2017.json",
+      "shows": 0
     },
     {
       "id": "fall-2016",
@@ -180,6 +264,24 @@
       "name": "Winter 2016",
       "file": "/vqar/data/seasons/winter-2016.json",
       "shows": 1
+    },
+    {
+      "id": "fall-2015",
+      "name": "Fall 2015",
+      "file": "/vqar/data/seasons/fall-2015.json",
+      "shows": 0
+    },
+    {
+      "id": "summer-2015",
+      "name": "Summer 2015",
+      "file": "/vqar/data/seasons/summer-2015.json",
+      "shows": 0
+    },
+    {
+      "id": "spring-2015",
+      "name": "Spring 2015",
+      "file": "/vqar/data/seasons/spring-2015.json",
+      "shows": 0
     },
     {
       "id": "winter-2015",
@@ -218,6 +320,12 @@
       "shows": 3
     },
     {
+      "id": "summer-2013",
+      "name": "Summer 2013",
+      "file": "/vqar/data/seasons/summer-2013.json",
+      "shows": 0
+    },
+    {
       "id": "spring-2013",
       "name": "Spring 2013",
       "file": "/vqar/data/seasons/spring-2013.json",
@@ -242,6 +350,30 @@
       "shows": 1
     },
     {
+      "id": "spring-2012",
+      "name": "Spring 2012",
+      "file": "/vqar/data/seasons/spring-2012.json",
+      "shows": 0
+    },
+    {
+      "id": "winter-2012",
+      "name": "Winter 2012",
+      "file": "/vqar/data/seasons/winter-2012.json",
+      "shows": 0
+    },
+    {
+      "id": "fall-2011",
+      "name": "Fall 2011",
+      "file": "/vqar/data/seasons/fall-2011.json",
+      "shows": 0
+    },
+    {
+      "id": "summer-2011",
+      "name": "Summer 2011",
+      "file": "/vqar/data/seasons/summer-2011.json",
+      "shows": 0
+    },
+    {
       "id": "spring-2011",
       "name": "Spring 2011",
       "file": "/vqar/data/seasons/spring-2011.json",
@@ -258,6 +390,12 @@
       "name": "Fall 2010",
       "file": "/vqar/data/seasons/fall-2010.json",
       "shows": 1
+    },
+    {
+      "id": "summer-2010",
+      "name": "Summer 2010",
+      "file": "/vqar/data/seasons/summer-2010.json",
+      "shows": 0
     },
     {
       "id": "spring-2010",

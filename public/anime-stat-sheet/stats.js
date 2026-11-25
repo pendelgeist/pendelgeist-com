@@ -115,14 +115,14 @@ function liveShows(season) {
 
 /**
  * Whether a season was reviewed live, as it aired: a lineup with a first
- * impression in it, or a to-review / not-reviewing list. Only such a season
- * has a coverage bar; a season of backfills has none.
+ * impression in it, or a to-review list. Only such a season has a coverage
+ * bar; a season of backfills has none. A not-reviewing list alone doesn't
+ * count: older seasons carry their whole AniList lineup there, filled in
+ * after the fact.
  * @param {SeasonData} season
  */
 export function hasLiveLineup(season) {
-  return isLineup(season) && (
-    liveShows(season).length > 0 || (season.toReview ?? []).length > 0 || (season.notReviewing ?? []).length > 0
-  );
+  return isLineup(season) && (liveShows(season).length > 0 || (season.toReview ?? []).length > 0);
 }
 
 /**

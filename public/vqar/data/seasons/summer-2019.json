@@ -1,0 +1,100 @@
+{
+  "id": "summer-2019",
+  "name": "Summer 2019",
+  "shows": [],
+  "toReview": [],
+  "notReviewing": [
+    "A Certain Scientific Accelerator",
+    "Another World",
+    "Arifureta Shokugyou de Sekai Saikyou Picture Drama",
+    {
+      "title": "Arifureta: From Commonplace to World's Strongest",
+      "reason": "Continuing series"
+    },
+    "ASTRA LOST IN SPACE",
+    "BEM",
+    "Business Fish",
+    "Cannon Busters",
+    "Car & Tue",
+    "Cardfight!! Vanguard Shinemon Arc",
+    {
+      "title": "Chou Futsuu Toshi Kashiwa Densetsu Z",
+      "reason": "Continuing series"
+    },
+    "Cooking with Valkyries",
+    "Cop Craft",
+    "Demon Lord, Retry!",
+    "Digimon Survive - Opening Movie",
+    "Do You Love Your Mom and Her Two-Hit Multi-Target Attacks?",
+    "Dr. STONE",
+    "Ensemble Stars!",
+    "Fire Force",
+    "Gintama: Monster Strike-hen",
+    "Girl X",
+    "given",
+    "GRANBELM",
+    "Hawk no Onayami Soudanshitsu",
+    "Hensuki: Are you willing to fall in love with a pervert, as long as she’s a cutie?",
+    {
+      "title": "HERO MASK part II",
+      "reason": "Continuing series"
+    },
+    "How Heavy Are the Dumbbells You Lift?",
+    "If It's for My Daughter, I'd Even Defeat a Demon Lord",
+    {
+      "title": "Is It Wrong to Try to Pick Up Girls in a Dungeon? II",
+      "reason": "Continuing series"
+    },
+    "Isekai Cheat Magician",
+    "KENGAN ASHURA Part I",
+    "Knights of the Zodiac: Saint Seiya",
+    "Kochoki",
+    "Kuuchuu Gunkan Atlantis",
+    {
+      "title": "Lord El-Melloi II's Case Files {Rail Zeppelin} Grace note",
+      "reason": "Continuing series"
+    },
+    "Ninja Box",
+    "O Maidens in Your Savage Season",
+    "Ochibi-san Tanpen Movie",
+    {
+      "title": "Oshiri Tantei 3",
+      "reason": "Continuing series"
+    },
+    "Pocari Sweat web movie: Hataraku Saibou Dai 11.5-wa Necchuushou - Moshimo Pocari Sweat ga Attara",
+    "Re:Stage! Dream Days",
+    "SD Gundam World Sangoku Soketsuden",
+    {
+      "title": "Shellfish Employee",
+      "reason": "Continuing series"
+    },
+    "Shoujo☆Conto All Starlight",
+    "SOUND & FURY",
+    "Squishy! Black Clover",
+    {
+      "title": "STARMYU 3",
+      "reason": "Continuing series"
+    },
+    {
+      "title": "Symphogear XV",
+      "reason": "Continuing series"
+    },
+    {
+      "title": "Take My Brother Away! 3",
+      "reason": "Continuing series"
+    },
+    {
+      "title": "Teasing Master Takagi-san Season 2",
+      "reason": "Continuing series"
+    },
+    "The Demon Girl Next Door",
+    "The Demon Girl Next Door Minis",
+    "The Ones Within",
+    "To the Abandoned Sacred Beasts",
+    "Try Knights",
+    "Vevara in Your Dream",
+    "Vinland Saga",
+    "Wasteful Days of High School Girls",
+    "Zenonzard: THE ANIMATION - Episode 0"
+  ]
+}
