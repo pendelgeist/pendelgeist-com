@@ -67,10 +67,6 @@
   ],
   "toReview": [],
   "notReviewing": [
-    {
-      "title": "Agukaru: PLAY WITH IBARAKI-hen",
-      "reason": "Continuing series"
-    },
     "AkaKill! Theater",
     "Akame ga Kill!",
     "ALDNOAH.ZERO",
@@ -80,10 +76,6 @@
       "reason": "Continuing series"
     },
     "Barakamon: Mijikamon",
-    {
-      "title": "Beast Saga (ONA)",
-      "reason": "Continuing series"
-    },
     "Bishoujo Mobage: Mobami-chan",
     {
       "title": "Black Butler: Book of Circus",
@@ -94,8 +86,6 @@
       "title": "Blue Spring Ride",
       "reason": "Continuing series"
     },
-    "Buddy Complex: Daremo Shiranai Ashita e",
-    "Channel 5.5 3rd Season",
     "DRAMAtical Murder",
     {
       "title": "Fate/kaleid liner Prisma☆Illya 2wei!",
@@ -106,7 +96,6 @@
       "reason": "Continuing series"
     },
     "Glasslip",
-    "Hakusai Anime Bangai-hen",
     {
       "title": "Hanamonogatari",
       "reason": "Continuing series"
@@ -117,12 +106,7 @@
     "Locodol",
     "LOVE STAGE!!",
     "Magimoji Rurumo",
-    "Minarai Diva",
     "Momo Kyun Sword",
-    {
-      "title": "Monsuno: Combat Chaos (2014)",
-      "reason": "Continuing series"
-    },
     "Monthly Girls' Nozaki-kun",
     "Nobunaga Concerto",
     "Persona4 the Golden ANIMATION",
@@ -140,7 +124,6 @@
       "title": "Space Dandy 2",
       "reason": "Continuing series"
     },
-    "Sushi Ninja",
     {
       "title": "Sword Art Online II",
       "reason": "Continuing series"
@@ -151,7 +134,6 @@
     {
       "title": "Tokyo Ghoul",
       "reason": "Continuing series"
-    },
-    "Town Workers"
+    }
   ]
 }

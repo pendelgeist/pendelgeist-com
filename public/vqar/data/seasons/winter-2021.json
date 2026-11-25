@@ -4,8 +4,6 @@
   "shows": [],
   "toReview": [],
   "notReviewing": [
-    "2.43 Mini Anime: Fukui-ben Kouza",
-    "2.43 Mini Anime: inside story",
     "2.43: Seiin High School Boys Volleyball Team",
     "Aikatsu Planet!",
     {
@@ -29,17 +27,13 @@
       "title": "BEASTARS Season 2",
       "reason": "Continuing series"
     },
-    "Bessatsu Kamen Rider Saber: Tanpen Katsudou Mangashuu",
     "Bottom-Tier Character Tomozaki",
     "Cells at Work! CODE BLACK",
     {
       "title": "Cells at Work!!",
       "reason": "Continuing series"
     },
-    "Chocomatsu-san: Valentine's Day-hen",
-    "Chocomatsu-san: White Day-hen",
     "Cute Executive Officer",
-    "DELIVER POLICE: Nishitokyo-shi Deliver Keisatsutai",
     "Doki Doki! Mini Mini! Kakushi Dungeon Gekijou",
     "Dr. Ramune -Mysterious Disease Specialist-",
     {
@@ -48,25 +42,15 @@
     },
     "Enen no Shouboutai Mini Anime",
     "EX-ARM",
-    "Fudanshi Shoukan: Isekai de Shinjuu ni Hameraremashita Mini Anime Tokubetsu-hen",
     "Gekidan Nanatsu no Taizai",
     "Gekidol",
-    "Gudetama Freestyle",
-    "Hachimitsu Suicide Machine",
     "Heaven’s Design Team",
     "High-Rise Invasion",
     "HOME!",
     "Horimiya",
     "Hortensia SAGA",
-    {
-      "title": "I’m home, Chibigodzilla Season 2",
-      "reason": "Continuing series"
-    },
     "I★CHU",
-    "Ichiban Kuji Natsume Yuujinchou: Nyanko-sensei to Hana Shirabe",
-    "Ichinichi ni Shite Narazu",
     "Idoly Pride",
-    "Ikinuke! Bakusou! Kusohamu-chan!",
     {
       "title": "Inou no AICis - ESP & HIGH SCHOOL DETECTIVE",
       "reason": "Continuing series"
@@ -89,9 +73,7 @@
       "reason": "Continuing series"
     },
     "Oh, Suddenly Egyptian God",
-    "Oshiete Hokusai! THE ANIMATION",
     "Otherside Picnic",
-    "Powerful Pro Yakyuu: Powerful Koukou-hen",
     {
       "title": "Re:ZERO -Starting Life in Another World- Season 2 Part 2",
       "reason": "Continuing series"
@@ -100,9 +82,6 @@
       "title": "Re:Zero kara Hajimeru Kyuukei Jikan (Break Time) 2nd Season Part 2",
       "reason": "Continuing series"
     },
-    "Ryuukyuu Timeline: Mirai Shoujo to Inishie no Ou",
-    "Ryuusatsu no Kyoukotsu",
-    "Sayonara Watashi no Cramer Mini Anime",
     "Scar on the Praeter",
     {
       "title": "Show by Rock!! Stars!!",
@@ -116,7 +95,6 @@
       "reason": "Continuing series"
     },
     "Suppose a Kid from the Last Dungeon Boonies moved to a starter town?",
-    "Taiban!",
     {
       "title": "That Time I Got Reincarnated as a Slime Season 2",
       "reason": "Continuing series"
@@ -147,7 +125,6 @@
       "title": "Umamusume: Pretty Derby Season 2",
       "reason": "Continuing series"
     },
-    "URVAN",
     "VLAD LOVE",
     "WAVE!! -Let's go surfing!!- (TV)",
     "WIXOSS DIVA(A)LIVE",
@@ -155,7 +132,6 @@
     {
       "title": "World Trigger 2nd Season",
       "reason": "Continuing series"
-    },
-    "Yuusei Koukou Tenmon-bu"
+    }
   ]
 }

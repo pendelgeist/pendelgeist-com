@@ -501,7 +501,8 @@ A season file is one of two things, and its id says which (`isLineup` in
   watched it in.
 
   Every lineup from Winter 2010 through Fall 2025 also has its season's whole AniList lineup in
-  `notReviewing`: each Japanese TV or ONA series that aired then (adult titles left out), with
+  `notReviewing`: each Japanese TV or ONA series that aired then (adult titles left out, and so are
+  obscure ones with fewer than 1,000 AniList users, mostly promos and web shorts), with
   sequels marked `"Continuing series"` and everything else left without a reason. These were added
   in bulk so the older seasons are complete. Reviewing one of them means moving it from
   `notReviewing` into `shows` as a backfill. A season holding only backfills and this list still
