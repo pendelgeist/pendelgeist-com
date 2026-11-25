@@ -221,6 +221,52 @@
           "Sunrise"
         ]
       }
+    },
+    {
+      "titleEN": "Romantic Killer",
+      "titleJP": "ロマンティック・キラー",
+      "aired": {
+        "season": "fall",
+        "year": 2022
+      },
+      "reviews": [
+        {
+          "episodes": 2,
+          "ratingNumber": 2,
+          "dateReviewed": "2026-11-25T07:59:39-05:00"
+        }
+      ],
+      "watched": {
+        "from": "2023-02-23",
+        "episode": 2
+      },
+      "anilistId": 153930,
+      "anilist": {
+        "format": "ONA",
+        "genres": [
+          "Comedy",
+          "Romance"
+        ],
+        "tags": [
+          "Female Protagonist",
+          "Parody",
+          "Slapstick",
+          "Male Harem",
+          "Primarily Teen Cast",
+          "Love Triangle",
+          "Aromantic",
+          "Meta",
+          "Urban Fantasy",
+          "Magic",
+          "Heterosexual",
+          "Tsundere",
+          "Video Games",
+          "School"
+        ],
+        "studios": [
+          "domerica"
+        ]
+      }
     }
   ],
   "toReview": [],
@@ -293,7 +339,6 @@
     },
     "Raven of the Inner Palace",
     "Reincarnated as a Sword",
-    "Romantic Killer",
     "Shin Shinka no Mi Gekijou",
     "Shinobi no Ittoki",
     {

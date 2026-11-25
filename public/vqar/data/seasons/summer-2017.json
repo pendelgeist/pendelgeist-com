@@ -1,7 +1,54 @@
 {
   "id": "summer-2017",
   "name": "Summer 2017",
-  "shows": [],
+  "shows": [
+    {
+      "titleEN": "Kakegurui",
+      "titleJP": "賭ケグルイ",
+      "aired": {
+        "season": "summer",
+        "year": 2017
+      },
+      "reviews": [
+        {
+          "episodes": 10,
+          "ratingNumber": 4,
+          "dateReviewed": "2026-11-25T07:59:39-05:00"
+        }
+      ],
+      "watched": {
+        "from": "2022-10-08",
+        "to": "2023-12-27",
+        "episode": 10
+      },
+      "anilistId": 98314,
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Drama",
+          "Mystery",
+          "Psychological"
+        ],
+        "tags": [
+          "Gambling",
+          "Female Protagonist",
+          "School",
+          "Primarily Female Cast",
+          "Primarily Teen Cast",
+          "Ojou-sama",
+          "Poker",
+          "Anti-Hero",
+          "Body Horror",
+          "School Club",
+          "Bullying",
+          "Shounen"
+        ],
+        "studios": [
+          "MAPPA"
+        ]
+      }
+    }
+  ],
   "toReview": [],
   "notReviewing": [
     "18if",
@@ -38,7 +85,6 @@
     "Hitorijime My Hero",
     "Horse Friends",
     "In Another World With My Smartphone",
-    "Kakegurui",
     "Karada Sagashi",
     "Katsugeki TOUKEN RANBU",
     "Knight's & Magic",

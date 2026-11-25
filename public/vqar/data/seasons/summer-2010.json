@@ -1,7 +1,61 @@
 {
   "id": "summer-2010",
   "name": "Summer 2010",
-  "shows": [],
+  "shows": [
+    {
+      "titleEN": "High School of the Dead",
+      "titleJP": "学園黙示録HIGHSCHOOL OF THE DEAD",
+      "aired": {
+        "season": "summer",
+        "year": 2010
+      },
+      "reviews": [
+        {
+          "episodes": 4,
+          "ratingNumber": 2,
+          "dateReviewed": "2026-11-25T07:59:39-05:00"
+        }
+      ],
+      "watched": {
+        "from": "2011-10-31",
+        "to": "2012-01-02",
+        "episode": 4
+      },
+      "anilistId": 8074,
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Action",
+          "Drama",
+          "Ecchi",
+          "Horror",
+          "Romance",
+          "Supernatural"
+        ],
+        "tags": [
+          "Zombie",
+          "Survival",
+          "Pandemic",
+          "Gore",
+          "Primarily Teen Cast",
+          "Urban Fantasy",
+          "Ensemble Cast",
+          "Nudity",
+          "Body Horror",
+          "Male Protagonist",
+          "Female Harem",
+          "Guns",
+          "Heterosexual",
+          "Love Triangle",
+          "Swordplay",
+          "Ojou-sama"
+        ],
+        "studios": [
+          "MADHOUSE"
+        ]
+      }
+    }
+  ],
   "toReview": [],
   "notReviewing": [
     "Amagami SS",
@@ -13,7 +67,6 @@
     "Cat Planet Cuties",
     "CAT SHIT ONE: THE ANIMATED SERIES",
     "Digimon Fusion",
-    "High School of the Dead",
     "Kaichuu!",
     "Mitsudomoe",
     "Nura: Rise of the Yokai Clan",

@@ -145,6 +145,61 @@
           "MADHOUSE"
         ]
       }
+    },
+    {
+      "titleEN": "PLUTO",
+      "titleJP": "PLUTO",
+      "aired": {
+        "season": "fall",
+        "year": 2023
+      },
+      "reviews": [
+        {
+          "final": true,
+          "ratingNumber": 5,
+          "dateReviewed": "2026-11-25T07:59:39-05:00"
+        }
+      ],
+      "watched": {
+        "from": "2023-11-09",
+        "to": "2024-06-29",
+        "finished": true
+      },
+      "anilistId": 99088,
+      "anilist": {
+        "format": "ONA",
+        "genres": [
+          "Action",
+          "Drama",
+          "Mecha",
+          "Mystery",
+          "Psychological",
+          "Sci-Fi",
+          "Thriller"
+        ],
+        "tags": [
+          "Robots",
+          "Artificial Intelligence",
+          "Detective",
+          "Seinen",
+          "Police",
+          "Ensemble Cast",
+          "Crime",
+          "Philosophy",
+          "War",
+          "Politics",
+          "Primarily Male Cast",
+          "Foreign",
+          "Male Protagonist",
+          "Primarily Adult Cast",
+          "Noir",
+          "Urban",
+          "Guns"
+        ],
+        "studios": [
+          "Studio M2"
+        ]
+      }
     }
   ],
   "toReview": [],
@@ -231,7 +286,6 @@
     "OVERTAKE!",
     "Paradox Live THE ANIMATION",
     "Ple Ple Pleiades × Kage-Jitsu!",
-    "PLUTO",
     "Pokémon Concierge",
     {
       "title": "Power of Hope ~Precure Full Bloom~",

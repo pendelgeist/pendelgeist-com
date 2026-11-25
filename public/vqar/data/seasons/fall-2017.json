@@ -58,6 +58,51 @@
           "Graphinica"
         ]
       }
+    },
+    {
+      "titleEN": "Children of the Whales",
+      "titleJP": "クジラの子らは砂上に歌う",
+      "aired": {
+        "season": "fall",
+        "year": 2017
+      },
+      "reviews": [
+        {
+          "ratingNumber": 3,
+          "dateReviewed": "2026-11-25T07:59:39-05:00"
+        }
+      ],
+      "watched": {
+        "from": "2018-03-24",
+        "to": "2018-04-27"
+      },
+      "anilistId": 98449,
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Adventure",
+          "Drama",
+          "Fantasy",
+          "Mystery",
+          "Romance",
+          "Sci-Fi"
+        ],
+        "tags": [
+          "Lost Civilization",
+          "Magic",
+          "Male Protagonist",
+          "Dystopian",
+          "War",
+          "Ships",
+          "Heterosexual",
+          "Shoujo",
+          "Kuudere",
+          "Rural"
+        ],
+        "studios": [
+          "J.C.STAFF"
+        ]
+      }
     }
   ],
   "toReview": [],
@@ -75,7 +120,6 @@
       "title": "Cardfight!! Vanguard G: Z",
       "reason": "Continuing series"
     },
-    "Children of the Whales",
     {
       "title": "ClassicaLoid 2",
       "reason": "Continuing series"

@@ -628,6 +628,10 @@
           "dateReviewed": "2026-05-12T08:30:00-04:00"
         }
       ],
+      "watched": {
+        "from": "2026-05-12",
+        "episode": 1
+      },
       "anilistId": 208352,
       "annId": 38567,
       "streaming": [
@@ -1103,6 +1107,10 @@
           "dateReviewed": "2026-04-30T08:00:00-04:00"
         }
       ],
+      "watched": {
+        "from": "2026-04-30",
+        "episode": 1
+      },
       "anilistId": 186497,
       "annId": 34506,
       "streaming": [

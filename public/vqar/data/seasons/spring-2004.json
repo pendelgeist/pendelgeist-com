@@ -1,0 +1,63 @@
+{
+  "id": "spring-2004",
+  "name": "Spring 2004",
+  "shows": [
+    {
+      "titleEN": "Monster",
+      "titleJP": "MONSTER",
+      "aired": {
+        "season": "spring",
+        "year": 2004
+      },
+      "reviews": [
+        {
+          "ratingNumber": 4,
+          "dateReviewed": "2026-11-25T07:59:39-05:00"
+        }
+      ],
+      "watched": {
+        "from": "2023-01-06",
+        "episode": 1
+      },
+      "anilistId": 19,
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Drama",
+          "Horror",
+          "Mystery",
+          "Psychological",
+          "Thriller"
+        ],
+        "tags": [
+          "Crime",
+          "Seinen",
+          "Detective",
+          "Philosophy",
+          "Ensemble Cast",
+          "Urban",
+          "Primarily Adult Cast",
+          "Noir",
+          "Twins",
+          "Revenge",
+          "Police",
+          "Foreign",
+          "Male Protagonist",
+          "Adoption",
+          "Travel",
+          "Politics",
+          "Amnesia",
+          "Medicine",
+          "Orphan",
+          "Historical",
+          "Primarily Male Cast"
+        ],
+        "studios": [
+          "MADHOUSE"
+        ]
+      }
+    }
+  ],
+  "toReview": [],
+  "notReviewing": []
+}

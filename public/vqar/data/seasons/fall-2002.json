@@ -1,0 +1,101 @@
+{
+  "id": "fall-2002",
+  "name": "Fall 2002",
+  "shows": [
+    {
+      "titleEN": "Naruto",
+      "titleJP": "NARUTO -ナルト-",
+      "aired": {
+        "season": "fall",
+        "year": 2002
+      },
+      "reviews": [
+        {
+          "ratingNumber": 3,
+          "dateReviewed": "2026-11-25T07:59:39-05:00"
+        }
+      ],
+      "watched": {
+        "from": "2023-05-13",
+        "episode": 1
+      },
+      "anilistId": 20,
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Action",
+          "Adventure",
+          "Comedy",
+          "Drama",
+          "Fantasy",
+          "Supernatural"
+        ],
+        "tags": [
+          "Ninja",
+          "Shounen",
+          "Coming of Age",
+          "Male Protagonist",
+          "Orphan",
+          "Super Power",
+          "Martial Arts",
+          "Found Family",
+          "Primarily Child Cast",
+          "Ensemble Cast",
+          "Heterosexual",
+          "Slapstick",
+          "Bullying",
+          "Anachronism",
+          "Unrequited Love"
+        ],
+        "studios": [
+          "Studio Pierrot"
+        ]
+      }
+    },
+    {
+      "titleEN": "Mobile Suit Gundam SEED",
+      "titleJP": "機動戦士ガンダムSEED",
+      "aired": {
+        "season": "fall",
+        "year": 2002
+      },
+      "reviews": [
+        {
+          "ratingNumber": 5,
+          "dateReviewed": "2026-11-25T07:59:39-05:00"
+        }
+      ],
+      "watched": {
+        "from": "2024-09-05",
+        "episode": 1
+      },
+      "anilistId": 93,
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Action",
+          "Drama",
+          "Mecha",
+          "Sci-Fi"
+        ],
+        "tags": [
+          "Military",
+          "War",
+          "Real Robot",
+          "Space",
+          "Love Triangle",
+          "Male Protagonist",
+          "Space Opera",
+          "Primarily Teen Cast",
+          "Politics",
+          "Gore"
+        ],
+        "studios": [
+          "Sunrise"
+        ]
+      }
+    }
+  ],
+  "toReview": [],
+  "notReviewing": []
+}

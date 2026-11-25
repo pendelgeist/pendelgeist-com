@@ -49,6 +49,51 @@
           "Brain's Base"
         ]
       }
+    },
+    {
+      "titleEN": "Dance in the Vampire Bund",
+      "titleJP": "ダンスインザヴァンパイアバンド",
+      "aired": {
+        "season": "winter",
+        "year": 2010
+      },
+      "reviews": [
+        {
+          "ratingNumber": 1,
+          "dateReviewed": "2026-11-25T07:59:39-05:00"
+        }
+      ],
+      "watched": {
+        "from": "2011-10-29"
+      },
+      "anilistId": 6747,
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Action",
+          "Ecchi",
+          "Romance",
+          "Supernatural"
+        ],
+        "tags": [
+          "Vampire",
+          "Urban Fantasy",
+          "Amnesia",
+          "Werewolf",
+          "Heterosexual",
+          "Cohabitation",
+          "Interspecies",
+          "Nudity",
+          "Urban",
+          "Seinen",
+          "Politics",
+          "Nun",
+          "Assassins"
+        ],
+        "studios": [
+          "Shaft"
+        ]
+      }
     }
   ],
   "toReview": [],
@@ -59,7 +104,6 @@
       "title": "COBRA THE ANIMATION",
       "reason": "Continuing series"
     },
-    "Dance in the Vampire Bund",
     "Hanamaru Kindergarten",
     "Heartcatch Precure!",
     {

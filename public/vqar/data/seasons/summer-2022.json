@@ -140,6 +140,152 @@
           "A-1 Pictures"
         ]
       }
+    },
+    {
+      "titleEN": "Uncle from Another World",
+      "titleJP": "異世界おじさん",
+      "aired": {
+        "season": "summer",
+        "year": 2022
+      },
+      "reviews": [
+        {
+          "final": true,
+          "ratingNumber": 5,
+          "dateReviewed": "2026-11-25T07:59:39-05:00"
+        }
+      ],
+      "watched": {
+        "from": "2022-07-23",
+        "to": "2024-03-02",
+        "finished": true
+      },
+      "anilistId": 135806,
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Adventure",
+          "Comedy",
+          "Fantasy"
+        ],
+        "tags": [
+          "Isekai",
+          "Parody",
+          "Magic",
+          "Meta",
+          "Male Protagonist",
+          "Seinen",
+          "Video Games",
+          "Primarily Adult Cast",
+          "Otaku Culture",
+          "Surreal Comedy",
+          "Tsundere",
+          "Elf",
+          "POV",
+          "Memory Manipulation",
+          "Satire",
+          "Female Harem",
+          "Slapstick",
+          "Reverse Isekai",
+          "Nudity"
+        ],
+        "studios": [
+          "Atelier Pontdarc"
+        ]
+      }
+    },
+    {
+      "titleEN": "Cyberpunk: Edgerunners",
+      "titleJP": "サイバーパンク エッジランナーズ",
+      "aired": {
+        "season": "summer",
+        "year": 2022
+      },
+      "reviews": [
+        {
+          "final": true,
+          "ratingNumber": 5,
+          "dateReviewed": "2026-11-25T07:59:39-05:00"
+        }
+      ],
+      "watched": {
+        "from": "2022-09-28",
+        "to": "2024-08-19",
+        "finished": true
+      },
+      "anilistId": 120377,
+      "anilist": {
+        "format": "ONA",
+        "genres": [
+          "Action",
+          "Drama",
+          "Psychological",
+          "Sci-Fi"
+        ],
+        "tags": [
+          "Cyberpunk",
+          "Crime",
+          "Dystopian",
+          "Cyborg",
+          "Male Protagonist",
+          "Class Struggle",
+          "Gangs",
+          "Urban",
+          "Orphan",
+          "Guns",
+          "Gore",
+          "Primarily Adult Cast",
+          "Heterosexual",
+          "Drugs",
+          "Nudity",
+          "Coming of Age",
+          "Ensemble Cast",
+          "Robots",
+          "Artificial Intelligence"
+        ],
+        "studios": [
+          "TRIGGER"
+        ]
+      }
+    },
+    {
+      "titleEN": "Tekken: Bloodline",
+      "titleJP": "Tekken: Bloodline",
+      "aired": {
+        "season": "summer",
+        "year": 2022
+      },
+      "reviews": [
+        {
+          "episodes": 2,
+          "ratingNumber": 2,
+          "dateReviewed": "2026-11-25T07:59:39-05:00"
+        }
+      ],
+      "watched": {
+        "from": "2022-08-25",
+        "to": "2022-08-26",
+        "episode": 2
+      },
+      "anilistId": 153906,
+      "anilist": {
+        "format": "ONA",
+        "genres": [
+          "Action",
+          "Sports",
+          "Supernatural"
+        ],
+        "tags": [
+          "Martial Arts",
+          "Revenge",
+          "Male Protagonist",
+          "CGI"
+        ],
+        "studios": [
+          "Studio Hibari",
+          "Larx Entertainment"
+        ]
+      }
     }
   ],
   "toReview": [],
@@ -158,7 +304,6 @@
       "title": "Classroom of the Elite Season 2",
       "reason": "Continuing series"
     },
-    "Cyberpunk: Edgerunners",
     "Doomsday with My Dog",
     "Drifting Home",
     {
@@ -242,7 +387,6 @@
       "reason": "Continuing series"
     },
     "Smile of the Arsnotoria the Animation",
-    "Tekken: Bloodline",
     "TEPPEN!!!!!!!!!!!!!!! Laughing 'til You Cry",
     {
       "title": "The Devil is a Part-Timer! Season 2",
@@ -256,7 +400,6 @@
     "The Tatami Time Machine Blues",
     "The Yakuza's Guide to Babysitting",
     "TOKYO MEW MEW NEW",
-    "Uncle from Another World",
     {
       "title": "Utawarerumono Mask of Truth",
       "reason": "Continuing series"

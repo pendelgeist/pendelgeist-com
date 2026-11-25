@@ -53,6 +53,48 @@
           "Lerche"
         ]
       }
+    },
+    {
+      "titleEN": "Durarara!! X2",
+      "titleJP": "デュラララ!!×２ 承",
+      "aired": {
+        "season": "winter",
+        "year": 2015
+      },
+      "reviews": [
+        {
+          "ratingNumber": 3,
+          "dateReviewed": "2026-11-25T07:59:39-05:00"
+        }
+      ],
+      "watched": {
+        "from": "2015-10-10",
+        "to": "2015-10-12"
+      },
+      "anilistId": 20652,
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Action",
+          "Mystery",
+          "Supernatural"
+        ],
+        "tags": [
+          "Achronological Order",
+          "Urban Fantasy",
+          "Ensemble Cast",
+          "Gangs",
+          "Yakuza",
+          "Urban",
+          "Motorcycles",
+          "Delinquents",
+          "Anti-Hero",
+          "Dullahan"
+        ],
+        "studios": [
+          "Shuka"
+        ]
+      }
     }
   ],
   "toReview": [],
@@ -67,10 +109,6 @@
     "Death Parade",
     {
       "title": "Dog Days Season 3",
-      "reason": "Continuing series"
-    },
-    {
-      "title": "Durarara!! X2",
       "reason": "Continuing series"
     },
     {

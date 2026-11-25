@@ -1,7 +1,52 @@
 {
   "id": "summer-2018",
   "name": "Summer 2018",
-  "shows": [],
+  "shows": [
+    {
+      "titleEN": "Hi Score Girl",
+      "titleJP": "ハイスコアガール",
+      "aired": {
+        "season": "summer",
+        "year": 2018
+      },
+      "reviews": [
+        {
+          "episodes": 3,
+          "ratingNumber": 3,
+          "dateReviewed": "2026-11-25T07:59:39-05:00"
+        }
+      ],
+      "watched": {
+        "from": "2022-05-13",
+        "to": "2022-07-23",
+        "episode": 3
+      },
+      "anilistId": 20574,
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Comedy",
+          "Drama",
+          "Romance"
+        ],
+        "tags": [
+          "Video Games",
+          "Full CGI",
+          "Male Protagonist",
+          "Love Triangle",
+          "Urban",
+          "Ojou-sama",
+          "Heterosexual",
+          "Seinen",
+          "CGI"
+        ],
+        "studios": [
+          "J.C.STAFF",
+          "Shogakukan Music & Digital Entertainment"
+        ]
+      }
+    }
+  ],
   "toReview": [],
   "notReviewing": [
     "100 Sleeping Princes & the Kingdom of Dreams",
@@ -53,7 +98,6 @@
     "Happy Sugar Life",
     "Harukana Receive",
     "Harukana Receive: Yokoku",
-    "Hi Score Girl",
     "Holmes of Kyoto",
     "How NOT to Summon a Demon Lord",
     "ISLAND",

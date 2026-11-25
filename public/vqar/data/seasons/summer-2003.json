@@ -1,0 +1,51 @@
+{
+  "id": "summer-2003",
+  "name": "Summer 2003",
+  "shows": [
+    {
+      "titleEN": "Full Metal Panic? Fumoffu",
+      "titleJP": "フルメタル・パニック? ふもっふ",
+      "aired": {
+        "season": "summer",
+        "year": 2003
+      },
+      "reviews": [
+        {
+          "ratingNumber": 2,
+          "dateReviewed": "2026-11-25T07:59:39-05:00"
+        }
+      ],
+      "watched": {
+        "from": "2012-03-09",
+        "episode": 1
+      },
+      "anilistId": 72,
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Action",
+          "Comedy",
+          "Romance"
+        ],
+        "tags": [
+          "Slapstick",
+          "School",
+          "Tsundere",
+          "Surreal Comedy",
+          "Parody",
+          "Guns",
+          "Military",
+          "Delinquents",
+          "Crime",
+          "Episodic",
+          "Male Protagonist"
+        ],
+        "studios": [
+          "Kyoto Animation"
+        ]
+      }
+    }
+  ],
+  "toReview": [],
+  "notReviewing": []
+}

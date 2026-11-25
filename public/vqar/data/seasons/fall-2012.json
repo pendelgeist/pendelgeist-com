@@ -91,6 +91,52 @@
           "TRIGGER"
         ]
       }
+    },
+    {
+      "titleEN": "JoJo's Bizarre Adventure",
+      "titleJP": "ジョジョの奇妙な冒険",
+      "aired": {
+        "season": "fall",
+        "year": 2012
+      },
+      "reviews": [
+        {
+          "final": true,
+          "ratingNumber": 4,
+          "dateReviewed": "2026-11-25T07:59:39-05:00"
+        }
+      ],
+      "watched": {
+        "from": "2022-03-21",
+        "to": "2025-09-09",
+        "finished": true
+      },
+      "anilistId": 14719,
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Action",
+          "Adventure",
+          "Supernatural"
+        ],
+        "tags": [
+          "Male Protagonist",
+          "Super Power",
+          "Primarily Male Cast",
+          "Urban Fantasy",
+          "Shounen",
+          "Cultivation",
+          "Foreign",
+          "Primarily Adult Cast",
+          "Gore",
+          "Body Horror",
+          "Historical",
+          "Travel"
+        ],
+        "studios": [
+          "david production"
+        ]
+      }
     }
   ],
   "toReview": [],

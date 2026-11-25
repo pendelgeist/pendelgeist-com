@@ -160,6 +160,137 @@
           "A-1 Pictures"
         ]
       }
+    },
+    {
+      "titleEN": "Godzilla Singular Point",
+      "titleJP": "ゴジラ S.P＜シンギュラポイント＞",
+      "aired": {
+        "season": "spring",
+        "year": 2021
+      },
+      "reviews": [
+        {
+          "final": true,
+          "ratingNumber": 5,
+          "dateReviewed": "2026-11-25T07:59:39-05:00"
+        }
+      ],
+      "watched": {
+        "from": "2021-10-19",
+        "to": "2021-11-13",
+        "finished": true
+      },
+      "anilistId": 124786,
+      "anilist": {
+        "format": "ONA",
+        "genres": [
+          "Action",
+          "Mecha",
+          "Mystery",
+          "Sci-Fi"
+        ],
+        "tags": [
+          "Kaiju",
+          "Artificial Intelligence",
+          "CGI",
+          "Robots",
+          "Primarily Adult Cast",
+          "Female Protagonist",
+          "Male Protagonist"
+        ],
+        "studios": [
+          "Orange",
+          "bones"
+        ]
+      }
+    },
+    {
+      "titleEN": "The Way of the Househusband",
+      "titleJP": "極主夫道",
+      "aired": {
+        "season": "spring",
+        "year": 2021
+      },
+      "reviews": [
+        {
+          "final": true,
+          "ratingNumber": 5,
+          "dateReviewed": "2026-11-25T07:59:39-05:00"
+        }
+      ],
+      "watched": {
+        "from": "2021-11-15",
+        "to": "2022-06-23",
+        "finished": true
+      },
+      "anilistId": 125426,
+      "anilist": {
+        "format": "ONA",
+        "genres": [
+          "Comedy",
+          "Slice of Life"
+        ],
+        "tags": [
+          "Slapstick",
+          "Yakuza",
+          "Male Protagonist",
+          "Episodic",
+          "Family Life",
+          "Parody",
+          "Gangs",
+          "Primarily Adult Cast",
+          "Seinen",
+          "Urban",
+          "Flash",
+          "Food",
+          "Heterosexual",
+          "Educational"
+        ],
+        "studios": [
+          "J.C.STAFF"
+        ]
+      }
+    },
+    {
+      "titleEN": "EDENS ZERO",
+      "titleJP": "EDENS ZERO",
+      "aired": {
+        "season": "spring",
+        "year": 2021
+      },
+      "reviews": [
+        {
+          "ratingNumber": 1,
+          "dateReviewed": "2026-11-25T07:59:39-05:00"
+        }
+      ],
+      "watched": {
+        "from": "2021-12-11",
+        "episode": 1
+      },
+      "anilistId": 119683,
+      "anilist": {
+        "format": "TV",
+        "genres": [
+          "Action",
+          "Adventure",
+          "Comedy",
+          "Fantasy",
+          "Sci-Fi"
+        ],
+        "tags": [
+          "Space",
+          "Magic",
+          "Robots",
+          "Shounen",
+          "Ensemble Cast",
+          "Artificial Intelligence",
+          "Male Protagonist"
+        ],
+        "studios": [
+          "J.C.STAFF"
+        ]
+      }
     }
   ],
   "toReview": [],
@@ -181,7 +312,6 @@
     "DON'T TOY WITH ME, MISS NAGATORO",
     "Dragon Goes House-Hunting",
     "Eden",
-    "EDENS ZERO",
     "Ensemble Stars!! 5th Anniversary ANIMATION PV",
     {
       "title": "Etotama: Nyankyaku Banrai",
@@ -197,7 +327,6 @@
       "reason": "Continuing series"
     },
     "Full Dive: This Ultimate Next-Gen Full Dive RPG Is Even Shittier than Real Life!",
-    "Godzilla Singular Point",
     {
       "title": "Heaven's Design Team: Idea 13",
       "reason": "Continuing series"
@@ -252,7 +381,6 @@
     "Tantei wa mou, Shindeiru. Mini Anime",
     "The Saint's Magic Power is Omnipotent",
     "The Slime Diaries",
-    "The Way of the Househusband",
     "The World Ends with You The Animation",
     "Those Snow White Notes",
     {
